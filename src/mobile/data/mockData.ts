@@ -2,11 +2,151 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/09/2026 17:02:07
- * Total: 722 recettes
+ * Dernière mise à jour: 12/09/2026 22:05:01
+ * Total: 724 recettes
  */
-export const exportSyncId = "1789232527087";
+export const exportSyncId = "1789250701660";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7776",
+        "title": "Pancakes aux petits pois",
+        "description": "Des pancakes aux petits pois prêts en 5 minutes, parfaits pour la diversification alimentaire des bébés.",
+        "image": "/recipes-ia/7776-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641666625921404193\" data-video-id=\"7641666625921404193\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641666625921404193\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             80g de petits pois"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 Kiri ou carré frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Mixer les petits pois, l'œuf, le Kiri (ou carré frais) et la farine jusqu'à obtenir une pâte homogène.",
+            "Faire cuire les pancakes à feu doux dans une poêle."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7817",
+        "title": "Beignets de courgettes croustillants et rapides",
+        "description": "Oubliez les beignets habituels, lourds et gorgés d'huile ! Ces beignets sont légers, gonflés et avec une croûte qui craque à chaque bouchée.",
+        "image": "/recipes-ia/7817-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670919582323903777\" data-video-id=\"7670919582323903777\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670919582323903777\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500 g de courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             250 g de farine T45"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g de Parmigiano"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 g de levure de bière sèche"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             230 g d'eau à température ambiante"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (quantité suffisante)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile d'arachide (quantité suffisante)"
+            }
+        ],
+        "steps": [
+            "Râpez les courgettes avec une râpe à gros trous.",
+            "Laissez-les égoutter sur une passoire pendant au moins 30 minutes afin que toute l'eau s'écoule et que la pâte ne devienne pas molle.",
+            "Dans un saladier, mélangez la farine et la levure.",
+            "Ajoutez l'eau en filet et mélangez jusqu'à obtenir une base lisse et sans grumeaux.",
+            "Incorporez le Parmigiano, les courgettes bien essorées et enfin le sel.",
+            "Mélangez le tout jusqu'à obtenir une pâte homogène.",
+            "Couvrez et laissez lever pendant environ 3 heures. Ce passage rendra les beignets bien gonflés et aérés.",
+            "Faites frire des petites cuillerées de pâte dans de l'huile bouillante à environ 170°C. Faites-le par petites quantités pour que l'huile reste stable et que la friture soit uniforme.",
+            "Égouttez les beignets sur du papier absorbant et salez-les légèrement."
+        ],
+        "tags": [
+            "Italie",
+            "Pas cher",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7819",
+        "title": "Fagots d'haricots verts au lard",
+        "description": "Un accompagnement simple et gourmand qui peut accompagner tous vos plats, ajoutant une touche de verdure et de saveur.",
+        "image": "/recipes-ia/7819-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7558512828299185430\" data-video-id=\"7558512828299185430\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7558512828299185430\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥓\n             2 tranches de lard"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             Haricots verts"
+            }
+        ],
+        "steps": [
+            "Enroulez les haricots verts dans les tranches de lard.",
+            "Déposez les fagots ainsi formés sur une grille.",
+            "Enfournez."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7778",
         "title": "Petites galettes de pommes de terre et brocoli",
@@ -649,54 +789,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7776",
-        "title": "Pancakes aux petits pois",
-        "description": "Des pancakes aux petits pois prêts en 5 minutes, parfaits pour la diversification alimentaire des bébés.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641666625921404193\" data-video-id=\"7641666625921404193\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641666625921404193\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             80g de petits pois"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 Kiri ou carré frais"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             2 cuillères à soupe de farine"
-            }
-        ],
-        "steps": [
-            "Mixer les petits pois, l'œuf, le Kiri (ou carré frais) et la farine jusqu'à obtenir une pâte homogène.",
-            "Faire cuire les pancakes à feu doux dans une poêle."
-        ],
-        "tags": [
-            "Bébé",
-            "Dès 6 mois",
-            "Healthy",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7774",
         "title": "Boulettes façon hachis parmentier pour bébé",
         "description": "Des boulettes inspirées du hachis parmentier, parfaites pour les petites mains des bébés et adaptées à la diversification alimentaire.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7774-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -746,7 +842,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7772",
         "title": "Galettes de pomme de terre ultra fondantes",
         "description": "Ces galettes de pomme de terre sont ultra fondantes et ne nécessitent que trois ingrédients : des pommes de terre, un œuf et de la farine. Idéales pour une bonne régalade et parfaites pour la diversification alimentaire des bébés.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7772-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -788,7 +884,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7770",
         "title": "Galettes de poulet et légumes",
         "description": "Moelleuses, riches en protéines et faciles à tenir pour les petites mains. C'est l'un de mes repas préférés lorsque je veux quelque chose de rapide, nutritif et facile à manger pour les bébés. Elles sont pleines de légumes et de protéines et convi...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7770-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
