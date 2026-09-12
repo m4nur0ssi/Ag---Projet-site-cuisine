@@ -2,11 +2,723 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/09/2026 07:28:24
- * Total: 706 recettes
+ * Dernière mise à jour: 12/09/2026 09:54:02
+ * Total: 720 recettes
  */
-export const exportSyncId = "1789198104845";
+export const exportSyncId = "1789206842227";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7790",
+        "title": "Boulettes de saumon, riz et brocoli pour bébé",
+        "description": "Ces boulettes, très appréciées par les enfants, sont rapides à préparer et disparaissent en un clin d'œil.",
+        "image": "/recipes-ia/7790-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7632765029993024790\" data-video-id=\"7632765029993024790\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7632765029993024790\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             80g de riz cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             50g de saumon"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n             60g de brocoli cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 petite poignée d'emmental"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             1 cuillère à soupe de chapelure"
+            }
+        ],
+        "steps": [
+            "Mélanger le riz cuit, le saumon, le brocoli cuit, l'emmental et la chapelure.",
+            "Former des boulettes avec le mélange.",
+            "Cuire les boulettes dans un Airfryer à 180 degrés pendant 8 à 10 minutes."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7799",
+        "title": "Beignets Indiens à l'oignon (Bhaji)",
+        "description": "Des beignets indiens à l'oignon (Bhaji), croustillants et épicés, parfaits pour l'apéritif. Une recette facile et rapide à réaliser, adaptée avec de la farine classique au lieu de la farine de pois chiche.",
+        "image": "/recipes-ia/7799-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7668994442254175520\" data-video-id=\"7668994442254175520\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7668994442254175520\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             1 gros oignon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 tasse de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 tasse d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curry"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de friture"
+            }
+        ],
+        "steps": [
+            "Émincez les oignons blancs.",
+            "Dans un récipient, ajoutez les oignons émincés, le sel, la farine, l'eau, la levure chimique, le curry, le curcuma et le gingembre. Mélangez bien pour enrober les oignons et obtenir une pâte assez collante.",
+            "Faites chauffer l'huile de friture. Versez des petits tas de pâte dans l'huile chaude et faites-les frire très rapidement jusqu'à ce qu'ils soient bien dorés et croustillants.",
+            "Servez les beignets avec un peu de coriandre et de sauce Sriracha."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7792",
+        "title": "Brochettes de poulet et riz sauté à la tomate",
+        "description": "De savoureuses brochettes de hauts de cuisses de poulet marinées aux épices, servies avec un riz parfumé à la tomate, au poivron et à la sauce pimentée douce.",
+        "image": "/recipes-ia/7792-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7684236369203383585\" data-video-id=\"7684236369203383585\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7684236369203383585\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Hauts de cuisses de poulet désossés"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             Riz blanc cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Sauce piment doux (sweet chili)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail fumé en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persillade"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Mélange d'épices plein sud"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cube de bouillon (type Kub Or)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel aromatisé"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Faites cuire votre riz blanc (à l'autocuiseur ou à la casserole) et réservez-le.",
+            "Coupez les hauts de cuisses de poulet en morceaux de taille égale et déposez-les dans un saladier.",
+            "Ajoutez le poivre, le paprika fumé, l'ail fumé, la persillade, le sel aromatisé, le mélange d'épices plein sud, une cuillère à café bombée de concentré de tomate et un filet d'huile. Mélangez soigneusement pour bien enrober la viande.",
+            "Enfilez les morceaux de poulet mariné sur des piques à brochettes, puis réservez-les au frais.",
+            "Dans une poêle ou une sauteuse, faites revenir l'échalote et le poivron rouge émincés avec un filet d'huile pendant quelques minutes.",
+            "Ajoutez une belle cuillère à café de concentré de tomate et faites revenir le tout pendant environ 5 minutes.",
+            "Incorporez un trait de sauce sweet chili, un peu de paprika fumé, d'ail fumé, de poivre et de sel.",
+            "Ajoutez le riz blanc cuit, un petit peu d'eau et une pincée de bouillon cube émietté. Mélangez bien et laissez revenir quelques minutes sur feu doux.",
+            "Dans une poêle bien chaude avec un filet d'huile, faites cuire les brochettes de poulet en les retournant régulièrement jusqu'à ce qu'elles soient bien dorées et cuites à cœur.",
+            "Servez les brochettes bien chaudes accompagnées du riz à la tomate et, si vous le souhaitez, d'une petite salade fraîche."
+        ],
+        "tags": [
+            "airfryer",
+            "épicé",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7794",
+        "title": "Galettes bretonnes de sarrasin",
+        "description": "Découvrez une recette incontournable de galettes de sarrasin, un plat breton sain et sans gluten, parfait pour le petit-déjeuner ou un repas salé. La pâte, préparée sans levain, peut bénéficier d'un temps de repos pour une meilleure hydratation de...",
+        "image": "/recipes-ia/7794-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7680604824592715040\" data-video-id=\"7680604824592715040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7680604824592715040\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             250 g de farine de sarrasin"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             500 ml d'eau froide"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             5 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf (facultatif)"
+            }
+        ],
+        "steps": [
+            "Versez la farine de sarrasin et le sel dans un saladier en formant un puits.",
+            "Ajoutez l'eau froide (et l'œuf si vous choisissez d'en mettre) petit à petit tout en mélangeant énergiquement avec un fouet pour lisser la pâte et incorporer de l'air.",
+            "Laissez reposer la pâte au moins 1 à 2 heures au réfrigérateur. Cette étape n'est pas obligatoire mais elle permet à la farine de bien s'hydrater et d'assouplir la pâte.",
+            "Remuez bien la pâte avant de l'utiliser.",
+            "Faites cuire sur une poêle bien chaude et légèrement graissée, en versant une louche et en inclinant la poêle pour napper toute la surface. Laissez dorer des deux côtés."
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Plats",
+            "Sans Gluten"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7788",
+        "title": "Pancakes à la carotte pour bébé",
+        "description": "Des pancakes à la carotte prêts en 5 minutes top chrono avec seulement 3 ingrédients, parfaits pour la diversification alimentaire. Ils peuvent être congelés jusqu'à 2 mois.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7622386822823333152\" data-video-id=\"7622386822823333152\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7622386822823333152\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             75g de carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7786",
+        "title": "Bolognaise aux légumes fondants pour bébé",
+        "description": "Découvrez une recette simple et rapide de bolognaise aux légumes fondants, parfaite pour les bébés dès 6 mois qui commencent la diversification alimentaire avec des morceaux. Facile à préparer à la maison, elle permet d'introduire les carottes et ...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616827176456817942\" data-video-id=\"7616827176456817942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616827176456817942\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             2 carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Coulis de tomate (ou concentré, ou pulpe)"
+            },
+            {
+                "quantity": "",
+                "name": "🍝\n             Pâtes alphabets"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Protéine (par exemple, viande hachée, 10g par portion)"
+            }
+        ],
+        "steps": [
+            "Coupez deux carottes en tout petits morceaux.",
+            "Faites-les cuire dans une poêle avec un peu d'huile d'olive jusqu'à ce qu'elles soient bien fondantes.",
+            "Une fois les carottes bien cuites, ajoutez le coulis de tomate (ou le concentré, ou la pulpe, que vous pouvez mixer au préalable) et laissez mijoter quelques minutes.",
+            "Pendant ce temps, faites cuire les pâtes alphabets.",
+            "Mélangez les pâtes cuites avec la sauce aux légumes.",
+            "Ajoutez un filet d'huile d'olive.",
+            "Au moment de servir, incorporez une portion de 10g de protéine (par exemple, des petits cubes de viande hachée) pour le repas du midi de votre bébé."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy",
+            "Italie",
+            "Pas cher",
+            "pates",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7784",
+        "title": "Pancakes à la pêche",
+        "description": "Des pancakes à la pêche, à tester absolument !!",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652437948323089696\" data-video-id=\"7652437948323089696\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652437948323089696\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pêche"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             1 banane"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             3 cuillères à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Mélanger la pêche, la banane, l'œuf et la farine.",
+            "Cuire les pancakes dans une poêle."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7782",
+        "title": "Pancakes aux fraises",
+        "description": "Découvrez la recette des meilleurs pancakes à la fraise, parfaits pour la diversification alimentaire des bébés. Faciles à préparer avec seulement quelques ingrédients.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645368025322917152\" data-video-id=\"7645368025322917152\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645368025322917152\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍓\n             2 fraises"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             1/2 banane"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Mélanger les 2 fraises, la demi-banane, l'œuf et les 2 cuillères à soupe de farine.",
+            "Faire cuire la pâte à feu doux.",
+            "Servir et déguster."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Pas cher",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7780",
+        "title": "Bouchées à la carotte et pomme de terre",
+        "description": "Ces bouchées très fondantes s'écrasent facilement entre la langue et le palais de bébé, même sans dents ! Idéales pour la diversification alimentaire dès 6 mois.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613059062523088160\" data-video-id=\"7613059062523088160\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613059062523088160\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             100g de carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             100g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Commencez par écraser les pommes de terre en purée.",
+            "Ajoutez les carottes râpées, l'échalote cuite et la farine à la purée de pommes de terre.",
+            "Mélangez le tout jusqu'à obtenir une pâte bien homogène.",
+            "Formez de petites boules entre vos mains.",
+            "Faites-les cuire dans une poêle avec de l'huile d'olive pendant 4 à 5 minutes, en les retournant régulièrement."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7778",
+        "title": "Petites galettes de pommes de terre et brocoli",
+        "description": "Une recette simple et nutritive de petites galettes de pommes de terre et brocoli, idéales pour la diversification alimentaire des bébés dès 6 mois. Faciles à préparer et à congeler.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7423109426908810499\" data-video-id=\"7423109426908810499\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7423109426908810499\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             2 pommes de terre bouillies ou cuites à la vapeur"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n             2 tasses de fleurons de brocoli cuits à la vapeur ou bouillis"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1/2 tasse de fromage râpé"
+            }
+        ],
+        "steps": [
+            "Étape 1 : Écraser tous les ingrédients dans un bol.",
+            "Étape 2 : À l'aide de vos mains, former de petites galettes et les placer sur une plaque de cuisson recouverte de papier sulfurisé. Cuire au four pendant 25 minutes à 180°C."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7776",
+        "title": "Pancakes aux petits pois",
+        "description": "Des pancakes aux petits pois prêts en 5 minutes, parfaits pour la diversification alimentaire des bébés.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641666625921404193\" data-video-id=\"7641666625921404193\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641666625921404193\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             80g de petits pois"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 Kiri ou carré frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Mixer les petits pois, l'œuf, le Kiri (ou carré frais) et la farine jusqu'à obtenir une pâte homogène.",
+            "Faire cuire les pancakes à feu doux dans une poêle."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7774",
+        "title": "Boulettes façon hachis parmentier pour bébé",
+        "description": "Des boulettes inspirées du hachis parmentier, parfaites pour les petites mains des bébés et adaptées à la diversification alimentaire.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7632012918720105750\" data-video-id=\"7632012918720105750\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7632012918720105750\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             250g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de patate douce"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             100g de bœuf haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 petite poignée d'emmental"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             1 cuillère à soupe de chapelure"
+            }
+        ],
+        "steps": [
+            "Cuire et écraser les pommes de terre et la patate douce.",
+            "Cuire le bœuf haché.",
+            "Mélanger les pommes de terre écrasées, la patate douce, le bœuf haché, l'emmental et la chapelure.",
+            "Former des boulettes avec le mélange.",
+            "Cuire au four préchauffé à 180 degrés pendant 12 à 15 minutes."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 8 mois",
+            "France",
+            "Gratins"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7772",
+        "title": "Galettes de pomme de terre ultra fondantes",
+        "description": "Ces galettes de pomme de terre sont ultra fondantes et ne nécessitent que trois ingrédients : des pommes de terre, un œuf et de la farine. Idéales pour une bonne régalade et parfaites pour la diversification alimentaire des bébés.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648729343358684448\" data-video-id=\"7648729343358684448\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648729343358684448\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             200 à 250 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Faire cuire les pommes de terre (à la vapeur ou à l'eau).",
+            "Les écraser pour obtenir une purée.",
+            "Ajouter l'œuf et la farine à la purée de pommes de terre, puis bien mélanger jusqu'à obtenir une pâte homogène.",
+            "Former des petites galettes avec la préparation.",
+            "Faire dorer les galettes à la poêle avec un peu de matière grasse jusqu'à ce qu'elles soient bien cuites et croustillantes."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7770",
+        "title": "Galettes de poulet et légumes",
+        "description": "Moelleuses, riches en protéines et faciles à tenir pour les petites mains. C'est l'un de mes repas préférés lorsque je veux quelque chose de rapide, nutritif et facile à manger pour les bébés. Elles sont pleines de légumes et de protéines et convi...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7611831385262902549\" data-video-id=\"7611831385262902549\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7611831385262902549\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥦\n             1 tasse de brocoli finement coupé en dés et bouilli"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             ½ tasse de carotte râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             500g de poulet haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             ½ tasse de fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             ½ tasse de farine d'avoine"
+            }
+        ],
+        "steps": [
+            "1. Ajoutez tous les ingrédients dans un grand bol et mélangez bien jusqu'à ce que tout soit parfaitement combiné.",
+            "2. Prélevez le mélange et formez de petites galettes.",
+            "3. Faites chauffer une poêle légèrement huilée à feu moyen.",
+            "4. Faites cuire les galettes environ 4 à 5 minutes de chaque côté jusqu'à ce qu'elles soient dorées et bien cuites. Laissez refroidir légèrement avant de servir à bébé. Elles se conservent également bien au réfrigérateur et peuvent être réchauffées pour des repas rapides pendant la semaine."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 8 mois",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7767",
         "title": "Gâteau aux noisettes",
