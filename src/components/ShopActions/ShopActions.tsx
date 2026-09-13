@@ -71,6 +71,26 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
          * forcer un navigateur depuis une page web, mais on peut éviter de
          * laisser quelqu'un chercher un assistant qui ne viendra jamais.
          */
+        const terme = carrefourTerm(it.name);
+
+        /*
+         * Magasin-application (Picnic) : pas de site à piloter, donc pas
+         * d'assistant à réclamer. On copie l'article AVANT d'ouvrir — le geste
+         * de l'utilisateur est encore en cours, seul moment où le
+         * presse-papiers s'accepte — pour qu'il n'ait qu'à coller si l'app
+         * s'ouvre sur son accueil au lieu de la recherche.
+         */
+        if (shop.app) {
+            try { navigator.clipboard?.writeText(terme); } catch { /* presse-papiers refusé */ }
+            window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+                detail: `« ${terme} » copié — colle-le dans la recherche ${shop.label} si besoin.`,
+            }));
+            const lien = shop.search(terme);
+            if (!window.open(lien, '_blank')) window.location.href = lien;
+            onShopped?.(it);
+            return;
+        }
+
         const obstacle = obstacleAssistant();
         if (obstacle) window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: obstacle }));
         // Ouvre le magasin avec la file complète (hash #mlist) → l'extension "Courses
