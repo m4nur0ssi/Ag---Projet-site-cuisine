@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { ecrireStock } from '@/lib/stockage';
 
-export type StoreId = 'carrefour' | 'picard' | 'monoprix' | 'leclerc' | 'intermarche' | 'auchan' | 'picnic';
+export type StoreId = 'carrefour' | 'picard' | 'monoprix' | 'leclerc' | 'intermarche' | 'auchan';
 
 export interface StoreDef {
     id: StoreId;
@@ -12,13 +12,6 @@ export interface StoreDef {
     color: string;
     logo: string; // remplace le fichier dans public/images/stores/ par le vrai logo (même nom)
     search: (q: string) => string;
-    /**
-     * Magasin qui vit dans une APPLICATION, pas sur un site : le lien ouvre
-     * l'app du téléphone. Deux conséquences — l'assistant (extension Chrome)
-     * n'a rien à y faire, et on copie l'article avant d'ouvrir, pour qu'il
-     * suffise de le coller si l'app retombe sur son accueil.
-     */
-    app?: boolean;
 }
 
 export const STORES: StoreDef[] = [
@@ -33,16 +26,6 @@ export const STORES: StoreDef[] = [
     // relève à chaque tentative : le format n'a pas pu être confirmé de
     // l'extérieur. La route existe et répond ; si elle vous mène à une page
     // vide, c'est ici qu'il faut la corriger.
-    /*
-     * Picnic n'a pas de site de courses : tout se passe dans son application.
-     * Le fichier que l'iPhone consulte (picnic.app/.well-known/apple-app-site-association)
-     * n'ouvre l'app que sur `/link/*`, `/qr/gtin/*` et `/recettes/*` — aucun
-     * chemin de recherche n'y est annoncé. On passe donc par le lien
-     * générique, en lui donnant la recherche : si l'app la comprend, elle
-     * s'ouvre dessus ; sinon elle s'ouvre tout court, et le nom de l'article
-     * attend dans le presse-papiers (voir ShopActions).
-     */
-    { id: 'picnic', label: 'Picnic', color: '#E1132C', logo: '/images/stores/picnic.svg', app: true, search: q => `https://picnic.app/fr/link/search?q=${encodeURIComponent(q)}` },
     { id: 'intermarche', label: 'Intermarché', color: '#E2001A', logo: '/images/stores/intermarche.svg', search: q => `https://www.intermarche.com/recherche/${encodeURIComponent(q)}` },
 ];
 
@@ -56,8 +39,6 @@ export const STORE_BY_ID: Record<StoreId, StoreDef> =
 // ciblé, pas de '*'), ce qui raye l'ingrédient ici pendant qu'on est au magasin.
 export function storeSearchWithQueue(id: StoreId, terms: string[], index = 0): string {
     const base = STORE_BY_ID[id].search(terms[index] || '');
-    // Une application ne lit pas notre file : l'extension Chrome n'y tourne pas.
-    if (STORE_BY_ID[id].app) return base;
     try {
         const payload = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(terms)))));
         const origin = typeof window !== 'undefined' ? encodeURIComponent(window.location.origin) : '';

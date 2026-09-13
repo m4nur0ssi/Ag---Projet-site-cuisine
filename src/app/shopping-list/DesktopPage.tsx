@@ -262,17 +262,6 @@ export default function ShoppingListPage() {
     const openCarrefourFor = (i: number) => {
         const it = selectedItems[i];
         if (!it) return;
-        const boutique = STORE_BY_ID[store];
-        // Magasin-application (Picnic) : on copie l'article puis on ouvre l'app —
-        // rien à piloter côté site, et le nom attend dans le presse-papiers.
-        if (boutique.app) {
-            const terme = carrefourTerm(it.name);
-            try { navigator.clipboard?.writeText(terme); } catch { /* presse-papiers refusé */ }
-            const lien = boutique.search(terme);
-            if (!window.open(lien, '_blank')) window.location.href = lien;
-            markDone(it);
-            return;
-        }
         // #12 : fenêtre nommée 'storeCart' réutilisée + file complète (#mlist) →
         // l'extension fait défiler les produits sans changer d'onglet.
         const queue = selectedItems.map(x => carrefourTerm(x.name));
