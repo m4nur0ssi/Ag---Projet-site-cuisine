@@ -2,11 +2,93 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/09/2026 09:37:28
- * Total: 724 recettes
+ * Dernière mise à jour: 13/09/2026 21:29:59
+ * Total: 725 recettes
  */
-export const exportSyncId = "1789292248576";
+export const exportSyncId = "1789334999861";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7830",
+        "title": "Recette de Maritozzi",
+        "description": "Petits pains romains doux et sucrés, traditionnellement garnis de crème fouettée.",
+        "image": "/recipes-ia/7830-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7685113242368216353\" data-video-id=\"7685113242368216353\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7685113242368216353\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             300 g de farine tout usage (2 ½ tasses)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50 g de sucre (¼ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             7 g de levure sèche (1 sachet) ou 20 g de levure fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             110 ml de lait tiède (½ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf (moyen)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre mou (3 ½ c. à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Un peu de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 jaune d'œuf + 1 c. à soupe de lait (pour badigeonner)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             400 ml de crème liquide (1 ¾ tasses)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 c. à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 sachet de fixateur de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre glace (pour saupoudrer)"
+            }
+        ],
+        "steps": [
+            "Tamiser la farine dans un bol et former un puits au centre. Ajouter la levure, 1 c. à café de sucre et un peu de lait tiède dans le puits. Remuer légèrement, couvrir et laisser reposer quelques minutes jusqu'à ce que la levure mousse et s'active.",
+            "Ajouter le reste du sucre, le sel, la vanille, l'œuf et le reste du lait, puis pétrir le tout pour obtenir une pâte lisse.",
+            "Une fois que la pâte est homogène, incorporer le beurre mou morceau par morceau jusqu'à obtenir une pâte lisse et souple.",
+            "Couvrir et laisser lever dans un endroit chaud pendant environ 1 à 1,5 heure, jusqu'à ce que la pâte ait doublé de volume.",
+            "Diviser la pâte en 10-11 morceaux égaux, former des petits pains ovales et les placer sur une plaque de cuisson recouverte de papier sulfurisé. Laisser lever à nouveau pendant environ 30-45 minutes.",
+            "Badigeonner avec le mélange de jaune d'œuf et de lait. Cuire au four préchauffé à 180 °C (350 °F) chaleur haut/bas pendant environ 15-18 minutes jusqu'à ce qu'ils soient dorés.",
+            "Laisser refroidir complètement. Couper en diagonale par le haut et retirer un morceau pour créer une ouverture. Garnir de crème fouettée (fouettée avec du sucre glace et du fixateur de crème), lisser avec une spatule et saupoudrer généreusement de sucre glace. Bon appétit ! 🤍"
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7827",
         "title": "Purée Maison Façon Grand-Mère",
