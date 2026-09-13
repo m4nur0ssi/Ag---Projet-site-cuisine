@@ -31,7 +31,28 @@ if ! precedent; then
     exit 1
 fi
 
-fichiers=$(git diff --name-only HEAD^ HEAD)
+# Une FUSION rassemble plusieurs commits : la comparer à son seul premier
+# parent ne dit rien de ce que l'autre branche apportait. C'est ce qui a fait
+# sauter le déploiement du 13 septembre — le correctif de la liste de courses
+# est resté à quai parce que la fusion, elle, ne touchait que la file du bot.
+if git rev-parse --verify HEAD^2 >/dev/null 2>&1; then
+    echo "Commit de fusion — on construit."
+    exit 1
+fi
+
+# Quand Vercel nous dit ce qui était déployé avant, on compare à ÇA : un envoi
+# de plusieurs commits d'un coup n'échappe pas au contrôle.
+base="${VERCEL_GIT_PREVIOUS_SHA:-}"
+if [ -n "$base" ] && ! git cat-file -e "${base}^{commit}" 2>/dev/null; then
+    git fetch --depth=50 origin "$base" >/dev/null 2>&1 || true
+fi
+if [ -n "$base" ] && git cat-file -e "${base}^{commit}" 2>/dev/null; then
+    plage="${base}..HEAD"
+else
+    plage="HEAD^ HEAD"
+fi
+
+fichiers=$(git diff --name-only $plage)
 if [ -z "$fichiers" ]; then
     echo "Commit sans fichier modifié — on construit."
     exit 1
