@@ -12,7 +12,7 @@ import { Recipe } from '@/mobile/types';
 import { isCookable, isSauce, isSweet, isVideoOnly } from '@/lib/mealClassify';
 
 /** Viandes, poissons et charcuteries — cherchés dans le titre ET les ingrédients. */
-const MEAT_RX = /(viandes?|hach[ée]e?s?\b|b[oœ]ufs?|beef|carne|steaks?|bavettes?|paleron|entrec[ôo]tes?|rumsteck|veau|agneaux?|mouton|lamb|porcs?|pork|lardons?|lard\b|jambons?|ham\b|bacon|saucisse|saucisson|chorizo|merguez|pancetta|coppa|charcuterie|rillettes?|terrines?|p[âa]t[ée]s?\b|poulets?|volailles?|dindes?|canards?|chicken|escalopes?|magrets?|nuggets?|cordon bleu|keftas?|koftas?|foie gras|poissons?|saumons?|thons?|cabillauds?|colin\b|merlu|lieu noir|dorades?|daurades?|sardines?|maquereaux?|truites?|soles?\b|anchois|crevettes?|gambas|moules?\b|hu[îi]tres?|saint[- ]jacques|crabes?|homards?|langoustines?|calamars?|encornets?|poulpes?|seiches?|surimi|crustac|fruits de mer)/i;
+const MEAT_RX = /(viandes?|b[oœ]ufs?|beef|carne|steaks?|bavettes?|paleron|entrec[ôo]tes?|rumsteck|veau|agneaux?|mouton|lamb|porcs?|pork|lardons?|lard\b|jambons?|ham\b|bacon|saucisse|saucisson|chorizo|merguez|pancetta|coppa|charcuterie|rillettes?|terrines?|p[âa]t[ée]s?\b|poulets?|volailles?|dindes?|canards?|chicken|escalopes?|magrets?|nuggets?|cordon bleu|keftas?|koftas?|foie gras|poissons?|saumons?|thons?|cabillauds?|colin\b|merlu|lieu noir|dorades?|daurades?|sardines?|maquereaux?|truites?|soles?\b|anchois|crevettes?|gambas|moules?\b|hu[îi]tres?|saint[- ]jacques|crabes?|homards?|langoustines?|calamars?|encornets?|poulpes?|seiches?|surimi|crustac|fruits de mer)/i;
 
 /** Formats qui ne sont pas des garnitures, même sans viande. */
 const NOT_SIDE_RX = /\b(wraps?|sandwichs?|burgers?|croque|pizzas?|tacos|bagels?|paninis?|hot[- ]dogs?|kebab|pita|club|brunch|cocktail)\b/i;
@@ -20,8 +20,27 @@ const NOT_SIDE_RX = /\b(wraps?|sandwichs?|burgers?|croque|pizzas?|tacos|bagels?|
 /** Bases d'accompagnement : féculents et légumes. */
 const BASE_RX = /\b(riz|p[âa]tes|pasta|spaghetti|tagliatelle|linguine|penne|rigatoni|macaroni|nouille|vermicelle|semoule|couscous|boulgour|quinoa|polenta|gnocchi|pomme de terre|patate|puree|pur[ée]e|frite|wedges|lentille|haricot|pois chiche|f[èe]ve|l[ée]gume|courgette|aubergine|carotte|poireau|brocoli|chou[- ]fleur|chou|[ée]pinard|haricot vert|petits pois|champignon|potiron|courge|butternut|panais|c[ée]leri|betterave|asperge|artichaut|salade|roquette|m[âa]che|tomate|poivron|ratatouille|gratin|po[êe]l[ée]e|wok de l[ée]gumes|tian|caponata)\b/i;
 
+/** Charcuteries : de la viande, mais au rôle de garniture. */
+const CHARCUTERIE_RX = /(lardons?|lard\b|bacon|jambons?|ham\b|pancetta|coppa|chorizo|saucisson)/i;
+
+/**
+ * Ce qui NOMME de la viande sans en mettre dans l'assiette : un bouillon de
+ * volaille, un fond de veau, une sauce d'huître, de la graisse de canard.
+ * Sans ce ménage, « Riz à l'ail », « Riz Pilaf » et « Les pommes boulangères »
+ * étaient refusés comme accompagnements à cause de leur bouillon.
+ */
+const AROME_MOTS = '(?:bouillons?|fonds?|cubes?|gras|graisses?|sauces?|ar[\u00f4o]mes?|extraits?)';
+/** « bouillon (volaille, légume ou bœuf) » : la parenthèse entière part avec. */
+const AROMES_PARENTHESE_RX = new RegExp(`\\b${AROME_MOTS}\\b[^()\\n]{0,12}\\([^)]*\\)`, 'gi');
+const AROMES_RX = new RegExp(
+    `\\b${AROME_MOTS}\\b[^,;.\\n]{0,24}?(?:volailles?|b[o\u0153]ufs?|veau|poules?|canards?|hu[\u00eei]tres?|poissons?|crustac[\u00e9e]s?)`,
+    'gi'
+);
+
 const text = (r: Recipe) =>
-    `${r.title || ''} ${(r.ingredients || []).map((i) => i.name).join(' ')}`;
+    `${r.title || ''} ${(r.ingredients || []).map((i) => i.name).join(' ')}`
+        .replace(AROMES_PARENTHESE_RX, ' ')
+        .replace(AROMES_RX, ' ');
 
 /**
  * Vrai accompagnement : légume ou féculent, sans la moindre trace de viande
@@ -34,13 +53,20 @@ export function isTVSide(r: Recipe): boolean {
     if (NOT_SIDE_RX.test(r.title || '')) return false;
 
     const full = text(r);
-    // Une seule mention de viande ou de poisson, où que ce soit, disqualifie.
-    if (MEAT_RX.test(full)) return false;
+    const viande = full.match(MEAT_RX);
 
-    // Rangé explicitement comme accompagnement : on fait confiance.
+    /*
+     * Rangé explicitement comme accompagnement : on fait confiance, même s'il
+     * y a de la charcuterie — des haricots verts en fagots liés au lard sont
+     * une garniture, pas un plat. Une vraie viande (poulet, bœuf, saumon…)
+     * reste disqualifiante : le tag WordPress se pose à la louche.
+     */
     const tags = (r.tags || []).map((t) => t.toLowerCase());
-    if (tags.some((t) => t.includes('accompagnement'))) return true;
-    if (cat === 'accompagnements') return true;
+    const range = tags.some((t) => t.includes('accompagnement')) || cat === 'accompagnements';
+    if (range) return !viande || CHARCUTERIE_RX.test(viande[0]);
+
+    // Une seule mention de viande ou de poisson, où que ce soit, disqualifie.
+    if (viande) return false;
 
     // Sinon la base doit apparaître dans le TITRE (le plat porte le nom de sa
     // garniture) ou parmi les trois premiers ingrédients (les principaux).
