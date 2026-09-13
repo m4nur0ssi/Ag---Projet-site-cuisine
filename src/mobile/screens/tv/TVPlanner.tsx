@@ -1071,9 +1071,45 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         décide de remplacer un plat par un autre. */}
                                     <PrixMoyen prix={prixParJour.jours[day]} libelle="Ce jour" taille="petite" sombre />
                                 </div>
-                                {MEALS.map((meal) => (
-                                    <SlotView key={meal} day={day} meal={meal} accepts={posableEnSemaine} surprend={isTVMain} sideable />
-                                ))}
+                                {(() => {
+                                    /*
+                                     * Un jour à moitié rempli ne montre que ce qu'il
+                                     * contient. Avant, les deux créneaux s'affichaient
+                                     * toujours : planifier le seul dîner du lundi
+                                     * laissait un grand midi vide en tête de page, et
+                                     * il fallait défiler pour voir son propre repas.
+                                     * Le créneau manquant se rappelle en une ligne,
+                                     * qui ouvre le choix des recettes.
+                                     *
+                                     * Deux exceptions, où l'on remontre tout : le jour
+                                     * entièrement vide (il faut bien commencer), et la
+                                     * recette tenue en main (elle doit pouvoir se poser
+                                     * n'importe où).
+                                     */
+                                    const remplis = MEALS.filter((m) => plan[day]?.[m]);
+                                    if (!remplis.length || enMain) {
+                                        return MEALS.map((meal) => (
+                                            <SlotView key={meal} day={day} meal={meal} accepts={posableEnSemaine} surprend={isTVMain} sideable />
+                                        ));
+                                    }
+                                    return (
+                                        <>
+                                            {remplis.map((meal) => (
+                                                <SlotView key={meal} day={day} meal={meal} accepts={posableEnSemaine} surprend={isTVMain} sideable />
+                                            ))}
+                                            {MEALS.filter((m) => !plan[day]?.[m]).map((meal) => (
+                                                <button
+                                                    key={meal}
+                                                    className={styles.planAjoutRepas}
+                                                    onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal }); }}
+                                                >
+                                                    <span className={styles.planPlus}>+</span>
+                                                    Ajouter le repas du {meal.toLowerCase()}
+                                                </button>
+                                            ))}
+                                        </>
+                                    );
+                                })()}
                             </section>
                         ))}
                     </div>
