@@ -2,11 +2,155 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/09/2026 22:05:01
+ * Dernière mise à jour: 13/09/2026 07:47:30
  * Total: 724 recettes
  */
-export const exportSyncId = "1789250701660";
+export const exportSyncId = "1789285650367";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7770",
+        "title": "Galettes de poulet et légumes",
+        "description": "Moelleuses, riches en protéines et faciles à tenir pour les petites mains. C'est l'un de mes repas préférés lorsque je veux quelque chose de rapide, nutritif et facile à manger pour les bébés. Elles sont pleines de légumes et de protéines et convi...",
+        "image": "/recipes-ia/7770-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7611831385262902549\" data-video-id=\"7611831385262902549\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7611831385262902549\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥦\n             1 tasse de brocoli finement coupé en dés et bouilli"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             ½ tasse de carotte râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             500g de poulet haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             ½ tasse de fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             ½ tasse de farine d'avoine"
+            }
+        ],
+        "steps": [
+            "1. Ajoutez tous les ingrédients dans un grand bol et mélangez bien jusqu'à ce que tout soit parfaitement combiné.",
+            "2. Prélevez le mélange et formez de petites galettes.",
+            "3. Faites chauffer une poêle légèrement huilée à feu moyen.",
+            "4. Faites cuire les galettes environ 4 à 5 minutes de chaque côté jusqu'à ce qu'elles soient dorées et bien cuites. Laissez refroidir légèrement avant de servir à bébé. Elles se conservent également bien au réfrigérateur et peuvent être réchauffées pour des repas rapides pendant la semaine."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 8 mois",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7772",
+        "title": "Galettes de pomme de terre ultra fondantes",
+        "description": "Ces galettes de pomme de terre sont ultra fondantes et ne nécessitent que trois ingrédients : des pommes de terre, un œuf et de la farine. Idéales pour une bonne régalade et parfaites pour la diversification alimentaire des bébés.",
+        "image": "/recipes-ia/7772-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648729343358684448\" data-video-id=\"7648729343358684448\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648729343358684448\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             200 à 250 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Faire cuire les pommes de terre (à la vapeur ou à l'eau).",
+            "Les écraser pour obtenir une purée.",
+            "Ajouter l'œuf et la farine à la purée de pommes de terre, puis bien mélanger jusqu'à obtenir une pâte homogène.",
+            "Former des petites galettes avec la préparation.",
+            "Faire dorer les galettes à la poêle avec un peu de matière grasse jusqu'à ce qu'elles soient bien cuites et croustillantes."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7774",
+        "title": "Boulettes façon hachis parmentier pour bébé",
+        "description": "Des boulettes inspirées du hachis parmentier, parfaites pour les petites mains des bébés et adaptées à la diversification alimentaire.",
+        "image": "/recipes-ia/7774-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7632012918720105750\" data-video-id=\"7632012918720105750\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7632012918720105750\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             250g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de patate douce"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             100g de bœuf haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 petite poignée d'emmental"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             1 cuillère à soupe de chapelure"
+            }
+        ],
+        "steps": [
+            "Cuire et écraser les pommes de terre et la patate douce.",
+            "Cuire le bœuf haché.",
+            "Mélanger les pommes de terre écrasées, la patate douce, le bœuf haché, l'emmental et la chapelure.",
+            "Former des boulettes avec le mélange.",
+            "Cuire au four préchauffé à 180 degrés pendant 12 à 15 minutes."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 8 mois",
+            "France",
+            "Gratins"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7776",
         "title": "Pancakes aux petits pois",
@@ -783,150 +927,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Plats",
             "Sans Gluten"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7774",
-        "title": "Boulettes façon hachis parmentier pour bébé",
-        "description": "Des boulettes inspirées du hachis parmentier, parfaites pour les petites mains des bébés et adaptées à la diversification alimentaire.",
-        "image": "/recipes-ia/7774-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7632012918720105750\" data-video-id=\"7632012918720105750\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7632012918720105750\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             250g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g de patate douce"
-            },
-            {
-                "quantity": "",
-                "name": "🥩\n             100g de bœuf haché"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 petite poignée d'emmental"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             1 cuillère à soupe de chapelure"
-            }
-        ],
-        "steps": [
-            "Cuire et écraser les pommes de terre et la patate douce.",
-            "Cuire le bœuf haché.",
-            "Mélanger les pommes de terre écrasées, la patate douce, le bœuf haché, l'emmental et la chapelure.",
-            "Former des boulettes avec le mélange.",
-            "Cuire au four préchauffé à 180 degrés pendant 12 à 15 minutes."
-        ],
-        "tags": [
-            "Bébé",
-            "Dès 8 mois",
-            "France",
-            "Gratins"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7772",
-        "title": "Galettes de pomme de terre ultra fondantes",
-        "description": "Ces galettes de pomme de terre sont ultra fondantes et ne nécessitent que trois ingrédients : des pommes de terre, un œuf et de la farine. Idéales pour une bonne régalade et parfaites pour la diversification alimentaire des bébés.",
-        "image": "/recipes-ia/7772-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648729343358684448\" data-video-id=\"7648729343358684448\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648729343358684448\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             200 à 250 g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             1 cuillère à soupe de farine"
-            }
-        ],
-        "steps": [
-            "Faire cuire les pommes de terre (à la vapeur ou à l'eau).",
-            "Les écraser pour obtenir une purée.",
-            "Ajouter l'œuf et la farine à la purée de pommes de terre, puis bien mélanger jusqu'à obtenir une pâte homogène.",
-            "Former des petites galettes avec la préparation.",
-            "Faire dorer les galettes à la poêle avec un peu de matière grasse jusqu'à ce qu'elles soient bien cuites et croustillantes."
-        ],
-        "tags": [
-            "Bébé",
-            "Dès 6 mois",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7770",
-        "title": "Galettes de poulet et légumes",
-        "description": "Moelleuses, riches en protéines et faciles à tenir pour les petites mains. C'est l'un de mes repas préférés lorsque je veux quelque chose de rapide, nutritif et facile à manger pour les bébés. Elles sont pleines de légumes et de protéines et convi...",
-        "image": "/recipes-ia/7770-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7611831385262902549\" data-video-id=\"7611831385262902549\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7611831385262902549\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥦\n             1 tasse de brocoli finement coupé en dés et bouilli"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             ½ tasse de carotte râpée"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             500g de poulet haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             ½ tasse de fromage râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             ½ tasse de farine d'avoine"
-            }
-        ],
-        "steps": [
-            "1. Ajoutez tous les ingrédients dans un grand bol et mélangez bien jusqu'à ce que tout soit parfaitement combiné.",
-            "2. Prélevez le mélange et formez de petites galettes.",
-            "3. Faites chauffer une poêle légèrement huilée à feu moyen.",
-            "4. Faites cuire les galettes environ 4 à 5 minutes de chaque côté jusqu'à ce qu'elles soient dorées et bien cuites. Laissez refroidir légèrement avant de servir à bébé. Elles se conservent également bien au réfrigérateur et peuvent être réchauffées pour des repas rapides pendant la semaine."
-        ],
-        "tags": [
-            "Bébé",
-            "Dès 8 mois",
-            "Healthy"
         ],
         "isFeatured": false,
         "isFavorite": false,
