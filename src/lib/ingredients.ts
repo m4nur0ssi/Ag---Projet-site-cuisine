@@ -371,6 +371,54 @@ export interface ConsolItem {
 // ── État "rayé / fait" d'une ligne consolidée ──
 // Identité persistée dans localStorage 'shop-done'. Pour un item planifié on raye toutes
 // ses clés de créneau ; pour un ajout manuel on utilise `m:<clé>`.
+/**
+ * Ce qu'on a toujours dans sa cuisine.
+ * ===================================
+ *
+ * Une liste de courses fraîchement composée part ENTIÈREMENT cochée : on
+ * décoche ce qu'on a déjà, on ne coche pas ce qu'on veut. Sauf pour cette
+ * poignée de produits qu'on ne rachète presque jamais — le sel, le poivre,
+ * l'huile, le beurre, l'ail — qui arrivaient cochés et qu'il fallait décocher
+ * chaque semaine, un par un.
+ *
+ * La liste est volontairement courte et fermée : un doute vaut « coché ». Mieux
+ * vaut racheter du lait en trop que de rentrer sans le lait qui manquait.
+ */
+/**
+ * Racines des produits qu'on a toujours : le nom de la liste consolidée porte
+ * souvent une précision (« Sel (quantité suffisante) », « Huile d'arachide »,
+ * « Eau à température ambiante »), on compare donc sur le DÉBUT du nom.
+ */
+const BASIQUES_RX = /^(gros sel|fleur de sel|sel|poivres?|huiles?|beurres?|laits?|ails?|gousses? d['’ ]ail|oignons?|echalotes?|moutardes?|eau|eaux)\b/;
+
+/**
+ * …sauf ceux-là, qui portent le même mot mais s'achètent : un lait de coco
+ * n'est pas le lait du frigo, un beurre de cacahuète n'est pas le beurre.
+ */
+const FAUX_BASIQUES_RX = /(lait (de |d['’])?(coco|amande|soja|riz|avoine|noisette|noix)|lait concentr|lait ribot|lait de brebis|lait de chevre|beurre (de |d['’])(cacahu|arachide|karite|amande)|beurre clarifie|eau (de |d['’])(fleur|coco|rose)|eau (gazeuse|petillante|minerale)|huile (de |d['’])(truffe|sesame|noix|coco|argan)|sel de celeri|ail des ours|ail noir|oignons? (frits?|grelots?|nouveaux?)|moutarde (a l['’ ]ancienne )?en grains)/;
+
+const sansAccentsIng = (t: string) =>
+    (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+
+/**
+ * Ce produit fait-il partie des basiques du placard ?
+ *
+ * Une liste de courses fraîchement composée part ENTIÈREMENT cochée : on décoche
+ * ce qu'on a déjà, on ne coche pas ce qu'on veut. Sauf cette poignée de produits
+ * qu'on ne rachète presque jamais — sel, poivre, huile, beurre, lait, ail,
+ * oignon, échalote, moutarde, eau — qui arrivaient cochés et qu'il fallait
+ * décocher chaque semaine, un par un.
+ *
+ * En cas de doute, on répond NON : mieux vaut racheter du lait en trop que de
+ * rentrer sans celui qui manquait.
+ */
+export const estBasiqueMaison = (nom: string): boolean => {
+    const n = sansAccentsIng(nom).replace(/\(.*$/, '').replace(/,.*$/, '').trim();
+    if (!n) return false;
+    if (FAUX_BASIQUES_RX.test(n)) return false;
+    return BASIQUES_RX.test(n);
+};
+
 export const doneKeysOf = (it: ConsolItem): string[] => (it.keys.length ? it.keys : ['m:' + it.key]);
 export const isItemDone = (it: ConsolItem, done: Set<string>): boolean => doneKeysOf(it).every(k => done.has(k));
 
@@ -464,6 +512,9 @@ export const buildConsolidatedItems = (
             // Accompagnement suggéré par le Menu IA (recipe.side) : ses ingrédients
             // comptent aussi (clés préfixées `s` → pas de collision avec celles du plat).
             (recipe?.side?.ingredients || []).forEach((ing: any, idx: number) => {
+                // Même masque que le plat : sans lui, un accompagnement supprimé
+                // (ou « déjà pris ») revenait au calcul suivant.
+                if (weekChecked.has(`${dayKey}|${mealKey}|s${idx}`)) return;
                 const raw = `${ing?.quantity || ''} ${ing?.name || ''}`.trim();
                 if (!raw) return;
                 expandIngredientLines(raw).forEach((piece, sub) => {

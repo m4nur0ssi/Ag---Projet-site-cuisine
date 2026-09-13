@@ -456,6 +456,9 @@ export const buildConsolidatedItems = (
             // Accompagnement suggéré par le Menu IA (recipe.side) : ses ingrédients
             // comptent aussi (clés préfixées `s` → pas de collision avec celles du plat).
             (recipe?.side?.ingredients || []).forEach((ing: any, idx: number) => {
+                // Même masque que le plat : sans lui, un accompagnement supprimé
+                // (ou « déjà pris ») revenait au calcul suivant.
+                if (weekChecked.has(`${dayKey}|${mealKey}|s${idx}`)) return;
                 const raw = `${ing?.quantity || ''} ${ing?.name || ''}`.trim();
                 if (!raw) return;
                 expandIngredientLines(raw).forEach((piece, sub) => {

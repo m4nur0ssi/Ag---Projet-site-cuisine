@@ -22,7 +22,7 @@ import styles from './SwipeRow.module.css';
  *     une courbe qui dépasse sa cible se lit comme un rebond, et c'est
  *     précisément ce qu'on ne veut pas ici.
  */
-const LARGEUR_PANNEAU = 116;  // ce qu'on découvre quand la ligne reste ouverte
+const LARGEUR_MINI = 116;     // ce qu'on découvre au minimum quand la ligne reste ouverte
 const MARGE = 6;              // air entre la pastille et le bord de la ligne
 const SEUIL_OUVERTURE = 40;   // au-delà, la ligne reste ouverte au relâchement
 const PART_SUPPRESSION = 0.55; // fraction de la largeur au-delà de laquelle on supprime
@@ -36,6 +36,13 @@ export default function SwipeRow({
     children: React.ReactNode;
     libelle?: string;
 }) {
+    /*
+     * La pastille s'ouvre à la taille de son mot : « Supprimer » tient dans 116
+     * px, « Supprimer complètement » non — il se serait fait couper, la pastille
+     * gardant sa largeur fixe et le texte débordant en silence.
+     */
+    const largeurPanneau = Math.min(240, Math.max(LARGEUR_MINI, 62 + libelle.length * 7.4));
+
     const [decalage, setDecalage] = useState(0);
     const [glisse, setGlisse] = useState(false);
     const [partant, setPartant] = useState(false);
@@ -84,8 +91,8 @@ export default function SwipeRow({
         setGlisse(false);
         if (sens.current !== 'horizontal') return;
         if (decalage > largeur() * PART_SUPPRESSION) supprimer();
-        else setDecalage(decalage > SEUIL_OUVERTURE ? LARGEUR_PANNEAU : 0);
-    }, [decalage, supprimer]);
+        else setDecalage(decalage > SEUIL_OUVERTURE ? largeurPanneau : 0);
+    }, [decalage, supprimer, largeurPanneau]);
 
     /** Branchement manuel : `passive: false` est indispensable au preventDefault. */
     const brancher = useCallback((el: HTMLDivElement | null) => {
@@ -129,7 +136,7 @@ export default function SwipeRow({
                     <path d="M4 7h16M9.5 7V5.2A1.2 1.2 0 0 1 10.7 4h2.6a1.2 1.2 0 0 1 1.2 1.2V7" />
                     <path d="M6.5 7l.9 12.1A1.5 1.5 0 0 0 8.9 20.5h6.2a1.5 1.5 0 0 0 1.5-1.4L17.5 7" />
                 </svg>
-                {decalage > LARGEUR_PANNEAU * 0.72 && <span className={styles.libelle}>{libelle}</span>}
+                {decalage > largeurPanneau * 0.72 && <span className={styles.libelle}>{libelle}</span>}
             </button>
 
             <div

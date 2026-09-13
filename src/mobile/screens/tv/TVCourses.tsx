@@ -24,6 +24,9 @@ import {
     parseIngredient, cleanIngredientText, getIngIcon,
     type ConsolItem,
 } from '@/mobile/lib/ingredients';
+// Les basiques du placard vivent dans la version partagée : une seule liste
+// pour le téléphone et le bureau.
+import { estBasiqueMaison } from '@/lib/ingredients';
 import { getIngredientVisual } from '@/mobile/lib/ingredient-utils';
 import { RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides } from '@/lib/rayons';
 import { decodeHtml } from '@/mobile/lib/utils';
@@ -35,7 +38,6 @@ import SwipeRow from '@/mobile/components/SwipeRow/SwipeRow';
 import TVToast from './TVToast';
 import { ecrireStock } from '@/lib/stockage';
 
-const ShopActions = dynamic(() => import('@/mobile/components/ShopActions/ShopActions'), { ssr: false });
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as const;
 
@@ -228,6 +230,81 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         window.dispatchEvent(new Event('shoppingListUpdated'));
     }, [items, weekChecked, plan, list, withJourJ, withWeek]);
 
+    /*
+     * Ménage des marques « je l'ai déjà », à chaque changement de liste.
+     * ================================================================
+     *
+     * Ces marques sont posées par POSITION dans le plan (`Lun|Midi|3`). Une
+     * nouvelle semaine réutilise les mêmes positions : sans ménage, elle héritait
+     * des cases décochées de la semaine passée, et la liste arrivait à moitié
+     * barrée — c'est le bug qu'on vient corriger.
+     *
+     * Deux règles, dans cet ordre :
+     *
+     *   1. un créneau dont la recette a changé perd ses marques (et lui seul :
+     *      les articles déjà pris dans les créneaux inchangés restent barrés,
+     *      on ne casse pas des courses en cours) ;
+     *   2. un article qui apparaît pour la première fois est COCHÉ, sauf s'il
+     *      fait partie des basiques du placard (sel, huile, ail…), qui arrivent
+     *      barrés — voir `estBasiqueMaison`.
+     */
+    useEffect(() => {
+        if (!items.length) return;
+
+        const lire = (cle: string, defaut: string) => {
+            try { return JSON.parse(localStorage.getItem(cle) || defaut); } catch { return JSON.parse(defaut); }
+        };
+
+        // 1. Créneaux dont le contenu a changé depuis la dernière fois.
+        const signatures: Record<string, string> = {};
+        Object.keys(plan).forEach((d) => Object.keys(plan[d] || {}).forEach((m) => {
+            const r = plan[d][m];
+            signatures[`${d}|${m}`] = `${r?.id || r?.title || ''}#${(r?.ingredients || []).length}`;
+        }));
+        const anciennes: Record<string, string> = lire('shop-slots-sig', '{}');
+        const creneauxChanges = [...new Set([...Object.keys(anciennes), ...Object.keys(signatures)])]
+            .filter((k) => anciennes[k] !== signatures[k]);
+
+        const vus: string[] = lire('shop-vus', '[]');
+        let ensembleVus = new Set<string>(vus);
+        let marques = new Set(done);
+        let changement = false;
+
+        creneauxChanges.forEach((creneau) => {
+            [...marques].forEach((k) => { if (k.startsWith(`${creneau}|`)) { marques.delete(k); changement = true; } });
+            [...ensembleVus].forEach((k) => { if (k.startsWith(`${creneau}|`)) ensembleVus.delete(k); });
+        });
+
+        // 2. Premières apparitions : basiques barrés, tout le reste coché.
+        let vusChange = creneauxChanges.length > 0;
+        items.forEach((it) => {
+            const cles = doneKeysOf(it);
+            const nouveau = cles.some((k) => !ensembleVus.has(k));
+            if (!nouveau) return;
+            cles.forEach((k) => ensembleVus.add(k));
+            vusChange = true;
+            if (estBasiqueMaison(it.name)) {
+                cles.forEach((k) => { if (!marques.has(k)) { marques.add(k); changement = true; } });
+            }
+        });
+
+        // Les marques d'articles disparus ne servent plus à rien : elles
+        // reviendraient hanter un article homonyme d'une autre semaine.
+        const clesVivantes = new Set(items.flatMap((it) => doneKeysOf(it)));
+        [...ensembleVus].forEach((k) => { if (!clesVivantes.has(k)) { ensembleVus.delete(k); vusChange = true; } });
+        [...marques].forEach((k) => { if (!clesVivantes.has(k)) { marques.delete(k); changement = true; } });
+
+        if (JSON.stringify(anciennes) !== JSON.stringify(signatures)) {
+            ecrireStock('shop-slots-sig', JSON.stringify(signatures));
+        }
+        if (vusChange) ecrireStock('shop-vus', JSON.stringify([...ensembleVus]));
+        if (changement) persistDone(marques);
+        // `done` est volontairement hors des dépendances : cet effet l'écrit,
+        // s'y abonner le ferait tourner en boucle. Les marques posées à la main
+        // sont lues au moment où il s'exécute, ce qui suffit.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [items, plan]);
+
     /** Rangée par rayon de supermarché, dans l'ordre du magasin. */
     const byRayon = useMemo(() => {
         const map = new Map<string, ConsolItem[]>();
@@ -364,6 +441,10 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const supprimerLigne = (it: ConsolItem) => {
         haptic(10);
         const cible = canonicalIng(it.name, it.unit).name;
+        const listeAvant = list;
+        const cochesAvant = new Set(weekChecked);
+        const marquesAvant = new Set(done);
+
         const next: ListData = {};
         Object.entries(list).forEach(([cle, entree]) => {
             const gardes = entree.ingredients.filter((ing) => {
@@ -375,10 +456,45 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             if (gardes.length) next[cle] = { ...entree, ingredients: gardes };
         });
         saveList(next);
+
+        /*
+         * Une ligne venue d'une recette du planificateur n'est pas dans la liste :
+         * elle est RECALCULÉE à chaque affichage. L'effacer de `list` ne suffisait
+         * donc pas, elle revenait aussitôt. On masque ses lignes d'origine, le
+         * même mécanisme que « Vider ».
+         */
+        const masque = new Set(weekChecked);
+        doneKeysOf(it).forEach((k) => {
+            // Les lignes portent `jour|repas|index|sous-index` ; le masque, lui,
+            // travaille au niveau de l'ingrédient : `jour|repas|index`.
+            const p = k.split('|');
+            if (p.length >= 3 && !k.startsWith('m:')) masque.add(`${p[0]}|${p[1]}|${p[2]}`);
+        });
+        if (masque.size !== weekChecked.size) {
+            setWeekChecked(masque);
+            ecrireStock('meal-week-checked', JSON.stringify([...masque]));
+        }
+
         // Les cases cochées de cette ligne n'ont plus d'objet.
         const restant = new Set(done);
         doneKeysOf(it).forEach((k) => restant.delete(k));
         persistDone(restant);
+
+        // Supprimer est irréversible ; le filet l'est aussi. On ne demande pas
+        // avant, on rattrape après — le temps que la capsule reste à l'écran.
+        window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+            detail: {
+                text: `${it.name || it.display} supprimé`,
+                undoLabel: 'Annuler',
+                onUndo: () => {
+                    saveList(listeAvant);
+                    setWeekChecked(cochesAvant);
+                    ecrireStock('meal-week-checked', JSON.stringify([...cochesAvant]));
+                    persistDone(marquesAvant);
+                    haptic(8);
+                },
+            },
+        }));
     };
 
     const clearAll = () => {
@@ -445,6 +561,28 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                 })
             );
         });
+    };
+
+    /*
+     * Partager la liste.
+     *
+     * Le bouton vivait dans une barre partagée avec le magasin, en bas de
+     * l'écran. Le magasin est parti (l'assistant des rayons est une extension
+     * Chrome, qui n'existe pas sur iPhone) : le partage remonte donc à côté du
+     * titre, là où l'on cherche une action qui concerne la liste entière.
+     */
+    const partagerListe = async () => {
+        const cibles = mode === 'jour' ? jourItems : aPrendre;
+        if (!cibles.length) return;
+        haptic(8);
+        const titre = 'Ma liste de courses';
+        const texte = `🛒 ${titre}\n\n` + cibles.map((i) => `• ${i.display}`).join('\n');
+        const nav = navigator as Navigator & { share?: (d: { title: string; text: string }) => Promise<void> };
+        if (nav.share) {
+            try { await nav.share({ title: titre, text: texte }); } catch { /* partage annulé */ }
+            return; // annuler, c'est annuler : pas de repli WhatsApp derrière le dos
+        }
+        window.open(`https://wa.me/?text=${encodeURIComponent(texte)}`, '_blank');
     };
 
     /** Toutes les recettes planifiées, chacune avec ses lignes d'ingrédients. */
@@ -540,9 +678,23 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                         </svg>
                     </button>
                 )}
-                <div>
+                <div className={styles.courseTitreBloc}>
                     <div className={styles.planKicker}>Courses</div>
-                    <h1 className={styles.planTitle}>Ma liste</h1>
+                    <div className={styles.courseTitreLigne}>
+                        <h1 className={styles.planTitle}>Ma liste</h1>
+                        {(mode === 'jour' ? jourItems.length : aPrendre.length) > 0 && (
+                            <button
+                                className={styles.coursePartage}
+                                onClick={partagerListe}
+                                aria-label="Partager ma liste"
+                                title="Partager ma liste"
+                            >
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 15V3" /><path d="m8 7 4-4 4 4" /><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" />
+                                </svg>
+                            </button>
+                        )}
+                    </div>
                 </div>
                 <div className={styles.planCount}>
                     {restants} article{restants > 1 ? 's' : ''}<br />à prendre
@@ -630,7 +782,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 const struck = isItemDone(it, done);
                                 const isManual = !!it.manual;
                                 return (
-                                    <SwipeRow key={it.key} onDelete={() => supprimerLigne(it)}>
+                                    <SwipeRow key={it.key} libelle="Supprimer complètement" onDelete={() => supprimerLigne(it)}>
                                     <div className={`${styles.courseRow} ${styles.courseRowSwipe} ${struck ? styles.courseRowDone : ''}`}>
                                         {/*
                                             Cochée = à prendre. C'est l'état de DÉPART :
@@ -749,10 +901,18 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                                     seulement : on ne retire pas un ingrédient d'une
                                                     recette qu'on va cuisiner.
                                                 */}
+                                                {/*
+                                                    La corbeille SUPPRIME, quelle que soit l'origine de la
+                                                    ligne. Elle se contentait de barrer les lignes venues
+                                                    d'une recette — la case à gauche fait déjà ça, et on
+                                                    se retrouvait avec deux gestes pour le même effet et
+                                                    aucun pour retirer vraiment l'article. Le filet
+                                                    « Annuler » de la capsule rattrape l'erreur.
+                                                */}
                                                 <button
                                                     className={styles.courseAction}
-                                                    onClick={() => (isManual ? supprimerLigne(it) : toggleDone(it))}
-                                                    aria-label={isManual ? 'Supprimer définitivement' : (struck ? 'Remettre dans la liste' : 'Je l’ai déjà')}
+                                                    onClick={() => supprimerLigne(it)}
+                                                    aria-label="Supprimer complètement"
                                                 >
                                                     <svg viewBox="0 0 24 24" fill="none" width="16" height="16" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
                                                         <path d="M4 7h16M9.5 7V5.2A1.2 1.2 0 0 1 10.7 4h2.6a1.2 1.2 0 0 1 1.2 1.2V7" />
@@ -888,31 +1048,14 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                 </div>
             )}
 
-            {/* Partage + recherche magasin : la cible, ce sont les articles cochés. */}
-            {mode === 'semaine' && aPrendre.length > 0 && (
-                <div className={styles.courseShop}>
-                    <ShopActions
-                        items={items}
-                        checkedKeys={selectedKeys}
-                        doneKeys={done}
-                        title="Ma liste de courses"
-                        onShopped={markDone}
-                    />
-                </div>
-            )}
-
-            {/* Vue « Jour par jour » : même barre magasin, ciblant les ingrédients
-                cochés du jour (Partager + magasin + extension), comme la semaine. */}
-            {mode === 'jour' && jourItems.length > 0 && (
-                <div className={styles.courseShop}>
-                    <ShopActions
-                        items={jourItems}
-                        doneKeys={done}
-                        title="Ma liste de courses"
-                        onShopped={markDone}
-                    />
-                </div>
-            )}
+            {/*
+              * Plus de barre magasin sur téléphone. Elle ouvrait le site de
+              * l'enseigne article par article, piloté par « Courses Magiques » —
+              * une extension CHROME. Sur iPhone, Safari n'exécute pas les
+              * extensions Chrome et Chrome iOS n'a pas d'extensions du tout :
+              * le bouton ne tenait sa promesse sur aucun téléphone. Le partage,
+              * lui, a rejoint le titre. Le bureau garde l'ensemble.
+              */}
 
             <div className={styles.planFooter}>
                 <button className={styles.planCompose} onClick={() => { haptic(8); setAdding(true); }}>Ajouter</button>
