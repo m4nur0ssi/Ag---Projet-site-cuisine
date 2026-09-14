@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/09/2026 09:57:44
+ * Dernière mise à jour: 14/09/2026 18:21:53
  * Total: 727 recettes
  */
-export const exportSyncId = "1789379864119";
+export const exportSyncId = "1789402913288";
 export const mockRecipes: Recipe[] = [
     {
         "id": "7833",
@@ -53875,7 +53875,7 @@ export const mockRecipes: Recipe[] = [
         "id": "278",
         "title": "L'Odysee",
         "description": "    Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte es...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557022352000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557015152000",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -53911,7 +53911,7 @@ export const mockRecipes: Recipe[] = [
         "id": "237",
         "title": "Le club des cinq",
         "description": "    Cinq amis recréent le mythique Club des Cinq grâce à un restaurant à la décoration très revival 80's. Vous pourrez admirer la photo de Mac Gyver ou celle de Goldorak qui ornent les murs de l'endroit, et vous dînerez adossé à une bibliothèque r...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F03%2Fclub.jpg&v=1526258087000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F03%2Fclub.jpg&v=1526250887000",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -53946,7 +53946,7 @@ export const mockRecipes: Recipe[] = [
         "id": "260",
         "title": "Bistrot à Burger",
         "description": "                                                                                                                                                                                                                                                       ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FCapture-d%E2%80%99e%CC%81cran-2018-05-13-a%CC%80-21.32.19.png&v=1526257602000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FCapture-d%E2%80%99e%CC%81cran-2018-05-13-a%CC%80-21.32.19.png&v=1526250402000",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,

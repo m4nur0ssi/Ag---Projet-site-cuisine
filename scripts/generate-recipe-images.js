@@ -356,6 +356,11 @@ const FORMES = [
     [/\bescalopes?\b/i, 'flat pan-fried cutlets overlapping in a pan, sauce spooned over'],
     [/\bpommes? de terre\b.*\br[ôo]ties?\b|\br[ôo]ties?\b.*\bpommes? de terre\b/i,
      'roasted potato chunks with crisp golden edges, tumbled in a roasting tray'],
+    // Ajoutés après le lot du 2026-09-14 : le modèle rendait l'ingrédient du
+    // titre au lieu de la forme du plat.
+    [/\bpancakes?\b|\bblinis?\b/i, 'a tall stack of thick round pancakes, piled one on top of another'],
+    [/\btuiles?\b/i, 'wide thin lacy wafers covered in slivered almonds, lying flat and overlapping'],
+    [/\bgalettes? de pommes? de terre\b|\br[öo]sti\b/i, 'thick round cakes of shredded potato, crisp-edged, overlapping'],
 ];
 
 /** La forme annoncée par le titre, s'il en annonce une. */
@@ -452,6 +457,61 @@ const SCENES_SPECIALES = [
      + 'above the bun and is smoothed flat across the cut, the whole thing snowed over with icing sugar; one bun '
      + 'sits alone on the top of the stand and the others rest on the dark grey worktop around its foot, a small '
      + 'white vase of white flowers behind — plump filled buns, each holding its own thick wedge of cream'],
+    /*
+     * LE PIÈGE DE L'INGRÉDIENT À LA PLACE DU PLAT (lot du 2026-09-14).
+     * « Pancakes à la pêche » a donné un saladier de pêches, « Tuiles aux
+     * amandes » un tas d'amandes, « Galettes de pomme de terre » des cubes
+     * sautés : le modèle retient le complément du titre et oublie la forme.
+     * Ces scènes disent la forme d'abord, le parfum ensuite. La PREMIÈRE règle
+     * qui correspond gagne : les cas précis sont donc placés avant les règles
+     * générales.
+     */
+    [/\bburger\b.*\bpoivrons?\b|\bpoivrons?\b.*\bburger\b/i,
+     'a {T} on a board: a sesame burger bun, its domed crown resting on top, holding a thick beef patty cooked '
+     + 'inside a ring of red and green pepper so the pepper frames the meat like a collar, a slice of orange '
+     + 'cheddar melting over it, strips of glazed smoked bacon and a heap of dark caramelised onions, sauce '
+     + 'squeezing out at the edge; a second burger sits behind it cut clean in half so the stack of layers shows '
+     + '— an assembled burger in its bun is the subject, never a frying pan and never a pie'],
+    [/\bpancakes?\b.*\bp[êe]che/i,
+     'a plate of {T}: a stack of four or five thick round golden pancakes, and fanned over the top of the stack '
+     + 'thin slices of fresh yellow peach, their skins still red at the edge, overlapping in a neat fan, a little '
+     + 'syrup running down the sides — slices of peach on the stack, never a whole half fruit and never an egg'],
+    [/\bpancakes?\b|\bblinis?\b/i,
+     'a plate of {T}: a stack of four or five thick round pancakes piled one on top of the other, each one risen '
+     + 'and spongy with a golden-brown surface and paler edges, the stack slightly askew so the layers are '
+     + 'countable; what flavours the recipe is folded into the batter and also spooned over the top of the stack, '
+     + 'running down the sides — a stack of pancakes is the subject, the flavouring only garnishes it'],
+    /*
+     * Tuiles aux amandes — écrite d'après la vidéo (frames du 2026-09-14), après
+     * trois ratés : disques crantés, soleils hérissés, biscuits ronds aux
+     * amandes ENTIÈRES. Ce qui manquait : ce sont des amandes EFFILÉES, en
+     * pétales, qui couvrent toute la surface, et la galette est large, fine et
+     * irrégulière — la courbe ne concerne que deux ou trois pièces posées sur
+     * le rouleau, les autres sont à plat.
+     */
+    [/\btuiles?\b/i,
+     'a wooden board of {T}: eight thin crisp almond biscuits lying flat and overlapping, each a wide irregular '
+     + 'round the size of a hand, made almost entirely of toasted flaked almonds held together by a thin '
+     + 'caramelised batter; the flakes lie in a jumble, each at its own angle, overlapping like fallen leaves '
+     + 'right out to the ragged uneven rim, and the whole biscuit is baked to a warm toasted brown, darker and '
+     + 'glassy at the edges, with the batter glossy between the flakes; a few broken pieces lie beside them and '
+     + 'two more biscuits rest curved over a wooden rolling pin behind the board'],
+    [/\bgalettes? de pommes? de terre\b|\br[öo]sti\b|\bpaillassons?\b/i,
+     'a plate of {T}: three or four thick round potato cakes, each one a flat disc of shredded potato pressed '
+     + 'together and fried, deep golden and crisp with shaggy browned strands at the edges, overlapping one '
+     + 'another, one broken open to show the soft pale inside — pressed round cakes, never loose cubes or chunks'],
+    [/\bgalettes? de (?:poulet|l[ée]gumes?|poisson|saumon|quinoa|lentilles)\b/i,
+     'a plate of {T}: five or six thick round patties, golden and crisp on the outside, piled up and overlapping, '
+     + 'one broken in half to show the soft savoury inside flecked with its vegetables, a spoonful of dipping '
+     + 'sauce beside them — round shallow-fried patties, generously plated'],
+    [/\bbolognaise\b.*b[ée]b[ée]|b[ée]b[ée].*\bbolognaise\b/i,
+     'a small bowl of {T}: a thick soft tomato and vegetable sauce, finely chopped and glossy, spooned over tiny '
+     + 'pasta shapes, a baby spoon resting against the rim, served on a plain table — one bowl of food, never '
+     + 'plastic meal-prep containers and never a row of boxes'],
+    [/\bg[âa]teau aux? noisettes?\b/i,
+     'a whole round {T} on a cake stand, seen from above: a golden-brown cake with a gently domed crackled top '
+     + 'strewn with chopped and whole hazelnuts, one generous wedge cut and lifted slightly away so the moist '
+     + 'crumb shows along the cut — a whole cake fills the frame, never a single small slice'],
     [/boulettes? de poisson/i,
      'a wide shallow pan of {T}: pale golden fish balls simmering in a bright red tomato sauce, strips of yellow '
      + 'preserved lemon peel and whole dark purple olives tucked between them, chopped coriander and parsley '
@@ -982,6 +1042,10 @@ function consigne(recette, descPlat) {
         // étiquettes couvertes de fausses lettres.
         'STRICTLY NO text, NO letters, NO words, NO labels, NO logos, NO packaging,',
         'NO brand names, NO hands, NO people, NO watermark.',
+        // Le décor (bar, table dressée) invite les bouteilles, et le modèle les
+        // habille d'une étiquette connue — un Coca-Cola complet sur le burger au
+        // poivron. On décrit donc ce que doit être une bouteille.
+        'Every bottle, can, jar and package in frame is plain, bare and unlabelled: clear or coloured glass and nothing printed on it.',
         // Le modèle meuble les vides avec ce qui lui passe par la tête : la
         // première série avait posé un livre à côté d'un cocktail.
         // L'interdit d'origine (« rien d'autre que le plat ») vidait le cadre : il
@@ -1559,7 +1623,15 @@ function ordreFournisseurs() {
      * consigne (voir genererOpenai). Cloudflare reste derrière comme marche
      * gratuite quand OpenAI est à court de crédit, fal en dernier recours.
      */
-    const demande = valeur('--fournisseurs') || process.env.IMAGE_FOURNISSEURS || 'openai,cloudflare,fal';
+    /*
+     * fal RETIRÉ DE LA CHAÎNE PAR DÉFAUT le 2026-09-14, décision de l'utilisateur :
+     * rendu jugé insuffisant pour ce qu'il coûte (« je ne paierai plus pour cette
+     * IA »). Le code reste, joignable par `--fal` ou `--fournisseurs fal`, mais
+     * plus aucune exécution automatique ne peut le facturer — y compris le
+     * rattrapage du bot. Par défaut : OpenAI s'il a du crédit, sinon Cloudflare,
+     * qui est gratuit.
+     */
+    const demande = valeur('--fournisseurs') || process.env.IMAGE_FOURNISSEURS || 'openai,cloudflare';
     return demande.split(',').map((s) => s.trim()).filter((n) => FOURNISSEURS[n]);
 }
 
