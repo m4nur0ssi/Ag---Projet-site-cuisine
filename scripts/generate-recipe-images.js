@@ -66,6 +66,9 @@
  *   --all         tout le catalogue (long : voir --dry-run d'abord)
  *   --dry-run     n'appelle rien, montre seulement les consignes qui partiraient
  *   --force       régénère même si l'image existe déjà
+ *   --titre-ok    avec --video : génère depuis le titre si la vidéo est illisible
+ *                 (sinon la recette est passée — voir la boucle principale)
+ *   --openai      force OpenAI gpt-image seul (il est déjà en tête par défaut)
  *   --fournisseurs a,b  ordre des fabricants d'image (défaut cloudflare,fal ;
  *                 « gemini » existe mais suppose la facturation Google activée)
  *   --fal         raccourci pour --fournisseurs fal (pleine définition, payant)
@@ -243,6 +246,28 @@ const CADRAGES = [
     'The dish sits centred but seen slightly wider, with generous empty surface around it.',
 ];
 
+/*
+ * LE DÉCOR AUTOUR DU PLAT — demande de l'utilisateur (2026-09-13), permanente.
+ * Un plat seul sur une surface nue faisait « photo de catalogue ». On plante donc
+ * toujours un lieu derrière : une table voisine, un bar, une fenêtre. Les verres
+ * et les ingrédients de la recette posés autour font le reste. Le décor est tiré
+ * par l'identifiant, donc stable pour une recette et varié sur la grille.
+ */
+const DECORS = [
+    'Set in a real room: the corner of a neighbouring laid table just behind, slightly out of focus, '
+    + 'with glasses and a water carafe on it, and the raw ingredients of the recipe scattered around the dish.',
+    'Set on a bar counter: behind the dish, out of focus, the bar itself with a row of hanging glasses and '
+    + 'bottles, a filled wine glass near the plate, and the raw ingredients of the recipe lying beside it.',
+    'Set beside a window: daylight coming through the panes behind the dish, the view outside blown out and '
+    + 'blurred, a glass of water catching the light, and the raw ingredients of the recipe spread around.',
+    'Set in a lived-in kitchen: a worktop behind with a wooden board, a chopping knife and glasses out of focus, '
+    + 'the raw ingredients of the recipe and their trimmings left around the dish.',
+    'Set at a table laid for a meal: a second place setting with its glass at the top of the frame, slightly out '
+    + 'of focus, a carafe and a bread basket beside it, and the raw ingredients of the recipe around the dish.',
+    'Set on a bistro terrace table: the edge of another table with two glasses behind, softly blurred, a small '
+    + 'carafe of wine, and the raw ingredients of the recipe laid near the plate.',
+];
+
 /** La vaisselle : c'est elle qui donne la couleur dominante de l'image. */
 const VAISSELLES = [
     'matte white stoneware',
@@ -415,10 +440,39 @@ const SCENES_SPECIALES = [
      + 'ice cream, a dark chocolate-hazelnut spread swirled over the top and running down the inside of the cup, '
      + 'crunchy chocolate crisped pearls scattered over it, a long spoon planted in the middle — the cup resting '
      + 'flat on the surface, never floating or tilted in the air'],
+    /*
+     * Maritozzi : la vision de la vidéo a décrit UNE pâtisserie (« oval-shaped
+     * pastry split horizontally ») et le modèle en a fait un grand disque plat
+     * coupé en deux. Ce sont des petites brioches rondes et bombées, plusieurs,
+     * chacune fendue en biais et bourrée de crème. Régénérer SANS --video.
+     */
+    [/maritozz/i,
+     'a white footed cake stand of {T}: four or five small round brioche buns, plump and domed, golden and soft, '
+     + 'each one slit at a diagonal and packed with a thick swirl of stiff white whipped cream that bulges well '
+     + 'above the bun and is smoothed flat across the cut, the whole thing snowed over with icing sugar; one bun '
+     + 'sits alone on the top of the stand and the others rest on the dark grey worktop around its foot, a small '
+     + 'white vase of white flowers behind — plump filled buns, each holding its own thick wedge of cream'],
     [/boulettes? de poisson/i,
      'a wide shallow pan of {T}: pale golden fish balls simmering in a bright red tomato sauce, strips of yellow '
      + 'preserved lemon peel and whole dark purple olives tucked between them, chopped coriander and parsley '
      + 'scattered over, a serving spooned onto a plate of plain white rice beside the pan'],
+    /*
+     * Fagots d'haricots verts au lard : la vision de la vidéo a décrit le lard
+     * comme « rosy », et le modèle a dessiné des tranches CRUES autour de
+     * pointes d'asperges, avec l'escalope au premier plan. La vidéo montre
+     * l'inverse : des bottes de haricots verts bien cuits, ceinturées d'un lard
+     * doré et rendu, l'escalope en second rôle. Scène écrite à la main, à
+     * régénérer SANS --video.
+     */
+    [/fagots?.*haricots? verts?|haricots? verts?.*(?:au lard|en fagots?)/i,
+     'a white scalloped dinner plate of {T}: three neat bundles of cooked '
+     + 'haricots verts, the thin French string beans — each pod a smooth even cylinder of uniform thickness from '
+     + 'end to end, both ends cut flat and square, the whole pod one plain matte olive-green, faintly wrinkled from '
+     + 'roasting; every bundle is belted around the middle by a strip of streaky bacon that came out of a hot oven '
+     + 'thirty minutes ago, its whole surface darkened and caramelised to a deep mahogany brown with almost-black '
+     + 'edges, dry and matte, its fat cooked to amber and shrunk tight around the beans; tucked '
+     + 'behind the bundles at the far edge of the plate, one golden breadcrumbed chicken escalope, only a corner of '
+     + 'it in frame — the bacon-belted bundles of plain flat-ended beans are the subject of the photograph'],
     /*
      * La ligne des ingrédients s'arrête au septième : le lait de coco du
      * cabillaud arrivait en huitième position et la sauce sortait claire. On la
@@ -779,10 +833,22 @@ function tirage(liste, id, sel) {
 const VUE_DESSUS = {
     opener: 'Overhead flat-lay food photography, styled editorial cookbook shot.',
     lead: 'seen from directly above',
-    camera: 'Camera directly overhead at 90 degrees, everything sharp, natural colours, generous negative space, an abundant but tidy arrangement.',
+    // « everything sharp » + « generous negative space » se battaient avec le
+    // décor demandé (table voisine floue derrière) : le plat reste net, la
+    // pièce derrière décroche.
+    camera: 'Camera directly overhead at 90 degrees, the dish and what surrounds it sharp, the room further back falling gently out of focus, natural colours, an abundant lived-in arrangement.',
 };
-const VUES = [
-    VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, // 7/10 = 70 %
+/*
+ * DEMANDE DE L'UTILISATEUR (2026-09-13), à ne pas rediscuter : toutes les photos
+ * de plats sont prises DE HAUT. Les angles 3/4, de face et macro qui occupaient
+ * 30 % du catalogue sont retirés — ils sont conservés juste en dessous pour
+ * mémoire, au cas où la règle changerait. Les boissons gardent leur vue de face,
+ * décidée ailleurs (un cocktail vu du dessus n'est qu'un rond de liquide).
+ */
+const VUES = [VUE_DESSUS];
+
+// Anciens angles, hors service — voir le commentaire ci-dessus.
+const VUES_AUTRES_ANGLES = [
     {
         opener: 'Three-quarter 45-degree food photography, styled editorial cookbook shot.',
         lead: 'seen from a low 45-degree three-quarter angle',
@@ -829,6 +895,7 @@ function consigne(recette, descPlat) {
     const couverts = tirage(COUVERTS, id, 23);
     const lumiere = tirage(LUMIERES, id, 31);
     const cadrage = tirage(CADRAGES, id, 53);
+    const decor = tirage(DECORS, id, 97);
 
     const boisson = recette.category === 'boissons' || recette.category === 'rafraichissements';
     // Angle de prise de vue (70 % dessus / 30 % autres), stable par id.
@@ -897,6 +964,10 @@ function consigne(recette, descPlat) {
             ? 'Straight-on beverage photography, styled editorial cocktail shot.'
             : vue.opener,
         scene,
+        // Le décor vient JUSTE après la scène : placé en fin de consigne, derrière
+        // les lignes de surface et de vaisselle, le modèle le laissait tomber et
+        // rendait un plat seul sur fond vide.
+        boisson ? '' : decor,
         ingredients && !(speciale && speciale.sansIngredients)
             ? `The dish is made of: ${ingredients}.` : '',
         boisson ? '' : cadrage,
@@ -913,10 +984,17 @@ function consigne(recette, descPlat) {
         'NO brand names, NO hands, NO people, NO watermark.',
         // Le modèle meuble les vides avec ce qui lui passe par la tête : la
         // première série avait posé un livre à côté d'un cocktail.
-        'Only food, tableware and kitchen items in frame:',
-        'NO books, NO phones, NO candles, NO flowers in vases, NO decorative objects,',
-        'NO jewellery, NO fabric other than the napkin or cloth.',
-        'Photorealistic, shot on a 50mm lens, shallow depth of field only at the edges.',
+        // L'interdit d'origine (« rien d'autre que le plat ») vidait le cadre : il
+        // reste, mais il laisse passer le décor demandé — verres, carafe, table
+        // voisine, fenêtre, ingrédients de la recette.
+        'Food, tableware, glassware, the recipe ingredients and the room behind may appear:',
+        'NO books, NO phones, NO candles, NO flowers in vases, NO decorative objects, NO jewellery.',
+        // Le rendu « 3D » est le défaut de ces modèles : on demande explicitement
+        // les défauts d'une vraie photo, ce sont eux qui font vrai.
+        'An unretouched real photograph, not a render and not an illustration:',
+        'visible food texture and natural irregularity, crumbs, drips and steam where they belong,',
+        'slightly uneven portions, real worn tableware, faint fingerprints and marks on the surfaces,',
+        'natural colour, fine sensor grain, shot on a 50mm lens at f/4 with only the background falling out of focus.',
     ].filter(Boolean).join(' ');
 }
 
@@ -1399,11 +1477,75 @@ async function genererCloudflare(consigneTexte) {
     throw new Error(`Cloudflare — ${dernier}`);
 }
 
+/*
+ * OpenAI (gpt-image). Ajouté le 2026-09-13 : sur les fagots d'haricots verts,
+ * flux perdait la consigne — il dessinait des asperges parce que la scène
+ * contenait le mot « asparagus » dans une négation, et rendait le lard cru
+ * quelle que soit la formulation. gpt-image suit une longue scène au lieu d'en
+ * retenir des mots isolés, ce qui est exactement ce dont ces consignes ont
+ * besoin (elles font ~2400 caractères).
+ *
+ * Il rend du portrait 2:3 (1024×1536) : on recadre en 3:4 comme pour
+ * Cloudflare, en coupant par le HAUT et le BAS à parts égales.
+ */
+async function genererOpenai(consigneTexte) {
+    const cle = process.env.OPENAI_API_KEY;
+    if (!cle) throw new Error('pas de clé OpenAI');
+    const modele = process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
+    const qualite = process.env.OPENAI_IMAGE_QUALITY || 'high';
+    let dernier = '';
+    for (let essai = 1; essai <= 4; essai++) {
+        const rep = await fetch('https://api.openai.com/v1/images/generations', {
+            method: 'POST',
+            headers: { authorization: `Bearer ${cle}`, 'content-type': 'application/json' },
+            body: JSON.stringify({
+                model: modele,
+                prompt: consigneTexte,
+                size: '1024x1536',
+                quality: qualite,
+                n: 1,
+            }),
+        });
+        if (rep.ok) {
+            const d = await rep.json();
+            const b64 = d?.data?.[0]?.b64_json;
+            if (!b64) throw new Error('réponse sans image');
+            const rendu = Buffer.from(b64, 'base64');
+            const meta = await sharp(rendu).metadata();
+            const largeur = meta.width || 1024;
+            const hauteur = Math.round(largeur / 0.75);   // 3:4 à partir de la largeur
+            if (hauteur > (meta.height || 0)) return rendu;  // déjà plus carré que 3:4
+            return await sharp(rendu)
+                .extract({
+                    left: 0,
+                    top: Math.round(((meta.height || hauteur) - hauteur) / 2),
+                    width: largeur,
+                    height: hauteur,
+                })
+                .png()
+                .toBuffer();
+        }
+        dernier = (await rep.text()).slice(0, 300);
+        /*
+         * Un manque de crédit sort en 429 comme un dépassement de cadence, avec
+         * `insufficient_quota` : réessayer ne sert à rien, autant le dire tout
+         * de suite et laisser la main au fournisseur suivant.
+         */
+        if (/insufficient_quota|credit_balance/.test(dernier)) {
+            throw new Error('OpenAI sans crédit — recharger sur platform.openai.com/settings/organization/billing');
+        }
+        if (rep.status !== 429 || essai === 4) throw new Error(`OpenAI ${rep.status} — ${dernier}`);
+        await new Promise((res) => setTimeout(res, 8000 * essai));
+    }
+    throw new Error(`OpenAI — ${dernier}`);
+}
+
 /**
  * Enchaîne les fournisseurs et renvoie { buffer, par } — `par` sert au journal,
  * pour qu'on voie d'un coup d'œil combien d'images sont passées par le payant.
  */
 const FOURNISSEURS = {
+    openai: { nom: 'OpenAI gpt-image (payant)', appel: (c) => genererOpenai(c), dispo: () => !!process.env.OPENAI_API_KEY },
     gemini: { nom: 'Gemini (gratuit)', appel: genererGemini, dispo: () => !!cleGemini() },
     cloudflare: { nom: 'Cloudflare (gratuit)', appel: genererCloudflare, dispo: () => !!(process.env.CF_ACCOUNT_ID && process.env.CF_API_TOKEN) },
     fal: { nom: 'fal (payant)', appel: (c) => genererFal(c), dispo: () => !!process.env.FAL_KEY },
@@ -1411,7 +1553,13 @@ const FOURNISSEURS = {
 
 function ordreFournisseurs() {
     if (aOption('--fal')) return ['fal'];
-    const demande = valeur('--fournisseurs') || process.env.IMAGE_FOURNISSEURS || 'cloudflare,fal';
+    if (aOption('--openai')) return ['openai'];
+    /*
+     * OpenAI passe DEVANT depuis le 2026-09-13 : c'est lui qui respecte la
+     * consigne (voir genererOpenai). Cloudflare reste derrière comme marche
+     * gratuite quand OpenAI est à court de crédit, fal en dernier recours.
+     */
+    const demande = valeur('--fournisseurs') || process.env.IMAGE_FOURNISSEURS || 'openai,cloudflare,fal';
     return demande.split(',').map((s) => s.trim()).filter((n) => FOURNISSEURS[n]);
 }
 
@@ -1426,6 +1574,7 @@ function ordreFournisseurs() {
  * plus tard — `--manquantes` les reprendra de toute façon.
  * `--fal` (retouche manuelle assumée) et `--force` ne sont pas concernés.
  */
+const PAYANTS = new Set(['openai', 'fal']);
 const MAX_PAYANT = parseInt(valeur('--max-payant') || process.env.IMAGE_MAX_PAYANT || '5', 10);
 let payantes = 0;
 
@@ -1433,14 +1582,14 @@ async function genererUne(recette, descPlat) {
     const consigneTexte = consigne(recette, descPlat);
     let noms = ordreFournisseurs().filter((n) => FOURNISSEURS[n].dispo());
     if (!noms.length) throw new Error('aucun fournisseur configuré (voir CF_ACCOUNT_ID/CF_API_TOKEN, FAL_KEY)');
-    const plafonne = !aOption('--fal') && !aOption('--force') && payantes >= MAX_PAYANT;
-    if (plafonne) noms = noms.filter((n) => n !== 'fal');
+    const plafonne = !aOption('--fal') && !aOption('--openai') && !aOption('--force') && payantes >= MAX_PAYANT;
+    if (plafonne) noms = noms.filter((n) => !PAYANTS.has(n));
     if (!noms.length) throw new Error(`plafond de ${MAX_PAYANT} image(s) payante(s) atteint — repris au prochain passage`);
     const raisons = [];
     for (const nom of noms) {
         try {
             const buffer = await FOURNISSEURS[nom].appel(consigneTexte);
-            if (nom === 'fal') payantes++;
+            if (PAYANTS.has(nom)) payantes++;
             return { buffer, par: FOURNISSEURS[nom].nom };
         } catch (e) {
             raisons.push(`${nom}: ${e.message}`);
@@ -1591,6 +1740,7 @@ function pointerVers(id, chemin) {
         console.error('Aucun fournisseur d\'image configuré. Renseigne au moins une clé :');
         console.error('  GEMINI_IMAGE_KEY  (gratuit — aistudio.google.com/apikey)');
         console.error('  CF_ACCOUNT_ID + CF_API_TOKEN  (gratuit — dash.cloudflare.com → Workers AI)');
+        console.error('  OPENAI_API_KEY  (payant — platform.openai.com/api-keys)');
         console.error('  FAL_KEY  (payant — fal.ai/dashboard/keys)');
         process.exit(1);
     }
@@ -1611,7 +1761,22 @@ function pointerVers(id, chemin) {
             let descPlat = null;
             if (aOption('--video')) {
                 descPlat = await descriptionDepuisVideo(r);
-                console.log(`  🎬 ${r.id} vidéo : ${descPlat ? descPlat.slice(0, 90) + '…' : 'pas de description (repli titre)'}`);
+                console.log(`  🎬 ${r.id} vidéo : ${descPlat ? descPlat.slice(0, 90) + '…' : 'AUCUNE description'}`);
+                /*
+                 * PAS DE VIDÉO LUE = PAS D'IMAGE (2026-09-14).
+                 *
+                 * Le repli « on génère quand même depuis le titre » a produit une
+                 * tourte à l'ail pour des maritozzi (7830) : le modèle ne connaît
+                 * pas le plat, il invente, et l'image est payée au prix fort pour
+                 * finir à la poubelle. Quand `--video` est demandé et que la
+                 * vidéo n'a rien donné — téléchargement TikTok refusé, vision
+                 * muette — on passe la recette. `--manquantes` la reprendra au
+                 * prochain tour, et d'ici là mieux vaut pas de photo qu'une
+                 * fausse. `--titre-ok` lève la règle pour un essai manuel.
+                 */
+                if (!descPlat && !aOption('--titre-ok')) {
+                    throw new Error('vidéo illisible — recette passée (relancer plus tard, ou --titre-ok pour générer depuis le titre)');
+                }
             }
             // Sauve l'ancienne image sur le Bureau avant de l'écraser. Inutile
             // sur un runner GitHub : le Bureau y est un dossier jetable.
