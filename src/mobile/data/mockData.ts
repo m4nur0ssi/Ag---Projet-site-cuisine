@@ -2,11 +2,204 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/09/2026 08:15:19
- * Total: 725 recettes
+ * Dernière mise à jour: 14/09/2026 09:57:44
+ * Total: 727 recettes
  */
-export const exportSyncId = "1789373719868";
+export const exportSyncId = "1789379864119";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7833",
+        "title": "Ragoût à la Bolognaise",
+        "description": "Découvrez la recette traditionnelle du ragoût à la bolognaise, un plat mijoté riche en saveurs avec de la viande hachée, de la pancetta, des légumes, du vin rouge, de la tomate et une touche de lait pour l'onctuosité, servi avec des pâtes et du pa...",
+        "image": "/recipes-ia/7833-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7685069338256133408\" data-video-id=\"7685069338256133408\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7685069338256133408\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de pancetta"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             1 carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 branche de céleri"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 verre de vin rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             200g de purée de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 cuillère à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 verre de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             1 verre de bouillon de bœuf ou de légumes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍝\n             Pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            }
+        ],
+        "steps": [
+            "Commencez par préparer le soffritto : coupez l'oignon, la carotte et la branche de céleri en brunoise.",
+            "Hachez finement la pancetta.",
+            "Préparez à l'avance tous les ingrédients nécessaires pour faciliter la cuisine.",
+            "Faites griller la pancetta dans un bon filet d'huile d'olive jusqu'à ce qu'elle soit bien dorée.",
+            "Faites revenir le soffritto sans trop le colorer.",
+            "Ajoutez le bœuf haché, assaisonnez de sel et de poivre, et laissez-lui rendre son eau. L'idée est que la viande accroche légèrement au fond de la casserole pour récupérer tous les sucs.",
+            "Déglacez avec le vin rouge et laissez-le s'évaporer jusqu'à ce que vous ne sentiez plus son odeur dans la fumée.",
+            "Ajoutez le concentré de tomate et la purée de tomate.",
+            "Versez le bouillon de bœuf ou de légumes.",
+            "Couvrez et laissez mijoter à feu doux pendant au minimum deux heures.",
+            "À mi-cuisson, ajoutez le verre de lait entier pour adoucir la sauce et lui donner un côté onctueux.",
+            "Faites cuire les pâtes al dente.",
+            "Incorporez les pâtes al dente directement dans la sauce avec un peu d'eau de cuisson.",
+            "Servez avec une montagne de parmesan râpé."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7835",
+        "title": "Poulet rôti du dimanche",
+        "description": "Découvrez comment préparer un poulet rôti croustillant et savoureux, accompagné de pommes de terre fondantes et d'une sauce maison irrésistible, parfait pour votre repas du dimanche.",
+        "image": "/recipes-ia/7835-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7677183457864256801\" data-video-id=\"7677183457864256801\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7677183457864256801\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 poulet entier"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 c. à soupe de moutarde de Dijon"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 c. à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 c. à café d'ail semoule"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 c. à café d'oignon en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à soupe de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à café de piri-piri"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 c. à soupe d'huile de tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tranches de speck (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre (type grenade), coupées en quartiers"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Quelques gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un petit verre d'eau"
+            }
+        ],
+        "steps": [
+            "Retirez la ficelle du poulet pour que les cuisses soient moins serrées et que la cuisson soit plus uniforme.",
+            "Si vous le souhaitez, entourez les cuisses de deux petites tranches de speck pour plus de goût.",
+            "Préparez la marinade en mélangeant la moutarde de Dijon, le concentré de tomate, l'ail semoule, l'oignon en poudre, le paprika fumé, le piri-piri, l'huile de tomates séchées, l'huile d'olive, le sel et le poivre.",
+            "Massez généreusement le poulet avec cette marinade, en veillant à bien le recouvrir pour une peau nourrie, dorée et croustillante.",
+            "Déposez le poulet dans une plaque allant au four, en commençant la cuisson à l'envers.",
+            "Faites cuire pendant 30 minutes.",
+            "Après 30 minutes de cuisson, ajoutez un petit verre d'eau dans le plat pour décoller les sucs.",
+            "Retournez le poulet.",
+            "Ajoutez les pommes de terre grenade coupées en quartiers et quelques gousses d'ail autour du poulet.",
+            "Remettez au four pour environ 30 minutes supplémentaires, jusqu'à ce que le poulet soit bien doré et les pommes de terre fondantes.",
+            "Servez le poulet rôti avec les pommes de terre et l'ail confit, accompagné de la sauce incroyable formée par les sucs de cuisson."
+        ],
+        "tags": [
+            "épicé",
+            "France",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7830",
         "title": "Recette de Maritozzi",
