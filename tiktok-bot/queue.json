@@ -1,11 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQUDKnF/",
-      "country": "Plats",
-      "timestamp": "2026-09-14T19:16:00.743Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN8FcaP8F/",
@@ -118,6 +112,14 @@
       "essais": 1,
       "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
       "quand": "2026-09-14T09:39:55.052Z"
+    },
+    {
+      "videoUrl": "https://vm.tiktok.com/ZGdQUDKnF/",
+      "country": "Plats",
+      "timestamp": "2026-09-14T19:16:00.743Z",
+      "essais": 1,
+      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
+      "quand": "2026-09-14T19:18:11.748Z"
     }
   ]
 }
