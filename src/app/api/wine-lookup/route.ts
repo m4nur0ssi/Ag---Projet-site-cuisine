@@ -1,26 +1,51 @@
 import { NextResponse } from 'next/server';
-import { findOnVivino, type VivinoWine } from '@/lib/vivino';
+import { findOnVivino } from '@/lib/vivino';
+import { findOnViniou } from '@/lib/viniou';
+import type { BouteilleTrouvee } from '@/lib/texte-vin';
 
 /**
  * « Ma cave » — reconnaissance d'un vin, en deux temps.
  *
  *  1. LIRE L'ÉTIQUETTE : la photo part dans un modèle VISION (Groq multimodal)
  *     qui en extrait le nom du vin et le millésime.
- *  2. RETROUVER LA BOUTEILLE : ce nom est cherché dans la base VIVINO, qui rend
- *     la PHOTO OFFICIELLE de la bouteille (bonne étiquette, fond détouré) plus
- *     le cépage, l'appellation, la couleur et la note des dégustateurs.
+ *  2. RETROUVER LA BOUTEILLE : ce nom est cherché chez DEUX marchands, en
+ *     parallèle, parce qu'aucun des deux ne suffit :
+ *       • VIVINO connaît le vin qui s'exporte et donne la note des
+ *         dégustateurs — mais ignore le petit domaine français ;
+ *       • VINIOU tient le catalogue français au détail (appellation par
+ *         appellation, une fiche par millésime) et rend la photo de la
+ *         bouteille là où Vivino ne répond rien.
+ *     On garde celle des deux qui reconnaît vraiment l'étiquette ; à égalité,
+ *     Vivino passe devant puisqu'il apporte en plus la note.
  *
- * Replis en cascade : pas de Vivino (spiritueux, réseau) → on garde la lecture
- * de l'IA ; pas de clé Groq → on garde le texte saisi. On ne renvoie jamais
- * d'erreur bloquante, toujours un vin exploitable.
+ * Replis en cascade : aucun marchand ne reconnaît (spiritueux, réseau) → on
+ * garde la lecture de l'IA ; pas de clé Groq → on garde le texte saisi. On ne
+ * renvoie jamais d'erreur bloquante, toujours un vin exploitable.
  */
 export const runtime = 'nodejs';
 const GROQ_KEY = process.env.GROQ_API_KEY;
-// Groq retire régulièrement ses modèles : ces deux-là sont surchargeables par
-// env. `qwen3.6-27b` est le multimodal disponible côté gratuit ; on coupe son
-// mode « réflexion » (reasoning_effort: none) pour n'obtenir que le JSON.
-const GROQ_TEXT_MODEL = process.env.WINE_GROQ_MODEL || 'qwen/qwen3.6-27b';
-const GROQ_VISION_MODEL = process.env.WINE_GROQ_VISION_MODEL || 'qwen/qwen3.6-27b';
+/**
+ * Groq RETIRE ses modèles sans préavis, et la cave en meurt en silence :
+ * `qwen/qwen3.6-27b` a disparu du catalogue, l'appel répondait 404
+ * « model_not_found », la lecture d'étiquette échouait, et l'écran annonçait
+ * « étiquette illisible » pour TOUTES les bouteilles — y compris les plus
+ * lisibles du monde.
+ *
+ * On ne mise donc plus sur un seul nom : on essaie une LISTE, du meilleur au
+ * plus vieux, et on s'arrête au premier qui répond. Le jour où le premier
+ * disparaît à son tour, le suivant prend le relais sans qu'on touche à rien.
+ * La variable d'environnement, quand elle est posée, passe devant tout.
+ */
+const modeles = (env: string | undefined, defauts: string[]) =>
+    [...(env ? [env] : []), ...defauts].filter((m, i, a) => a.indexOf(m) === i);
+
+const GROQ_TEXT_MODELS = modeles(process.env.WINE_GROQ_MODEL, [
+    'qwen/qwen3.8-27b', 'openai/gpt-oss-20b', 'openai/gpt-oss-120b',
+]);
+/** Seuls les modèles MULTIMODAUX lisent une photo — les autres refusent en 400. */
+const GROQ_VISION_MODELS = modeles(process.env.WINE_GROQ_VISION_MODEL, [
+    'qwen/qwen3.8-27b', 'qwen/qwen3.6-27b', 'meta-llama/llama-4-scout-17b-16e-instruct',
+]);
 
 type Wine = {
     name: string; grape: string; year: string;
@@ -40,6 +65,8 @@ Réponds UNIQUEMENT le JSON.`;
 
 /** Quota Groq gratuit dépassé (8000 tokens/min) : à distinguer d'une vraie panne. */
 class RateLimited extends Error {}
+/** Ce modèle-là n'existe plus (ou ne sait pas lire une image) : essayer le suivant. */
+class ModeleAbsent extends Error {}
 
 async function callGroq(body: Record<string, unknown>) {
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -48,18 +75,41 @@ async function callGroq(body: Record<string, unknown>) {
         body: JSON.stringify({ temperature: 0.2, reasoning_effort: 'none', response_format: { type: 'json_object' }, ...body }),
     });
     if (res.status === 429) throw new RateLimited('Groq 429');
-    if (!res.ok) throw new Error('Groq ' + res.status + ' ' + (await res.text()).slice(0, 200));
+    if (!res.ok) {
+        const detail = (await res.text()).slice(0, 300);
+        // 404 = modèle retiré ; 400 « must be a string » = modèle non multimodal.
+        if (res.status === 404 || /model_not_found|decommissioned|must be a string/i.test(detail)) {
+            throw new ModeleAbsent(detail);
+        }
+        throw new Error('Groq ' + res.status + ' ' + detail);
+    }
     const data = await res.json();
     return data?.choices?.[0]?.message?.content || '';
 }
 
-const callGroqText = (userMsg: string) => callGroq({
-    model: GROQ_TEXT_MODEL, temperature: 0.3, max_tokens: 400,
-    messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: userMsg }],
-});
+/** Essaie chaque modèle jusqu'à ce que l'un réponde. */
+async function callGroqAvecReplis(noms: string[], corps: (model: string) => Record<string, unknown>) {
+    let derniere: unknown = new Error('aucun modèle');
+    for (const model of noms) {
+        try { return await callGroq(corps(model)); }
+        catch (e) {
+            // Un quota atteint n'est pas un modèle mort : inutile de brûler les
+            // suivants, ils partagent le même compteur.
+            if (e instanceof RateLimited) throw e;
+            derniere = e;
+            if (!(e instanceof ModeleAbsent)) throw e;
+        }
+    }
+    throw derniere;
+}
 
-const callGroqVision = (imageDataUrl: string) => callGroq({
-    model: GROQ_VISION_MODEL, max_tokens: 400,
+const callGroqText = (userMsg: string) => callGroqAvecReplis(GROQ_TEXT_MODELS, (model) => ({
+    model, temperature: 0.3, max_tokens: 400,
+    messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: userMsg }],
+}));
+
+const callGroqVision = (imageDataUrl: string) => callGroqAvecReplis(GROQ_VISION_MODELS, (model) => ({
+    model, max_tokens: 400,
     messages: [{
         role: 'user',
         content: [
@@ -67,7 +117,7 @@ const callGroqVision = (imageDataUrl: string) => callGroq({
             { type: 'image_url', image_url: { url: imageDataUrl } },
         ],
     }],
-});
+}));
 
 /** Isole l'objet JSON même si le modèle l'entoure de texte ou d'un bloc ```json. */
 function extractJson(raw: string) {
@@ -109,7 +159,7 @@ function toWine(raw: string, fallbackName: string): Wine {
  * vérifiable (photo, cépage, appellation, couleur, millésime) ; la phrase de
  * dégustation de l'IA est gardée si Vivino n'en fournit pas.
  */
-function merge(read: Wine | null, v: VivinoWine): Wine {
+function merge(read: Wine | null, v: BouteilleTrouvee): Wine {
     // Le millésime vient de L'ÉTIQUETTE, pas de la fiche : le marchand liste le
     // même vin en vingt années et prévient lui-même que « le millésime sur la
     // photo peut ne pas correspondre ». La bouteille en main fait foi.
@@ -139,22 +189,32 @@ function query(w: Wine) {
 /**
  * Cherche la bouteille par le nom, et aussi avec l'appellation : « Bocas
  * Lágrima » seul ne suffit pas, « Bocas Lágrima Porto Portugal » retrouve le
- * producteur.
+ * producteur. Chez Vivino ET chez Viniou.
  *
- * Les deux requêtes partent ENSEMBLE. En série, la seconde n'était lancée
- * qu'après l'échec de la première : le scan durait deux allers-retours dès que
- * le nom seul ne suffisait pas, et c'est justement le cas fréquent. Une requête
- * de plus chez le marchand coûte moins cher que deux secondes d'attente devant
- * une bouteille à la main.
+ * Toutes les requêtes partent ENSEMBLE. En série, chacune n'était lancée
+ * qu'après l'échec de la précédente : le scan durait plusieurs allers-retours
+ * dès que le nom seul ne suffisait pas, et c'est justement le cas fréquent. Une
+ * requête de plus chez un marchand coûte moins cher que deux secondes d'attente
+ * devant une bouteille à la main.
+ *
+ * L'ordre du résultat dit la préférence : d'abord ce qui est SÛR, et à égalité
+ * Vivino d'abord (il apporte la note des dégustateurs), Viniou ensuite (il
+ * apporte la bouteille que Vivino n'a pas).
  */
-async function locate(read: Wine) {
-    const [first, second] = await Promise.all([
+async function locate(read: Wine): Promise<BouteilleTrouvee | null> {
+    const avecRegion = `${read.name} ${read.region}`.trim();
+    const pistes = await Promise.all([
         findOnVivino(query(read), read.year),
-        read.region ? findOnVivino(`${read.name} ${read.region}`.trim(), read.year) : Promise.resolve(null),
+        read.region ? findOnVivino(avecRegion, read.year) : Promise.resolve(null),
+        // Viniou se parcourt par arborescence : il lui faut l'appellation lue
+        // pour savoir par quelle région entrer.
+        findOnViniou(read.name, read.year, read.region),
     ]);
-    if (first?.confident) return first;
-    if (second?.confident) return second;
-    return first || second;
+    const trouvees = pistes.filter(Boolean) as BouteilleTrouvee[];
+    if (!trouvees.length) return null;
+    const rang = (b: BouteilleTrouvee) =>
+        (b.confident ? 0 : 10) + (b.source === 'vivino' ? 0 : 1) + (b.photo ? 0 : 4);
+    return trouvees.sort((a, b) => rang(a) - rang(b))[0];
 }
 
 export async function POST(request: Request) {
@@ -183,7 +243,7 @@ export async function POST(request: Request) {
     // n'est pas la sienne. Dans le doute, la photo prise par l'utilisateur gagne.
     if (read) {
         const found = await locate(read);
-        if (found?.confident) return NextResponse.json({ wine: merge(read, found), source: 'vivino' });
+        if (found?.confident) return NextResponse.json({ wine: merge(read, found), source: found.source });
         return NextResponse.json({ wine: read, source: image ? 'vision' : 'text', quota });
     }
 

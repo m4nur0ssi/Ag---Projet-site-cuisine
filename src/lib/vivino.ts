@@ -9,100 +9,24 @@
 // Fragile par nature (dépend du HTML de Vivino) : tout appelant doit prévoir un
 // repli. `findOnVivino` renvoie `null` plutôt que de lever.
 
-export interface VivinoWine {
-    name: string;        // « Château Margaux Pavillon Rouge du Château Margaux »
-    winery: string;
-    year: string;        // '' si non millésimé
-    grape: string;       // cépages principaux, « Cabernet Sauvignon, Merlot »
-    region: string;      // « Margaux, France »
-    color: 'rouge' | 'blanc' | 'rose' | 'liqueur';
-    note: string;        // phrase de style (corps / acidité / description)
-    photo: string;       // URL absolue de la bouteille officielle
-    rating: number;      // note Vivino /5 (0 si aucune)
-    ratingsCount: number;
-    url: string;         // fiche Vivino
-    /**
-     * Vrai quand le domaine de la fiche correspond vraiment à l'étiquette lue.
-     * Sans ça on garde la photo prise par l'utilisateur : mieux vaut sa propre
-     * bouteille qu'une étiquette voisine mais fausse.
-     */
-    confident: boolean;
-}
+import {
+    UA_NAVIGATEUR, unescapeHtml, tokens, f1, coverage,
+    type BouteilleTrouvee,
+} from './texte-vin';
 
-const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
+/**
+ * Une bouteille retrouvée chez Vivino. Le type est partagé avec Viniou
+ * (`BouteilleTrouvee`) : les deux sources alimentent la même fiche de cave, et
+ * deux formes différentes auraient fini par diverger.
+ */
+export type VivinoWine = BouteilleTrouvee;
+
+const UA = UA_NAVIGATEUR;
 
 /** type_id Vivino → couleurs de la cave (les bulles se rangent avec les blancs). */
 const TYPE_COLOR: Record<number, VivinoWine['color']> = {
     1: 'rouge', 2: 'blanc', 3: 'blanc', 4: 'rose', 7: 'liqueur', 24: 'liqueur',
 };
-
-function unescapeHtml(s: string) {
-    return s
-        .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&#x27;/g, "'")
-        .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
-}
-
-function tokens(s: string): string[] {
-    const flat = (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    return flat.split(/[^a-z0-9]+/).filter((t) => t.length > 1);
-}
-
-/** Distance d'édition, plafonnée : on s'arrête dès qu'on dépasse `max`. */
-function editDistance(a: string, b: string, max: number) {
-    if (Math.abs(a.length - b.length) > max) return max + 1;
-    let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
-    for (let i = 1; i <= a.length; i++) {
-        const row = [i];
-        let best = i;
-        for (let j = 1; j <= b.length; j++) {
-            const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-            row[j] = Math.min(prev[j] + 1, row[j - 1] + 1, prev[j - 1] + cost);
-            best = Math.min(best, row[j]);
-        }
-        if (best > max) return max + 1;
-        prev = row;
-    }
-    return prev[b.length];
-}
-
-/**
- * Deux mots désignent-ils la même chose ? Une étiquette lue par l'IA arrive
- * souvent à une lettre près (« Poças » lu « Bocas », « Rieussec » lu « Riessec ») :
- * on tolère d'autant plus de fautes que le mot est long.
- */
-function sameWord(a: string, b: string) {
-    if (a === b) return true;
-    const len = Math.min(a.length, b.length);
-    if (len < 4) return false;
-    return editDistance(a, b, len >= 7 ? 2 : 1) <= (len >= 7 ? 2 : 1);
-}
-
-/** Nombre de mots de `a` retrouvés dans `b`, à l'orthographe près. */
-function overlap(a: string[], b: string[]) {
-    const taken = new Set<number>();
-    let n = 0;
-    for (const t of a) {
-        const hit = b.findIndex((u, i) => !taken.has(i) && sameWord(t, u));
-        if (hit !== -1) { taken.add(hit); n++; }
-    }
-    return n;
-}
-
-/** Part des mots de `a` présents dans `b` (0 → 1). */
-function coverage(a: string[], b: string[]) {
-    const A = [...new Set(a)], B = [...new Set(b)];
-    return A.length && B.length ? overlap(A, B) / A.length : 0;
-}
-
-/** Similarité F1 entre deux sacs de mots, à l'orthographe près. */
-function f1(a: string[], b: string[]) {
-    const A = [...new Set(a)], B = [...new Set(b)];
-    if (!A.length || !B.length) return 0;
-    const inter = overlap(A, B);
-    if (!inter) return 0;
-    const p = inter / B.length, r = inter / A.length;
-    return (2 * p * r) / (p + r);
-}
 
 function abs(url: string) {
     if (!url) return '';
@@ -193,6 +117,7 @@ function toWine(v: any, confident: boolean): VivinoWine {
         rating: v.statistics?.ratings_average || 0,
         ratingsCount: v.statistics?.ratings_count || 0,
         url: v.seo_name ? `https://www.vivino.com/FR/fr/${v.seo_name}` : 'https://www.vivino.com',
+        source: 'vivino',
         confident,
     };
 }

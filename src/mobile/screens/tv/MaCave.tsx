@@ -36,6 +36,14 @@ import TVToast from './TVToast';
  */
 const stripYear = (name: string) => name.replace(/\s*[·,-]?\s*\b(19|20)\d{2}\b\s*$/, '').trim() || name;
 
+/**
+ * Chez qui la bouteille a été retrouvée — lu sur l'adresse de sa fiche.
+ * Deux marchands sont interrogés (Vivino pour la note, Viniou pour les domaines
+ * français) : annoncer « sur Vivino » sous une fiche Viniou serait faux.
+ */
+const marchandDe = (url?: string) =>
+    !url ? '' : /viniou/i.test(url) ? 'Viniou' : /vivino/i.test(url) ? 'Vivino' : '';
+
 /** Bandeau d'information de l'app (même canal que le reste du site). */
 const toast = (msg: string) => window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: msg }));
 
@@ -245,6 +253,18 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         return s;
     }, [wines, filter, ripe, q, sort]);
     const detail = useMemo(() => wines.find((w) => w.id === detailId) || null, [wines, detailId]);
+    /**
+     * Les bouteilles entre lesquelles on navigue d'un glissé, dans la fiche :
+     * la même étagère et la même couleur que celle qu'on regarde. C'est la
+     * « catégorie » au sens des onglets de la page — passer d'un bordeaux à un
+     * sauternes parce qu'ils se suivent dans la grille n'aurait aucun sens.
+     * L'ordre est celui de la page, pour que le geste suive ce qu'on voyait.
+     */
+    const voisines = useMemo(() => {
+        if (!detail) return [];
+        const meme = wines.filter((w) => shelfOf(w) === shelfOf(detail) && w.color === detail.color);
+        return meme.sort((a, b) => b.addedAt - a.addedAt);
+    }, [wines, detail]);
 
     // Les deux étagères, filtres et recherche déjà appliqués.
     const inCave = useMemo(() => shown.filter((w) => shelfOf(w) === 'cave'), [shown]);
@@ -411,6 +431,8 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             {detail && (
                 <WineSheet
                     wine={detail}
+                    voisines={voisines}
+                    onNavigate={setDetailId}
                     onClose={() => setDetailId(null)}
                     onPair={() => setPairing(detail)}
                     onEdit={() => setEditing(detail)}
@@ -1159,8 +1181,11 @@ function EditWine({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
  *   • « Est-elle à maturité ? » — la réponse d'œnologue, avec la fenêtre de
  *     dégustation en clair, dépliée sur place plutôt que cachée ailleurs.
  */
-function WineSheet({ wine, onClose, onPair, onEdit, onZoom, onRemove }: {
+function WineSheet({ wine, voisines, onNavigate, onClose, onPair, onEdit, onZoom, onRemove }: {
     wine: CaveWine;
+    /** Les bouteilles de la même catégorie, dans l'ordre de la page. */
+    voisines: CaveWine[];
+    onNavigate: (id: string) => void;
     onClose: () => void;
     onPair: () => void;
     onEdit: () => void;
@@ -1172,12 +1197,178 @@ function WineSheet({ wine, onClose, onPair, onEdit, onZoom, onRemove }: {
     const profil = useMemo(() => wineProfile(wine), [wine]);
     const [ouvertMaturite, setOuvertMaturite] = useState(false);
 
-    // Échap ferme, comme toutes les feuilles du site.
+    const rang = Math.max(0, voisines.findIndex((w) => w.id === wine.id));
+    const precedente = rang > 0 ? voisines[rang - 1] : null;
+    const suivante = rang < voisines.length - 1 ? voisines[rang + 1] : null;
+
+    const feuille = useRef<HTMLDivElement | null>(null);
+    const fond = useRef<HTMLDivElement | null>(null);
+    const corps = useRef<HTMLDivElement | null>(null);
+    /**
+     * Sens de l'arrivée : la nouvelle fiche entre par où l'ancienne est sortie.
+     *
+     * C'est une RÉFÉRENCE et non un état : en état, le rendu déclenché par sa
+     * remise à zéro nettoyait l'effet, qui annulait l'image programmée — la
+     * fiche restait figée hors de l'écran, à 385 px sur le côté.
+     */
+    const sensEntree = useRef<'gauche' | 'droite' | null>(null);
+
+    /**
+     * Déplacer la feuille SANS repasser par React.
+     *
+     * Un glissé piloté par un `useState` rend à chaque image : le doigt prend de
+     * l'avance sur l'écran, et c'est exactement ce qui fait « cheap ». On écrit
+     * donc directement dans le style, comme les fiches de recettes.
+     */
+    const poser = (x: number, y: number, opacite?: number) => {
+        const el = feuille.current;
+        if (el) el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        if (fond.current && opacite !== undefined) fond.current.style.opacity = String(opacite);
+    };
+    const avecTransition = (ms = 260) => {
+        const el = feuille.current;
+        if (el) el.style.transition = `transform ${ms}ms cubic-bezier(.32,.72,0,1)`;
+        if (fond.current) fond.current.style.transition = `opacity ${ms}ms linear`;
+    };
+    const sansTransition = () => {
+        if (feuille.current) feuille.current.style.transition = 'none';
+        if (fond.current) fond.current.style.transition = 'none';
+    };
+
+    /** Referme en poursuivant le geste vers le bas, au lieu de disparaître net. */
+    const fermerEnGlissant = () => {
+        avecTransition(240);
+        poser(0, window.innerHeight, 0);
+        setTimeout(onClose, 200);
+    };
+
+    /** Change de bouteille : la fiche sort d'un côté, la suivante entre de l'autre. */
+    const aller = (vers: 'precedente' | 'suivante') => {
+        const cible = vers === 'precedente' ? precedente : suivante;
+        if (!cible) { avecTransition(); poser(0, 0, 1); return; }
+        const large = feuille.current?.offsetWidth || window.innerWidth;
+        avecTransition(180);
+        poser(vers === 'precedente' ? large : -large, 0, 1);
+        setTimeout(() => {
+            sensEntree.current = vers === 'precedente' ? 'gauche' : 'droite';
+            onNavigate(cible.id);
+        }, 170);
+    };
+
+    // La fiche qui arrive se pose depuis le côté d'où vient le geste.
     useEffect(() => {
-        const esc = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
-        window.addEventListener('keydown', esc);
-        return () => window.removeEventListener('keydown', esc);
-    }, [onClose]);
+        const sens = sensEntree.current;
+        sensEntree.current = null;
+        const large = feuille.current?.offsetWidth || window.innerWidth;
+        if (!sens) { sansTransition(); poser(0, 0, 1); return; }
+        sansTransition();
+        poser(sens === 'gauche' ? -large : large, 0, 1);
+        // DEUX images : la première peint la position de départ, la seconde
+        // lance le glissement. Avec une seule, le navigateur regroupe les deux
+        // écritures et la transition n'a rien à animer.
+        let vivant = true;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            if (!vivant) return;
+            avecTransition(220);
+            poser(0, 0, 1);
+        }));
+        return () => { vivant = false; };
+    }, [wine.id]);
+
+    // Changer de bouteille referme le volet de maturité : il parlait de l'autre.
+    useEffect(() => { setOuvertMaturite(false); }, [wine.id]);
+
+    /**
+     * Les gestes, branchés à la main en `passive: false`.
+     *
+     * React pose ses écouteurs `touchmove` en mode passif : le `preventDefault`
+     * n'y a aucun effet, et Safari garde son propre rebond élastique par-dessus
+     * notre déplacement. Même remède que dans les fiches de recettes.
+     */
+    useEffect(() => {
+        const el = feuille.current;
+        if (!el) return;
+        let x0 = 0, y0 = 0, dernierY = 0, dernierT = 0, vitesse = 0;
+        let sens: 'aucun' | 'vertical' | 'horizontal' = 'aucun';
+        let actif = false;
+
+        const debut = (e: TouchEvent) => {
+            const t = e.touches[0];
+            x0 = t.clientX; y0 = t.clientY; dernierY = t.clientY;
+            dernierT = performance.now(); vitesse = 0; sens = 'aucun'; actif = true;
+            sansTransition();
+        };
+        const bouge = (e: TouchEvent) => {
+            if (!actif) return;
+            const t = e.touches[0];
+            const dx = t.clientX - x0, dy = t.clientY - y0;
+            const maintenant = performance.now();
+            const dt = maintenant - dernierT;
+            if (dt > 0) vitesse = (t.clientY - dernierY) / dt;
+            dernierY = t.clientY; dernierT = maintenant;
+
+            if (sens === 'aucun') {
+                if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 7) sens = 'horizontal';
+                else if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 7) sens = 'vertical';
+            }
+            // Vers le bas seulement, et seulement si le contenu est en haut :
+            // sinon on empêcherait de lire la fiche jusqu'au bout.
+            const enHaut = (corps.current?.scrollTop ?? 0) <= 0;
+            if (sens === 'vertical' && dy > 0 && enHaut) {
+                e.preventDefault();
+                // Résistance : la feuille suit le doigt à moitié, ce qui donne
+                // le poids qu'on attend d'un objet qu'on repousse.
+                poser(0, dy * 0.5, Math.max(0.15, 1 - dy / 520));
+            } else if (sens === 'horizontal') {
+                e.preventDefault();
+                const bout = (dx > 0 && !precedente) || (dx < 0 && !suivante);
+                poser(dx * (bout ? 0.22 : 1), 0, 1);
+            }
+        };
+        const fin = () => {
+            if (!actif) return;
+            actif = false;
+            const m = (feuille.current?.style.transform || '').match(/translate3d\(([-\d.]+)px, ([-\d.]+)px/);
+            const dx = m ? parseFloat(m[1]) : 0;
+            const dy = m ? parseFloat(m[2]) : 0;
+            const large = feuille.current?.offsetWidth || window.innerWidth;
+            if (sens === 'vertical') {
+                // Un geste vif ferme sans avoir à parcourir toute la distance.
+                if (dy > 110 || (vitesse * 1000 > 700 && dy > 20)) fermerEnGlissant();
+                else { avecTransition(); poser(0, 0, 1); }
+            } else if (sens === 'horizontal') {
+                if (dx < -large * 0.25) aller('suivante');
+                else if (dx > large * 0.25) aller('precedente');
+                else { avecTransition(); poser(0, 0, 1); }
+            }
+            sens = 'aucun';
+        };
+
+        const opts = { passive: false } as AddEventListenerOptions;
+        el.addEventListener('touchstart', debut, opts);
+        el.addEventListener('touchmove', bouge, opts);
+        el.addEventListener('touchend', fin, opts);
+        el.addEventListener('touchcancel', fin, opts);
+        return () => {
+            el.removeEventListener('touchstart', debut);
+            el.removeEventListener('touchmove', bouge);
+            el.removeEventListener('touchend', fin);
+            el.removeEventListener('touchcancel', fin);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wine.id, precedente?.id, suivante?.id]);
+
+    // Échap ferme, flèches pour changer de bouteille — au clavier comme au doigt.
+    useEffect(() => {
+        const touche = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onClose();
+            else if (e.key === 'ArrowRight' && suivante) aller('suivante');
+            else if (e.key === 'ArrowLeft' && precedente) aller('precedente');
+        };
+        window.addEventListener('keydown', touche);
+        return () => window.removeEventListener('keydown', touche);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [onClose, suivante?.id, precedente?.id]);
 
     const classeMaturite = maturite?.status === 'tard' ? styles.apoLate
         : maturite?.status === 'jeune' ? styles.apoWait
@@ -1194,7 +1385,31 @@ function WineSheet({ wine, onClose, onPair, onEdit, onZoom, onRemove }: {
 
     return createPortal(
         <div className={styles.fBack} onClick={onClose}>
-            <div className={styles.fSheet} onClick={(e) => e.stopPropagation()} role="dialog" aria-label={wine.name}>
+            {/* Le voile s'efface à mesure qu'on repousse la fiche : c'est lui qui
+                fait sentir qu'on la renvoie vers la cave, et non qu'elle s'éteint. */}
+            <div className={styles.fVoile} ref={fond} aria-hidden />
+
+            {/* Aux flèches, sur un ordinateur : le glissé n'existe qu'au doigt. */}
+            {precedente && (
+                <button className={`${styles.fNav} ${styles.fNavPrev}`} onClick={(e) => { e.stopPropagation(); aller('precedente'); }} aria-label={`Bouteille précédente : ${stripYear(precedente.name)}`}>
+                    <svg viewBox="0 0 8 14" width="14" height="14" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+            )}
+            {suivante && (
+                <button className={`${styles.fNav} ${styles.fNavNext}`} onClick={(e) => { e.stopPropagation(); aller('suivante'); }} aria-label={`Bouteille suivante : ${stripYear(suivante.name)}`}>
+                    <svg viewBox="0 0 8 14" width="14" height="14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+            )}
+
+            <div
+                className={styles.fSheet}
+                ref={(el) => { feuille.current = el; corps.current = el; }}
+                onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-label={wine.name}
+            >
+                {/* Poignée : elle annonce que la fiche se repousse vers le bas. */}
+                <div className={styles.fPoignee} aria-hidden />
                 <button className={styles.fClose} onClick={onClose} aria-label="Fermer">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                 </button>
@@ -1212,6 +1427,17 @@ function WineSheet({ wine, onClose, onPair, onEdit, onZoom, onRemove }: {
                 <div className={styles.fSous}>
                     {[wine.year, wine.region].filter(Boolean).join(' · ') || profil.style}
                 </div>
+
+                {/* Où l'on se trouve dans la catégorie — sans ça, le glissé
+                    donne l'impression de tourner en rond. */}
+                {voisines.length > 1 && (
+                    <div className={styles.fRang}>
+                        {voisines.map((v, i) => (
+                            <span key={v.id} className={`${styles.fPuce} ${i === rang ? styles.fPuceOn : ''}`} />
+                        ))}
+                        <span className={styles.fRangTexte}>{COLOR_LABEL[wine.color].toLowerCase()}s · {rang + 1}/{voisines.length}</span>
+                    </div>
+                )}
 
                 {/* Les deux gestes de l'écran, côte à côte. */}
                 <div className={styles.fActions}>
@@ -1724,8 +1950,11 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
             const w = data?.wine;
             if (w) {
                 setForm((f) => ({ ...f, name: w.name, grape: w.grape, year: w.year, color: w.color, region: w.region, note: w.note || f.note }));
-                setOfficial(data.source === 'vivino' ? { photo: w.photo, rating: w.rating, vivinoUrl: w.vivinoUrl } : {});
-                setScanMsg(data.source === 'vivino' ? 'Bouteille trouvée ✓' : 'Fiche estimée — pas de photo officielle.');
+                // Les deux marchands valent : ce qui compte est qu'une FICHE ait
+                // été reconnue, pas laquelle.
+                const reconnue = data.source === 'vivino' || data.source === 'viniou';
+                setOfficial(reconnue ? { photo: w.photo, rating: w.rating, vivinoUrl: w.vivinoUrl } : {});
+                setScanMsg(reconnue ? `Bouteille trouvée sur ${marchandDe(w.vivinoUrl) || 'le web'} ✓` : 'Fiche estimée — pas de photo officielle.');
             }
         } catch { setScanMsg('Recherche impossible — saisie manuelle.'); }
         setBusy(false);
@@ -1928,7 +2157,7 @@ function VinPropose({ vin, scan, scene, etagere, occupe, message, onAnnuler, onV
                     <div className={styles.proposeNoteLigne}>
                         <span className={styles.proposeNoteVal}>{note.toFixed(1).replace('.', ',')}</span>
                         <span className={styles.proposeNoteSur}>/5</span>
-                        <span className={styles.proposeNoteSource}>{vin.vivinoUrl ? 'sur Vivino' : 'note moyenne'}</span>
+                        <span className={styles.proposeNoteSource}>{marchandDe(vin.vivinoUrl) ? `sur ${marchandDe(vin.vivinoUrl)}` : 'note moyenne'}</span>
                     </div>
                 </div>
             )}
@@ -1941,7 +2170,7 @@ function VinPropose({ vin, scan, scene, etagere, occupe, message, onAnnuler, onV
             <div className={styles.proposeAvis}>
                 {vin.vivinoUrl && (
                     <a className={styles.proposeLien} href={vin.vivinoUrl} target="_blank" rel="noopener noreferrer">
-                        Avis Vivino
+                        Fiche {marchandDe(vin.vivinoUrl) || 'marchand'}
                     </a>
                 )}
                 <a
