@@ -512,6 +512,29 @@ const SCENES_SPECIALES = [
      'a whole round {T} on a cake stand, seen from above: a golden-brown cake with a gently domed crackled top '
      + 'strewn with chopped and whole hazelnuts, one generous wedge cut and lifted slightly away so the moist '
      + 'crumb shows along the cut — a whole cake fills the frame, never a single small slice'],
+    /*
+     * FLUX.2 (Cloudflare) rend très bien, mais il transforme encore les petites
+     * pièces frites en PLAT ENTIER : les beignets devenaient une tarte, les
+     * boulettes un gratin lisse. Ces quatre scènes disent « plusieurs petites
+     * pièces », jamais un plat unique.
+     */
+    [/boulettes?.*parmentier|parmentier.*boulettes?/i,
+     'a plate of {T}: eight small round balls of mashed potato and minced meat, each one the size of a walnut, '
+     + 'baked until the outside is golden and lightly crusted, piled loosely on the plate with one broken open '
+     + 'to show the soft pale inside — separate little balls, never a smooth baked dish and never a gratin'],
+    [/beignets? de courgettes?/i,
+     'a plate of {T}: a dozen small craggy fritters the size of a spoonful, shallow-fried to a deep golden brown '
+     + 'with shreds of green courgette poking out of their rough edges, heaped up one on another, one torn in '
+     + 'half beside a little bowl of white yoghurt sauce — small separate fritters, never a tart and never a '
+     + 'single flat cake'],
+    [/\bbhaji\b|beignets? indiens?/i,
+     'a plate of {T}: a heap of craggy onion fritters, each one a tangle of thin onion strips bound in a spiced '
+     + 'golden batter and deep-fried until crisp, irregular and spiky, piled high with a small bowl of green '
+     + 'chutney beside them and a lemon wedge — many separate fritters, never a baked cake and never a slice'],
+    [/bouch[ée]es?.*carottes?|carottes?.*bouch[ée]es?/i,
+     'a plate of {T}: ten small round bites, each a flat little patty of carrot and potato the size of a coin, '
+     + 'golden at the edges and soft orange inside, arranged in a loose circle on the plate with one broken open '
+     + '— small individual bites on a plate, never a baking dish of vegetables'],
     [/boulettes? de poisson/i,
      'a wide shallow pan of {T}: pale golden fish balls simmering in a bright red tomato sauce, strips of yellow '
      + 'preserved lemon peel and whole dark purple olives tucked between them, chopped coriander and parsley '
@@ -955,7 +978,23 @@ function consigne(recette, descPlat) {
     const couverts = tirage(COUVERTS, id, 23);
     const lumiere = tirage(LUMIERES, id, 31);
     const cadrage = tirage(CADRAGES, id, 53);
-    const decor = tirage(DECORS, id, 97);
+    /*
+     * Décor : pas d'alcool derrière une recette pour bébé. Le premier lot FLUX.2
+     * a placé un comptoir de bar et un verre de vin blanc derrière les boulettes
+     * parmentier POUR BÉBÉ — personne ne veut voir ça sur la fiche. Les recettes
+     * bébé tirent donc dans les décors domestiques seulement (cuisine, fenêtre,
+     * table voisine) : on écarte par le CONTENU, pas par la position dans la
+     * liste, pour qu'un décor ajouté plus tard ne se glisse pas dedans.
+     */
+    /*
+     * Pas de \b après « bébé » : en JavaScript \b est ASCII, « é » n'est pas un
+     * caractère de mot, donc /b[ée]b[ée]\b/ ne reconnaît JAMAIS « bébé » en fin
+     * de titre. C'est ce qui laissait le comptoir de bar derrière les boulettes
+     * pour bébé alors que le filtre était en place.
+     */
+    const pourBebe = /b[ée]b[ée]|d[èe]s \d+ mois/i.test(recette.title || '');
+    const decorsSansAlcool = DECORS.filter((d) => !/bar counter|wine|bistro terrace/i.test(d));
+    const decor = tirage(pourBebe ? decorsSansAlcool : DECORS, id, 97);
 
     const boisson = recette.category === 'boissons' || recette.category === 'rafraichissements';
     // Angle de prise de vue (70 % dessus / 30 % autres), stable par id.
@@ -1486,15 +1525,41 @@ async function genererCloudflare(consigneTexte) {
     const compte = process.env.CF_ACCOUNT_ID;
     const jeton = process.env.CF_API_TOKEN;
     if (!compte || !jeton) throw new Error('pas de clés Cloudflare');
-    const modele = process.env.CF_IMAGE_MODEL || '@cf/black-forest-labs/flux-1-schnell';
+    /*
+     * MODÈLE CLOUDFLARE — flux-1-schnell abandonné le 2026-09-15.
+     * C'est lui qu'on jugeait « pas génial » : il ratait la tarte au chocolat,
+     * la crêpe de sarrasin, les muffins. Le catalogue Cloudflare a depuis
+     * FLUX.2 : `flux-2-klein-9b` répond en 2 s, accepte width/height (donc du
+     * 768×1024 natif, plus de recadrage) et rend enfin les vraies tuiles aux
+     * amandes. `flux-2-dev` existe aussi mais dépasse le délai de la passerelle
+     * (408 après 4 min).
+     */
+    const modele = process.env.CF_IMAGE_MODEL || '@cf/black-forest-labs/flux-2-klein-9b';
+    const fluxDeux = /flux-2/.test(modele);
     // La consigne de la maison dépasse parfois la limite du modèle (2048
     // caractères) : on la coupe, les interdits sont en tête.
     const prompt = consigneTexte.slice(0, 2040);
     let dernier = '';
     for (let essai = 1; essai <= 3; essai++) {
+        /*
+         * Deux protocoles selon la génération du modèle : FLUX.2 veut du
+         * multipart (« required properties at '/' are 'multipart' ») et accepte
+         * la taille ; FLUX.1 veut du JSON et REFUSE width/height (voir plus bas).
+         */
+        let corpsRequete, entetes = { authorization: `Bearer ${jeton}` };
+        if (fluxDeux) {
+            const fd = new FormData();
+            fd.append('prompt', prompt);
+            fd.append('width', '768');
+            fd.append('height', '1024');
+            corpsRequete = fd;
+        } else {
+            entetes['content-type'] = 'application/json';
+            corpsRequete = JSON.stringify({ prompt, steps: 8 });
+        }
         const rep = await fetch(`https://api.cloudflare.com/client/v4/accounts/${compte}/ai/run/${modele}`, {
             method: 'POST',
-            headers: { authorization: `Bearer ${jeton}`, 'content-type': 'application/json' },
+            headers: entetes,
             /*
              * `steps` plafonne à 8 chez Cloudflare, et SURTOUT : pas de
              * `width` ni de `height`. Ce modèle REFUSE la requête entière si on
@@ -1505,7 +1570,7 @@ async function genererCloudflare(consigneTexte) {
              * Il rend du 1024 carré de toute façon, et on lit la taille réelle
              * juste après.
              */
-            body: JSON.stringify({ prompt, steps: 8 }),
+            body: corpsRequete,
         });
         if (rep.ok) {
             const d = await rep.json();
@@ -1515,6 +1580,8 @@ async function genererCloudflare(consigneTexte) {
             const meta = await sharp(rendu).metadata();
             const hauteur = meta.height || 1024;
             const largeur = Math.round(hauteur * 0.75);   // recadrage centré en 3:4
+            // FLUX.2 rend déjà du 3:4 : on ne recadre pas une image au bon format.
+            if (Math.abs((meta.width || 0) - largeur) <= 2) return rendu;
             /*
              * Garde-fou de définition. Ce modèle est facturé « par tuile de
              * 512 » et sa taille de sortie n'est pas garantie par la doc : s'il
