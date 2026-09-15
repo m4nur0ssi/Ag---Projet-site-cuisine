@@ -102,9 +102,6 @@ export default function RootLayout({
     return (
         <html lang="fr" suppressHydrationWarning>
             <head>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet" />
                 {/* Google Consent Mode v2 — refus par défaut tant que l'utilisateur n'a pas consenti.
                     Aucun cookie de mesure/pub n'est autorisé avant le clic sur "Accepter". */}
                 <script
@@ -123,12 +120,17 @@ export default function RootLayout({
                         `,
                     }}
                 />
-                {/* Google Analytics 4. Chargé seulement si NEXT_PUBLIC_GA_ID existe,
-                    et jamais en local (les visites de développement fausseraient les
-                    chiffres). Le refus par défaut ci-dessus s'applique dès la première
-                    ligne : tant que le bandeau n'a pas été accepté, GA fonctionne en
-                    mode sans cookie (pings anonymes), et CookieConsent envoie
-                    `consent update` au clic. */}
+                {/* Google Analytics 4 — CHARGÉ SEULEMENT APRÈS « Accepter ».
+
+                    Le mode consentement ne suffisait pas : même réglé sur « denied »,
+                    le script de Google était téléchargé dès la première page et
+                    continuait d'envoyer des relevés sans cookie, donc l'adresse IP du
+                    visiteur, à un serveur hors UE. La CNIL n'exempte pas cette mesure.
+                    Rien ne part donc chez Google tant que le bandeau n'a pas été accepté.
+
+                    Le chargeur est posé sur window : le bandeau l'appelle au clic, sans
+                    recharger la page. Jamais en local (les visites de développement
+                    fausseraient les chiffres). */}
                 {GA_ID && (
                     <script
                         dangerouslySetInnerHTML={{
@@ -136,18 +138,30 @@ export default function RootLayout({
                                 (function() {
                                     var h = location.hostname;
                                     if (h === 'localhost' || h === '127.0.0.1') return;
-                                    gtag('js', new Date());
-                                    gtag('config', '${GA_ID}');
-                                    /* Le script de Google est injecté ICI, et pas par une
-                                       balise <script async src> : React remonte ces balises-là
-                                       tout en haut du <head>, donc avant le refus par défaut
-                                       écrit plus haut — Google se serait initialisé sans
-                                       connaître le consentement. Injecté depuis ce bloc,
-                                       il arrive forcément après. */
-                                    var s = document.createElement('script');
-                                    s.async = true;
-                                    s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
-                                    document.head.appendChild(s);
+                                    window.__chargerMesure = function() {
+                                        if (window.__mesureChargee) return;
+                                        window.__mesureChargee = true;
+                                        gtag('js', new Date());
+                                        gtag('config', '${GA_ID}');
+                                        var s = document.createElement('script');
+                                        s.async = true;
+                                        s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
+                                        document.head.appendChild(s);
+                                    };
+                                    /* Visiteur déjà consentant : on n'attend pas que React
+                                       ait monté le bandeau pour reprendre la mesure. */
+                                    try {
+                                        var brut = localStorage.getItem('cookie-consent-v1');
+                                        if (brut && brut.indexOf('accepted') !== -1) {
+                                            gtag('consent', 'update', {
+                                                ad_storage: 'granted',
+                                                analytics_storage: 'granted',
+                                                ad_user_data: 'granted',
+                                                ad_personalization: 'granted'
+                                            });
+                                            window.__chargerMesure();
+                                        }
+                                    } catch (e) {}
                                 })();
                             `,
                         }}

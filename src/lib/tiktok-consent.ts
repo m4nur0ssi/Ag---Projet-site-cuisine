@@ -14,6 +14,8 @@
  * pour de bon (l'utilisateur a accepté les cookies quelque part).
  */
 
+import { consentementAccepte } from '@/lib/consentement';
+
 // v2 : la v1 comptait n'importe quel message du lecteur comme une lecture
 // réussie, y compris le bandeau de cookies — des navigateurs qui ne liront
 // jamais rien étaient marqués « ça joue ici ». On repart de zéro.
@@ -39,9 +41,25 @@ const write = (k: string, v: string) => {
     try { localStorage.setItem(k, v); } catch { /* stockage plein ou refusé */ }
 };
 
-/** Peut-on tenter une lecture ? Faux = on garde la photo, sans même essayer. */
+/**
+ * Peut-on LANCER une vidéo TOUT SEUL ? Faux = on garde la photo, sans essayer.
+ *
+ * Deux questions en une, et l'ordre compte :
+ *
+ * 1. Le visiteur a-t-il accepté les traceurs ? Un lecteur TikTok inséré sans
+ *    qu'on le lui demande dépose les cookies de TikTok à notre initiative :
+ *    sans consentement, c'est notre responsabilité, pas celle de TikTok. Tant
+ *    que le bandeau n'a pas été accepté, plus aucune lecture automatique.
+ * 2. Ce navigateur sait-il seulement lire ? (la garde historique ci-dessous)
+ *
+ * Ce verrou ne concerne QUE les lectures que le site décide. Quand le visiteur
+ * appuie lui-même sur une carte ou sur le bouton de lecture, son geste vaut
+ * consentement pour ce lecteur-là : ces chemins-là insèrent le lecteur
+ * directement, sans passer par ici.
+ */
 export function tiktokAllowed(): boolean {
     if (typeof window === 'undefined') return false;
+    if (!consentementAccepte()) return false;
     if (read(OK_KEY) === '1') return true;
     const depuis = Number(read(DATE_KEY) || 0);
     if (depuis && Date.now() - depuis > PEREMPTION) {

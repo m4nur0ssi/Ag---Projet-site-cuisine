@@ -1,46 +1,53 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './CookieConsent.module.css';
 import { ecrireStock } from '@/lib/stockage';
-
-const STORAGE_KEY = 'cookie-consent-v1';
-type Choice = 'accepted' | 'refused';
+import { lireConsentement, ROUVRIR_CONSENTEMENT, STORAGE_KEY, type Choice } from '@/lib/consentement';
 
 /**
  * Bandeau cookies discret, conforme CNIL :
  * - "Accepter" et "Refuser" au même niveau (pas de dark pattern).
- * - Aucun cookie de mesure/pub déposé avant consentement (Google Consent Mode v2
- *   défini par défaut sur "denied" dans le <head> ; ici on met à jour au clic).
- * - Choix mémorisé en localStorage (pas de cookie tiers pour le bandeau lui-même).
+ * - RIEN n'est chargé chez Google avant le clic : le mode consentement est sur
+ *   "denied" dans le <head>, et le script de mesure lui-même n'est téléchargé
+ *   qu'ici, à l'acceptation (`window.__chargerMesure`).
+ * - Le choix est daté et vaut six mois — la durée annoncée dans la politique de
+ *   confidentialité. Passé ce délai, la question est reposée.
+ * - Revenir sur son choix doit être aussi simple que l'avoir donné : le lien
+ *   « Cookies » du pied de page émet `ROUVRIR_CONSENTEMENT`, qui rouvre ce
+ *   bandeau.
  */
 export default function CookieConsent() {
     const [visible, setVisible] = useState(false);
 
-    useEffect(() => {
-        try {
-            const saved = localStorage.getItem(STORAGE_KEY);
-            if (saved !== 'accepted' && saved !== 'refused') setVisible(true);
-            else applyConsent(saved as Choice);
-        } catch {
-            setVisible(true);
-        }
+    const applyConsent = useCallback((choice: Choice) => {
+        const granted = choice === 'accepted' ? 'granted' : 'denied';
+        const w = window as unknown as {
+            gtag?: (...args: unknown[]) => void;
+            __chargerMesure?: () => void;
+        };
+        w.gtag?.('consent', 'update', {
+            ad_storage: granted,
+            analytics_storage: granted,
+            ad_user_data: granted,
+            ad_personalization: granted,
+        });
+        // Le téléchargement de Google Analytics n'a lieu qu'ici, jamais avant.
+        if (choice === 'accepted') w.__chargerMesure?.();
     }, []);
 
-    function applyConsent(choice: Choice) {
-        const granted = choice === 'accepted' ? 'granted' : 'denied';
-        const w = window as any;
-        if (typeof w.gtag === 'function') {
-            w.gtag('consent', 'update', {
-                ad_storage: granted,
-                analytics_storage: granted,
-                ad_user_data: granted,
-                ad_personalization: granted,
-            });
-        }
-    }
+    useEffect(() => {
+        const choix = lireConsentement();
+        if (choix) applyConsent(choix);
+        else setVisible(true);
+
+        const rouvrir = () => setVisible(true);
+        window.addEventListener(ROUVRIR_CONSENTEMENT, rouvrir);
+        return () => window.removeEventListener(ROUVRIR_CONSENTEMENT, rouvrir);
+    }, [applyConsent]);
 
     function choose(choice: Choice) {
-        try { ecrireStock(STORAGE_KEY, choice); } catch { }
+        // Daté : sans la date, impossible de tenir la promesse des six mois.
+        ecrireStock(STORAGE_KEY, JSON.stringify({ choix: choice, date: Date.now() }));
         applyConsent(choice);
         setVisible(false);
     }

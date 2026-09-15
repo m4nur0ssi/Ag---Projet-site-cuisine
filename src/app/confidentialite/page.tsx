@@ -10,8 +10,12 @@ export const metadata: Metadata = {
 
 /*
  * Politique de confidentialité (RGPD / CNIL).
- * Le nom de l'outil de mesure d'audience est à préciser ici le jour où il sera
- * réellement installé (aujourd'hui : Google Consent Mode v2 réglé sur refus).
+ *
+ * Cette page doit décrire le site TEL QU'IL EST : chaque phrase ci-dessous
+ * correspond à un comportement vérifiable dans le code (chargement de Google
+ * Analytics dans layout.tsx, durée du consentement dans lib/consentement.ts,
+ * adresse IP dans lib/garde-api.ts). Toute modification de l'un appelle une
+ * relecture de l'autre.
  */
 export default function ConfidentialitePage() {
     return (
@@ -62,20 +66,39 @@ export default function ConfidentialitePage() {
             <p>
                 Nous ne vendons pas vos données. Elles peuvent être traitées par nos sous-traitants
                 techniques : <strong>Supabase</strong> (authentification et base de données),
-                <strong> Vercel</strong> (hébergement et mesure d’audience anonyme) et
-                <strong> Google Ireland Ltd.</strong> (Google Analytics 4, mesure d’audience,
-                uniquement après votre consentement). Ces prestataires agissent selon nos
-                instructions et présentent des garanties conformes au RGPD.
+                <strong> Vercel</strong> (hébergement, et <em>Vercel Web Analytics</em> : un
+                comptage de pages sans cookie, sans identifiant publicitaire et sans suivi d’un
+                site à l’autre, agrégé de sorte qu’aucune visite ne vous soit rattachable) et
+                <strong> Google Ireland Ltd.</strong> (Google Analytics 4 — son script n’est
+                téléchargé qu’après votre acceptation : tant que vous n’avez pas répondu au
+                bandeau, ou si vous refusez, Google ne reçoit rien, pas même votre adresse IP).
+                Ces prestataires agissent selon nos instructions et présentent des garanties
+                conformes au RGPD. Les polices de caractères sont servies depuis notre propre
+                domaine : aucune requête n’est adressée aux serveurs de Google à l’affichage
+                d’une page.
+            </p>
+
+            <h2>3 bis. Transferts hors de l’Union européenne</h2>
+            <p>
+                Vercel Inc. et Supabase Inc. sont des sociétés américaines ; Google Analytics peut
+                impliquer un traitement hors UE. Ces transferts sont encadrés par les
+                <strong> clauses contractuelles types</strong> de la Commission européenne et, pour
+                les prestataires qui y ont adhéré, par le <em>Data Privacy Framework</em> UE–
+                États-Unis. Nos bases de données sont hébergées dans la région européenne
+                (Paris / Francfort).
             </p>
 
             <h2>4. Cookies et traceurs</h2>
             <p>
-                Aucun cookie de mesure d’audience ou de publicité n’est déposé avant votre
-                consentement. Par défaut, le mode consentement (Google Consent Mode v2) est réglé
-                sur « refusé ». Le bandeau vous permet d’<strong>accepter</strong> ou de
+                Aucun traceur de mesure d’audience ou de publicité n’est activé avant votre
+                consentement, et le script de mesure lui-même n’est pas même téléchargé : le mode
+                consentement (Google Consent Mode v2) est réglé sur « refusé » dès la première
+                ligne de la page. Le bandeau vous permet d’<strong>accepter</strong> ou de
                 <strong> refuser</strong> au même niveau, sans conséquence sur l’accès au site.
-                Votre choix est conservé dans votre navigateur et peut être modifié à tout moment en
-                effaçant les données du site.
+                Votre choix est conservé dans votre navigateur (et non dans un cookie) pendant
+                <strong> six mois</strong>, après quoi la question vous est reposée. Vous pouvez en
+                changer à tout moment : le lien <strong>« Cookies »</strong> en bas de page rouvre
+                le bandeau.
             </p>
             <p>
                 Après acceptation, <strong>Google Analytics 4</strong> dépose ses cookies de mesure
@@ -91,7 +114,12 @@ export default function ConfidentialitePage() {
             <ul>
                 <li>Données de compte : tant que le compte existe, puis supprimées sur demande.</li>
                 <li>Préférences locales : jusqu’à ce que vous les effaciez dans votre navigateur.</li>
-                <li>Consentement cookies : jusqu’à 6 mois, puis le bandeau réapparaît.</li>
+                <li>Consentement cookies : 6 mois, puis le bandeau réapparaît.</li>
+                <li>
+                    Adresse IP : utilisée uniquement pour limiter les abus sur nos formulaires et
+                    nos services d’intelligence artificielle (intérêt légitime). Elle reste en
+                    mémoire vive quelques minutes et n’est jamais enregistrée ni recoupée.
+                </li>
             </ul>
 
             <h2>6. Vos droits</h2>
@@ -101,6 +129,12 @@ export default function ConfidentialitePage() {
                 consentement à tout moment. Pour les exercer, écrivez-nous à{' '}
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Vous pouvez aussi
                 introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">cnil.fr</a>).
+            </p>
+            <p>
+                Une demande de suppression entraîne l’effacement du compte et de tout ce qui y est
+                rattaché — favoris, notes, commentaires, menus, liste de courses, journal de
+                cuisine — sous <strong>trente jours</strong>. Les préférences restées dans votre
+                navigateur s’effacent, elles, en vidant les données du site depuis ses réglages.
             </p>
 
             <h2>7. Contenus TikTok et créateurs</h2>

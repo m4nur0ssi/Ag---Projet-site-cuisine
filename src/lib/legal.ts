@@ -16,4 +16,4 @@ export const LEGAL_LINKS: { href: string; label: string }[] = [
 ];
 
 /** Date affichée en tête de chaque page légale. */
-export const LEGAL_UPDATED = '20 août 2026';
+export const LEGAL_UPDATED = '15 septembre 2026';

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CONTACT_EMAIL, LEGAL_LINKS, TAKEDOWN_DELAY } from '@/lib/legal';
 import styles from './siteFooter.module.css';
+import BoutonCookies from './BoutonCookies';
 
 /*
  * Pied de page du feed d'accueil, mobile et ordinateur. Il ferme la page façon
@@ -17,6 +18,9 @@ export default function SiteFooter() {
                         {l.label}
                     </Link>
                 ))}
+                {/* Revenir sur son choix cookies : même place, même allure que les
+                    autres liens légaux. */}
+                <BoutonCookies className={styles.link} />
             </nav>
 
             <p className={styles.note}>
