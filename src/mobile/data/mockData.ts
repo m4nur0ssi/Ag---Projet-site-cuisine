@@ -2,16 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/09/2026 08:09:29
+ * Dernière mise à jour: 15/09/2026 13:08:45
  * Total: 731 recettes
  */
-export const exportSyncId = "1789459769957";
+export const exportSyncId = "1789470525281";
 export const mockRecipes: Recipe[] = [
     {
         "id": "7845",
         "title": "Bol de frites garnies aux hot-dogs",
         "description": "Si vous aimez la cuisine réconfortante et fromagère, vous devez absolument essayer ce bol ! Des frites croustillantes, des saucisses de bœuf juteuses et du cheddar fondu - rapide à préparer et tellement délicieux. Enregistrez cette recette - parfa...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7845-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -72,7 +72,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7843",
         "title": "Baguettes aux Olives et au Fromage",
         "description": "Croustillantes, dorées et délicieusement moelleuses à l'intérieur ! Ces baguettes maison sont garnies d'olives vertes juteuses et de fromage savoureux pour un supplément de goût. 🤤✨ Parfaites tout juste sorties du four - croustillantes à l'extéri...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7843-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -133,7 +133,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7841",
         "title": "Loco Moco à ma façon",
         "description": "Découvrez ma version du célèbre Loco Moco hawaïen : un plat réconfortant composé d'un steak haché maison, de riz chaud, d'une sauce riche aux oignons et champignons de Paris, le tout surmonté d'un œuf au plat coulant.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7841-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -238,7 +238,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7839",
         "title": "Burger Crispy Maison (Façon McChicken)",
         "description": "Découvrez comment préparer un burger croustillant maison, inspiré du célèbre McCrispy, avec une marinade savoureuse, une sauce onctueuse et une panure ultra-croustillante pour un résultat bien meilleur qu'au fast-food.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7839-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1493,7 +1493,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Sauce piment doux (sweet chili)"
+                "name": "🌶️\n             Sauce piment doux (piment doux)"
             },
             {
                 "quantity": "",
@@ -1535,7 +1535,7 @@ export const mockRecipes: Recipe[] = [
             "Enfilez les morceaux de poulet mariné sur des piques à brochettes, puis réservez-les au frais.",
             "Dans une poêle ou une sauteuse, faites revenir l'échalote et le poivron rouge émincés avec un filet d'huile pendant quelques minutes.",
             "Ajoutez une belle cuillère à café de concentré de tomate et faites revenir le tout pendant environ 5 minutes.",
-            "Incorporez un trait de sauce sweet chili, un peu de paprika fumé, d'ail fumé, de poivre et de sel.",
+            "Incorporez un trait de sauce piment doux, un peu de paprika fumé, d'ail fumé, de poivre et de sel.",
             "Ajoutez le riz blanc cuit, un petit peu d'eau et une pincée de bouillon cube émietté. Mélangez bien et laissez revenir quelques minutes sur feu doux.",
             "Dans une poêle bien chaude avec un filet d'huile, faites cuire les brochettes de poulet en les retournant régulièrement jusqu'à ce qu'elles soient bien dorées et cuites à cœur.",
             "Servez les brochettes bien chaudes accompagnées du riz à la tomate et, si vous le souhaitez, d'une petite salade fraîche."
@@ -4942,7 +4942,7 @@ export const mockRecipes: Recipe[] = [
             "Ajoutez quatre cuillères à soupe de sauce ponzu et une cuillère à café de vinaigre balsamique blanc, puis mélangez.",
             "Faites chauffer une poêle à feu vif.",
             "Faites cuire chaque steak de thon pendant 45 secondes de chaque côté dans la poêle bien chaude.",
-            "Versez la petite marinade sur les steaks, arrosez et laissez la sauce les laquer.",
+            "Versez la petite marque sur les steaks, arrosez et laissez la sauce les laquer.",
             "Retirez les steaks, coupez‑les en tranches d'environ un centimètre d'épaisseur.",
             "Récupérez la sauce restante dans la poêle et nappez les tranches de thon.",
             "Parsemez de graines de sésame noir et blanc (facultatif)."
@@ -7696,7 +7696,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5576",
-        "title": "Pasta al forno bianca",
+        "title": "Pâtes au four blanches",
         "description": "Découvrez le plaisir simple et irrésistible d'un plat qui parle au cœur.",
         "image": "/recipes-ia/5576-carte.webp",
         "category": "plats",
@@ -7966,7 +7966,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 150g de spaguetti"
+                "name": "🥣\n 150g de spaghetti"
             },
             {
                 "quantity": "",
@@ -7994,7 +7994,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧀\n 30g de Parmesan (ou granapadano)"
+                "name": "🧀\n 30g de Parmesan (ou Grana Padano)"
             },
             {
                 "quantity": "",
@@ -10881,7 +10881,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6009",
-        "title": "Bowl Mexicanos comestible",
+        "title": "Bol mexicain comestible",
         "description": "Un bowl comestible rempli de saveur, de texture et de couleur, avec des Tostacos WOW Guacamole pour une touche croustillante et fraîche.",
         "image": "/recipes-ia/6009-carte.webp",
         "category": "plats",
@@ -10897,15 +10897,15 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Arroz mexicano"
+                "name": "🥣\n             Riz mexicain"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Carne molida"
+                "name": "🥣\n             Viande hachée"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Pulled pork"
+                "name": "🥣\n             Porc effiloché"
             },
             {
                 "quantity": "",
@@ -10913,7 +10913,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Pico de gallo fresco"
+                "name": "🥣\n             Pico de gallo frais"
             },
             {
                 "quantity": "",
@@ -10925,7 +10925,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Cilantro fresco"
+                "name": "🥣\n             Coriandre fraîche"
             }
         ],
         "steps": [
@@ -14942,7 +14942,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3533",
-        "title": "Gnocchi di ricotta alla sorrentina",
+        "title": "Gnocchis à la ricotta à la sorrentina",
         "description": "Ces gnocchis de ricotta à la sorrentina évoquent les saveurs réconfortantes de la cuisine traditionnelle italienne. Un plat généreux qui promet de remplir votre cuisine d'arômes délicieux et votre cœur de bonheur, comme chez grand-mère. Parfaits p...",
         "image": "/recipes-ia/3533-carte.webp",
         "category": "plats",
@@ -15119,7 +15119,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3714",
-        "title": "Farfalle al salmone",
+        "title": "Farfalle au saumon",
         "description": "Une recette gourmande, crémeuse et ultra efficace de farfalle au saumon fumé, avec une sauce qui enrobe parfaitement les pâtes. Simple et irrésistible.",
         "image": "/recipes-ia/3714-carte.webp",
         "category": "plats",
@@ -15135,7 +15135,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🐟\n 300gr straccetti de saumon fumé"
+                "name": "🐟\n 300gr de lanières de saumon fumé"
             },
             {
                 "quantity": "",
@@ -15160,7 +15160,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Mettez les farfalle dans une casserole d'eau bouillante salée et faites cuire selon les indications du paquet.",
-            "Dans une poêle, faites revenir les straccetti de saumon fumé dans l'huile d'olive, un peu de zestes de citron et un peu de crème.",
+            "Dans une poêle, faites revenir les lanières de saumon fumé dans l'huile d'olive, un peu de zestes de citron et un peu de crème.",
             "Ajoutez 1 cuillère ou 2 de sauce tomate pour colorer la sauce.",
             "Incorporez la crème spéciale cuisson et le parmesan pour épaissir.",
             "Mélangez les pâtes cuites avec la sauce et mélangez bien.",
@@ -23174,7 +23174,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "7059",
-        "title": "Porc au caramel",
+        "title": "Porc au caramel ultra simple",
         "description": "Une recette de porc au caramel ultra simple, fondante et délicieuse. Nécessite une casserole, quelques ingrédients et un peu de patience pour un plat doux, sucré-salé, à refaire les yeux fermés.",
         "image": "/recipes-ia/7059-carte.webp",
         "category": "plats",
@@ -24971,16 +24971,16 @@ export const mockRecipes: Recipe[] = [
             "Pour la garniture : Déposez 50g de Nutella sur 6 morceaux de papier sulfurisé séparés. Congelez jusqu'à ce qu'il soit solide.",
             "Pour la pâte : Dans le bol de votre batteur sur socle muni d'un crochet pétrisseur, fouettez l'eau tiède, le sucre, la levure, le beurre fondu, le jaune d'œuf et les œufs.",
             "Ajoutez la farine et le sel.",
-            "Pétrissez pendant 10 à 15 minutes jusqu'à obtenir une pâte lisse. Il est normal qu'elle soit encore collante. Assurez-vous simplement qu'elle passe le test de la fenêtre (window pane test). Elle doit rester collante pour que les pépites de chocolat puissent adhérer.",
+            "Pétrissez pendant 10 à 15 minutes jusqu'à obtenir une pâte lisse. Il est normal qu'elle soit encore collante. Assurez-vous simplement qu'elle passe le test de la fenêtre. Elle doit rester collante pour que les pépites de chocolat puissent adhérer.",
             "Formez la pâte en boule et placez-la dans un grand bol. Couvrez de film plastique et laissez lever pendant 2 heures.",
-            "Préchauffez votre four à 175°C (350°F) et tapissez un plat de cuisson de papier sulfurisé.",
+            "Préchauffez votre four à 175°C et tapissez un plat de cuisson de papier sulfurisé.",
             "Sur une surface légèrement farinée, incorporez 150-200g de pépites de chocolat à la pâte en pétrissant.",
             "Ne pétrissez pas trop, le chocolat pourrait s'étaler. Mélangez juste assez pour combiner.",
             "Sur une surface légèrement farinée, divisez la pâte en 6 morceaux. Farcissez chaque morceau avec le Nutella congelé, puis scellez-les bien.",
             "Garnissez chaque petit pain de pépites de chocolat supplémentaires.",
             "Pour la dorure à l'œuf : Fouettez 2 jaunes d'œufs jusqu'à obtenir une consistance lisse.",
             "Badigeonnez les petits pains avec la dorure.",
-            "Faites cuire dans un four préchauffé à 175°C (350°F) pendant 25 minutes."
+            "Faites cuire dans un four préchauffé à 175°C pendant 25 minutes."
         ],
         "tags": [
             "Brioche",
@@ -30722,7 +30722,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3108",
-        "title": "Bianca - Brunch à Paris",
+        "title": "Bianca - Déjeuner-brunch à Paris",
         "description": "Proche de la Place de la Bourse et de la Bibliothèque Nationale de France Richelieu, le restaurant Bianca présente un brunch qui est présenté sous forme de buffet à volonté installé dans la première salle spacieuse à l'entrée du restaurant. ...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_1_1783591754671.jpg&v=1783591761431",
         "category": "restaurant",
@@ -30738,7 +30738,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Proche de la Place de la Bourse et de la Bibliothèque Nationale de France Richelieu, le restaurant Bianca présente un brunch qui est présenté sous forme de buffet à volonté installé dans la première salle spacieuse à l'entrée du restaurant. On y retrouve des classiques de la cuisine italienne ainsi que des grands classiques du brunch.",
+            "Proche de la Place de la Bourse et de la Bibliothèque Nationale de France Richelieu, le restaurant Bianca présente un déjeuner-brunch qui est présenté sous forme de buffet à volonté installé dans la première salle spacieuse à l'entrée du restaurant. On y retrouve des classiques de la cuisine italienne ainsi que des grands classiques du déjeuner-brunch.",
             "Au buffet des entrées, vous trouverez des Arancinis et différentes verrines d'Antipasti, d'Houmous et de salades de poissons marinés (Poulpe mariné et écrasé de pommes de terre, Saumon mariné). Des fromages (Burrata, Stracciatella) et différentes sortes de charcuteries italiennes découpées sous vos yeux sont également proposés. Nous avons adoré pouvoir goûter cette large sélection d'entrées proposée en petites verrines de dégustation.",
             "À la demande, différentes recettes d'œufs brouillés (Truffe, Saumon, Bacon ou Nature) sont également disponibles. Nous avons eu un vrai coup de cœur pour le poêlon d'œufs brouillés à la truffe.",
             "Du côté du buffet chaud, nous sommes tout de suite attirés par la bonne odeur des pizzas à la part (Regina, Margarita, 4 fromages, Truffe) présentées à côté de différents beignets de légumes. Juste à côté, Lasagnes à la bolognaise, Raviolis aux cèpes, Gnocchis à la truffe et différentes recettes de pâtes nous attendent bien sûr.",
@@ -30747,7 +30747,7 @@ export const mockRecipes: Recipe[] = [
             "Pour les boissons, direction le bar où une sélection de boissons chaudes est à votre disposition en libre-service (café, thé noir, chaï latte et chocolat chaud). À la demande, de très bons jus de fruits frais sont au choix. Nous avons adoré les mix de fruits, surtout le pomme-gingembre-ananas.",
             "Mon plat préféré : tout est bon !",
             "l'accueil, l'ambiance, la musique",
-            "pas de soda compris dans le brunch à 39€",
+            "pas de soda compris dans le déjeuner-brunch à 39€",
             "peu importe, la déco est très sympa 😉",
             "2 rue du 4 septembre, 75002 Paris"
         ],
@@ -30884,7 +30884,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6859",
-        "title": "Santa Carne",
+        "title": "Viande de Noël",
         "description": "",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_1_1784045595472.jpeg&v=1784045601436",
         "category": "restaurant",
@@ -30900,7 +30900,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "📍Santa Carne - Paris 🇫🇷 •Martini framboise 🍸- 13€ • Strawberry chili margarita 🍓- 13€ • Empenadas bœuf & provolone, oignons, tomates, origan 🥟 - 10€ • Crevettes à l'ail 🦐 - 12€ • Ceviche de la casa - 18€ • Noix d'entrecôte 🥩 - 36€ • L'assiette du chef 👨🏼‍🍳 - 42€ • Crème brûlée au maté🧉- 9€ • Pampita 🍫 - 11€ • Tiramisu au whisky 🍮 - 9€ #santacarne #paris #france #restaurant #restaurantparis #restaurantargentin #argentinrestaurant #argentine #specialite #viande #viandeargentine #meat #boeuf #beef #empenadas #crevette #ceviche #moelleuxauchocolat #chocolat #tiramisu #whisky #cremebrulee #maté #dessert #birthday #food #foodie #foodtiktok #bonneadresse #bonneadresseparis #discover #explore #fyp #pourtoi #viral #laufood"
+            "📍Viande de Noël - Paris • Martini framboise  - 13€ • Margarita chili fraise - 13€ • Empenadas bœuf & provolone, oignons, tomates, origan  - 10€ • Crevettes à l'ail  - 12€ • Ceviche de la maison - 18€ • Noix d'entrecôte  - 36€ • L'assiette du chef  - 42€ • Crème brûlée au maté - 9€ • Pampita  - 11€ • Tiramisu au whisky  - 9€ #santacarne #paris #france #restaurant #restaurantparis #restaurantargentin #argentinrestaurant #argentine #specialite #viande #viandeargentine #meat #boeuf #beef #empenadas #crevette #ceviche #moelleuxauchocolat #chocolat #tiramisu #whisky #cremebrulee #maté #dessert #anniversaire #nourriture #foodie #foodtiktok #bonneadresse #bonneadresseparis #decouvrir #explorer #fyp #pourtoi #viral #laufood"
         ],
         "tags": [
             "resto-brasserie"
@@ -33548,7 +33548,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6498",
-        "title": "Tiramisu Cupcakes",
+        "title": "Cupcakes Tiramisu",
         "description": "Des cupcakes moelleux inspirés du tiramisu, avec une ganache au café et chocolat blanc, un glaçage crémeux au mascarpone et une touche de cacao en poudre.",
         "image": "/recipes-ia/6498-carte.webp",
         "category": "patisserie",
@@ -34719,7 +34719,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6470",
-        "title": "Crispy Chicken Burger Bowl",
+        "title": "Bol de Burger de Poulet Croustillant",
         "description": "Un bowl gourmand et rapide à préparer, composé de frites, de poulet croustillant, de fromage fondu, de légumes frais et de sauces savoureuses.",
         "image": "/recipes-ia/6470-carte.webp",
         "category": "plats",
@@ -34731,43 +34731,43 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             Fries"
+                "name": "🥣\n             Frites"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             4 cheese slices"
+                "name": "🥣\n             4 tranches de fromage"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             4-5 chicken tenders"
+                "name": "🥣\n             4-5 tendres de poulet"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             A handful of lettuce"
+                "name": "🥣\n             Une poignée de laitue"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Tomatoes"
+                "name": "🥣\n             Tomates"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Burger sauce"
+                "name": "🥣\n             Sauce de burger"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Garlic mayo"
+                "name": "🥣\n             Mayo à l'ail"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Dried onions"
+                "name": "🥣\n             Oignons séchés"
             }
         ],
         "steps": [
-            "Place the fries in a bowl.",
-            "Add the cheese slices and microwave for 1 minute until melted.",
-            "Top with the chicken tenders, lettuce, and tomatoes.",
-            "Drizzle over the burger sauce and garlic mayo.",
-            "Sprinkle dried onions on top and serve."
+            "Placez les frites dans un bol.",
+            "Ajoutez les tranches de fromage et faites chauffer au micro-ondes pendant 1 minute jusqu'à ce que le fromage soit fondu.",
+            "Recouvrez avec les tendres de poulet, la laitue et les tomates.",
+            "Arrosez de sauce de burger et de mayo à l'ail.",
+            "Saupoudrez d'oignons séchés sur le dessus et servez."
         ],
         "tags": [
             "Plats",
@@ -34914,7 +34914,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6500",
-        "title": "Black Forest Cupcakes, But Better",
+        "title": "Cupcakes de la Forêt Noire, mais améliorés",
         "description": "Une recette de cupcakes Forêt Noire améliorés, avec des cupcakes au chocolat, une compote de cerises maison et un glaçage au cream cheese et cerises.",
         "image": "/recipes-ia/6500-carte.webp",
         "category": "patisserie",
@@ -34926,77 +34926,77 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             1 large egg - 60 g"
+                "name": "🥣\n             1 gros oeuf - 60 g"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Granulated sugar - 200 g (1 cup)"
+                "name": "🥣\n             Sucre granulé - 200 g (1 tasse)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fresh milk - 120 g (½ cup)"
+                "name": "🥣\n             Lait frais - 120 g (½ tasse)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Neutral oil - 120 g (½ cup)"
+                "name": "🥣\n             Huile neutre - 120 g (½ tasse)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Sour cream- 1 Tbsp"
+                "name": "🥣\n             Crème aigre - 1 cuillère à soupe"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             All-purpose flour - 135 g (1 cup)"
+                "name": "🥣\n             Farine tout usage - 135 g (1 tasse)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Unsweetened cocoa powder - 35 g (⅓ cup)"
+                "name": "🥣\n             Poudre de cacao non sucrée - 35 g (⅓ tasse)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Baking soda - 5 g (1 tsp)"
+                "name": "🥣\n             Bicarbonate de soude - 5 g (1 cuillère à café)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Salt - 3 g (½ tsp)"
+                "name": "🥣\n             Sel - 3 g (½ cuillère à café)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fresh cherries, pitted - 200 g (about 1½ cups)"
+                "name": "🥣\n             Cerises fraîches, dénoyautées - 200 g (environ 1½ tasses)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Granulated sugar - 45 g (3½ tbsp)"
+                "name": "🥣\n             Sucre granulé - 45 g (3½ cuillères à soupe)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Cold Cream cheese - 200 g (about ¾ cup + 2 tbsp)"
+                "name": "🥣\n             Fromage à la crème froid - 200 g (environ ¾ tasse + 2 cuillères à soupe)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Cold Heavy whipping cream (35%) - 100 g (about 6½ tbsp)"
+                "name": "🥣\n             Crème fouettée froide (35%) - 100 g (environ 6½ cuillères à soupe)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Powdered sugar - 60 g (½ cup)"
+                "name": "🥣\n             Sucre en poudre - 60 g (½ tasse)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Cherry compote (room temperature)- 35 g (2 tbsp)"
+                "name": "🥣\n             Compote de cerises (à température ambiante) - 35 g (2 cuillères à soupe)"
             }
         ],
         "steps": [
-            "Mix the flour, cocoa powder, baking soda, salt, and sugar until well combined.",
-            "Add the egg, milk, oil and sour cream directly to the dry ingredients and mix until the batter is smooth and no dry streaks remain.",
-            "Divide the batter into cupcake liners and bake at 350°F (175°C) for 18-22 minutes, or until a toothpick inserted into the center comes out clean.",
-            "Let cool completely.",
-            "For the cherry compote, cook the cherries and sugar over medium heat until the cherries soften and the mixture becomes thick and jammy.",
-            "Let cool completely.",
-            "Beat the cold cream cheese roughly.",
-            "Add powdered sugar, and cherry compote and whip until just combined then Fold the cold whipped cream.",
-            "Pipe a thick ring of frosting onto each cupcake.",
-            "Use the back of a round tablespoon to press a shallow well into the center.",
-            "Fill the center with cherry compote and top with a fresh cherry and a mint leaf."
+            "Mélangez la farine, la poudre de cacao, le bicarbonate de soude, le sel et le sucre jusqu'à ce que tout soit bien combiné.",
+            "Ajoutez l'oeuf, le lait, l'huile et la crème aigre directement aux ingrédients secs et mélangez jusqu'à ce que la pâte soit lisse et qu'il ne reste pas de traces sèches.",
+            "Divisez la pâte dans des caissettes à cupcakes et faites cuire à 175°C pendant 18-22 minutes, ou jusqu'à ce qu'un cure-dent inséré dans le centre en ressorte propre.",
+            "Laissez refroidir complètement.",
+            "Pour la compote de cerises, faites cuire les cerises et le sucre à feu moyen jusqu'à ce que les cerises ramollissent et que le mélange devienne épais et confituré.",
+            "Laissez refroidir complètement.",
+            "Battez grossièrement le fromage à la crème froid.",
+            "Ajoutez le sucre en poudre et la compote de cerises, puis fouettez jusqu'à ce que tout soit juste combiné, puis pliez la crème fouettée froide.",
+            "Garnissez chaque cupcake d'un anneau épais de glaçage.",
+            "Utilisez l'arrière d'une cuillère à soupe ronde pour presser un petit creux dans le centre.",
+            "Remplissez le centre de compote de cerises et couvrez d'une cerise fraîche et d'une feuille de menthe."
         ],
         "tags": [
             "pâtisserie"
@@ -35007,7 +35007,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6490",
-        "title": "BBQ Cheddar Glazed Chicken Breasts",
+        "title": "Poulets grillés au cheddar caramélisé",
         "description": "Poitrines de poulet juteuses glacées à la sauce barbecue fumée et gratinées au cheddar fondant, une recette rapide et savoureuse.",
         "image": "/recipes-ia/6490-carte.webp",
         "category": "plats",
@@ -35019,39 +35019,39 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             2 large chicken breasts"
+                "name": "🥣\n             2 grandes poitrines de poulet"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 tablespoons olive oil"
+                "name": "🥣\n             2 cuillères à soupe d'huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             1 tablespoon smoked paprika"
+                "name": "🧂\n             1 cuillère à soupe de paprika fumé"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 teaspoon garlic powder"
+                "name": "🥣\n             1 cuillère à café de poudre d'ail"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 teaspoon onion powder"
+                "name": "🥣\n             1 cuillère à café de poudre d'oignon"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1/2 teaspoon cayenne pepper"
+                "name": "🥣\n             1/2 cuillère à café de poivre de Cayenne"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1/2 cup favorite bbq sauce"
+                "name": "🥣\n             1/2 tasse de sauce barbecue préférée"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             1 cup sharp cheddar cheese, shredded"
+                "name": "🧀\n             1 tasse de fromage cheddar émietté"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             salt and black pepper to taste"
+                "name": "🥣\n             sel et poivre noir au goût"
             }
         ],
         "steps": [
@@ -39105,7 +39105,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             1kg Cream Cheese"
+                "name": "🥣\n             1kg Fromage à la crème"
             },
             {
                 "quantity": "",
@@ -39137,7 +39137,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Mélanger le cream cheese à température ambiante avec le sucre.",
+            "Mélanger le fromage à la crème à température ambiante avec le sucre.",
             "Après avoir bien mélangé, incorporer les oeufs un par un.",
             "Ajouter le jus de citron, le sel, l'extrait de vanille, la farine et bien mélanger.",
             "Ajouter ensuite la crème et incorporer délicatement à la cuillère ou à la spatule (ne pas utiliser de mixeur).",
@@ -41149,7 +41149,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Le jus d'½ citron"
+                "name": "🍋\n             Le jus de ½ citron"
             },
             {
                 "quantity": "",
@@ -41562,11 +41562,11 @@ export const mockRecipes: Recipe[] = [
             "Réduire le feu à moyen, couvrir et laisser mijoter la sauce pendant environ 25 minutes. Retirer la feuille de laurier et le bâton de cannelle avant d'assembler le plat.",
             "Dans une casserole séparée, faire chauffer le lait à feu moyen. Incorporer progressivement 6 cuillères à soupe de fécule de maïs, puis ajouter le beurre. Continuer de remuer jusqu'à ce que la sauce commence à épaissir, en veillant à remuer le fond pour éviter qu'elle ne colle.",
             "Ajouter la noix de muscade, le sel et le poivre au goût, et continuer de remuer. Incorporer la moitié du fromage râpé jusqu'à ce qu'il soit fondu. Retirer du feu et laisser la sauce refroidir légèrement avant d'y incorporer les jaunes d'œufs en fouettant.",
-            "Préchauffer votre four à 350°F (175°C).",
+            "Préchauffer votre four à 175°C.",
             "Graisser un plat de cuisson de 33 pouces (environ 33×22 cm). Étaler la moitié des pâtes cuites uniformément au fond du plat.",
             "Verser la sauce à la viande hachée sur les pâtes, en l'étalant uniformément. Ajouter le reste des pâtes sur la sauce.",
             "Verser la sauce béchamel sur les pâtes, en l'étalant uniformément pour couvrir le dessus. Saupoudrer le reste du fromage râpé sur la sauce béchamel.",
-            "Faire cuire le Pastitsio dans le four préchauffé pendant environ 1 heure, ou jusqu'à ce que le dessus soit doré et que la béchamel soit prise. Laisser le plat refroidir légèrement avant de servir. Dégustez votre pastitsio maison!"
+            "Faire cuire le Pastitsio dans le four préchauffé pendant environ 1 heure, ou jusqu'à ce que le dessus soit doré et que la béchamel soit prise. Laisser le plat refroidir légèrement avant de servir. Dégustez votre pastitsio maison !"
         ],
         "tags": [
             "Grèce",
@@ -42838,7 +42838,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🌾\n             240 g (2 cups) farine tout usage, tamisée"
+                "name": "🌾\n             240 g (2 tasses) de farine tout usage, tamisée"
             },
             {
                 "quantity": "",
@@ -42902,7 +42902,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             6 oz (170 g) de Philadelphia cream cheese, ramolli"
+                "name": "🥣\n             170 g de Philadelphia cream cheese, ramolli"
             },
             {
                 "quantity": "",
