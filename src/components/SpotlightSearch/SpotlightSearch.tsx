@@ -6,6 +6,8 @@ import { decodeHtml } from '@/lib/utils';
 import { rankByIngredients } from '@/lib/search-rank';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { buildFinderCatalog } from '@/lib/recipe-search-payload';
+import { lireContrainteNote, appliquerContrainteNote } from '@/lib/contrainte-note';
+import { loadAllRatingStats } from '@/lib/ratings';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import styles from './SpotlightSearch.module.css';
 import { readCave, drinkWindow, type CaveWine } from '@/lib/cave';
@@ -60,12 +62,32 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
         setAiMessage('');
         const cave = readCave();
         const surLeVin = intentionVin(q);
+        /*
+         * « notée au moins 4/5 » : les notes vivent dans Supabase et ne partent
+         * pas avec le catalogue — le modèle ne peut donc pas les vérifier. On
+         * écarte ici ce qui n'atteint pas la note demandée.
+         */
+        const contrainte = lireContrainteNote(q);
+        let vivier: any[] = mockRecipes as any[];
+        if (contrainte && !surLeVin) {
+            const notes = await loadAllRatingStats();
+            // Notes illisibles : on n'écarte rien plutôt que de prétendre
+            // qu'aucune recette n'atteint la note demandée.
+            if (notes.size) vivier = appliquerContrainteNote(vivier as any, notes, contrainte);
+            if (!vivier.length) {
+                setAiError(contrainte.meilleures
+                    ? 'Aucune recette du site n\'a encore été notée.'
+                    : `Aucune recette du site n'est notée ${contrainte.min.toString().replace('.', ',')}/5 ou plus pour l'instant.`);
+                setAiBusy(false);
+                return;
+            }
+        }
         try {
-            const compact = buildFinderCatalog(mockRecipes as any);
+            const compact = buildFinderCatalog(vivier as any);
             const res = await fetch('/api/recipe-finder', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ query: q, recipes: compact, cave: compacterCave(cave) }),
+                body: JSON.stringify({ query: (contrainte?.reste || q), recipes: compact, cave: compacterCave(cave) }),
             });
             if (!res.ok) throw new Error('api');
             const data = await res.json();
@@ -79,9 +101,9 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                 return;
             }
 
-            const byId = new Map(mockRecipes.map(r => [String(r.id), r]));
+            const byId = new Map(vivier.map((r: any) => [String(r.id), r]));
             const found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean);
-            if (found.length) { setAiResults(found); setAiMessage(data.message || ''); }
+            if (found.length) { setAiResults(found); setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : (data.message || '')); }
             else throw new Error('empty');
         } catch {
             // Assistant injoignable : accords de base pour le vin, recherche
@@ -94,8 +116,10 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                     : 'Ta cave est vide — ajoute des bouteilles pour que je puisse te conseiller 🍷');
                 return;
             }
-            const local = localSearch(q);
-            if (local.length) { setAiResults(local); setAiMessage('Voici ce que j\'ai trouvé sur le site 👇'); }
+            // Le repli cherche dans le vivier déjà filtré, sinon il rendrait
+            // des recettes que la contrainte de note vient d'écarter.
+            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 5);
+            if (local.length) { setAiResults(local); setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : 'Voici ce que j\'ai trouvé sur le site 👇'); }
             else setAiError('Aucune recette du site ne correspond. Reformule ta demande ✨');
         } finally {
             setAiBusy(false);

@@ -87,7 +87,7 @@ export default function StarRating({ recipeId, size = 'large', layout = 'colonne
         // traîner un contrôle qui ne répond à rien.
         return (
             <div className={`${styles.wrap} ${styles[size]} ${styles.ligne} ${user ? '' : styles.inerte}`}>
-                <StarSlider value={user ? mine : avg} onChange={vote} />
+                <StarFine value={user ? mine : avg} onChange={vote} actif={!!user} />
                 {echec && <span className={styles.echec} role="alert">{echec}</span>}
             </div>
         );
@@ -107,11 +107,34 @@ export default function StarRating({ recipeId, size = 'large', layout = 'colonne
             {user && (
                 <div className={styles.voteRow}>
                     <span className={styles.voteLabel}>Votre note{mine > 0 ? ` : ${mine.toFixed(1).replace('.', ',')}` : ''}</span>
-                    <StarSlider value={mine} onChange={vote} />
+                    <StarFine value={mine} onChange={vote} />
                     {echec && <span className={styles.echec} role="alert">{echec}</span>}
                 </div>
             )}
         </div>
+    );
+}
+
+/**
+ * Les étoiles, plus un « − » et un « + ».
+ *
+ * La glissière règle la note au dixième, mais viser 4,2 au doigt sur cinq
+ * étoiles relève de l'adresse : on tombe à 4,0 ou 4,4 sans le vouloir. Les deux
+ * boutons déplacent la note d'un dixième exactement — la glissière pour aller
+ * vite, les boutons pour tomber juste.
+ */
+function StarFine({ value, onChange, actif = true }: { value: number; onChange: (v: number) => void; actif?: boolean }) {
+    const pas = (d: number) => onChange(Math.min(5, Math.max(0.1, Math.round((value + d) * 10) / 10)));
+    return (
+        <span className={styles.fine}>
+            {actif && (
+                <button type="button" className={styles.fineBtn} onClick={() => pas(-0.1)} aria-label="Baisser la note d’un dixième">−</button>
+            )}
+            <StarSlider value={value} onChange={onChange} />
+            {actif && (
+                <button type="button" className={styles.fineBtn} onClick={() => pas(0.1)} aria-label="Monter la note d’un dixième">+</button>
+            )}
+        </span>
     );
 }
 

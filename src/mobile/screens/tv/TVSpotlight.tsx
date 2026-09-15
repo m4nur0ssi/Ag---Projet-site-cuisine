@@ -30,6 +30,8 @@ const mockRecipes = homeRecipes.map((r) => {
 import { decodeHtml } from '@/mobile/lib/utils';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { buildFinderCatalog } from '@/lib/recipe-search-payload';
+import { lireContrainteNote, appliquerContrainteNote } from '@/lib/contrainte-note';
+import { loadAllRatingStats } from '@/mobile/lib/ratings';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import styles from './tv.module.css';
@@ -218,12 +220,36 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         // serveur n'aurait aucun moyen de savoir ce qu'on possède.
         const cave = readCave();
         const surLeVin = intentionVin(q);
+        /*
+         * « Une recette de gâteau notée au moins 4/5 » : la note ne voyage pas
+         * avec le catalogue (elle vit dans Supabase), le modèle ne peut donc pas
+         * la vérifier. On retranche ICI ce qui n'atteint pas la note demandée,
+         * et il ne reçoit plus que des candidates légitimes.
+         */
+        const contrainte = lireContrainteNote(q);
+        let vivier: Recipe[] = pool as Recipe[];
+        if (contrainte && !surLeVin) {
+            const notes = await loadAllRatingStats();
+            // Aucune note lisible (base injoignable, lecture refusée) : on
+            // n'écarte RIEN. Répondre « aucune recette notée 4/5 » alors qu'on
+            // n'a simplement pas pu regarder serait un mensonge.
+            if (notes.size) vivier = appliquerContrainteNote(vivier as any, notes, contrainte) as Recipe[];
+            if (!vivier.length) {
+                setAiError(contrainte.meilleures
+                    ? 'Aucune recette du site n\'a encore été notée.'
+                    : `Aucune recette du site n'est notée ${contrainte.min.toString().replace('.', ',')}/5 ou plus pour l'instant.`);
+                setAiBusy(false);
+                return;
+            }
+        }
         try {
-            const compact = buildFinderCatalog(pool as any);
+            const compact = buildFinderCatalog(vivier as any);
             const res = await fetch('/api/recipe-finder', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ query: q, recipes: compact, cave: compacterCave(cave) }),
+                // La clause de note est retirée de la demande : elle est déjà
+                // appliquée, et elle ne décrirait qu'un plat imaginaire.
+                body: JSON.stringify({ query: (contrainte?.reste || q), recipes: compact, cave: compacterCave(cave) }),
             });
             if (!res.ok) throw new Error('api');
             const data = await res.json();
@@ -239,10 +265,15 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                 return;
             }
 
-            const byId = new Map(pool.map((r) => [String(r.id), r]));
+            const byId = new Map(vivier.map((r) => [String(r.id), r]));
             let found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean) as Recipe[];
             if (filter) found = found.filter(filter);
-            if (found.length) { setAiResults(found); setAiMessage(data.message || ''); }
+            if (found.length) {
+                setAiResults(found);
+                // On rappelle la contrainte : sans elle, rien ne dit que la
+                // sélection a bien été filtrée sur la note.
+                setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : (data.message || ''));
+            }
             else throw new Error('empty');
         } catch {
             // Assistant injoignable : on répond quand même, avec les accords de
@@ -255,8 +286,13 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                     : 'Ta cave est vide — ajoute des bouteilles pour que je puisse te conseiller.');
                 return;
             }
-            const local = localSearch(q);
-            if (local.length) { setAiResults(local); setAiMessage('Voici ce que j\'ai trouvé sur le site'); }
+            // Le repli cherche dans le VIVIER déjà filtré : une recherche de
+            // secours ne doit pas rendre ce que la contrainte vient d'écarter.
+            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 5) as Recipe[];
+            if (local.length) {
+                setAiResults(local);
+                setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : 'Voici ce que j\'ai trouvé sur le site');
+            }
             else setAiError('Aucune recette du site ne correspond. Reformule ta demande.');
         } finally {
             setAiBusy(false);

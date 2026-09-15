@@ -40,8 +40,25 @@ export const shelfOf = (w: CaveWine): WineShelf => w.shelf === 'tasted' ? 'taste
 
 export type DrinkStatus = 'jeune' | 'pret' | 'apogee' | 'tard';
 
-/** Phrase d'œnologue (sans dates) selon couleur + millésime. */
-export function drinkWindow(wine: CaveWine): { status: DrinkStatus; label: string } | null {
+/**
+ * Fenêtre de dégustation, DATES COMPRISES.
+ *
+ * La fiche d'une bouteille annonce « à son apogée » ; encore faut-il pouvoir
+ * dire jusqu'à quand. Les bornes sortent donc d'ici, et la phrase d'œnologue
+ * n'est plus qu'une lecture de cette même fenêtre — une seule règle, deux
+ * affichages.
+ */
+export interface DrinkRange {
+    status: DrinkStatus;
+    label: string;
+    /** Première et dernière année conseillées. */
+    from: number;
+    to: number;
+    /** Phrase complète, dates comprises. */
+    phrase: string;
+}
+
+export function drinkRange(wine: CaveWine): DrinkRange | null {
     const y = parseInt(wine.year, 10);
     if (!y || y < 1900) return null;
     const span = wine.color === 'rouge' ? [3, 15]
@@ -50,10 +67,27 @@ export function drinkWindow(wine: CaveWine): { status: DrinkStatus; label: strin
         : [5, 30];
     const from = y + span[0], to = y + span[1];
     const now = new Date().getFullYear();
-    if (now < from) return { status: 'jeune', label: 'Encore un peu jeune' };
-    if (now > to) return { status: 'tard', label: 'À déguster sans tarder' };
-    if (now <= from + (to - from) * 0.5) return { status: 'pret', label: 'Prêt à boire' };
-    return { status: 'apogee', label: 'À son apogée' };
+    const fenetre = `Sa fenêtre : de ${from} à ${to}.`;
+    if (now < from) {
+        return { status: 'jeune', label: 'Encore un peu jeune', from, to,
+            phrase: `Pas encore. ${fenetre} Laisse-lui ${from - now} an${from - now > 1 ? 's' : ''} de plus.` };
+    }
+    if (now > to) {
+        return { status: 'tard', label: 'À déguster sans tarder', from, to,
+            phrase: `C'est tard. ${fenetre} Ouvre-la à la prochaine occasion.` };
+    }
+    if (now <= from + (to - from) * 0.5) {
+        return { status: 'pret', label: 'Prêt à boire', from, to,
+            phrase: `Oui, elle se boit. ${fenetre} Elle gagnera encore un peu à attendre.` };
+    }
+    return { status: 'apogee', label: 'À son apogée', from, to,
+        phrase: `C'est le moment. ${fenetre} Elle ne sera pas meilleure plus tard.` };
+}
+
+/** Phrase d'œnologue (sans dates) selon couleur + millésime. */
+export function drinkWindow(wine: CaveWine): { status: DrinkStatus; label: string } | null {
+    const r = drinkRange(wine);
+    return r ? { status: r.status, label: r.label } : null;
 }
 
 export const CAVE_KEY = 'ma-cave-v1';
@@ -67,19 +101,37 @@ export function readCave(): CaveWine[] {
     } catch { return []; }
 }
 
-function write(list: CaveWine[]) {
-    ecrireStock(CAVE_KEY, JSON.stringify(list));
-    window.dispatchEvent(new Event(CAVE_EVENT));
+/**
+ * La cave n'a pas pu être écrite : le stockage du navigateur est plein.
+ *
+ * `ecrireStock` RATTRAPE l'exception de quota et se contente de renvoyer
+ * `false` — c'est ce qu'il faut pour cocher un ingrédient, ça ne doit pas faire
+ * tomber l'application. Mais ici l'appelant DOIT savoir : sans cette erreur, le
+ * scan annonçait « ajouté », l'événement partait, la liste se rechargeait…
+ * identique. La bouteille disparaissait sans un mot.
+ */
+export class CavePleine extends Error {
+    constructor() { super('Cave pleine : le stockage du navigateur est saturé.'); this.name = 'CavePleine'; }
 }
 
+/** Écrit la cave. Renvoie `false` si le navigateur a refusé (quota). */
+function write(list: CaveWine[]): boolean {
+    const ok = ecrireStock(CAVE_KEY, JSON.stringify(list));
+    // L'événement part même en cas d'échec : les écrans se resynchronisent
+    // alors sur ce qui est RÉELLEMENT stocké, plutôt que sur ce qu'on croyait.
+    window.dispatchEvent(new Event(CAVE_EVENT));
+    return ok;
+}
+
+/** Ajoute une bouteille. Lève `CavePleine` si le stockage a refusé. */
 export function addWine(w: Omit<CaveWine, 'id' | 'addedAt'>): CaveWine {
     const wine: CaveWine = { qty: 1, ...w, id: `w${Date.now()}${Math.floor(Math.random() * 999)}`, addedAt: Date.now() };
-    write([wine, ...readCave()]);
+    if (!write([wine, ...readCave()])) throw new CavePleine();
     return wine;
 }
 
-export function updateWine(id: string, patch: Partial<CaveWine>) {
-    write(readCave().map((w) => (w.id === id ? { ...w, ...patch } : w)));
+export function updateWine(id: string, patch: Partial<CaveWine>): boolean {
+    return write(readCave().map((w) => (w.id === id ? { ...w, ...patch } : w)));
 }
 
 /**
@@ -116,6 +168,40 @@ export function openBottle(id: string) {
     const left = Math.max(0, (w.qty ?? 1) - 1);
     // Dernière bouteille ouverte : le vin quitte la cave pour « Goûté & approuvé ».
     updateWine(id, { qty: left, tasted: true, shelf: left === 0 ? 'tasted' : 'cave' });
+}
+
+/**
+ * UNE seule façon de chercher une bouteille.
+ *
+ * La barre de la page et la loupe de la barre du bas cherchaient chacune à leur
+ * manière : l'une sans ignorer les accents et sans regarder la couleur, l'autre
+ * si. « rose » ou « cotes » ne sortaient donc pas la même chose selon l'endroit
+ * d'où on tapait. Les deux passent désormais par ici.
+ *
+ * Chaque mot de la demande doit se retrouver quelque part dans la fiche : taper
+ * « rouge 2016 » ne garde que les rouges de 2016.
+ */
+export const wineNorm = (t: string) => String(t || '')
+    .toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+/** Mots sous lesquels on cherche une bouteille, au-delà de ce qu'elle affiche. */
+function wineHaystack(w: CaveWine): string {
+    const couleur: Record<WineColor, string> = {
+        rouge: 'rouge rouges',
+        blanc: 'blanc blancs',
+        rose: 'rose roses rosé rosés',
+        liqueur: 'liqueur liqueurs doux liquoreux',
+    };
+    const etagere = shelfOf(w) === 'tasted' ? 'dégusté degustes goûté goutes bu bue' : 'cave stock';
+    return wineNorm(`${w.name} ${w.region} ${w.grape} ${w.year} ${couleur[w.color]} ${etagere} ${w.note || ''}`);
+}
+
+/** La bouteille répond-elle à la demande ? Une demande vide accepte tout. */
+export function wineMatches(w: CaveWine, query: string): boolean {
+    const mots = wineNorm(query).trim().split(/\s+/).filter(Boolean);
+    if (!mots.length) return true;
+    const foin = wineHaystack(w);
+    return mots.every((m) => foin.includes(m));
 }
 
 /** Nom réduit à sa forme comparable (accents, casse et ponctuation ignorés). */

@@ -6,6 +6,8 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { buildFinderCatalog } from '@/lib/recipe-search-payload';
+import { lireContrainteNote, appliquerContrainteNote } from '@/lib/contrainte-note';
+import { loadAllRatingStats } from '@/mobile/lib/ratings';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import styles from './SpotlightSearch.module.css';
 
@@ -39,29 +41,46 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
         setAiError('');
         setAiResults([]);
         setAiMessage('');
+        // « notée au moins 4/5 » : filtré ici, avant le modèle (voir
+        // `contrainte-note`), puisque les notes ne partent pas avec le catalogue.
+        const contrainte = lireContrainteNote(q);
+        let vivier: any[] = mockRecipes as any[];
+        if (contrainte) {
+            const notes = await loadAllRatingStats();
+            // Notes illisibles : on n'écarte rien (voir `contrainte-note`).
+            if (notes.size) vivier = appliquerContrainteNote(vivier as any, notes, contrainte);
+            if (!vivier.length) {
+                setAiError(contrainte.meilleures
+                    ? 'Aucune recette du site n\'a encore été notée.'
+                    : `Aucune recette du site n'est notée ${contrainte.min.toString().replace('.', ',')}/5 ou plus pour l'instant.`);
+                setAiBusy(false);
+                return;
+            }
+        }
         try {
-            const compact = buildFinderCatalog(mockRecipes as any);
+            const compact = buildFinderCatalog(vivier as any);
             const res = await fetch('/api/recipe-finder', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ query: q, recipes: compact }),
+                body: JSON.stringify({ query: (contrainte?.reste || q), recipes: compact }),
             });
             if (!res.ok) throw new Error('api');
             const data = await res.json();
-            const byId = new Map(mockRecipes.map(r => [String(r.id), r]));
+            const byId = new Map(vivier.map((r: any) => [String(r.id), r]));
             const found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean);
             if (found.length) {
                 setAiResults(found);
-                setAiMessage(data.message || '');
+                setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : (data.message || ''));
             } else {
                 throw new Error('empty');
             }
         } catch {
-            // Secours : recherche texte locale
-            const local = localSearch(q);
+            // Secours : recherche texte locale, DANS le vivier déjà filtré —
+            // sinon elle rendrait ce que la contrainte de note vient d'écarter.
+            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 5);
             if (local.length) {
                 setAiResults(local);
-                setAiMessage('Voici ce que j\'ai trouvé sur le site 👇');
+                setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : 'Voici ce que j\'ai trouvé sur le site 👇');
             } else {
                 setAiError('Aucune recette du site ne correspond. Reformule ta demande ✨');
             }

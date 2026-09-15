@@ -115,3 +115,15 @@
     line-height: 1.3;
     color: #fca5a5;
 }
+
+/* Réglage fin : un dixième par clic, de part et d'autre des étoiles. */
+.fine { display: inline-flex; align-items: center; gap: 6px; }
+.fineBtn {
+    flex: 0 0 auto; width: 26px; height: 26px; padding: 0;
+    border: none; border-radius: 999px; cursor: pointer;
+    background: rgba(127, 127, 127, .16); color: inherit;
+    font-size: 15px; font-weight: 800; line-height: 1;
+    display: inline-flex; align-items: center; justify-content: center;
+}
+.fineBtn:hover { background: rgba(127, 127, 127, .28); }
+.fineBtn:active { transform: scale(.92); }

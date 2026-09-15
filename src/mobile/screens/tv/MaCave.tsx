@@ -17,8 +17,8 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import {
     readCave, addWine, removeWine, seedCaveIfEmpty, recipesForWine, wineProfile,
-    openBottle, setQty, drinkWindow, updateWine, findKnownWine,
-    moveToTasted, moveToCave, shelfOf,
+    openBottle, setQty, drinkWindow, drinkRange, updateWine, findKnownWine,
+    moveToTasted, moveToCave, shelfOf, wineMatches, CavePleine,
     CAVE_EVENT, type CaveWine, type WineColor, type WineShelf, type DrinkStatus,
 } from '@/lib/cave';
 import { whenCaveReady } from '@/mobile/lib/caveSync';
@@ -74,6 +74,12 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     /** Ouverture venue de la barre du bas : on va droit au viseur. */
     const [scanNow, setScanNow] = useState(false);
     const [pairing, setPairing] = useState<CaveWine | null>(null);
+    /**
+     * La bouteille ouverte en grand, suivie par son ID et non par sa copie : le
+     * stock et la note se modifient DEPUIS la fiche, et une copie figée aurait
+     * affiché l'ancienne valeur jusqu'à la fermeture.
+     */
+    const [detailId, setDetailId] = useState<string | null>(null);
     const [zoom, setZoom] = useState<string | null>(null);
     const [editing, setEditing] = useState<CaveWine | null>(null);
     const [menu, setMenu] = useState<{ wine: CaveWine; x: number; y: number } | null>(null);
@@ -213,13 +219,11 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                 const scene = await studioFromUrl(w.photo || '');
                 if (!vivant) return;
                 if (!scene) continue;                    // injoignable : on laisse le lien
-                try {
-                    updateWine(w.id, { photo: scene });
-                    faites++;
-                } catch {
+                if (!updateWine(w.id, { photo: scene })) {
                     toast('Cave pleine côté navigateur — les photos restantes gardent leur fond d’origine.');
                     return;
                 }
+                faites++;
                 await new Promise((r) => setTimeout(r, 600));
             }
             if (vivant && faites) toast(`${faites} photo${faites > 1 ? 's' : ''} remise${faites > 1 ? 's' : ''} en scène`);
@@ -231,14 +235,17 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     const shown = useMemo(() => {
         let list = filter === 'tous' ? wines : wines.filter((w) => w.color === filter);
         if (ripe !== 'tous') list = list.filter((w) => drinkWindow(w)?.status === ripe);
-        const query = q.trim().toLowerCase();
-        if (query) list = list.filter((w) => `${w.name} ${w.region} ${w.grape} ${w.year}`.toLowerCase().includes(query));
+        // Même moteur que la loupe de la barre du bas (`wineMatches`) : les deux
+        // recherches donnaient des résultats différents pour la même frappe.
+        if (q.trim()) list = list.filter((w) => wineMatches(w, q));
         const s = [...list];
         if (sort === 'annee') s.sort((a, b) => (parseInt(b.year, 10) || 0) - (parseInt(a.year, 10) || 0));
         else if (sort === 'region') s.sort((a, b) => (a.region || '').localeCompare(b.region || '', 'fr'));
         else s.sort((a, b) => b.addedAt - a.addedAt);
         return s;
     }, [wines, filter, ripe, q, sort]);
+    const detail = useMemo(() => wines.find((w) => w.id === detailId) || null, [wines, detailId]);
+
     // Les deux étagères, filtres et recherche déjà appliqués.
     const inCave = useMemo(() => shown.filter((w) => shelfOf(w) === 'cave'), [shown]);
     const tastedList = useMemo(() => shown.filter((w) => shelfOf(w) === 'tasted'), [shown]);
@@ -357,7 +364,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                 ) : (
                     <div className={styles.grid}>
                         {inCave.map((w) => (
-                            <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
+                            <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onOpen={() => setDetailId(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
                         ))}
                         <AddTile onClick={() => setAdding('cave')} label="Ajouter un vin" />
                     </div>
@@ -387,7 +394,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                 ) : (
                     <div className={styles.grid}>
                         {tastedList.map((w) => (
-                            <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
+                            <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onOpen={() => setDetailId(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
                         ))}
                         <AddTile onClick={() => setAdding('tasted')} label="Une bouteille goûtée" />
                     </div>
@@ -399,6 +406,16 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                     shelf={adding}
                     straightToCamera={scanNow}
                     onClose={() => { setAdding(null); setScanNow(false); }}
+                />
+            )}
+            {detail && (
+                <WineSheet
+                    wine={detail}
+                    onClose={() => setDetailId(null)}
+                    onPair={() => setPairing(detail)}
+                    onEdit={() => setEditing(detail)}
+                    onZoom={() => detail.photo && setZoom(detail.photo)}
+                    onRemove={() => { setDetailId(null); removeWine(detail.id); }}
                 />
             )}
             {pairing && <PairSheet wine={pairing} onClose={() => setPairing(null)} embedded={embedded} />}
@@ -434,12 +451,9 @@ function WineSearch({ wines, onPick, onClose }: { wines: CaveWine[]; onPick: (id
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => { inputRef.current?.focus(); }, []);
 
-    const norm = (t: string) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const liste = useMemo(() => {
-        const needle = norm(q.trim());
         const all = [...wines].sort((a, b) => b.addedAt - a.addedAt);
-        if (!needle) return all;
-        return all.filter((w) => norm(`${w.name} ${w.region} ${w.grape} ${w.year} ${w.color} ${COLOR_LABEL[w.color]}`).includes(needle));
+        return q.trim() ? all.filter((w) => wineMatches(w, q)) : all;
     }, [wines, q]);
 
     return createPortal(
@@ -780,7 +794,7 @@ function ZoomView({ src, onClose }: { src: string; onClose: () => void }) {
 }
 
 /* ── Carte vin : scène de cave (tonneau) + bouteille ──────────────────────── */
-function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; onPair: () => void; onRemove: () => void; onZoom: () => void; onMenu: (x: number, y: number) => void }) {
+function WineCard({ wine, onPair, onRemove, onOpen, onZoom, onMenu }: { wine: CaveWine; onPair: () => void; onRemove: () => void; onOpen: () => void; onZoom: () => void; onMenu: (x: number, y: number) => void }) {
     const shelf = shelfOf(wine);
     const cardRef = useRef<HTMLDivElement>(null);
     const press = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -789,6 +803,8 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
     const pointer = useRef<number | null>(null);
     const [dragging, setDragging] = useState(false);
     const hovered = useRef<HTMLElement | null>(null);
+    /** Instant du dernier glissé : un rangement ne doit pas ouvrir la fiche. */
+    const glisseA = useRef(0);
 
     /** Étagère survolée par le doigt, d'après ce qu'il y a sous le point. */
     const shelfUnder = (x: number, y: number) => {
@@ -821,6 +837,7 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
         if (card) { card.style.transform = ''; card.style.zIndex = ''; card.style.pointerEvents = ''; card.style.userSelect = ''; }
         const target = x != null && y != null ? shelfUnder(x, y) : null;
         highlight(null);
+        if (dragging) glisseA.current = Date.now();
         setDragging(false);
         from.current = null;
         if (target && target.dataset.shelf && target.dataset.shelf !== shelf) {
@@ -887,7 +904,20 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
             <div className={styles.scene}>
                 <div className={styles.spot} />
                 <div className={styles.barrel} />
-                <div className={styles.bottle} onClick={(e) => { if (wine.photo) { e.stopPropagation(); onZoom(); } }}>
+                {/* La bouteille ouvre SA FICHE — pas un simple agrandissement :
+                    millésime, cépage, origine, stock et notes y tiennent
+                    ensemble, comme sur une fiche de recette. La loupe, elle,
+                    reste l'agrandissement pur. */}
+                <div
+                    className={styles.bottle}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        // Le relâchement d'un glissé produit aussi un clic : on
+                        // ouvrirait la fiche juste après avoir rangé la carte.
+                        if (Date.now() - glisseA.current < 320) return;
+                        onOpen();
+                    }}
+                >
                     {wine.photo
                         ? <img src={wine.photo} alt="" className={styles.bottlePhoto} draggable={false} />
                         : <BottleSVG color={wine.color} />}
@@ -1046,8 +1076,8 @@ function EditWine({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
         updateWine(wine.id, { ...f, name, photo });
         onClose();
     };
-    return (
-        <div className={styles.backdrop} onClick={onClose}>
+    return createPortal(
+        <div className={`${styles.backdrop} ${styles.backdropTop}`} onClick={onClose}>
             <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.sheetHead}>
                     <div>
@@ -1109,7 +1139,147 @@ function EditWine({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
                     </button>
                 </div>
             </div>
+        </div>,
+        document.body,
+    );
+}
+
+/**
+ * LA FICHE D'UNE BOUTEILLE — l'écran qu'on ouvre en touchant une bouteille.
+ * =========================================================================
+ *
+ * Toucher une bouteille ne faisait que l'agrandir : une photo, et rien d'autre.
+ * On ouvre maintenant une vraie fiche, bâtie comme celle d'une recette : la
+ * photo flotte en grand sur fond sombre, et TOUT ce qu'on veut savoir se lit
+ * dessous — millésime, cépage, origine, ce qu'il en reste en cave, la note des
+ * dégustateurs et la sienne.
+ *
+ * Deux boutons mènent l'écran :
+ *   • « Quelle recette ? » — les plats du site qui vont avec celle-ci ;
+ *   • « Est-elle à maturité ? » — la réponse d'œnologue, avec la fenêtre de
+ *     dégustation en clair, dépliée sur place plutôt que cachée ailleurs.
+ */
+function WineSheet({ wine, onClose, onPair, onEdit, onZoom, onRemove }: {
+    wine: CaveWine;
+    onClose: () => void;
+    onPair: () => void;
+    onEdit: () => void;
+    onZoom: () => void;
+    onRemove: () => void;
+}) {
+    const shelf = shelfOf(wine);
+    const maturite = useMemo(() => drinkRange(wine), [wine]);
+    const profil = useMemo(() => wineProfile(wine), [wine]);
+    const [ouvertMaturite, setOuvertMaturite] = useState(false);
+
+    // Échap ferme, comme toutes les feuilles du site.
+    useEffect(() => {
+        const esc = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+        window.addEventListener('keydown', esc);
+        return () => window.removeEventListener('keydown', esc);
+    }, [onClose]);
+
+    const classeMaturite = maturite?.status === 'tard' ? styles.apoLate
+        : maturite?.status === 'jeune' ? styles.apoWait
+        : maturite?.status === 'apogee' ? styles.apoPeak
+        : styles.apoNow;
+
+    /** Une ligne de la fiche : l'intitulé à gauche, la valeur à droite. */
+    const Ligne = ({ label, children }: { label: string; children: React.ReactNode }) => (
+        <div className={styles.fRow}>
+            <span className={styles.fLabel}>{label}</span>
+            <span className={styles.fValue}>{children}</span>
         </div>
+    );
+
+    return createPortal(
+        <div className={styles.fBack} onClick={onClose}>
+            <div className={styles.fSheet} onClick={(e) => e.stopPropagation()} role="dialog" aria-label={wine.name}>
+                <button className={styles.fClose} onClick={onClose} aria-label="Fermer">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                </button>
+
+                {/* La bouteille flotte : halo sous elle, fond de cave derrière. */}
+                <div className={styles.fHero} onClick={() => wine.photo && onZoom()}>
+                    <div className={styles.fHalo} aria-hidden />
+                    {wine.photo
+                        ? <img src={wine.photo} alt="" className={styles.fPhoto} draggable={false} />
+                        : <span className={styles.fPhotoVide}><BottleSVG color={wine.color} /></span>}
+                    <span className={`${styles.colorTag} ${styles['tag_' + wine.color]} ${styles.fTag}`}>{COLOR_LABEL[wine.color]}</span>
+                </div>
+
+                <div className={styles.fTitre}>{stripYear(wine.name)}</div>
+                <div className={styles.fSous}>
+                    {[wine.year, wine.region].filter(Boolean).join(' · ') || profil.style}
+                </div>
+
+                {/* Les deux gestes de l'écran, côte à côte. */}
+                <div className={styles.fActions}>
+                    <button className={styles.fPrim} onClick={onPair}>
+                        Quelle recette ?
+                    </button>
+                    <button
+                        className={`${styles.fSec} ${ouvertMaturite ? styles.fSecOn : ''}`}
+                        onClick={() => setOuvertMaturite((v) => !v)}
+                        disabled={!maturite}
+                        title={maturite ? '' : 'Sans millésime, impossible de le dire'}
+                    >
+                        {maturite ? 'Est-elle à maturité ?' : 'Millésime inconnu'}
+                    </button>
+                </div>
+
+                {ouvertMaturite && maturite && (
+                    <div className={styles.fMaturite}>
+                        <span className={`${styles.apogee} ${classeMaturite}`}>{maturite.label}</span>
+                        <p className={styles.fMaturiteTexte}>{maturite.phrase}</p>
+                    </div>
+                )}
+
+                <div className={styles.fRows}>
+                    <Ligne label="Année">{wine.year || '—'}</Ligne>
+                    <Ligne label="Cépage">{wine.grape || '—'}</Ligne>
+                    <Ligne label="Origine">{wine.region || '—'}</Ligne>
+                    <Ligne label={shelf === 'cave' ? 'Dans ma cave' : 'Étagère'}>
+                        {shelf === 'cave' ? (
+                            <span className={styles.stepper}>
+                                <button onClick={() => setQty(wine.id, (wine.qty ?? 1) - 1)} aria-label="Moins">−</button>
+                                <span>{wine.qty ?? 1}</span>
+                                <button onClick={() => setQty(wine.id, (wine.qty ?? 1) + 1)} aria-label="Plus">+</button>
+                            </span>
+                        ) : (
+                            <button className={styles.openBtn} onClick={() => moveToCave(wine.id)}>Goûté — remettre en cave</button>
+                        )}
+                    </Ligne>
+                    <Ligne label="Note Google">
+                        {wine.rating
+                            ? <a
+                                className={styles.fNoteLien}
+                                href={wine.vivinoUrl || `https://www.google.com/search?q=${encodeURIComponent(`${wine.name} ${wine.year || ''} vin avis`.trim())}`}
+                                target="_blank" rel="noopener noreferrer"
+                              >★ {wine.rating.toFixed(1).replace('.', ',')}<small>/5</small></a>
+                            : <a
+                                className={styles.fNoteLien}
+                                href={`https://www.google.com/search?q=${encodeURIComponent(`${wine.name} ${wine.year || ''} vin avis`.trim())}`}
+                                target="_blank" rel="noopener noreferrer"
+                              >Chercher les avis</a>}
+                    </Ligne>
+                    <Ligne label="Ma note">
+                        <MyStars value={wine.myRating ?? 0} onSet={(n) => updateWine(wine.id, { myRating: n })} />
+                    </Ligne>
+                </div>
+
+                {wine.note && <p className={styles.fNote}>{wine.note}</p>}
+
+                <div className={styles.fPied}>
+                    <button className={styles.fLien} onClick={onEdit}>Corriger la fiche</button>
+                    {shelf === 'cave'
+                        ? <button className={styles.fLien} onClick={() => { moveToTasted(wine.id); onClose(); }}>Ranger dans « Goûté &amp; approuvé »</button>
+                        : null}
+                    <button className={`${styles.fLien} ${styles.fLienDanger}`} onClick={onRemove}>Retirer</button>
+                </div>
+            </div>
+        </div>,
+        document.body,
     );
 }
 
@@ -1130,8 +1300,12 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
         window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: r }));
         onClose();
     };
-    return (
-        <div className={styles.backdrop} onClick={onClose}>
+    // Portail et z-index haut : cette feuille s'ouvre DEPUIS la fiche de la
+    // bouteille, elle doit donc passer par-dessus elle. Rendue sur place, elle
+    // se retrouvait derrière, et le clic sur « Quelle recette ? » semblait sans
+    // effet.
+    return createPortal(
+        <div className={`${styles.backdrop} ${styles.backdropTop}`} onClick={onClose}>
             <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.sheetHead}>
                     <div>
@@ -1157,7 +1331,8 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
                     )}
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body,
     );
 }
 
@@ -1293,14 +1468,19 @@ const toStudio = (dataUrl: string, w = 600, h = 800, opts: StudioOpts = {}): Pro
  * Renvoie '' si l'image est injoignable — l'appelant garde alors le lien brut
  * plutôt que de perdre la photo.
  */
-async function studioFromUrl(url: string): Promise<string> {
+async function studioFromUrl(url: string, w = 460, h = 614, qualite = 0.86): Promise<string> {
     const propre = (url || '').trim();
     if (!propre || propre.startsWith('data:')) return '';
+    // Un marchand lent NE DOIT PAS bloquer l'ajout : sans plafond de temps, le
+    // bouton « Ajouter à ma cave » restait sur « Ajout… » indéfiniment et la
+    // bouteille n'entrait jamais. Passé ce délai, on garde la photo scannée.
+    const stop = new AbortController();
+    const minuteur = setTimeout(() => stop.abort(), 9000);
     try {
         // `/api/img` existe déjà pour « Partager en image » : même besoin (lire
         // les pixels d'une image d'un autre domaine), même garde-fous. Un seul
         // proxy vaut mieux que deux qui divergeront.
-        const res = await fetch(`/api/img?url=${encodeURIComponent(propre)}`);
+        const res = await fetch(`/api/img?url=${encodeURIComponent(propre)}`, { signal: stop.signal });
         if (!res.ok) return '';
         const blob = await res.blob();
         const dataUrl: string = await new Promise((ok, ko) => {
@@ -1309,9 +1489,11 @@ async function studioFromUrl(url: string): Promise<string> {
             fr.onerror = ko;
             fr.readAsDataURL(blob);
         });
-        return await toStudio(dataUrl, 460, 614, { fit: 'contain', detourer: true, qualite: 0.86 });
+        return await toStudio(dataUrl, w, h, { fit: 'contain', detourer: true, qualite });
     } catch {
         return '';
+    } finally {
+        clearTimeout(minuteur);
     }
 }
 
@@ -1337,11 +1519,35 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
      * c'est le doigt qui tranche.
      */
     const [candidat, setCandidat] = useState<{ vin: VinLu; source: string; scan: string } | null>(null);
+    /**
+     * La photo de la bouteille, DÉJÀ mise en scène (fond de cave, bords fondus).
+     *
+     * Elle se prépare pendant qu'on regarde la fiche proposée : l'aperçu montre
+     * alors la bouteille sur le même fond sombre que le reste de la cave, et
+     * l'ajout n'a plus une seconde de fabrication à faire au moment du clic.
+     */
+    const [scenePrete, setScenePrete] = useState('');
     const [scanMsg, setScanMsg] = useState('');
     // Viseur en direct : c'est la voie normale du scan. La pellicule reste en
     // secours (ordinateur sans caméra, autorisation refusée).
     const [viewfinder, setViewfinder] = useState(straightToCamera);
     const fileRef = useRef<HTMLInputElement>(null);
+
+    /**
+     * Dès qu'une bouteille est proposée, on prépare sa mise en scène — sans
+     * bloquer l'affichage. L'aperçu se met à jour tout seul quand elle est
+     * prête, et la validation n'a plus qu'à la ranger.
+     */
+    useEffect(() => {
+        if (!candidat) { setScenePrete(''); return; }
+        let vivant = true;
+        (async () => {
+            const scene = (candidat.vin.photo ? await studioFromUrl(candidat.vin.photo) : '')
+                || (await toStudio(candidat.scan, 460, 614, { qualite: 0.82 }));
+            if (vivant && scene) setScenePrete(scene);
+        })();
+        return () => { vivant = false; };
+    }, [candidat]);
 
     /**
      * Réduit la photo. Indispensable deux fois : 640 px suffit à lire une
@@ -1416,9 +1622,16 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
                 setCandidat({ vin: w, source: String(data?.source || ''), scan: gardee });
                 return;
             }
-            if (data?.quota) setScanMsg('Trop de scans d’affilée (quota IA) — réessaie dans une minute.');
-            else setScanMsg('Étiquette illisible — reprends la photo ou complète à la main.');
-        } catch { setScanMsg('Reconnaissance impossible — saisie manuelle.'); }
+            // Étiquette non reconnue : on REND LA MAIN au lieu de laisser le
+            // viseur ouvert sur un message. La photo prise est déjà gardée, il
+            // ne manque que le nom — deux mots à taper, puis « Ajouter ».
+            setViewfinder(false);
+            if (data?.quota) setScanMsg('Trop de scans d’affilée (quota IA) — réessaie dans une minute, ou tape le nom ci-dessous.');
+            else setScanMsg('Étiquette illisible — tape le nom du vin ci-dessous, la photo est déjà gardée.');
+        } catch {
+            setViewfinder(false);
+            setScanMsg('Reconnaissance impossible — tape le nom du vin ci-dessous.');
+        }
         clearTimeout(step2);
         setBusy(false);
     };
@@ -1436,29 +1649,58 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         const w = candidat.vin;
         setBusy(true); setScanMsg('Ajout à la cave…');
         const known = findKnownWine(w.name);
+
+        // Photo du marchand quand il a retrouvé la bouteille : elle arrive
+        // détourée sur fond blanc, on la remet en scène comme la nôtre pour que
+        // toutes les fiches se ressemblent. Sinon, la photo prise — jamais celle
+        // d'un voisin. Le plus souvent elle est déjà prête (voir `scenePrete`).
+        const photoFinale = scenePrete
+            || (w.photo ? (await studioFromUrl(w.photo)) || w.photo : '')
+            || (await toStudio(candidat.scan, 460, 614, { qualite: 0.82 }));
+
+        const ranger = (photo?: string) => addWine({
+            name: w.name, grape: w.grape || '', year: w.year || '',
+            color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
+            photo, rating: w.rating, vivinoUrl: w.vivinoUrl,
+            shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
+        });
+
+        /*
+         * Le stockage du navigateur est étroit (~5 Mo sur Safari) et la cave y
+         * range des photos. Quand il déborde, on ne perd PAS la bouteille : on
+         * réessaie avec une vignette, puis sans photo du tout. Une fiche sans
+         * image vaut infiniment mieux qu'un vin qui n'entre nulle part — c'était
+         * le bug : l'ajout échouait sans un mot et la feuille se refermait.
+         */
         try {
-            // Photo du marchand quand il a retrouvé la bouteille : elle arrive
-            // détourée sur fond blanc, on la remet en scène comme la nôtre pour
-            // que toutes les fiches se ressemblent. Sinon, la photo prise —
-            // jamais celle d'un voisin.
-            const photoFinale = (w.photo ? (await studioFromUrl(w.photo)) || w.photo : '')
-                || (await toStudio(candidat.scan));
-            addWine({
-                name: w.name, grape: w.grape || '', year: w.year || '',
-                color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
-                photo: photoFinale, rating: w.rating, vivinoUrl: w.vivinoUrl,
-                shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
-            });
-        } catch {
-            // localStorage plein : le vin est bon, c'est la place qui manque.
-            setBusy(false);
-            setScanMsg('Cave pleine côté navigateur — retire un vin puis réessaie.');
-            return;
+            ranger(photoFinale || undefined);
+        } catch (plein) {
+            if (!(plein instanceof CavePleine)) { setBusy(false); setScanMsg('Ajout impossible — réessaie.'); return; }
+            try {
+                setScanMsg('Stockage serré — photo allégée…');
+                const vignette = photoFinale.startsWith('data:')
+                    ? await toStudio(photoFinale, 260, 347, { fit: 'contain', qualite: 0.7 })
+                    : photoFinale;
+                ranger(vignette || undefined);
+                toast('Stockage presque plein : la photo a été allégée.');
+            } catch {
+                try {
+                    ranger(undefined);
+                    toast('Cave pleine côté navigateur : la bouteille est gardée, sans sa photo.');
+                } catch {
+                    setBusy(false);
+                    setScanMsg('Cave pleine côté navigateur — retire un vin puis réessaie.');
+                    return;
+                }
+            }
         }
+
         if (known) {
             toast(known.year && w.year && known.year !== w.year
                 ? `Déjà dégusté — tu avais le ${known.year}`
                 : 'Déjà dégusté — ce vin est déjà passé par ta cave');
+        } else {
+            toast(shelf === 'tasted' ? `${stripYear(w.name)} rejoint tes dégustations` : `${stripYear(w.name)} est entré dans ta cave`);
         }
         onClose();
     };
@@ -1494,7 +1736,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         if (!name) return;
         // Même règle qu'au scan : notre photo passe par la scène de cave, celle
         // du marchand (déjà détourée) est prise telle quelle.
-        const mine = photoSmall ? await toStudio(photoSmall) : '';
+        const mine = photoSmall ? await toStudio(photoSmall, 460, 614, { qualite: 0.82 }) : '';
         // Priorité : lien collé > photo officielle du marchand > photo scannée.
         // Les deux premières arrivent détourées sur fond blanc : on les remet en
         // scène comme les nôtres, sinon la cave mélange deux styles. Si le
@@ -1505,13 +1747,27 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
             : official.photo ? (await studioFromUrl(official.photo)) || official.photo
             : '';
         const known = findKnownWine(name);
-        addWine({
+        const ranger = (photo?: string) => addWine({
             ...form, name,
-            photo: scene || mine || undefined,
+            photo,
             rating: official.rating, vivinoUrl: official.vivinoUrl,
             shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
         });
+        try {
+            ranger(scene || mine || undefined);
+        } catch (plein) {
+            // Stockage plein : la bouteille passe quand même, sans son image.
+            if (!(plein instanceof CavePleine)) { setScanMsg('Ajout impossible — réessaie.'); return; }
+            try {
+                ranger(undefined);
+                toast('Cave pleine côté navigateur : la bouteille est gardée, sans sa photo.');
+            } catch {
+                setScanMsg('Cave pleine côté navigateur — retire un vin puis réessaie.');
+                return;
+            }
+        }
         if (known) toast('Déjà dégusté — ce vin est déjà passé par ta cave');
+        else toast(shelf === 'tasted' ? `${stripYear(name)} rejoint tes dégustations` : `${stripYear(name)} est entré dans ta cave`);
         onClose();
     };
 
@@ -1542,6 +1798,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
                     <VinPropose
                         vin={candidat.vin}
                         scan={candidat.scan}
+                        scene={scenePrete}
                         etagere={shelf}
                         occupe={busy}
                         message={scanMsg}
@@ -1623,16 +1880,21 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
  * une recherche Google pour le reste. On ne recopie pas leurs avis : ils ne
  * nous appartiennent pas, et un lien reste à jour.
  */
-function VinPropose({ vin, scan, etagere, occupe, message, onAnnuler, onValider }: {
+function VinPropose({ vin, scan, scene, etagere, occupe, message, onAnnuler, onValider }: {
     vin: VinLu;
     scan: string;
+    /** La photo déjà posée sur le fond de cave, quand elle est prête. */
+    scene: string;
     etagere: WineShelf;
     occupe: boolean;
     message: string;
     onAnnuler: () => void;
     onValider: () => void;
 }) {
-    const photo = vin.photo || scan;
+    // La mise en scène dès qu'elle est prête — c'est l'image qui entrera en
+    // cave, sur le même fond sombre que toutes les autres. En attendant, la
+    // photo du marchand, puis la nôtre.
+    const photo = scene || vin.photo || scan;
     const note = typeof vin.rating === 'number' && vin.rating > 0 ? vin.rating : null;
     const ligne = [vin.year, vin.region, vin.grape].filter(Boolean).join(' · ');
     const requete = encodeURIComponent(`${vin.name} ${vin.year || ''} vin avis`.trim());
