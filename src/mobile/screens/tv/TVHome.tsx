@@ -1228,149 +1228,181 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     const loop = useMemo(() => [...recipes, ...recipes, ...recipes], [recipes]);
     const activeSlot = recipes.length + index;
 
-    // Le doigt est-il en train de faire défiler ? Tant qu'il l'est, on ne
-    // recentre pas sous ses doigts.
+    /*
+     * La bande n'a PLUS d'aimantation native (`scroll-snap`) : c'est ce code qui
+     * centre l'affiche, à la fin d'un geste comme à chaque rotation.
+     *
+     * Pourquoi. Pour animer la rotation, on coupait l'aimantation le temps du
+     * trajet puis on la rétablissait. Sur iPhone, Safari recale alors la bande
+     * sur l'affiche où elle était aimantée AVANT — la précédente. Ce retour
+     * émettait des événements de défilement pris pour un geste du doigt, qui
+     * remettaient l'index sur la recette précédente ; trois secondes plus tard
+     * la rotation réessayait. Résultat relevé sur l'appareil : la bande part à
+     * droite, revient aussitôt, en boucle, et seule la première image reste.
+     * Chrome n'a pas ce comportement, d'où un carrousel qui semblait marcher
+     * en test. Sans aimantation native, plus rien ne peut tirer en arrière.
+     */
     const userScrolling = useRef(false);
     const settleTimer = useRef<ReturnType<typeof setTimeout>>();
-    const lastSlot = useRef(0);
     const didInit = useRef(false);
+    const animFrame = useRef(0);
+    /** Affiche active au tour précédent : sert à reconnaître le bouclage fin → début. */
+    const slotPrecedent = useRef(-1);
 
-    // Index courant : l'affiche la plus proche du CENTRE du cadre. Puis, une fois
-    // le geste retombé, on RAMÈNE silencieusement la bande dans la copie du
-    // milieu : c'est ce qui rend le carrousel sans fin. Sans ce rattrapage, on
-    // finissait par buter sur le bout de la bande.
+    /** Rend la main aux événements de défilement une image APRÈS notre dernière écriture. */
+    const relacher = () => {
+        requestAnimationFrame(() => requestAnimationFrame(() => { defilementAuto.current = false; }));
+    };
+
+    /** Centre l'affiche `slot` : sur 450 ms (même courbe que les affiches), ou d'un coup. */
+    const centrer = (slot: number, instantane = false) => {
+        const el = pagerRef.current;
+        const child = el?.children[slot] as HTMLElement | undefined;
+        if (!el || !child) return;
+        cancelAnimationFrame(animFrame.current);
+        const target = child.offsetLeft + child.offsetWidth / 2 - el.clientWidth / 2;
+        if (Math.abs(el.scrollLeft - target) < 1) return;
+        defilementAuto.current = true;
+        if (instantane) {
+            el.scrollLeft = target;
+            relacher();
+            return;
+        }
+        /*
+         * Défilement mené à la main, et non par `behavior: 'smooth'` : la durée
+         * du défilement natif est imposée par le navigateur (deux cents
+         * millisecondes sur Safari) pendant que les affiches mettent 450 ms à
+         * changer d'échelle. Parcourue par nous, la distance arrive en même
+         * temps qu'elles.
+         */
+        const depart = el.scrollLeft;
+        const delta = target - depart;
+        const t0 = performance.now();
+        // Approche de cubic-bezier(0.32, 0.72, 0, 1) : départ franc, arrivée qui se pose.
+        const adoucir = (t: number) => 1 - Math.pow(1 - t, 4);
+        const avancer = (maintenant: number) => {
+            const k = Math.min(1, (maintenant - t0) / 450);
+            el.scrollLeft = depart + delta * adoucir(k);
+            if (k < 1) animFrame.current = requestAnimationFrame(avancer);
+            else relacher();
+        };
+        animFrame.current = requestAnimationFrame(avancer);
+    };
+
+    /** L'affiche la plus proche du centre du cadre. */
+    const slotAuCentre = (el: HTMLDivElement) => {
+        const mid = el.scrollLeft + el.clientWidth / 2;
+        let best = 0;
+        let dist = Infinity;
+        Array.from(el.children).forEach((c, i) => {
+            const n = c as HTMLElement;
+            const d = Math.abs(n.offsetLeft + n.offsetWidth / 2 - mid);
+            if (d < dist) { dist = d; best = i; }
+        });
+        return best;
+    };
+
+    // Le doigt fait défiler : le texte suit l'affiche du centre en direct. Quand
+    // le geste retombe (élan compris), on se replace dans la copie du MILIEU —
+    // c'est ce qui rend le carrousel sans fin — puis on centre l'affiche.
     useEffect(() => {
         const el = pagerRef.current;
         if (!el || !recipes.length) return;
+        const n = recipes.length;
         let raf = 0;
+
+        // Un doigt posé arrête net un trajet programmé : il reprend la main.
+        const surToucher = () => {
+            cancelAnimationFrame(animFrame.current);
+            defilementAuto.current = false;
+        };
+
         const onScroll = () => {
-            /*
-             * Notre propre défilement ne doit pas être pris pour un geste.
-             *
-             * Écrire la position image par image émet un événement `scroll` à
-             * chaque frame. Sans ce garde-fou, l'animation programmée levait
-             * elle-même le drapeau « le doigt a la main », s'interrompait à la
-             * première frame, et l'ancrage rattrapait le reste d'un coup sec.
-             */
+            // Nos propres écritures ne sont pas un geste.
             if (defilementAuto.current) return;
             userScrolling.current = true;
             cancelAnimationFrame(raf);
             raf = requestAnimationFrame(() => {
-                const mid = el.scrollLeft + el.clientWidth / 2;
-                let best = 0;
-                let dist = Infinity;
-                Array.from(el.children).forEach((c, i) => {
-                    const n = c as HTMLElement;
-                    const d = Math.abs(n.offsetLeft + n.offsetWidth / 2 - mid);
-                    if (d < dist) { dist = d; best = i; }
-                });
-                lastSlot.current = best;
-                const real = best % recipes.length;
+                const real = slotAuCentre(el) % n;
                 setIndex((prev) => (prev === real ? prev : real));
             });
 
             clearTimeout(settleTimer.current);
             settleTimer.current = setTimeout(() => {
+                let slot = slotAuCentre(el);
+                // Sorti de la copie du milieu : on saute sur l'affiche JUMELLE. Le
+                // décalage se mesure entre les deux nœuds (les écarts entre copies
+                // comptent) ; sans aimantation, le saut tombe exactement.
+                const twin = slot < n ? slot + n : slot >= n * 2 ? slot - n : -1;
+                if (twin >= 0) {
+                    const from = el.children[slot] as HTMLElement | undefined;
+                    const to = el.children[twin] as HTMLElement | undefined;
+                    if (from && to) {
+                        defilementAuto.current = true;
+                        el.scrollLeft += to.offsetLeft - from.offsetLeft;
+                        slot = twin;
+                    }
+                }
                 userScrolling.current = false;
-                // Sorti de la copie du milieu : on saute sur l'affiche JUMELLE,
-                // une copie plus loin. Le décalage se mesure entre les deux
-                // nœuds — `scrollWidth / 3` était faux (les écarts entre copies
-                // comptent dedans) et l'accrochage rattrapait ensuite d'un cran,
-                // ce qui faisait changer de recette toute seule.
-                const slot = lastSlot.current;
-                const twin = slot < recipes.length ? slot + recipes.length
-                    : slot >= recipes.length * 2 ? slot - recipes.length
-                    : -1;
-                if (twin < 0) return;
-                const from = el.children[slot] as HTMLElement | undefined;
-                const to = el.children[twin] as HTMLElement | undefined;
-                if (!from || !to) return;
-                el.scrollLeft += to.offsetLeft - from.offsetLeft;
-                lastSlot.current = twin;
+                slotPrecedent.current = slot;
+                setIndex(slot - n);
+                centrer(slot);
             }, 170);
         };
+
         el.addEventListener('scroll', onScroll, { passive: true });
+        el.addEventListener('touchstart', surToucher, { passive: true });
+        el.addEventListener('pointerdown', surToucher, { passive: true });
         return () => {
             el.removeEventListener('scroll', onScroll);
+            el.removeEventListener('touchstart', surToucher);
+            el.removeEventListener('pointerdown', surToucher);
             cancelAnimationFrame(raf);
+            cancelAnimationFrame(animFrame.current);
             clearTimeout(settleTimer.current);
         };
     }, [recipes.length]);
 
-    // ...et l'affiche active revient au centre quand l'index change autrement
-    // que par le doigt (chevrons, rotation, fin de vidéo).
+    // L'index change autrement que par le doigt (rotation, chevrons, fin de
+    // vidéo, appui sur une voisine) : l'affiche active vient au centre.
     useEffect(() => {
-        const el = pagerRef.current;
-        const child = el?.children[activeSlot] as HTMLElement | undefined;
-        if (!el || !child) return;
-        const target = child.offsetLeft + child.offsetWidth / 2 - el.clientWidth / 2;
-        // Premier rendu : on se pose sur la copie du milieu sans animation,
-        // sinon la bande traverse l'écran au chargement.
+        // Premier rendu : posé sur la copie du milieu sans animation, sinon la
+        // bande traverse l'écran au chargement.
         if (!didInit.current) {
+            if (!pagerRef.current?.children[activeSlot]) return;
             didInit.current = true;
-            el.scrollLeft = target;
+            slotPrecedent.current = activeSlot;
+            centrer(activeSlot, true);
             return;
         }
         if (userScrolling.current) return;      // le doigt a la main
-        if (Math.abs(el.scrollLeft - target) < 4) return;
 
         /*
-         * Défilement mené à la main, et non par `behavior: 'smooth'`.
-         *
-         * La durée du défilement natif est imposée par le navigateur : sur
-         * Safari, la bande file en deux cents millisecondes pendant que les
-         * affiches mettent 450 ms à changer d'échelle et d'opacité. Les deux
-         * mouvements racontent alors deux histoires différentes, et le passage
-         * paraît brusque. On parcourt donc la distance nous-mêmes, sur la même
-         * durée et la même courbe que les affiches — tout arrive ensemble.
+         * Bouclage : de la dernière recette à la première (ou l'inverse aux
+         * chevrons). L'affiche active est toujours prise dans la copie du
+         * milieu, donc passer de la dernière à la première ramenait la bande au
+         * DÉBUT de cette copie — elle rembobinait toute la série en un éclair.
+         * On saute d'abord, sans animation, sur l'affiche jumelle de la copie
+         * voisine ; la nouvelle affiche est alors juste à côté, et l'on n'anime
+         * qu'un pas, comme pour n'importe quelle autre recette.
          */
-        const depart = el.scrollLeft;
-        const delta = target - depart;
-        const t0 = performance.now();
-        // Approche de cubic-bezier(0.32, 0.72, 0, 1) : départ franc, arrivée qui
-        // se pose. Une interpolation linéaire donnerait un mouvement mécanique.
-        const adoucir = (t: number) => 1 - Math.pow(1 - t, 4);
-        let frame = 0;
-
-        /*
-         * L'ancrage est suspendu le temps du trajet.
-         *
-         * `scroll-snap-type: x mandatory` recale la bande sur l'affiche la plus
-         * proche à chaque frame : pendant qu'on écrit la position, le moteur
-         * d'ancrage tire dans l'autre sens, et le mouvement hache. On le rend à
-         * l'arrivée, où il reprend son rôle pour le doigt.
-         */
-        defilementAuto.current = true;
-        el.style.scrollSnapType = 'none';
-
-        const finir = () => {
-            el.style.scrollSnapType = '';
-            defilementAuto.current = false;
-            /*
-             * La bande est faite de trois copies du catalogue : quand on sort de
-             * celle du milieu, un rattrapage silencieux nous y ramène, et c'est
-             * ce qui donne la boucle sans fin. Il est déclenché par l'événement
-             * de défilement — que nous venons justement d'ignorer. On en émet
-             * donc un à l'arrivée, sans quoi la bande finirait par buter au bout.
-             */
-            el.dispatchEvent(new Event('scroll'));
-        };
-        // Un doigt posé annule le trajet : il reprend la main immédiatement.
-        const interrompre = () => { cancelAnimationFrame(frame); finir(); };
-        el.addEventListener('touchstart', interrompre, { passive: true });
-
-        const avancer = (maintenant: number) => {
-            const p = Math.min(1, (maintenant - t0) / 450);
-            el.scrollLeft = depart + delta * adoucir(p);
-            if (p < 1) frame = requestAnimationFrame(avancer);
-            else finir();
-        };
-        frame = requestAnimationFrame(avancer);
-        return () => {
-            cancelAnimationFrame(frame);
-            el.removeEventListener('touchstart', interrompre);
-            finir();
-        };
+        const el = pagerRef.current;
+        const n = recipes.length;
+        const avant = slotPrecedent.current;
+        slotPrecedent.current = activeSlot;
+        if (el && n > 1 && avant >= 0) {
+            const versPremiere = avant === n * 2 - 1 && activeSlot === n;
+            const versDerniere = avant === n && activeSlot === n * 2 - 1;
+            const jumelle = versPremiere ? n - 1 : versDerniere ? n * 2 : -1;
+            const from = el.children[avant] as HTMLElement | undefined;
+            const to = jumelle >= 0 ? (el.children[jumelle] as HTMLElement | undefined) : undefined;
+            if (from && to) {
+                cancelAnimationFrame(animFrame.current);
+                defilementAuto.current = true;
+                el.scrollLeft += to.offsetLeft - from.offsetLeft;
+            }
+        }
+        centrer(activeSlot);
     }, [activeSlot]);
 
     /*

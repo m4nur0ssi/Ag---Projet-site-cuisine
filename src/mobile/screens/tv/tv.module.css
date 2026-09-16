@@ -3819,7 +3819,9 @@
     padding: 6px 0 14px;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
+    /* PAS de scroll-snap : le centrage est fait par TVHome (Hero). Sur iPhone,
+       l'aimantation native ramenait la bande sur l'affiche précédente après
+       chaque rotation — le carrousel restait bloqué sur la première image. */
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
     scrollbar-width: none;
