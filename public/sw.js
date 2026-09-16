@@ -18,7 +18,13 @@
 // `Response.error()`, sans appel : Next.js constate le morceau manquant et
 // recharge la page, écran d'ouverture compris. Les statiques ont désormais la
 // même seconde chance que les navigations.
-const CACHE = 'recettes-magiques-v8';
+// v9 : écran blanc et rechargement complet au toucher d'un bouton (2026-09-16).
+// Une navigation interne (Accueil → Favoris) ne demande pas une page : elle
+// demande son contenu au format de Next.js (requête « RSC »). Ces requêtes
+// tombaient dans la règle 4, SANS seconde chance : une microcoupure et Next.js,
+// privé de réponse, abandonnait la navigation douce pour recharger tout le
+// document. Elles ont désormais la même seconde chance que le reste.
+const CACHE = 'recettes-magiques-v9';
 const OFFLINE_URL = new URL('offline.html', self.location).toString();
 
 self.addEventListener('install', (event) => {
@@ -148,6 +154,14 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // 4) Reste : réseau d'abord, repli cache.
-    event.respondWith(fetch(request).catch(() => caches.match(request)));
+    // 4) Reste — dont les navigations internes de Next.js : réseau avec seconde
+    //    chance, puis copie en cache s'il y en a une. Jamais `undefined` : une
+    //    réponse vide est une erreur réseau pour la page, autant la dire nette.
+    event.respondWith((async () => {
+        try {
+            return await reseauAvecSecondeChance(request);
+        } catch (_) {
+            return (await caches.match(request)) || Response.error();
+        }
+    })());
 });

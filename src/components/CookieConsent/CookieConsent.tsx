@@ -1,5 +1,6 @@
 'use client';
 import React, { useCallback, useEffect, useState } from 'react';
+import Link from 'next/link';
 import styles from './CookieConsent.module.css';
 import { ecrireStock } from '@/lib/stockage';
 import { lireConsentement, ROUVRIR_CONSENTEMENT, STORAGE_KEY, type Choice } from '@/lib/consentement';
@@ -59,7 +60,7 @@ export default function CookieConsent() {
             <p className={styles.text}>
                 Ce site utilise des cookies de mesure d’audience et, à terme, de publicité.
                 Vous pouvez accepter ou refuser.{' '}
-                <a href="/confidentialite" className={styles.link}>En savoir plus</a>
+                <Link href="/confidentialite" className={styles.link}>En savoir plus</Link>
             </p>
             <div className={styles.actions}>
                 <button className={styles.refuse} onClick={() => choose('refused')}>Refuser</button>

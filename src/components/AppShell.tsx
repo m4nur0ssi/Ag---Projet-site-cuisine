@@ -19,6 +19,7 @@ import { TimerProvider } from '@/components/Timer/TimerContext';
  */
 const GlobalRecipeSheet = dynamic(() => import('@/components/GlobalRecipeSheet/GlobalRecipeSheet'), { ssr: false });
 import DeepLinkOpener from '@/components/DeepLinkOpener/DeepLinkOpener';
+import VersionAJour from '@/components/VersionAJour/VersionAJour';
 
 // ── Chrome mobile (app embarquée) ──
 import { TimerProvider as MobileTimerProvider } from '@/mobile/components/Timer/TimerContext';
@@ -71,6 +72,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     <MobileGlobalRecipeSheet />
                     <TrophyWatcher />
                     <DeepLinkOpener />
+                    <VersionAJour />
                 </MobileTimerProvider>
             </DeviceContext.Provider>
         );

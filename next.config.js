@@ -1,5 +1,30 @@
+/*
+ * L'identité d'une version du site.
+ *
+ * Next.js compare, à CHAQUE navigation interne, l'identifiant de construction
+ * de la page ouverte à celui du serveur : s'ils diffèrent, il abandonne la
+ * navigation douce et recharge tout le document — l'écran blanc d'une
+ * demi-seconde sur le téléphone. Le site est redéployé plusieurs fois par jour
+ * (synchro WordPress), donc une PWA restée ouverte en arrière-plan tombait
+ * dedans au premier appui.
+ *
+ * On fixe donc cet identifiant NOUS-MÊMES et on l'expose au navigateur
+ * (NEXT_PUBLIC_VERSION_APP) et au serveur (/api/version) : l'app peut ainsi
+ * apprendre qu'une nouvelle version existe au moment où elle revient au premier
+ * plan, et se mettre à jour à ce moment-là plutôt qu'au milieu d'un geste.
+ * Voir src/components/VersionAJour.
+ */
+const VERSION_APP =
+    process.env.VERCEL_DEPLOYMENT_ID ||
+    process.env.VERCEL_GIT_COMMIT_SHA ||
+    `local-${Date.now()}`;
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    generateBuildId: async () => VERSION_APP,
+    env: {
+        NEXT_PUBLIC_VERSION_APP: VERSION_APP,
+    },
     // Optimisé pour Vercel - Désactivation de l'API d'image interne pour économiser 100% de la bande passante "Fast Origin Transfer"
     images: {
         unoptimized: true, // Désormais Vercel ne traitera plus les images. Fini les blocages !
