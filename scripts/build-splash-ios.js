@@ -9,14 +9,22 @@
  *
  * On garde les tailles des iPhone encore en service, du SE au Pro Max, en
  * portrait — l'app est verrouillée dans ce sens.
+ *
+ * Depuis le 2026-09-16 : fond noir UNI, sans logo. On veut arriver directement
+ * sur le carrousel ; un logo au lancement, c'est un écran de plus. On garde
+ * pourtant les images — sans elles, iOS montre un rectangle BLANC, qui claque
+ * bien plus qu'un noir raccord avec l'accueil.
+ *
+ * Les fichiers portent un suffixe de version : iOS garde les anciens écrans de
+ * lancement en cache tant que l'adresse ne change pas.
  */
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
 const SORTIE = path.join(__dirname, '..', 'public', 'splash');
-const LOGO = path.join(__dirname, '..', 'public', 'icons', 'icon-512x512.png');
 const FOND = '#0a0a0c'; // même noir que le manifeste : aucune bascule au lancement
+const VERSION = 'v2';     // à changer à chaque nouveau dessin, sinon iOS garde l'ancien
 
 /** [largeur, hauteur] en pixels physiques. */
 const ECRANS = [
@@ -33,28 +41,9 @@ const ECRANS = [
 (async () => {
     fs.mkdirSync(SORTIE, { recursive: true });
     for (const [l, h] of ECRANS) {
-        const cote = Math.round(Math.min(l, h) * 0.38);
-        /*
-         * Coins arrondis. L'icône est pleine du bord au bord — c'est le système
-         * qui l'arrondit sur l'écran d'accueil. Posée telle quelle sur le noir
-         * du lancement, elle formait un carré net et collé ; on lui donne donc
-         * ici le même arrondi que celui d'iOS (~22 % du côté).
-         */
-        const rayon = Math.round(cote * 0.22);
-        const masque = Buffer.from(
-            `<svg width="${cote}" height="${cote}" xmlns="http://www.w3.org/2000/svg">
-               <rect width="${cote}" height="${cote}" rx="${rayon}" ry="${rayon}" fill="#fff"/>
-             </svg>`
-        );
-        const logo = await sharp(LOGO)
-            .resize(cote, cote, { fit: 'contain' })
-            .composite([{ input: masque, blend: 'dest-in' }])
-            .png()
-            .toBuffer();
         await sharp({ create: { width: l, height: h, channels: 4, background: FOND } })
-            .composite([{ input: logo, gravity: 'center' }])
             .png()
-            .toFile(path.join(SORTIE, `splash-${l}x${h}.png`));
+            .toFile(path.join(SORTIE, `splash-${VERSION}-${l}x${h}.png`));
     }
     console.log(`${ECRANS.length} écrans de lancement écrits dans public/splash`);
 })();

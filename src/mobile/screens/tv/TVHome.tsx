@@ -1192,8 +1192,8 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     const [index, setIndex] = useState(0);
     /** Vrai pendant un défilement que NOUS pilotons (chevrons, rotation, retour au centre). */
     const defilementAuto = useRef(false);
-    // La vidéo ne part pas d'emblée : la photo s'installe deux secondes, comme
-    // sur la rangée Top 10, puis la vidéo prend sa place dans le même cadre.
+    // Le carrousel ne montre QUE des photos. La vidéo ne part jamais toute
+    // seule : elle se lance quand on touche l'affiche du centre.
     const [playing, setPlaying] = useState(false);
     // ...et elle ne se montre QUE si elle joue pour de bon. Sans consentement
     // TikTok dans ce navigateur, le lecteur affiche son bandeau de cookies à la
@@ -1202,7 +1202,13 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     // qu'on n'a rien reçu, l'image reste.
     const [videoOn, setVideoOn] = useState(false);
     const playingRef = useRef(false);
-    playingRef.current = playing && videoOn;
+    /*
+     * La rotation se suspend dès l'appui, pas seulement quand l'image avance.
+     * Entre le toucher et la première image du lecteur, il s'écoule une ou deux
+     * secondes : la rotation de 3 s tombait souvent dans ce trou, changeait de
+     * recette, et la vidéo demandée était coupée avant d'avoir commencé.
+     */
+    playingRef.current = playing;
     const { scrollY } = useScroll();
 
     // Parallaxe : le héros s'éloigne (zoom + translation) et se fond au noir
@@ -1409,22 +1415,12 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
 
     const current = recipes[Math.min(index, recipes.length - 1)];
 
-    // 2 s d'image fixe, puis la vidéo. Changer de recette repart de l'image.
+    // Changer de recette rend toujours la photo. Plus de lecture automatique :
+    // la vidéo n'est lancée que par un appui sur l'affiche active.
     const currentVid = current ? tiktokId(current) : null;
     useEffect(() => {
         setPlaying(false);
         setVideoOn(false);
-        if (!currentVid || !tiktokAllowed()) return;
-        // Héros sorti de l'écran ou onglet en arrière-plan : on ne démarre pas,
-        // mais on réessaie — sinon une recette lue dans un onglet inactif ne
-        // s'animerait plus jamais au retour.
-        let t: ReturnType<typeof setTimeout>;
-        const tryPlay = () => {
-            if (!document.hidden && window.scrollY < 240) setPlaying(true);
-            else t = setTimeout(tryPlay, 800);
-        };
-        t = setTimeout(tryPlay, AUTOPLAY_DELAY);
-        return () => clearTimeout(t);
     }, [currentVid]);
 
     // Le lecteur TikTok parle : c'est qu'il joue (et non qu'il réclame un
@@ -1555,8 +1551,8 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
             </div>
 
             {/* Galerie d'affiches, comme sur ordinateur : celle du milieu est
-                active — plus grande, nette, et c'est elle qui prend la vidéo au
-                bout de deux secondes. Un doigt fait défiler la bande. */}
+                active — plus grande, nette. Elle ne montre que sa photo ; un
+                appui lance sa vidéo. Un doigt fait défiler la bande. */}
             <motion.div className={styles.heroContent} style={{ y: contentY, opacity: contentOpacity }}>
                 <div className={styles.heroTrack} ref={pagerRef}>
                     {loop.map((r, i) => {

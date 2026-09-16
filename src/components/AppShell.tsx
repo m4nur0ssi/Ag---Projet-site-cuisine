@@ -22,7 +22,6 @@ import DeepLinkOpener from '@/components/DeepLinkOpener/DeepLinkOpener';
 
 // ── Chrome mobile (app embarquée) ──
 import { TimerProvider as MobileTimerProvider } from '@/mobile/components/Timer/TimerContext';
-const MobileSplash = dynamic(() => import('@/mobile/components/SplashScreen/SplashScreen'), { ssr: false });
 const MobileBottomNav = dynamic(() => import('@/mobile/components/BottomNav/BottomNav'), { ssr: false });
 const MobileAccountSync = dynamic(() => import('@/mobile/components/AccountSync/AccountSync'), { ssr: false });
 const MobileGlobalRecipeSheet = dynamic(() => import('@/mobile/components/GlobalRecipeSheet/GlobalRecipeSheet'), { ssr: false });
@@ -64,7 +63,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         return (
             <DeviceContext.Provider value={true}>
                 <MobileTimerProvider>
-                    <MobileSplash />
+                    {/* Plus d'écran-logo au lancement : la PWA ouvre directement sur
+                        le carrousel de l'accueil. */}
                     <div className="main-content-wrapper">{children}</div>
                     <MobileBottomNav />
                     <MobileAccountSync />

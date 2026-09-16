@@ -1,13 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-/*
- * Le catalogue ALLÉGÉ, pour un seul nombre.
- *
- * Cette page n'affiche de lui que `length`, dans l'écran d'attente. Importer le
- * catalogue complet — 1,5 Mo de JavaScript — pour compter ses éléments est le
- * plus mauvais rapport de tout le projet.
- */
-import { homeRecipes as mockRecipes } from '@/mobile/data/home-recipes'
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://lesrecettesmagiques.fr'),
@@ -48,7 +40,7 @@ export const metadata: Metadata = {
             [1170, 2532, 3], [1125, 2436, 3], [828, 1792, 2], [750, 1334, 2],
         ].map(([l, h, d]) => ({
             rel: 'apple-touch-startup-image',
-            url: `/splash/splash-${l}x${h}.png`,
+            url: `/splash/splash-v2-${l}x${h}.png`,
             media: `(device-width: ${l / d}px) and (device-height: ${h / d}px) and (-webkit-device-pixel-ratio: ${d}) and (orientation: portrait)`,
         })),
     ],
@@ -201,27 +193,6 @@ export default function RootLayout({
                                     window.__isMobile = !!(narrow || mobUA);
                                     document.documentElement.classList.add(window.__isMobile ? 'is-mobile' : 'is-desktop');
 
-                                    /* Écran d'accueil : la décision est prise ICI, avant le
-                                       premier affichage. Le splash est chargé à la demande ;
-                                       le temps que son morceau de code arrive (une bonne
-                                       demi-seconde en PWA), l'accueil s'affichait puis se
-                                       faisait recouvrir — ce clignotement, c'est l'écran de
-                                       trop. On masque donc le contenu tout de suite. */
-                                    if (window.__isMobile) {
-                                        var KEY = 'hasSeenMagicSplash-v8';
-                                        var sp = new URLSearchParams(window.location.search);
-                                        if (sp.has('fiche') || sp.has('q') || sp.has('ingredients')) {
-                                            sessionStorage.setItem(KEY, 'true');
-                                        } else if (!sessionStorage.getItem(KEY)) {
-                                            document.documentElement.classList.add('is-splashing');
-                                            /* Filet : si le splash ne se montait pas (code non
-                                               chargé, erreur), le contenu resterait caché. Le
-                                               splash annule ce minuteur dès qu'il s'affiche. */
-                                            window.__splashGuard = setTimeout(function () {
-                                                document.documentElement.classList.remove('is-splashing');
-                                            }, 5000);
-                                        }
-                                    }
                                 } catch (e) { window.__isMobile = false; }
                             })();
                         `,
@@ -229,22 +200,6 @@ export default function RootLayout({
                 />
             </head>
             <body>
-                {/* Écran d'accueil INSTANTANÉ.
-
-                    Le vrai splash est un composant chargé à la demande : le temps
-                    que son morceau de code arrive et que React s'hydrate, l'écran
-                    restait noir — c'est l'attente signalée au lancement de la PWA.
-                    Ce squelette-ci vient avec le HTML : il s'affiche à la première
-                    image, sans une ligne de JavaScript. Le splash animé prend le
-                    relais dès qu'il est prêt (classe `splash-live`), sur le même
-                    fond et la même typographie : la relève ne se voit pas. */}
-                <div id="splash-boot" aria-hidden="true">
-                    <div className="splash-boot-frame">
-                        <p className="splash-boot-kicker">Les Recettes</p>
-                        <span className="splash-boot-title">Magiques</span>
-                        <span className="splash-boot-count">{mockRecipes.length} recettes</span>
-                    </div>
-                </div>
                 <AppShell>
                     {children}
                 </AppShell>

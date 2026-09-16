@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './BottomNav.module.css';
 import dynamic from 'next/dynamic';
 import Portal from '../Portal';
@@ -384,18 +384,6 @@ export default function BottomNav() {
         };
     }, [pathname]);
 
-    // Spring animation for the indicator
-    // Plus raide et plus léger : la pastille rattrape le doigt au lieu de le
-    // suivre mollement (25/300/0.8 laissait un temps de retard visible).
-    const springConfig = { damping: 32, stiffness: 460, mass: 0.6 };
-    const springX = useSpring(0, springConfig);
-    const xTransform = useTransform(springX, (val) => `${val * 100}%`);
-
-    useEffect(() => {
-        if (!isDragging) {
-            springX.set(activeIndex);
-        }
-    }, [activeIndex, isDragging]);
 
     const handlePointerMove = (e: React.PointerEvent) => {
         // N'active le drag qu'après un déplacement minimum
@@ -415,8 +403,6 @@ export default function BottomNav() {
         let newIdx = Math.floor(x / itemWidth);
         newIdx = Math.max(0, Math.min(newIdx, count - 1));
         
-        springX.set(x / itemWidth); 
-
         if (newIdx !== activeIndex) {
             setActiveIndex(newIdx); // Transition colors in real-time during drag
             handleVibrate(5);
@@ -594,16 +580,9 @@ export default function BottomNav() {
                                     onPointerUp={handlePointerUp}
                                     onPointerCancel={() => { setIsDragging(false); pointerStartX.current = null; }}
                                 >
-                                    <div className={styles.indicatorTrack}>
-                                        <motion.div 
-                                            className={styles.stitchIndicator}
-                                            style={{ 
-                                                x: xTransform,
-                                                width: `${100 / items.length}%`
-                                            }}
-                                        />
-                                    </div>
-
+                                    {/* Plus de pastille qui suit l'onglet actif, ni de libellé
+                                        sous les icônes : seule l'icône de l'onglet actif
+                                        s'allume. */}
                                     {items.map((item: any, index: number) => {
                                         const isActive = activeIndex === index;
 
@@ -613,6 +592,9 @@ export default function BottomNav() {
                                                 data-tour={item.id === 'favoris' ? 'favorites' : item.id === 'panier' ? 'shopping' : item.id === 'planner' ? 'planner' : undefined}
                                                 className={`${styles.navItem} ${isActive ? styles.active : ''}`}
                                                 onClick={() => handleItemClick(index)}
+                                                role="button"
+                                                aria-label={item.label}
+                                                aria-current={isActive ? 'page' : undefined}
                                             >
                                                 <div className={styles.iconContainer}>
                                                     <div className={`${styles.icon} ${isActive ? styles.iconActive : ''}`}>
@@ -629,9 +611,6 @@ export default function BottomNav() {
                                                         </span>
                                                     )}
                                                 </div>
-                                                <span className={`${styles.label} ${isActive ? styles.activeLabel : ''}`}>
-                                                    {item.label}
-                                                </span>
                                             </div>
                                         );
                                     })}
