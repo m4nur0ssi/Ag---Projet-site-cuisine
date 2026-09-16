@@ -72,6 +72,9 @@ export default function ConfidentialitePage() {
                 <strong> Google Ireland Ltd.</strong> (Google Analytics 4 — son script n’est
                 téléchargé qu’après votre acceptation : tant que vous n’avez pas répondu au
                 bandeau, ou si vous refusez, Google ne reçoit rien, pas même votre adresse IP).
+                La recherche et l’assistant par intelligence artificielle transmettent le texte de
+                votre question, sans aucun identifiant, à <strong>Groq Inc.</strong> et, lorsque ce
+                service ne répond pas, à <strong>Google</strong> (Gemini) ou <strong>Anthropic</strong>.
                 Ces prestataires agissent selon nos instructions et présentent des garanties
                 conformes au RGPD. Les polices de caractères sont servies depuis notre propre
                 domaine : aucune requête n’est adressée aux serveurs de Google à l’affichage
@@ -131,9 +134,11 @@ export default function ConfidentialitePage() {
                 introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">cnil.fr</a>).
             </p>
             <p>
-                Une demande de suppression entraîne l’effacement du compte et de tout ce qui y est
-                rattaché — favoris, notes, commentaires, menus, liste de courses, journal de
-                cuisine — sous <strong>trente jours</strong>. Les préférences restées dans votre
+                Vous pouvez supprimer votre compte vous-même, à tout moment : menu du compte
+                (votre avatar), puis <strong>« Supprimer mon compte »</strong>. Le compte et tout ce
+                qui y est rattaché — favoris, notes, commentaires, menus, liste de courses, cave,
+                journal de cuisine — sont effacés immédiatement et définitivement. Une demande
+                envoyée par e-mail est traitée sous <strong>trente jours</strong>. Les préférences restées dans votre
                 navigateur s’effacent, elles, en vidant les données du site depuis ses réglages.
             </p>
 

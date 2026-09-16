@@ -26,18 +26,26 @@ c'est le cas d'exemption prévu par la CNIL. Il est nommé dans la politique.
 
 ## Droit à l'effacement
 
-Une demande arrive par e-mail à `contact@lesrecettesmagiques.fr` ; la politique
-s'engage sur trente jours.
+**En libre-service** : menu du compte (avatar) → « Supprimer mon compte » →
+confirmation. `src/components/SupprimerCompte` appelle
+`src/app/api/supprimer-compte/route.ts`, qui :
+
+1. identifie la personne par son **jeton de session** — jamais par le corps de
+   la requête, on n'efface que le compte de celui qui appelle ;
+2. vide les tables avec la clé de service, et **s'arrête avant de toucher au
+   compte** si une table résiste (pas de lignes orphelines) ;
+3. supprime le compte dans `auth.users`.
+
+**Par e-mail** (la politique s'engage sur trente jours) :
 
 ```bash
 node scripts/supprimer-compte.js quelquun@exemple.fr            # inventaire
 node scripts/supprimer-compte.js quelquun@exemple.fr --confirmer # efface
 ```
 
-Le script vide les douze tables porteuses de données personnelles puis supprime
-le compte. **Une table ajoutée au site doit être ajoutée à la liste `TABLES` du
-script le jour même** — une table oubliée, c'est une donnée qui survit à la
-suppression.
+Le site et le script lisent la **même liste** : `src/lib/tables-personnelles.json`.
+Une table ajoutée au site doit y être ajoutée le jour même — une table oubliée,
+c'est une donnée qui survit à la suppression.
 
 ## Adresse IP
 
@@ -53,11 +61,16 @@ node scripts/telecharger-polices.js
 Recopie à l'identique ce que Google renvoie (mêmes graisses, mêmes plages
 Unicode) et déduplique les fichiers. À relancer après tout ajout de graisse.
 
-## Ce qui reste ouvert
+## Liens légaux
 
-- Les liens légaux ne figurent que dans le pied de page des deux accueils
-  (`SiteFooter`), pas sur les écrans internes.
-- La suppression de compte n'existe pas en libre-service dans le profil : elle
-  passe par l'e-mail et le script ci-dessus.
-- Pas de registre des traitements écrit (art. 30) — attendu même pour un site
-  personnel qui collecte des comptes.
+- Accueils (mobile et ordinateur) : pied de page complet (`SiteFooter`).
+- Partout où le bouton du compte est monté — accueils, tiroir de navigation
+  mobile, anciens en-têtes, planificateur mobile : en bas de son menu
+  (`LiensLegauxMini`), avec « Supprimer mon compte ».
+- Écrans TV internes (courses, planificateur, cave, profil) : pas de bouton du
+  compte ; le « Retour » ramène à l'accueil, à un geste du pied de page.
+
+## Registre des traitements
+
+`docs/registre-traitements.md` (art. 30). À relire à chaque nouvelle donnée
+collectée ou nouveau prestataire.

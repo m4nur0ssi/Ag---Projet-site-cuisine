@@ -3,10 +3,11 @@ import { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './AuthButton.module.css';
+import SupprimerCompte from '@/components/SupprimerCompte/SupprimerCompte';
+import LiensLegauxMini from '@/components/LiensLegauxMini/LiensLegauxMini';
 
 export default function AuthButton() {
     const { user, loading, signInWithGoogle, signInWithApple, signOut } = useAuth();
-    if (typeof window !== 'undefined') console.log('[AuthButton] user=', user?.email, 'loading=', loading);
     const [open, setOpen] = useState(false);
     const [pos, setPos] = useState({ top: 0, right: 0 });
     const btnRef = useRef<HTMLButtonElement>(null);
@@ -58,6 +59,7 @@ export default function AuthButton() {
                     <button className={styles.signOutBtn} onClick={() => { signOut(); setOpen(false); }}>
                         Se déconnecter
                     </button>
+                    <SupprimerCompte />
                 </>
             ) : (
                 <>
@@ -71,6 +73,7 @@ export default function AuthButton() {
                     </button>
                 </>
             )}
+            <LiensLegauxMini />
         </div>,
         document.body
     ) : null;

@@ -35,24 +35,13 @@ const URL_BASE = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const CLE = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 /*
- * Les douze tables qui portent des données personnelles, toutes rattachées au
- * compte par `user_id`. Une table ajoutée au site doit être ajoutée ICI le jour
- * même : une table oubliée, c'est une donnée qui survit à la suppression.
+ * Les tables qui portent des données personnelles, toutes rattachées au compte
+ * par `user_id`. La liste vit dans src/lib/tables-personnelles.json, lue AUSSI
+ * par le bouton « Supprimer mon compte » du site (api/supprimer-compte) : une
+ * seule liste, pas deux à tenir d'accord. Une table ajoutée au site doit y être
+ * ajoutée le jour même — une table oubliée, c'est une donnée qui survit.
  */
-const TABLES = [
-    'favorites',
-    'ratings',
-    'recipe_likes',
-    'recipe_notes',
-    'personal_notes',
-    'comments',
-    'meal_plans',
-    'shopping_state',
-    'cooking_log',
-    'user_recipes',
-    'cave_state',
-    'shared_menus',
-];
+const TABLES = require('../src/lib/tables-personnelles.json');
 
 const entetes = {
     'apikey': CLE,
