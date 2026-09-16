@@ -2,11 +2,111 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/09/2026 08:31:37
- * Total: 731 recettes
+ * Dernière mise à jour: 16/09/2026 16:09:40
+ * Total: 732 recettes
  */
-export const exportSyncId = "1789547497598";
+export const exportSyncId = "1789574980301";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7851",
+        "title": "Lentilles fondantes aux oignons caramélisés et burrata",
+        "description": "Préparez des lentilles fondantes et parfumées, mijotées avec des oignons caramélisés et des épices, puis servies avec une burrata bien crémeuse. Une recette simple et délicieuse à essayer absolument !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7685797855298096417\" data-video-id=\"7685797855298096417\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7685797855298096417\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de lentilles vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 gros oignons jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 c. à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de cumin moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ c. à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ½ c. à café d'herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             500 ml de bouillon de légumes chaud"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 c. à café de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             ½ à 1 c. à café de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             ½ citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 burrata de 125 g"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques brins de persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Ciselez finement les oignons. Faites chauffer l'huile d'olive dans une grande sauteuse, ajoutez les oignons avec une pincée de sel et laissez-les caraméliser à feu doux-moyen en mélangeant régulièrement, jusqu'à ce qu'ils soient bien dorés, fondants et presque confits.",
+            "Ajoutez l'ail finement râpé et poursuivez la cuisson pendant 30 secondes.",
+            "Incorporez le concentré de tomate, le cumin, le paprika fumé et les herbes de Provence. Faites revenir pendant 1 à 2 minutes afin de torréfier légèrement les épices.",
+            "Rincez les lentilles, ajoutez-les dans la sauteuse puis versez 500 ml de bouillon chaud. Mélangez et laissez mijoter à petits frémissements pendant 35 à 45 minutes, en remuant de temps en temps. Ajoutez un peu de bouillon si nécessaire au cours de la cuisson. Les lentilles doivent être bien tendres, fondantes et rester enrobées d'une petite sauce épaisse et brillante.",
+            "Ajoutez la sauce soja et le vinaigre balsamique, mélangez puis poursuivez la cuisson pendant 1 à 2 minutes.",
+            "Hors du feu, ajoutez le jus de citron. Salez et poivrez selon votre goût.",
+            "Servez les lentilles bien chaudes, déposez la burrata au centre puis terminez simplement avec du persil frais et un filet d'huile d'olive."
+        ],
+        "tags": [
+            "Accompagnements",
+            "C'est l'hiver",
+            "Healthy",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7839",
         "title": "Burger Crispy Maison (Façon McChicken)",
