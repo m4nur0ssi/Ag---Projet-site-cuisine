@@ -3895,6 +3895,22 @@
            l'affiche laissait un trou de 80 px entre la photo et le titre. */
         max-height: 380px;
     }
+    /* Le texte garde la MÊME hauteur d'une recette à l'autre. La bande prend la
+       place qu'il laisse et les affiches suivent sa hauteur : un titre sur une
+       ligne puis sur deux faisait grandir ou rétrécir toutes les affiches à
+       chaque rotation, en plein trajet. Relevé sous WebKit : largeur 171 puis
+       186 px, bande recentrée sur des positions périmées, affiches décalées et
+       qui se chevauchent. Titre réservé sur trois lignes, méta sur une seule. */
+    .heroTitleSplit {
+        -webkit-line-clamp: 3;
+        height: calc(3 * 1.02em);
+    }
+    .heroMetaSplit {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+    }
 }
 
 /* Le texte, sous la bande, centré : il désigne l'affiche active. */

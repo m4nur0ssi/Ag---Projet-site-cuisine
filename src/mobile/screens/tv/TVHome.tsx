@@ -1276,13 +1276,15 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
          * temps qu'elles.
          */
         const depart = el.scrollLeft;
-        const delta = target - depart;
         const t0 = performance.now();
         // Approche de cubic-bezier(0.32, 0.72, 0, 1) : départ franc, arrivée qui se pose.
         const adoucir = (t: number) => 1 - Math.pow(1 - t, 4);
         const avancer = (maintenant: number) => {
             const k = Math.min(1, (maintenant - t0) / 450);
-            el.scrollLeft = depart + delta * adoucir(k);
+            // Cible relue à chaque image : si la mise en page bouge en route
+            // (police chargée, rotation de l'écran), on arrive quand même au centre.
+            const cible = child.offsetLeft + child.offsetWidth / 2 - el.clientWidth / 2;
+            el.scrollLeft = depart + (cible - depart) * adoucir(k);
             if (k < 1) animFrame.current = requestAnimationFrame(avancer);
             else relacher();
         };
@@ -1404,6 +1406,21 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         }
         centrer(activeSlot);
     }, [activeSlot]);
+
+    // La bande change de taille (rotation de l'écran, barre Safari qui se replie) :
+    // l'affiche active est recentrée d'un coup, sinon elle reste décalée.
+    const activeSlotRef = useRef(activeSlot);
+    activeSlotRef.current = activeSlot;
+    useEffect(() => {
+        const el = pagerRef.current;
+        if (!el || typeof ResizeObserver === 'undefined') return;
+        const ro = new ResizeObserver(() => {
+            if (!didInit.current || userScrolling.current) return;
+            centrer(activeSlotRef.current, true);
+        });
+        ro.observe(el);
+        return () => ro.disconnect();
+    }, [recipes.length]);
 
     /*
      * Rotation auto toutes les 3 s. Le doigt reprend toujours la main : on met en
