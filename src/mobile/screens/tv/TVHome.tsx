@@ -1723,6 +1723,24 @@ export default function TVHome() {
     // Recette à caser dans la semaine (volet « Ajouter au planificateur »).
     const [planFor, setPlanFor] = useState<Recipe | null>(null);
     const [navOpen, setNavOpen] = useState(false);
+    /*
+     * Sur le héros, la poignée du volet est masquée. Centrée sur le bord gauche,
+     * elle tombait pile sur la flèche « recette précédente » et sur l'affiche
+     * voisine du carrousel — deux commandes empilées au même endroit. Le héros a
+     * déjà son bouton menu en haut à gauche ; la poignée revient quand ce bouton
+     * s'est effacé (même seuil de 140 px que la signature).
+     */
+    const [surHeros, setSurHeros] = useState(true);
+    useEffect(() => {
+        let raf = 0;
+        const lire = () => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => setSurHeros(window.scrollY < 140));
+        };
+        lire();
+        window.addEventListener('scroll', lire, { passive: true });
+        return () => { window.removeEventListener('scroll', lire); cancelAnimationFrame(raf); };
+    }, []);
     const [tasteOpen, setTasteOpen] = useState(false);
     const [shareCard, setShareCard] = useState<{ recipe: Recipe; category?: { label: string; tag: string; count: number } } | null>(null);
     // Proposition d'onboarding « goûts » UNE fois, et seulement en PWA installée
@@ -2226,7 +2244,7 @@ export default function TVHome() {
             <Hero recipes={heroRecipes} onOpen={openSheet} onMenu={() => setNavOpen(true)} />
 
             <EdgeHandle
-                hidden={navOpen}
+                hidden={navOpen || surHeros}
                 onOpen={() => setNavOpen(true)}
                 onPeek={setNavPeek}
             />
