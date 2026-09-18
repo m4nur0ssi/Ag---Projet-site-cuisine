@@ -173,6 +173,74 @@ function detourerFondUni(img: ImageData): number {
     return efface > w * h * 0.04 ? bordEfface / Math.max(1, bord) : 0;
 }
 
+/* ── 1 bis. Un seul objet ─────────────────────────────────────────────────── */
+
+/**
+ * Ne garde que la PLUS GRANDE TACHE du masque, et efface les autres.
+ *
+ * LE CAS QUI L'IMPOSE
+ * -------------------
+ * On ne photographie presque jamais une bouteille seule. Il y a un verre à
+ * côté, une deuxième bouteille, un bol, un tire-bouchon. Le modèle de
+ * segmentation détecte l'objet SAILLANT — au pluriel : il rapporte tout ce qui
+ * se détache du fond, dans un seul masque.
+ *
+ * `plausibleBouteille` était censé écarter ces cas, et n'y arrive pas : une
+ * bouteille flanquée d'un verre garde un élancement et un remplissage tout à
+ * fait ordinaires. Mesuré sur huit photos de table : deux passaient le contrôle
+ * avec une confiance de 0,80 — donc acceptées — et l'étiquette extraite était
+ * un mélange de papier et de pied de verre.
+ *
+ * La bonne mesure n'est pas la forme de l'ensemble, c'est le NOMBRE d'objets.
+ * Deux objets posés côte à côte ne se touchent pas : ils forment deux taches
+ * séparées dans le masque. On les compte, on garde la plus grosse — la
+ * bouteille, qui est toujours l'objet le plus haut de la table — et on efface
+ * le reste.
+ *
+ * Ça ne sauve pas tout : un verre POSÉ DEVANT la bouteille la touche, et les
+ * deux ne font qu'une tache. Mais ça règle le cas courant, celui du verre ou de
+ * la bouteille voisine, à un parcours d'image près.
+ *
+ * Renvoie la part de l'aire opaque conservée. Proche de 1 : il n'y avait qu'un
+ * objet, on n'a rien fait. Nettement en dessous : on vient d'écarter du décor.
+ */
+function garderPlusGrandeTache(img: ImageData): number {
+    const { width: w, height: h, data } = img;
+    const n = w * h;
+
+    // Étiquetage en largeur, avec une pile explicite : la récursion déborde
+    // sur une image de 900 px de côté.
+    const tache = new Int32Array(n).fill(-1);
+    const pile = new Int32Array(n);
+    let courante = 0, meilleure = -1, meilleureAire = 0, aireTotale = 0;
+
+    for (let depart = 0; depart < n; depart++) {
+        if (data[depart * 4 + 3] <= 24 || tache[depart] >= 0) continue;
+        let sommet = 0, aire = 0;
+        pile[sommet++] = depart;
+        tache[depart] = courante;
+        while (sommet) {
+            const p = pile[--sommet];
+            aire++;
+            const x = p % w, y = (p / w) | 0;
+            // Quatre voisins : la connexité diagonale relierait une bouteille
+            // au verre qui l'effleure d'un pixel.
+            if (x > 0) { const q = p - 1; if (data[q * 4 + 3] > 24 && tache[q] < 0) { tache[q] = courante; pile[sommet++] = q; } }
+            if (x < w - 1) { const q = p + 1; if (data[q * 4 + 3] > 24 && tache[q] < 0) { tache[q] = courante; pile[sommet++] = q; } }
+            if (y > 0) { const q = p - w; if (data[q * 4 + 3] > 24 && tache[q] < 0) { tache[q] = courante; pile[sommet++] = q; } }
+            if (y < h - 1) { const q = p + w; if (data[q * 4 + 3] > 24 && tache[q] < 0) { tache[q] = courante; pile[sommet++] = q; } }
+        }
+        aireTotale += aire;
+        if (aire > meilleureAire) { meilleureAire = aire; meilleure = courante; }
+        courante++;
+    }
+
+    if (meilleure < 0 || courante <= 1) return 1;
+
+    for (let p = 0; p < n; p++) if (tache[p] !== meilleure) data[p * 4 + 3] = 0;
+    return meilleureAire / Math.max(1, aireTotale);
+}
+
 /* ── 1 bis. Redressement ──────────────────────────────────────────────────── */
 
 /**
@@ -598,6 +666,19 @@ export async function normaliserBouteille(
      * simplement mise au format, avec une confiance nulle : c'est ce zéro qui
      * fait passer l'appelant à la photo du marchand.
      */
+    /*
+     * UN SEUL OBJET, quel que soit le moteur qui a produit le masque.
+     *
+     * C'est délibérément ici, après les deux moteurs et avant tout le reste :
+     * la boîte englobante, le redressement, l'exposition et l'extraction de
+     * l'étiquette se calculent tous sur la silhouette, et un verre resté à côté
+     * les fausse tous les quatre — la boîte s'élargit, l'axe principal penche,
+     * l'histogramme compte les pixels du verre, et la bande d'étiquette ramasse
+     * son pied.
+     */
+    garderPlusGrandeTache(px);
+    ctx.putImageData(px, 0, 0);
+
     const premiere = boiteOpaque(px);
     if (!premiere) return null;
 

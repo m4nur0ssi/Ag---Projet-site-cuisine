@@ -11,8 +11,15 @@
  * étagère de vingt fiches garde donc vingt profils différents.
  *
  * Ici on va plus loin : on ne garde de la photo que l'ÉTIQUETTE, et on la pose
- * sur un verre dessiné, identique pour toutes les bouteilles d'une même
+ * sur une bouteille type, identique pour toutes les bouteilles d'une même
  * couleur. La grille devient parfaitement régulière.
+ *
+ * LA RÈGLE, EN UNE LIGNE
+ * ----------------------
+ * Une bouteille type par couleur, toujours ; l'étiquette scannée dessus,
+ * toujours. Sauf les LIQUEURS, qui gardent la leur — leur flacon est ce qui les
+ * identifie, et le remplacer effacerait le produit (voir
+ * `composerSurBouteilleType`).
  *
  * Il faut en être conscient : l'image produite ne montre plus la bouteille
  * qu'on possède. Le verre, la capsule et le format sont une convention ; seule
@@ -309,20 +316,59 @@ export function trouverEtiquette(px: ImageData): Rect | null {
     if (haut < 0 || bas - haut < 24) return null;
 
     /*
-     * Couleur du VERRE : la médiane des lignes du corps.
+     * Couleur du VERRE : mesurée là où il n'y a JAMAIS d'étiquette.
      *
-     * Le verre occupe toujours plus de hauteur que l'étiquette — épaule, bas de
-     * bouteille, marges — donc la médiane tombe dedans. Un pari plus sûr que de
-     * désigner une zone d'avance, qui dépendrait du format de la bouteille.
+     * LE PARI QUI NE TIENT PAS
+     * ------------------------
+     * On prenait la médiane de tout le corps, en pariant que le verre y occupe
+     * plus de hauteur que le papier — épaule, bas de bouteille, marges. C'est
+     * vrai d'un bordeaux à étiquette basse. C'est FAUX dès qu'une étiquette
+     * couvre la moitié du corps, ce qui est courant sur les vins du Nouveau
+     * Monde et sur les bouteilles à étiquette pleine hauteur.
+     *
+     * Et quand c'est faux, ça ne dégrade pas la mesure : ça l'INVERSE. La
+     * médiane tombe dans le papier, le papier devient la référence, l'écart le
+     * plus fort se trouve dans le verre — et c'est une bande de verre qu'on
+     * extrait et qu'on va coller sur le gabarit. Mesuré sur un Trader Joe's
+     * Meritage : étiquette crème sur les deux tiers du corps, bande retenue =
+     * le verre sombre au-dessus.
+     *
+     * DEUX ZONES SÛRES
+     * ----------------
+     * La bouteille arrive ici NORMALISÉE — même cadre, même ligne de pose — et
+     * deux zones de son corps sont du verre à coup sûr :
+     *
+     *   • juste sous l'ÉPAULE : une étiquette n'y monte pas, elle serait posée
+     *     sur une surface qui n'est plus cylindrique et se plisserait ;
+     *   • le tout BAS : le culot est bombé, aucune étiquette n'y descend.
+     *
+     * On y prend la médiane. Les deux ensemble, et non l'une ou l'autre : le
+     * bas seul est presque noir (l'ombre du culot) et ferait passer tout le
+     * corps pour du papier.
+     *
+     * Si ces bandes sont trop maigres pour conclure — corps très court, photo
+     * rognée — on retombe sur l'ancienne médiane, qui reste juste dans le cas
+     * ordinaire.
      */
-    const med = (a: Float32Array) => {
+    const medianeSur = (a: Float32Array, lignes: number[]) => {
         const v: number[] = [];
-        for (let y = haut; y <= bas; y++) if (presents[y]) v.push(a[y]);
-        if (!v.length) return 0;
+        for (const y of lignes) if (presents[y]) v.push(a[y]);
+        if (!v.length) return null;
         v.sort((p, q) => p - q);
         return v[v.length >> 1];
     };
-    const vr = med(moyR), vg = med(moyG), vb = med(moyB);
+
+    const hCorps = bas - haut + 1;
+    const sures: number[] = [];
+    for (let y = haut; y < haut + Math.round(hCorps * 0.12) && y <= bas; y++) sures.push(y);
+    for (let y = bas - Math.round(hCorps * 0.06); y <= bas; y++) if (y > haut) sures.push(y);
+    const toutes: number[] = [];
+    for (let y = haut; y <= bas; y++) toutes.push(y);
+
+    const lignesRef = sures.length >= 8 ? sures : toutes;
+    const vr = medianeSur(moyR, lignesRef) ?? 0;
+    const vg = medianeSur(moyG, lignesRef) ?? 0;
+    const vb = medianeSur(moyB, lignesRef) ?? 0;
 
     const ecart = new Float32Array(h);
     let maxEcart = 0;
@@ -615,18 +661,21 @@ const REPLI: Record<CouleurVerre, CouleurVerre[]> = {
     // blanc aurait l'air d'un vin blanc, ce qui est la seule chose qu'on
     // demande à une vignette de ne pas faire.
     rose: ['rose', 'blanc'],
-    // Un liquoreux se vend en verre clair, comme un blanc. Le gabarit dédié a
-    // été tenté puis abandonné : verre ambré et étiquette blanche se ressemblent
-    // trop pour qu'Otsu sépare les deux, et l'étiquette survivait à l'effacement.
-    liqueur: ['liqueur', 'blanc'],
     /*
-     * Champagne et cidres attendent LEUR gabarit, et n'en empruntent aucun.
+     * Une liqueur n'est JAMAIS composée — voir `composerSurBouteilleType`.
+     *
+     * L'entrée reste pour que le type soit complet ; elle n'est pas lue. Il n'y
+     * a pas de gabarit de liqueur parce qu'il n'y a pas de bouteille de liqueur :
+     * chaque maison a la sienne, et c'est précisément sa forme qu'on vient
+     * montrer.
+     */
+    liqueur: ['liqueur'],
+    /*
+     * Champagne et cidres ont LEUR gabarit, et n'en empruntent aucun.
      *
      * Une bordelaise déguisée en champagne se voit au premier coup d'œil :
      * l'épaule d'un champagne est tombante, son goulot plus court, son verre
-     * bien plus épais, et la capsule cache un muselet. Tant qu'on n'a pas la
-     * photo, mieux vaut le verre dessiné — approximatif mais honnête — qu'un
-     * gabarit qui ment sur le format.
+     * bien plus épais, et la capsule cache un muselet.
      */
     champagne: ['champagne'],
     cidre: ['cidre'],
@@ -678,6 +727,97 @@ function largeurA(px: ImageData, y: number): { gauche: number; droite: number } 
     return d > g ? { gauche: g, droite: d } : null;
 }
 
+/* ── Quand la détection ne trouve rien ────────────────────────────────────── */
+
+/** Boîte de ce qui reste opaque — la bouteille, une fois détourée. */
+function boiteOpaque(px: ImageData): { x: number; y: number; w: number; h: number } | null {
+    const { width: w, height: h, data } = px;
+    let x0 = w, y0 = h, x1 = -1, y1 = -1;
+    for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+            if (data[(y * w + x) * 4 + 3] > 24) {
+                if (x < x0) x0 = x;
+                if (x > x1) x1 = x;
+                if (y < y0) y0 = y;
+                if (y > y1) y1 = y;
+            }
+        }
+    }
+    return x1 < 0 ? null : { x: x0, y: y0, w: x1 - x0 + 1, h: y1 - y0 + 1 };
+}
+
+/**
+ * L'étiquette trouvée tient-elle debout ?
+ *
+ * Deux façons de se tromper, et elles se mesurent : un FRAGMENT (un bandeau
+ * coloré pris pour toute l'étiquette) est trop court, et un débordement sur le
+ * verre est trop long. Une étiquette qui ne couvre pas la moitié de la largeur
+ * du corps n'est pas une étiquette vue de face non plus.
+ */
+function etiquettePlausible(zone: Rect, hauteurImage: number): boolean {
+    const partHauteur = zone.h / Math.max(1, hauteurImage);
+    const partLargeur = zone.verre
+        ? zone.w / Math.max(1, zone.verre.x1 - zone.verre.x0 + 1)
+        : 1;
+    return partHauteur >= 0.12 && partHauteur <= 0.52 && partLargeur >= 0.45;
+}
+
+/**
+ * La bande où une étiquette SE POSE, faute de l'avoir repérée.
+ *
+ * POURQUOI ON NE RENONCE PLUS
+ * ---------------------------
+ * Avant, une détection ratée faisait garder la photo réelle. Résultat : sur
+ * une étagère de vingt fiches, dix-sept bouteilles types et trois photos —
+ * silhouettes différentes, verre différent, lumière différente. Les trois qui
+ * restaient brutes étaient exactement celles qu'on remarquait.
+ *
+ * Or on n'a pas besoin de SAVOIR où est l'étiquette pour la copier : on sait où
+ * une étiquette se pose. Le gabarit le dit — c'est la bande qu'on y a effacée.
+ * On découpe donc le corps de la photo à cette même hauteur relative et on le
+ * pose. Quand la détection a échoué parce que l'étiquette est bicolore ou
+ * diagonale, la bande contient quand même le papier : simplement, on l'a prise
+ * au compas plutôt qu'à la mesure.
+ *
+ * Les fractions sont celles du GABARIT parce que c'est là que le papier
+ * retombera. Sans gabarit, 0,58 → 0,90 : le corps d'une bouteille debout.
+ */
+function zoneParDefaut(px: ImageData, gab: Gabarit | null): Rect | null {
+    const b = boiteOpaque(px);
+    if (!b) return null;
+
+    const haut = gab && isFinite(gab.haut) ? gab.haut : 0.58;
+    const bas = gab && isFinite(gab.bas) ? gab.bas : 0.90;
+    const y0 = Math.max(b.y, Math.round(b.y + b.h * Math.min(haut, bas)));
+    const y1 = Math.min(b.y + b.h - 1, Math.round(b.y + b.h * Math.max(haut, bas)));
+    if (y1 - y0 < 8) return null;
+
+    // Étendue du VERRE sur ces lignes : c'est elle qui donne le rayon du
+    // cylindre, donc les angles de `derouler`.
+    const { width: w, data } = px;
+    let v0 = w, v1 = -1;
+    for (let y = y0; y <= y1; y++) {
+        for (let x = 0; x < w; x++) {
+            if (data[(y * w + x) * 4 + 3] > 24) { if (x < v0) v0 = x; if (x > v1) v1 = x; }
+        }
+    }
+    if (v1 <= v0) return null;
+
+    /*
+     * Une étiquette ne va pas tout à fait d'arête à arête : les derniers pour
+     * cent de la largeur sont du verre nu, et les reprendre collerait un liseré
+     * de verre sur le bord du papier réenroulé. On garde les 92 % centraux.
+     */
+    const marge = Math.round((v1 - v0) * 0.04);
+    return {
+        x: v0 + marge,
+        y: y0,
+        w: Math.max(1, v1 - v0 + 1 - marge * 2),
+        h: y1 - y0 + 1,
+        verre: { x0: v0, x1: v1 },
+    };
+}
+
 /* ── Composition ──────────────────────────────────────────────────────────── */
 
 function charger(src: string): Promise<HTMLImageElement | null> {
@@ -694,10 +834,12 @@ function charger(src: string): Promise<HTMLImageElement | null> {
  *
  * `source` doit être une bouteille DÉJÀ NORMALISÉE par `bouteille.ts` — donc
  * détourée, d'aplomb, au cadre fixe. C'est ce qui permet de chercher
- * l'étiquette dans le corps sans avoir à redevine où il est.
+ * l'étiquette dans le corps sans avoir à redeviner où il est.
  *
- * Renvoie `null` si l'étiquette n'a pas été trouvée : l'appelant garde alors la
- * bouteille normalisée telle quelle, qui reste correcte.
+ * Renvoie `null` dans deux cas seulement : une LIQUEUR, dont on garde la
+ * bouteille propre, et une image où il ne reste rien d'opaque à lire. Partout
+ * ailleurs la composition aboutit — au besoin par la bande du gabarit plutôt
+ * que par la détection.
  */
 export async function composerSurBouteilleType(
     source: string,
@@ -707,22 +849,23 @@ export async function composerSurBouteilleType(
     const { hauteur = CADRE_H, qualite = 0.88 } = opts;
 
     /*
-     * Les formats à étiquette ATYPIQUE ne sont pas composés.
+     * LA LIQUEUR EST LA SEULE EXCEPTION, et c'est une exception de fond.
      *
-     * L'extraction suppose une étiquette rectangulaire, d'un seul tenant, posée
-     * sur le corps. Un champagne porte souvent un bandeau DIAGONAL qui monte sur
-     * l'épaule ; un cidre, une étiquette en deux couleurs dont la moitié a la
-     * clarté du verre. Mesuré sur les deux : le morceau retenu n'était qu'une
-     * tranche, et le composite montrait un bout d'étiquette flottant.
+     * Toutes les autres lignes se vendent dans une bouteille NORMALISÉE : une
+     * bordelaise est une bordelaise, un champagne est un champagne, et les
+     * distinguer l'une de l'autre sur une étagère ne sert à rien. On peut donc
+     * n'en garder qu'une par couleur et n'y changer que le papier.
      *
-     * Ils gardent donc leur bouteille RÉELLE, détourée et mise au cadre commun.
-     * On y perd la silhouette unique, on y gagne de ne rien inventer — et le
-     * résultat est bon, parce que la normalisation seule est déjà juste.
+     * Une liqueur, non. Chartreuse, Cointreau, Grand Marnier, une crème de
+     * cassis d'un producteur du coin : le flacon est dessiné, souvent breveté,
+     * et c'est LUI qu'on reconnaît avant même de lire l'étiquette. Le poser sur
+     * une bordelaise reviendrait à effacer ce qui l'identifie.
      *
-     * Leurs gabarits existent dans `public/gabarits/` : le jour où l'extraction
-     * saura lire ces étiquettes, il suffira de retirer cette porte.
+     * On renvoie donc `null` : l'appelant garde la bouteille normalisée —
+     * détourée, d'aplomb, au cadre et à la ligne de pose communs. Même
+     * environnement que les autres, forme propre conservée.
      */
-    if (couleur === 'champagne' || couleur === 'cidre' || couleur === 'cidre-rose') return null;
+    if (couleur === 'liqueur') return null;
 
     const img = await charger(source);
     if (!img) return null;
@@ -738,25 +881,37 @@ export async function composerSurBouteilleType(
     try { px = lctx.getImageData(0, 0, lecture.width, lecture.height); }
     catch { return null; }
 
-    const zone = trouverEtiquette(px);
-    if (!zone) return null;
+    /*
+     * Le gabarit est chargé AVANT de chercher l'étiquette, parce qu'il sert dans
+     * les deux cas : à la poser si on l'a trouvée, à la DÉCOUPER si on ne l'a
+     * pas trouvée — c'est lui qui sait à quelle hauteur du corps une étiquette
+     * se pose (voir `zoneParDefaut`).
+     */
+    const gab = await chargerGabarit(couleur);
 
     /*
-     * L'étiquette trouvée est-elle PLAUSIBLE ? Sinon, on ne compose pas.
+     * Détection d'abord, compas ensuite. On ne renonce plus.
      *
-     * La détection se trompe sur les étiquettes en plusieurs morceaux — un logo
-     * sombre, un fond crème, un bandeau coloré — où elle ne retient parfois
-     * qu'une tranche. Composer ce fragment sur un gabarit donne une bouteille
-     * qui n'existe pas, avec un bout d'étiquette flottant au milieu : bien pire
-     * que la photo normalisée, qui est au moins vraie.
+     * `trouverEtiquette` lit le papier là où il tranche avec le verre, et c'est
+     * la bonne mesure quand elle marche : elle suit le vrai contour, haut comme
+     * large. Elle échoue sur trois familles connues — étiquette bicolore dont
+     * une moitié a la clarté du verre, bandeau diagonal d'un champagne,
+     * contre-étiquette plus contrastée que l'étiquette. Dans ces cas elle ne
+     * rend qu'une TRANCHE, et poser une tranche donne un bout de papier qui
+     * flotte au milieu du verre.
      *
-     * On refuse donc de composer hors de ces bornes, et l'appelant garde la
-     * bouteille détourée. Perdre la silhouette commune sur quelques bouteilles
-     * est un moindre mal comparé à afficher une étiquette tronquée.
+     * Avant, ces cas-là faisaient garder la photo réelle. L'étagère mélangeait
+     * alors bouteilles types et photos brutes, ce qui est précisément ce que la
+     * manœuvre voulait supprimer. On retombe donc sur la bande du gabarit :
+     * moins fine que la détection, mais toujours du papier, et toujours la même
+     * silhouette.
      */
-    const partHauteur = zone.h / img.height;
-    const partLargeur = zone.verre ? zone.w / Math.max(1, zone.verre.x1 - zone.verre.x0 + 1) : 1;
-    if (partHauteur < 0.12 || partHauteur > 0.52 || partLargeur < 0.45) return null;
+    const trouvee = trouverEtiquette(px);
+    const zone = trouvee && etiquettePlausible(trouvee, img.height)
+        ? trouvee
+        : zoneParDefaut(px, gab);
+    // Rien d'opaque du tout : l'image n'est pas une bouteille détourée.
+    if (!zone) return null;
 
     const l = Math.round(hauteur * CADRE_L / CADRE_H);
     const out = document.createElement('canvas');
@@ -772,7 +927,6 @@ export async function composerSurBouteilleType(
      * rayon du cylindre sur lequel réenrouler l'étiquette. Sinon on retombe sur
      * le verre dessiné, qui reste juste mais se voit en grand.
      */
-    const gab = await chargerGabarit(couleur);
     let cible: Rect;
 
     if (gab && gab.boite && isFinite(gab.haut) && isFinite(gab.bas)) {

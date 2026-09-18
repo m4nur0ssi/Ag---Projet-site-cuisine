@@ -1798,12 +1798,14 @@ const DETOURAGE_SUFFISANT = 0.75;
 async function visuelBouteille(scan: string, photoMarchand?: string, couleur?: WineColor): Promise<string> {
     /*
      * Une fois la bouteille détourée, on lui prend son ÉTIQUETTE et on la pose
-     * sur un verre dessiné, le même pour toutes les bouteilles d'une couleur
+     * sur une bouteille type, la même pour toutes les bouteilles d'une couleur
      * (voir `etiquette.ts`). C'est ce qui rend l'étagère vraiment régulière :
      * la normalisation seule aligne les tailles, pas les silhouettes.
      *
-     * La composition n'écrase rien : si l'étiquette n'est pas trouvée, on garde
-     * la bouteille normalisée, qui reste juste.
+     * Une LIQUEUR ne passe pas par là et c'est voulu : son flacon est ce qui
+     * l'identifie. `composerSurBouteilleType` renvoie `null` pour elle, et on
+     * garde la bouteille détourée — sa vraie forme, sa vraie étiquette, posée
+     * dans le même cadre et sur le même fond que toutes les autres.
      */
     const composer = async (n: { dataUrl: string } | null) => {
         if (!n) return '';
@@ -1822,14 +1824,22 @@ async function visuelBouteille(scan: string, photoMarchand?: string, couleur?: W
     }
 
     /*
-     * Aucune des deux n'a pu être détourée — typiquement un visuel marchand qui
-     * n'est pas un packshot mais un gros plan d'étiquette. On renvoie quand même
-     * la version MISE AU FORMAT plutôt que l'image d'origine : elle garde la
-     * taille de cadre et la ligne de pose communes, et la rangée reste alignée.
-     * Rendre le lien brut faisait ressortir une vignette hors de toute échelle,
-     * seule fiche bancale au milieu des autres.
+     * Aucune des deux n'a pu être détourée. L'ordre compte, et il était faux.
+     *
+     * On renvoyait d'abord TA photo non détourée — c'est-à-dire la bouteille au
+     * milieu de la cuisine, plan de travail compris. Le packshot du marchand,
+     * lui, est au moins une bouteille seule sur fond neutre. Entre les deux,
+     * c'est lui qui ressemble à une fiche de cave.
+     *
+     * Ta photo reste préférée partout où elle est EXPLOITABLE — c'est tout
+     * l'objet des deux essais ci-dessus, et c'est là que ton étiquette est la
+     * vraie. Ici on a échoué à l'isoler : la garder telle quelle n'apporte plus
+     * l'étiquette, seulement le décor.
+     *
+     * Dans les deux cas on renvoie la version MISE AU FORMAT : même cadre, même
+     * ligne de pose, la rangée reste alignée.
      */
-    return mienne?.dataUrl || sienne?.dataUrl || photoMarchand || '';
+    return sienne?.dataUrl || photoMarchand || mienne?.dataUrl || '';
 }
 
 function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = false }: { onClose: () => void; shelf?: WineShelf; straightToCamera?: boolean }) {
