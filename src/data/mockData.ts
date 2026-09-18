@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7851",
         "title": "Lentilles fondantes aux oignons caramélisés et burrata",
         "description": "Préparez des lentilles fondantes et parfumées, mijotées avec des oignons caramélisés et des épices, puis servies avec une burrata bien crémeuse. Une recette simple et délicieuse à essayer absolument !",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7851-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
