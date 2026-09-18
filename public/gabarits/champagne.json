@@ -1,0 +1,18 @@
+{
+ "cadre": [
+  460,
+  614
+ ],
+ "bouteille": {
+  "x": 158,
+  "y": 49,
+  "w": 144,
+  "h": 522
+ },
+ "etiquette": {
+  "haut": 0.56,
+  "bas": 0.88
+ },
+ "source": "/Users/manu/Downloads/champagne-mumm-cordon-rouge.jpg",
+ "note": "zone d etiquette posee a la main : la bande effacee couvrait tout le corps et ne dit pas ou une etiquette se pose"
+}

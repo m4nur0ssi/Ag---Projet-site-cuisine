@@ -1,0 +1,17 @@
+{
+ "cadre": [
+  460,
+  614
+ ],
+ "bouteille": {
+  "x": 155,
+  "y": 49,
+  "w": 150,
+  "h": 522
+ },
+ "etiquette": {
+  "haut": 0.7025,
+  "bas": 0.903
+ },
+ "source": "https://images.vivino.com/thumbs/6cD6an_qQ5m3v5aWDH1T4A_pb_x960.png"
+}

@@ -50,6 +50,29 @@ const nextConfig = {
     productionBrowserSourceMaps: false,
 
     /**
+     * Le détourage des bouteilles a besoin de ses binaires.
+     *
+     * `/api/decoupe-bouteille` fait tourner U²-Net sur le runtime WASM
+     * d'ONNX. Ces deux fichiers sont ouverts par un CHEMIN calculé à
+     * l'exécution (`path.join(process.cwd(), …)`) : l'analyse statique de Next
+     * ne peut pas les voir, et la fonction partait chez Vercel sans eux. Le
+     * modèle sortait alors une erreur « no such file » à la première photo,
+     * uniquement en production — le développement local lit le disque du
+     * projet et ne montre rien.
+     *
+     * On les déclare donc à la main. Pour mémoire : `onnxruntime-node` aurait
+     * évité ce détour, mais il pèse 301 Mo, au-dessus de la limite d'une
+     * fonction Vercel.
+     */
+    outputFileTracingIncludes: {
+        '/api/decoupe-bouteille': [
+            './public/modeles/u2netp.onnx',
+            './node_modules/onnxruntime-web/dist/*.wasm',
+            './node_modules/onnxruntime-web/dist/*.mjs',
+        ],
+    },
+
+    /**
      * Les recettes n'existent qu'en UN exemplaire dans le paquet livré.
      *
      * `src/data/mockData.ts` et `src/mobile/data/mockData.ts` sont écrits

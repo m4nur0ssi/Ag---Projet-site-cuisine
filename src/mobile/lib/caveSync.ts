@@ -30,16 +30,33 @@ const STAMP_KEY = 'ma-cave-sync-v1';   // date du dernier échange réussi ici
  * remplie sur le téléphone.
  */
 let pulled = false;
+
+/**
+ * Deux verrous, et non un seul — ils ne protègent pas la même chose.
+ *
+ * `pulled` garde l'ENVOI : tant qu'on n'a pas lu le nuage, rien ne monte. Il ne
+ * doit jamais s'ouvrir tout seul, sans quoi une cave d'exemple écraserait la
+ * vraie le jour où le réseau tombe au mauvais moment.
+ *
+ * `ready` garde l'AFFICHAGE : il dit à l'écran qu'il peut semer ses bouteilles
+ * d'exemple et rattraper les photos non détourées. Ces deux gestes restent
+ * LOCAUX. Les faire attendre un nuage qui ne répondra jamais — pas de compte,
+ * réseau coupé — laissait la cave vide et les photos d'origine en place sans
+ * que rien ne l'explique. Il s'ouvre donc aussi sur minuterie.
+ */
 let resolveReady: () => void;
 const ready = new Promise<void>((res) => { resolveReady = res; });
 
-/** Attend la première lecture du nuage (ou son abandon) avant d'écrire. */
+/** Attend la lecture du nuage, ou son abandon, avant de toucher à l'affichage. */
 export function whenCaveReady(): Promise<void> { return ready; }
+
+/** Ouvre le verrou d'AFFICHAGE seul. L'envoi reste fermé. */
+function laisserAfficher() { resolveReady(); }
 
 function markPulled() {
     if (pulled) return;
     pulled = true;
-    resolveReady();
+    laisserAfficher();
 }
 
 const readLocal = (): unknown[] => {
@@ -101,6 +118,29 @@ async function pushNow(): Promise<void> {
 export function startCaveSync(): void {
     if (started || typeof window === 'undefined') return;
     started = true;
+
+    /*
+     * Filet de sécurité sur le verrou de lecture.
+     *
+     * `pullCave` n'est appelé que depuis `onAuthStateChange`, et seulement quand
+     * une session existe. Sans compte connecté — ou avec le compte de façade du
+     * développement — l'événement n'apporte jamais de session : `markPulled`
+     * n'était donc jamais atteint et `whenCaveReady()` restait en attente POUR
+     * TOUJOURS.
+     *
+     * Ce qui attend derrière ce verrou, dans « Ma cave » : les bouteilles
+     * d'exemple d'un appareil neuf, et le rattrapage des photos non détourées.
+     * Les deux ne partaient tout simplement jamais hors connexion.
+     *
+     * Huit secondes : de quoi laisser une vraie session descendre du nuage et
+     * gagner la course.
+     *
+     * On ouvre le verrou d'AFFICHAGE, pas celui de l'envoi : le semis et le
+     * détourage sont des gestes locaux, alors qu'un envoi anticipé écraserait
+     * la cave du nuage. C'est `markPulled`, et lui seul, qui autorise à monter.
+     */
+    setTimeout(laisserAfficher, 8000);
+
     const schedule = () => {
         if (pushTimer) clearTimeout(pushTimer);
         pushTimer = setTimeout(() => { pushNow().catch(() => {}); }, 1500);

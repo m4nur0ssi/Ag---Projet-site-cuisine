@@ -1,0 +1,17 @@
+{
+ "cadre": [
+  460,
+  614
+ ],
+ "bouteille": {
+  "x": 155,
+  "y": 49,
+  "w": 150,
+  "h": 522
+ },
+ "etiquette": {
+  "haut": 0.7025,
+  "bas": 0.903
+ },
+ "source": "public/gabarits/blanc.webp — teinte décalée vers le saumon (hue -50, sat 0.45, lum 1.08)"
+}

@@ -1,0 +1,18 @@
+{
+ "cadre": [
+  460,
+  614
+ ],
+ "bouteille": {
+  "x": 160,
+  "y": 49,
+  "w": 141,
+  "h": 522
+ },
+ "etiquette": {
+  "haut": 0.54,
+  "bas": 0.9
+ },
+ "source": "/Users/manu/Downloads/1280x1280.jpg",
+ "note": "zone d etiquette posee a la main : la bande effacee couvrait tout le corps et ne dit pas ou une etiquette se pose"
+}

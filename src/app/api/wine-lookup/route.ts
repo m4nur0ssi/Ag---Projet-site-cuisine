@@ -49,15 +49,20 @@ const GROQ_VISION_MODELS = modeles(process.env.WINE_GROQ_VISION_MODEL, [
 
 type Wine = {
     name: string; grape: string; year: string;
-    color: 'rouge' | 'blanc' | 'rose' | 'liqueur';
+    color: 'rouge' | 'blanc' | 'rose' | 'liqueur' | 'champagne' | 'cidre' | 'cidre-rose';
     region: string; note: string;
     photo?: string; rating?: number; vivinoUrl?: string;
 };
 
 const SYSTEM = `Tu es un sommelier. Renvoie les caractéristiques d'un vin STRICTEMENT en JSON :
-{"readable":true,"name":"nom du domaine/cuvée","grape":"cépage principal","year":"millésime si visible sinon \\"\\"","color":"rouge|blanc|rose|liqueur","region":"appellation, région, pays","note":"une phrase courte: arômes/style"}
+{"readable":true,"name":"nom du domaine/cuvée","grape":"cépage principal","year":"millésime si visible sinon \\"\\"","color":"rouge|blanc|rose|liqueur|champagne|cidre|cidre-rose","region":"appellation, région, pays","note":"une phrase courte: arômes/style"}
 - "readable" : false si tu ne LIS pas réellement un nom sur une étiquette de vin (photo floue, sujet quelconque, texte illisible). Dans ce cas ne devine RIEN, mets false et laisse les autres champs vides. N'invente jamais un domaine plausible.
-- "color": "rouge", "blanc", "rose" ou "liqueur" (liquoreux/doux/porto/muscat).
+- "color" : ce qu'il y a dans la bouteille ET son format, car c'est ce qui détermine son affichage.
+  • "champagne" : champagne, crémant, prosecco, cava, mousseux — toute bouteille à bulles avec muselet.
+  • "cidre" et "cidre-rose" : cidre, poiré. "cidre-rose" seulement si l'étiquette annonce un rosé.
+  • "liqueur" : liquoreux, doux, porto, muscat.
+  • sinon "rouge", "blanc" ou "rose".
+  En cas de doute entre un blanc tranquille et un effervescent, regarde la capsule : un muselet ou une coiffe large signent un "champagne".
 - "year" : recopie le millésime IMPRIMÉ sur cette étiquette-ci, jamais celui d'une autre bouteille du même domaine. Vide si aucun chiffre d'année n'est lisible.
 - "name" : recopie le nom tel qu'il figure sur l'étiquette (domaine + cuvée), sans le mot "millésime" ni la contenance. C'est ce nom qui servira à retrouver la bouteille chez un marchand.
 - Ne laisse aucun champ vide sauf éventuellement l'année. Estime au plus plausible d'après l'appellation.
@@ -143,7 +148,16 @@ function toWine(raw: string, fallbackName: string): Wine {
     if (parsed.readable === false && !fallbackName) throw new Error('pas une étiquette de vin');
     const name = String(parsed.name || fallbackName || '').trim();
     if (!name || VAGUE.test(name)) throw new Error('étiquette illisible');
-    const color = ['rouge', 'blanc', 'rose', 'liqueur'].includes(parsed.color) ? parsed.color : 'rouge';
+    /*
+     * La liste blanche des couleurs doit suivre celle de la cave.
+     *
+     * Elle était restée aux quatre valeurs d'origine : un champagne ou un cidre
+     * correctement LU par le modèle retombait ensuite sur « rouge », et la fiche
+     * se retrouvait affichée sur une bordelaise. Le symptôme ne ressemblait pas
+     * à une erreur de lecture, ce qui a coûté du temps à trouver.
+     */
+    const COULEURS = ['rouge', 'blanc', 'rose', 'liqueur', 'champagne', 'cidre', 'cidre-rose'];
+    const color = COULEURS.includes(parsed.color) ? parsed.color : 'rouge';
     return {
         name,
         grape: parsed.grape || '',
@@ -171,7 +185,17 @@ function merge(read: Wine | null, v: BouteilleTrouvee): Wine {
         name,
         grape: v.grape || read?.grape || '',
         year,
-        color: v.color,
+        /*
+         * La couleur du MARCHAND ne fait foi que s'il en connaît une meilleure.
+         *
+         * Son catalogue ne range qu'en rouge/blanc/rosé/liquoreux : un champagne
+         * y est « blanc », un cidre n'y est pas du tout. Quand l'étiquette, elle,
+         * annonce un format que le marchand ignore, c'est la lecture qui gagne —
+         * c'est elle qui a vu le muselet.
+         */
+        color: read && !['rouge', 'blanc', 'rose', 'liqueur'].includes(read.color)
+            ? read.color
+            : v.color,
         region: v.region || read?.region || '',
         note: read?.note || v.note || '',
         photo: v.photo,
@@ -202,6 +226,20 @@ function query(w: Wine) {
  * apporte la bouteille que Vivino n'a pas).
  */
 async function locate(read: Wine): Promise<BouteilleTrouvee | null> {
+    /*
+     * Un cidre ne se cherche pas chez un marchand de VIN.
+     *
+     * Vivino et Viniou ne référencent que du vin. Leur soumettre « Écusson Le
+     * Normand » ne renvoie pas « rien », mais le vin le moins éloigné qu'ils
+     * connaissent : le scan d'un cidre normand ressortait sous le nom
+     * « Normandin Le Classique Bordeaux ». Un résultat faux est bien pire qu'une
+     * absence de résultat — il remplace un nom correctement lu sur l'étiquette.
+     *
+     * On garde donc la lecture telle quelle. Le champagne, lui, reste cherché :
+     * les catalogues le connaissent, et la note des dégustateurs a du sens.
+     */
+    if (read.color === 'cidre' || read.color === 'cidre-rose') return null;
+
     const avecRegion = `${read.name} ${read.region}`.trim();
     const pistes = await Promise.all([
         findOnVivino(query(read), read.year),

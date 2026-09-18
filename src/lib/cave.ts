@@ -5,7 +5,19 @@
 // seule la bouteille change.
 
 import { ecrireStock } from '@/lib/stockage';
-export type WineColor = 'rouge' | 'blanc' | 'rose' | 'liqueur';
+/**
+ * Ce qu'il y a dans la bouteille — et, accessoirement, la forme de celle-ci.
+ *
+ * Le nom dit « couleur » parce que c'est ainsi qu'on trie un vin, mais la
+ * liste mélange en réalité deux choses : la robe (rouge, blanc, rosé) et le
+ * TYPE de bouteille (champagne, cidre). C'est assumé : une cave se range par
+ * ce qu'on va boire, pas par une taxonomie. Et ce sont précisément ces valeurs
+ * qui choisissent le gabarit de bouteille — un champagne n'a ni l'épaule ni le
+ * goulot d'une bordelaise, un cidre encore moins.
+ */
+export type WineColor =
+    | 'rouge' | 'blanc' | 'rose' | 'liqueur'
+    | 'champagne' | 'cidre' | 'cidre-rose';
 
 export interface CaveWine {
     id: string;
@@ -30,6 +42,17 @@ export interface CaveWine {
      *     restaurant) et ceux dont la dernière bouteille vient d'être ouverte.
      */
     shelf?: WineShelf;
+    /**
+     * Version du VISUEL déjà appliqué à cette bouteille.
+     *
+     * Le traitement de l'image — détourage, redressement, report de l'étiquette
+     * sur une bouteille type — évolue. Sans repère, impossible de savoir si une
+     * fiche a déjà reçu le traitement courant : on la retouchait à chaque
+     * ouverture, ou jamais. Ce numéro est comparé à `VISUEL_VERSION` côté écran,
+     * et il suffit de l'incrémenter pour que toute la cave se remette à jour
+     * d'elle-même, une bouteille à la fois.
+     */
+    visuelV?: number;
     addedAt: number;
 }
 
@@ -63,7 +86,12 @@ export function drinkRange(wine: CaveWine): DrinkRange | null {
     if (!y || y < 1900) return null;
     const span = wine.color === 'rouge' ? [3, 15]
         : wine.color === 'blanc' ? [1, 6]
-        : wine.color === 'rose' ? [1, 3]   // un rosé se boit jeune
+        : wine.color === 'rose' ? [1, 3]        // un rosé se boit jeune
+        // Un champagne non millésimé se boit dans les trois ans ; un millésimé
+        // tient dix ans et gagne à attendre. La fourchette couvre les deux.
+        : wine.color === 'champagne' ? [1, 10]
+        // Un cidre est un produit frais : il ne se garde pas, il se boit.
+        : wine.color === 'cidre' || wine.color === 'cidre-rose' ? [0, 2]
         : [5, 30];
     const from = y + span[0], to = y + span[1];
     const now = new Date().getFullYear();
@@ -191,6 +219,9 @@ function wineHaystack(w: CaveWine): string {
         blanc: 'blanc blancs',
         rose: 'rose roses rosé rosés',
         liqueur: 'liqueur liqueurs doux liquoreux',
+        champagne: 'champagne champagnes bulles pétillant effervescent crémant',
+        cidre: 'cidre cidres brut doux pomme',
+        'cidre-rose': 'cidre rosé cidres rosés pomme',
     };
     const etagere = shelfOf(w) === 'tasted' ? 'dégusté degustes goûté goutes bu bue' : 'cave stock';
     return wineNorm(`${w.name} ${w.region} ${w.grape} ${w.year} ${couleur[w.color]} ${etagere} ${w.note || ''}`);
@@ -314,6 +345,7 @@ export function caveMatchForRecipe(
 
 const COLOR_WORD: Record<WineColor, string> = {
     rouge: 'Un rouge', blanc: 'Un blanc', rose: 'Un rosé', liqueur: 'Une liqueur',
+    champagne: 'Un champagne', cidre: 'Un cidre', 'cidre-rose': 'Un cidre rosé',
 };
 
 /**
