@@ -2,11 +2,396 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/09/2026 07:41:35
- * Total: 733 recettes
+ * Dernière mise à jour: 19/09/2026 08:29:06
+ * Total: 739 recettes
  */
-export const exportSyncId = "1789803695039";
+export const exportSyncId = "1789806546917";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7866",
+        "title": "Croquettes au chorizo",
+        "description": "Préparez de délicieuses croquettes au chorizo, parfaites pour un apéritif dînatoire ou à déguster avec une salade. Faciles et rapides à réaliser, elles sont un vrai régal !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7527309218236452118\" data-video-id=\"7527309218236452118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7527309218236452118\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             100g de gruyère râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             100g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Commencez par mixer le gruyère avec le chorizo.",
+            "Ajoutez la ciboulette et les deux œufs.",
+            "Mélangez le tout.",
+            "Si la texture ne convient pas, ajoutez deux cuillères à soupe de farine et mélangez jusqu'à obtenir une texture parfaite.",
+            "Formez les croquettes.",
+            "Disposez les croquettes sur une plaque allant au four recouverte de papier cuisson.",
+            "Enfournez pendant 20 minutes à 180°C."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Espagne"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7864",
+        "title": "Assiette de chips de riz et tartare de truite",
+        "description": "Découvrez une manière originale et croustillante de déguster votre tartare de truite préféré. Cette recette propose de frire une feuille de riz avec un jaune d'œuf pour créer une coupelle comestible, parfaite pour accueillir un tartare frais et sa...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7603041144385080598\" data-video-id=\"7603041144385080598\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7603041144385080598\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             Feuilles de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Jaunes d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Filet de truite fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Kiwi gold"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste de citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nuoc mam"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sésame noir et doré"
+            }
+        ],
+        "steps": [
+            "Préparez le filet de truite : retirez la peau et les arêtes, puis taillez-le en longues bandes avant de le couper en gros cubes.",
+            "Ciselez grossièrement une échalote.",
+            "Préparez un kiwi gold en le coupant en petits dés.",
+            "Hachez finement une belle botte de coriandre fraîche.",
+            "Dans un grand bol, mélangez les cubes de truite, l'échalote ciselée, les dés de kiwi, la coriandre hachée, le zeste de citron vert, l'huile de sésame, la sauce soja et le nuoc mam.",
+            "Assaisonnez avec quelques tours de moulin à poivre et mélangez délicatement. Réservez le tartare au frais.",
+            "Dans une poêle ou une friteuse, faites chauffer de l'huile de friture à 180 degrés Celsius.",
+            "Déposez délicatement un jaune d'œuf au centre d'une feuille de riz.",
+            "Plongez la feuille de riz avec le jaune d'œuf dans l'huile chaude et faites-la frire jusqu'à ce qu'elle devienne croustillante et dorée, formant une coupelle.",
+            "Égouttez la coupelle croustillante sur du papier absorbant et salez-la légèrement.",
+            "Garnissez la coupelle de feuille de riz frite avec le tartare de truite préparé.",
+            "Saupoudrez de sésame noir et doré pour la décoration et la saveur.",
+            "Servez immédiatement et dégustez en cassant des morceaux de la coupelle croustillante."
+        ],
+        "tags": [
+            "Asie",
+            "Healthy",
+            "Poissons et crustacés",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7862",
+        "title": "Bouchées de concombre au saumon fumé",
+        "description": "Ces bouchées de concombre au saumon fumé sont une collation ou un apéritif facile et rapide à préparer. Sans cuisson, il suffit de les assembler. Elles sont prêtes en un rien de temps, ce qui en fait une excellente option à servir lors d'une fête ...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7318080121016044842\" data-video-id=\"7318080121016044842\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7318080121016044842\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre anglais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             180 ml de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             115 g de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             assaisonnement pour bagel 'everything'"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             aneth (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             jus de citron frais"
+            }
+        ],
+        "steps": [
+            "Coupez le concombre anglais en tranches d'environ 0,6 cm d'épaisseur, pour obtenir environ 20 à 24 tranches.",
+            "Épongez les tranches avec une serviette en papier pour retirer l'excès d'humidité.",
+            "Étalez environ 1 cuillère à café de fromage frais sur chaque tranche de concombre à l'aide d'un couteau ou d'une cuillère, puis recouvrez d'un morceau de saumon fumé. Répétez l'opération pour toutes les tranches de concombre.",
+            "Saupoudrez d'assaisonnement pour bagel 'everything' et ajoutez un brin d'aneth sur le dessus.",
+            "Ajoutez une pincée de sel, pressez du jus de citron frais par-dessus, et dégustez !"
+        ],
+        "tags": [
+            "Apéritifs",
+            "C'est l'hiver",
+            "Healthy",
+            "Noël",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7860",
+        "title": "Billes de Beaufort AOP extra croustillantes",
+        "description": "Découvrez comment réaliser facilement des billes de Beaufort AOP extra croustillantes pour l'apéritif, avec seulement quelques ingrédients. Une recette simple et originale qui surprendra vos invités.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7608991848706723094\" data-video-id=\"7608991848706723094\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7608991848706723094\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de Beaufort AOP râpé très finement"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 blancs d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment"
+            }
+        ],
+        "steps": [
+            "Râpez très finement le Beaufort AOP.",
+            "Dans un bol, mélangez le Beaufort râpé avec les blancs d'œufs et un tour de moulin à poivre jusqu'à obtenir une pâte homogène.",
+            "Formez des petites billes à la main.",
+            "Faites chauffer l'huile de friture. Plongez les billes dans l'huile bien chaude et faites-les frire jusqu'à ce qu'elles soient bien dorées de tous les côtés. Il est important d'attendre qu'elles soient bien cuites avant de les sortir pour qu'elles ne dégonflent pas et restent rondes.",
+            "Égouttez les billes sur du papier absorbant ou sur une grille.",
+            "Ajoutez un filet de miel fumé et quelques flocons de piment. Servez chaud."
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7858",
+        "title": "Œufs mimosa frits croustillants à la crème de curry, bacon et cresson",
+        "description": "Une nouvelle version des populaires œufs mimosa frits. Les jaunes d'œufs durs sont mélangés avec du fromage frais, du curry et de la moutarde, et les blancs d'œufs sont frits. C'est une entrée parfaite pour Pâques.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624451601821895958\" data-video-id=\"7624451601821895958\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624451601821895958\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs durs"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curry"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Blancs d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cresson"
+            }
+        ],
+        "steps": [
+            "Faire bouillir les œufs.",
+            "Séparer les jaunes des blancs d'œufs.",
+            "Mélanger les jaunes d'œufs avec du fromage frais, du curry et de la moutarde.",
+            "Faire frire les blancs d'œufs.",
+            "Servir les œufs mimosa frits garnis de crème de curry, de bacon et de cresson."
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "Pâques",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7856",
+        "title": "Apéritif croustillant de tortillas de Noël",
+        "description": "Découvrez une recette facile et rapide pour un apéritif de Noël gourmand et croustillant. Des cercles de tortillas sont badigeonnés de beurre à l'ail et persil, garnis de cheddar, puis cuits au four. Une fois refroidis, ils sont recouverts de from...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7450180293014686998\" data-video-id=\"7450180293014686998\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7450180293014686998\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             3 tortillas"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             15g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             20g de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30g de cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             40g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             25g de bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             20g de pistaches"
+            }
+        ],
+        "steps": [
+            "Découpez des petits cercles dans les tortillas (environ 12 cercles).",
+            "Faites fondre le beurre. Émincez la gousse d'ail et ciselez une partie du persil.",
+            "Mélangez le beurre fondu avec l'ail émincé et le persil ciselé.",
+            "Badigeonnez les petits cercles de tortilla avec ce mélange.",
+            "Recouvrez chaque cercle de tortilla d'un peu de cheddar râpé.",
+            "Superposez les cercles deux par deux.",
+            "Enfournez pour 10 minutes à 200°C.",
+            "À la sortie du four, laissez les galettes refroidir légèrement.",
+            "Étalez du fromage frais sur le dessus de chaque galette croustillante.",
+            "Dans une assiette, mélangez le bacon grillé et mixé, les pistaches mixées et le reste du persil ciselé.",
+            "Recouvrez chaque galette avec ce mélange."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7851",
         "title": "Lentilles fondantes aux oignons caramélisés et burrata",
