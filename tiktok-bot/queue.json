@@ -1,36 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQHbaAp/",
-      "country": "Apéritifs",
-      "timestamp": "2026-09-19T08:08:44.164Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQHpjx8/",
-      "country": "Apéritifs",
-      "timestamp": "2026-09-19T08:09:16.138Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQHW7Ta/",
-      "country": "Apéritifs",
-      "timestamp": "2026-09-19T08:10:48.968Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQHpuQW/",
-      "country": "Apéritifs",
-      "timestamp": "2026-09-19T08:11:10.073Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQHXYk2/",
-      "country": "Poissons et crustacés",
-      "timestamp": "2026-09-19T08:12:16.857Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQHGsrQ/",
-      "country": "Apéritifs",
-      "timestamp": "2026-09-19T08:12:43.954Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN8FcaP8F/",
