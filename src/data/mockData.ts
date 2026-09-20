@@ -2,11 +2,104 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/09/2026 14:22:18
- * Total: 741 recettes
+ * Dernière mise à jour: 20/09/2026 21:23:02
+ * Total: 742 recettes
  */
-export const exportSyncId = "1789914138491";
+export const exportSyncId = "1789939382487";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7872",
+        "title": "Beurres Maison Aromatisés",
+        "description": "Découvrez comment préparer facilement trois délicieux beurres maison : citronné, tomate-piment et aux herbes. Parfaits pour accompagner du pain chaud, des légumes rôtis ou des pâtes, ces beurres sont simples à réaliser et peuvent être conservés au...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7687543202101906721\" data-video-id=\"7687543202101906721\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7687543202101906721\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 L de crème liquide entière à minimum 30 % de matière grasse"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Une pincée de sel (pour le beurre citronné)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 cuillère à soupe de concentré de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 petite gousse d'ail (pour le beurre tomate-piment)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Une pincée de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Une pincée de sel (pour le beurre tomate-piment)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 petite gousse d'ail (pour le beurre aux herbes)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            }
+        ],
+        "steps": [
+            "Versez la crème liquide entière (minimum 30% de matière grasse) dans un grand saladier.",
+            "Fouettez la crème énergiquement jusqu'à ce qu'elle tranche, séparant ainsi le beurre du petit-lait.",
+            "Récupérez le beurre et pressez-le avec des mains propres pour en retirer un maximum de petit-lait.",
+            "Passez rapidement le beurre dans un torchon propre, puis rincez-le dans de l'eau glacée.",
+            "Divisez ensuite le beurre en trois portions égales.",
+            "Pour la première portion (beurre citronné), ajoutez du zeste de citron, du jus de citron et une pincée de sel. Mélangez bien.",
+            "Pour la deuxième portion (beurre tomate-piment), faites chauffer pendant environ deux minutes le concentré de tomates avec une petite gousse d'ail, du piment, du sel et un filet d'huile d'olive. Laissez légèrement tiédir le mélange avant de l'incorporer au beurre. Mélangez bien.",
+            "Pour la dernière portion (beurre aux herbes), ajoutez une petite gousse d'ail, de l'aneth, du persil, du thym et de la fleur de sel. Mélangez bien.",
+            "Façonnez les beurres aromatisés comme vous le souhaitez (par exemple, dans des moules à cannelés ou du papier cuisson). Tassez bien si vous utilisez des moules.",
+            "Placez les beurres au congélateur pendant environ 20 minutes pour faciliter le démoulage.",
+            "Démoulez délicatement et servez.",
+            "Conservez les beurres au réfrigérateur pendant 3 à 4 jours, ou congelez-les pour une conservation plus longue (plusieurs mois)."
+        ],
+        "tags": [
+            "Astuces",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7870",
         "title": "Jacket Potatoes au yaourt et saumon",
