@@ -2,11 +2,126 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/09/2026 21:23:02
- * Total: 742 recettes
+ * Dernière mise à jour: 20/09/2026 21:34:55
+ * Total: 743 recettes
  */
-export const exportSyncId = "1789939382487";
+export const exportSyncId = "1789940095135";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7874",
+        "title": "Cookies Millionaire",
+        "description": "Cette recette vous guide pas à pas pour réaliser de délicieux Cookies Millionaire, composés d'une base de cookie moelleuse, d'une couche de caramel onctueux et d'un glaçage au chocolat croquant.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7687625353149418785\" data-video-id=\"7687625353149418785\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7687625353149418785\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             120 g de beurre doux ramolli"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             180 g de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20 g de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cuillère à café de bicarbonate de soude"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             150 g de pépites de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             397 g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre doux"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50 g de miel ou de sirop de glucose"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 g de chocolat au lait ou noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             15 g d'huile neutre ou de beurre de cacao"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 170°C.",
+            "Crémer le beurre ramolli avec la cassonade et le sucre en poudre.",
+            "Ajouter l'œuf et l'extrait de vanille, puis mélanger.",
+            "Ajouter la farine, la fécule de maïs, le bicarbonate de soude et le sel.",
+            "Incorporer les pépites de chocolat.",
+            "Étaler la pâte dans un moule carré de 20 × 20 cm tapissé de papier sulfurisé.",
+            "Presser et lisser la surface.",
+            "Cuire au four pendant 18 à 22 minutes. Les bords doivent être légèrement dorés tandis que le centre reste moelleux.",
+            "Laisser refroidir complètement.",
+            "Faire fondre le beurre avec la cassonade et le miel dans une casserole.",
+            "Une fois le sucre dissous, ajouter le lait concentré sucré.",
+            "Cuire à feu moyen-doux, en remuant constamment avec une spatule.",
+            "Continuer la cuisson pendant environ 8 à 12 minutes, jusqu'à ce que le caramel soit épais et doré.",
+            "Ajouter l'extrait de vanille et la fleur de sel.",
+            "Verser immédiatement sur la base de cookie refroidie.",
+            "Lisser la surface et réfrigérer pendant 1 à 2 heures.",
+            "Faire fondre le chocolat.",
+            "Ajouter l'huile ou le beurre de cacao et mélanger.",
+            "Verser sur le caramel refroidi.",
+            "Lisser avec une spatule.",
+            "Réfrigérer pendant environ 30 minutes, jusqu'à ce que le chocolat soit pris."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7872",
         "title": "Beurres Maison Aromatisés",
