@@ -2,11 +2,111 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/09/2026 11:55:26
- * Total: 740 recettes
+ * Dernière mise à jour: 20/09/2026 14:22:18
+ * Total: 741 recettes
  */
-export const exportSyncId = "1789905326732";
+export const exportSyncId = "1789914138491";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7870",
+        "title": "Jacket Potatoes au yaourt et saumon",
+        "description": "Découvrez une recette simple, équilibrée et gourmande de Jacket Potatoes (pommes de terre au four) garnies d'une sauce crémeuse au yaourt et de saumon fumé. Une préparation facile et rapide, idéale pour un repas complet.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7612213107338792214\" data-video-id=\"7612213107338792214\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7612213107338792214\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre (2 à 3 moyennes par personne, type Charlotte)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive (3 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Épices au choix"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Yaourt à la grecque (1 pot)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage à tartiner (2 cuillères à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde (1 cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates séchées (3 à 4, coupées en dés)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Saumon fumé (4 tranches, ou autre garniture au choix comme blanc de poulet, blanc de dinde, œufs brouillés, pois chiches grillés, tofu, maquereau)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon nouveau (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix concassées (quelques-unes, facultatif)"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 200°C.",
+            "Mélangez les pommes de terre avec l'huile d'olive, le sel, le poivre, les herbes de Provence, l'origan et les épices de votre choix.",
+            "Enfournez les pommes de terre pour environ 35 minutes à 200°C. Si vous les préférez plus fondantes, prolongez la cuisson jusqu'à 45 minutes.",
+            "Pendant ce temps, préparez la sauce au yaourt : dans un bol, mélangez le yaourt à la grecque, le fromage à tartiner, la moutarde, les tomates séchées coupées en dés, la ciboulette, la menthe, le sel et le poivre.",
+            "À la sortie du four, découpez chaque pomme de terre en croix, sans aller trop profondément.",
+            "Écrasez légèrement la chair à l'intérieur de chaque pomme de terre à l'aide d'une fourchette.",
+            "Garnissez généreusement les pommes de terre avec la sauce au yaourt, les tranches de saumon fumé et, si désiré, de l'oignon nouveau, de l'aneth, de la ciboulette fraîche ou quelques noix concassées.",
+            "Servez ces Jacket Potatoes chaudes, accompagnées d'une salade verte ou de crudités pour un repas complet et équilibré."
+        ],
+        "tags": [
+            "Healthy",
+            "Poissons et crustacés",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7868",
         "title": "Pâtes au Mont d'Or et saucisse de Montbéliard",
