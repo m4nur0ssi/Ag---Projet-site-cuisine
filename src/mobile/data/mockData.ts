@@ -2,11 +2,82 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/09/2026 08:03:03
- * Total: 739 recettes
+ * Dernière mise à jour: 20/09/2026 11:55:26
+ * Total: 740 recettes
  */
-export const exportSyncId = "1789891383535";
+export const exportSyncId = "1789905326732";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7868",
+        "title": "Pâtes au Mont d'Or et saucisse de Montbéliard",
+        "description": "Un plat ultra réconfortant avec du bon fromage, de la saucisse de Montbéliard et une sauce bien crémeuse au vin blanc du Jura !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7687233833816608033\" data-video-id=\"7687233833816608033\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7687233833816608033\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             250 g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 saucisses de Montbéliard"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Mont d'Or"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Vin blanc du Jura"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            }
+        ],
+        "steps": [
+            "Faites revenir les petits cubes de saucisses de Montbéliard.",
+            "Ajoutez les oignons et l'ail.",
+            "Déglacez avec du vin blanc du Jura.",
+            "Récupérez tous les sucs en grattant le fond de la poêle.",
+            "Laissez réduire quasiment à sec.",
+            "Ajoutez de la crème.",
+            "Ajoutez les cubes de Mont d'Or.",
+            "Laissez-les fondre tranquillement sur feu doux jusqu'à obtenir une sauce bien crémeuse.",
+            "Assaisonnez avec du poivre (le sel n'est pas nécessaire en raison de la saucisse et du fromage).",
+            "Terminez la cuisson des pâtes directement dans la sauce.",
+            "Ajoutez un peu de persil frais."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7866",
         "title": "Croquettes au chorizo",
