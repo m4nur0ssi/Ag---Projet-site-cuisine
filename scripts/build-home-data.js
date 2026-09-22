@@ -219,3 +219,57 @@ export const detailById: Record<string, { steps: string[]; ingredients: Ingredie
 console.log(`home-details.ts — ${(octets(details) / 1024).toFixed(0)} ko d'étapes et d'ingrédients sortis du chargement initial`);
 console.log(`home-videos.ts  — ${Object.keys(videos).length} embeds, `
     + `${(octets(videos) / 1024).toFixed(0)} ko sortis du chargement initial`);
+
+/*
+ * Suggestions d'ingrédients pour la liste de courses.
+ * ===================================================
+ *
+ * Quand on tape « cr » dans « Ajouter un ingrédient », la liste propose
+ * « crème fraîche », « crème liquide »… Ce vocabulaire sort du catalogue
+ * lui-même : chaque ingrédient de chaque recette, ramené à sa forme canonique
+ * (mêmes règles que la liste fusionnée, pour que « crème fraîche » ajoutée à la
+ * main se range avec celle des recettes), trié par fréquence. On garde, pour
+ * l'affichage, la graphie la plus courante — avec ses accents.
+ *
+ * Quelques centaines de mots : quelques ko, là où charger le catalogue pour les
+ * retrouver coûterait 1,5 Mo.
+ */
+{
+    const SUGG = path.join(RACINE, 'src/lib/ingredient-suggestions.ts');
+    const I = chargerTS(path.join(RACINE, 'src/lib/ingredients.ts'));
+    const compte = new Map();   // canonique → occurrences
+    const graphies = new Map(); // canonique → (graphie → occurrences)
+    for (const r of lireRecettes()) {
+        for (const ing of r.ingredients || []) {
+            const raw = `${ing.quantity || ''} ${ing.name || ''}`.trim();
+            for (const piece of I.expandIngredientLines(raw)) {
+                const p = I.parseIngredient(piece);
+                const canon = (I.canonicalIng(p.name, p.unit, piece).name || '').trim();
+                const aff = (p.name || '')
+                    .replace(/\([^)]*\)/g, '')
+                    .replace(/[^\p{L}\p{N}'’\- %]/gu, ' ')
+                    .replace(/\s+/g, ' ').trim().toLowerCase()
+                    .replace(/^(de |d'|d’|du |des )/, '');
+                if (!canon || !aff || aff.length < 3 || aff.length > 36) continue;
+                compte.set(canon, (compte.get(canon) || 0) + 1);
+                const g = graphies.get(canon) || new Map();
+                g.set(aff, (g.get(aff) || 0) + 1);
+                graphies.set(canon, g);
+            }
+        }
+    }
+    const mots = [...compte]
+        .filter(([c, n]) => n >= 2 && c.split(' ').length <= 4
+            && !/\d|detaill|video|pour |ingredient|facultatif|au gout|filet d|^eau$|^viande$/.test(c))
+        .sort((a, b) => b[1] - a[1])
+        .map(([c]) => [...graphies.get(c)].sort((a, b) => b[1] - a[1])[0][0]);
+    const uniques = [...new Set(mots)];
+    fs.writeFileSync(SUGG, `/**
+ * FICHIER GÉNÉRÉ — ne pas modifier à la main.
+ * Produit par \`scripts/build-home-data.js\` : les ingrédients du catalogue,
+ * du plus fréquent au plus rare. Lu par \`src/lib/suggestionsCourses.ts\`.
+ */
+export const INGREDIENTS_CATALOGUE: string[] = ${JSON.stringify(uniques)};
+`);
+    console.log(`ingredient-suggestions.ts — ${uniques.length} ingrédients proposables à la saisie`);
+}

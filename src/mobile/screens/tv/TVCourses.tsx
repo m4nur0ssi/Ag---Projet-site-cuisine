@@ -37,6 +37,7 @@ import Tip from '@/components/Tip/Tip';
 import SwipeRow from '@/mobile/components/SwipeRow/SwipeRow';
 import TVToast from './TVToast';
 import { ecrireStock } from '@/lib/stockage';
+import { suggerer, memoriserAjout } from '@/lib/suggestionsCourses';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import { usePreferredStore, storeSearchWithQueue } from '@/lib/stores';
 import { onStoreItemDone, isStoreExtensionActive, obstacleAssistant } from '@/lib/storeFeedback';
@@ -172,6 +173,11 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     // Mode « Par recette » : cases cochées, clé `day|meal|rIdx|idx`.
     const [adding, setAdding] = useState(false);
     const [name, setName] = useState('');
+    // Propositions à la saisie (dès 2 lettres) + ligne surlignée au clavier.
+    const [saisieActive, setSaisieActive] = useState(false);
+    const [surligne, setSurligne] = useState(-1);
+    const propositions = useMemo(() => (saisieActive ? suggerer(name) : []), [name, saisieActive]);
+    useEffect(() => { setSurligne(-1); }, [name]);
     const [qty, setQty] = useState('');
 
     // ── Lecture : même sources que la liste du site ────────────────────────
@@ -402,10 +408,11 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     }, []);
 
     /** Ajout libre : ce qui manque et qu'aucune recette ne prévoit. */
-    const addManual = () => {
-        const n = name.trim();
+    const addManual = (choisi?: string) => {
+        const n = (choisi ?? name).trim();
         if (!n) return;
         haptic(10);
+        memoriserAjout(n);
         const raw = `${qty.trim() || '1'} ${n}`;
         const next: ListData = { ...list };
         const entry = next.manuel
@@ -713,6 +720,41 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         if (!isStoreExtensionActive()) barrer(cibles[0]);
     };
 
+    /** Clavier dans le champ d'ajout : ↑/↓ parcourent les propositions, Entrée valide. */
+    const clavierSaisie = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'ArrowDown' && propositions.length) {
+            e.preventDefault(); setSurligne((i) => (i + 1) % propositions.length);
+        } else if (e.key === 'ArrowUp' && propositions.length) {
+            e.preventDefault(); setSurligne((i) => (i <= 0 ? propositions.length - 1 : i - 1));
+        } else if (e.key === 'Escape') {
+            setSaisieActive(false);
+        } else if (e.key === 'Enter') {
+            addManual(surligne >= 0 ? propositions[surligne] : undefined);
+        }
+    };
+
+    /* Propositions sous le champ : toucher une ligne l'ajoute directement
+       (avec la quantité déjà saisie, sinon 1). `onMouseDown` + preventDefault :
+       le champ garde le focus, le clic n'est pas perdu dans le blur. */
+    const listePropositions = propositions.length > 0 && (
+        <ul className={styles.courseSugg} role="listbox">
+            {propositions.map((p, i) => (
+                <li key={p} role="option" aria-selected={i === surligne}>
+                    <button
+                        type="button"
+                        className={`${styles.courseSuggItem} ${i === surligne ? styles.courseSuggOn : ''}`}
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={() => addManual(p)}
+                    >
+                        <span className={styles.courseSuggIcon}>{getIngIcon(p)}</span>
+                        <span className={styles.courseSuggNom}>{p}</span>
+                        <span className={styles.courseSuggPlus}>+</span>
+                    </button>
+                </li>
+            ))}
+        </ul>
+    );
+
     return (
         <div className={`${styles.page} ${embedded ? styles.embedded : ''}`}>
             <header className={styles.planHead}>
@@ -775,18 +817,26 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                             inputMode="text"
                             aria-label="Quantité"
                         />
-                        <input
-                            className={styles.courseAddInput}
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            onKeyDown={(e) => { if (e.key === 'Enter') addManual(); }}
-                            placeholder="Ajouter un ingrédient ou autre…"
-                            enterKeyHint="done"
-                            aria-label="Article à ajouter"
-                        />
+                        <div className={styles.courseAddChamp}>
+                            <input
+                                className={styles.courseAddInput}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                onKeyDown={clavierSaisie}
+                                onFocus={() => setSaisieActive(true)}
+                                onBlur={() => setTimeout(() => setSaisieActive(false), 150)}
+                                placeholder="Ajouter un ingrédient ou autre…"
+                                enterKeyHint="done"
+                                aria-label="Article à ajouter"
+                                autoComplete="off"
+                                role="combobox"
+                                aria-expanded={propositions.length > 0}
+                            />
+                            {!adding && listePropositions}
+                        </div>
                         <button
                             className={styles.courseAddPlus}
-                            onClick={addManual}
+                            onClick={() => addManual()}
                             disabled={!name.trim()}
                             aria-label="Ajouter à la liste"
                         >
@@ -1137,16 +1187,22 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                     placeholder="2"
                                     inputMode="text"
                                 />
-                                <input
-                                    className={styles.courseInput}
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    onKeyDown={(e) => { if (e.key === 'Enter') addManual(); }}
-                                    placeholder="Baguettes"
-                                    autoFocus
-                                />
+                                <div className={styles.courseAddChamp}>
+                                    <input
+                                        className={styles.courseInput}
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        onKeyDown={clavierSaisie}
+                                        onFocus={() => setSaisieActive(true)}
+                                        onBlur={() => setTimeout(() => setSaisieActive(false), 150)}
+                                        placeholder="Baguettes"
+                                        autoComplete="off"
+                                        autoFocus
+                                    />
+                                    {adding && listePropositions}
+                                </div>
                             </div>
-                            <button className={styles.courseAddBtn} onClick={addManual}>Ajouter à la liste</button>
+                            <button className={styles.courseAddBtn} onClick={() => addManual()}>Ajouter à la liste</button>
                         </motion.div>
                     </motion.div>
                 )}
