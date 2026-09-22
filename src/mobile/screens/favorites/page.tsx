@@ -150,6 +150,7 @@ export default function FavoritesPage({ embedded = false }: { embedded?: boolean
                 {/* Même en-tête partout (encastré ou plein écran) : gros titre,
                     sous-titre en dessous — le moule commun aux panneaux TV+. */}
                 <div>
+                    <div className={styles.kickerMob}>Mes préférés</div>
                     <h1 className={styles.title}>Favoris</h1>
                     <p className={styles.sub}>Mes préférés</p>
                 </div>

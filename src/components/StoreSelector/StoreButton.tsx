@@ -6,7 +6,9 @@ import styles from './StoreButton.module.css';
 
 // Bouton magasin fusionné : [logo + nom] lance les courses, [▾] ouvre le menu
 // pour changer d'enseigne (Carrefour / Picard / Monoprix / Franprix).
-export default function StoreButton({ onLaunch, compact = false }: { onLaunch: () => void; compact?: boolean }) {
+// `dropDown` : menu ouvert VERS LE BAS (bouton posé en haut de page) ; par défaut
+// il s'ouvre vers le haut (barres flottantes en bas d'écran).
+export default function StoreButton({ onLaunch, compact = false, dropDown = false }: { onLaunch: () => void; compact?: boolean; dropDown?: boolean }) {
     const [store, setStore] = usePreferredStore();
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -37,7 +39,7 @@ export default function StoreButton({ onLaunch, compact = false }: { onLaunch: (
             </div>
 
             {open && (
-                <div className={styles.menu} role="listbox">
+                <div className={`${styles.menu} ${dropDown ? styles.menuDown : ''}`} role="listbox">
                     {STORES.map(s => (
                         <button
                             key={s.id}

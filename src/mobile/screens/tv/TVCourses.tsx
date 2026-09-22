@@ -14,13 +14,13 @@
  *   • Jour    — un jour par écran, les ingrédients repas par repas.
  */
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import {
     buildConsolidatedItems, doneKeysOf, isItemDone, fmtQty, prettyQtyUnit,
-    canonicalIng,
+    canonicalIng, carrefourTerm,
     parseIngredient, cleanIngredientText, getIngIcon,
     type ConsolItem,
 } from '@/mobile/lib/ingredients';
@@ -37,6 +37,9 @@ import Tip from '@/components/Tip/Tip';
 import SwipeRow from '@/mobile/components/SwipeRow/SwipeRow';
 import TVToast from './TVToast';
 import { ecrireStock } from '@/lib/stockage';
+import StoreButton from '@/components/StoreSelector/StoreButton';
+import { usePreferredStore, storeSearchWithQueue } from '@/lib/stores';
+import { onStoreItemDone, isStoreExtensionActive, obstacleAssistant } from '@/lib/storeFeedback';
 
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as const;
@@ -668,6 +671,48 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         );
     }, [items, done, plan, dayIdx]);
 
+    /*
+     * Magasin (bureau uniquement).
+     *
+     * Plus rien n'est à cocher : la liste part entière, moins ce qui est barré.
+     * Le bouton magasin est donc TOUJOURS là, à côté du titre et du partage —
+     * [logo + nom] lance les courses, [▾] change d'enseigne. Sur téléphone il
+     * reste absent : l'assistant des rayons est une extension Chrome.
+     */
+    const [store] = usePreferredStore();
+    // Ordinateur = pas un téléphone/tablette, QUELLE QUE SOIT la largeur de la
+    // fenêtre : une fenêtre Chrome étroite (< 1024 px) reçoit la mise en page
+    // mobile, mais c'est bien un ordinateur, avec l'extension possible.
+    const surOrdinateur = typeof navigator !== 'undefined'
+        && !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const ciblesMagasin = mode === 'jour' ? jourItems : aPrendre;
+    const ciblesRef = useRef(ciblesMagasin);
+    ciblesRef.current = ciblesMagasin;
+    const doneRef = useRef(done);
+    doneRef.current = done;
+    const barrer = (it: ConsolItem) => {
+        const n = new Set(doneRef.current);
+        doneKeysOf(it).forEach((k) => n.add(k));
+        persistDone(n);
+    };
+    const barrerRef = useRef(barrer);
+    barrerRef.current = barrer;
+    // L'extension signale chaque article mis au panier → rayé ici en direct.
+    useEffect(() => onStoreItemDone(({ index }) => {
+        const it = ciblesRef.current[index];
+        if (it) barrerRef.current(it);
+    }), []);
+    const lancerMagasin = () => {
+        const cibles = ciblesRef.current;
+        if (!cibles.length) return;
+        haptic(8);
+        const obstacle = obstacleAssistant();
+        if (obstacle) window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: obstacle }));
+        window.open(storeSearchWithQueue(store, cibles.map((x) => carrefourTerm(x.name)), 0), 'storeCart');
+        // Sans extension, personne ne signalera la mise au panier : on raye le premier.
+        if (!isStoreExtensionActive()) barrer(cibles[0]);
+    };
+
     return (
         <div className={`${styles.page} ${embedded ? styles.embedded : ''}`}>
             <header className={styles.planHead}>
@@ -693,6 +738,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                     <path d="M12 15V3" /><path d="m8 7 4-4 4 4" /><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" />
                                 </svg>
                             </button>
+                        )}
+                        {surOrdinateur && (mode === 'jour' ? jourItems.length : aPrendre.length) > 0 && (
+                            <StoreButton onLaunch={lancerMagasin} dropDown />
                         )}
                     </div>
                 </div>
