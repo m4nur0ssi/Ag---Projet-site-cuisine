@@ -2,11 +2,594 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 21/09/2026 17:59:10
+ * Dernière mise à jour: 22/09/2026 08:22:28
  * Total: 743 recettes
  */
-export const exportSyncId = "1790006350547";
+export const exportSyncId = "1790065348758";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7858",
+        "title": "Œufs mimosa frits croustillants à la crème de curry, bacon et cresson",
+        "description": "Une nouvelle version des populaires œufs mimosa frits. Les jaunes d'œufs durs sont mélangés avec du fromage frais, du curry et de la moutarde, et les blancs d'œufs sont frits. C'est une entrée parfaite pour Pâques.",
+        "image": "/recipes-ia/7858-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624451601821895958\" data-video-id=\"7624451601821895958\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624451601821895958\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs durs"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curry"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Blancs d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cresson"
+            }
+        ],
+        "steps": [
+            "Faire bouillir les œufs.",
+            "Séparer les jaunes des blancs d'œufs.",
+            "Mélanger les jaunes d'œufs avec du fromage frais, du curry et de la moutarde.",
+            "Faire frire les blancs d'œufs.",
+            "Servir les œufs mimosa frits garnis de crème de curry, de bacon et de cresson."
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "Pâques",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7860",
+        "title": "Billes de Beaufort AOP extra croustillantes",
+        "description": "Découvrez comment réaliser facilement des billes de Beaufort AOP extra croustillantes pour l'apéritif, avec seulement quelques ingrédients. Une recette simple et originale qui surprendra vos invités.",
+        "image": "/recipes-ia/7860-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7608991848706723094\" data-video-id=\"7608991848706723094\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7608991848706723094\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de Beaufort AOP râpé très finement"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 blancs d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment"
+            }
+        ],
+        "steps": [
+            "Râpez très finement le Beaufort AOP.",
+            "Dans un bol, mélangez le Beaufort râpé avec les blancs d'œufs et un tour de moulin à poivre jusqu'à obtenir une pâte homogène.",
+            "Formez des petites billes à la main.",
+            "Faites chauffer l'huile de friture. Plongez les billes dans l'huile bien chaude et faites-les frire jusqu'à ce qu'elles soient bien dorées de tous les côtés. Il est important d'attendre qu'elles soient bien cuites avant de les sortir pour qu'elles ne dégonflent pas et restent rondes.",
+            "Égouttez les billes sur du papier absorbant ou sur une grille.",
+            "Ajoutez un filet de miel fumé et quelques flocons de piment. Servez chaud."
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7862",
+        "title": "Bouchées de concombre au saumon fumé",
+        "description": "Ces bouchées de concombre au saumon fumé sont une collation ou un apéritif facile et rapide à préparer. Sans cuisson, il suffit de les assembler. Elles sont prêtes en un rien de temps, ce qui en fait une excellente option à servir lors d'une fête ...",
+        "image": "/recipes-ia/7862-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7318080121016044842\" data-video-id=\"7318080121016044842\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7318080121016044842\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre anglais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             180 ml de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             115 g de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             assaisonnement pour bagel 'everything'"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             aneth (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             jus de citron frais"
+            }
+        ],
+        "steps": [
+            "Coupez le concombre anglais en tranches d'environ 0,6 cm d'épaisseur, pour obtenir environ 20 à 24 tranches.",
+            "Épongez les tranches avec une serviette en papier pour retirer l'excès d'humidité.",
+            "Étalez environ 1 cuillère à café de fromage frais sur chaque tranche de concombre à l'aide d'un couteau ou d'une cuillère, puis recouvrez d'un morceau de saumon fumé. Répétez l'opération pour toutes les tranches de concombre.",
+            "Saupoudrez d'assaisonnement pour bagel 'everything' et ajoutez un brin d'aneth sur le dessus.",
+            "Ajoutez une pincée de sel, pressez du jus de citron frais par-dessus, et dégustez !"
+        ],
+        "tags": [
+            "Apéritifs",
+            "C'est l'hiver",
+            "Healthy",
+            "Noël",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7864",
+        "title": "Assiette de chips de riz et tartare de truite",
+        "description": "Découvrez une manière originale et croustillante de déguster votre tartare de truite préféré. Cette recette propose de frire une feuille de riz avec un jaune d'œuf pour créer une coupelle comestible, parfaite pour accueillir un tartare frais et sa...",
+        "image": "/recipes-ia/7864-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7603041144385080598\" data-video-id=\"7603041144385080598\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7603041144385080598\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             Feuilles de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Jaunes d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Filet de truite fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Kiwi gold"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste de citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nuoc mam"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sésame noir et doré"
+            }
+        ],
+        "steps": [
+            "Préparez le filet de truite : retirez la peau et les arêtes, puis taillez-le en longues bandes avant de le couper en gros cubes.",
+            "Ciselez grossièrement une échalote.",
+            "Préparez un kiwi gold en le coupant en petits dés.",
+            "Hachez finement une belle botte de coriandre fraîche.",
+            "Dans un grand bol, mélangez les cubes de truite, l'échalote ciselée, les dés de kiwi, la coriandre hachée, le zeste de citron vert, l'huile de sésame, la sauce soja et le nuoc mam.",
+            "Assaisonnez avec quelques tours de moulin à poivre et mélangez délicatement. Réservez le tartare au frais.",
+            "Dans une poêle ou une friteuse, faites chauffer de l'huile de friture à 180 degrés Celsius.",
+            "Déposez délicatement un jaune d'œuf au centre d'une feuille de riz.",
+            "Plongez la feuille de riz avec le jaune d'œuf dans l'huile chaude et faites-la frire jusqu'à ce qu'elle devienne croustillante et dorée, formant une coupelle.",
+            "Égouttez la coupelle croustillante sur du papier absorbant et salez-la légèrement.",
+            "Garnissez la coupelle de feuille de riz frite avec le tartare de truite préparé.",
+            "Saupoudrez de sésame noir et doré pour la décoration et la saveur.",
+            "Servez immédiatement et dégustez en cassant des morceaux de la coupelle croustillante."
+        ],
+        "tags": [
+            "Asie",
+            "Healthy",
+            "Poissons et crustacés",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7866",
+        "title": "Croquettes au chorizo",
+        "description": "Préparez de délicieuses croquettes au chorizo, parfaites pour un apéritif dînatoire ou à déguster avec une salade. Faciles et rapides à réaliser, elles sont un vrai régal !",
+        "image": "/recipes-ia/7866-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7527309218236452118\" data-video-id=\"7527309218236452118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7527309218236452118\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             100g de gruyère râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             100g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Commencez par mixer le gruyère avec le chorizo.",
+            "Ajoutez la ciboulette et les deux œufs.",
+            "Mélangez le tout.",
+            "Si la texture ne convient pas, ajoutez deux cuillères à soupe de farine et mélangez jusqu'à obtenir une texture parfaite.",
+            "Formez les croquettes.",
+            "Disposez les croquettes sur une plaque allant au four recouverte de papier cuisson.",
+            "Enfournez pendant 20 minutes à 180°C."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Espagne"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7868",
+        "title": "Pâtes au Mont d'Or et saucisse de Montbéliard",
+        "description": "Un plat ultra réconfortant avec du bon fromage, de la saucisse de Montbéliard et une sauce bien crémeuse au vin blanc du Jura !",
+        "image": "/recipes-ia/7868-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7687233833816608033\" data-video-id=\"7687233833816608033\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7687233833816608033\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             250 g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 saucisses de Montbéliard"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Mont d'Or"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Vin blanc du Jura"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            }
+        ],
+        "steps": [
+            "Faites revenir les petits cubes de saucisses de Montbéliard.",
+            "Ajoutez les oignons et l'ail.",
+            "Déglacez avec du vin blanc du Jura.",
+            "Récupérez tous les sucs en grattant le fond de la poêle.",
+            "Laissez réduire quasiment à sec.",
+            "Ajoutez de la crème.",
+            "Ajoutez les cubes de Mont d'Or.",
+            "Laissez-les fondre tranquillement sur feu doux jusqu'à obtenir une sauce bien crémeuse.",
+            "Assaisonnez avec du poivre (le sel n'est pas nécessaire en raison de la saucisse et du fromage).",
+            "Terminez la cuisson des pâtes directement dans la sauce.",
+            "Ajoutez un peu de persil frais."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7870",
+        "title": "Jacket Potatoes au yaourt et saumon",
+        "description": "Découvrez une recette simple, équilibrée et gourmande de Jacket Potatoes (pommes de terre au four) garnies d'une sauce crémeuse au yaourt et de saumon fumé. Une préparation facile et rapide, idéale pour un repas complet.",
+        "image": "/recipes-ia/7870-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7612213107338792214\" data-video-id=\"7612213107338792214\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7612213107338792214\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre (2 à 3 moyennes par personne, type Charlotte)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive (3 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Épices au choix"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Yaourt à la grecque (1 pot)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage à tartiner (2 cuillères à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde (1 cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates séchées (3 à 4, coupées en dés)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Saumon fumé (4 tranches, ou autre garniture au choix comme blanc de poulet, blanc de dinde, œufs brouillés, pois chiches grillés, tofu, maquereau)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon nouveau (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix concassées (quelques-unes, facultatif)"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 200°C.",
+            "Mélangez les pommes de terre avec l'huile d'olive, le sel, le poivre, les herbes de Provence, l'origan et les épices de votre choix.",
+            "Enfournez les pommes de terre pour environ 35 minutes à 200°C. Si vous les préférez plus fondantes, prolongez la cuisson jusqu'à 45 minutes.",
+            "Pendant ce temps, préparez la sauce au yaourt : dans un bol, mélangez le yaourt à la grecque, le fromage à tartiner, la moutarde, les tomates séchées coupées en dés, la ciboulette, la menthe, le sel et le poivre.",
+            "À la sortie du four, découpez chaque pomme de terre en croix, sans aller trop profondément.",
+            "Écrasez légèrement la chair à l'intérieur de chaque pomme de terre à l'aide d'une fourchette.",
+            "Garnissez généreusement les pommes de terre avec la sauce au yaourt, les tranches de saumon fumé et, si désiré, de l'oignon nouveau, de l'aneth, de la ciboulette fraîche ou quelques noix concassées.",
+            "Servez ces Jacket Potatoes chaudes, accompagnées d'une salade verte ou de crudités pour un repas complet et équilibré."
+        ],
+        "tags": [
+            "Healthy",
+            "Poissons et crustacés",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7872",
+        "title": "Beurres Maison Aromatisés",
+        "description": "Découvrez comment préparer facilement trois délicieux beurres maison : citronné, tomate-piment et aux herbes. Parfaits pour accompagner du pain chaud, des légumes rôtis ou des pâtes, ces beurres sont simples à réaliser et peuvent être conservés au...",
+        "image": "/recipes-ia/7872-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7687543202101906721\" data-video-id=\"7687543202101906721\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7687543202101906721\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 L de crème liquide entière à minimum 30 % de matière grasse"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Une pincée de sel (pour le beurre citronné)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 cuillère à soupe de concentré de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 petite gousse d'ail (pour le beurre tomate-piment)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Une pincée de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Une pincée de sel (pour le beurre tomate-piment)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 petite gousse d'ail (pour le beurre aux herbes)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            }
+        ],
+        "steps": [
+            "Versez la crème liquide entière (minimum 30% de matière grasse) dans un grand saladier.",
+            "Fouettez la crème énergiquement jusqu'à ce qu'elle tranche, séparant ainsi le beurre du petit-lait.",
+            "Récupérez le beurre et pressez-le avec des mains propres pour en retirer un maximum de petit-lait.",
+            "Passez rapidement le beurre dans un torchon propre, puis rincez-le dans de l'eau glacée.",
+            "Divisez ensuite le beurre en trois portions égales.",
+            "Pour la première portion (beurre citronné), ajoutez du zeste de citron, du jus de citron et une pincée de sel. Mélangez bien.",
+            "Pour la deuxième portion (beurre tomate-piment), faites chauffer pendant environ deux minutes le concentré de tomates avec une petite gousse d'ail, du piment, du sel et un filet d'huile d'olive. Laissez légèrement tiédir le mélange avant de l'incorporer au beurre. Mélangez bien.",
+            "Pour la dernière portion (beurre aux herbes), ajoutez une petite gousse d'ail, de l'aneth, du persil, du thym et de la fleur de sel. Mélangez bien.",
+            "Façonnez les beurres aromatisés comme vous le souhaitez (par exemple, dans des moules à cannelés ou du papier cuisson). Tassez bien si vous utilisez des moules.",
+            "Placez les beurres au congélateur pendant environ 20 minutes pour faciliter le démoulage.",
+            "Démoulez délicatement et servez.",
+            "Conservez les beurres au réfrigérateur pendant 3 à 4 jours, ou congelez-les pour une conservation plus longue (plusieurs mois)."
+        ],
+        "tags": [
+            "Astuces",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7874",
         "title": "Cookies Millionaire",
@@ -117,589 +700,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7872",
-        "title": "Beurres Maison Aromatisés",
-        "description": "Découvrez comment préparer facilement trois délicieux beurres maison : citronné, tomate-piment et aux herbes. Parfaits pour accompagner du pain chaud, des légumes rôtis ou des pâtes, ces beurres sont simples à réaliser et peuvent être conservés au...",
-        "image": "/recipes-ia/7872-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7687543202101906721\" data-video-id=\"7687543202101906721\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7687543202101906721\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             1 L de crème liquide entière à minimum 30 % de matière grasse"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Zeste de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Une pincée de sel (pour le beurre citronné)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 cuillère à soupe de concentré de tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             1 petite gousse d'ail (pour le beurre tomate-piment)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Une pincée de piment"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Une pincée de sel (pour le beurre tomate-piment)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 filet d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             1 petite gousse d'ail (pour le beurre aux herbes)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Aneth"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            }
-        ],
-        "steps": [
-            "Versez la crème liquide entière (minimum 30% de matière grasse) dans un grand saladier.",
-            "Fouettez la crème énergiquement jusqu'à ce qu'elle tranche, séparant ainsi le beurre du petit-lait.",
-            "Récupérez le beurre et pressez-le avec des mains propres pour en retirer un maximum de petit-lait.",
-            "Passez rapidement le beurre dans un torchon propre, puis rincez-le dans de l'eau glacée.",
-            "Divisez ensuite le beurre en trois portions égales.",
-            "Pour la première portion (beurre citronné), ajoutez du zeste de citron, du jus de citron et une pincée de sel. Mélangez bien.",
-            "Pour la deuxième portion (beurre tomate-piment), faites chauffer pendant environ deux minutes le concentré de tomates avec une petite gousse d'ail, du piment, du sel et un filet d'huile d'olive. Laissez légèrement tiédir le mélange avant de l'incorporer au beurre. Mélangez bien.",
-            "Pour la dernière portion (beurre aux herbes), ajoutez une petite gousse d'ail, de l'aneth, du persil, du thym et de la fleur de sel. Mélangez bien.",
-            "Façonnez les beurres aromatisés comme vous le souhaitez (par exemple, dans des moules à cannelés ou du papier cuisson). Tassez bien si vous utilisez des moules.",
-            "Placez les beurres au congélateur pendant environ 20 minutes pour faciliter le démoulage.",
-            "Démoulez délicatement et servez.",
-            "Conservez les beurres au réfrigérateur pendant 3 à 4 jours, ou congelez-les pour une conservation plus longue (plusieurs mois)."
-        ],
-        "tags": [
-            "Astuces",
-            "Pas cher",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7870",
-        "title": "Jacket Potatoes au yaourt et saumon",
-        "description": "Découvrez une recette simple, équilibrée et gourmande de Jacket Potatoes (pommes de terre au four) garnies d'une sauce crémeuse au yaourt et de saumon fumé. Une préparation facile et rapide, idéale pour un repas complet.",
-        "image": "/recipes-ia/7870-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7612213107338792214\" data-video-id=\"7612213107338792214\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7612213107338792214\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre (2 à 3 moyennes par personne, type Charlotte)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive (3 cuillères à soupe)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Herbes de Provence"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Origan"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Épices au choix"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Yaourt à la grecque (1 pot)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fromage à tartiner (2 cuillères à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Moutarde (1 cuillère à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates séchées (3 à 4, coupées en dés)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Saumon fumé (4 tranches, ou autre garniture au choix comme blanc de poulet, blanc de dinde, œufs brouillés, pois chiches grillés, tofu, maquereau)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon nouveau (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Aneth (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Noix concassées (quelques-unes, facultatif)"
-            }
-        ],
-        "steps": [
-            "Préchauffez votre four à 200°C.",
-            "Mélangez les pommes de terre avec l'huile d'olive, le sel, le poivre, les herbes de Provence, l'origan et les épices de votre choix.",
-            "Enfournez les pommes de terre pour environ 35 minutes à 200°C. Si vous les préférez plus fondantes, prolongez la cuisson jusqu'à 45 minutes.",
-            "Pendant ce temps, préparez la sauce au yaourt : dans un bol, mélangez le yaourt à la grecque, le fromage à tartiner, la moutarde, les tomates séchées coupées en dés, la ciboulette, la menthe, le sel et le poivre.",
-            "À la sortie du four, découpez chaque pomme de terre en croix, sans aller trop profondément.",
-            "Écrasez légèrement la chair à l'intérieur de chaque pomme de terre à l'aide d'une fourchette.",
-            "Garnissez généreusement les pommes de terre avec la sauce au yaourt, les tranches de saumon fumé et, si désiré, de l'oignon nouveau, de l'aneth, de la ciboulette fraîche ou quelques noix concassées.",
-            "Servez ces Jacket Potatoes chaudes, accompagnées d'une salade verte ou de crudités pour un repas complet et équilibré."
-        ],
-        "tags": [
-            "Healthy",
-            "Poissons et crustacés",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7868",
-        "title": "Pâtes au Mont d'Or et saucisse de Montbéliard",
-        "description": "Un plat ultra réconfortant avec du bon fromage, de la saucisse de Montbéliard et une sauce bien crémeuse au vin blanc du Jura !",
-        "image": "/recipes-ia/7868-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7687233833816608033\" data-video-id=\"7687233833816608033\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7687233833816608033\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             250 g de pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 saucisses de Montbéliard"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Mont d'Or"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             Vin blanc du Jura"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais"
-            }
-        ],
-        "steps": [
-            "Faites revenir les petits cubes de saucisses de Montbéliard.",
-            "Ajoutez les oignons et l'ail.",
-            "Déglacez avec du vin blanc du Jura.",
-            "Récupérez tous les sucs en grattant le fond de la poêle.",
-            "Laissez réduire quasiment à sec.",
-            "Ajoutez de la crème.",
-            "Ajoutez les cubes de Mont d'Or.",
-            "Laissez-les fondre tranquillement sur feu doux jusqu'à obtenir une sauce bien crémeuse.",
-            "Assaisonnez avec du poivre (le sel n'est pas nécessaire en raison de la saucisse et du fromage).",
-            "Terminez la cuisson des pâtes directement dans la sauce.",
-            "Ajoutez un peu de persil frais."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France",
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7866",
-        "title": "Croquettes au chorizo",
-        "description": "Préparez de délicieuses croquettes au chorizo, parfaites pour un apéritif dînatoire ou à déguster avec une salade. Faciles et rapides à réaliser, elles sont un vrai régal !",
-        "image": "/recipes-ia/7866-carte.webp",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7527309218236452118\" data-video-id=\"7527309218236452118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7527309218236452118\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n             100g de gruyère râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             100g de chorizo"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             2 cuillères à soupe de farine"
-            }
-        ],
-        "steps": [
-            "Commencez par mixer le gruyère avec le chorizo.",
-            "Ajoutez la ciboulette et les deux œufs.",
-            "Mélangez le tout.",
-            "Si la texture ne convient pas, ajoutez deux cuillères à soupe de farine et mélangez jusqu'à obtenir une texture parfaite.",
-            "Formez les croquettes.",
-            "Disposez les croquettes sur une plaque allant au four recouverte de papier cuisson.",
-            "Enfournez pendant 20 minutes à 180°C."
-        ],
-        "tags": [
-            "Apéritifs",
-            "Espagne"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7864",
-        "title": "Assiette de chips de riz et tartare de truite",
-        "description": "Découvrez une manière originale et croustillante de déguster votre tartare de truite préféré. Cette recette propose de frire une feuille de riz avec un jaune d'œuf pour créer une coupelle comestible, parfaite pour accueillir un tartare frais et sa...",
-        "image": "/recipes-ia/7864-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7603041144385080598\" data-video-id=\"7603041144385080598\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7603041144385080598\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍚\n             Feuilles de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Jaunes d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile de friture"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Filet de truite fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Kiwi gold"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Zeste de citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Nuoc mam"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sésame noir et doré"
-            }
-        ],
-        "steps": [
-            "Préparez le filet de truite : retirez la peau et les arêtes, puis taillez-le en longues bandes avant de le couper en gros cubes.",
-            "Ciselez grossièrement une échalote.",
-            "Préparez un kiwi gold en le coupant en petits dés.",
-            "Hachez finement une belle botte de coriandre fraîche.",
-            "Dans un grand bol, mélangez les cubes de truite, l'échalote ciselée, les dés de kiwi, la coriandre hachée, le zeste de citron vert, l'huile de sésame, la sauce soja et le nuoc mam.",
-            "Assaisonnez avec quelques tours de moulin à poivre et mélangez délicatement. Réservez le tartare au frais.",
-            "Dans une poêle ou une friteuse, faites chauffer de l'huile de friture à 180 degrés Celsius.",
-            "Déposez délicatement un jaune d'œuf au centre d'une feuille de riz.",
-            "Plongez la feuille de riz avec le jaune d'œuf dans l'huile chaude et faites-la frire jusqu'à ce qu'elle devienne croustillante et dorée, formant une coupelle.",
-            "Égouttez la coupelle croustillante sur du papier absorbant et salez-la légèrement.",
-            "Garnissez la coupelle de feuille de riz frite avec le tartare de truite préparé.",
-            "Saupoudrez de sésame noir et doré pour la décoration et la saveur.",
-            "Servez immédiatement et dégustez en cassant des morceaux de la coupelle croustillante."
-        ],
-        "tags": [
-            "Asie",
-            "Healthy",
-            "Poissons et crustacés",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7862",
-        "title": "Bouchées de concombre au saumon fumé",
-        "description": "Ces bouchées de concombre au saumon fumé sont une collation ou un apéritif facile et rapide à préparer. Sans cuisson, il suffit de les assembler. Elles sont prêtes en un rien de temps, ce qui en fait une excellente option à servir lors d'une fête ...",
-        "image": "/recipes-ia/7862-carte.webp",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7318080121016044842\" data-video-id=\"7318080121016044842\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7318080121016044842\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥒\n             1 concombre anglais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             180 ml de fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🐟\n             115 g de saumon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             assaisonnement pour bagel 'everything'"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             aneth (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             jus de citron frais"
-            }
-        ],
-        "steps": [
-            "Coupez le concombre anglais en tranches d'environ 0,6 cm d'épaisseur, pour obtenir environ 20 à 24 tranches.",
-            "Épongez les tranches avec une serviette en papier pour retirer l'excès d'humidité.",
-            "Étalez environ 1 cuillère à café de fromage frais sur chaque tranche de concombre à l'aide d'un couteau ou d'une cuillère, puis recouvrez d'un morceau de saumon fumé. Répétez l'opération pour toutes les tranches de concombre.",
-            "Saupoudrez d'assaisonnement pour bagel 'everything' et ajoutez un brin d'aneth sur le dessus.",
-            "Ajoutez une pincée de sel, pressez du jus de citron frais par-dessus, et dégustez !"
-        ],
-        "tags": [
-            "Apéritifs",
-            "C'est l'hiver",
-            "Healthy",
-            "Noël",
-            "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7860",
-        "title": "Billes de Beaufort AOP extra croustillantes",
-        "description": "Découvrez comment réaliser facilement des billes de Beaufort AOP extra croustillantes pour l'apéritif, avec seulement quelques ingrédients. Une recette simple et originale qui surprendra vos invités.",
-        "image": "/recipes-ia/7860-carte.webp",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7608991848706723094\" data-video-id=\"7608991848706723094\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7608991848706723094\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             200 g de Beaufort AOP râpé très finement"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             3 blancs d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile de friture"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Miel fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Flocons de piment"
-            }
-        ],
-        "steps": [
-            "Râpez très finement le Beaufort AOP.",
-            "Dans un bol, mélangez le Beaufort râpé avec les blancs d'œufs et un tour de moulin à poivre jusqu'à obtenir une pâte homogène.",
-            "Formez des petites billes à la main.",
-            "Faites chauffer l'huile de friture. Plongez les billes dans l'huile bien chaude et faites-les frire jusqu'à ce qu'elles soient bien dorées de tous les côtés. Il est important d'attendre qu'elles soient bien cuites avant de les sortir pour qu'elles ne dégonflent pas et restent rondes.",
-            "Égouttez les billes sur du papier absorbant ou sur une grille.",
-            "Ajoutez un filet de miel fumé et quelques flocons de piment. Servez chaud."
-        ],
-        "tags": [
-            "Apéritifs",
-            "épicé",
-            "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7858",
-        "title": "Œufs mimosa frits croustillants à la crème de curry, bacon et cresson",
-        "description": "Une nouvelle version des populaires œufs mimosa frits. Les jaunes d'œufs durs sont mélangés avec du fromage frais, du curry et de la moutarde, et les blancs d'œufs sont frits. C'est une entrée parfaite pour Pâques.",
-        "image": "/recipes-ia/7858-carte.webp",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624451601821895958\" data-video-id=\"7624451601821895958\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624451601821895958\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             Œufs durs"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Curry"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Blancs d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Bacon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cresson"
-            }
-        ],
-        "steps": [
-            "Faire bouillir les œufs.",
-            "Séparer les jaunes des blancs d'œufs.",
-            "Mélanger les jaunes d'œufs avec du fromage frais, du curry et de la moutarde.",
-            "Faire frire les blancs d'œufs.",
-            "Servir les œufs mimosa frits garnis de crème de curry, de bacon et de cresson."
-        ],
-        "tags": [
-            "Apéritifs",
-            "épicé",
-            "Pâques",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -2430,7 +2430,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Sauce piment doux (piment doux)"
+                "name": "🌶️\n             Sauce piment doux (sweet chili)"
             },
             {
                 "quantity": "",
@@ -2472,7 +2472,7 @@ export const mockRecipes: Recipe[] = [
             "Enfilez les morceaux de poulet mariné sur des piques à brochettes, puis réservez-les au frais.",
             "Dans une poêle ou une sauteuse, faites revenir l'échalote et le poivron rouge émincés avec un filet d'huile pendant quelques minutes.",
             "Ajoutez une belle cuillère à café de concentré de tomate et faites revenir le tout pendant environ 5 minutes.",
-            "Incorporez un trait de sauce piment doux, un peu de paprika fumé, d'ail fumé, de poivre et de sel.",
+            "Incorporez un trait de sauce sweet chili, un peu de paprika fumé, d'ail fumé, de poivre et de sel.",
             "Ajoutez le riz blanc cuit, un petit peu d'eau et une pincée de bouillon cube émietté. Mélangez bien et laissez revenir quelques minutes sur feu doux.",
             "Dans une poêle bien chaude avec un filet d'huile, faites cuire les brochettes de poulet en les retournant régulièrement jusqu'à ce qu'elles soient bien dorées et cuites à cœur.",
             "Servez les brochettes bien chaudes accompagnées du riz à la tomate et, si vous le souhaitez, d'une petite salade fraîche."
@@ -5879,7 +5879,7 @@ export const mockRecipes: Recipe[] = [
             "Ajoutez quatre cuillères à soupe de sauce ponzu et une cuillère à café de vinaigre balsamique blanc, puis mélangez.",
             "Faites chauffer une poêle à feu vif.",
             "Faites cuire chaque steak de thon pendant 45 secondes de chaque côté dans la poêle bien chaude.",
-            "Versez la petite marque sur les steaks, arrosez et laissez la sauce les laquer.",
+            "Versez la petite marinade sur les steaks, arrosez et laissez la sauce les laquer.",
             "Retirez les steaks, coupez‑les en tranches d'environ un centimètre d'épaisseur.",
             "Récupérez la sauce restante dans la poêle et nappez les tranches de thon.",
             "Parsemez de graines de sésame noir et blanc (facultatif)."
@@ -8633,7 +8633,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5576",
-        "title": "Pâtes au four blanches",
+        "title": "Pasta al forno bianca",
         "description": "Découvrez le plaisir simple et irrésistible d'un plat qui parle au cœur.",
         "image": "/recipes-ia/5576-carte.webp",
         "category": "plats",
@@ -8903,7 +8903,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 150g de spaghetti"
+                "name": "🥣\n 150g de spaguetti"
             },
             {
                 "quantity": "",
@@ -8931,7 +8931,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧀\n 30g de Parmesan (ou Grana Padano)"
+                "name": "🧀\n 30g de Parmesan (ou granapadano)"
             },
             {
                 "quantity": "",
@@ -11818,7 +11818,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6009",
-        "title": "Bol mexicain comestible",
+        "title": "Bowl Mexicanos comestible",
         "description": "Un bowl comestible rempli de saveur, de texture et de couleur, avec des Tostacos WOW Guacamole pour une touche croustillante et fraîche.",
         "image": "/recipes-ia/6009-carte.webp",
         "category": "plats",
@@ -11834,15 +11834,15 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Riz mexicain"
+                "name": "🥣\n             Arroz mexicano"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Viande hachée"
+                "name": "🥣\n             Carne molida"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Porc effiloché"
+                "name": "🥣\n             Pulled pork"
             },
             {
                 "quantity": "",
@@ -11850,7 +11850,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Pico de gallo frais"
+                "name": "🥣\n             Pico de gallo fresco"
             },
             {
                 "quantity": "",
@@ -11862,7 +11862,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Coriandre fraîche"
+                "name": "🥣\n             Cilantro fresco"
             }
         ],
         "steps": [
@@ -15879,7 +15879,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3533",
-        "title": "Gnocchis à la ricotta à la sorrentina",
+        "title": "Gnocchi di ricotta alla sorrentina",
         "description": "Ces gnocchis de ricotta à la sorrentina évoquent les saveurs réconfortantes de la cuisine traditionnelle italienne. Un plat généreux qui promet de remplir votre cuisine d'arômes délicieux et votre cœur de bonheur, comme chez grand-mère. Parfaits p...",
         "image": "/recipes-ia/3533-carte.webp",
         "category": "plats",
@@ -16056,7 +16056,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3714",
-        "title": "Farfalle au saumon",
+        "title": "Farfalle al salmone",
         "description": "Une recette gourmande, crémeuse et ultra efficace de farfalle au saumon fumé, avec une sauce qui enrobe parfaitement les pâtes. Simple et irrésistible.",
         "image": "/recipes-ia/3714-carte.webp",
         "category": "plats",
@@ -16072,7 +16072,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🐟\n 300gr de lanières de saumon fumé"
+                "name": "🐟\n 300gr straccetti de saumon fumé"
             },
             {
                 "quantity": "",
@@ -16097,7 +16097,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Mettez les farfalle dans une casserole d'eau bouillante salée et faites cuire selon les indications du paquet.",
-            "Dans une poêle, faites revenir les lanières de saumon fumé dans l'huile d'olive, un peu de zestes de citron et un peu de crème.",
+            "Dans une poêle, faites revenir les straccetti de saumon fumé dans l'huile d'olive, un peu de zestes de citron et un peu de crème.",
             "Ajoutez 1 cuillère ou 2 de sauce tomate pour colorer la sauce.",
             "Incorporez la crème spéciale cuisson et le parmesan pour épaissir.",
             "Mélangez les pâtes cuites avec la sauce et mélangez bien.",
@@ -16877,7 +16877,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "7470",
-        "title": "Orecchiette aux brocoli rabe et burrata",
+        "title": "Orecchiette aux cime di rapa et burrata",
         "description": "Découvrez cette recette italienne classique et très demandée d'orecchiette aux cime di rapa, agrémentée d'une onctueuse burrata. Un plat savoureux et réconfortant, parfait pour deux personnes.",
         "image": "/recipes-ia/7470-carte.webp",
         "category": "plats",
@@ -16893,7 +16893,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             200g de brocoli rabe"
+                "name": "🥣\n             200g de cime di rapa"
             },
             {
                 "quantity": "",
@@ -16921,11 +16921,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Nettoyer les brocoli rabe et les faire cuire à la vapeur ou bouillies dans de l'eau salée jusqu'à ce qu'elles soient tendres. Égoutter et réserver.",
+            "Nettoyer les cime di rapa et les faire cuire à la vapeur ou bouillies dans de l'eau salée jusqu'à ce qu'elles soient tendres. Égoutter et réserver.",
             "Pendant ce temps, faire cuire les orecchiette dans une grande casserole d'eau bouillante salée selon les instructions du paquet.",
             "Dans une poêle, faire revenir la gousse d'ail émincée et le piment séché dans un filet d'huile d'olive extra vierge jusqu'à ce que l'ail soit doré.",
-            "Ajouter les brocoli rabe cuites à la poêle avec l'ail et le piment. Faire sauter quelques minutes pour bien mélanger les saveurs.",
-            "Égoutter les orecchiette en conservant un peu d'eau de cuisson. Ajouter les pâtes à la poêle avec les brocoli rabe. Mélanger délicatement. Si le plat semble trop sec, ajouter un peu d'eau de cuisson des pâtes pour créer une sauce légère.",
+            "Ajouter les cime di rapa cuites à la poêle avec l'ail et le piment. Faire sauter quelques minutes pour bien mélanger les saveurs.",
+            "Égoutter les orecchiette en conservant un peu d'eau de cuisson. Ajouter les pâtes à la poêle avec les cime di rapa. Mélanger délicatement. Si le plat semble trop sec, ajouter un peu d'eau de cuisson des pâtes pour créer une sauce légère.",
             "Assaisonner avec du sel et du poivre selon votre goût. Servir immédiatement en disposant une burrata coupée en morceaux sur chaque portion. Arroser d'un filet d'huile d'olive extra vierge avant de déguster."
         ],
         "tags": [
@@ -24111,7 +24111,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "7059",
-        "title": "Porc au caramel ultra simple",
+        "title": "Porc au caramel",
         "description": "Une recette de porc au caramel ultra simple, fondante et délicieuse. Nécessite une casserole, quelques ingrédients et un peu de patience pour un plat doux, sucré-salé, à refaire les yeux fermés.",
         "image": "/recipes-ia/7059-carte.webp",
         "category": "plats",
@@ -25908,16 +25908,16 @@ export const mockRecipes: Recipe[] = [
             "Pour la garniture : Déposez 50g de Nutella sur 6 morceaux de papier sulfurisé séparés. Congelez jusqu'à ce qu'il soit solide.",
             "Pour la pâte : Dans le bol de votre batteur sur socle muni d'un crochet pétrisseur, fouettez l'eau tiède, le sucre, la levure, le beurre fondu, le jaune d'œuf et les œufs.",
             "Ajoutez la farine et le sel.",
-            "Pétrissez pendant 10 à 15 minutes jusqu'à obtenir une pâte lisse. Il est normal qu'elle soit encore collante. Assurez-vous simplement qu'elle passe le test de la fenêtre. Elle doit rester collante pour que les pépites de chocolat puissent adhérer.",
+            "Pétrissez pendant 10 à 15 minutes jusqu'à obtenir une pâte lisse. Il est normal qu'elle soit encore collante. Assurez-vous simplement qu'elle passe le test de la fenêtre (window pane test). Elle doit rester collante pour que les pépites de chocolat puissent adhérer.",
             "Formez la pâte en boule et placez-la dans un grand bol. Couvrez de film plastique et laissez lever pendant 2 heures.",
-            "Préchauffez votre four à 175°C et tapissez un plat de cuisson de papier sulfurisé.",
+            "Préchauffez votre four à 175°C (350°F) et tapissez un plat de cuisson de papier sulfurisé.",
             "Sur une surface légèrement farinée, incorporez 150-200g de pépites de chocolat à la pâte en pétrissant.",
             "Ne pétrissez pas trop, le chocolat pourrait s'étaler. Mélangez juste assez pour combiner.",
             "Sur une surface légèrement farinée, divisez la pâte en 6 morceaux. Farcissez chaque morceau avec le Nutella congelé, puis scellez-les bien.",
             "Garnissez chaque petit pain de pépites de chocolat supplémentaires.",
             "Pour la dorure à l'œuf : Fouettez 2 jaunes d'œufs jusqu'à obtenir une consistance lisse.",
             "Badigeonnez les petits pains avec la dorure.",
-            "Faites cuire dans un four préchauffé à 175°C pendant 25 minutes."
+            "Faites cuire dans un four préchauffé à 175°C (350°F) pendant 25 minutes."
         ],
         "tags": [
             "Brioche",
@@ -31659,7 +31659,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3108",
-        "title": "Bianca - Déjeuner-brunch à Paris",
+        "title": "Bianca - Brunch à Paris",
         "description": "Proche de la Place de la Bourse et de la Bibliothèque Nationale de France Richelieu, le restaurant Bianca présente un brunch qui est présenté sous forme de buffet à volonté installé dans la première salle spacieuse à l'entrée du restaurant. ...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_1_1783591754671.jpg&v=1783591761431",
         "category": "restaurant",
@@ -31675,7 +31675,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Proche de la Place de la Bourse et de la Bibliothèque Nationale de France Richelieu, le restaurant Bianca présente un déjeuner-brunch qui est présenté sous forme de buffet à volonté installé dans la première salle spacieuse à l'entrée du restaurant. On y retrouve des classiques de la cuisine italienne ainsi que des grands classiques du déjeuner-brunch.",
+            "Proche de la Place de la Bourse et de la Bibliothèque Nationale de France Richelieu, le restaurant Bianca présente un brunch qui est présenté sous forme de buffet à volonté installé dans la première salle spacieuse à l'entrée du restaurant. On y retrouve des classiques de la cuisine italienne ainsi que des grands classiques du brunch.",
             "Au buffet des entrées, vous trouverez des Arancinis et différentes verrines d'Antipasti, d'Houmous et de salades de poissons marinés (Poulpe mariné et écrasé de pommes de terre, Saumon mariné). Des fromages (Burrata, Stracciatella) et différentes sortes de charcuteries italiennes découpées sous vos yeux sont également proposés. Nous avons adoré pouvoir goûter cette large sélection d'entrées proposée en petites verrines de dégustation.",
             "À la demande, différentes recettes d'œufs brouillés (Truffe, Saumon, Bacon ou Nature) sont également disponibles. Nous avons eu un vrai coup de cœur pour le poêlon d'œufs brouillés à la truffe.",
             "Du côté du buffet chaud, nous sommes tout de suite attirés par la bonne odeur des pizzas à la part (Regina, Margarita, 4 fromages, Truffe) présentées à côté de différents beignets de légumes. Juste à côté, Lasagnes à la bolognaise, Raviolis aux cèpes, Gnocchis à la truffe et différentes recettes de pâtes nous attendent bien sûr.",
@@ -31684,7 +31684,7 @@ export const mockRecipes: Recipe[] = [
             "Pour les boissons, direction le bar où une sélection de boissons chaudes est à votre disposition en libre-service (café, thé noir, chaï latte et chocolat chaud). À la demande, de très bons jus de fruits frais sont au choix. Nous avons adoré les mix de fruits, surtout le pomme-gingembre-ananas.",
             "Mon plat préféré : tout est bon !",
             "l'accueil, l'ambiance, la musique",
-            "pas de soda compris dans le déjeuner-brunch à 39€",
+            "pas de soda compris dans le brunch à 39€",
             "peu importe, la déco est très sympa 😉",
             "2 rue du 4 septembre, 75002 Paris"
         ],
@@ -31821,7 +31821,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6859",
-        "title": "Viande de Noël",
+        "title": "Santa Carne",
         "description": "",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_1_1784045595472.jpeg&v=1784045601436",
         "category": "restaurant",
@@ -31837,7 +31837,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "📍Viande de Noël - Paris • Martini framboise  - 13€ • Margarita chili fraise - 13€ • Empenadas bœuf & provolone, oignons, tomates, origan  - 10€ • Crevettes à l'ail  - 12€ • Ceviche de la maison - 18€ • Noix d'entrecôte  - 36€ • L'assiette du chef  - 42€ • Crème brûlée au maté - 9€ • Pampita  - 11€ • Tiramisu au whisky  - 9€ #santacarne #paris #france #restaurant #restaurantparis #restaurantargentin #argentinrestaurant #argentine #specialite #viande #viandeargentine #meat #boeuf #beef #empenadas #crevette #ceviche #moelleuxauchocolat #chocolat #tiramisu #whisky #cremebrulee #maté #dessert #anniversaire #nourriture #foodie #foodtiktok #bonneadresse #bonneadresseparis #decouvrir #explorer #fyp #pourtoi #viral #laufood"
+            "📍Santa Carne - Paris 🇫🇷 •Martini framboise 🍸- 13€ • Strawberry chili margarita 🍓- 13€ • Empenadas bœuf & provolone, oignons, tomates, origan 🥟 - 10€ • Crevettes à l'ail 🦐 - 12€ • Ceviche de la casa - 18€ • Noix d'entrecôte 🥩 - 36€ • L'assiette du chef 👨🏼‍🍳 - 42€ • Crème brûlée au maté🧉- 9€ • Pampita 🍫 - 11€ • Tiramisu au whisky 🍮 - 9€ #santacarne #paris #france #restaurant #restaurantparis #restaurantargentin #argentinrestaurant #argentine #specialite #viande #viandeargentine #meat #boeuf #beef #empenadas #crevette #ceviche #moelleuxauchocolat #chocolat #tiramisu #whisky #cremebrulee #maté #dessert #birthday #food #foodie #foodtiktok #bonneadresse #bonneadresseparis #discover #explore #fyp #pourtoi #viral #laufood"
         ],
         "tags": [
             "resto-brasserie"
@@ -34485,7 +34485,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6498",
-        "title": "Cupcakes Tiramisu",
+        "title": "Tiramisu Cupcakes",
         "description": "Des cupcakes moelleux inspirés du tiramisu, avec une ganache au café et chocolat blanc, un glaçage crémeux au mascarpone et une touche de cacao en poudre.",
         "image": "/recipes-ia/6498-carte.webp",
         "category": "patisserie",
@@ -35656,7 +35656,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6470",
-        "title": "Bol de Burger de Poulet Croustillant",
+        "title": "Crispy Chicken Burger Bowl",
         "description": "Un bowl gourmand et rapide à préparer, composé de frites, de poulet croustillant, de fromage fondu, de légumes frais et de sauces savoureuses.",
         "image": "/recipes-ia/6470-carte.webp",
         "category": "plats",
@@ -35668,43 +35668,43 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             Frites"
+                "name": "🥣\n             Fries"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             4 tranches de fromage"
+                "name": "🥣\n             4 cheese slices"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             4-5 tendres de poulet"
+                "name": "🥣\n             4-5 chicken tenders"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Une poignée de laitue"
+                "name": "🥣\n             A handful of lettuce"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Tomates"
+                "name": "🥣\n             Tomatoes"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Sauce de burger"
+                "name": "🥣\n             Burger sauce"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Mayo à l'ail"
+                "name": "🥣\n             Garlic mayo"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Oignons séchés"
+                "name": "🥣\n             Dried onions"
             }
         ],
         "steps": [
-            "Placez les frites dans un bol.",
-            "Ajoutez les tranches de fromage et faites chauffer au micro-ondes pendant 1 minute jusqu'à ce que le fromage soit fondu.",
-            "Recouvrez avec les tendres de poulet, la laitue et les tomates.",
-            "Arrosez de sauce de burger et de mayo à l'ail.",
-            "Saupoudrez d'oignons séchés sur le dessus et servez."
+            "Place the fries in a bowl.",
+            "Add the cheese slices and microwave for 1 minute until melted.",
+            "Top with the chicken tenders, lettuce, and tomatoes.",
+            "Drizzle over the burger sauce and garlic mayo.",
+            "Sprinkle dried onions on top and serve."
         ],
         "tags": [
             "Plats",
@@ -35851,7 +35851,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6500",
-        "title": "Cupcakes de la Forêt Noire, mais améliorés",
+        "title": "Black Forest Cupcakes, But Better",
         "description": "Une recette de cupcakes Forêt Noire améliorés, avec des cupcakes au chocolat, une compote de cerises maison et un glaçage au cream cheese et cerises.",
         "image": "/recipes-ia/6500-carte.webp",
         "category": "patisserie",
@@ -35863,77 +35863,77 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             1 gros oeuf - 60 g"
+                "name": "🥣\n             1 large egg - 60 g"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Sucre granulé - 200 g (1 tasse)"
+                "name": "🥣\n             Granulated sugar - 200 g (1 cup)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Lait frais - 120 g (½ tasse)"
+                "name": "🥣\n             Fresh milk - 120 g (½ cup)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Huile neutre - 120 g (½ tasse)"
+                "name": "🥣\n             Neutral oil - 120 g (½ cup)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Crème aigre - 1 cuillère à soupe"
+                "name": "🥣\n             Sour cream- 1 Tbsp"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Farine tout usage - 135 g (1 tasse)"
+                "name": "🥣\n             All-purpose flour - 135 g (1 cup)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Poudre de cacao non sucrée - 35 g (⅓ tasse)"
+                "name": "🥣\n             Unsweetened cocoa powder - 35 g (⅓ cup)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Bicarbonate de soude - 5 g (1 cuillère à café)"
+                "name": "🥣\n             Baking soda - 5 g (1 tsp)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Sel - 3 g (½ cuillère à café)"
+                "name": "🥣\n             Salt - 3 g (½ tsp)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Cerises fraîches, dénoyautées - 200 g (environ 1½ tasses)"
+                "name": "🥣\n             Fresh cherries, pitted - 200 g (about 1½ cups)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Sucre granulé - 45 g (3½ cuillères à soupe)"
+                "name": "🥣\n             Granulated sugar - 45 g (3½ tbsp)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fromage à la crème froid - 200 g (environ ¾ tasse + 2 cuillères à soupe)"
+                "name": "🥣\n             Cold Cream cheese - 200 g (about ¾ cup + 2 tbsp)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Crème fouettée froide (35%) - 100 g (environ 6½ cuillères à soupe)"
+                "name": "🥣\n             Cold Heavy whipping cream (35%) - 100 g (about 6½ tbsp)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Sucre en poudre - 60 g (½ tasse)"
+                "name": "🥣\n             Powdered sugar - 60 g (½ cup)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Compote de cerises (à température ambiante) - 35 g (2 cuillères à soupe)"
+                "name": "🥣\n             Cherry compote (room temperature)- 35 g (2 tbsp)"
             }
         ],
         "steps": [
-            "Mélangez la farine, la poudre de cacao, le bicarbonate de soude, le sel et le sucre jusqu'à ce que tout soit bien combiné.",
-            "Ajoutez l'oeuf, le lait, l'huile et la crème aigre directement aux ingrédients secs et mélangez jusqu'à ce que la pâte soit lisse et qu'il ne reste pas de traces sèches.",
-            "Divisez la pâte dans des caissettes à cupcakes et faites cuire à 175°C pendant 18-22 minutes, ou jusqu'à ce qu'un cure-dent inséré dans le centre en ressorte propre.",
-            "Laissez refroidir complètement.",
-            "Pour la compote de cerises, faites cuire les cerises et le sucre à feu moyen jusqu'à ce que les cerises ramollissent et que le mélange devienne épais et confituré.",
-            "Laissez refroidir complètement.",
-            "Battez grossièrement le fromage à la crème froid.",
-            "Ajoutez le sucre en poudre et la compote de cerises, puis fouettez jusqu'à ce que tout soit juste combiné, puis pliez la crème fouettée froide.",
-            "Garnissez chaque cupcake d'un anneau épais de glaçage.",
-            "Utilisez l'arrière d'une cuillère à soupe ronde pour presser un petit creux dans le centre.",
-            "Remplissez le centre de compote de cerises et couvrez d'une cerise fraîche et d'une feuille de menthe."
+            "Mix the flour, cocoa powder, baking soda, salt, and sugar until well combined.",
+            "Add the egg, milk, oil and sour cream directly to the dry ingredients and mix until the batter is smooth and no dry streaks remain.",
+            "Divide the batter into cupcake liners and bake at 350°F (175°C) for 18-22 minutes, or until a toothpick inserted into the center comes out clean.",
+            "Let cool completely.",
+            "For the cherry compote, cook the cherries and sugar over medium heat until the cherries soften and the mixture becomes thick and jammy.",
+            "Let cool completely.",
+            "Beat the cold cream cheese roughly.",
+            "Add powdered sugar, and cherry compote and whip until just combined then Fold the cold whipped cream.",
+            "Pipe a thick ring of frosting onto each cupcake.",
+            "Use the back of a round tablespoon to press a shallow well into the center.",
+            "Fill the center with cherry compote and top with a fresh cherry and a mint leaf."
         ],
         "tags": [
             "pâtisserie"
@@ -35944,7 +35944,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6490",
-        "title": "Poulets grillés au cheddar caramélisé",
+        "title": "BBQ Cheddar Glazed Chicken Breasts",
         "description": "Poitrines de poulet juteuses glacées à la sauce barbecue fumée et gratinées au cheddar fondant, une recette rapide et savoureuse.",
         "image": "/recipes-ia/6490-carte.webp",
         "category": "plats",
@@ -35956,39 +35956,39 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             2 grandes poitrines de poulet"
+                "name": "🥣\n             2 large chicken breasts"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 cuillères à soupe d'huile d'olive"
+                "name": "🥣\n             2 tablespoons olive oil"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             1 cuillère à soupe de paprika fumé"
+                "name": "🧂\n             1 tablespoon smoked paprika"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à café de poudre d'ail"
+                "name": "🥣\n             1 teaspoon garlic powder"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à café de poudre d'oignon"
+                "name": "🥣\n             1 teaspoon onion powder"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1/2 cuillère à café de poivre de Cayenne"
+                "name": "🥣\n             1/2 teaspoon cayenne pepper"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1/2 tasse de sauce barbecue préférée"
+                "name": "🥣\n             1/2 cup favorite bbq sauce"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             1 tasse de fromage cheddar émietté"
+                "name": "🧀\n             1 cup sharp cheddar cheese, shredded"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             sel et poivre noir au goût"
+                "name": "🥣\n             salt and black pepper to taste"
             }
         ],
         "steps": [
@@ -40042,7 +40042,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             1kg Fromage à la crème"
+                "name": "🥣\n             1kg Cream Cheese"
             },
             {
                 "quantity": "",
@@ -40074,7 +40074,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Mélanger le fromage à la crème à température ambiante avec le sucre.",
+            "Mélanger le cream cheese à température ambiante avec le sucre.",
             "Après avoir bien mélangé, incorporer les oeufs un par un.",
             "Ajouter le jus de citron, le sel, l'extrait de vanille, la farine et bien mélanger.",
             "Ajouter ensuite la crème et incorporer délicatement à la cuillère ou à la spatule (ne pas utiliser de mixeur).",
@@ -42086,7 +42086,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Le jus de ½ citron"
+                "name": "🍋\n             Le jus d'½ citron"
             },
             {
                 "quantity": "",
@@ -42499,11 +42499,11 @@ export const mockRecipes: Recipe[] = [
             "Réduire le feu à moyen, couvrir et laisser mijoter la sauce pendant environ 25 minutes. Retirer la feuille de laurier et le bâton de cannelle avant d'assembler le plat.",
             "Dans une casserole séparée, faire chauffer le lait à feu moyen. Incorporer progressivement 6 cuillères à soupe de fécule de maïs, puis ajouter le beurre. Continuer de remuer jusqu'à ce que la sauce commence à épaissir, en veillant à remuer le fond pour éviter qu'elle ne colle.",
             "Ajouter la noix de muscade, le sel et le poivre au goût, et continuer de remuer. Incorporer la moitié du fromage râpé jusqu'à ce qu'il soit fondu. Retirer du feu et laisser la sauce refroidir légèrement avant d'y incorporer les jaunes d'œufs en fouettant.",
-            "Préchauffer votre four à 175°C.",
+            "Préchauffer votre four à 350°F (175°C).",
             "Graisser un plat de cuisson de 33 pouces (environ 33×22 cm). Étaler la moitié des pâtes cuites uniformément au fond du plat.",
             "Verser la sauce à la viande hachée sur les pâtes, en l'étalant uniformément. Ajouter le reste des pâtes sur la sauce.",
             "Verser la sauce béchamel sur les pâtes, en l'étalant uniformément pour couvrir le dessus. Saupoudrer le reste du fromage râpé sur la sauce béchamel.",
-            "Faire cuire le Pastitsio dans le four préchauffé pendant environ 1 heure, ou jusqu'à ce que le dessus soit doré et que la béchamel soit prise. Laisser le plat refroidir légèrement avant de servir. Dégustez votre pastitsio maison !"
+            "Faire cuire le Pastitsio dans le four préchauffé pendant environ 1 heure, ou jusqu'à ce que le dessus soit doré et que la béchamel soit prise. Laisser le plat refroidir légèrement avant de servir. Dégustez votre pastitsio maison!"
         ],
         "tags": [
             "Grèce",
@@ -43775,7 +43775,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🌾\n             240 g (2 tasses) de farine tout usage, tamisée"
+                "name": "🌾\n             240 g (2 cups) farine tout usage, tamisée"
             },
             {
                 "quantity": "",
@@ -43839,7 +43839,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             170 g de Philadelphia cream cheese, ramolli"
+                "name": "🥣\n             6 oz (170 g) de Philadelphia cream cheese, ramolli"
             },
             {
                 "quantity": "",
@@ -55143,7 +55143,7 @@ export const mockRecipes: Recipe[] = [
         "id": "278",
         "title": "L'Odysee",
         "description": "    Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte es...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557015152000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557022352000",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -55179,7 +55179,7 @@ export const mockRecipes: Recipe[] = [
         "id": "237",
         "title": "Le club des cinq",
         "description": "    Cinq amis recréent le mythique Club des Cinq grâce à un restaurant à la décoration très revival 80's. Vous pourrez admirer la photo de Mac Gyver ou celle de Goldorak qui ornent les murs de l'endroit, et vous dînerez adossé à une bibliothèque r...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F03%2Fclub.jpg&v=1526250887000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F03%2Fclub.jpg&v=1526258087000",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -55214,7 +55214,7 @@ export const mockRecipes: Recipe[] = [
         "id": "260",
         "title": "Bistrot à Burger",
         "description": "                                                                                                                                                                                                                                                       ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FCapture-d%E2%80%99e%CC%81cran-2018-05-13-a%CC%80-21.32.19.png&v=1526250402000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FCapture-d%E2%80%99e%CC%81cran-2018-05-13-a%CC%80-21.32.19.png&v=1526257602000",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
