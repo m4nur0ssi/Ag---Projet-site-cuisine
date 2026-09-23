@@ -142,7 +142,89 @@ const DISPLAY_ACCENT: Record<string, string> = {
     'creme liquide': 'crème liquide', 'creme fraiche': 'crème fraîche', 'creme epaisse': 'crème épaisse',
 };
 
-const POWDER_DISTINCT = ['ail', 'oignon', 'gingembre', 'coriandre'];
+/*
+ * Plus aucune variante « en poudre » à part.
+ * =========================================
+ *
+ * L'ail en poudre, la coriandre moulue et la menthe séchée avaient chacun leur
+ * ligne, à côté du produit frais. Dans un caddie, c'est le même rayon et le
+ * même geste : on additionne. (Liste gardée vide plutôt que supprimée : le
+ * réglage se redonne en une ligne si besoin.)
+ */
+const POWDER_DISTINCT: string[] = [];
+
+/*
+ * Épithètes qui ne changent pas le produit qu'on achète.
+ * =====================================================
+ *
+ * « citron », « citron bio non traité », « citron jaune bio » et « citron
+ * confit » sont un seul et même achat : un citron. Idem pour la coriandre, la
+ * menthe, l'ail. On retire donc ces qualificatifs de la CLÉ de fusion.
+ * Les couleurs qui font un autre produit (citron VERT, oignon ROUGE) ne sont
+ * PAS dans la liste — « jaune » y est, car il ne fait que redire la couleur
+ * par défaut.
+ */
+const QUALIF_RE = /\s*\b(bio|biologiques?|non\s+traitee?s?|confite?s?|du\s+jardin|de\s+saison|entiere?s?|entiers?|de\s+qualite|extra)\b/g;
+
+/*
+ * Un produit, une ligne.
+ * ======================
+ *
+ * Pour ces produits-là, toutes les variantes vont dans le même panier : on
+ * achète « des citrons », « des oignons », « des œufs ». Chaque règle dit le
+ * mot à reconnaître, le nom retenu, et ce qui FAIT EXCEPTION — un citron vert
+ * n'est pas un citron, un oignon rouge n'est pas un oignon, et un jaune (ou un
+ * blanc) d'œuf n'est pas un œuf.
+ */
+const FUSION_PRODUITS: { motif: RegExp; nom: string; sauf?: RegExp }[] = [
+    { motif: /\bcitrons?\b/, nom: 'citron', sauf: /\bverte?s?\b/ },
+    { motif: /\boignons?\b/, nom: 'oignon', sauf: /\brouges?\b/ },
+    { motif: /\b(oeufs?|œufs?)\b/, nom: 'oeuf', sauf: /\b(jaunes?|blancs?)\s+d/ },
+    { motif: /\bails?\b/, nom: 'ail', sauf: /\bours?\b|\bnoirs?\b|\bfermente?s?\b/ },
+    { motif: /\bcoriandres?\b/, nom: 'coriandre' },
+    { motif: /\bmenthes?\b/, nom: 'menthe' },
+];
+
+/* La taille en tête ne fait pas un autre produit : « petit oignon rouge » se
+   range avec les oignons rouges. Deux exceptions gardées telles quelles, parce
+   que la taille EST le produit : les petits pois et le gros sel. */
+const TAILLE_RE = /^(gros|grosse|grosses|petits?|petites?|moyenne?s?)\s+(?!d[e']|pois\b|sel\b)/;
+
+/** Le mot « jaune » ne se retire qu'APRÈS le produit : « citron jaune » → citron,
+ *  mais « jaune d'œuf » reste un jaune d'œuf. */
+const retirerJaune = (n: string) => n.replace(/(\S)\s+\bjaunes?\b/g, '$1');
+
+/**
+ * Met au pluriel un nom de produit quand on en achète plusieurs.
+ * « 2 citron » → « 2 citrons », « 3 pomme de terre » → « 3 pommes de terre » :
+ * on accorde le nom, et l'adjectif qui le suit s'il y en a un.
+ */
+/* Ce qui ne se compte pas au pluriel : on dit « 3 ail », « 2 persil », jamais
+   « 3 ails ». Les aromates et les denrées en vrac restent invariables. */
+const INVARIABLES = new Set([
+    'ail', 'persil', 'coriandre', 'menthe', 'basilic', 'thym', 'romarin', 'ciboulette',
+    'aneth', 'estragon', 'origan', 'laurier', 'sauge', 'sel', 'poivre', 'sucre', 'farine',
+    'huile', 'beurre', 'lait', 'eau', 'riz', 'vinaigre', 'miel', 'creme', 'moutarde',
+    'levure', 'semoule', 'chapelure', 'maizena', 'curry', 'paprika', 'cumin', 'curcuma',
+]);
+
+export const nomAuPluriel = (nom: string, quantite: number | null | undefined, unite: string = ''): string => {
+    if (unite || quantite == null || quantite < 2) return nom;
+    if (INVARIABLES.has(normalizeIng(nom.split(' ')[0] || ''))) return nom;
+    const accorde = (m: string) => (/[sxz]$/i.test(m) ? m : `${m}s`);
+    const mots = nom.split(' ');
+    mots[0] = accorde(mots[0]);
+    // « pomme DE terre », « gousse D'ail » : le complément ne s'accorde pas.
+    if (mots[1] && !/^(de|d'|d’|a|à|au|aux|du|des|en|pour|sans|avec|le|la|les)$/i.test(mots[1])) {
+        mots[1] = accorde(mots[1]);
+    }
+    return mots.join(' ');
+};
+// Précision entre parenthèses (« menthe (pour les toppings) ») : décor du
+// texte, jamais un produit différent.
+const PARENTHESE_RE = /\s*\([^)]*\)/g;
+// « coriandre / citron » : deux noms pour une même ligne ; on range sur le premier.
+const SLASH_RE = /\s*\/.*$/;
 const SPOON_UNITS = ['cac', 'cas', 'cc', 'cs', 'càc', 'càs', 'c.à.c', 'c.à.s'];
 const POWDER_RE = /\s*(en poudre|semoule|moulus?|moulue?s?|deshydrates?)\b.*$/;
 
@@ -155,7 +237,7 @@ const SPOON_RAW_RE = /(^|[^a-z])(cac|cas|cc|cs)([^a-z]|$)|\bc[.\s]+a[.\s]*(c|caf
 const isSpoonRaw = (raw: string) => SPOON_RAW_RE.test(normalizeIng(raw));
 
 // Pluriel → singulier (par mot). Exceptions : mots déjà terminés en 's' au singulier.
-const SING_EXCEPT = new Set(['ananas', 'anchois', 'jus', 'riz', 'mais', 'couscous', 'houmous', 'hummus', 'cassis', 'cresson', 'chips', 'pois', 'abats', 'epices', 'des']);
+const SING_EXCEPT = new Set(['ananas', 'anchois', 'jus', 'riz', 'mais', 'couscous', 'houmous', 'hummus', 'cassis', 'cresson', 'chips', 'pois', 'abats', 'epices', 'des', 'ours', 'gros', 'frais', 'gras', 'epais']);
 const depluralize = (n: string) => n.split(' ').map(w => {
     if (SING_EXCEPT.has(w) || w.length <= 3) return w;
     if (/eaux$/.test(w)) return w.slice(0, -1);   // gateaux → gateau
@@ -176,8 +258,23 @@ const PREP_RE = /\s+(haches?|hachees?|eminces?|emincees?|concasses?|concassees?|
 const SECTION_SUFFIX_RE = /\s+pour\s+(l[ae]s?|l['’]|du|des|une?|le)\s+.+$/;
 const stripPrep = (n: string) => n.replace(SECTION_SUFFIX_RE, '').replace(PREP_RE, '').replace(/\s+/g, ' ').trim();
 
+/** Une pièce et une absence d'unité, c'est la même chose dans un caddie. */
+const uniteDeBase = (u: string) => (u === 'piece' || u === 'pièce' || u === 'pieces' ? '' : u);
+
 export const canonicalIng = (name: string, unit: string = '', raw: string = ''): { name: string; unit: string } => {
-    let n = depluralize(stripPrep(normalizeIng(name).replace(/\s+/g, ' ').trim()));
+    let n = depluralize(stripPrep(
+        normalizeIng(name)
+            .replace(PARENTHESE_RE, ' ')
+            .replace(SLASH_RE, '')
+            .replace(QUALIF_RE, ' ')
+            .replace(/\s+/g, ' ')
+            .trim(),
+    ));
+    if (!n) n = depluralize(stripPrep(normalizeIng(name).replace(/\s+/g, ' ').trim()));
+    n = retirerJaune(n).replace(TAILLE_RE, '').replace(/\s+/g, ' ').trim();
+    for (const r of FUSION_PRODUITS) {
+        if (r.motif.test(n) && !(r.sauf && r.sauf.test(n))) { n = r.nom; break; }
+    }
     if (SYNONYMS[n]) n = SYNONYMS[n];
     const u = normalizeIng(unit);
     const isPowder = POWDER_RE.test(n) || /\bsemoule\b/.test(n);
@@ -187,9 +284,11 @@ export const canonicalIng = (name: string, unit: string = '', raw: string = ''):
         if (isPowder || SPOON_UNITS.includes(u) || (raw && isSpoonRaw(raw))) {
             return { name: base + ' en poudre', unit: '' };
         }
-        return { name: base, unit }; // frais : conserve l'unité (g, etc.) pour additionner
+        return { name: base, unit: uniteDeBase(unit) }; // frais : conserve l'unité (g, etc.) pour additionner
     }
-    return { name: n, unit };
+    // La poudre rejoint le produit : « ail en poudre » compte avec « ail ».
+    if (isPowder) return { name: base, unit: '' };
+    return { name: n, unit: uniteDeBase(unit) };
 };
 
 const ICONS: [string, string][] = [
@@ -483,7 +582,7 @@ export const buildConsolidatedItems = (
             if (opts?.manual) { existing.manual = true; existing.ord = ++ord; }
             // Fusionné → on recompose un affichage avec la quantité additionnée (unité lisible).
             existing.display = existing.qty != null
-                ? `${prettyQtyUnit(existing.qty, existing.unit)} ${existing.name}`.trim()
+                ? `${prettyQtyUnit(existing.qty, existing.unit)} ${nomAuPluriel(existing.name, existing.qty, existing.unit)}`.trim()
                 : existing.name;
         } else {
             map.set(key, {

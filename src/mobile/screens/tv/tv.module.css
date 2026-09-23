@@ -53,10 +53,13 @@
         padding: 0 12px calc(12px + env(safe-area-inset-bottom, 0px));
     }
     .planDayTitle { grid-column: 1 / -1; }
+    /* De l'air entre le titre du jour (avec son tarif) et la pastille des
+       recettes : les deux se touchaient. */
+    .planDayHead { margin-bottom: 16px; }
     /* « Jour J » gère lui-même sa grille : son en-tête et son conteneur prennent
        toute la largeur, sinon ils se retrouvaient enfermés dans une demi-colonne
        de 483 px — et la grille intérieure n'avait plus qu'une colonne. */
-    .jourjHead, .jourjGrid, .planTimelineBtn { grid-column: 1 / -1; }
+    .jourjHead, .jourjGrid, .planTimelineBtn, .semaineGrid { grid-column: 1 / -1; }
     /* La liste « Mes recettes » occupe toute la largeur, en deux colonnes de cartes. */
     .cartList {
         grid-column: 1 / -1;
@@ -5103,3 +5106,205 @@
 :global([data-theme='light']) .courseSugg { background: rgba(255, 255, 255, 0.98); box-shadow: 0 16px 40px rgba(0,0,0,.15), inset 0 0 0 0.5px rgba(0,0,0,.1); }
 :global([data-theme='light']) .courseSuggItem { color: #111; }
 :global([data-theme='light']) .courseSuggItem:hover, :global([data-theme='light']) .courseSuggOn { background: rgba(0,0,0,.06); }
+
+
+/* ── Semaine au même gabarit que le Jour J (grand écran) ──────────────────
+   Les repas de la semaine s'affichaient en bandeaux pleine largeur : de
+   grandes photos étirées, là où le Jour J aligne des cartes format affiche,
+   plus nettes et plus jolies. Même grille, mêmes cartes, des deux côtés.
+   Écrit en fin de fichier : à spécificité égale, ces règles doivent passer
+   après celles du bloc « Planificateur sur grand écran ». */
+@media (min-width: 900px) {
+    .semaineGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px 18px;
+        align-items: start;
+    }
+    .semaineGrid .planSlot { margin-bottom: 0; }
+    /* L'accompagnement passe SOUS le plat : à cette largeur, côte à côte
+       redonnerait deux demi-cartes minuscules. */
+    .semaineGrid .planPairSplit { display: block; }
+    .semaineGrid .planPairSplit .planCard,
+    .semaineGrid .planSlot .planEmpty {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+    .semaineGrid .planPairSplit .planSide {
+        height: auto;
+        margin-top: 10px;
+        padding: 0;
+    }
+    .semaineGrid .planSideCard { aspect-ratio: 4 / 3; height: auto; }
+    .semaineGrid .planCardTitle { font-size: 16px; line-height: 1.2; }
+    .semaineGrid .planCardMeta { font-size: 12px; }
+    /* Les commandes n'encombrent la carte que lorsqu'on la vise, comme au Jour J. */
+    .semaineGrid .planSlotActions { opacity: 0; transition: opacity 0.2s ease; }
+    .semaineGrid .planSlot:hover .planSlotActions,
+    .semaineGrid .planSlot:focus-within .planSlotActions { opacity: 1; }
+    /* Le bouton « Ajouter le repas du soir » occupe sa propre case de grille. */
+    .semaineGrid .planAjoutRepas { margin: 0; }
+}
+
+
+/* ── Sur téléphone, le rail n'existe pas ───────────────────────────────────
+   `display: contents` : le prix et la barre d'actions se comportent comme
+   s'ils n'étaient enveloppés dans rien. */
+.planRail { display: contents; }
+
+/* ── Bureau : le contenu à gauche, un panneau d'actions à droite ───────────
+   Prix, Composer, Effacer et Remplir ma liste tenaient dans trois endroits
+   différents — au-dessus des jours, en bas, en haut à droite. Tout se range
+   maintenant dans une seule pastille arrondie, calée à droite et qui suit le
+   défilement ; les cartes du jour gardent la colonne de gauche. */
+@media (min-width: 1024px) {
+    .pagePlanner {
+        /* Hauteur commune aux deux pastilles, réglée sur la fenêtre : tout
+           doit tenir à l'arrivée, sans défilement. */
+        --pastille-h: clamp(300px, calc(100vh - 384px), 560px);
+        --pastille-decalage: 322px;
+        position: relative;
+        display: grid;
+        grid-template-columns: 224px minmax(0, 1fr);
+        column-gap: 26px;
+        align-items: start;
+    }
+    /* Tout le reste (en-tête, onglets, jours, cartes) reste à gauche. */
+    .pagePlanner > * { grid-column: 2; min-width: 0; }
+
+    /* Le panneau de droite : MÊME pastille que celle des cartes du jour,
+       simplement plus étroite. */
+    .pagePlanner > .planRail {
+        grid-column: 1;
+        /* Hors flux : dans la grille, une pastille qui s'étire sur plusieurs
+           lignes les fait toutes grandir — la page gagnait 400 px de vide et
+           il fallait défiler. Elle est donc simplement posée dans la colonne
+           de gauche, à la hauteur exacte de la pastille des recettes. */
+        position: absolute;
+        /* Une vraie gouttière entre le menu et la pastille : posée à 0, elle
+           collait au bord de la fenêtre et se faisait rogner. */
+        left: 24px;
+        width: 224px;
+        /* `top` et `height` sont posés en JS, mesurés sur la pastille des
+           recettes : c'est le seul moyen d'avoir exactement la même hauteur
+           quelles que soient la fenêtre, le zoom et la coquille. Ces valeurs
+           de repli servent le temps de la première mesure. */
+        top: var(--pastille-decalage);
+        height: var(--pastille-h);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 10px;
+        padding: 14px;
+        border-radius: 24px;
+        background: rgba(28, 28, 30, 0.55);
+        -webkit-backdrop-filter: blur(30px) saturate(160%);
+        backdrop-filter: blur(30px) saturate(160%);
+        box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
+    }
+    /* Le prix EST le haut du panneau : sa pastille perd son propre fond pour
+       ne pas faire une pilule dans la pilule. Un filet la sépare des actions. */
+    /* Le prix EST le haut du panneau : sa pastille perd son propre fond pour
+       ne pas faire une pilule dans la pilule. Tout est centré, comme les trois
+       boutons — une seule colonne de texte, un seul axe. */
+    .planRail .planPrix { padding: 0; }
+    .planRail .planPrix > * {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: none;
+        box-shadow: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        padding: 2px 0 12px;
+        border-bottom: 0.5px solid rgba(255, 255, 255, 0.12);
+        border-radius: 0;
+        text-align: center;
+    }
+    .planRail .planPrix > * > * { align-items: center; text-align: center; }
+
+    /* Les trois actions, empilées, toutes du même gabarit : seule la couleur
+       désigne l'action principale. */
+    .planRail .planFooter {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        background: none;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .planRail .planCompose,
+    .planRail .planClear,
+    .planRail .planValidate {
+        width: 100%;
+        height: 42px;
+        padding: 0 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        text-align: center;
+        font-family: 'Outfit', sans-serif;
+        font-size: 14.5px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+    }
+    .planRail .planValidate { max-width: none; }
+    .planRail .planClear { font-weight: 600; }
+    .planRail .planCompose:hover,
+    .planRail .planClear:hover { background: rgba(70, 70, 74, 0.9); }
+    .planRail .planValidate:hover { background: rgba(255, 255, 255, 0.88); }
+    .planRail .planValidateLong { display: none; }
+    .planRail .planValidateShort { display: inline; }
+
+    /* Les quatre cartes du jour (midi, soir et leurs accompagnements) vivent
+       dans UNE pastille, la même que celle des actions à droite. */
+    .semaineGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        height: var(--pastille-h);
+        gap: 16px;
+        padding: 16px;
+        border-radius: 24px;
+        background: rgba(28, 28, 30, 0.55);
+        -webkit-backdrop-filter: blur(30px) saturate(160%);
+        backdrop-filter: blur(30px) saturate(160%);
+        box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
+    }
+    /* Dans la pastille, les cartes n'ont plus besoin de leur ombre portée :
+       c'est le panneau qui porte le relief. */
+    .semaineGrid .planCard,
+    .semaineGrid .planSideCard { box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.1); }
+    /* Les cartes remplissent la pastille : le plat prend la place qui reste,
+       l'accompagnement garde sa bande sous lui. Plus de format fixe, donc plus
+       de défilement à l'arrivée. */
+    .semaineGrid .planSlot {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+    }
+    .semaineGrid .planPairSplit { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+    .semaineGrid .planPairSplit .planCard,
+    .semaineGrid .planSlot .planEmpty {
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: auto;
+    }
+    .semaineGrid .planPairSplit .planSide {
+        flex: 0 0 auto;
+        height: auto;
+        margin-top: 10px;
+        padding: 0;
+    }
+    /* L'accompagnement respire davantage — sans jamais rivaliser avec le plat. */
+    .semaineGrid .planSideCard { height: clamp(110px, calc(var(--pastille-h) * 0.32), 180px); aspect-ratio: auto; }
+}

@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { flushSync } from 'react-dom';
-import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
 import Portal from '@/mobile/components/Portal';
 import styles from './RecipeSheet.module.css';
@@ -73,7 +73,6 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     // MotionValues
     const y = useMotionValue(0);
     const x = useMotionValue(0); // Offset relatif au centre (0 = centré sur currentIdx)
-    const backdropOpacity = useTransform(y, [0, 350], [1, 0]);
 
     // Gesture tracking
     const touchStartX = useRef(0);
@@ -443,7 +442,14 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            style={{ opacity: backdropOpacity }}
+                            /*
+                             * L'opacité NE SUIT PLUS la position de la fiche.
+                             * Elle était pilotée par le `y` du glisser : à
+                             * l'ouverture ce `y` vaut encore la hauteur de
+                             * l'écran, la transformation retournait 0, et le
+                             * voile restait invisible — le site derrière
+                             * n'était donc ni assombri ni flouté.
+                             */
                             onClick={onClose}
                         />
 

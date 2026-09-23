@@ -104,6 +104,56 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     }, []);
     const pagerRef = useRef<HTMLDivElement>(null);
 
+    /*
+     * Les deux pastilles du bureau (actions à gauche, recettes à droite) doivent
+     * commencer et finir exactement à la même hauteur. Impossible à obtenir en
+     * CSS seul : elles vivent dans deux branches différentes de la page, et
+     * toute valeur écrite « à la main » se décale dès que la fenêtre, le zoom ou
+     * la coquille changent. On MESURE donc la pastille des recettes du jour
+     * affiché, et on pose ses dimensions sur celle des actions.
+     */
+    const railRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const rail = railRef.current;
+        const page = rail?.parentElement;
+        if (!rail || !page) return;
+        let dernier = '';
+        const caler = () => {
+            if (!window.matchMedia('(min-width: 1024px)').matches) {
+                if (dernier !== 'mobile') { rail.style.removeProperty('top'); rail.style.removeProperty('height'); dernier = 'mobile'; }
+                return;
+            }
+            const grilles = page.querySelectorAll<HTMLElement>(`.${styles.semaineGrid}, .${styles.jourjGrid}`);
+            const cible = grilles[Math.min(index, grilles.length - 1)] || grilles[0];
+            if (!cible) return;
+            const r = cible.getBoundingClientRect();
+            const p = page.getBoundingClientRect();
+            const valeur = `${Math.round(r.top - p.top)}|${Math.round(r.height)}`;
+            if (valeur === dernier) return;   // rien n'a bougé : on n'écrit pas
+            dernier = valeur;
+            const [haut, hauteur] = valeur.split('|');
+            rail.style.top = `${haut}px`;
+            rail.style.height = `${hauteur}px`;
+        };
+        caler();
+        /*
+         * Une seule mesure ne suffit pas : la page se remplit (photos, prix du
+         * jour, plan relu du stockage) APRÈS le premier rendu, et la pastille
+         * des recettes descend alors sans changer de taille — un ResizeObserver
+         * ne voit rien. On re-mesure donc à intervalle court ; l'écriture n'a
+         * lieu que si la valeur a vraiment changé.
+         */
+        const battement = window.setInterval(caler, 250);
+        const ro = new ResizeObserver(caler);
+        ro.observe(page);
+        window.addEventListener('resize', caler);
+        return () => {
+            window.clearInterval(battement);
+            ro.disconnect();
+            window.removeEventListener('resize', caler);
+        };
+    }, [index, mode, plan, cart.length]);
+
     // ── Chargement : Supabase si connecté, sinon cache local ───────────────
     useEffect(() => {
         let vivant = true;
@@ -964,7 +1014,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     );
 
     return (
-        <div className={`${styles.page} ${embedded ? styles.embedded : ''} ${enMain ? styles.pageEnMain : ''}`}>
+        <div className={`${styles.page} ${styles.pagePlanner} ${embedded ? styles.embedded : ''} ${enMain ? styles.pageEnMain : ''}`}>
             <header className={styles.planHead}>
                 {/* Dans le shell desktop, la sidebar gère le retour : pas de flèche ici. */}
                 {!embedded && (
@@ -991,6 +1041,11 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 et l'en-tête n'a plus deux boutons qui se disputent le coin droit.
                 Le prix peut manquer (recettes sans ingrédients chiffrables) ; le
                 bouton, lui, doit rester : il part alors seul sur la même ligne. */}
+            {/* Colonne de droite au bureau : le prix, puis les trois actions
+                juste dessous. Sur téléphone, `display: contents` rend ce
+                conteneur transparent — le prix reste sous le titre et la barre
+                d'actions reste fixée en bas de l'écran. */}
+            <div className={styles.planRail} ref={railRef}>
             {mode !== 'panier' && planned > 0 && (
                 <div className={styles.planPrix}>
                     {prixCourant ? (
@@ -1004,6 +1059,31 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     ) : boutonPartage}
                 </div>
             )}
+
+            {/* Les trois actions. Au bureau elles vivent dans le panneau de
+                droite, sous le prix ; sur téléphone, la barre reste fixée en
+                bas de l'écran. */}
+            {mode !== 'panier' && (
+                <div className={styles.planFooter}>
+                    <button className={styles.planCompose} onClick={() => { haptic(8); setComposer(true); }}>
+                        Composer
+                    </button>
+                    <button className={styles.planClear} onClick={clearAll} disabled={!planned}>Effacer</button>
+                    <button className={styles.planValidate} onClick={validate} disabled={!planned}>
+                        {/* Au téléphone, « Remplir ma liste de courses » ne tient pas sur la
+                            ligne des trois boutons : il passait à trois lignes et la barre
+                            grimpait au milieu des cartes. Le libellé court prend le relais
+                            sous 430 px, le long reste au-dessus (voir tv.module.css). */}
+                        {planned ? (
+                            <>
+                                <span className={styles.planValidateLong}>Remplir ma liste de courses</span>
+                                <span className={styles.planValidateShort}>Liste de courses</span>
+                            </>
+                        ) : 'Rien de planifié'}
+                    </button>
+                </div>
+            )}
+            </div>
 
             <div className={styles.planModes}>
                 {(['semaine', 'jourj'] as const).map((m) => (
@@ -1025,6 +1105,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     </button>
                 )}
             </div>
+
 
             {mode === 'panier' ? (
                 <section className={styles.planSlide}>
@@ -1071,6 +1152,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         décide de remplacer un plat par un autre. */}
                                     <PrixMoyen prix={prixParJour.jours[day]} libelle="Ce jour" taille="petite" sombre />
                                 </div>
+                                {/* Même grille que le Jour J : les cartes du jour gardent
+                                    le format affiche plutôt que le bandeau pleine largeur. */}
+                                <div className={styles.semaineGrid}>
                                 {(() => {
                                     /*
                                      * Un jour à moitié rempli ne montre que ce qu'il
@@ -1110,6 +1194,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         </>
                                     );
                                 })()}
+                                </div>
                             </section>
                         ))}
                     </div>
@@ -1147,26 +1232,6 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 </section>
             )}
 
-            {mode !== 'panier' && (
-                <div className={styles.planFooter}>
-                    <button className={styles.planCompose} onClick={() => { haptic(8); setComposer(true); }}>
-                        Composer
-                    </button>
-                    <button className={styles.planClear} onClick={clearAll} disabled={!planned}>Effacer</button>
-                    <button className={styles.planValidate} onClick={validate} disabled={!planned}>
-                        {/* Au téléphone, « Remplir ma liste de courses » ne tient pas sur la
-                            ligne des trois boutons : il passait à trois lignes et la barre
-                            grimpait au milieu des cartes. Le libellé court prend le relais
-                            sous 430 px, le long reste au-dessus (voir tv.module.css). */}
-                        {planned ? (
-                            <>
-                                <span className={styles.planValidateLong}>Remplir ma liste de courses</span>
-                                <span className={styles.planValidateShort}>Liste de courses</span>
-                            </>
-                        ) : 'Rien de planifié'}
-                    </button>
-                </div>
-            )}
 
             <AnimatePresence>
                 {recap && (

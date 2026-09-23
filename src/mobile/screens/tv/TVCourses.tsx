@@ -20,7 +20,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import {
     buildConsolidatedItems, doneKeysOf, isItemDone, fmtQty, prettyQtyUnit,
-    canonicalIng, carrefourTerm,
+    canonicalIng, carrefourTerm, nomAuPluriel,
     parseIngredient, cleanIngredientText, getIngIcon,
     type ConsolItem,
 } from '@/mobile/lib/ingredients';
@@ -905,7 +905,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                         <button className={styles.courseText} onClick={() => toggleDone(it)}>
                                             <IngredientVignette nom={it.name} icone={it.icon} nombre={nombreAAfficher(it)} />
                                             <span className={styles.courseItemTexts}>
-                                                <span className={styles.courseName}>{it.name || it.display}</span>
+                                                {/* « 4 citrons », pas « 4 citron » : le nom s'accorde
+                                                    sur ce qu'on achète réellement. */}
+                                                <span className={styles.courseName}>{it.name ? nomAuPluriel(it.name, nombreAAfficher(it), it.unit) : it.display}</span>
                                                 {editing === it.key ? (
                                                     // Le pas-à-pas prend la place de la quantité : on modifie là où
                                                     // on lit, sans fenêtre par-dessus la liste.
