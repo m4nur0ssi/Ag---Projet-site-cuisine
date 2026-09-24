@@ -314,6 +314,21 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [items, plan]);
 
+    /*
+     * Rayons repliés (bureau) : la liste entière tenait sur une colonne et
+     * demandait dix tours de molette. Chaque rayon devient une carte qu'on
+     * ouvre et referme, et les cartes se rangent sur deux colonnes.
+     */
+    const [replies, setReplies] = useState<Set<string>>(new Set());
+    const basculerRayon = (rid: string) => {
+        haptic(6);
+        setReplies((prev) => {
+            const n = new Set(prev);
+            if (n.has(rid)) n.delete(rid); else n.add(rid);
+            return n;
+        });
+    };
+
     /** Rangée par rayon de supermarché, dans l'ordre du magasin. */
     const byRayon = useMemo(() => {
         const map = new Map<string, ConsolItem[]>();
@@ -869,14 +884,40 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                         </p>
                     )}
 
-                    {byRayon.map(([rid, group]) => (
-                        <section className={styles.courseRayon} key={rid}>
-                            <h2 className={styles.courseRayonTitle}>
-                                {RAYON_BY_ID[rid]?.label || 'Divers'}
+                    {/* Tout replier d'un coup : douze rayons ouverts, c'est encore
+                        long ; repliés, la liste tient sur un écran et on n'ouvre
+                        que le rayon devant lequel on se trouve. */}
+                    {items.length > 0 && (
+                        <div className={styles.courseRayonsBarre}>
+                            <button
+                                className={styles.courseToutReplier}
+                                onClick={() => {
+                                    haptic(6);
+                                    setReplies((prev) => (prev.size >= byRayon.length
+                                        ? new Set()
+                                        : new Set(byRayon.map(([rid]) => rid))));
+                                }}
+                            >
+                                {replies.size >= byRayon.length ? 'Tout déplier' : 'Tout replier'}
+                            </button>
+                        </div>
+                    )}
+                    <div className={styles.courseRayons}>
+                    {byRayon.map(([rid, group]) => {
+                        const replie = replies.has(rid);
+                        return (
+                        <section className={`${styles.courseRayon} ${replie ? styles.courseRayonReplie : ''}`} key={rid}>
+                            <button
+                                className={styles.courseRayonTitle}
+                                onClick={() => basculerRayon(rid)}
+                                aria-expanded={!replie}
+                            >
+                                <span className={styles.courseRayonNom}>{RAYON_BY_ID[rid]?.label || 'Divers'}</span>
                                 <span className={styles.courseRayonCount}>{group.length}</span>
-                            </h2>
+                                <svg className={styles.courseRayonChevron} viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M6 9l6 6 6-6" /></svg>
+                            </button>
 
-                            {group.map((it) => {
+                            {!replie && group.map((it) => {
                                 const struck = isItemDone(it, done);
                                 const isManual = !!it.manual;
                                 return (
@@ -1031,7 +1072,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 );
                             })}
                         </section>
-                    ))}
+                        );
+                    })}
+                    </div>
                 </div>
             ) : mode === 'jour' ? (
                 <div className={styles.courseBody}>

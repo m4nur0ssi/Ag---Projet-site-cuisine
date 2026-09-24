@@ -19,6 +19,7 @@
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -27,7 +28,7 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
 import { prixRecette, additionner } from '@/lib/recipe-price';
-import { normalizeIng, parseIngredient } from '@/mobile/lib/ingredients';
+import { normalizeIng, parseIngredient, buildConsolidatedItems } from '@/mobile/lib/ingredients';
 import { rayonOf } from '@/lib/rayons';
 import { isCookable, hasSideIncluded, isSweet, proteinOf } from '@/lib/mealClassify';
 import { isTVSide, isTVMain, sidePool } from './sides';
@@ -46,6 +47,27 @@ import { pourAdultes } from '@/lib/bebe';
  * reste possible — c'est un choix, pas un tirage.
  */
 const CATALOGUE_AUTO = mockRecipes.filter(pourAdultes);
+
+/*
+ * Ce que le panneau de gauche raconte de la semaine.
+ *
+ * Les quatre protéines reconnues par `proteinOf` se rangent en trois familles
+ * lisibles d'un coup d'œil : on veut voir « cinq viandes, zéro poisson », pas
+ * un camembert à sept parts.
+ */
+const FAMILLE_PROTEINE: Record<string, string> = {
+    boeuf: 'Viande', agneau: 'Viande', porc: 'Viande', poulet: 'Viande',
+    poisson: 'Poisson', vege: 'Végé',
+};
+const FAMILLES = ['Viande', 'Poisson', 'Végé', 'Autre'] as const;
+
+/* Les pays que les étiquettes des recettes savent nommer. */
+const PAYS_LABEL: Record<string, string> = {
+    france: 'France', italie: 'Italie', espagne: 'Espagne', portugal: 'Portugal',
+    grece: 'Grèce', liban: 'Liban', maroc: 'Maroc', afrique: 'Afrique',
+    orient: 'Orient', asie: 'Asie', japon: 'Japon', inde: 'Inde',
+    mexique: 'Mexique', usa: 'USA',
+};
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { partagerMenu, preparerMenu } from '@/lib/partage-menu';
 import { supabase } from '@/mobile/lib/supabase';
@@ -84,6 +106,19 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const [index, setIndex] = useState(todayIndex);
     // `side` : le choix vise l'accompagnement du plat de ce créneau.
     const [picker, setPicker] = useState<{ day: string; meal: string; side?: boolean } | null>(null);
+    /*
+     * Sur grand écran, ajouter une recette n'ouvre pas la loupe mobile (une
+     * liste qui déroule en bas) mais la PAGE Recherche : sur-titre discret,
+     * grand titre doré en haut à gauche, résultats en colonnes.
+     */
+    const [grandEcran, setGrandEcran] = useState(false);
+    useEffect(() => {
+        const mq = window.matchMedia('(min-width: 1024px)');
+        const suivre = () => setGrandEcran(mq.matches);
+        suivre();
+        mq.addEventListener('change', suivre);
+        return () => mq.removeEventListener('change', suivre);
+    }, []);
     const [detail, setDetail] = useState<Recipe | null>(null);
     const [recap, setRecap] = useState<{ total: number; rayons: { id: string; n: number }[] } | null>(null);
     /*
@@ -495,6 +530,46 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
 
     const prixCourant = mode === 'jourj' ? prixParJour.jourJ : prixParJour.semaine;
 
+    /**
+     * Le portrait de la semaine, affiché dans le panneau de gauche au bureau :
+     * l'équilibre des assiettes, les pays traversés, le poids des courses et
+     * les créneaux encore libres. Tout se déduit du plan — rien à saisir.
+     */
+    const apercu = useMemo(() => {
+        const jours: string[] = mode === 'jourj' ? [JOUR_J] : [...DAYS];
+        const creneaux: string[] = mode === 'jourj' ? COURSES.map((c) => c.label) : [...MEALS];
+        const plats: Recipe[] = [];
+        const vides: { day: string; meal: string }[] = [];
+        jours.forEach((d) => creneaux.forEach((m) => {
+            const slot = plan[d]?.[m] as Slot | undefined;
+            if (!slot) { vides.push({ day: d, meal: m }); return; }
+            plats.push(slot);
+            if (slot.side) plats.push(slot.side);
+        }));
+
+        const familles: Record<string, number> = { Viande: 0, Poisson: 0, 'Végé': 0, Autre: 0 };
+        plats.forEach((r) => { familles[FAMILLE_PROTEINE[proteinOf(r)] || 'Autre'] += 1; });
+
+        const pays: string[] = [];
+        plats.forEach((r) => ((r as any).tags || []).forEach((t: string) => {
+            const k = String(t).toLowerCase();
+            if (PAYS_LABEL[k] && !pays.includes(k)) pays.push(k);
+        }));
+
+        let lignes = 0;
+        const rayons = new Set<string>();
+        if (plats.length) {
+            try {
+                const items = buildConsolidatedItems(
+                    plan as any, new Set<string>(), {}, mode === 'jourj', mode !== 'jourj',
+                );
+                lignes = items.length;
+                items.forEach((it) => rayons.add(rayonOf(it.name, {})));
+            } catch { /* le portrait est un bonus : jamais il ne casse la page */ }
+        }
+        return { total: plats.length, familles, pays, vides, lignes, rayons: rayons.size };
+    }, [plan, mode]);
+
     /** Ce que le choix en cours doit accepter. */
     const pickerFilter = useMemo(() => {
         if (!picker) return undefined;
@@ -597,10 +672,27 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     // Combien de recettes répondent VRAIMENT à la sélection, dans le rôle attendu
     // (un créneau de semaine veut un plat). Sans ce compte, on coche trois filtres
     // et on découvre après coup que la semaine est hors sujet.
+    const [smart, setSmart] = useState({ express: false });
+
+    /* Durée totale estimée (préparation + cuisson) : c'est elle que « Express »
+       regarde. Deux paliers, pour ne pas renoncer d'un coup quand une tendance
+       ne contient rien sous la demi-heure. */
+    const dureeTotale = useCallback((r: Recipe) => {
+        const t = estimateRecipeTiming(r.steps);
+        return t.prepTime + t.cookTime;
+    }, []);
+    const EXPRESS_COURT = 30;
+    const EXPRESS_LARGE = 45;
+
     const selMatches = useMemo(() => {
         const accepts = mode === 'semaine' ? isTVMain : (r: Recipe) => isCookable(r);
-        return mockRecipes.filter((r) => r.image && accepts(r) && selFits(r, sel)).length;
-    }, [sel, mode, selFits]);
+        const base = mockRecipes.filter((r) => r.image && accepts(r) && selFits(r, sel));
+        // Express se CUMULE avec les tendances cochées : le compte annoncé sur le
+        // bouton doit le montrer, sinon rien ne dit que l'option sert à quelque chose.
+        if (!smart.express || mode !== 'semaine') return base.length;
+        const rapides = base.filter((r) => dureeTotale(r) <= EXPRESS_COURT);
+        return rapides.length || base.filter((r) => dureeTotale(r) <= EXPRESS_LARGE).length;
+    }, [sel, mode, selFits, smart.express, dureeTotale]);
 
     // Nombre de créneaux à remplir : sert à prévenir quand la sélection est trop
     // étroite pour la semaine (14 repas) ou le menu du Jour J.
@@ -621,9 +713,15 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     };
 
     const [composer, setComposer] = useState(false);
+    /*
+     * La feuille « Composer » part dans <body>. Posée dans la page, elle
+     * atterrissait EN BAS : le planificateur crée son propre contexte (verre
+     * dépoli, calques fixes) et `position: fixed` n'y couvre plus l'écran.
+     */
+    const [monte, setMonte] = useState(false);
+    useEffect(() => { setMonte(true); }, []);
     const [showTimeline, setShowTimeline] = useState(false);
     // Semaine intelligente : express en semaine.
-    const [smart, setSmart] = useState({ express: false });
 
     // Déroulé de la soirée (Jour J) : un item par plat du menu, avec sa part
     // active (prépa) et passive (four/frigo) devinée depuis les étapes.
@@ -670,17 +768,32 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             ? sidePool(CATALOGUE_AUTO).filter(fits)
             : sidePool(CATALOGUE_AUTO));
 
-        const totalTime = (r: Recipe) => { const t = estimateRecipeTiming(r.steps); return t.prepTime + t.cookTime; };
 
         // Combien de créneaux la tendance n'a PAS pu remplir. On ne peut pas
         // laisser un trou dans la semaine, mais on doit le dire : sinon on
         // annonce « Express » et on sert un plat de trois quarts d'heure.
         let offTrend = 0;
+        /* Combien de créneaux n'ont rien trouvé d'assez rapide malgré « Express ». */
+        let offExpress = 0;
 
         const pickFrom = (accepts: (r: Recipe) => boolean, opts?: { lastProtein?: string; express?: boolean }): Recipe | null => {
-            const onTrend = CATALOGUE_AUTO.filter((r) => r.image && accepts(r) && fits(r));
+            /*
+             * Express resserre le vivier AVANT tout le reste, en même temps que
+             * les tendances : les deux se cumulent. Appliqué après coup, il
+             * tombait dès que la variété des protéines avait déjà fait son tri.
+             */
+            const resserrer = (liste: Recipe[]): Recipe[] => {
+                if (!opts?.express || !liste.length) return liste;
+                const court = liste.filter((r) => dureeTotale(r) <= EXPRESS_COURT);
+                if (court.length) return court;
+                const large = liste.filter((r) => dureeTotale(r) <= EXPRESS_LARGE);
+                if (large.length) return large;
+                offExpress++;   // rien d'assez rapide ici : on le dira
+                return liste;
+            };
+            const onTrend = resserrer(CATALOGUE_AUTO.filter((r) => r.image && accepts(r) && fits(r)));
             if (!onTrend.length && tagged) offTrend++;
-            const pool = onTrend.length ? onTrend : CATALOGUE_AUTO.filter((r) => r.image && accepts(r));
+            const pool = onTrend.length ? onTrend : resserrer(CATALOGUE_AUTO.filter((r) => r.image && accepts(r)));
             if (!pool.length) return null;
 
             const fresh = pool.filter((r) => !used.has(String(r.id)));
@@ -689,14 +802,6 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             // Protéine différente de la veille (préférence, pas obligation).
             const varied = from.filter((r) => proteinOf(r) !== opts?.lastProtein);
             if (varied.length) from = varied;
-
-            // Express : on cherche d'abord sous 30 min, puis sous 45 — plutôt que
-            // de renoncer d'un coup et de prendre n'importe quelle durée.
-            if (opts?.express) {
-                const quick = from.filter((r) => totalTime(r) <= 30);
-                const okish = quick.length ? quick : from.filter((r) => totalTime(r) <= 45);
-                if (okish.length) from = okish; else offTrend++;
-            }
 
             const pick = from[Math.floor(Math.random() * from.length)];
             used.add(String(pick.id));
@@ -748,9 +853,12 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 ...sub.pays.map((t) => labelOf('pays', t)),
                 ...sub.tendances.map((t) => labelOf('tendances', t))].join(' + '))
             : 'Au hasard';
+        const enTete = smart.express && mode === 'semaine' ? `Express · ${what}` : what;
         const msg = offTrend > 0
-            ? `${what} · ${filled} repas — ${offTrend} créneau${offTrend > 1 ? 'x' : ''} hors filtre, faute de recette`
-            : `${what} · ${filled} repas composés`;
+            ? `${enTete} · ${filled} repas — ${offTrend} créneau${offTrend > 1 ? 'x' : ''} hors filtre, faute de recette`
+            : offExpress > 0
+                ? `${enTete} · ${filled} repas — ${offExpress} créneau${offExpress > 1 ? 'x' : ''} au-delà de 45 min, faute de recette rapide`
+                : `${enTete} · ${filled} repas composés`;
         window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: msg }));
     };
 
@@ -1081,6 +1189,78 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             </>
                         ) : 'Rien de planifié'}
                     </button>
+                    {/* Ce que ce bouton va déverser dans la liste, annoncé
+                        avant de cliquer : le nombre de lignes fusionnées et
+                        le nombre de rayons à parcourir. */}
+                    {grandEcran && apercu.lignes > 0 && (
+                        <div className={styles.planCoursesHint}>
+                            {apercu.lignes} ingrédient{apercu.lignes > 1 ? 's' : ''} · {apercu.rayons} rayon{apercu.rayons > 1 ? 's' : ''}
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* ── Le portrait de la semaine ─────────────────────────────────
+                Sous les trois boutons, le panneau restait vide sur la moitié
+                de sa hauteur. Il dit maintenant ce que le plan contient :
+                l'équilibre des assiettes, les pays traversés, le poids des
+                courses et les créneaux qui manquent (cliquables). Réservé au
+                bureau : sur téléphone ce panneau n'existe pas. */}
+            {grandEcran && mode !== 'panier' && (
+                <div className={styles.planApercu}>
+                    <section className={styles.planBloc}>
+                        <div className={styles.planBlocTitre}>Équilibre</div>
+                        {FAMILLES.map((nom) => (
+                            <div key={nom} className={styles.planBarre}>
+                                <span className={styles.planBarreNom}>{nom}</span>
+                                <span className={styles.planBarrePiste}>
+                                    <span style={{ width: `${apercu.total ? (apercu.familles[nom] / apercu.total) * 100 : 0}%` }} />
+                                </span>
+                                <span className={styles.planBarreN}>{apercu.familles[nom]}</span>
+                            </div>
+                        ))}
+                    </section>
+
+                    {apercu.vides.length > 0 && (
+                    <section className={styles.planBloc}>
+                        <div className={styles.planBlocTitre}>
+                            {apercu.vides.length} créneau{apercu.vides.length > 1 ? 'x' : ''} libre{apercu.vides.length > 1 ? 's' : ''}
+                        </div>
+                        <div className={styles.planVides}>
+                            {apercu.vides.slice(0, 4).map((v) => (
+                                    <button
+                                        key={`${v.day}|${v.meal}`}
+                                        className={styles.planVideTag}
+                                        onClick={() => {
+                                            haptic(6);
+                                            const i = (DAYS as readonly string[]).indexOf(v.day);
+                                            if (i >= 0) { setIndex(i); goToDay(i); }
+                                            setPicker({ day: v.day, meal: v.meal });
+                                        }}
+                                    >
+                                        {v.day} {v.meal.toLowerCase()}
+                                    </button>
+                                ))}
+                            {apercu.vides.length > 4 && (
+                                <span className={styles.planVideReste}>+{apercu.vides.length - 4}</span>
+                            )}
+                        </div>
+                    </section>
+                    )}
+
+                    {apercu.pays.length > 0 && (
+                        <section className={styles.planBloc}>
+                            <div className={styles.planBlocTitre}>Tour du monde</div>
+                            <div className={styles.planPays}>
+                                {apercu.pays.slice(0, 3).map((p) => (
+                                    <span key={p} className={styles.planPaysTag}>{PAYS_LABEL[p]}</span>
+                                ))}
+                                {apercu.pays.length > 3 && (
+                                    <span className={styles.planVideReste}>+{apercu.pays.length - 3}</span>
+                                )}
+                            </div>
+                        </section>
+                    )}
                 </div>
             )}
             </div>
@@ -1249,6 +1429,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             </AnimatePresence>
 
             {/* Composer : des filtres cumulables, et tout le menu se remplit. */}
+            {monte && createPortal(
             <AnimatePresence>
                 {composer && (
                     <motion.div
@@ -1263,8 +1444,18 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }}
                             transition={{ type: 'spring', damping: 30, stiffness: 340 }}
                         >
-                            <div className={styles.composeTitle}>
-                                Composer {mode === 'jourj' ? 'le menu' : 'la semaine'}
+                            <div className={styles.composeHead}>
+                                <div>
+                                    <div className={styles.composeKicker}>
+                                        {mode === 'jourj' ? 'Menu du Jour J' : 'Sept jours, quatorze repas'}
+                                    </div>
+                                    <div className={styles.composeTitle}>
+                                        Composer {mode === 'jourj' ? 'le menu' : 'la semaine'}
+                                    </div>
+                                </div>
+                                <button className={styles.composeClose} onClick={() => setComposer(false)} aria-label="Fermer">
+                                    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                                </button>
                             </div>
                             <div className={styles.composeHint}>
                                 Coche ce que tu veux — catégories, pays, tendances se combinent —
@@ -1274,10 +1465,20 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                 <div className={styles.smartRow}>
                                     <button
                                         className={`${styles.smartToggle} ${smart.express ? styles.smartOn : ''}`}
-                                        onClick={() => setSmart((s) => ({ ...s, express: !s.express }))}
+                                        onClick={() => { haptic(6); setSmart((s) => ({ ...s, express: !s.express })); }}
+                                        aria-pressed={smart.express}
                                     >
-                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></svg>
-                                        Express en semaine
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></svg>
+                                        <span className={styles.smartTexte}>
+                                            <span className={styles.smartLabel}>Express en semaine</span>
+                                            {/* Un interrupteur qui ne dit pas ce qu'il fait n'est pas
+                                                un interrupteur : la règle est écrite sous le nom, et
+                                                l'effet se produit au moment de composer. */}
+                                            <span className={styles.smartSous}>
+                                                Du lundi au vendredi, des plats en moins de 30 min
+                                            </span>
+                                        </span>
+                                        <span className={styles.smartSwitch} aria-hidden><i /></span>
                                     </button>
                                 </div>
                             )}
@@ -1346,7 +1547,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             {/* Pied épinglé : le compte et le bouton ne doivent jamais
                                 partir sous le pli quand les pastilles défilent. */}
                             <div className={styles.composeFooter}>
-                                {selCount > 0 && selMatches < NEEDED && (
+                                {(selCount > 0 || smart.express) && selMatches < NEEDED && (
                                     <div className={styles.selCountLow}>
                                         Trop peu pour {NEEDED} créneaux — certains sortiront du filtre.
                                     </div>
@@ -1354,9 +1555,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                 <button
                                     className={styles.composeLaunch}
                                     onClick={() => compose(selCount ? sel : null)}
-                                    disabled={selCount > 0 && selMatches === 0}
+                                    disabled={selMatches === 0 && (selCount > 0 || smart.express)}
                                 >
-                                    {selCount
+                                    {selCount || (smart.express && mode === 'semaine')
                                         ? `Composer · ${selMatches} recette${selMatches > 1 ? 's' : ''}`
                                         : 'Composer au hasard'}
                                 </button>
@@ -1364,7 +1565,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                         </motion.div>
                     </motion.div>
                 )}
-            </AnimatePresence>
+            </AnimatePresence>,
+                document.body,
+            )}
 
             {/* Déroulé de la soirée : sur MOBILE, feuille modale ; sur DESKTOP, vue
                 inline dans le panneau (gérée par le retour anticipé plus haut). */}
@@ -1402,6 +1605,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 open={!!picker}
                 onClose={() => setPicker(null)}
                 filter={pickerFilter}
+                panneau={grandEcran}
                 hint="Annuler"
                 onRecipeSelect={(r) => {
                     if (picker?.side) setSide(picker.day, picker.meal, r);

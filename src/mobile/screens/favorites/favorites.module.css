@@ -118,11 +118,26 @@
 /* Téléphone : même en-tête que les autres écrans (petit sur-titre, titre
    penché de 27 px). Le shell desktop garde son grand titre. */
 .page:not(.emb) .title { font-size: 27px; transform: skewX(-7deg); }
-.kickerMob { display: none; }
-.page:not(.emb) .kickerMob {
+.kickerMob {
     display: block; margin-bottom: 1px;
     font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 700;
     letter-spacing: .34em; text-transform: uppercase; color: rgba(235,235,245,.55);
 }
-.page:not(.emb) .sub { display: none; }
+/* Le sous-titre répétait le sur-titre : une seule ligne suffit, au-dessus. */
+.sub { display: none; }
 :global([data-theme='light']) .page:not(.emb) .kickerMob { color: rgba(0,0,0,.5); }
+
+
+/* ── Signature dorée : le titre de la page comme celui du menu ────────────
+   Même police, même dégradé doré que « LES RECETTES MAGIQUES » et que les
+   titres des autres écrans (planificateur, liste, cave, tutoriel). */
+.title {
+    background: linear-gradient(112deg, #fff6e7 0%, #ffd08e 43%, #ffb66e 68%, #b8d66d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ffd08e;
+    text-shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
+}
+.kickerMob,
+.sub { color: rgba(255, 207, 145, 0.72); }

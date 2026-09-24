@@ -52,6 +52,42 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         return () => { vivant = false; };
     }, [isOpen, baseRecipes]);
     const [shouldRender, setShouldRender] = useState(isOpen);
+
+    /*
+     * Au bureau, la fiche s'arrête PILE sous la rangée note / calories, comme
+     * partout ailleurs sur le site. À hauteur fixe (92 % de l'écran), elle
+     * coupait la rangée en deux sur certaines recettes. La mesure se fait sur
+     * le contenu réel, et se répète le temps que la photo et les polices
+     * s'installent. Sur téléphone, rien ne change : la fiche reste pleine.
+     */
+    const [hauteur, setHauteur] = useState<number | null>(null);
+    useEffect(() => {
+        if (!isOpen || typeof window === 'undefined'
+            || !window.matchMedia('(min-width: 1024px)').matches) { setHauteur(null); return; }
+        const mesurer = () => {
+            const zone = scrollRefs.current[currentIdx];
+            /* Cette fiche-ci range le prix, la note et les calories dans un
+               cadre sous les trois durées : c'est le BAS de la bande entière
+               qui marque la fin, pas la seule ligne des durées. */
+            const rangee = (zone?.querySelector('[class*="metaContent"]')
+                || zone?.querySelector('[class*="metaStrip"]')) as HTMLElement | null;
+            if (!zone || !rangee) return;
+            const bas = rangee.getBoundingClientRect().bottom
+                - zone.getBoundingClientRect().top + zone.scrollTop + 16;
+            const plafond = window.innerHeight * 0.96;
+            const cible = Math.round(Math.max(420, Math.min(plafond, bas)));
+            setHauteur((v) => (v === cible ? v : cible));
+        };
+        mesurer();
+        const battement = setInterval(mesurer, 140);
+        const fin = setTimeout(() => clearInterval(battement), 2200);
+        window.addEventListener('resize', mesurer);
+        return () => {
+            clearInterval(battement);
+            clearTimeout(fin);
+            window.removeEventListener('resize', mesurer);
+        };
+    }, [isOpen, currentIdx, recipes]);
     /**
      * Les recettes déjà construites, par identifiant.
      *
@@ -465,7 +501,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                              * son ressort, elle.
                              */
                             exit={{ y: '105%', transition: { type: 'tween', ease: [0.32, 0.72, 0, 1], duration: 0.18 } }}
-                            style={{ y }}
+                            style={hauteur ? { y, height: `${hauteur}px` } : { y }}
                             transition={{ type: 'spring', damping: 35, stiffness: 400, mass: 0.6 }}
                         >
                             <div className={styles.dragHandleContainer} />

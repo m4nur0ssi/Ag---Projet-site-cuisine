@@ -411,7 +411,11 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                         <svg viewBox="0 0 8 14" width="13" height="13" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </button>
                 )}
-                <h1 className={styles.title}>Ma cave</h1>
+                {/* Même en-tête que les autres écrans : sur-titre discret, titre doré. */}
+                <div>
+                    <div className={styles.kicker}>Mes bouteilles</div>
+                    <h1 className={styles.title}>Ma cave</h1>
+                </div>
                 {/* Sur un ordinateur, l'action principale se tient dans l'en-tête :
                     la tuile en bout de grille reste, mais elle descend avec les
                     bouteilles et n'est plus sous les yeux passé la première rangée.

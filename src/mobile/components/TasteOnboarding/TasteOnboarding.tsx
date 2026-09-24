@@ -97,6 +97,7 @@ export default function TasteOnboarding({ onClose, embedded = false }: { onClose
             <header className={styles.head}>
                 {embedded ? (
                     <div>
+                        <div className={styles.panelKicker}>Mes goûts</div>
                         <h1 className={styles.panelTitle}>Affine mes goûts</h1>
                         <p className={styles.panelSub}>Un cœur ou une croix sur dix recettes, et la rangée « Pour toi » se règle sur toi.</p>
                     </div>

@@ -867,6 +867,116 @@
     .collection { padding-left: 34px; padding-right: 34px; }
 }
 
+/* ── Signature dorée commune au bureau TV ──────────────────────────────── */
+.shell {
+    --accent: #ffb66e;
+    --gold-1: #fff6e7;
+    --gold-2: #ffd08e;
+    --gold-3: #ffb66e;
+    --gold-4: #b8d66d;
+    --hair: rgba(255, 211, 149, 0.14);
+    background:
+        linear-gradient(145deg, rgba(255, 133, 76, 0.10), rgba(255, 133, 76, 0) 34%),
+        linear-gradient(220deg, rgba(184, 214, 109, 0.07), rgba(184, 214, 109, 0) 38%),
+        #050505;
+}
+
+.sidebar,
+.sidebarOpenBtn,
+.ctx {
+    background:
+        linear-gradient(180deg, rgba(43, 33, 25, 0.76), rgba(12, 10, 8, 0.72)),
+        rgba(18, 15, 12, 0.72);
+    border-color: rgba(255, 211, 149, 0.16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.brandKicker,
+.heroBrandKicker,
+.heroKicker,
+.navLabel,
+.ctxTitle,
+.collCount,
+.libraryHint {
+    color: rgba(255, 207, 145, 0.72);
+}
+
+.brandWord,
+.heroBrandWord,
+.rowTitle,
+.collTitle,
+.heroTitle,
+.ctxTitle {
+    background: linear-gradient(112deg, var(--gold-1) 0%, var(--gold-2) 44%, var(--gold-3) 70%, var(--gold-4) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--gold-2);
+    text-shadow: 0 14px 38px rgba(0, 0, 0, 0.45);
+}
+
+.heroTitleWord {
+    background: linear-gradient(112deg, #fffaf1 0%, #ffd08e 55%, #ffb66e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.searchBtnOn,
+.navRowOn,
+.collTriOn,
+.heroPlay {
+    background: linear-gradient(135deg, var(--gold-1) 0%, var(--gold-3) 100%);
+    color: #170f08;
+    box-shadow: 0 16px 42px rgba(255, 160, 82, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.52);
+}
+
+.searchBtn:hover,
+.navRow:hover,
+.collBack,
+.filterChip,
+.heroKicker,
+.heroPlus,
+.sidebarToggle {
+    background-color: rgba(255, 244, 228, 0.075);
+    box-shadow: inset 0 0 0 1px rgba(255, 211, 149, 0.10);
+}
+
+.navGroupCount,
+.filterClear,
+.rowChevron,
+.navChevron,
+.navCheck,
+.ctxIcon {
+    color: var(--gold-3);
+}
+
+.navGroupCount {
+    background: linear-gradient(135deg, var(--gold-2), var(--gold-3));
+    color: #170f08;
+}
+
+.sidebarFoot,
+.ctxTitle {
+    border-color: rgba(255, 211, 149, 0.18);
+}
+
+.rowHeadWrap::after,
+.collHead::after {
+    content: '';
+    flex: 1 1 auto;
+    min-width: 52px;
+    height: 1px;
+    margin-left: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255, 205, 136, 0.52), rgba(255, 205, 136, 0.08), transparent);
+}
+
+.rowHeadWrap,
+.collHead {
+    align-items: center;
+}
+
 
 /* ── CARTE À TITRE INCRUSTÉ (rangée Desserts de l'accueil) ───────────────
    Cinq cartes remplissent exactement la largeur visible de la rangée : la

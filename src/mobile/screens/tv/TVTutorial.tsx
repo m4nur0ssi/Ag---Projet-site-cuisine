@@ -503,6 +503,7 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
 
             {embedded && (
                 <div className={styles.panelHead}>
+                    <div className={styles.panelKicker}>Visite guidée</div>
                     <h1 className={styles.panelTitle}>Tutoriel</h1>
                     <p className={styles.panelSub}>La visite guidée du site, écran par écran.</p>
                 </div>

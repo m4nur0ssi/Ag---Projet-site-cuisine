@@ -287,3 +287,64 @@
 }
 .embedded .head { padding: 0 4px 10px; }
 .embedded .foot { padding: 10px 4px 16px; }
+
+/* ── Signature dorée TV ───────────────────────────────────────────────── */
+.root {
+    --gold-1: #fff6e7;
+    --gold-2: #ffd08e;
+    --gold-3: #ffb66e;
+    --gold-4: #b8d66d;
+    background:
+        linear-gradient(145deg, rgba(255, 133, 76, 0.11), rgba(255, 133, 76, 0) 36%),
+        linear-gradient(220deg, rgba(184, 214, 109, 0.08), rgba(184, 214, 109, 0) 40%),
+        #050505;
+}
+
+.kicker {
+    color: rgba(255, 207, 145, 0.72);
+}
+
+.title,
+.panelTitle {
+    background: linear-gradient(112deg, var(--gold-1) 0%, var(--gold-2) 44%, var(--gold-3) 70%, var(--gold-4) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--gold-2);
+    text-shadow: 0 14px 38px rgba(0, 0, 0, 0.45);
+}
+
+.barFill,
+.dotOn {
+    background: linear-gradient(90deg, var(--gold-2), var(--gold-3));
+}
+
+.artStage,
+.hint {
+    border-color: rgba(255, 211, 149, 0.16);
+    background:
+        radial-gradient(120% 100% at 50% 0%, rgba(255, 182, 110, 0.18), transparent 70%),
+        rgba(255, 244, 228, 0.055);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.50),
+        inset 0 0 0 1px rgba(255, 211, 149, 0.10);
+    color: var(--gold-2);
+}
+
+.next {
+    background: linear-gradient(135deg, var(--gold-1) 0%, var(--gold-3) 100%);
+    color: #170f08;
+    box-shadow: 0 16px 42px rgba(255, 160, 82, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.52);
+}
+
+
+/* Sur-titre de l'en-tête du panneau : petit au-dessus, titre doré en dessous. */
+.panelKicker {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: rgba(255, 207, 145, 0.72);
+}

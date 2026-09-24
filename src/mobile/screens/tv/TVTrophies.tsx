@@ -139,8 +139,12 @@ export default function TVTrophies({ embedded = false }: { embedded?: boolean })
                 .tp.emb h1 { font-size: 40px; line-height: 1; }
                 .hd { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
                 .back { width: 40px; height: 40px; border-radius: 999px; border: none; background: rgba(255,255,255,.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; flex: 0 0 auto; }
-                .kick { font-size: 11px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: rgba(235,235,245,.5); }
-                h1 { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 32px; letter-spacing: -.03em; text-transform: uppercase; transform: skewX(-6deg); margin: 2px 0 0; }
+                .kick { font-size: 11px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,207,145,.72); }
+                /* Titre doré, comme la signature du menu et les autres écrans. */
+                h1 { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 32px; letter-spacing: -.03em; text-transform: uppercase; transform: skewX(-6deg); margin: 2px 0 0;
+                     background: linear-gradient(112deg, #fff6e7 0%, #ffd08e 43%, #ffb66e 68%, #b8d66d 100%);
+                     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+                     color: #ffd08e; text-shadow: 0 12px 34px rgba(0,0,0,.38); }
 
                 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
                 .stat { background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.1); border-radius: 18px; padding: 18px 12px; text-align: center; }
@@ -173,6 +177,23 @@ export default function TVTrophies({ embedded = false }: { embedded?: boolean })
                 .pg span { display: block; height: 100%; background: linear-gradient(90deg, #FFC24B, #FF6B4A); }
                 .ok { margin-top: auto; color: var(--t); font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
                 .foot { color: rgba(235,235,245,.4); font-size: 12.5px; margin-top: 24px; text-align: center; }
+
+                /* ── En panneau de bureau : une seule page ──────────────────
+                   Six trophées rangés en 2 lignes de 3, plus grands, qui se
+                   partagent la hauteur restante. Rien ne déborde, donc rien
+                   à faire défiler. */
+                .tp.emb { display: flex; flex-direction: column; height: calc(100svh - 36px); max-height: calc(100svh - 36px); overflow: hidden; padding: 4px 4px 12px; }
+                .tp.emb .stats { margin-bottom: 14px; flex: 0 0 auto; }
+                .tp.emb .streak { margin-bottom: 16px; flex: 0 0 auto; }
+                .tp.emb .grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 18px; flex: 1 1 auto; min-height: 0; }
+                .tp.emb .badge { min-height: 0; height: 100%; justify-content: center; gap: 14px; padding: 24px 20px 20px; border-radius: 24px; }
+                .tp.emb .ic { width: 74px; height: 74px; }
+                .tp.emb .ic svg { width: 36px; height: 36px; }
+                .tp.emb .txt { flex: 0 0 auto; gap: 6px; }
+                .tp.emb .nm { font-size: 19px; }
+                .tp.emb .ds { font-size: 14px; }
+                .tp.emb .pg, .tp.emb .ok { margin-top: 14px; }
+                .tp.emb .foot { margin-top: 12px; flex: 0 0 auto; }
 
                 /* Révélation : logo en grand, centré, 3 s. Rien d'autre. */
                 .reveal { position: fixed; inset: 0; z-index: 4000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;

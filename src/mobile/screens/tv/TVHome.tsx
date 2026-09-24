@@ -1211,13 +1211,28 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     playingRef.current = playing;
     const { scrollY } = useScroll();
 
-    // Parallaxe : le héros s'éloigne (zoom + translation) et se fond au noir
-    // pendant que la feuille de contenu remonte par-dessus.
-    const heroScale = useTransform(scrollY, [0, 600], [1, 1.16]);
-    const heroY = useTransform(scrollY, [0, 600], [0, 90]);
-    const veil = useTransform(scrollY, [0, 480], [0, 0.9]);
-    const contentY = useTransform(scrollY, [0, 400], [0, -70]);
-    const contentOpacity = useTransform(scrollY, [0, 260], [1, 0]);
+    /*
+     * Parallaxe : le héros s'éloigne (zoom + translation) et se fond au noir
+     * pendant que la feuille de contenu remonte par-dessus.
+     *
+     * Les distances suivent la HAUTEUR DE L'ÉCRAN, elles ne sont plus écrites
+     * en pixels fixes. Le carrousel s'effaçait au bout de 260 px alors que la
+     * feuille, elle, met un plein écran à remonter : entre les deux, on
+     * défilait dans un grand vide noir avant de voir le Top 100. Le héros reste
+     * maintenant visible jusqu'à ce que la feuille arrive le recouvrir.
+     */
+    const [hauteurEcran, setHauteurEcran] = useState(800);
+    useEffect(() => {
+        const mesurer = () => setHauteurEcran(Math.max(420, window.innerHeight));
+        mesurer();
+        window.addEventListener('resize', mesurer);
+        return () => window.removeEventListener('resize', mesurer);
+    }, []);
+    const heroScale = useTransform(scrollY, [0, hauteurEcran], [1, 1.16]);
+    const heroY = useTransform(scrollY, [0, hauteurEcran], [0, 90]);
+    const veil = useTransform(scrollY, [0, hauteurEcran * 0.92], [0, 0.9]);
+    const contentY = useTransform(scrollY, [0, hauteurEcran * 0.9], [0, -70]);
+    const contentOpacity = useTransform(scrollY, [0, hauteurEcran * 0.78], [1, 0]);
     // La signature s'efface plus tôt que le reste : elle appartient au haut de page.
     const brandOpacity = useTransform(scrollY, [0, 140], [1, 0]);
     const brandY = useTransform(scrollY, [0, 300], [0, -40]);

@@ -2698,3 +2698,19 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
 
 .heroPlanBtn:hover { transform: scale(1.03); }
 .heroPlanBtn:active { transform: scale(0.97); }
+
+/* ── Titre de la fiche ouverte au bureau ─────────────────────────────────
+   Le corps du titre était réglé en `vw` : plus l'écran est large, plus le
+   titre grossit — alors que la fiche, elle, reste à 800 px et sa colonne de
+   texte à trois cents. Un titre de cinq mots partait donc en six lignes,
+   coupées en syllabes, et chassait la description hors de la carte. Ici le
+   corps est réglé sur la fiche, pas sur la fenêtre. */
+@media (min-width: 1024px) {
+    .modalMode .heroTitleElegant {
+        font-size: clamp(1.7rem, 2.1vw, 2.4rem);
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+        margin-bottom: 16px;
+    }
+    .modalMode .heroDescription { font-size: 1rem; line-height: 1.5; }
+}

@@ -24,6 +24,8 @@
 .sheet {
     position: relative;
     width: 94%;
+    /* Hauteur de repli : la vraie est mesurée sur le contenu (voir
+       RecipeSheet.tsx) pour finir juste sous la rangée de pilules. */
     height: 92vh;
     max-width: 800px;
     margin: 0 auto;
@@ -70,7 +72,9 @@
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     position: relative;
-    padding-top: 10px;
+    /* Aucune marge en haut : le halo de la photo doit toucher le bord de la
+       fiche. Avec 30 px, une barre noire coupait le haut de l'image. */
+    padding-top: 0;
     padding-bottom: 120px;
     z-index: 10;
     scrollbar-width: none;

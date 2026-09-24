@@ -11,6 +11,7 @@
  */
 
 import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
@@ -92,6 +93,13 @@ interface TVSpotlightProps {
      * verre, un en-tête titre + sous-titre — le moule des autres panneaux.
      */
     embedded?: boolean;
+    /**
+     * `panneau` : calque plein écran, mais habillé comme la PAGE Recherche du
+     * bureau — sur-titre, grand titre doré, résultats en colonnes. C'est ce que
+     * le planificateur ouvre quand on ajoute une recette : on retrouve l'écran
+     * de recherche habituel plutôt qu'une liste qui déroule en bas.
+     */
+    panneau?: boolean;
 }
 
 /**
@@ -131,7 +139,7 @@ function motsInterdits(mot: string): string[] {
     return [m];
 }
 
-export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false }: TVSpotlightProps) {
+export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
@@ -635,8 +643,9 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         <>
                     <Tip id="recherche" delay={1400} />
                     {/* En panneau : gros titre + sous-titre, comme Favoris. */}
-                    {embedded && (
+                    {(embedded || panneau) && (
                         <div className={styles.spPanelHead}>
+                            <div className={styles.spPanelKicker}>Trouver une recette</div>
                             <h1 className={styles.spPanelTitle}>Recherche</h1>
                             <p className={styles.spPanelSub}>Par mot, par ingrédients, ou en décrivant ton envie.</p>
                         </div>
@@ -861,6 +870,31 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     );
 
     if (embedded) return <div className={styles.spEmbedded}>{body}</div>;
+
+    /*
+     * En mode panneau, le calque part dans <body>. Sans ça il restait DANS le
+     * planificateur : un ancêtre y crée un contexte (transformations,
+     * verre dépoli), `position: fixed` n'y couvre plus l'écran et la recherche
+     * s'empilait tout en bas de la page — le défaut signalé.
+     */
+    const calque = (
+        <AnimatePresence>
+            {open && (
+                <motion.div
+                    className={`${styles.spRoot} ${styles.spEmbedded} ${styles.spEnPanneau}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.26, ease: [0.32, 0.72, 0, 1] }}
+                >
+                    {body}
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+    if (panneau) {
+        return typeof document === 'undefined' ? calque : createPortal(calque, document.body);
+    }
 
     return (
         <AnimatePresence>

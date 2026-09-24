@@ -203,3 +203,12 @@
         display: none; /* Cache les flèches sur mobile pour privilégier le swipe */
     }
 }
+
+/* ── Au bureau : la fiche se comporte comme celle du reste du site ───────
+   Pas de bande noire au-dessus de la photo — le halo doit toucher le bord —
+   et la hauteur est mesurée sur le contenu (voir RecipeSheet.tsx) pour
+   s'arrêter juste sous la rangée note / calories. Sur téléphone, la marge
+   du haut reste : c'est elle qui dégage la poignée et l'encoche. */
+@media (min-width: 1024px) {
+    .scrollArea { padding-top: 0; }
+}

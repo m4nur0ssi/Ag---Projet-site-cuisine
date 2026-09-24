@@ -277,16 +277,21 @@
     /* Un mot long ne doit pas déborder sous l'image opaque (coupure nette). */
     min-width: 0;
     max-width: 100%;
+    /*
+     * Ni césure ni coupure de mot : `hyphens: auto` et `word-break` hachaient
+     * les titres en syllabes — « jam-bon », « amer-tume » — parce que la
+     * colonne est trop étroite pour le corps demandé. On corrige la CAUSE (la
+     * taille, plus bas), et `overflow-wrap` reste en dernier recours.
+     */
     overflow-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
+    /* Un titre long se répartit sur des lignes de longueur voisine. */
+    text-wrap: balance;
 }
 
 .heroTitleElegant .plain,
 .heroTitleElegant :global(.plain) {
     max-width: 100%;
     overflow-wrap: break-word;
-    word-break: break-word;
 }
 
 .heroDescription {
@@ -2921,4 +2926,20 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+/* ── Titre de la fiche ouverte au bureau ─────────────────────────────────
+   Le corps du titre était réglé en `vw` : plus l'écran est large, plus le
+   titre grossit — alors que la fiche, elle, reste à 800 px et sa colonne de
+   texte à trois cents. Un titre de cinq mots partait donc en six lignes,
+   coupées en syllabes, et chassait la description hors de la carte. Ici le
+   corps est réglé sur la fiche, pas sur la fenêtre. */
+@media (min-width: 1024px) {
+    .modalMode .heroTitleElegant {
+        font-size: clamp(1.7rem, 2.1vw, 2.4rem);
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+        margin-bottom: 16px;
+    }
+    .modalMode .heroDescription { font-size: 1rem; line-height: 1.5; }
 }

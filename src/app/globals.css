@@ -663,3 +663,15 @@ html.is-mobile [data-no-press]:active {
     html.is-mobile button:active,
     html.is-mobile [role='button']:active { transform: none; }
 }
+
+/* ── Signature dorée des écrans TV+ ───────────────────────────────────────
+   Ces teintes vivaient dans tv.module.css, sur `.page`. Les panneaux
+   encastrés dans la coquille du bureau (Recherche, Extension) n'ont pas cet
+   élément au-dessus d'eux : la variable manquait et le dégradé doré des
+   titres tombait à l'eau. Elles sont donc posées à la racine du document. */
+:root {
+    --tv-gold-1: #fff6e7;
+    --tv-gold-2: #ffd08e;
+    --tv-gold-3: #ffb66e;
+    --tv-gold-4: #b8d66d;
+}

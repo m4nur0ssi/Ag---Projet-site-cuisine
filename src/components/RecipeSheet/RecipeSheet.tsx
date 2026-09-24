@@ -41,6 +41,48 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose }: 
     const touchStartTime = useRef(0);
     const scrollRef = useRef<HTMLDivElement>(null);
 
+    /*
+     * La fiche s'arrête PILE sous la première rangée de pilules (préparation,
+     * cuisson, difficulté, note, calories). À hauteur fixe, elle coupait la
+     * rangée en deux sur certaines recettes et laissait du vide sur d'autres :
+     * la mesure se fait donc sur le contenu réel, photo chargée comprise.
+     */
+    const [hauteur, setHauteur] = useState<number | null>(null);
+    useEffect(() => {
+        if (!isOpen) { setHauteur(null); return; }
+        const mesurer = () => {
+            const zone = scrollRef.current;
+            const rangee = zone?.querySelector('[class*="metaContent"]') as HTMLElement | null;
+            if (!zone || !rangee) return;
+            // + un souffle sous la rangée : coupée au pixel près, elle donnait
+            // l'impression d'être tranchée plutôt que posée.
+            const bas = rangee.getBoundingClientRect().bottom
+                - zone.getBoundingClientRect().top + zone.scrollTop + 16;
+            const plafond = window.innerHeight * 0.96;
+            const cible = Math.round(Math.max(420, Math.min(plafond, bas)));
+            setHauteur((v) => (v === cible ? v : cible));
+        };
+        /*
+         * La photo du héros, les polices et la note arrivent après le premier
+         * rendu, et chacune déplace la rangée. Un observateur seul ratait la
+         * dernière secousse : on remesure quelques fois pendant deux secondes,
+         * puis on s'arrête. L'écriture n'a lieu que si la valeur change.
+         */
+        mesurer();
+        const battement = setInterval(mesurer, 140);
+        const fin = setTimeout(() => clearInterval(battement), 2200);
+        const ro = new ResizeObserver(mesurer);
+        const cible = scrollRef.current?.firstElementChild;
+        if (cible) ro.observe(cible);
+        window.addEventListener('resize', mesurer);
+        return () => {
+            clearInterval(battement);
+            clearTimeout(fin);
+            ro.disconnect();
+            window.removeEventListener('resize', mesurer);
+        };
+    }, [isOpen, currentRecipe]);
+
     useEffect(() => {
         if (isOpen && currentRecipe) {
             ecrireStock('magic-last-viewed', JSON.stringify({
@@ -120,6 +162,7 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose }: 
                         {/* La "Feuille" (Sheet) iOS 26 */}
                         <motion.div
                             className={styles.sheet}
+                            style={hauteur ? { height: `${hauteur}px` } : undefined}
                             initial={{ y: '100%' }}
                             animate={{ y: 0 }}
                             exit={{ y: '105%' }}
@@ -155,7 +198,6 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose }: 
                                 ref={scrollRef}
                                 onTouchStart={handleTouchStart}
                                 onTouchEnd={handleTouchEnd}
-                                style={{ paddingTop: '30px' }}
                             >
                                 <RecipeDetails key={String(currentRecipe.id)} recipe={currentRecipe} isModal={true} />
                             </div>

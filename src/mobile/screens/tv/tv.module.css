@@ -2938,6 +2938,7 @@
 .composeTitle {
     font-family: 'Outfit', sans-serif;
     font-size: 21px;
+    line-height: 1.06;
     font-weight: 900;
     letter-spacing: -0.02em;
     text-transform: uppercase;
@@ -3123,18 +3124,37 @@
 
 .courseRayon { margin-bottom: 22px; }
 
-/* Rayon = un titre texte, comme les rangées du feed. */
+/* Rayon = un titre texte, comme les rangées du feed. Il se replie d'un clic :
+   le chevron le dit, et la carte se referme sur son seul titre. */
 .courseRayonTitle {
     display: flex;
     align-items: center;
     gap: 8px;
+    width: 100%;
     margin: 0 2px 8px;
+    padding: 0;
+    border: none;
+    background: none;
     font-family: 'Outfit', sans-serif;
     font-size: 18px;
     font-weight: 800;
     letter-spacing: -0.02em;
+    text-align: left;
     color: #fff;
+    cursor: pointer;
 }
+.courseRayonNom { flex: 0 1 auto; min-width: 0; }
+/* « Tout replier » n'a de sens qu'au bureau, où les rayons sont des cartes
+   côte à côte ; sur téléphone la liste reste un long déroulé. */
+.courseRayonsBarre { display: none; }
+.courseRayonChevron {
+    flex: 0 0 auto;
+    margin-left: auto;
+    color: rgba(235, 235, 245, 0.45);
+    transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.courseRayonReplie .courseRayonChevron { transform: rotate(-90deg); }
+.courseRayonReplie .courseRayonTitle { margin-bottom: 0; }
 
 .courseRayonCount {
     font-size: 12px;
@@ -3657,13 +3677,41 @@
 /* Options « semaine intelligente » dans le modal Composer. */
 .smartRow { display: flex; flex-direction: column; gap: 8px; margin: 4px 0 14px; }
 .smartToggle {
-    display: inline-flex; align-items: center; gap: 9px;
-    height: 44px; padding: 0 14px; border: none; border-radius: 13px;
+    display: flex; align-items: center; gap: 11px; width: 100%;
+    padding: 11px 13px; border: none; border-radius: 15px;
     background: rgba(255, 255, 255, 0.06); box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
     color: rgba(235, 235, 245, 0.85); font-size: 14px; font-weight: 600; cursor: pointer; text-align: left;
     transition: background 0.18s ease, color 0.18s ease;
 }
 .smartToggle svg { flex: 0 0 auto; opacity: 0.6; }
+/* Nom au-dessus, règle en dessous : on sait ce qu'on allume. */
+.smartTexte { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; text-align: left; }
+.smartLabel { font-size: 14px; font-weight: 700; }
+.smartSous { font-size: 11.5px; font-weight: 500; line-height: 1.25; color: rgba(235, 235, 245, 0.5); }
+/* L'interrupteur lui-même : sans lui, l'état allumé passait inaperçu. */
+.smartSwitch {
+    position: relative;
+    flex: 0 0 auto;
+    width: 42px;
+    height: 24px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.17);
+    transition: background 0.2s ease;
+}
+.smartSwitch i {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.smartOn .smartSwitch { background: linear-gradient(120deg, #FFC24B, #FF6B4A); }
+.smartOn .smartSwitch i { transform: translateX(18px); }
+.smartOn .smartSous { color: rgba(255, 244, 228, 0.66); }
 .smartOn { background: linear-gradient(120deg, rgba(255,194,75,.24), rgba(255,107,74,.2)); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,180,120,.45); }
 .smartOn svg { opacity: 1; color: #FFC24B; }
 :global([data-theme='light']) .smartToggle { background: rgba(0,0,0,.05); color: #333; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.12); }
@@ -3746,6 +3794,16 @@
 }
 
 .spPanelHead { padding: 0 4px 16px; padding-right: 150px; }
+/* Sur-titre : petit au-dessus, gros titre doré en dessous, comme ailleurs. */
+.spPanelKicker {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: rgba(255, 207, 145, 0.72);
+}
 .spPanelTitle {
     margin: 0;
     font-family: 'Outfit', sans-serif;
@@ -4660,6 +4718,16 @@
     transform: skewX(-6deg);
 }
 
+/* Le titre de l'extension, doré comme les autres titres de page : la règle
+   commune se faisait manger son dégradé ici, on le repose au bon niveau. */
+.extEmbedded .extTitle {
+    background-image: linear-gradient(112deg, #fff6e7 0%, #ffd08e 43%, #ffb66e 68%, #b8d66d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ffd08e;
+}
+
 /* Le détail sous le titre : même rôle que le sous-titre de la Recherche, donc
    même police et même gris. */
 .extEmbedded .extLead {
@@ -5161,16 +5229,19 @@
     .pagePlanner {
         /* Hauteur commune aux deux pastilles, réglée sur la fenêtre : tout
            doit tenir à l'arrivée, sans défilement. */
-        --pastille-h: clamp(300px, calc(100vh - 384px), 560px);
-        --pastille-decalage: 322px;
+        --pastille-h: clamp(280px, calc(100vh - 432px), 540px);
+        --pastille-decalage: 366px;
         position: relative;
         display: grid;
         grid-template-columns: 224px minmax(0, 1fr);
         column-gap: 26px;
         align-items: start;
     }
-    /* Tout le reste (en-tête, onglets, jours, cartes) reste à gauche. */
+    /* Le contenu occupe la colonne de droite… */
     .pagePlanner > * { grid-column: 2; min-width: 0; }
+    /* …sauf l'en-tête : le titre de la page se lit tout en haut à GAUCHE,
+       comme sur les autres écrans (Ma liste, Favoris, Ma cave…). */
+    .pagePlanner > header { grid-column: 1 / -1; }
 
     /* Le panneau de droite : MÊME pastille que celle des cartes du jour,
        simplement plus étroite. */
@@ -5307,4 +5378,829 @@
     }
     /* L'accompagnement respire davantage — sans jamais rivaliser avec le plat. */
     .semaineGrid .planSideCard { height: clamp(110px, calc(var(--pastille-h) * 0.32), 180px); aspect-ratio: auto; }
+}
+
+/* ── Direction artistique du planificateur : cuisine TV premium ─────────── */
+.pagePlanner {
+    --planner-ink: #070604;
+    --planner-panel: rgba(25, 21, 17, 0.72);
+    --planner-panel-soft: rgba(255, 244, 228, 0.065);
+    --planner-line: rgba(255, 204, 137, 0.18);
+    --planner-line-cool: rgba(255, 255, 255, 0.11);
+    --planner-cream: #fff4e3;
+    --planner-copper: #ffb66e;
+    --planner-tomato: #ff7254;
+    --planner-olive: #b8d66d;
+    position: relative;
+    isolation: isolate;
+    background:
+        linear-gradient(145deg, rgba(255, 133, 76, 0.12) 0%, rgba(255, 133, 76, 0) 34%),
+        linear-gradient(220deg, rgba(184, 214, 109, 0.09) 0%, rgba(184, 214, 109, 0) 36%),
+        linear-gradient(180deg, #0b0907 0%, #0d0b09 48%, #050505 100%);
+}
+
+.pagePlanner::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.24;
+    background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 9px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 11px);
+    mix-blend-mode: screen;
+}
+
+.pagePlanner::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(255, 219, 168, 0.10) 0%, rgba(255, 219, 168, 0) 220px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0.22) 100%);
+}
+
+.pagePlanner > * {
+    position: relative;
+    z-index: 1;
+}
+
+.pagePlanner .planRail { z-index: 2; }
+
+.pagePlanner .planHead {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 24px);
+}
+
+.pagePlanner .planKicker {
+    color: rgba(255, 198, 128, 0.72);
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+}
+
+.pagePlanner .planTitle,
+.pagePlanner .planDayTitle {
+    transform: none;
+    letter-spacing: -0.06em;
+    color: var(--planner-cream);
+    text-shadow: 0 18px 34px rgba(0, 0, 0, 0.58), 0 0 32px rgba(255, 140, 82, 0.12);
+}
+
+.pagePlanner .planCount {
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 216, 161, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 244, 228, 0.055);
+    color: rgba(255, 244, 228, 0.68);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+}
+
+.pagePlanner .planBack {
+    background: rgba(255, 244, 228, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(255, 216, 161, 0.16);
+    color: var(--planner-cream);
+}
+
+.pagePlanner .planModes {
+    margin-top: 8px;
+    padding: 5px;
+    border: 1px solid rgba(255, 216, 161, 0.13);
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255, 244, 228, 0.085), rgba(255, 244, 228, 0.035));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 20px 48px rgba(0, 0, 0, 0.30);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    backdrop-filter: blur(24px) saturate(150%);
+}
+
+.pagePlanner .planMode {
+    border-radius: 15px;
+    color: rgba(255, 244, 228, 0.64);
+}
+
+.pagePlanner .planModeOn {
+    background: linear-gradient(135deg, #fff3dd 0%, #ffc77f 100%);
+    color: #170f08;
+    box-shadow: 0 10px 26px rgba(255, 161, 82, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.pagePlanner .planDays {
+    padding-top: 8px;
+    background:
+        linear-gradient(180deg, rgba(12, 9, 7, 0.92), rgba(12, 9, 7, 0.72)),
+        linear-gradient(90deg, rgba(255, 183, 101, 0.10), rgba(184, 214, 109, 0.06));
+    border-bottom: 1px solid rgba(255, 216, 161, 0.10);
+}
+
+.pagePlanner .planDay {
+    border: 1px solid rgba(255, 216, 161, 0.09);
+    border-radius: 15px;
+    background: rgba(255, 244, 228, 0.06);
+    color: rgba(255, 244, 228, 0.66);
+}
+
+.pagePlanner .planDayOn {
+    background: linear-gradient(135deg, #fff4df 0%, #ffc077 100%);
+    color: #1b1108;
+    box-shadow: 0 12px 30px rgba(255, 155, 79, 0.25);
+}
+
+.pagePlanner .planDot {
+    background: var(--planner-tomato);
+    opacity: 1;
+}
+
+.pagePlanner .planSlide {
+    position: relative;
+}
+
+.pagePlanner .planDayHead {
+    align-items: center;
+}
+
+.pagePlanner .planMeal {
+    color: rgba(255, 198, 128, 0.68);
+    letter-spacing: 0.21em;
+}
+
+.pagePlanner .planCard,
+.pagePlanner .planSideCard {
+    border-radius: 20px;
+    background: #160f0b;
+    box-shadow:
+        0 24px 54px rgba(0, 0, 0, 0.48),
+        inset 0 0 0 1px rgba(255, 230, 193, 0.12);
+}
+
+.pagePlanner .planCard::after,
+.pagePlanner .planSideCard::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -54px 78px rgba(55, 23, 8, 0.32);
+}
+
+.pagePlanner .planCardScrim {
+    background:
+        linear-gradient(0deg, rgba(20, 9, 4, 0.92) 0%, rgba(20, 9, 4, 0.38) 42%, rgba(20, 9, 4, 0) 72%),
+        linear-gradient(135deg, rgba(255, 182, 110, 0.12), rgba(0, 0, 0, 0) 46%);
+}
+
+.pagePlanner .planCardTitle {
+    transform: none;
+    letter-spacing: -0.04em;
+    color: #fff6ea;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.88);
+}
+
+.pagePlanner .planCardMeta {
+    color: rgba(255, 238, 216, 0.82);
+}
+
+.pagePlanner .planEmpty,
+.pagePlanner .planAjoutRepas {
+    border: 1px dashed rgba(255, 190, 117, 0.32);
+    background:
+        linear-gradient(135deg, rgba(255, 183, 101, 0.11), rgba(184, 214, 109, 0.045)),
+        rgba(255, 244, 228, 0.035);
+    box-shadow: inset 0 0 0 1px rgba(255, 244, 228, 0.035);
+    color: rgba(255, 244, 228, 0.82);
+}
+
+.pagePlanner .planAdd,
+.pagePlanner .planSurprise,
+.pagePlanner .planSwap {
+    color: rgba(255, 244, 228, 0.84);
+}
+
+.pagePlanner .planSurprise {
+    background: rgba(255, 244, 228, 0.075);
+    box-shadow: inset 0 0 0 1px rgba(255, 216, 161, 0.10);
+}
+
+.pagePlanner .planSlotCible {
+    outline-color: rgba(255, 182, 110, 0.95);
+}
+
+.pagePlanner .planPartage {
+    color: var(--planner-cream);
+}
+
+@media (max-width: 700px) {
+    .pagePlanner .planFooter {
+        background: linear-gradient(
+            0deg,
+            #070604 calc(100% - 26px),
+            rgba(7, 6, 4, 0.92) calc(100% - 12px),
+            rgba(7, 6, 4, 0) 100%
+        );
+    }
+
+    .pagePlanner .planCompose,
+    .pagePlanner .planClear {
+        background: rgba(255, 244, 228, 0.09);
+        box-shadow: inset 0 0 0 1px rgba(255, 216, 161, 0.12);
+    }
+
+    .pagePlanner .planValidate {
+        background: linear-gradient(135deg, #fff2dc 0%, #ffb66e 100%);
+        color: #170f08;
+    }
+}
+
+@media (min-width: 1024px) {
+    .pagePlanner {
+        grid-template-columns: 250px minmax(0, 1fr);
+        column-gap: 30px;
+    }
+
+    .pagePlanner > .planRail {
+        left: 24px;
+        width: 250px;
+        padding: 18px;
+        border: 1px solid rgba(255, 216, 161, 0.15);
+        border-radius: 30px;
+        background:
+            linear-gradient(180deg, rgba(43, 33, 25, 0.82) 0%, rgba(14, 12, 10, 0.74) 100%),
+            rgba(15, 13, 11, 0.76);
+        box-shadow:
+            0 32px 90px rgba(0, 0, 0, 0.52),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .pagePlanner > .planRail::before {
+        content: '';
+        position: absolute;
+        inset: 16px auto 16px 16px;
+        width: 2px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, rgba(255, 182, 110, 0.0), rgba(255, 182, 110, 0.55), rgba(184, 214, 109, 0.30), rgba(255, 182, 110, 0));
+    }
+
+    .pagePlanner .planRail .planPrix {
+        padding: 0 0 2px 12px;
+    }
+
+    .pagePlanner .planRail .planPrix > * {
+        padding: 14px 10px 16px;
+        border: 1px solid rgba(255, 216, 161, 0.13);
+        border-bottom-color: rgba(255, 216, 161, 0.13);
+        border-radius: 22px;
+        background: rgba(255, 244, 228, 0.055);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .pagePlanner .planRail .planFooter {
+        padding-left: 12px;
+        gap: 10px;
+    }
+
+    .pagePlanner .planRail .planCompose,
+    .pagePlanner .planRail .planClear,
+    .pagePlanner .planRail .planValidate {
+        height: 44px;
+        border-radius: 17px;
+        border: 1px solid rgba(255, 216, 161, 0.11);
+    }
+
+    .pagePlanner .planRail .planCompose,
+    .pagePlanner .planRail .planClear {
+        background: rgba(255, 244, 228, 0.075);
+        color: rgba(255, 244, 228, 0.90);
+    }
+
+    .pagePlanner .planRail .planCompose:hover,
+    .pagePlanner .planRail .planClear:hover {
+        background: rgba(255, 244, 228, 0.13);
+    }
+
+    .pagePlanner .planRail .planValidate {
+        background: linear-gradient(135deg, #fff3dd 0%, #ffb66e 100%);
+        color: #170f08;
+        box-shadow: 0 18px 42px rgba(255, 146, 76, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.58);
+    }
+
+    .pagePlanner .planRail .planValidate:hover {
+        background: linear-gradient(135deg, #fff8ee 0%, #ffc987 100%);
+    }
+
+    .pagePlanner .semaineGrid,
+    .pagePlanner .jourjGrid {
+        border: 1px solid rgba(255, 216, 161, 0.14);
+        border-radius: 32px;
+        background:
+            linear-gradient(155deg, rgba(36, 28, 22, 0.78), rgba(10, 9, 8, 0.70)),
+            rgba(18, 15, 12, 0.70);
+        -webkit-backdrop-filter: blur(28px) saturate(150%);
+        backdrop-filter: blur(28px) saturate(150%);
+        box-shadow:
+            0 34px 90px rgba(0, 0, 0, 0.46),
+            inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    }
+
+    .pagePlanner .semaineGrid {
+        gap: 18px;
+        padding: 18px;
+    }
+
+    .pagePlanner .jourjGrid {
+        padding: 18px;
+    }
+
+    .pagePlanner .semaineGrid .planCard,
+    .pagePlanner .semaineGrid .planSideCard,
+    .pagePlanner .jourjGrid .planCard {
+        box-shadow: inset 0 0 0 1px rgba(255, 230, 193, 0.12);
+    }
+}
+
+/* ── Signature dorée commune aux écrans TV ───────────────────────────────
+   Les teintes vivaient sur `.page`. Encastrés dans la coquille du bureau,
+   plusieurs panneaux (Recherche, Extension) n'ont PAS cet élément au-dessus
+   d'eux : la variable manquait, le dégradé tombait à l'eau et le titre
+   restait beige. Les teintes sont donc posées à la racine du document, dans
+   `src/app/globals.css` (un module CSS refuse un sélecteur global pur). */
+
+.page {
+    --tv-gold-1: #fff6e7;
+    --tv-gold-2: #ffd08e;
+    --tv-gold-3: #ffb66e;
+    --tv-gold-4: #b8d66d;
+    --tv-warm-line: rgba(255, 211, 149, 0.18);
+    --tv-warm-line-soft: rgba(255, 211, 149, 0.10);
+    --tv-warm-glass: rgba(255, 244, 228, 0.075);
+    --accent: #ffb66e;
+    --tv-hairline: var(--tv-warm-line-soft);
+}
+
+.brandKicker,
+.heroBrandKicker,
+.heroKicker,
+.navBrandKicker,
+.planKicker,
+.planMeal,
+.planSideKicker,
+.extKicker,
+.enMainKicker,
+.courseRayonTitle,
+.spPanelHead,
+.allCount {
+    color: rgba(255, 207, 145, 0.72);
+}
+
+.brandWord,
+.navBrandWord,
+.heroBrandWord,
+.rowTitle,
+.allTitle,
+.planTitle,
+.planDayTitle,
+.composeTitle,
+.spPanelTitle,
+.spTitle,
+.extTitle,
+.extSection,
+.extStepTitle,
+.cartTitle,
+.courseCardTitle,
+.menuTitle {
+    background: linear-gradient(112deg, var(--tv-gold-1) 0%, var(--tv-gold-2) 43%, var(--tv-gold-3) 68%, var(--tv-gold-4) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--tv-gold-2);
+    text-shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
+}
+
+.heroTitleSplit,
+.heroTitle,
+.top10Title,
+.planCardTitle {
+    color: #fff3df;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.88), 0 0 24px rgba(255, 160, 92, 0.12);
+}
+
+.heroTitleWord {
+    background: linear-gradient(112deg, #fffaf1 0%, #ffd08e 55%, #ffb66e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brandRule,
+.top10BarFill,
+.timelineDot,
+.barFill {
+    background: linear-gradient(90deg, transparent, var(--tv-gold-2), var(--tv-gold-3), transparent);
+}
+
+.rowChevron,
+.navChevron,
+.heroNav,
+.spIcon,
+.menuIcon,
+.planPlus {
+    color: rgba(255, 207, 145, 0.78);
+}
+
+.rowShare,
+.allBack,
+.planBack,
+.navSearch,
+.famTabs,
+.allTri,
+.planModes,
+.cartCard,
+.composeCard,
+.courseCard,
+.spPanel,
+.extStep,
+.timelineItem {
+    border-color: var(--tv-warm-line);
+    box-shadow: inset 0 0 0 1px var(--tv-warm-line-soft);
+}
+
+.rowShare,
+.allBack,
+.planBack,
+.navSearch,
+.planMode,
+.famTab,
+.allTriBtn,
+.composeCard,
+.cartCard,
+.courseCard,
+.spPanel,
+.extStep {
+    background-color: var(--tv-warm-glass);
+}
+
+.planModeOn,
+.famTabOn,
+.allTriOn,
+.planValidate,
+.planCompose:hover,
+.navGroupCount,
+.navRowOn,
+.searchBtnOn {
+    background: linear-gradient(135deg, var(--tv-gold-1) 0%, var(--tv-gold-3) 100%);
+    color: #170f08;
+    box-shadow: 0 14px 34px rgba(255, 160, 82, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.48);
+}
+
+.rowHeadWrap::after,
+.allHead::after,
+.extHead::after,
+.spPanelHead::after {
+    content: '';
+    flex: 1 1 auto;
+    min-width: 38px;
+    height: 1px;
+    margin-left: 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255, 205, 136, 0.52), rgba(255, 205, 136, 0.08), transparent);
+}
+
+.allHead,
+.navHead,
+.planDayHead,
+.jourjHead,
+.timelineHead,
+.extHead,
+.spPanelHead {
+    position: relative;
+}
+
+.planDayHead,
+.jourjHead,
+.timelineHead,
+.extHead,
+.spPanelHead {
+    display: flex;
+    align-items: center;
+}
+
+.navPanel,
+.allSheet,
+.composeSheet,
+.timelineSheet {
+    background:
+        linear-gradient(145deg, rgba(255, 139, 76, 0.10), rgba(255, 139, 76, 0) 34%),
+        linear-gradient(180deg, rgba(10, 8, 6, 0.98), rgba(5, 5, 5, 0.98));
+}
+
+/* ── En-tête du panneau Recherche ────────────────────────────────────────
+   Le thème doré met les en-têtes en ligne (flex) : le sur-titre se
+   retrouvait À CÔTÉ du grand titre au lieu d'être au-dessus. Ici la pile
+   est verticale, et le filet doré passe simplement en dessous. */
+.spPanelHead {
+    display: block;
+}
+.spPanelHead::after {
+    display: block;
+    width: 100%;
+    margin: 12px 0 0;
+}
+
+/* ── Recherche ouverte depuis le planificateur ───────────────────────────
+   Ajouter une recette ouvrait la loupe mobile : une longue liste qui
+   déroulait en bas de l'écran. Ici c'est la PAGE Recherche qui s'ouvre —
+   même sur-titre, même grand titre doré en haut à gauche, mêmes résultats
+   en colonnes — posée en calque au-dessus du planificateur. */
+.spEnPanneau {
+    padding: max(28px, calc(env(safe-area-inset-top, 0px) + 20px)) 32px
+             calc(64px + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+.spEnPanneau .spHead { padding: 0 0 12px; }
+.spEnPanneau .spPanelHead { padding: 0 0 16px; }
+.spEnPanneau .spSegment { margin: 2px 0 12px; }
+.spEnPanneau .spGroups,
+.spEnPanneau .spChips { padding: 0 0 8px; }
+
+/* ── Planificateur de bureau : de l'air entre les étages ─────────────────
+   Les réglages (Semaine / Jour J), les jours et le titre du jour se
+   touchaient. Chaque étage respire, les cartes descendent un peu dans la
+   page — et la hauteur des pastilles est rabattue d'autant, pour que tout
+   continue de tenir sans défilement. */
+@media (min-width: 1024px) {
+    .pagePlanner .planModes { margin-top: 18px; margin-bottom: 20px; }
+    .pagePlanner .planDays { padding: 14px 18px 18px; }
+    .pagePlanner .planDayHead { margin-top: 8px; margin-bottom: 24px; }
+    .pagePlanner .jourjHead { margin-top: 8px; margin-bottom: 24px; }
+}
+
+/* ── Le portrait de la semaine (panneau de gauche, bureau) ───────────────
+   Quatre petits blocs sous les boutons : l'équilibre des assiettes, les pays
+   traversés, le poids des courses, les créneaux libres. Ils prennent la place
+   qui reste et se serrent plutôt que de faire défiler la page. */
+@media (min-width: 1024px) {
+    .pagePlanner .planRail .planApercu {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 11px 0 0 12px;
+        margin-top: 0;
+        border-top: 0.5px solid rgba(255, 255, 255, 0.12);
+        overflow: hidden;
+    }
+    .pagePlanner .planBloc { display: flex; flex-direction: column; gap: 5px; }
+    .pagePlanner .planBlocTitre {
+        font-family: 'Outfit', sans-serif;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 198, 128, 0.66);
+    }
+
+    /* Équilibre : un nom, une piste, un compte — trois colonnes alignées. */
+    .pagePlanner .planBarre {
+        display: grid;
+        grid-template-columns: 50px minmax(0, 1fr) 14px;
+        align-items: center;
+        gap: 8px;
+        line-height: 1.15;
+    }
+    .pagePlanner .planBarreNom {
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba(255, 244, 228, 0.66);
+    }
+    .pagePlanner .planBarrePiste {
+        height: 5px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.10);
+        overflow: hidden;
+    }
+    .pagePlanner .planBarrePiste > span {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #ffd08e, #ff9d5c);
+        transition: width 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    .pagePlanner .planBarreN {
+        font-family: 'Outfit', sans-serif;
+        font-size: 11.5px;
+        font-weight: 800;
+        text-align: right;
+        color: rgba(255, 244, 228, 0.5);
+    }
+
+    /* Tour du monde et créneaux libres : les mêmes petites pastilles. */
+    .pagePlanner .planPays,
+    .pagePlanner .planVides { display: flex; flex-wrap: wrap; gap: 5px; }
+    .pagePlanner .planPaysTag,
+    .pagePlanner .planVideTag,
+    .pagePlanner .planVideReste {
+        padding: 3px 8px;
+        border: 1px solid rgba(255, 216, 161, 0.14);
+        border-radius: 999px;
+        background: rgba(255, 244, 228, 0.06);
+        font-size: 10.5px;
+        font-weight: 600;
+        color: rgba(255, 244, 228, 0.74);
+        white-space: nowrap;
+    }
+    .pagePlanner .planVideTag { cursor: pointer; transition: background 0.18s, color 0.18s; }
+    .pagePlanner .planVideTag:hover {
+        background: linear-gradient(135deg, #fff4df, #ffc077);
+        border-color: transparent;
+        color: #1b1108;
+    }
+    .pagePlanner .planVideReste { color: rgba(255, 244, 228, 0.42); }
+
+    /* La légende du bouton « Liste de courses » : ce qu'il va y déverser. */
+    .pagePlanner .planCoursesHint {
+        margin-top: -2px;
+        text-align: center;
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba(255, 244, 228, 0.45);
+    }
+}
+
+@media (min-width: 1024px) {
+    /* ── Accompagnement sans carte : le texte ne colle plus au bord ────────
+       La moitié droite perd sa gouttière quand elle porte une photo pleine
+       largeur. Quand il n'y a pas de photo, le texte, lui, a besoin d'air. */
+    .semaineGrid .planPairSplit .planSide:not(:has(.planSideCard)),
+    .jourjGrid .planPairSplit .planSide:not(:has(.planSideCard)) {
+        padding: 16px 20px;
+    }
+
+    /* ── Les grosses pastilles flottent ───────────────────────────────────
+       La colonne du planificateur portait un liseré, une ombre et un fond
+       plein : un rectangle noir se découpait derrière les pastilles. Le
+       décor passe entièrement sur le calque fixe, qui couvre la fenêtre. */
+    .pagePlanner {
+        background: none;
+        box-shadow: none;
+    }
+    .pagePlanner::after {
+        background:
+            linear-gradient(145deg, rgba(255, 133, 76, 0.12) 0%, rgba(255, 133, 76, 0) 34%),
+            linear-gradient(220deg, rgba(184, 214, 109, 0.09) 0%, rgba(184, 214, 109, 0) 36%),
+            linear-gradient(180deg, rgba(255, 219, 168, 0.10) 0%, rgba(255, 219, 168, 0) 220px),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0.22) 100%);
+    }
+}
+
+/* ── « Composer » : une fiche posée devant, pas une feuille qui monte ─────
+   En-tête à deux étages (sur-titre + titre) et croix de fermeture, comme une
+   fiche recette. Le reste du décor vient des règles au-dessus. */
+.composeHead {
+    display: flex;
+    min-width: 0;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+.composeKicker {
+    margin-bottom: 3px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 198, 128, 0.7);
+}
+.composeClose {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.09);
+    color: rgba(255, 244, 228, 0.8);
+    cursor: pointer;
+    transition: background 0.18s, transform 0.14s;
+}
+.composeClose:hover { background: rgba(255, 255, 255, 0.17); }
+.composeClose:active { transform: scale(0.9); }
+
+@media (min-width: 1024px) {
+    /* Au bureau, la fiche a la place de montrer ses options d'un seul tenant :
+       plus large, mieux aérée, et son pied reste toujours visible. */
+    .composeCard {
+        max-width: 620px;
+        max-height: min(80vh, 760px);
+        padding: 26px 26px 0;
+        border-radius: 28px;
+        background: rgba(30, 25, 21, 0.72);
+        box-shadow:
+            0 40px 110px rgba(0, 0, 0, 0.62),
+            inset 0 0 0 1px rgba(255, 216, 161, 0.16);
+    }
+    .composeTitle { font-size: 28px; }
+    .composeHint { margin: 10px 0 18px; font-size: 14.5px; max-width: 52ch; }
+    .composeChip { padding: 11px 16px; font-size: 14px; }
+    .composeChips { gap: 9px; }
+    .famTab { padding: 11px 0; font-size: 14px; }
+    .famSearch { height: 44px; font-size: 14.5px; }
+    .composeFooter {
+        padding-bottom: 20px;
+        background: rgba(30, 25, 21, 0.97);
+    }
+    .composeFooter::before { background: linear-gradient(to bottom, transparent, rgba(30, 25, 21, 0.97)); }
+    .composeLaunch { height: 52px; font-size: 16px; }
+    /* Ce qui est coché, juste au-dessus du bouton : lisible, et chaque
+       pastille se retire d'un clic. */
+    .selRecap { margin: 16px 0 4px; padding-top: 14px; border-top: 0.5px solid rgba(255, 216, 161, 0.14); }
+    .selPills { gap: 8px; align-items: center; }
+    .selPill { padding: 7px 12px; font-size: 13px; }
+    .selClear { font-size: 13px; }
+    /* L'interrupteur « Express » se voit : c'est une option, pas un titre. */
+    .smartRow { margin: 6px 0 16px; }
+    .smartToggle { padding: 13px 15px; }
+    .smartLabel { font-size: 15px; }
+    .smartSous { font-size: 12.5px; }
+}
+
+/* ── Liste de courses au bureau : des cartes de rayon, sur deux colonnes ──
+   En une seule colonne pleine largeur, la liste demandait dix tours de
+   molette et laissait un couloir vide entre le nom de l'ingrédient et ses
+   boutons. Chaque rayon devient une carte qu'on replie, et les cartes se
+   rangent côte à côte. */
+@media (min-width: 1024px) {
+    /* Deux colonnes en flux, pas une grille : avec une grille, un rayon de
+       cinquante articles imposait sa hauteur à son voisin et creusait un
+       trou. Ici les cartes s'enchaînent et les colonnes s'équilibrent. */
+    .courseRayons {
+        columns: 2;
+        column-gap: 16px;
+        margin-top: 4px;
+    }
+    .courseRayon {
+        break-inside: avoid;
+        margin-bottom: 16px;
+        padding: 14px 14px 10px;
+        border: 1px solid rgba(255, 216, 161, 0.13);
+        border-radius: 22px;
+        background: rgba(255, 244, 228, 0.045);
+        -webkit-backdrop-filter: blur(24px) saturate(150%);
+        backdrop-filter: blur(24px) saturate(150%);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        transition: background 0.2s ease;
+    }
+    .courseRayon:hover { background: rgba(255, 244, 228, 0.062); }
+    .courseRayonReplie { padding-bottom: 14px; }
+    /* La barre « tout replier », au-dessus des cartes. */
+    .courseRayonsBarre {
+        display: flex;
+        justify-content: flex-end;
+        margin: 10px 2px 0;
+    }
+    .courseToutReplier {
+        padding: 7px 14px;
+        border: 1px solid rgba(255, 216, 161, 0.14);
+        border-radius: 999px;
+        background: rgba(255, 244, 228, 0.05);
+        color: rgba(255, 244, 228, 0.7);
+        font-family: 'Outfit', sans-serif;
+        font-size: 12.5px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.18s ease, color 0.18s ease;
+    }
+    .courseToutReplier:hover { background: rgba(255, 244, 228, 0.12); color: #fff; }
+    .courseRayonTitle { margin: 0 0 10px; font-size: 16.5px; }
+    .courseRayonCount {
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: rgba(255, 244, 228, 0.09);
+        font-size: 11.5px;
+        color: rgba(255, 244, 228, 0.6);
+    }
+    /* Dans la carte, les lignes n'ont plus besoin de leur propre pastille :
+       un filet suffit à les séparer, et tout se resserre. */
+    .courseRayon .courseRow {
+        gap: 10px;
+        margin-bottom: 0;
+        padding: 8px 4px;
+        border-radius: 10px;
+        background: none;
+        box-shadow: none;
+    }
+    .courseRayon .courseRowSwipe + .courseRowSwipe .courseRow,
+    .courseRayon .courseRow + .courseRow {
+        border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+    }
+    .courseRayon .courseRow:hover { background: rgba(255, 255, 255, 0.05); }
+    .courseRayon .courseText { gap: 11px; }
+    .courseRayon .courseAction { width: 29px; height: 29px; }
+    .courseRayon .courseAction svg { width: 15px; height: 15px; }
 }

@@ -86,10 +86,18 @@
    colonne de droite avec le même en-tête (gros titre + sous-titre). */
 .embedded {
     position: relative; inset: auto; z-index: 0;
-    height: min(78vh, 720px);
-    padding: 4px 4px 16px;
+    /* Toute la hauteur disponible sous la gouttière du shell (22 px), pas un
+       pourcentage arbitraire : l'écran tient d'un bloc, sans jamais défiler. */
+    height: calc(100svh - 36px);
+    max-height: calc(100svh - 36px);
+    padding: 4px 4px 12px;
     background: none;
+    overflow: hidden;
 }
+/* La carte garde ses proportions : sa LARGEUR est bornée par la hauteur qui
+   reste une fois le titre et les boutons posés — sinon elle s'étire en
+   gratte-ciel sur les grands écrans. */
+.embedded .stage { max-width: min(360px, calc((100svh - 300px) * 0.72)); }
 .embedded .head { align-items: flex-start; margin-bottom: 18px; padding-right: 150px; }
 .panelTitle {
     margin: 0;
@@ -144,4 +152,30 @@
 }
 @media (prefers-reduced-motion: reduce) {
     .cardNudge { animation: none; }
+}
+
+
+/* ── Signature dorée : le titre de la page comme celui du menu ────────────
+   Même police, même dégradé doré que « LES RECETTES MAGIQUES » et que les
+   titres des autres écrans (planificateur, liste, cave, tutoriel). */
+.panelTitle {
+    background: linear-gradient(112deg, #fff6e7 0%, #ffd08e 43%, #ffb66e 68%, #b8d66d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ffd08e;
+    text-shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
+}
+.panelSub { color: rgba(255, 207, 145, 0.72); }
+
+
+/* Sur-titre : petit au-dessus, gros titre doré en dessous. */
+.panelKicker {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: rgba(255, 207, 145, 0.72);
 }
