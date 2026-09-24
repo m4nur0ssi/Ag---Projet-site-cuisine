@@ -1,122 +1,50 @@
-# Les Recettes Magiques - Guide de démarrage
+# Les Recettes Magiques
 
-## ✅ Application créée avec succès !
+Site de recettes en français, alimenté par des vidéos TikTok.
+En ligne : <https://lesrecettesmagiques.fr> (Vercel).
 
-L'application est fonctionnelle et utilise actuellement les **données de démonstration** (mock data) car le certificat SSL de votre site WordPress a un problème.
+**Tout le fonctionnement du projet est décrit dans [`ARCHITECTURE.md`](ARCHITECTURE.md)** :
+le pipeline TikTok → WordPress → site, les deux arbres téléphone / bureau,
+les données, les pièges connus. À lire avant de toucher au code.
 
-## 🚀 Lancer l'application
+## Lancer le site
 
-### Option 1 : Avec CMD (recommandé)
-```cmd
-cd "c:\Users\manu\CloudStation\Ag - Projet app cuisine"
+```bash
 npm install
-npm run dev
+npm run dev:ui     # l'interface seule
+npm run dev        # l'interface + le bot TikTok
 ```
 
-### Option 2 : Résoudre PowerShell
-Ouvrir PowerShell en **Administrateur** :
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Avant de pousser :
+
+```bash
+npm run build
 ```
 
-Puis :
-```powershell
-cd "c:\Users\manu\CloudStation\Ag - Projet app cuisine"
-npm install
-npm run dev
-```
+## En bref
 
-## 🔧 Problème SSL WordPress
+- **Next.js 14** (App Router), React 18, TypeScript, CSS Modules.
+- **Catalogue** : `src/data/mockData.ts`, réécrit par `sync-recipes.js`
+  (workflow `wp-sync.yml`) — publier une recette, c'est redéployer.
+- **Comptes utilisateurs** : Supabase (favoris, notes, planning, courses, cave).
+- **Photos** : générées d'après la vidéo TikTok, voir `AGENTS.md` et
+  `ARCHITECTURE.md` §3.2.
+- **Bot TikTok** : `tiktok-bot/`, lancé par `auto-recipe.yml`.
 
-Votre site `lesrec3ttesm4giques.fr` a un certificat SSL invalide. Solutions :
+## Dossiers
 
-### Solution temporaire (développement uniquement)
-J'ai créé un fichier `.env.local` qui désactive la vérification SSL.
+| Dossier | Contenu |
+|---|---|
+| `src/` | le site (bureau dans `components/`, téléphone dans `mobile/`) |
+| `scripts/` | build de l'accueil, photos, vérifications |
+| `tiktok-bot/` | import des vidéos TikTok vers WordPress |
+| `wordpress-plugin/` | plugin qui prévient le site à chaque publication |
+| `chrome-extension-courses/` | extension « courses magiques » |
+| `docs/` | plans et notes de conception |
+| `archives/` | anciens scripts ponctuels, gardés pour mémoire |
 
-### Solution permanente
-1. **Renouveler le certificat SSL** sur votre NAS
-2. **Utiliser HTTP en local** : Modifier `src/lib/wordpress.ts` ligne 3 :
-   ```typescript
-   const WORDPRESS_API_URL = 'http://lesrec3ttesm4giques.fr/wp-json/wp/v2';
-   ```
+## Clés d'API
 
-## 📱 Fonctionnalités actuelles
-
-✅ Page d'accueil avec "Recette du Jour"  
-✅ Catégories magiques (Entrées, Plats, Desserts, Potions)  
-✅ Grille de recettes tendances  
-✅ Page de détail avec ingrédients et instructions  
-✅ Navigation bottom bar  
-✅ Design premium avec glassmorphisme  
-✅ Responsive (mobile, tablette, desktop)  
-✅ **Intégration WordPress REST API** (avec fallback)  
-
-## 🔄 Intégration WordPress
-
-Une fois le problème SSL résolu, l'application récupérera automatiquement :
-- Toutes les recettes publiées
-- Les images featured
-- Les catégories
-- Le contenu (ingrédients et étapes)
-
-### Pour des données structurées optimales
-
-Installez **Advanced Custom Fields (ACF)** sur WordPress et créez ces champs :
-- `prep_time` (nombre)
-- `cook_time` (nombre)  
-- `servings` (nombre)
-- `difficulty` (select: facile/moyen/difficile)
-- `ingredients` (texte long ou répéteur)
-- `steps` (texte long ou répéteur)
-- `is_featured` (vrai/faux)
-
-## 📂 Structure du projet
-
-```
-src/
-├── app/
-│   ├── page.tsx              # Page d'accueil
-│   ├── recipe/[id]/page.tsx  # Page de détail recette
-│   └── globals.css           # Styles globaux
-├── components/
-│   ├── Header/               # En-tête
-│   ├── BottomNav/            # Navigation
-│   ├── RecipeCard/           # Carte recette
-│   └── CategoryScroll/       # Scroll catégories
-├── lib/
-│   └── wordpress.ts          # Service API WordPress
-├── data/
-│   └── mockData.ts           # Données de démo
-└── types/
-    └── index.ts              # Types TypeScript
-```
-
-## 🎨 Personnalisation
-
-Les couleurs et le thème sont dans `src/app/globals.css` :
-- `--color-accent-purple`: Couleur principale
-- `--color-accent-gold`: Couleur secondaire
-- `--glass-bg`: Effet glassmorphisme
-
-## 🐛 Dépannage
-
-### L'app ne démarre pas
-- Vérifier que Node.js est installé : `node --version`
-- Supprimer `node_modules` et refaire `npm install`
-
-### Les recettes WordPress ne s'affichent pas
-- Vérifier que le site est accessible
-- Regarder les logs dans la console du navigateur
-- L'app utilisera automatiquement les données mock en cas d'erreur
-
-## 📞 Prochaines étapes
-
-1. ✅ Résoudre le problème SSL
-2. 🔜 Ajouter la page de recherche
-3. 🔜 Ajouter le profil utilisateur
-4. 🔜 Système de favoris persistant
-5. 🔜 Mode cuisine pas-à-pas
-
----
-
-**Projet créé par Antigravity** 🧪✨
+Aucune clé ne doit être écrite dans le code : **le dépôt est public**.
+Elles vivent dans `.env.local` (site), `tiktok-bot/.env` (bot), les secrets
+GitHub Actions et les variables d'environnement Vercel.

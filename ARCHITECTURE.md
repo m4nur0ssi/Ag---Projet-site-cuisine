@@ -532,6 +532,14 @@ Corrigé. Et `photo:perso` est apparu à côté : jusque-là, une photo venue
 d'ailleurs n'avait aucun chemin — il fallait recopier une ligne de `sharp` à la
 main, deviner les largeurs et se tromper de rapport une fois sur deux.
 
+**24 septembre 2026 — ménage et sécurité.**
+Le dépôt est **public** : quatre clés Gemini écrites en clair ont été retirées
+du code (lues désormais dans l'environnement) — elles restent dans
+l'historique git et doivent être révoquées. 49 scripts ponctuels de la racine
+sont rangés dans `archives/` (déplacés, pas supprimés), le cache
+`tsconfig.tsbuildinfo` n'est plus versionné, et le repli Anthropic de l'accord
+des vins vise un modèle qui existe encore.
+
 **26 août 2026** — les 648 recettes passent en photo générée d'après la vidéo ;
 plus aucune photo Google n'est servie.
 
@@ -625,6 +633,7 @@ npm run nutri:verifier
   recette en file et réessaie chaque heure.
 - **Vidéos TikTok** : Safari bloque les cookies tiers → « Player error ». Le
   repli photo a été durci ; réhéberger les clips a été écarté (droits).
-- **`/api/wine-pairing` est cassé** tant que le nom de modèle Groq n'est pas
-  remis à jour (§8).
+- ~~`/api/wine-pairing` est cassé~~ — réglé : Groq sur `openai/gpt-oss-20b`
+  (19 août 2026), et le dernier repli Anthropic, qui visait un modèle retiré,
+  passe à `claude-haiku-4-5` (24 septembre 2026).
 - **Un bug de poids-pièce** subsiste dans `recipe-price`.
