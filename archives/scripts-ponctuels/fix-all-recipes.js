@@ -4,7 +4,7 @@ const Buffer = require('buffer').Buffer;
 
 const WP_URL = 'http://192.168.1.200/wordpress/wp-json/wp/v2';
 const WP_AUTH = Buffer.from(`${process.env.WP_USERNAME}:${process.env.WP_PASSWORD}`).toString('base64');
-const GEMINI_API_KEY = 'AIzaSyB70uc2YzIY-7ssKt33M0f4AyZybxKKrdo';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 async function fetchPage(page) {
     return new Promise((resolve, reject) => {

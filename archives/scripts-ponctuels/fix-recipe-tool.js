@@ -10,7 +10,7 @@ if (fs.existsSync(envPath)) {
     require('dotenv').config({ path: envPath });
 }
 const WP_AUTH = Buffer.from(`${process.env.WP_USERNAME}:${process.env.WP_PASSWORD}`).toString('base64');
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyB70uc2YzIY-7ssKt33M0f4AyZybxKKrdo';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const WP_BASE = 'http://192.168.1.200/wordpress/wp-json/wp/v2';
 
 async function fetchPost(slug) {

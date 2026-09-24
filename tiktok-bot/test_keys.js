@@ -1,11 +1,16 @@
 const fetch = require('node-fetch');
 
-const keys = [
-    'AIzaSyBDGs4GjLfrrn6qTx3-8KZ0kN8ideh-oTw',
-    'AIzaSyAIjz-HYke3CA4FH69XHa7MyNBxONIfREk',
-    'AIzaSyB70uc2YzIY-7ssKt33M0f4AyZybxKKrdo',
-    'AIzaSyD6lvhzw4XvsqNCtQ4c5C4NKuJGL9WHvKU'
-];
+// Les clés ne sont plus écrites ici : le dépôt est public. On les passe par
+// l'environnement, séparées par des virgules :
+//   GEMINI_TEST_KEYS="clé1,clé2" node tiktok-bot/test_keys.js
+// (à défaut, on teste la seule GEMINI_API_KEY de tiktok-bot/.env).
+require('dotenv').config({ path: __dirname + '/.env' });
+const keys = (process.env.GEMINI_TEST_KEYS || process.env.GEMINI_API_KEY || '')
+    .split(',').map(k => k.trim()).filter(Boolean);
+if (!keys.length) {
+    console.error('Aucune clé : définir GEMINI_TEST_KEYS ou GEMINI_API_KEY.');
+    process.exit(1);
+}
 
 async function testKey(key) {
     const model = 'gemini-1.5-flash';

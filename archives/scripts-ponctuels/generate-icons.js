@@ -1,7 +1,7 @@
 const fs = require('fs');
 const https = require('https');
 
-const GEMINI_API_KEY = 'AIzaSyB70uc2YzIY-7ssKt33M0f4AyZybxKKrdo';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const INGREDIENTS_FILE = 'ingredients-list.json';
 const OUTPUT_FILE = 'ingredient-icons.json';
 
