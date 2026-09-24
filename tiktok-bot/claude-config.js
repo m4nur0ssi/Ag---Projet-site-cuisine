@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 /**
  * Call Anthropic (Claude) API
  * @param {string} prompt - The prompt to send
- * @param {string} model - The model to use (default: claude-3-5-sonnet-20240620)
+ * @param {string} model - The model to use (default: claude-sonnet-4-6)
  * @returns {Promise<any>} - The parsed JSON response or raw text
  */
 async function callClaude(prompt, model = 'claude-sonnet-4-6') {

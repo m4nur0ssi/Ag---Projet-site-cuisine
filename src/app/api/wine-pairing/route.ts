@@ -15,7 +15,10 @@ const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 // d'environnement le jour où celui-ci disparaîtra à son tour.
 const GROQ_MODEL = process.env.WINE_GROQ_MODEL || 'openai/gpt-oss-20b';
 const GEMINI_MODEL = process.env.WINE_GEMINI_MODEL || 'gemini-2.5-flash';
-const ANTHROPIC_MODEL = process.env.WINE_MODEL || 'claude-3-5-haiku-latest';
+// `claude-3-5-haiku-latest` a été retiré par Anthropic : le dernier repli
+// répondait 404, et l'accord des vins tombait dès que Groq et Gemini étaient
+// indisponibles en même temps.
+const ANTHROPIC_MODEL = process.env.WINE_MODEL || 'claude-haiku-4-5';
 
 const SYSTEM = `Tu es un sommelier expert. On te donne une recette (titre, catégorie, ingrédients).
 Tu proposes des accords mets-vins.
