@@ -25,3 +25,7 @@ wp-writeback-ids.txt
 /public/recipes-ia/*
 !/public/recipes-ia/*.webp
 scripts/.releve-prix.json
+
+# Cache de compilation TypeScript : régénéré à chaque `tsc`, il changeait à
+# chaque vérification et polluait les commits.
+*.tsbuildinfo
