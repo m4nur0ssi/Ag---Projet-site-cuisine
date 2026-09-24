@@ -5423,7 +5423,11 @@
         linear-gradient(90deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0.22) 100%);
 }
 
-.pagePlanner > * {
+/* Spécificité nulle (`:where`) : ce calage par défaut ne doit JAMAIS écraser
+   un positionnement propre. Écrit `.pagePlanner > *`, il passait devant
+   `.spRoot` (fixed) — la recherche mobile tombait en bas de page — et devant
+   `.planDays` (sticky, z 30) — le jour balayé glissait sur la barre des jours. */
+:where(.pagePlanner) > * {
     position: relative;
     z-index: 1;
 }
