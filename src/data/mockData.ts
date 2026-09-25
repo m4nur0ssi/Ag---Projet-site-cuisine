@@ -2,11 +2,163 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 25/09/2026 08:21:07
- * Total: 746 recettes
+ * Dernière mise à jour: 25/09/2026 09:39:22
+ * Total: 748 recettes
  */
-export const exportSyncId = "1790324467071";
+export const exportSyncId = "1790329162720";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7898",
+        "title": "Tenders de poulet croustillants à l'ail et au parmesan",
+        "description": "Préparez des tenders de poulet ultra croustillants et pleins de saveur, sans friture, grâce à une panure maison à l'ail et au parmesan. Parfaits pour un repas sain et rapide à l'AirFryer.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7689100979907661078\" data-video-id=\"7689100979907661078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7689100979907661078\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             400 g de mini-filets de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             20 g de mayonnaise extra légère ou du skyr"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 grosses gousses d'ail frais râpées"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             8 g de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             70 g de chapelure panko"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             40 g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café d'oignon en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive en spray"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce orange miso (optionnel)"
+            }
+        ],
+        "steps": [
+            "Dans un récipient, cassez deux œufs. Ajoutez 20 g de mayonnaise extra légère (ou du skyr), 8 g de sauce soja et deux grosses gousses d'ail frais râpées. Poivrez. Mélangez bien et réservez.",
+            "Dans un autre récipient, préparez la panure en mélangeant 70 g de chapelure panko, 40 g de parmesan râpé, une cuillère à café d'ail en poudre, une cuillère à café d'oignon en poudre et du sel.",
+            "Enrobez les 400 g de mini-filets de poulet dans le mélange liquide. Ensuite, passez chaque morceau dans la panure sèche en pressant fermement pour qu'elle adhère bien de tous les côtés. Utilisez une main pour le mélange liquide et l'autre pour la panure sèche.",
+            "Déposez les tenders de poulet panés dans le panier de votre AirFryer en les espaçant bien. Vaporisez légèrement d'huile d'olive.",
+            "Faites cuire à 200°C pendant environ 12 minutes, en les retournant à mi-cuisson.",
+            "Pour une touche supplémentaire, servez avec une sauce orange miso."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "poulet"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7896",
+        "title": "Côtes de porc sauce forestière",
+        "description": "Découvrez comment préparer des côtes de porc parfaitement tendres et juteuses, accompagnées d'une onctueuse sauce forestière aux champignons, échalotes, ail, bouillon de bœuf, crème fraîche et moutarde à la truffe. Un plat réconfortant et facile à...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7688745925816192288\" data-video-id=\"7688745925816192288\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7688745925816192288\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 côtes de porc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de champignons de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             15 cl de bouillon de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             15 cl de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde à la truffe"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Faites chauffer une poêle avec un filet d'huile.",
+            "Déposez les côtes de porc et laissez-les bien griller sur une première face.",
+            "Pendant ce temps, ciselez le plus finement possible une échalote ainsi qu'une gousse d'ail.",
+            "Découpez également quelques champignons de Paris en morceaux assez fins.",
+            "Une fois que les côtes de porc sont bien dorées sur la première face, retournez-les et poursuivez la cuisson de l'autre côté.",
+            "Quand elles sont bien colorées mais encore rosées à cœur, réservez-les de côté.",
+            "Dans la même poêle, faites revenir l'échalote et l'ail pour récupérer toutes les saveurs de la viande.",
+            "Ajoutez ensuite les champignons et laissez-les griller quelques instants.",
+            "Déglacez le tout avec un peu de bouillon de bœuf en grattant bien le fond de la poêle pour récupérer tous les sucs de cuisson.",
+            "Versez ensuite la crème fraîche et mélangez le tout pour obtenir une sauce bien onctueuse.",
+            "Ajoutez une cuillère à café de moutarde à la truffe pour apporter encore plus de goût à la sauce.",
+            "Remettez les côtes de porc directement dans la sauce pendant quelques instants pour terminer la cuisson et les réchauffer.",
+            "Servez avec des pâtes et un peu de sauce forestière par-dessus."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Plats",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7887",
         "title": "Jambon sauce Madère",
