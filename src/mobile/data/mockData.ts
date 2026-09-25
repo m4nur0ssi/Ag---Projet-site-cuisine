@@ -2,112 +2,11 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 24/09/2026 07:58:15
+ * Dernière mise à jour: 25/09/2026 08:21:07
  * Total: 746 recettes
  */
-export const exportSyncId = "1790236695152";
+export const exportSyncId = "1790324467071";
 export const mockRecipes: Recipe[] = [
-    {
-        "id": "7891",
-        "title": "Mini Glaces Biscoff Légères",
-        "description": "Découvrez une astuce simple et rapide pour préparer de délicieuses mini glaces Biscoff. Avec de la crème fouettée allégée, chaque portion contient moins de 70 calories, parfait pour une pause gourmande et légère. Il suffit de mélanger, congeler et...",
-        "image": "/recipes-ia/7891-carte.webp",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670121433665785110\" data-video-id=\"7670121433665785110\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670121433665785110\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème fouettée allégée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Biscoff fondu"
-            }
-        ],
-        "steps": [
-            "Mélangez la crème fouettée allégée avec le Biscoff fondu.",
-            "Congelez pendant 2 heures.",
-            "Dégustez."
-        ],
-        "tags": [
-            "Astuces",
-            "Healthy",
-            "minceur",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7889",
-        "title": "Mini pommes de terre croustillantes",
-        "description": "Découvrez une nouvelle façon de préparer des pommes de terre ultra-croustillantes à la friteuse à air, assaisonnées d'un mélange d'épices savoureux. Parfaites comme accompagnement ou en apéritif.",
-        "image": "/recipes-ia/7889-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7685121288058277153\" data-video-id=\"7685121288058277153\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7685121288058277153\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             1,5 kg de pommes de terre (type Maris Piper)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe d'huile (à ajouter avant la cuisson à la friteuse à air)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 cuillère à café de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cuillère à café de poudre d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 cuillère à café de poudre d'oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais haché"
-            }
-        ],
-        "steps": [
-            "Laver et couper les pommes de terre en petits morceaux de taille égale.",
-            "Dans un grand bol, mélanger les pommes de terre coupées avec l'huile, le sel, le poivre, la poudre d'ail, la poudre d'oignon, le paprika et le cumin, en s'assurant que toutes les pommes de terre sont bien enrobées.",
-            "Préchauffer votre friteuse à air si nécessaire. Placer les pommes de terre assaisonnées dans le panier de la friteuse à air en une seule couche, ou en plusieurs fois si nécessaire pour éviter de surcharger.",
-            "Faire cuire les pommes de terre à la friteuse à air selon les instructions de votre appareil, en les secouant ou en les retournant à mi-cuisson, jusqu'à ce qu'elles soient dorées et croustillantes.",
-            "Servir immédiatement, garni de persil frais haché."
-        ],
-        "tags": [
-            "Accompagnements",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
     {
         "id": "7887",
         "title": "Jambon sauce Madère",
@@ -179,6 +78,107 @@ export const mockRecipes: Recipe[] = [
             "France",
             "Pas cher",
             "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7889",
+        "title": "Mini pommes de terre croustillantes",
+        "description": "Découvrez une nouvelle façon de préparer des pommes de terre ultra-croustillantes à la friteuse à air, assaisonnées d'un mélange d'épices savoureux. Parfaites comme accompagnement ou en apéritif.",
+        "image": "/recipes-ia/7889-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7685121288058277153\" data-video-id=\"7685121288058277153\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7685121288058277153\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1,5 kg de pommes de terre (type Maris Piper)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'huile (à ajouter avant la cuisson à la friteuse à air)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café de poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café de poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais haché"
+            }
+        ],
+        "steps": [
+            "Laver et couper les pommes de terre en petits morceaux de taille égale.",
+            "Dans un grand bol, mélanger les pommes de terre coupées avec l'huile, le sel, le poivre, la poudre d'ail, la poudre d'oignon, le paprika et le cumin, en s'assurant que toutes les pommes de terre sont bien enrobées.",
+            "Préchauffer votre friteuse à air si nécessaire. Placer les pommes de terre assaisonnées dans le panier de la friteuse à air en une seule couche, ou en plusieurs fois si nécessaire pour éviter de surcharger.",
+            "Faire cuire les pommes de terre à la friteuse à air selon les instructions de votre appareil, en les secouant ou en les retournant à mi-cuisson, jusqu'à ce qu'elles soient dorées et croustillantes.",
+            "Servir immédiatement, garni de persil frais haché."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7891",
+        "title": "Mini Glaces Biscoff Légères",
+        "description": "Découvrez une astuce simple et rapide pour préparer de délicieuses mini glaces Biscoff. Avec de la crème fouettée allégée, chaque portion contient moins de 70 calories, parfait pour une pause gourmande et légère. Il suffit de mélanger, congeler et...",
+        "image": "/recipes-ia/7891-carte.webp",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670121433665785110\" data-video-id=\"7670121433665785110\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670121433665785110\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fouettée allégée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Biscoff fondu"
+            }
+        ],
+        "steps": [
+            "Mélangez la crème fouettée allégée avec le Biscoff fondu.",
+            "Congelez pendant 2 heures.",
+            "Dégustez."
+        ],
+        "tags": [
+            "Astuces",
+            "Healthy",
+            "minceur",
+            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
