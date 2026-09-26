@@ -1,31 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQnMRJY/",
-      "country": "Pâtisserie",
-      "timestamp": "2026-09-26T14:51:17.284Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQnhaQu/",
-      "country": "Desserts",
-      "timestamp": "2026-09-26T14:51:55.905Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQn9k3y/",
-      "country": "Pâtisserie",
-      "timestamp": "2026-09-26T14:52:12.589Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQnD4Se/",
-      "country": "Desserts",
-      "timestamp": "2026-09-26T14:53:27.080Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQnUQyT/",
-      "country": "Pâtisserie",
-      "timestamp": "2026-09-26T14:54:05.879Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN8FcaP8F/",
