@@ -2,11 +2,758 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/09/2026 15:16:35
- * Total: 755 recettes
+ * Dernière mise à jour: 26/09/2026 16:55:59
+ * Total: 763 recettes
  */
-export const exportSyncId = "1790435795070";
+export const exportSyncId = "1790441759458";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7928",
+        "title": "Gaufres de fête foraine",
+        "description": "Une recette simple et gourmande pour préparer des gaufres moelleuses et croustillantes, parfaites pour un goûter ou un dessert qui rappellera l'ambiance des fêtes foraines.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7689744025808653601\" data-video-id=\"7689744025808653601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7689744025808653601\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             350g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             120g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15g de levure fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50cl de lait tiède"
+            }
+        ],
+        "steps": [
+            "Délayer la levure dans le lait tiède, mélanger et réserver.",
+            "Dans un saladier, verser la farine, la cassonade et le sucre vanillé. Mélanger. Ajouter les jaunes d'œufs. Mélanger.",
+            "Ajouter le mélange de lait et de levure. Mélanger. Ajouter le beurre fondu. Mélanger.",
+            "Battre le tout énergiquement jusqu'à obtenir une pâte lisse.",
+            "Battre les blancs en neige avec le sel puis les incorporer délicatement à la pâte.",
+            "Couvrir et laisser reposer 2 heures.",
+            "Une fois la pâte bien levée, verser une louche sur les plaques chaudes du gaufrier sans mélanger. Cuire 3 minutes chaque tournée."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7926",
+        "title": "Tourte au poulet et aux poireaux à la poêle",
+        "description": "Accueillez l'automne avec cette tourte réconfortante au poulet et aux poireaux, préparée directement à la poêle. L'auteur la présente comme le plat gourmand idéal pour les soirées fraîches, facile à réaliser et incroyablement savoureuse après les ...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7689129072290450721\" data-video-id=\"7689129072290450721\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7689129072290450721\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             400 g de dés de poulet ou de hauts de cuisses de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             1 gros poireau émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail finement hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 pincée de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 ml de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             200 ml de bouillon de volaille dilué"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Dans une poêle chaude, versez un filet d'huile d'olive.",
+            "Ajoutez le poireau émincé ainsi que l'ail. Laissez revenir jusqu'à ce que les poireaux soient fondants.",
+            "Ajoutez ensuite le poulet coupé en morceaux, le paprika, le sel, le poivre, l'origan ainsi que la farine. Mélangez et faites revenir pendant 8 minutes.",
+            "Versez ensuite la crème ainsi que le bouillon de volaille. Laissez mijoter pendant 5 minutes.",
+            "Retirez la poêle du feu et ajoutez des morceaux de pâte feuilletée sur la préparation afin de former une tourte.",
+            "Badigeonnez la pâte avec le jaune d'œuf, puis enfournez pendant 25 minutes à 200 °C.",
+            "Une fois la pâte bien dorée, retirez du four et servez."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "recettefacile",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7924",
+        "title": "Gratin de pommes de terre à la sauce bolognaise",
+        "description": "Un gratin réconfortant et savoureux composé d'une couche de purée de pommes de terre crémeuse, d'une riche sauce bolognaise à base de viande hachée et de légumes, le tout gratiné au four avec de la mozzarella fondante.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7686429205126581536\" data-video-id=\"7686429205126581536\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7686429205126581536\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre - 1 kg"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Viande hachée - 400 g"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon - 1"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             Carotte - 1"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Branche de céleri - 1"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail - 2 gousses"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Concentré de tomate - 1 cuillère à soupe"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates concassées - 400 g"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella - 200 g"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre - 40 g"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait - 50 ml"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre"
+            }
+        ],
+        "steps": [
+            "Faire bouillir les pommes de terre jusqu'à ce qu'elles soient tendres.",
+            "Les écraser en purée avec le beurre, le lait et 100 g de mozzarella.",
+            "Couper finement l'oignon, la carotte et le céleri en dés et les faire revenir jusqu'à ce qu'ils soient tendres.",
+            "Ajouter l'ail et la viande hachée et cuire jusqu'à ce qu'elle soit dorée.",
+            "Ajouter le concentré de tomate, les tomates concassées, le paprika, le sel, le poivre et un peu de sucre.",
+            "Bien mélanger et laisser mijoter jusqu'à ce que la sauce épaississe légèrement.",
+            "Étaler la purée de pommes de terre dans un plat allant au four, ajouter la sauce bolognaise par-dessus et terminer avec les 100 g de mozzarella restantes.",
+            "Faire cuire au four à 200°C pendant 10 minutes, jusqu'à ce que le fromage soit fondu et doré."
+        ],
+        "tags": [
+            "facile",
+            "Gratins",
+            "Italie",
+            "réconfortant",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7922",
+        "title": "Hachis parmentier de patate douce",
+        "description": "Découvrez une version revisitée du hachis parmentier, préparée avec de la patate douce pour une saveur encore meilleure. Cette recette est simple et rapide à réaliser, parfaite pour un repas réconfortant.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7433831718781537568\" data-video-id=\"7433831718781537568\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7433831718781537568\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥔\n             2 grosses patates douces"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Environ 15 cl de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             350 g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 cuillères à soupe de sauce tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Un filet de sriracha"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 cuillères à soupe de parmesan"
+            }
+        ],
+        "steps": [
+            "Épluchez les patates douces et coupez-les en petits morceaux.",
+            "Faites-les cuire dans de l'eau bouillante pendant 15 minutes.",
+            "Pendant ce temps, dans une poêle, faites revenir l'ail, l'oignon, la viande hachée et les morceaux de tomates.",
+            "Laissez cuire à feu moyen pendant 5 minutes.",
+            "Ajoutez ensuite la sriracha, la farine et le parmesan.",
+            "Laissez cuire à feu doux pendant une dizaine de minutes.",
+            "Une fois les patates cuites, écrasez-les. Ajoutez la crème fraîche et le beurre pour faire la purée.",
+            "Dans un plat, déposez la viande au fond.",
+            "Ajoutez la purée par-dessus.",
+            "Faites des traces sur la purée avec une fourchette et saupoudrez de chapelure.",
+            "Enfournez à 200°C pendant 20 minutes."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "épicé",
+            "France",
+            "Gratins",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7920",
+        "title": "Cornets de bœuf croustillants",
+        "description": "Des cornets de tortilla croustillants garnis de bœuf épicé et juteux, le tout surmonté de mozzarella fondue 🧀🔥. L'en-cas croustillant parfait ou un dîner rapide que tout le monde adorera. Une seule bouchée et vous serez conquis 🤤.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7621164672254872834\" data-video-id=\"7621164672254872834\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7621164672254872834\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             6 tortillas (25-30 cm)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cure-dents"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Fromage mozzarella, 100 g"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil haché, 1 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             Bœuf haché, 400 g"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon jaune, finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail, 4 gousses, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron rouge, coupé en dés (environ 1 petit)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron vert, coupé en dés (environ 1 petit)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Concentré de tomate, 1 grande cuillère à soupe"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait de soja, 100 ml (environ ½ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika, 1 cuillère à soupe"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Poudre de chili, 1 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curcuma, 1 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre, 1 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir, 1 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Garam masala, 1 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, ½ cuillère à café"
+            }
+        ],
+        "steps": [
+            "1. Préparer la garniture au bœuf : Faire chauffer un peu d'huile dans une poêle à feu moyen. Ajouter l'oignon et faire revenir jusqu'à ce qu'il soit tendre.",
+            "Ajouter l'ail haché et cuire 30 secondes jusqu'à ce qu'il soit parfumé.",
+            "Ajouter le bœuf haché et cuire jusqu'à ce qu'il soit doré, en le brisant pendant la cuisson.",
+            "Incorporer le concentré de tomate, le lait de soja, les poivrons coupés en dés et tous les assaisonnements. Cuire jusqu'à ce que le mélange épaississe légèrement. Retirer du feu et laisser refroidir un peu.",
+            "2. Préparer les cornets : Couper les tortillas en deux. Rouler chaque moitié en forme de cornet et fixer le bord avec un cure-dent.",
+            "Méthode de cuisson au four :",
+            "1. Préchauffer le four à 190°C.",
+            "2. Placer les cornets sur une plaque de cuisson recouverte de papier sulfurisé. Vaporiser légèrement d'huile de cuisson.",
+            "3. Cuire au four pendant 10 à 12 minutes jusqu'à ce qu'ils soient croustillants et dorés.",
+            "4. Remplir chaque cornet avec la garniture au bœuf et recouvrir de fromage mozzarella.",
+            "5. Remettre au four pendant 5 minutes jusqu'à ce que le fromage fonde.",
+            "6. Garnir de persil et servir chaud.",
+            "Méthode de cuisson à la friteuse à air chaud :",
+            "1. Préchauffer la friteuse à air chaud à 180°C.",
+            "2. Vaporiser légèrement les cornets d'huile de cuisson et les placer dans le panier de la friteuse à air chaud. S'assurer qu'ils ne se touchent pas.",
+            "3. Cuire à la friteuse à air chaud pendant 6 à 8 minutes jusqu'à ce qu'ils soient croustillants et dorés.",
+            "4. Remplir délicatement chaque cornet avec la garniture au bœuf et recouvrir de fromage mozzarella.",
+            "5. Cuire à nouveau à la friteuse à air chaud pendant 3 à 4 minutes jusqu'à ce que le fromage fonde.",
+            "6. Garnir de persil et servir chaud."
+        ],
+        "tags": [
+            "épicé",
+            "Mexique",
+            "Pas cher",
+            "Sandwichs",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7918",
+        "title": "Raviolis au poulet piquants au curry rouge et lait de coco",
+        "description": "Découvrez une recette de raviolis au poulet, relevés par une sauce onctueuse au curry rouge thaï et lait de coco. Faciles et rapides à préparer, ces raviolis sont d'abord dorés pour un côté croustillant, puis terminent leur cuisson à la vapeur dan...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618543369718959382\" data-video-id=\"7618543369718959382\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618543369718959382\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 paquet de pâte à ravioles fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             300g de poulet haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             75g d'oignon rouge finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail finement hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 morceau de gingembre frais râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 petite botte de ciboulette ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 cuillère à soupe d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             40cl de lait de coco bio KoRo France"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 petite cuillère à café de pâte de curry rouge thaï"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de sauce nuoc-mâm"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à soupe de jus de citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cébettes finement hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile neutre (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche (pour le service)"
+            }
+        ],
+        "steps": [
+            "Mélangez le poulet haché, l'oignon rouge, l'ail, le gingembre, la ciboulette, la sauce soja, l'huile de sésame et l'eau dans un bol jusqu'à obtenir une farce homogène.",
+            "Façonnez la farce en petites boules de la taille d'une grosse noix.",
+            "Découpez la pâte à ravioles en carrés d'environ 6 à 7 cm et humidifiez-les légèrement avec un peu d'eau.",
+            "Posez un carré de pâte sur chaque boule de farce et resserrez la pâte autour pour former un ravioli ouvert, laissant la farce visible sur le dessus.",
+            "Chauffez un filet d'huile neutre dans une poêle à feu moyen. Déposez les raviolis côté farce dans la poêle et laissez dorer pendant environ 1 minute 30 sans les bouger. Réservez-les.",
+            "Dans la même poêle, faites revenir la pâte de curry rouge pendant 20 à 30 secondes. Ajoutez les blancs des cébettes et laissez cuire quelques secondes. Versez le lait de coco, la sauce nuoc-mâm et le jus de citron, puis mélangez bien.",
+            "Remettez les raviolis dans la sauce, côté pâte vers le bas (farce vers le haut). Couvrez et laissez cuire pendant 5 minutes pour terminer la cuisson à la vapeur.",
+            "Parsemez du vert des cébettes et de coriandre fraîche ciselée au moment de servir."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7916",
+        "title": "Cakes salés variés (8 versions avec une seule pâte)",
+        "description": "Découvrez une recette simple et rapide pour préparer 8 cakes salés différents à partir d'une seule pâte de base. Parfaits pour vos apéritifs dînatoires ou vos pique-niques, ces cakes sont faciles à personnaliser avec une multitude de garnitures.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7686879524490874145\" data-video-id=\"7686879524490874145\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7686879524490874145\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             400 ml de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             100 g de fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Comté"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Mini poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pesto"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Chèvre"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Lardons"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             Saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Roquefort"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Olives noires"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            }
+        ],
+        "steps": [
+            "Dans un grand bol, mélangez les 2 œufs, les 400 ml de crème liquide, le sel et le poivre.",
+            "Ajoutez les 200 g de farine et le sachet de levure chimique, puis mélangez jusqu'à obtenir une pâte bien homogène.",
+            "Incorporez les 100 g de fromage râpé à la pâte et mélangez à nouveau.",
+            "Préparez les garnitures : coupez les mini poivrons et faites-les cuire 4 minutes au micro-ondes avec un fond d'eau. Coupez également le chorizo, le jambon blanc, le comté, le basilic frais, la mozzarella, le saumon fumé et le chèvre en petits morceaux. Utilisez des tomates cerises que vous aurez préalablement fait cuire avec de l'ail, du sel et du poivre.",
+            "Préchauffez votre four à 180°C.",
+            "Remplissez vos moules (mini cakes, muffins ou un grand moule) avec la pâte de base.",
+            "Garnissez chaque cake avec les ingrédients de votre choix. Pour cela, mélangez les trois quarts de la garniture à la pâte dans le moule, puis ajoutez le quart restant sur le dessus pour la décoration. Voici les 8 versions proposées : jambon-Comté ; tomates cerises rôties à l'ail, mozzarella et basilic ; poivrons-chorizo ; pesto, parmesan et basilic ; chèvre-lardons ; saumon fumé, zeste de citron et ciboulette ; roquefort-noix ; et façon pizza avec tomates cerises, mozzarella, olives noires et origan.",
+            "Enfournez les cakes pour 30 à 35 minutes à 180°C.",
+            "Laissez refroidir légèrement avant de déguster."
+        ],
+        "tags": [
+            "Pas cher",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7914",
+        "title": "Cake salé aux tomates séchées et feta",
+        "description": "Un cake salé facile et délicieux aux tomates séchées, feta, gruyère et basilic, parfait pour l'apéritif.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7333647251656412449\" data-video-id=\"7333647251656412449\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7333647251656412449\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             140 g de tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             180 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de gruyère râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             12 cl de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 cl d'huile (d'olive ou neutre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 bouquet de basilic (frais ou congelé)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Coupez 100 g de feta en cubes et 140 g de tomates séchées en petits morceaux.",
+            "Dans un saladier, mélangez 180 g de farine, 1 sachet de levure chimique, du sel et du poivre.",
+            "Dans un autre récipient, cassez 3 œufs et battez-les.",
+            "Versez les œufs battus et 6 cl d'huile (d'olive ou neutre) dans la préparation sèche. Mélangez. Dès que la pâte commence à épaissir, ajoutez 12 cl de lait et mélangez à nouveau.",
+            "Incorporez 50 g de gruyère râpé, du basilic (frais ou congelé), la feta coupée et les tomates séchées.",
+            "Mélangez le tout à l'aide d'une spatule. Versez la préparation dans un moule à cake (environ 27 cm sur 9 cm) chemisé de papier cuisson.",
+            "Enfournez à 180°C pendant 30 minutes.",
+            "Laissez tiédir avant de déguster."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7912",
         "title": "Plaisir Banane Express",
