@@ -2,11 +2,410 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/09/2026 09:59:03
- * Total: 749 recettes
+ * Dernière mise à jour: 26/09/2026 15:16:35
+ * Total: 755 recettes
  */
-export const exportSyncId = "1790416743191";
+export const exportSyncId = "1790435795070";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7912",
+        "title": "Plaisir Banane Express",
+        "description": "Oubliez tout ce que vous savez sur les desserts ! Voici une recette magique : ultra rapide, incroyablement crémeuse et sans cuisson au four.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7597163794170645782\" data-video-id=\"7597163794170645782\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7597163794170645782\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍌\n             3 bananes bien mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40g de beurre (2 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/3 cuillère à café de curcuma (optionnel, pour la couleur)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             25g de fécule de maïs (2 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de crème liquide 33-38% (bien froide)"
+            }
+        ],
+        "steps": [
+            "Écrasez les bananes, mélangez avec le beurre, le citron et le curcuma.",
+            "Ajoutez les jaunes d'œufs, la fécule et le lait. Mixez bien.",
+            "Faites épaissir à feu doux, laissez refroidir.",
+            "Incorporez délicatement la crème liquide montée en chantilly.",
+            "Servez et régalez-vous !"
+        ],
+        "tags": [
+            "Desserts"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7910",
+        "title": "Cookies banana bread",
+        "description": "Découvrez une version cookie du célèbre banana bread, parfaite pour un dessert ou un goûter équilibré. Facile à préparer, cette recette est idéale si vous recevez du monde ou si vous cherchez de nouvelles idées gourmandes.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633441785913609504\" data-video-id=\"7633441785913609504\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633441785913609504\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍌\n             1 banane"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre de coco, de canne ou de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 cuillères à soupe de beurre de cacahuète"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             130g de flocons d'avoine mixés ou de farine de votre choix"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             4 à 5 carrés de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Facultatif : un peu de fleur de sel"
+            }
+        ],
+        "steps": [
+            "Commencez par écraser une banane en purée.",
+            "Mélangez-la avec un œuf, du sucre de coco, du beurre de cacahuète, des flocons d'avoine mixés et du chocolat noir concassé.",
+            "Formez ensuite des petits tas sur une plaque de cuisson.",
+            "Enfournez pendant 12 minutes à 180°C.",
+            "Après cuisson, ajoutez un peu de fleur de sel."
+        ],
+        "tags": [
+            "Healthy",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7908",
+        "title": "Pudding à la banane maison",
+        "description": "Un pudding à la banane doux et crémeux fait maison 🍌💛",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7533519791009713416\" data-video-id=\"7533519791009713416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7533519791009713416\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             3 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15g de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10g de beurre non salé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café (5ml) d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200g de crème fraîche (crème à fouetter)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             20g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Biscuits aux œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             2-3 bananes"
+            }
+        ],
+        "steps": [
+            "Pour la crème pâtissière : Mélangez bien les jaunes d'œufs, le sucre, la fécule et le lait jusqu'à obtenir une consistance homogène.",
+            "Faites chauffer à feu doux en remuant constamment jusqu'à épaississement. Retirez du feu, puis incorporez le beurre et l'extrait de vanille.",
+            "Transférez dans un bol, couvrez d'un film alimentaire au contact et laissez refroidir au réfrigérateur pendant environ 1 heure.",
+            "Pour le pudding à la banane : Fouettez la crème fraîche jusqu'à obtenir une consistance souple et coulante. Détendez légèrement la crème pâtissière refroidie, puis mélangez les deux crèmes ensemble.",
+            "Dans un récipient, alternez les couches de biscuits aux œufs, de bananes et de crème. Laissez reposer au réfrigérateur pendant au moins 4 heures (c'est encore meilleur le lendemain 😋)."
+        ],
+        "tags": [
+            "Desserts",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7906",
+        "title": "Roulés à la Cannelle au Pain de Banane Faciles",
+        "description": "Découvrez une recette incroyablement simple pour préparer des roulés à la cannelle à base de pain de banane. Parfaits pour le petit-déjeuner ou une collation saine, ces roulés sont adaptés aux bébés à partir de 12 mois et peuvent être agrémentés d...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7222723474052189446\" data-video-id=\"7222723474052189446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7222723474052189446\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍌\n             170g (1/2 tasse US) de banane mûre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             160g (1 1/4 tasses US) de farine avec levure incorporée"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30g (1/4 tasse US) de beurre fondu ou de beurre végétal"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Poudre de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre roux ou sucre de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             POUR LE GLAÇAGE (facultatif - à éviter pour les jeunes bébés) :"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1-2 cuillères à soupe d'eau"
+            }
+        ],
+        "steps": [
+            "1. Préchauffez votre four à 180°C.",
+            "2. Dans un bol moyen, écrasez les bananes à la fourchette, puis ajoutez la farine avec levure incorporée et mélangez le tout pour former une pâte. (Ajoutez progressivement plus de farine si la pâte est trop collante, mais essayez de ne pas en ajouter trop, sinon les roulés à la cannelle deviendront trop durs).",
+            "3. Sur une surface légèrement farinée, étalez la pâte en un rectangle (environ 1 centimètre d'épaisseur).",
+            "4. Badigeonnez le dessus de beurre fondu, puis saupoudrez de cannelle et de sucre roux.",
+            "5. Coupez le rectangle en 7-8 bandes.",
+            "6. Roulez chaque bande individuelle pour former un roulé.",
+            "7. Ensuite, transférez-les dans un plat de cuisson beurré. Si désiré, assurez-vous que chaque morceau adhère bien aux autres. Faites cuire pendant 20-25 minutes, jusqu'à ce que les bords commencent à dorer.",
+            "8. Retirez les roulés du four et laissez-les refroidir. Pendant qu'ils refroidissent, préparez le glaçage. Pour faire le glaçage, mélangez le sucre glace avec 1-2 cuillères à soupe d'eau, jusqu'à obtenir la consistance désirée.",
+            "9. Bon appétit ! 😋"
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 12 mois",
+            "Healthy",
+            "Pas cher",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7904",
+        "title": "Crème brûlée banane façon panna cotta",
+        "description": "La douceur tropicale à tester d'urgence ! Une texture fondante, une saveur de banane vanillée, un petit twist de rhum... et ce craquant du sucre caramélisé.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7514705455067811094\" data-video-id=\"7514705455067811094\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7514705455067811094\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍌\n             3 bananes bien mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Une noisette d'huile de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre roux (pour la compote et pour caraméliser)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un trait de rhum ambré"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300 ml de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300 ml de crème de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càc d'agar-agar"
+            }
+        ],
+        "steps": [
+            "Commencez par trancher une banane sur le flanc et récupérez sa chair.",
+            "Ne jetez surtout pas la peau, elle servira de récipient. Coupez la chair de la banane en petits morceaux.",
+            "Dans une poêle, déposez une noisette d'huile de coco et faites revenir les morceaux de banane quelques minutes.",
+            "Ajoutez ensuite un peu de sucre roux. Laissez compoter et caraméliser les bananes.",
+            "Quand elles sont légèrement colorées, flambez avec une lichette de rhum ambré.",
+            "Ajoutez ensuite la crème et la crème de coco, la pulpe d'une gousse de vanille et la gousse de vanille.",
+            "Laissez infuser environ cinq minutes à petite ébullition, puis ajoutez l'agar-agar.",
+            "Mélangez bien, puis mixez jusqu'à obtenir une belle crème bien lisse.",
+            "Déposez ensuite la crème dans les peaux de banane et placez-les au frais pendant au minimum deux heures.",
+            "Juste avant de servir, déposez un peu de sucre roux sur les bananes, puis caramélisez-le avec un chalumeau pour le rendre bien craquant."
+        ],
+        "tags": [
+            "Desserts",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7902",
+        "title": "Pain aux bananes au caramel",
+        "description": "Découvrez la recette gourmande du pain aux bananes, avec une base de caramel onctueux et des noix de pécan, idéal pour un brunch ou un goûter réconfortant.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7309469130233597217\" data-video-id=\"7309469130233597217\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7309469130233597217\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             13g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2g de fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50g de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             200g de bananes"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             150g de sucre complet (cassonade, sucre de coco...)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             160g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             8g de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             70g de noix de pécan"
+            }
+        ],
+        "steps": [
+            "Disposez les bananes coupées en deux au fond d'un moule.",
+            "Réalisez un caramel à sec avec le sucre.",
+            "Décuisez le caramel avec le beurre et la crème.",
+            "Versez le caramel sur les bananes et mettez de côté.",
+            "Écrasez les bananes.",
+            "Ajoutez le beurre mou et le sucre complet, puis mélangez.",
+            "Incorporez les œufs, la farine et la levure chimique jusqu'à obtenir une pâte homogène.",
+            "Ajoutez les noix de pécan ou d'autres ingrédients de votre choix.",
+            "Versez la préparation dans le moule.",
+            "Faites cuire pendant 45 minutes à 150°C."
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7900",
         "title": "Pain aux bananes double chocolat",
