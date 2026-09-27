@@ -2,11 +2,154 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/09/2026 22:24:39
- * Total: 766 recettes
+ * Dernière mise à jour: 27/09/2026 22:42:04
+ * Total: 767 recettes
  */
-export const exportSyncId = "1790547879454";
+export const exportSyncId = "1790548924777";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7957",
+        "title": "Roulé de pâte feuilletée aux pommes",
+        "description": "Une pâte feuilletée croustillante et beurrée avec une garniture juteuse aux pommes, magnifiquement roulée et tout simplement irrésistible.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690297680488156448\" data-video-id=\"7690297680488156448\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690297680488156448\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 rouleau de pâte feuilletée (400 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             3 pommes (fermes, ex. Boskop ou Elstar), environ 350-400 g"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1-2 cuillères à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Un peu de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à café de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             1 cuillère à soupe d'amandes effilées blanchies"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 cuillère à soupe de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Amandes effilées (pour le dessus)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre glace (pour saupoudrer)"
+            }
+        ],
+        "steps": [
+            "Pour la garniture, peler et épépiner les pommes, puis les couper en petits cubes. Faire revenir dans une poêle avec le sucre, la vanille et le jus de citron pendant environ 5 minutes. Retirer du feu et laisser refroidir.",
+            "Préchauffer le four à 200 °C (chaleur voûte/sole). Tapisser une plaque de cuisson de papier sulfurisé.",
+            "Dérouler la pâte feuilletée. Étaler la garniture aux pommes refroidie dessus, en laissant le jus s'égoutter un peu et en ne l'ajoutant pas entièrement sur la pâte, afin que la pâte ne devienne pas détrempée. Laisser une bordure d'environ 2 cm tout autour.",
+            "Rouler la pâte sans serrer à partir du côté le plus long. Placer la couture vers le bas et bien presser les extrémités pour que rien ne s'échappe.",
+            "Piquer la surface et les côtés avec une fourchette (pour laisser la vapeur s'échapper). Badigeonner avec le mélange de jaune d'œuf et de lait et saupoudrer d'amandes effilées légèrement grillées.",
+            "Cuire au four à 200 °C pendant environ 25-30 minutes, jusqu'à ce que le roulé soit doré et croustillant.",
+            "Laisser refroidir légèrement et saupoudrer de sucre glace. Bon appétit !"
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7950",
+        "title": "Cheesecake vanille et cœur chocolat",
+        "description": "Découvrez une recette gourmande de cheesecake à la vanille, doté d'un cœur coulant au chocolat, le tout reposant sur une base croustillante de biscuit cacao. Un dessert frais et irrésistible.",
+        "image": "/recipes-ia/7950-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7688368002005355808\" data-video-id=\"7688368002005355808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7688368002005355808\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             100 g de chocolat au lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             60 g de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             180 g de biscuits cacao sans garniture"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             70 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de Philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             80 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             180 g de crème liquide entière 30-35 %"
+            }
+        ],
+        "steps": [
+            "**Pour la ganache au chocolat :** Faire chauffer la crème liquide entière et la verser sur le chocolat au lait. Mélanger jusqu'à obtenir une ganache lisse, puis ajouter le beurre. Mélanger à nouveau et placer au réfrigérateur.",
+            "**Pour la coque biscuit cacao :** Mixer les biscuits cacao puis ajouter le beurre fondu.",
+            "Chemiser des cercles individuels avec du rhodoïd ou du papier cuisson. Répartir le mélange de biscuits au fond et sur les côtés en une fine couche. Tasser fermement et réserver au frais.",
+            "**Pour la crème au fromage :** Fouetter le Philadelphia, le mascarpone, le sucre glace et les graines de la gousse de vanille jusqu'à obtenir un mélange homogène.",
+            "Monter la crème liquide entière (30-35% de matière grasse) en chantilly, puis l'incorporer délicatement au mélange de fromage.",
+            "**Pour le montage :** Déposer une première couche de crème au fromage dans les coques de biscuit.",
+            "Ajouter la ganache au chocolat au centre de chaque coque.",
+            "Recouvrir avec le reste de crème au fromage et lisser la surface.",
+            "Fermer chaque cheesecake avec une fine couche de biscuit cacao.",
+            "Réfrigérer pendant au moins 6 heures, idéalement toute une nuit, avant de servir."
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7954",
         "title": "Soupe à la Tomate Rôtie et Grilled Cheese",
@@ -202,80 +345,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Desserts"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7950",
-        "title": "Cheesecake vanille et cœur chocolat",
-        "description": "Découvrez une recette gourmande de cheesecake à la vanille, doté d'un cœur coulant au chocolat, le tout reposant sur une base croustillante de biscuit cacao. Un dessert frais et irrésistible.",
-        "image": "/recipes-ia/7950-carte.webp",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7688368002005355808\" data-video-id=\"7688368002005355808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7688368002005355808\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             100 g de chocolat au lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             60 g de crème liquide entière"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             10 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             180 g de biscuits cacao sans garniture"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             70 g de beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300 g de Philadelphia"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             80 g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             70 g de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 gousse de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             180 g de crème liquide entière 30-35 %"
-            }
-        ],
-        "steps": [
-            "**Pour la ganache au chocolat :** Faire chauffer la crème liquide entière et la verser sur le chocolat au lait. Mélanger jusqu'à obtenir une ganache lisse, puis ajouter le beurre. Mélanger à nouveau et placer au réfrigérateur.",
-            "**Pour la coque biscuit cacao :** Mixer les biscuits cacao puis ajouter le beurre fondu.",
-            "Chemiser des cercles individuels avec du rhodoïd ou du papier cuisson. Répartir le mélange de biscuits au fond et sur les côtés en une fine couche. Tasser fermement et réserver au frais.",
-            "**Pour la crème au fromage :** Fouetter le Philadelphia, le mascarpone, le sucre glace et les graines de la gousse de vanille jusqu'à obtenir un mélange homogène.",
-            "Monter la crème liquide entière (30-35% de matière grasse) en chantilly, puis l'incorporer délicatement au mélange de fromage.",
-            "**Pour le montage :** Déposer une première couche de crème au fromage dans les coques de biscuit.",
-            "Ajouter la ganache au chocolat au centre de chaque coque.",
-            "Recouvrir avec le reste de crème au fromage et lisser la surface.",
-            "Fermer chaque cheesecake avec une fine couche de biscuit cacao.",
-            "Réfrigérer pendant au moins 6 heures, idéalement toute une nuit, avant de servir."
-        ],
-        "tags": [
-            "Glaces",
-            "pâtisserie",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
