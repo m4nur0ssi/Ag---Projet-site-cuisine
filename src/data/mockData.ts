@@ -2,16 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/09/2026 14:37:03
+ * Dernière mise à jour: 27/09/2026 20:46:49
  * Total: 764 recettes
  */
-export const exportSyncId = "1790519823166";
+export const exportSyncId = "1790534809290";
 export const mockRecipes: Recipe[] = [
     {
         "id": "7950",
         "title": "Cheesecake vanille et cœur chocolat",
         "description": "Découvrez une recette gourmande de cheesecake à la vanille, doté d'un cœur coulant au chocolat, le tout reposant sur une base croustillante de biscuit cacao. Un dessert frais et irrésistible.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7950-carte.webp",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
