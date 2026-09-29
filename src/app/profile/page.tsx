@@ -1,12 +1,7 @@
 'use client';
-import dynamic from 'next/dynamic';
-import { useIsMobile } from '@/components/device';
-import DesktopPage from './DesktopPage';
+import VersionActuelle from '@/components/VersionActuelle/VersionActuelle';
 
-const MobilePage = dynamic(() => import('@/mobile/screens/profile/page'), { ssr: false });
-
+/** L'ancien profil n'existe plus : Palmarès (page au téléphone, panneau au bureau). */
 export default function Page() {
-    const isMobile = useIsMobile();
-    if (isMobile === true) return <MobilePage />;
-    return <DesktopPage />;
+    return <VersionActuelle mobile="/tv-profil" desktop="/?panel=trophies" />;
 }
