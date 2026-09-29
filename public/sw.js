@@ -24,7 +24,9 @@
 // tombaient dans la règle 4, SANS seconde chance : une microcoupure et Next.js,
 // privé de réponse, abandonnait la navigation douce pour recharger tout le
 // document. Elles ont désormais la même seconde chance que le reste.
-const CACHE = 'recettes-magiques-v9';
+// v10 : partage d'une recette = lien seul `/r/<id>` (2026-09-29). Un téléphone
+// déjà venu gardait l'ancien code et envoyait image + texte + lien en double.
+const CACHE = 'recettes-magiques-v10';
 const OFFLINE_URL = new URL('offline.html', self.location).toString();
 
 self.addEventListener('install', (event) => {

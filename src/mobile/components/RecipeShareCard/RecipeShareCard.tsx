@@ -337,12 +337,12 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
     const share = async () => {
         const nav = navigator as any;
         try {
-            // Recette : on partage UNIQUEMENT le lien de la fiche. Messages/WhatsApp
-            // en font un aperçu enrichi (grande photo de la recette via og:image) :
-            // le destinataire ne reçoit qu'une image, et un appui ouvre la recette.
+            // Recette : on partage UNIQUEMENT le lien `/r/<id>`. Messages/WhatsApp
+            // en font un aperçu enrichi (grande photo de la recette via og:image) ;
+            // un appui ouvre la fiche actuelle de l'app (voir src/app/r/[id]).
             // Ajouter texte/titre/fichier dupliquait le lien et la description.
             if (!category && nav.share) {
-                await nav.share({ url: `https://lesrecettesmagiques.fr/recipe/${recipe.id}` });
+                await nav.share({ url: `https://lesrecettesmagiques.fr/r/${recipe.id}` });
                 return;
             }
             if (url && nav.canShare && canvasRef.current) {
