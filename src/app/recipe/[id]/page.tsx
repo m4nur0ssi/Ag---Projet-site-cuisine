@@ -85,6 +85,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
             description,
             images: image ? [image] : undefined,
         },
+        // Grande image dans l'aperçu des liens partagés (Messages, WhatsApp, X…).
+        twitter: { card: 'summary_large_image', title: recipe.title, description, images: image ? [image] : undefined },
     };
 }
 
