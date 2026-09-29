@@ -2062,7 +2062,13 @@ export default function TVHome() {
         const theme = THEMES.find((t) => t.tag.toLowerCase() === low)
             || THEMES.find((t) => t.title.toLowerCase() === low);
         const list = mockRecipes.filter((r) => r.image && matchesTag(r, theme?.tag || raw!));
-        if (list.length) openAll(theme?.title || raw, list);
+        if (list.length) openAll(
+            theme?.title
+            // Ancienne adresse /category/<clé> : son vrai nom (« Plats », pas « plats »).
+            || CATEGORY_OPTIONS.find((o) => o.token === `c:${low}`)?.label
+            || raw.charAt(0).toUpperCase() + raw.slice(1),
+            list,
+        );
         try {
             const u = new URL(window.location.href);
             u.searchParams.delete('tag');
