@@ -20,19 +20,17 @@ const ShareIcon = () => (
     </svg>
 );
 
-export default function ShareButton({ url, title, className, light }: ShareButtonProps) {
+export default function ShareButton({ url, className, light }: ShareButtonProps) {
     const handleShare = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
 
         const finalUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
-        const finalTitle = title || (typeof document !== 'undefined' ? document.title : 'Les Recettes Magiques');
         
-        const shareData = {
-            title: finalTitle,
-            text: `Regarde cette incroyable recette : ${finalTitle} ! ✨`,
-            url: finalUrl,
-        };
+        // Lien seul : l'app (Messages, WhatsApp…) en tire un aperçu avec la
+        // photo de la recette (og:image) qui ouvre la fiche au toucher. Un titre
+        // ou un texte en plus s'afficheraient en doublon de cet aperçu.
+        const shareData = { url: finalUrl };
 
         // Vibrate for feedback
         if (typeof navigator !== 'undefined' && navigator.vibrate) {
