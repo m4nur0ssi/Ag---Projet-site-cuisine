@@ -978,6 +978,25 @@ export default function TVDesktopHome() {
         })).filter((row) => row.recipes.length >= minimumRangee(row.tag));
     }, []);
 
+    /*
+     * `/?panel=planner` (favoris, courses, trophies…) : les anciennes pages
+     * (/meal-planner, /profile, /favorites) renvoient ici, où ces écrans sont
+     * des panneaux. On ouvre le bon, puis on nettoie l'URL.
+     */
+    useEffect(() => {
+        let raw: string | null = null;
+        try { raw = new URLSearchParams(window.location.search).get('panel'); } catch { return; }
+        if (!raw) return;
+        const PANNEAUX = ['planner', 'courses', 'trophies', 'cave', 'favoris', 'search', 'tuto', 'gouts', 'extension', 'mesvideos'] as const;
+        const p = PANNEAUX.find((x) => x === raw);
+        if (p) setPanel(p);
+        try {
+            const u = new URL(window.location.href);
+            u.searchParams.delete('panel');
+            window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+        } catch { /* noop */ }
+    }, []);
+
     // Lien de thème partagé (/?tag=…) : on ouvre la collection correspondante,
     // puis on nettoie l'URL — un rafraîchissement ne doit pas la rouvrir. Les
     // liens déjà envoyés (tag interne « dolce-vita » ou libellé WordPress

@@ -1,12 +1,15 @@
-'use client';
-import dynamic from 'next/dynamic';
-import { useIsMobile } from '@/components/device';
-import DesktopPage from './DesktopPage';
+import { redirect } from 'next/navigation';
 
-const MobilePage = dynamic(() => import('@/mobile/screens/search/page'), { ssr: false });
-
-export default function Page() {
-    const isMobile = useIsMobile();
-    if (isMobile === true) return <MobilePage />;
-    return <DesktopPage />;
+/**
+ * L'ancienne recherche n'existe plus : l'accueil actuel ouvre sa propre
+ * recherche à partir de `?q=` / `?ingredients=` (TVHome, TVDesktopHome).
+ */
+export default function Page({ searchParams }: { searchParams: Record<string, string | string[] | undefined> }) {
+    const qs = new URLSearchParams();
+    for (const [k, v] of Object.entries(searchParams || {})) {
+        if (typeof v === 'string') qs.set(k, v);
+        else if (Array.isArray(v) && v[0]) qs.set(k, v[0]);
+    }
+    const s = qs.toString();
+    redirect(s ? `/?${s}` : '/');
 }
