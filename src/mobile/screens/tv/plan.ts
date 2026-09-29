@@ -43,7 +43,13 @@ export const COURSES: { label: string; accepts: (r: Recipe) => boolean }[] = [
     { label: 'Pâtisserie', accepts: (r) => r.category === 'patisserie' && isCookable(r) },
 ];
 
-export type Slot = Recipe & { side?: Recipe };
+/**
+ * `fait` : la recette a été cuisinée. On cuisine souvent dans le désordre, le
+ * jour du créneau ne dit donc rien : c'est une coche posée à la main. Elle vit
+ * dans le créneau (synchro avec le reste du plan) et disparaît d'elle-même
+ * quand on y pose une autre recette.
+ */
+export type Slot = Recipe & { side?: Recipe; fait?: boolean };
 export type Plan = Record<string, Record<string, Slot>>;
 
 /** Émis dès que le plan change, pour que les écrans ouverts se remettent à jour. */
