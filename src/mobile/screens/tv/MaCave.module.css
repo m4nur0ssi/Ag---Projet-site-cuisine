@@ -88,7 +88,7 @@
 }
 
 .del { position: absolute; top: 8px; right: 8px; z-index: 3; width: 28px; height: 28px; border: none; border-radius: 999px; background: rgba(10,10,14,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity .15s; }
-.card:hover .del { opacity: 1; }
+.card:hover .del { opacity: 1; }  /* bureau seulement : la croix n'est plus rendue au doigt */
 
 .info { padding: 10px 2px 0; }
 .wName { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 14.5px; line-height: 1.15; }
@@ -1516,12 +1516,16 @@
     color: rgba(255, 207, 145, 0.68);
 }
 
+/*
+ * Titres dorés.
+ *
+ * Le dégradé découpé dans le texte (`background-clip: text`) ne supporte pas
+ * une ombre de texte sur iPhone : Safari peint l'ombre floue PAR-DESSUS les
+ * lettres transparentes, et « MA CAVE » sortait flou. L'ombre passe donc par
+ * `filter: drop-shadow`, comme sur les autres écrans TV+.
+ */
 .title,
 .shelfTitle,
-.sheetTitle,
-.pickTitle,
-.fTitre,
-.ctxTitle,
 .empty h2,
 .wName {
     background: linear-gradient(112deg, var(--gold-1) 0%, var(--gold-2) 44%, var(--gold-3) 70%, var(--gold-4) 100%);
@@ -1529,7 +1533,19 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: var(--gold-2);
-    text-shadow: 0 14px 38px rgba(0, 0, 0, 0.45);
+    filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.45));
+}
+/*
+ * Dans les fiches et volets, qui glissent (transform), le texte découpé
+ * disparaissait : Safari perd le découpage dans un calque en mouvement — le
+ * nom du vin, en haut de la fiche, n'était plus qu'un flou. Doré uni.
+ */
+.sheetTitle,
+.pickTitle,
+.fTitre,
+.ctxTitle {
+    color: var(--gold-2);
+    -webkit-text-fill-color: currentColor;
 }
 
 .shelfHead::after {
@@ -1585,4 +1601,14 @@
 .fNav,
 .zoomBtn {
     color: var(--gold-2);
+}
+
+/* Menu de l'appui long : la bouteille ENTIÈRE, pas rognée en paysage. */
+img.menuBouteille {
+    aspect-ratio: auto;
+    height: min(34vh, 260px);
+    object-fit: contain;
+    padding: 14px 0;
+    background: radial-gradient(60% 55% at 50% 60%, rgba(201, 138, 43, .28), transparent 70%), #16110c;
+    box-sizing: border-box;
 }
