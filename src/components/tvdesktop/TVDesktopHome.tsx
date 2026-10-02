@@ -38,6 +38,7 @@ import { startSectionSnap, SnapController } from '@/lib/sectionSnap';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import { planifiable, OUVRIR_PLANIFICATEUR } from '@/mobile/screens/tv/plan';
+import { CATEGORY_OPTIONS } from '@/mobile/screens/tv/filters';
 import styles from './tvd.module.css';
 import Tip from '@/components/Tip/Tip';
 import SiteFooter from '@/components/SiteFooter/SiteFooter';
@@ -978,6 +979,25 @@ export default function TVDesktopHome() {
         })).filter((row) => row.recipes.length >= minimumRangee(row.tag));
     }, []);
 
+    /*
+     * `/?panel=planner` (favoris, courses, trophies…) : les anciennes pages
+     * (/meal-planner, /profile, /favorites) renvoient ici, où ces écrans sont
+     * des panneaux. On ouvre le bon, puis on nettoie l'URL.
+     */
+    useEffect(() => {
+        let raw: string | null = null;
+        try { raw = new URLSearchParams(window.location.search).get('panel'); } catch { return; }
+        if (!raw) return;
+        const PANNEAUX = ['planner', 'courses', 'trophies', 'cave', 'favoris', 'search', 'tuto', 'gouts', 'extension', 'mesvideos'] as const;
+        const p = PANNEAUX.find((x) => x === raw);
+        if (p) setPanel(p);
+        try {
+            const u = new URL(window.location.href);
+            u.searchParams.delete('panel');
+            window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+        } catch { /* noop */ }
+    }, []);
+
     // Lien de thème partagé (/?tag=…) : on ouvre la collection correspondante,
     // puis on nettoie l'URL — un rafraîchissement ne doit pas la rouvrir. Les
     // liens déjà envoyés (tag interne « dolce-vita » ou libellé WordPress
@@ -990,7 +1010,13 @@ export default function TVDesktopHome() {
         const theme = THEMES.find((t) => t.tag.toLowerCase() === low)
             || THEMES.find((t) => t.title.toLowerCase() === low);
         const list = mockRecipes.filter((r) => r.image && matchesTag(r, theme?.tag || raw!));
-        if (list.length) openCollection(theme?.title || raw, list);
+        if (list.length) openCollection(
+            theme?.title
+            // Ancienne adresse /category/<clé> : son vrai nom (« Plats », pas « plats »).
+            || CATEGORY_OPTIONS.find((o) => o.token === `c:${low}`)?.label
+            || raw.charAt(0).toUpperCase() + raw.slice(1),
+            list,
+        );
         try {
             const u = new URL(window.location.href);
             u.searchParams.delete('tag');

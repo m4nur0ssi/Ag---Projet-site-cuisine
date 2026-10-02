@@ -1006,6 +1006,21 @@ function WineCard({ wine, onPair, onRemove, onOpen, onZoom, onMenu, bureau = fal
                         from.current = null;
                         navigator.vibrate?.(12);
                         onMenu(clientX, clientY);
+                        // Le menu s'ouvre SOUS le doigt encore posé : le clic
+                        // que produit son relâchement tomberait sur l'action
+                        // placée là (« Corriger la fiche »). On avale ce clic-là.
+                        // Il n'existe qu'une fois le doigt levé, aussi tard qu'il le soit :
+                        // on le guette jusqu'au relâchement, plus un court instant.
+                        const avaler = (ev: MouseEvent) => { ev.preventDefault(); ev.stopImmediatePropagation(); fin(); };
+                        const leve = () => { window.removeEventListener('pointerup', leve, true); setTimeout(fin, 400); };
+                        const fin = () => {
+                            window.removeEventListener('click', avaler, true);
+                            window.removeEventListener('pointerup', leve, true);
+                            clearTimeout(garde);
+                        };
+                        window.addEventListener('click', avaler, true);
+                        window.addEventListener('pointerup', leve, true);
+                        const garde = setTimeout(fin, 10000);
                     }, 480);
                 }
             }}
@@ -1074,9 +1089,15 @@ function WineCard({ wine, onPair, onRemove, onOpen, onZoom, onMenu, bureau = fal
                 {bureau && shelf === 'cave' && (wine.qty ?? 1) !== 1 && (
                     <span className={styles.qtyBadge} aria-label={`${wine.qty ?? 1} bouteilles`}>{wine.qty ?? 1}</span>
                 )}
-                <button className={styles.del} onClick={(e) => { e.stopPropagation(); onRemove(); }} aria-label="Retirer">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
-                </button>
+                {/* Au doigt, pas de croix : elle n'apparaissait qu'au premier
+                    toucher (le « survol » d'iPhone), qui ne servait alors qu'à
+                    la montrer — il fallait toucher DEUX fois pour ouvrir la
+                    fiche. « Retirer de la cave » reste dans l'appui long. */}
+                {bureau && (
+                    <button className={styles.del} onClick={(e) => { e.stopPropagation(); onRemove(); }} aria-label="Retirer">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                    </button>
+                )}
 
                 {/* Commandes au survol. Elles restent DANS le document (lisibles
                     au clavier, annoncées aux lecteurs d'écran) : seule leur
@@ -1225,7 +1246,9 @@ function CardMenu({ wine, onClose, onPair, onEdit, onRemove }: {
     return (
         <div className={tv.menuBackdrop} onClick={onClose} onContextMenu={(e) => { e.preventDefault(); onClose(); }}>
             <div className={tv.menuCard} onClick={(e) => e.stopPropagation()}>
-                {wine.photo && <img className={tv.menuPreview} src={wine.photo} alt="" draggable={false} />}
+                {/* Une bouteille est haute et étroite : le cadre paysage des recettes
+                    (4/3, rogné) lui coupait le col et le bas. Elle y tient entière. */}
+                {wine.photo && <img className={`${tv.menuPreview} ${styles.menuBouteille}`} src={wine.photo} alt="" draggable={false} />}
                 <div className={tv.menuTitle}>{stripYear(wine.name)}</div>
                 <div className={tv.menuActions}>
                     <Item d="M4 4h16M7 4v6a5 5 0 0 0 10 0V4M12 15v5M9 20h6" label="Quelle recette ?" onClick={onPair} />

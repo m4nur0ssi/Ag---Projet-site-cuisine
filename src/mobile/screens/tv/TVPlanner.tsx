@@ -418,6 +418,16 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         },
     });
 
+    /** Coche « déjà cuisiné » : la carte se grise, un second appui l'annule. */
+    const basculerFait = (day: string, meal: string) => {
+        const slot = plan[day]?.[meal];
+        if (!slot) return;
+        const next: Plan = { ...plan, [day]: { ...(plan[day] || {}) } };
+        if (slot.fait) { const { fait: _drop, ...rest } = slot; next[day][meal] = rest as Slot; }
+        else next[day][meal] = { ...slot, fait: true };
+        save(next);
+    };
+
     /** Accompagnement rattaché au plat du créneau (même forme qu'en prod). */
     const setSide = (day: string, meal: string, side: Recipe | null) => {
         const main = plan[day]?.[meal];
@@ -987,7 +997,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     <div className={`${styles.planPair} ${sideable ? styles.planPairSplit : ''}`}>
                         {/* Un tap sur la carte ouvre la fiche complète de la recette. */}
                         <button
-                            className={styles.planCard}
+                            className={`${styles.planCard} ${slot.fait ? styles.planCardFait : ''}`}
                             onClick={() => {
                                 // Le clic qui suit un glissé n'ouvre pas la fiche.
                                 if (Date.now() - apresTirage.current < 400) return;
@@ -997,6 +1007,25 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                         >
                             <img src={slot.image} alt="" className={styles.planCardImg} draggable={false} />
                             <div className={styles.planCardScrim} />
+                            {/* Coche discrète « déjà cuisiné ». Un <span> et non un
+                                <button> : elle vit DANS la carte, qui en est un. Elle
+                                arrête l'appui pour ne ni ouvrir la fiche ni décoller
+                                la carte. */}
+                            <span
+                                role="button"
+                                tabIndex={0}
+                                aria-pressed={!!slot.fait}
+                                aria-label={slot.fait ? 'Marquer comme pas encore cuisiné' : 'Marquer comme cuisiné'}
+                                className={`${styles.planFait} ${slot.fait ? styles.planFaitOn : ''}`}
+                                onPointerDown={(e) => e.stopPropagation()}
+                                onClick={(e) => { e.stopPropagation(); haptic(slot.fait ? 8 : 14); basculerFait(day, meal); }}
+                                onKeyDown={(e) => {
+                                    if (e.key !== 'Enter' && e.key !== ' ') return;
+                                    e.preventDefault(); e.stopPropagation(); basculerFait(day, meal);
+                                }}
+                            >
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                            </span>
                             <div className={styles.planCardText}>
                                 <div className={styles.planCardTitle}>{label(slot)}</div>
                                 <div className={styles.planCardMeta}>

@@ -335,27 +335,32 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
     }, [recipe, category, mounted, shareUrl]);
 
     const share = async () => {
-        const title = category ? category.label : decodeHtml(recipe.title);
-        const text = category
-            ? `${title} sur Les Recettes Magiques : ${shareUrl}`
-            : `${title} — la recette : ${shareUrl}`;
+        const nav = navigator as any;
         try {
-            const nav = navigator as any;
+            // Recette : on partage UNIQUEMENT le lien `/r/<id>`. Messages/WhatsApp
+            // en font un aperçu enrichi (grande photo de la recette via og:image) ;
+            // un appui ouvre la fiche actuelle de l'app (voir src/app/r/[id]).
+            // Ajouter texte/titre/fichier dupliquait le lien et la description.
+            if (!category && nav.share) {
+                await nav.share({ url: `https://lesrecettesmagiques.fr/r/${recipe.id}` });
+                return;
+            }
             if (url && nav.canShare && canvasRef.current) {
                 const blob: Blob | null = await new Promise((res) => canvasRef.current!.toBlob(res as any, 'image/png'));
                 if (blob) {
                     const file = new File([blob], category ? `collection-${category.tag}.png` : `recette-${recipe.id}.png`, { type: 'image/png' });
-                    // Image + lien + texte : le destinataire reçoit la photo ET le
-                    // lien cliquable (là où l'app le supporte).
+                    // Collection : l'image + le lien, sans texte qui répèterait le lien.
                     if (nav.canShare({ files: [file] })) {
-                        await nav.share({ files: [file], title, text, url: shareUrl });
+                        await nav.share({ files: [file], url: shareUrl });
                         return;
                     }
                 }
             }
             // Pas de partage de fichier possible → au moins le lien.
-            if (nav.share) { await nav.share({ title, text, url: shareUrl }); return; }
-        } catch { /* annulé */ }
+            if (nav.share) { await nav.share({ url: shareUrl }); return; }
+        } catch (err: any) {
+            if (err?.name === 'AbortError') return;
+        }
         if (url) {
             const a = document.createElement('a');
             a.href = url;

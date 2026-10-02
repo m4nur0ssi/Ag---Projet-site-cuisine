@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { mockRecipes } from '@/data/mockData';
 import type { Recipe } from '@/types';
-import RecipeClient from './RecipeRouter';
-import { getIngredientVisual } from '@/lib/ingredient-utils';
+import VersionActuelle from '@/components/VersionActuelle/VersionActuelle';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 
 const BASE = 'https://lesrecettesmagiques.fr';
@@ -85,32 +84,17 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
             description,
             images: image ? [image] : undefined,
         },
+        // Grande image dans l'aperçu des liens partagés (Messages, WhatsApp, X…).
+        twitter: { card: 'summary_large_image', title: recipe.title, description, images: image ? [image] : undefined },
     };
 }
 
 export default async function RecipePage({ params }: { params: { id: string } }) {
-    const recipeIndex = mockRecipes.findIndex(r => String(r.id) === String(params.id));
-    const recipe = mockRecipes[recipeIndex];
+    const recipe = mockRecipes.find(r => String(r.id) === String(params.id));
 
     if (!recipe) {
         notFound();
     }
-
-    const prevId = recipeIndex > 0 ? mockRecipes[recipeIndex - 1].id : null;
-    const nextId = recipeIndex < mockRecipes.length - 1 ? mockRecipes[recipeIndex + 1].id : null;
-
-    // Enrichir les ingrédients avec les visuels (Dépôt LOCAL public/ingredients/)
-    // On ignore TOUTE image externe capricieuse.
-    const enrichedRecipe = {
-        ...recipe,
-        ingredients: recipe.ingredients.map(ing => {
-            const visual = getIngredientVisual(ing.name);
-            return {
-                ...ing,
-                image: visual || undefined // undefined forcera l'usage de l'émoji d'origine (fallback stable)
-            };
-        })
-    };
 
     const jsonLd = buildRecipeJsonLd(recipe);
 
@@ -122,7 +106,9 @@ export default async function RecipePage({ params }: { params: { id: string } })
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 />
             )}
-            <RecipeClient recipe={enrichedRecipe} prevId={prevId} nextId={nextId} />
+            {/* L'ancienne page recette ne s'affiche plus : on garde ses balises
+                (aperçus de liens, Google) et on ouvre la fiche actuelle. */}
+            <VersionActuelle mobile={`/?fiche=${encodeURIComponent(String(recipe.id))}`} />
         </>
     );
 }

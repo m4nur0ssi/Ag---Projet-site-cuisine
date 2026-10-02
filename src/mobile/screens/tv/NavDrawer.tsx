@@ -54,8 +54,6 @@ const Check = () => (
 // bougent pas.
 import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './filters';
 import { ecrireStock } from '@/lib/stockage';
-import { ouvrirClavier } from '@/lib/clavier';
-import { prechargerRecherche } from '@/lib/prechargeRecherche';
 export { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS };
 
 interface NavDrawerProps {
@@ -87,7 +85,7 @@ interface NavDrawerProps {
     peek?: number;
 }
 
-export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, onSearch, onTutorial, onMesRecettes, onTaste, resultCount, query, onQuery, peek = 0 }: NavDrawerProps) {
+export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, onTutorial, onMesRecettes, onTaste, resultCount, query, onQuery, peek = 0 }: NavDrawerProps) {
     const router = useRouter();
     const active = selected.length > 0 || query.trim().length > 0;
     // Planificateur, courses et favoris n'ont de sens que connecté : hors session
@@ -148,7 +146,7 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
     };
 
     /**
-     * Entrée réservée aux connectés. Hors session, seuls Accueil, Rechercher et
+     * Entrée réservée aux connectés. Hors session, seuls Accueil et
      * Visite guidée restent actifs : tout le reste s'appuie sur un compte.
      */
     const goAuthed = (path: string) => {
@@ -359,17 +357,17 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                     <Ic d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" />
                                     <span className={styles.navRowText}>Ma cave</span>
                                 </button>
-                                {/* La loupe TV (recette / ingrédients / assistant IA),
-                                    surtout pas la page /search du site. */}
-                                <button
-                                    className={styles.navRow}
-                                    // Dès que le doigt se pose : le panneau descend et le
-                                    // clavier monte, dans le geste. Le clic n'a plus qu'à ouvrir.
-                                    onPointerDown={() => { prechargerRecherche(); ouvrirClavier(); }}
-                                    onClick={() => { ouvrirClavier(); onClose(); onSearch(); }}
-                                >
-                                    <Ic d={ICONS.search} /><span className={styles.navRowText}>Rechercher</span>
-                                </button>
+                                {/* « Affine mes goûts » à la place de « Rechercher » :
+                                    la loupe de la barre du bas ouvre déjà la recherche. */}
+                                {onTaste && (
+                                    <button
+                                        className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
+                                        onClick={() => { if (!authed) return lockedHint(); onClose(); onTaste(); }}
+                                    >
+                                        <Ic d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" />
+                                        <span className={styles.navRowText}>Affine mes goûts</span>
+                                    </button>
+                                )}
                                 {/* Une vidéo vue ailleurs devient une recette à soi.
                                     Réservé aux connectés : la fiche se range dans le
                                     compte, et le serveur fait travailler un modèle. */}
@@ -406,15 +404,6 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 <button className={styles.navRow} onClick={() => { onClose(); onTutorial(); }}>
                                     <Ic d={ICONS.book} /><span className={styles.navRowText}>Visite guidée</span>
                                 </button>
-                                {onTaste && (
-                                    <button
-                                        className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
-                                        onClick={() => { if (!authed) return lockedHint(); onClose(); onTaste(); }}
-                                    >
-                                        <Ic d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" />
-                                        <span className={styles.navRowText}>Affine mes goûts</span>
-                                    </button>
-                                )}
                             </div>
 
                             {/* Bibliothèque épinglée (synchro depuis le desktop). */}

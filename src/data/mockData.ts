@@ -2,11 +2,269 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 28/09/2026 09:06:48
- * Total: 767 recettes
+ * Dernière mise à jour: 02/10/2026 09:10:24
+ * Total: 768 recettes
  */
-export const exportSyncId = "1790586408597";
+export const exportSyncId = "1790932224403";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7962",
+        "title": "Tarte à l'Ananas et aux Amandes",
+        "description": "Une de ces tartes simples à préparer, mais qui fait sensation dès la première part ! 🤤 La combinaison de l'ananas et de l'amande est tout simplement délicieuse. 💛",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690680017939909921\" data-video-id=\"7690680017939909921\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690680017939909921\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 rouleau de pâte feuilletée ou brisée"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             250 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             5 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             100 g de farine d'amande @prozis"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 petite boîte d'ananas 220g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Amandes hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre glace (quantité suffisante)"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180 ºC.",
+            "Dans un moule à tarte, étaler la pâte feuilletée et la piquer avec une fourchette.",
+            "Dans un saladier, mettre les œufs et le sucre et bien battre jusqu'à obtenir une crème blanchâtre.",
+            "Ajouter l'amande moulue et bien mélanger.",
+            "Verser la préparation sur la pâte feuilletée et répartir par-dessus l'ananas, préalablement égoutté et coupé en petits cubes.",
+            "Enfourner à 180 ºC pendant environ 35 minutes, jusqu'à ce que la tarte soit bien dorée.",
+            "Retirer du four et laisser refroidir. Une fois froide, démouler et saupoudrer de sucre glace."
+        ],
+        "tags": [
+            "Glaces",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7952",
+        "title": "Petits Crumbles Pomme Poire",
+        "description": "Découvrez une recette réconfortante de petits crumbles pomme poire, parfaits pour l'automne. Fondants et croustillants, ils sont sublimés par une crème fouettée onctueuse qui fond délicatement dessus.",
+        "image": "/recipes-ia/7952-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7689835958144879905\" data-video-id=\"7689835958144879905\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7689835958144879905\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             2 pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             2 poires"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40g de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             20g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             110g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             25g de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Vanille"
+            }
+        ],
+        "steps": [
+            "Commencez par couper les pommes et les poires en petits carrés. Placez-les dans une casserole avec du beurre, du sucre roux, de la cannelle, de la vanille et une pincée de sel. Laissez mijoter pendant 30 minutes à feu moyen.",
+            "Pendant ce temps, préparez le crumble. Dans un saladier, versez la farine, le sucre roux, le sucre blanc, la cannelle et le sel. Ajoutez le beurre et malaxez jusqu'à obtenir une pâte sableuse avec des petits morceaux.",
+            "Une fois que les fruits sont bien fondants, versez-les dans des ramequins. Ajoutez généreusement le crumble par-dessus. Enfournez pendant 20 minutes à 180 degrés.",
+            "En attendant, préparez une chantilly maison. Dans un saladier, ajoutez la crème, le sucre et la vanille. Fouettez jusqu'à obtenir une crème bien ferme.",
+            "Une fois que les crumbles sont bien dorés, laissez-les un petit peu refroidir et ajoutez une belle cuillère de crème fouettée par-dessus avant de déguster."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Desserts"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7954",
+        "title": "Soupe à la Tomate Rôtie et Grilled Cheese",
+        "description": "Découvrez la meilleure soupe à la tomate rôtie de l'automne, accompagnée d'un délicieux grilled cheese maison. Des légumes rôtis au four pour une saveur intense, une soupe ultra-lisse et onctueuse, et un sandwich croustillant au fromage fondant. U...",
+        "image": "/recipes-ia/7954-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690185117674769697\" data-video-id=\"7690185117674769697\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690185117674769697\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             5 grandes tomates mûres et juteuses"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 grands poivrons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 grand oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 têtes d'ail entières"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             10 feuilles de basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             500 ml de bouillon de légumes"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             15 cl de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Pain de mie (maison de préférence)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Tranches de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Comté"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 200°C.",
+            "Coupez grossièrement les tomates, les poivrons et l'oignon.",
+            "Placez les légumes coupés dans un plat allant au four.",
+            "Coupez le haut des têtes d'ail et ajoutez-les également dans le plat.",
+            "Assaisonnez généreusement avec du sel, du poivre et de l'origan.",
+            "Ajoutez un généreux filet d'huile d'olive, en insistant sur l'ail.",
+            "Enfournez pendant environ 1 heure, jusqu'à ce que les légumes soient bien rôtis et légèrement caramélisés, sans être brûlés.",
+            "Versez tous les légumes rôtis avec leur jus dans une cocotte.",
+            "Ajoutez les feuilles de basilic et le bouillon de légumes.",
+            "Mixez le tout très finement jusqu'à obtenir une soupe bien lisse.",
+            "Passez la soupe au tamis pour obtenir une texture vraiment ultra lisse et onctueuse. Prenez votre temps pour récupérer un maximum de soupe.",
+            "Remettez la soupe dans la cocotte à feu doux.",
+            "Ajoutez une cuillère à café de sucre et la crème liquide.",
+            "Mélangez, ajustez l'assaisonnement si nécessaire, et laissez mijoter quelques minutes à feu doux.",
+            "Pendant ce temps, préparez le grilled cheese : garnissez votre pain de mie avec des tranches de mozzarella et de Comté.",
+            "Faites dorer les sandwichs dans du beurre des deux côtés, à feu très doux. Le but est d'avoir un pain bien doré et croustillant tout en laissant le fromage fondre complètement à l'intérieur.",
+            "Pour servir, ajoutez un petit filet de crème liquide, un filet d'huile d'olive, un peu d'origan et une feuille de basilic sur la soupe."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Pas cher",
+            "Sandwichs",
+            "Soupes",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7957",
         "title": "Roulé de pâte feuilletée aux pommes",
@@ -145,206 +403,6 @@ export const mockRecipes: Recipe[] = [
             "Glaces",
             "pâtisserie",
             "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7954",
-        "title": "Soupe à la Tomate Rôtie et Grilled Cheese",
-        "description": "Découvrez la meilleure soupe à la tomate rôtie de l'automne, accompagnée d'un délicieux grilled cheese maison. Des légumes rôtis au four pour une saveur intense, une soupe ultra-lisse et onctueuse, et un sandwich croustillant au fromage fondant. U...",
-        "image": "/recipes-ia/7954-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690185117674769697\" data-video-id=\"7690185117674769697\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690185117674769697\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             5 grandes tomates mûres et juteuses"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 grands poivrons rouges"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 grand oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 têtes d'ail entières"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             10 feuilles de basilic frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             500 ml de bouillon de légumes"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             15 cl de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Origan"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à café de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             Pain de mie (maison de préférence)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Tranches de mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Comté"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre"
-            }
-        ],
-        "steps": [
-            "Préchauffez votre four à 200°C.",
-            "Coupez grossièrement les tomates, les poivrons et l'oignon.",
-            "Placez les légumes coupés dans un plat allant au four.",
-            "Coupez le haut des têtes d'ail et ajoutez-les également dans le plat.",
-            "Assaisonnez généreusement avec du sel, du poivre et de l'origan.",
-            "Ajoutez un généreux filet d'huile d'olive, en insistant sur l'ail.",
-            "Enfournez pendant environ 1 heure, jusqu'à ce que les légumes soient bien rôtis et légèrement caramélisés, sans être brûlés.",
-            "Versez tous les légumes rôtis avec leur jus dans une cocotte.",
-            "Ajoutez les feuilles de basilic et le bouillon de légumes.",
-            "Mixez le tout très finement jusqu'à obtenir une soupe bien lisse.",
-            "Passez la soupe au tamis pour obtenir une texture vraiment ultra lisse et onctueuse. Prenez votre temps pour récupérer un maximum de soupe.",
-            "Remettez la soupe dans la cocotte à feu doux.",
-            "Ajoutez une cuillère à café de sucre et la crème liquide.",
-            "Mélangez, ajustez l'assaisonnement si nécessaire, et laissez mijoter quelques minutes à feu doux.",
-            "Pendant ce temps, préparez le grilled cheese : garnissez votre pain de mie avec des tranches de mozzarella et de Comté.",
-            "Faites dorer les sandwichs dans du beurre des deux côtés, à feu très doux. Le but est d'avoir un pain bien doré et croustillant tout en laissant le fromage fondre complètement à l'intérieur.",
-            "Pour servir, ajoutez un petit filet de crème liquide, un filet d'huile d'olive, un peu d'origan et une feuille de basilic sur la soupe."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Pas cher",
-            "Sandwichs",
-            "Soupes",
-            "USA",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7952",
-        "title": "Petits Crumbles Pomme Poire",
-        "description": "Découvrez une recette réconfortante de petits crumbles pomme poire, parfaits pour l'automne. Fondants et croustillants, ils sont sublimés par une crème fouettée onctueuse qui fond délicatement dessus.",
-        "image": "/recipes-ia/7952-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7689835958144879905\" data-video-id=\"7689835958144879905\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7689835958144879905\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             2 pommes"
-            },
-            {
-                "quantity": "",
-                "name": "🍐\n             2 poires"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             40g de sucre roux"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             20g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 cuillère à café de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             100g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             110g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             25g de sucre roux"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             50g de sucre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème liquide entière"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             Vanille"
-            }
-        ],
-        "steps": [
-            "Commencez par couper les pommes et les poires en petits carrés. Placez-les dans une casserole avec du beurre, du sucre roux, de la cannelle, de la vanille et une pincée de sel. Laissez mijoter pendant 30 minutes à feu moyen.",
-            "Pendant ce temps, préparez le crumble. Dans un saladier, versez la farine, le sucre roux, le sucre blanc, la cannelle et le sel. Ajoutez le beurre et malaxez jusqu'à obtenir une pâte sableuse avec des petits morceaux.",
-            "Une fois que les fruits sont bien fondants, versez-les dans des ramequins. Ajoutez généreusement le crumble par-dessus. Enfournez pendant 20 minutes à 180 degrés.",
-            "En attendant, préparez une chantilly maison. Dans un saladier, ajoutez la crème, le sucre et la vanille. Fouettez jusqu'à obtenir une crème bien ferme.",
-            "Une fois que les crumbles sont bien dorés, laissez-les un petit peu refroidir et ajoutez une belle cuillère de crème fouettée par-dessus avant de déguster."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Desserts"
         ],
         "isFeatured": false,
         "isFavorite": false,
