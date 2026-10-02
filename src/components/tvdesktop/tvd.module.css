@@ -977,6 +977,10 @@
     align-items: center;
 }
 
+/* Le nombre de recettes à droite, le filet doré juste avant lui. */
+.collHead .collCount { order: 3; margin-left: 14px; }
+.collHead::after { order: 2; }
+
 
 /* ── CARTE À TITRE INCRUSTÉ (rangée Desserts de l'accueil) ───────────────
    Cinq cartes remplissent exactement la largeur visible de la rangée : la

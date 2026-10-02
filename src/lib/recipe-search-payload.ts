@@ -3,6 +3,8 @@
 // ville(s) et « terrasse » pour que l'IA (et le pré-filtre) répondent aux demandes
 // du type « un restaurant italien avec terrasse » ou « un restaurant à Gonesse ».
 
+import { estRecettePates } from './pates';
+
 export interface FinderRecipe { id: string; t: string; cat?: string; tags?: string[]; ing?: string[] }
 
 // Mots d'ingrédient distinctifs (on jette quantités, unités, mots vides) → permet à
@@ -34,7 +36,11 @@ function cityFromAddress(addr?: string): string {
 
 export function buildFinderCatalog(recipes: any[]): FinderRecipe[] {
     return (recipes || []).map((r) => {
-        const tags: string[] = (r.tags || []).slice(0, 6).map((t: any) => String(t));
+        // Le tag « pates » est posé à la louche : on ne le transmet qu'aux vraies
+        // recettes de pâtes, sinon l'assistant propose un gratin de pommes de terre.
+        const tags: string[] = (r.tags || []).map((t: any) => String(t))
+            .filter((t: string) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') !== 'pates' || estRecettePates(r))
+            .slice(0, 6);
         if (r.category === 'restaurant' && r.restaurant) {
             const info = r.restaurant;
             const cities = new Set<string>();

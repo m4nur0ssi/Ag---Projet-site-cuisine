@@ -35,6 +35,8 @@ import { lireContrainteNote, appliquerContrainteNote } from '@/lib/contrainte-no
 import { loadAllRatingStats } from '@/mobile/lib/ratings';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
+import { matchesTag } from './themes';
+import { estRecettePates } from '@/lib/pates';
 import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
 import { ecrireStock } from '@/lib/stockage';
@@ -205,7 +207,9 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
      */
     const pool = useMemo(() => {
         const base = filter ? mockRecipes.filter(filter) : mockRecipes;
-        if (!exclus.length) return base;
+        // Choisir une recette POUR le planificateur : on veut voir tout ce qui
+        // convient au créneau, le régime « sans… » n'a pas à s'y inviter.
+        if (!exclus.length || filter) return base;
         const bannis = exclus.flatMap(motsInterdits);
         return base.filter((r) => {
             // Le titre et les étiquettes comptent autant que la liste des
@@ -398,15 +402,27 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         // Chaque filtre coché doit matcher (ET) : « un dessert espagnol express ».
         for (const f of activeFilters) {
             const af = normalize(f);
+            // Une tendance a ses propres règles (« Pâtes » veut une pâte dans le
+            // titre, « Express » un temps réel…) : le tag WordPress seul laissait
+            // passer un gratin de pommes de terre. Catégories et pays, eux, se
+            // lisent bien sur la catégorie et les tags.
+            if (FILTER_GROUPS.tendances.some((t) => t.tag === f)) {
+                pool2 = pool2.filter((r) => matchesTag(r, f, { ignoreCategoryGuards: activeFilters.some((x) => FILTER_GROUPS.categorie.some((c) => c.tag === x)) }));
+                continue;
+            }
             pool2 = pool2.filter((r) =>
                 normalize(r.category || '') === af ||
                 (r.tags || []).some((t: string) => normalize(t).includes(af)));
         }
         if (query.trim().length > 1) {
             const q = normalize(query.trim());
-            pool2 = pool2.filter((r) =>
-                normalize(r.title).includes(q) ||
-                (r.tags || []).some((t: string) => normalize(t).includes(q)));
+            // « pâte(s) », « pasta » : on cherche des PÂTES. La sous-chaîne rendait
+            // aussi la pâte brisée, la pâte à pizza et tout plat tagué « pates ».
+            const veutDesPates = /^(pates?|pasta)s?$/.test(q);
+            pool2 = pool2.filter((r) => veutDesPates
+                ? estRecettePates(r)
+                : normalize(r.title).includes(q) ||
+                  (r.tags || []).some((t: string) => normalize(t).includes(q)));
         }
         if (activeFilters.length === 0 && query.trim().length <= 1) {
             const sorted = [...pool2].sort((a, b) => parseInt(b.id) - parseInt(a.id));
@@ -734,44 +750,46 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                     </div>
 
                     {/* Régime : ce qu'on ne veut PAS voir, quel que soit le mode. */}
-                    <div className={styles.spSans}>
-                        {exclus.map((x) => (
-                            <button
-                                key={x}
-                                className={styles.spSansTag}
-                                onClick={() => { haptic(6); enregistrerExclus(exclus.filter((e) => e !== x)); }}
-                                aria-label={`Ne plus exclure ${x}`}
-                            >
-                                sans {x}
-                                <span className={styles.spSansX}>✕</span>
-                            </button>
-                        ))}
+                    {!filter && (
+                        <div className={styles.spSans}>
+                            {exclus.map((x) => (
+                                <button
+                                    key={x}
+                                    className={styles.spSansTag}
+                                    onClick={() => { haptic(6); enregistrerExclus(exclus.filter((e) => e !== x)); }}
+                                    aria-label={`Ne plus exclure ${x}`}
+                                >
+                                    sans {x}
+                                    <span className={styles.spSansX}>✕</span>
+                                </button>
+                            ))}
 
-                        {exclusOuvert ? (
-                            <span className={styles.spSansField}>
-                                <input
-                                    className={styles.spSansInput}
-                                    placeholder="Arachide, gluten…"
-                                    value={exclusInput}
-                                    autoFocus
-                                    onChange={(e) => setExclusInput(e.target.value)}
-                                    onKeyDown={(e) => {
-                                        if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); ajouterExclu(); }
-                                        if (e.key === 'Escape') { setExclusOuvert(false); setExclusInput(''); }
-                                    }}
-                                    onBlur={() => { ajouterExclu(); setExclusOuvert(false); }}
-                                    enterKeyHint="done" autoComplete="off" autoCorrect="off" spellCheck={false}
-                                />
-                            </span>
-                        ) : (
-                            <button
-                                className={styles.spSansAdd}
-                                onClick={() => { haptic(8); setExclusOuvert(true); }}
-                            >
-                                + Sans…
-                            </button>
-                        )}
-                    </div>
+                            {exclusOuvert ? (
+                                <span className={styles.spSansField}>
+                                    <input
+                                        className={styles.spSansInput}
+                                        placeholder="Arachide, gluten…"
+                                        value={exclusInput}
+                                        autoFocus
+                                        onChange={(e) => setExclusInput(e.target.value)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); ajouterExclu(); }
+                                            if (e.key === 'Escape') { setExclusOuvert(false); setExclusInput(''); }
+                                        }}
+                                        onBlur={() => { ajouterExclu(); setExclusOuvert(false); }}
+                                        enterKeyHint="done" autoComplete="off" autoCorrect="off" spellCheck={false}
+                                    />
+                                </span>
+                            ) : (
+                                <button
+                                    className={styles.spSansAdd}
+                                    onClick={() => { haptic(8); setExclusOuvert(true); }}
+                                >
+                                    + Sans…
+                                </button>
+                            )}
+                        </div>
+                    )}
 
                     {/* Groupes + chips (mode recette) */}
                     {mode === 'recipe' && (
@@ -806,7 +824,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                 <button
                                     key={f.tag}
                                     className={`${styles.spChip} ${activeFilters.includes(f.tag) ? styles.spChipOn : ''}`}
-                                    onClick={() => { haptic(8); toggleFilter(f.tag); }}
+                                    onClick={() => { haptic(8); toggleFilter(f.tag); setActiveGroup(null); }}
                                 >{stripEmoji(f.label)}</button>
                             ))}
                         </div>

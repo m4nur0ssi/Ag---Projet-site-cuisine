@@ -7,6 +7,7 @@
 
 import { Recipe } from '@/mobile/types';
 import { estRecetteBebe } from '@/lib/bebe';
+import { estRecettePates } from '@/lib/pates';
 import { totalMinutes, timedMinutes } from './timing';
 
 export interface Theme {
@@ -292,8 +293,9 @@ export function matchesTag(
     }
 
     if (tagLower === 'pates') {
-        const pasta = ['pâtes', 'pasta', 'spaghetti', 'tagliatelle', 'linguine', 'penne', 'rigatoni', 'lasagne', 'gnocchi', 'fettuccine', 'carbonara', 'bolognese', 'bolognaise', 'tortellini', 'ravioli', 'macaroni'];
-        return recipeTags.some((t) => t === 'pates' || t === 'pâtes') || recipeCat === 'pates' || pasta.some((k) => titleLower.includes(k));
+        // Le tag WordPress ne décide plus seul (un gratin de pommes de terre le
+        // portait) : voir `estRecettePates`.
+        return recipeCat === 'pates' || estRecettePates(recipe);
     }
 
     if (tagLower === 'dolce-vita') {

@@ -18,7 +18,7 @@
  * `shoppingListUpdated`. Les deux écrans sont interchangeables.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -652,6 +652,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const [fam, setFam] = useState<FilterGroup>('tendances');
     const [famQuery, setFamQuery] = useState('');
     const [famAll, setFamAll] = useState(false);
+    // La liste de la famille se replie dès qu'un choix est fait.
+    const [famOpen, setFamOpen] = useState(true);
     const selCount = sel.categorie.length + sel.pays.length + sel.tendances.length;
 
     const norm = (t: string) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -710,6 +712,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             const cur = prev[fam];
             return { ...prev, [fam]: cur.includes(tag) ? cur.filter((t) => t !== tag) : [...cur, tag] };
         });
+        setFamOpen(false);
     };
 
     const [composer, setComposer] = useState(false);
@@ -1003,7 +1006,19 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                         </button>
 
                         {sideable && (
-                            <div className={styles.planSide}>
+                            /* Sans accompagnement, TOUTE la case est un bouton : il fallait
+                               viser le petit « + » au milieu d'un grand cadre vide. */
+                            <div
+                                className={`${styles.planSide} ${!slot.side ? styles.planSideTap : ''}`}
+                                {...(!slot.side ? {
+                                    role: 'button' as const,
+                                    tabIndex: 0,
+                                    onClick: () => { haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true }); },
+                                    onKeyDown: (e: ReactKeyboardEvent) => {
+                                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true }); }
+                                    },
+                                } : {})}
+                            >
                                 {slot.side ? (
                                     <>
                                         {/* La garniture est une carte à part entière, de la
@@ -1025,14 +1040,11 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         </button>
                                     </>
                                 ) : needsSide ? (
-                                    <button
-                                        className={styles.planSideAdd}
-                                        onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true }); }}
-                                    >
+                                    <div className={styles.planSideAdd}>
                                         <span className={styles.planPlus}>+</span>
                                         Ajouter un accompagnement
                                         <span className={styles.planSideWhy}>ce plat est servi nu</span>
-                                    </button>
+                                    </div>
                                 ) : (
                                     /* Le plat porte déjà sa garniture (gratin, salade
                                        composée, plat complet) : on le DIT, plutôt que
@@ -1040,12 +1052,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                     <div className={styles.planSideNone}>
                                         <span className={styles.planSideKicker}>Accompagnement</span>
                                         <span className={styles.planSideNoneText}>Ce plat se suffit à lui-même.</span>
-                                        <button
-                                            className={styles.planSideAddLite}
-                                            onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true }); }}
-                                        >
+                                        <span className={styles.planSideAddLite}>
                                             + En ajouter un quand même
-                                        </button>
+                                        </span>
                                     </div>
                                 )}
                             </div>
@@ -1173,7 +1182,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 bas de l'écran. */}
             {mode !== 'panier' && (
                 <div className={styles.planFooter}>
-                    <button className={styles.planCompose} onClick={() => { haptic(8); setComposer(true); }}>
+                    <button className={styles.planCompose} onClick={() => { haptic(8); setFamOpen(true); setComposer(true); }}>
                         Composer
                     </button>
                     <button className={styles.planClear} onClick={clearAll} disabled={!planned}>Effacer</button>
@@ -1491,7 +1500,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                     <button
                                         key={g}
                                         className={`${styles.famTab} ${fam === g ? styles.famTabOn : ''}`}
-                                        onClick={() => { haptic(5); setFam(g); setFamQuery(''); setFamAll(false); }}
+                                        onClick={() => { haptic(5); setFamOpen(fam === g ? !famOpen : true); setFam(g); setFamQuery(''); setFamAll(false); }}
                                     >
                                         {FAM_LABEL[g]}
                                         {sel[g].length > 0 && <span className={styles.famTabCount}>{sel[g].length}</span>}
@@ -1499,30 +1508,34 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                 ))}
                             </div>
 
-                            <input
-                                className={styles.famSearch}
-                                value={famQuery}
-                                onChange={(e) => { setFamQuery(e.target.value); setFamAll(true); }}
-                                placeholder={`Filtrer ${FAM_LABEL[fam].toLowerCase()}…`}
-                            />
+                            {famOpen && (
+                                <>
+                                    <input
+                                        className={styles.famSearch}
+                                        value={famQuery}
+                                        onChange={(e) => { setFamQuery(e.target.value); setFamAll(true); }}
+                                        placeholder={`Filtrer ${FAM_LABEL[fam].toLowerCase()}…`}
+                                    />
 
-                            <div className={styles.composeChips}>
-                                {(famAll ? famItems : famItems.slice(0, 12)).map((it) => (
-                                    <button
-                                        key={it.tag}
-                                        className={`${styles.composeChip} ${sel[fam].includes(it.tag) ? styles.composeChipOn : ''}`}
-                                        onClick={() => toggleSel(it.tag)}
-                                    >
-                                        {plain(it.label)}
-                                    </button>
-                                ))}
-                                {!famAll && famItems.length > 12 && (
-                                    <button className={`${styles.composeChip} ${styles.composeChipMore}`} onClick={() => setFamAll(true)}>
-                                        +{famItems.length - 12} autres
-                                    </button>
-                                )}
-                                {!famItems.length && <div className={styles.composeHint}>Aucun filtre à ce nom.</div>}
-                            </div>
+                                    <div className={styles.composeChips}>
+                                        {(famAll ? famItems : famItems.slice(0, 12)).map((it) => (
+                                            <button
+                                                key={it.tag}
+                                                className={`${styles.composeChip} ${sel[fam].includes(it.tag) ? styles.composeChipOn : ''}`}
+                                                onClick={() => toggleSel(it.tag)}
+                                            >
+                                                {plain(it.label)}
+                                            </button>
+                                        ))}
+                                        {!famAll && famItems.length > 12 && (
+                                            <button className={`${styles.composeChip} ${styles.composeChipMore}`} onClick={() => setFamAll(true)}>
+                                                +{famItems.length - 12} autres
+                                            </button>
+                                        )}
+                                        {!famItems.length && <div className={styles.composeHint}>Aucun filtre à ce nom.</div>}
+                                    </div>
+                                </>
+                            )}
 
                             {/* Ce qui est coché, toutes familles confondues, et ce que
                                 ça laisse réellement comme recettes. */}

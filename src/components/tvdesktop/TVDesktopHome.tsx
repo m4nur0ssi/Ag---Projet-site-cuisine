@@ -1176,7 +1176,11 @@ export default function TVDesktopHome() {
                                 key={it.token}
                                 {...dragProps(it.token, it.label)}
                                 className={`${styles.navRow} ${styles.navRowSmall} ${styles.navDraggable} ${filters.includes(it.token) ? styles.navRowOn : ''}`}
-                                onClick={() => toggleFilter(it.token)}
+                                onClick={() => {
+                                    toggleFilter(it.token);
+                                    // Choix fait : la liste se replie, seule la sélection reste.
+                                    setOpenGroups((g) => ({ ...g, [title]: false }));
+                                }}
                             >
                                 <span className={styles.navBullet} /><span>{it.label}</span>
                                 {filters.includes(it.token) && <Check />}

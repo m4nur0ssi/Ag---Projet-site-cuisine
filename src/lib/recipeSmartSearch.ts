@@ -5,6 +5,8 @@
 // formes fléchies : "apéritif/apéritive/apéritifs", "italien/italienne"…
 // Utilisé côté mobile ET desktop (import partagé).
 
+import { estRecettePates } from './pates';
+
 export const normalizeFr = (s: string) =>
     (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
@@ -27,7 +29,7 @@ const TYPE_LEX: { cats: string[]; tags: string[]; rx: RegExp }[] = [
     { cats: [], tags: ['salades'], rx: /\b(salade|bowl)/ },
     { cats: [], tags: ['soupes'], rx: /\b(soupe|veloute|potage|gaspacho|minestrone|bouillon)/ },
     { cats: [], tags: ['gratins'], rx: /\b(gratin|lasagne|tian|parmentier)/ },
-    { cats: [], tags: ['pates'], rx: /\b(pates|pasta|spaghetti|tagliatelle|penne|risotto|nouille|raviol)/ },
+    { cats: [], tags: ['pates'], rx: /\b(pates|pasta|spaghetti|tagliatelle|penne|risotto|nouille|raviol)|^ pates? $/ },
     { cats: [], tags: ['sandwich'], rx: /\b(sandwich|burger|wrap|panini|croque|bagel|kebab|pita)/ },
     { cats: [], tags: ['poissons'], rx: /\b(poisson|saumon|thon|cabillaud|dorade|crevette|gambas|moule|crustace)/ },
     { cats: ['plats'], tags: [], rx: /\b(plat|poulet|boeuf|steak|viande|volaille|dinde|porc|agneau|curry|pizza|tajine|couscous|chili|risotto|oeuf|omelette|quiche|frittata)/ },
@@ -92,7 +94,10 @@ export function smartLocalSearch<T extends Matchable>(recipes: T[], query: strin
 
             if (hasType) {
                 const catHit = wantedCats.has(cat);
-                const tagHit = [...wantedTags].some(g => tags.some(t => t.includes(g)) || cat.includes(g));
+                // Le tag « pates » traîne sur des gratins : pour les pâtes, le titre tranche.
+                const tagHit = [...wantedTags].some(g => g === 'pates'
+                    ? estRecettePates(r as any)
+                    : tags.some(t => t.includes(g)) || cat.includes(g));
                 if (catHit || tagHit) score += 7;
                 else if (penalizeWrongType) score -= 8; // écarte les desserts quand on demande un apéritif
             }

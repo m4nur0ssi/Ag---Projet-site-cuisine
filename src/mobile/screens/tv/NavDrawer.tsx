@@ -205,7 +205,11 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 <button
                                     key={o.token}
                                     className={`${styles.navRow} ${on ? styles.navRowOn : ''}`}
-                                    onClick={() => { haptic(8); onToggle(o.token); }}
+                                    onClick={() => {
+                                        haptic(8); onToggle(o.token);
+                                        // Choix fait : la liste se replie, seule la sélection reste visible.
+                                        setOpenGroups((g) => ({ ...g, [title]: false }));
+                                    }}
                                     aria-pressed={on}
                                 >
                                     <span className={styles.navRowText}>{o.label}</span>
