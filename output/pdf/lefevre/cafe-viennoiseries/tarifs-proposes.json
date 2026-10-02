@@ -1,0 +1,140 @@
+{
+  "cafes_noirs": [
+    [
+      "Expresso",
+      "Court et intense",
+      "1,80 €"
+    ],
+    [
+      "Ristretto",
+      "Très court et concentré",
+      "1,80 €"
+    ],
+    [
+      "Café allongé",
+      "Un café plus long",
+      "2,00 €"
+    ],
+    [
+      "Double expresso",
+      "Deux doses d’expresso",
+      "3,20 €"
+    ],
+    [
+      "Americano",
+      "Expresso et eau chaude",
+      "2,50 €"
+    ],
+    [
+      "Décaféiné",
+      "L’arôme du café, décaféiné",
+      "1,80 €"
+    ]
+  ],
+  "cafes_lactes": [
+    [
+      "Noisette",
+      "Expresso et touche de lait",
+      "2,00 €"
+    ],
+    [
+      "Café crème",
+      "Expresso et lait chaud",
+      "2,80 €"
+    ],
+    [
+      "Cappuccino",
+      "Expresso, lait et mousse onctueuse",
+      "3,50 €"
+    ],
+    [
+      "Café latte",
+      "Expresso, lait chaud et fine mousse",
+      "3,50 €"
+    ],
+    [
+      "Latte macchiato",
+      "Lait chaud, expresso et mousse",
+      "3,80 €"
+    ],
+    [
+      "Moka",
+      "Expresso, chocolat et lait",
+      "4,00 €"
+    ]
+  ],
+  "formule_cafe_et_patisserie": "5,00 €",
+  "viennoiseries": [
+    [
+      [
+        "Croissant au beurre"
+      ],
+      "Feuilleté doré et croustillant",
+      "1,30 €"
+    ],
+    [
+      [
+        "Pain au chocolat"
+      ],
+      "Feuilleté et barres de chocolat",
+      "1,50 €"
+    ],
+    [
+      [
+        "Pain aux raisins"
+      ],
+      "Crème pâtissière et raisins",
+      "1,90 €"
+    ],
+    [
+      [
+        "Chausson aux pommes"
+      ],
+      "Feuilleté et compote de pommes",
+      "2,00 €"
+    ],
+    [
+      [
+        "Croissant aux amandes"
+      ],
+      "Crème d’amande, amandes effilées",
+      "2,60 €"
+    ],
+    [
+      [
+        "Pain au chocolat",
+        "aux amandes"
+      ],
+      "Chocolat et crème d’amande",
+      "2,80 €"
+    ],
+    [
+      [
+        "Pain suisse"
+      ],
+      "Crème pâtissière et pépites de chocolat",
+      "2,30 €"
+    ],
+    [
+      [
+        "Briochette"
+      ],
+      "Petite brioche moelleuse",
+      "1,50 €"
+    ],
+    [
+      [
+        "Pain au lait"
+      ],
+      "Doux et moelleux",
+      "1,20 €"
+    ],
+    [
+      [
+        "Chouquettes"
+      ],
+      "Les 6 - Pâte à choux et sucre perlé",
+      "1,80 €"
+    ]
+  ]
+}

@@ -1056,6 +1056,16 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         <button className={styles.planSideCard} onClick={() => { haptic(8); setDetail(slot.side!); }}>
                                             <img src={slot.side.image} alt="" className={styles.planCardImg} draggable={false} />
                                             <div className={styles.planCardScrim} />
+                                            {/* Coche « déjà cuisiné » reportée du plat : quand le
+                                                repas est fait, l'accompagnement l'est aussi. */}
+                                            {slot.fait && (
+                                                <span
+                                                    className={`${styles.planFait} ${styles.planFaitOn}`}
+                                                    aria-label="Cuisiné"
+                                                >
+                                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                                                </span>
+                                            )}
                                             <div className={styles.planCardText}>
                                                 <div className={styles.planSideKicker}>Accompagnement</div>
                                                 <div className={styles.planCardTitle}>{label(slot.side)}</div>

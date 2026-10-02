@@ -1,0 +1,94 @@
+[
+  {
+    "id": "thon",
+    "title": [
+      "THON"
+    ],
+    "desc": [
+      "Baguette tradition, salade, thon,",
+      "mayonnaise."
+    ],
+    "allergens": [
+      "Blé (gluten), œuf, moutarde, poisson."
+    ],
+    "seul": "5,00 €",
+    "prix": "8,00 €"
+  },
+  {
+    "id": "dinde-beurre",
+    "title": [
+      "JAMBON DE DINDE",
+      "BEURRE"
+    ],
+    "desc": [
+      "Baguette tradition, jambon de dinde,",
+      "beurre, salade, mayonnaise."
+    ],
+    "allergens": [
+      "Blé (gluten), œuf, moutarde, lait."
+    ],
+    "seul": "5,00 €",
+    "prix": "8,00 €"
+  },
+  {
+    "id": "dinde-fromage",
+    "title": [
+      "JAMBON DE DINDE",
+      "FROMAGE"
+    ],
+    "desc": [
+      "Baguette tradition, jambon de dinde,",
+      "fromage, salade, mayonnaise."
+    ],
+    "allergens": [
+      "Blé (gluten), œuf, moutarde, lait."
+    ],
+    "seul": "5,00 €",
+    "prix": "8,00 €"
+  },
+  {
+    "id": "poulet",
+    "title": [
+      "POULET"
+    ],
+    "desc": [
+      "Baguette tradition, charcuterie de poulet,",
+      "salade, mayonnaise."
+    ],
+    "allergens": [
+      "Blé (gluten), œuf, moutarde."
+    ],
+    "seul": "5,00 €",
+    "prix": "8,00 €"
+  },
+  {
+    "id": "saumon",
+    "title": [
+      "SAUMON FUMÉ"
+    ],
+    "desc": [
+      "Baguette tradition, saumon fumé,",
+      "salade, mayonnaise."
+    ],
+    "allergens": [
+      "Blé (gluten), œuf, moutarde, poisson."
+    ],
+    "seul": "5,00 €",
+    "prix": "9,00 €"
+  },
+  {
+    "id": "fricasse",
+    "title": [
+      "FRICASSÉ"
+    ],
+    "desc": [
+      "Baguette tradition huilée, thon,",
+      "œuf, olive, salade."
+    ],
+    "allergens": [
+      "Blé (gluten), œuf, poisson."
+    ],
+    "seul": "5,50 €",
+    "prix": "8,00 €"
+  }
+]

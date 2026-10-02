@@ -2534,8 +2534,8 @@
 .planCard:active { transform: scale(0.975); }
 
 /* Coche « déjà cuisiné » : discrète en haut à droite, elle ne se voit vraiment
-   qu'une fois posée. La carte cochée se grise sans disparaître — on cuisine
-   dans le désordre, le repas reste là pour qui veut le revoir. */
+   qu'une fois posée. La carte cochée garde ses couleurs — seule la coche verte
+   signale qu'on l'a cuisinée. Le repas reste là pour qui veut le revoir. */
 .planFait {
     position: absolute;
     top: 8px;
@@ -2570,8 +2570,8 @@
     .planFait:hover svg { opacity: 1; }
     .planFaitOn:hover { background: #28b84c; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35); }
 }
-.planCardFait .planCardImg { filter: grayscale(0.85) brightness(0.6); transition: filter 0.3s ease; }
-.planCardFait .planCardText { opacity: 0.6; }
+/* La carte cochée « déjà cuisiné » n'est PLUS grisée : la coche verte suffit.
+   L'image et le texte gardent leur aspect normal. */
 
 .planCardImg { width: 100%; height: 100%; object-fit: cover; display: block; }
 

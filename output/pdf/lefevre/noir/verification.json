@@ -1,0 +1,46 @@
+[
+  {
+    "file": "lefevre-boissons-noir-A4.pdf",
+    "pages": 1,
+    "size_mm": [
+      210.0,
+      297.0
+    ],
+    "prices_match_source": true,
+    "content_verified": true,
+    "size_bytes": 5525511
+  },
+  {
+    "file": "lefevre-cafes-noir-A4.pdf",
+    "pages": 1,
+    "size_mm": [
+      210.0,
+      297.0
+    ],
+    "prices_match_source": true,
+    "content_verified": true,
+    "size_bytes": 2576133
+  },
+  {
+    "file": "lefevre-viennoiseries-noir-A4.pdf",
+    "pages": 1,
+    "size_mm": [
+      210.0,
+      297.0
+    ],
+    "prices_match_source": true,
+    "content_verified": true,
+    "size_bytes": 3994506
+  },
+  {
+    "file": "lefevre-formules-noir-100x50cm.pdf",
+    "pages": 1,
+    "size_mm": [
+      1000.0,
+      500.0
+    ],
+    "prices_match_source": true,
+    "content_verified": true,
+    "size_bytes": 19600706
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "outil": "ImageGen intégré",
+  "source": "Photographie de la vitrine fournie par l’utilisateur.",
+  "visuels": "Illustrations de produits avec marques reconnaissables, pas des packshots officiels fournis par les fabricants.",
+  "prompts": {
+    "canettes": "Use case: product-mockup. Create a clean photorealistic advertising packshot for a French bakery drinks price poster. The reference photograph shows actual beverages stocked in the bakery, use their authentic brands and logos, not blank cans. Primary subject: EXACTLY SEVEN cans in a SINGLE STRAIGHT HORIZONTAL ROW, evenly spaced, no overlap, ALL FRONT LABELS facing the camera, entire cans visible with silver tops and bottoms. From left to right: (1) red Coca-Cola Original Taste can, clearly readable iconic white Coca-Cola script; (2) Coca-Cola Zero Sugar can, red with dark/black zero sugar distinction and clearly readable Coca-Cola script and zero sucres; (3) orange Fanta Orange can with correct large blue/white Fanta logo; (4) yellow/orange Lipton Ice Tea Pêche can, Lipton red/yellow logo, peach illustration; (5) pink/red Oasis Fraise Framboise can with recognisable blue-green Oasis logo and strawberry raspberry illustrations; (6) green Sprite can with authentic white Sprite logo and lemon lime imagery; (7) green Minute Maid multivitamin juice can with black Minute Maid logo area and multicolored fruit imagery. European slim aluminium 330 ml cans. Clean commercial studio product photography, soft natural grounding shadows, seamless PURE WHITE background, straight-on front view with slight view of the tops, all cans equal height. Do not use rear barcodes as fronts. Do NOT include any Red Bull, bottled drink, shelf, bakery, price, caption, decorative text or other objects. Wide landscape 3:1 composition; row fills width with 4% side margin, clean space above/below. High resolution, sharp recognizable packaging logos, natural real materials. This is an editorial depiction of products for sale, not a new packaging design.",
+    "redBull": "Use case: product-mockup. Photorealistic clean commercial studio packshot of ONE original classic Red Bull Energy Drink slim aluminium can, authentic recognizable blue and silver quartered packaging with the real red Red Bull wordmark, red paired bulls and yellow sun emblem. Front of can directly facing camera; entire can including top and bottom visible, crisp sharp logo. Pure white seamless background, soft small contact shadow, no props, no surrounding text, no price, no extra can, not sugarfree. Portrait 2:3 composition with comfortable white margins around the product. Intended for editorial depiction in a French bakery drinks price list."
+  },
+  "tarifs": {
+    "Canettes au choix hors Red Bull": "1,50 €",
+    "Red Bull": "2,30 €",
+    "Bouteilles au choix": "3,00 €",
+    "Petites bouteilles": "2,00 €",
+    "Lait": "1,70 €",
+    "Eau grande": "1,20 €",
+    "Eau petite": "0,80 €",
+    "Capri-Sun": "0,80 €"
+  }
+}
