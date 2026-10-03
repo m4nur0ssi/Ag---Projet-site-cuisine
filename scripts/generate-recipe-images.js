@@ -116,11 +116,13 @@ const MODELE = process.env.FAL_MODEL || 'fal-ai/flux-pro/v1.1-ultra';
 const TAILLES = [
     // 1200 px couvre la fiche sur ordinateur (1200 CSS) comme sur téléphone
     // Retina (375 × 3 = 1125). Au-delà, on paie des octets que personne ne voit.
-    { suffixe: '', largeur: 1200, qualite: 78 },       // ~270 ko
+    { suffixe: '', largeur: 1200, hauteur: 1586, qualite: 78 },       // ~270 ko
     // 760 px couvre la plus grande carte (vitrine : 300 CSS × 3 = 900, on
     // accepte un léger sous-échantillonnage) et l'affiche du héros (780).
-    { suffixe: '-carte', largeur: 760, qualite: 75 },  // ~110 ko
+    { suffixe: '-carte', largeur: 760, hauteur: 1004, qualite: 75 },  // ~110 ko
 ];
+// Les hauteurs sont IMPOSÉES (voir AGENTS.md) : ne fixer que la largeur
+// laissait passer le ratio du modèle (3:4 → 760×1013, 1200×1600).
 
 /**
  * Écrit une taille. Réduit d'habitude ; agrandit quand il le faut.
@@ -133,9 +135,11 @@ const TAILLES = [
  * bien plus grossier que le nôtre. Autant le faire ici, en lanczos, avec un
  * accentuage léger pour rattraper le flou de l'agrandissement.
  */
-async function redimensionner(buffer, largeur, qualite, sortie) {
+async function redimensionner(buffer, largeur, qualite, sortie, hauteur) {
     const source = await sharp(buffer).metadata();
-    let img = sharp(buffer).resize({ width: largeur, kernel: sharp.kernel.lanczos3 });
+    let img = sharp(buffer).resize(hauteur
+        ? { width: largeur, height: hauteur, fit: 'cover', position: 'centre', kernel: sharp.kernel.lanczos3 }
+        : { width: largeur, kernel: sharp.kernel.lanczos3 });
     // L'accentuage ne se justifie QUE sur un agrandissement : appliqué à une
     // réduction, il fait ressortir le grain du modèle et durcit les bords.
     if (source.width && source.width < largeur) img = img.sharpen({ sigma: 0.7 });
@@ -1924,7 +1928,7 @@ function pointerVers(id, chemin) {
             const poids = [];
             for (const t of TAILLES) {
                 const sortie = path.join(DOSSIER, `${r.id}${t.suffixe}.webp`);
-                await redimensionner(buffer, t.largeur, t.qualite, sortie);
+                await redimensionner(buffer, t.largeur, t.qualite, sortie, t.hauteur);
                 poids.push(`${t.largeur}px : ${Math.round(fs.statSync(sortie).size / 1024)} ko`);
             }
             // Le site pointe sur la PETITE : c'est elle qui s'affiche trente fois
