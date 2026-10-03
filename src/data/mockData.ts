@@ -2,11 +2,92 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/10/2026 08:43:15
- * Total: 768 recettes
+ * Dernière mise à jour: 03/10/2026 14:13:49
+ * Total: 769 recettes
  */
-export const exportSyncId = "1791016995193";
+export const exportSyncId = "1791036829178";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7964",
+        "title": "Haricots gratinés au comté et champignons",
+        "description": "Une recette ultra réconfortante de haricots blancs gratinés, préparée avec une sauce crémeuse aux champignons, de l'ail, de la moutarde et du comté, le tout cuit au four.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7594136504226581782\" data-video-id=\"7594136504226581782\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7594136504226581782\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             350g de champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             350g de haricots blancs (déjà cuits)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             15g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             30cl de crème légère"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100ml de bouillon"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             8g de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             120g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            }
+        ],
+        "steps": [
+            "Émincez finement les champignons.",
+            "Dans une poêle, faites fondre le beurre avec un filet d'huile d'olive.",
+            "Ajoutez les champignons et faites-les griller à feu fort pendant 10 minutes en surveillant.",
+            "Ajoutez la crème, le persil, une bonne cuillère de moutarde, l'ail et le bouillon.",
+            "Mélangez bien et laissez mijoter 3 à 4 minutes.",
+            "Dans le fond d'un plat, étalez une partie de la sauce aux champignons.",
+            "Ajoutez les haricots blancs déjà cuits et des morceaux de comté.",
+            "Recouvrez le tout avec le reste de sauce.",
+            "Ajoutez du parmesan sur le dessus.",
+            "Enfournez pour 25 minutes à 200°C."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "facile",
+            "Gratins",
+            "Pas cher",
+            "Plats",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7962",
         "title": "Tarte à l'Ananas et aux Amandes",
