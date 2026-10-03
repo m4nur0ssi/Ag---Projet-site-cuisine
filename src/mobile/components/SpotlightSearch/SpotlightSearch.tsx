@@ -30,23 +30,41 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
     const [aiError, setAiError] = useState('');
     const [isListening, setIsListening] = useState(false);
     const recognitionRef = useRef<any>(null);
+    const abortRef = useRef<AbortController | null>(null);
+    const searchSeqRef = useRef<number>(0);
+    const lastExecutedQueryRef = useRef<string>('');
+    const watchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     // Recherche locale intelligente (secours si l'IA échoue / pas de clé) — type de plat, pays, régime
     const localSearch = (q: string) => smartLocalSearch(mockRecipes as any, q, 5);
 
     const askAssistant = async (raw?: string) => {
         const q = (raw ?? aiQuery).trim();
-        if (!q || aiBusy) return;
+        if (!q) return;
+
+        lastExecutedQueryRef.current = q;
+
+        if (abortRef.current) {
+            abortRef.current.abort();
+            abortRef.current = null;
+        }
+        const ac = new AbortController();
+        abortRef.current = ac;
+        const seq = ++searchSeqRef.current;
+
         setAiBusy(true);
         setAiError('');
         setAiResults([]);
         setAiMessage('');
+
         // « notée au moins 4/5 » : filtré ici, avant le modèle (voir
         // `contrainte-note`), puisque les notes ne partent pas avec le catalogue.
         const contrainte = lireContrainteNote(q);
         let vivier: any[] = mockRecipes as any[];
         if (contrainte) {
             const notes = await loadAllRatingStats();
+            if (seq !== searchSeqRef.current) return;
             // Notes illisibles : on n'écarte rien (voir `contrainte-note`).
             if (notes.size) vivier = appliquerContrainteNote(vivier as any, notes, contrainte);
             if (!vivier.length) {
@@ -63,9 +81,12 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify({ query: (contrainte?.reste || q), recipes: compact }),
+                signal: ac.signal,
             });
+            if (seq !== searchSeqRef.current) return;
             if (!res.ok) throw new Error('api');
             const data = await res.json();
+            if (seq !== searchSeqRef.current) return;
             const byId = new Map(vivier.map((r: any) => [String(r.id), r]));
             const found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean);
             if (found.length) {
@@ -74,7 +95,8 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
             } else {
                 throw new Error('empty');
             }
-        } catch {
+        } catch (err: any) {
+            if (err?.name === 'AbortError' || seq !== searchSeqRef.current) return;
             // Secours : recherche texte locale, DANS le vivier déjà filtré —
             // sinon elle rendrait ce que la contrainte de note vient d'écarter.
             const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 5);
@@ -85,36 +107,135 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
                 setAiError('Aucune recette du site ne correspond. Reformule ta demande ✨');
             }
         } finally {
-            setAiBusy(false);
+            if (seq === searchSeqRef.current) {
+                setAiBusy(false);
+            }
         }
+    };
+
+    const stopVoice = () => {
+        if (watchdogRef.current) { clearTimeout(watchdogRef.current); watchdogRef.current = null; }
+        if (retryTimerRef.current) { clearTimeout(retryTimerRef.current); retryTimerRef.current = null; }
+        if (recognitionRef.current) {
+            try {
+                const old = recognitionRef.current;
+                recognitionRef.current = null;
+                old.onstart = null;
+                old.onresult = null;
+                old.onerror = null;
+                old.onend = null;
+                old.stop?.();
+                old.abort?.();
+            } catch {}
+        }
+        setIsListening(false);
     };
 
     const toggleVoice = () => {
         if (typeof window === 'undefined') return;
         const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
         if (!SR) { setAiError('La dictée vocale n\'est pas supportée sur ce navigateur.'); return; }
-        if (isListening) { try { recognitionRef.current?.stop(); } catch {} return; }
+        if (isListening || recognitionRef.current) {
+            stopVoice();
+            return;
+        }
+
+        stopVoice();
+        setMode('assistant');
+        setAiError('');
+
         const rec = new SR();
         rec.lang = 'fr-FR';
-        rec.interimResults = false;
+        rec.interimResults = true;
+        rec.continuous = false;
         rec.maxAlternatives = 1;
-        rec.onstart = () => setIsListening(true);
-        rec.onend = () => { setIsListening(false); recognitionRef.current = null; };
-        rec.onerror = () => { setIsListening(false); recognitionRef.current = null; };
-        rec.onresult = (e: any) => {
-            const transcript = e.results?.[0]?.[0]?.transcript || '';
-            if (transcript) setAiQuery(transcript); // le débounce (1s) lance la recherche
+
+        let capturedTranscript = '';
+        let searchExecuted = false;
+
+        const executeSearch = (rawText: string) => {
+            const clean = rawText.trim();
+            if (!clean || searchExecuted) return;
+            searchExecuted = true;
+            try { rec.stop(); } catch {}
+            setAiQuery(clean);
+            askAssistant(clean);
         };
+
+        rec.onstart = () => {
+            setIsListening(true);
+            setAiError('');
+            if (watchdogRef.current) clearTimeout(watchdogRef.current);
+            watchdogRef.current = setTimeout(() => {
+                if (!capturedTranscript.trim()) {
+                    stopVoice();
+                    setAiError('Je n\'ai rien entendu. Réappuie sur le micro et parle.');
+                }
+            }, 8500);
+        };
+
+        rec.onresult = (e: any) => {
+            let interim = '';
+            let final = '';
+            for (let i = 0; i < e.results.length; i++) {
+                const item = e.results[i];
+                if (item.isFinal) final += item[0].transcript;
+                else interim += item[0].transcript;
+            }
+            const current = (final || interim).trim();
+            if (current) {
+                capturedTranscript = current;
+                setAiQuery(current);
+                if (final.trim()) executeSearch(final.trim());
+            }
+        };
+
+        rec.onerror = (ev: any) => {
+            if (watchdogRef.current) { clearTimeout(watchdogRef.current); watchdogRef.current = null; }
+            setIsListening(false);
+            recognitionRef.current = null;
+            const err = ev?.error;
+            if (err === 'not-allowed' || err === 'service-not-allowed') {
+                setAiError('Micro refusé. Autorise le micro dans les réglages de ton navigateur.');
+            } else if (err === 'no-speech') {
+                if (!capturedTranscript.trim()) setAiError('Je n\'ai rien entendu. Réappuie et parle.');
+            } else if (err === 'network') {
+                if (capturedTranscript.trim()) executeSearch(capturedTranscript.trim());
+                else setAiError('Erreur réseau lors de la reconnaissance vocale.');
+            }
+        };
+
+        rec.onend = () => {
+            if (watchdogRef.current) { clearTimeout(watchdogRef.current); watchdogRef.current = null; }
+            setIsListening(false);
+            recognitionRef.current = null;
+            if (!searchExecuted && capturedTranscript.trim()) {
+                executeSearch(capturedTranscript.trim());
+            }
+        };
+
         recognitionRef.current = rec;
-        try { rec.start(); } catch {}
+        try {
+            rec.start();
+        } catch (startErr) {
+            retryTimerRef.current = setTimeout(() => {
+                try {
+                    if (recognitionRef.current === rec) rec.start();
+                } catch {
+                    setIsListening(false);
+                    recognitionRef.current = null;
+                }
+            }, 200);
+        }
     };
 
-    // Lancement automatique : 1s d'inactivité après la frappe ou la dictée → recherche.
+    // Lancement automatique : 0,7s d'inactivité après la frappe clavier → recherche.
     useEffect(() => {
         if (mode !== 'assistant') return;
         const q = aiQuery.trim();
         if (q.length < 3) return;
-        const t = setTimeout(() => askAssistant(q), 1000);
+        if (q === lastExecutedQueryRef.current) return;
+        const t = setTimeout(() => askAssistant(q), 700);
         return () => clearTimeout(t);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [aiQuery, mode]);
@@ -192,8 +313,8 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
             setAiResults([]);
             setAiMessage('');
             setAiError('');
-            try { recognitionRef.current?.stop(); } catch {}
-            setIsListening(false);
+            stopVoice();
+            if (abortRef.current) abortRef.current.abort();
         }
     }, [isOpen]);
 
@@ -209,7 +330,7 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
                                 ref={inputRef}
                                 type="text"
                                 className={styles.input}
-                                placeholder="Dis-moi ton envie… ex : un plat rapide au poulet"
+                                placeholder={isListening ? "🎙️ À l'écoute… parle maintenant" : "Dis-moi ton envie… ex : un plat rapide au poulet"}
                                 value={aiQuery}
                                 onChange={e => setAiQuery(e.target.value)}
                                 onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); askAssistant(); } }}
@@ -217,22 +338,30 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
                             <button
                                 className={`${styles.micBtn} ${isListening ? styles.micBtnActive : ''}`}
                                 onClick={toggleVoice}
-                                title="Dicter ma demande"
-                                aria-label="Dicter ma demande"
+                                title={isListening ? "Couper le micro" : "Dicter ma demande"}
+                                aria-label={isListening ? "Couper le micro" : "Dicter ma demande"}
                             >{isListening ? '🔴' : '🎤'}</button>
                             <button className={styles.aiSendBtn} onClick={() => askAssistant()} disabled={aiBusy} aria-label="Demander">
                                 {aiBusy ? '…' : '➜'}
                             </button>
                         </>
                     ) : mode === 'recipe' ? (
-                        <input
-                            ref={inputRef}
-                            type="text"
-                            className={styles.input}
-                            placeholder="Chercher une recette magique..."
-                            value={query}
-                            onChange={e => setQuery(e.target.value)}
-                        />
+                        <>
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                className={styles.input}
+                                placeholder="Chercher une recette magique..."
+                                value={query}
+                                onChange={e => setQuery(e.target.value)}
+                            />
+                            <button
+                                className={`${styles.micBtn} ${isListening ? styles.micBtnActive : ''}`}
+                                onClick={toggleVoice}
+                                title={isListening ? "Couper le micro" : "Dicter ma demande"}
+                                aria-label={isListening ? "Couper le micro" : "Dicter ma demande"}
+                            >{isListening ? '🔴' : '🎤'}</button>
+                        </>
                     ) : (
                         <input
                             ref={inputRef}

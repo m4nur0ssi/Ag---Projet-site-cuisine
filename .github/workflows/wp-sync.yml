@@ -41,7 +41,7 @@ jobs:
   sync:
     name: "Sync WordPress → mockData.ts"
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     permissions:
       contents: write
 
@@ -181,12 +181,13 @@ jobs:
           yt-dlp --version && ffmpeg -version | head -1
         continue-on-error: true
 
-      # La recette qui vient d'être publiée d'abord (--ids), puis 3 de retard
-      # (--manquantes). Trois, parce qu'une photo prend ~1 min vidéo comprise et
-      # que le job est plafonné à 20 min : de quoi rattraper sans risquer la
-      # coupure. Fournisseurs gratuits d'abord, fal seulement s'ils tombent.
+      # La recette qui vient d'être publiée d'abord (--ids), puis 5 de retard
+      # (--manquantes). Le job a assez de temps pour relire WordPress, regarder
+      # les 4 premières et 4 dernières secondes des vidéos TikTok, puis créer les
+      # WebP sans laisser une nouvelle publication durablement sur le placeholder.
+      # Fournisseurs gratuits d'abord, OpenAI si le secret existe.
       - name: 🎨 Génère les photos manquantes (d'après la vidéo TikTok)
-        run: node scripts/generate-recipe-images.js --ids "${{ steps.mode.outputs.post_id }}" --manquantes 3 --video
+        run: node scripts/generate-recipe-images.js --ids "${{ steps.mode.outputs.post_id }}" --manquantes 5 --video
         env:
           GEMINI_IMAGE_KEY: ${{ secrets.GEMINI_IMAGE_KEY }}
           GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS || secrets.GEMINI_API_KEY }}
@@ -199,6 +200,14 @@ jobs:
           # gpt-image passe en tête quand le secret existe (il suit la consigne
           # là où flux la perdait) ; sans secret, la chaîne repart sur Cloudflare.
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        continue-on-error: true
+
+      # Après une synchro WordPress, mockData peut revenir vers le placeholder ou
+      # vers l'image WP alors que les WebP existent déjà dans le dépôt. Cette
+      # passe ne génère rien : elle remet simplement chaque recette sur son
+      # /recipes-ia/<id>-carte.webp local quand le fichier existe.
+      - name: 🔗 Rebranche les photos IA locales
+        run: node scripts/generate-recipe-images.js --manquantes 50 --relier
         continue-on-error: true
 
       # Renvoi vers WordPress : le NAS n'avait JAMAIS reçu ces photos (elles
