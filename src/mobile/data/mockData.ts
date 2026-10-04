@@ -2,11 +2,202 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/10/2026 14:49:51
- * Total: 770 recettes
+ * Dernière mise à jour: 04/10/2026 20:48:26
+ * Total: 772 recettes
  */
-export const exportSyncId = "1791125391439";
+export const exportSyncId = "1791146906048";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7972",
+        "title": "Petits pains Sloppy Joe",
+        "description": "Découvrez comment préparer de délicieux petits pains moelleux garnis d'une farce savoureuse au bœuf haché épicé, de fromage fondant et d'une sauce burger onctueuse. Parfaits pour un repas convivial ou un pique-nique gourmand.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690183216061238560\" data-video-id=\"7690183216061238560\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690183216061238560\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             250 ml de lait tiède (1 tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             15 g de miel (1 cuillère à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             7 g de levure instantanée (1 cuillère à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 gros œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             45 g de beurre doux, à température ambiante (3 cuillères à soupe, 1/2 bâtonnet)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             500 g de farine tout usage (4 tasses)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             8 g de sel fin (1⅓ cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             25 ml d'huile d'olive (2 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             600 g de bœuf haché (1⅓ livre)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             4 g de sel fin (⅔ cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3 g de paprika (1 cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 g de poudre d'ail (⅔ cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             3 g de poudre d'oignon (1 cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             3 g de poivre de Cayenne (1 cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1,5 g de poivre noir (½ cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             100 g de ketchup (6 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Tranches de fromage (américain ou cheddar)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce burger style Big Mac"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf, battu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame"
+            }
+        ],
+        "steps": [
+            "Préparez tous les ingrédients.",
+            "Dans un grand bol, mélangez le lait tiède, le miel et la levure. Remuez bien et laissez reposer le mélange pendant 5 minutes.",
+            "Ajoutez l'œuf et le beurre et mélangez bien.",
+            "Ajoutez la farine et le sel. Pétrissez la pâte pendant 10 à 12 minutes jusqu'à ce qu'elle soit lisse.",
+            "Couvrez le bol et laissez la pâte lever dans un endroit chaud pendant 1 heure, ou jusqu'à ce qu'elle ait doublé de volume.",
+            "Faites chauffer l'huile d'olive dans une poêle à feu moyen-vif. Ajoutez le bœuf haché, le sel, le paprika, la poudre d'ail, la poudre d'oignon, le poivre de Cayenne et le poivre noir. Faites cuire pendant 7 à 8 minutes, jusqu'à ce qu'il soit doré et bien cuit.",
+            "Ajoutez le ketchup. Incorporez le ketchup au bœuf jusqu'à ce que le tout soit bien mélangé. Laissez la farce refroidir complètement avant de l'ajouter à la pâte.",
+            "Dégonflez la pâte levée et divisez-la en 9 morceaux égaux. Façonnez chaque morceau en boule.",
+            "Abaissez chaque boule de pâte en un disque rond. Placez une tranche de fromage au centre de chaque disque, puis garnissez d'un peu de farce au bœuf et d'une cuillerée de sauce burger. Ajoutez du fromage supplémentaire si vous le souhaitez.",
+            "Repliez la pâte vers l'intérieur et pincez-la fermement pour la fermer. Placez les petits pains, côté jointure vers le bas, sur une plaque de cuisson recouverte de papier sulfurisé.",
+            "Badigeonnez d'œuf battu et saupoudrez de graines de sésame. Laissez lever pendant 30 minutes.",
+            "Faites cuire dans un four préchauffé à 200°C (400°F) pendant 12 à 18 minutes, ou jusqu'à ce qu'ils soient dorés."
+        ],
+        "tags": [
+            "épicé",
+            "Sandwichs",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7970",
+        "title": "Pancakes Nutella et Banane",
+        "description": "Absurdement bons. Une pâte de base avec un cœur de Nutella et de banane mûre, scellée et cuite à la poêle. Ils se mangent même sans garniture, tout au plus avec une pincée de sucre glace. ASTUCE EDEN : n'exagérez pas avec la garniture et scellez b...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690987742372564257\" data-video-id=\"7690987742372564257\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690987742372564257\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             90 g de farine d'épeautre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de levure"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pointe de bicarbonate"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             45 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 cuillères à café de Nutella"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             1 banane mûre"
+            }
+        ],
+        "steps": [
+            "Mélangez les ingrédients secs dans un bol.",
+            "Dans un autre bol, mélangez les ingrédients humides.",
+            "Versez les liquides sur les secs et mélangez peu : il doit rester des grumeaux.",
+            "Coupez la banane en tranches épaisses.",
+            "Dans une poêle : déposez une cuillère à soupe de pâte, par-dessus une cuillère à café de Nutella et 3 tranches de banane, puis une autre cuillère à soupe de pâte.",
+            "Scellez bien les bords et faites cuire à feu moyen avec un couvercle, 2 minutes et demie par côté.",
+            "Servez-les tièdes, tels quels ou avec du sucre glace."
+        ],
+        "tags": [
+            "Glaces",
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7968",
         "title": "Raviolis Gyozas Asiatiques sans Pliage",
