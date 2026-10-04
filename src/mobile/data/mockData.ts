@@ -2,11 +2,69 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/10/2026 14:13:49
+ * Dernière mise à jour: 04/10/2026 08:59:37
  * Total: 769 recettes
  */
-export const exportSyncId = "1791036829178";
+export const exportSyncId = "1791104377628";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7962",
+        "title": "Tarte à l'Ananas et aux Amandes",
+        "description": "Une de ces tartes simples à préparer, mais qui fait sensation dès la première part ! 🤤 La combinaison de l'ananas et de l'amande est tout simplement délicieuse. 💛",
+        "image": "/recipes-ia/7962-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690680017939909921\" data-video-id=\"7690680017939909921\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690680017939909921\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 rouleau de pâte feuilletée ou brisée"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             250 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             5 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             100 g de farine d'amande @prozis"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 petite boîte d'ananas 220g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Amandes hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre glace (quantité suffisante)"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180 ºC.",
+            "Dans un moule à tarte, étaler la pâte feuilletée et la piquer avec une fourchette.",
+            "Dans un saladier, mettre les œufs et le sucre et bien battre jusqu'à obtenir une crème blanchâtre.",
+            "Ajouter l'amande moulue et bien mélanger.",
+            "Verser la préparation sur la pâte feuilletée et répartir par-dessus l'ananas, préalablement égoutté et coupé en petits cubes.",
+            "Enfourner à 180 ºC pendant environ 35 minutes, jusqu'à ce que la tarte soit bien dorée.",
+            "Retirer du four et laisser refroidir. Une fois froide, démouler et saupoudrer de sucre glace."
+        ],
+        "tags": [
+            "Glaces",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7964",
         "title": "Haricots gratinés au comté et champignons",
@@ -83,64 +141,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "Plats",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7962",
-        "title": "Tarte à l'Ananas et aux Amandes",
-        "description": "Une de ces tartes simples à préparer, mais qui fait sensation dès la première part ! 🤤 La combinaison de l'ananas et de l'amande est tout simplement délicieuse. 💛",
-        "image": "/recipes-ia/7962-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690680017939909921\" data-video-id=\"7690680017939909921\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690680017939909921\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             1 rouleau de pâte feuilletée ou brisée"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             250 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             5 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             100 g de farine d'amande @prozis"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 petite boîte d'ananas 220g"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Amandes hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre glace (quantité suffisante)"
-            }
-        ],
-        "steps": [
-            "Préchauffer le four à 180 ºC.",
-            "Dans un moule à tarte, étaler la pâte feuilletée et la piquer avec une fourchette.",
-            "Dans un saladier, mettre les œufs et le sucre et bien battre jusqu'à obtenir une crème blanchâtre.",
-            "Ajouter l'amande moulue et bien mélanger.",
-            "Verser la préparation sur la pâte feuilletée et répartir par-dessus l'ananas, préalablement égoutté et coupé en petits cubes.",
-            "Enfourner à 180 ºC pendant environ 35 minutes, jusqu'à ce que la tarte soit bien dorée.",
-            "Retirer du four et laisser refroidir. Une fois froide, démouler et saupoudrer de sucre glace."
-        ],
-        "tags": [
-            "Glaces",
-            "tarte"
         ],
         "isFeatured": false,
         "isFavorite": false,
