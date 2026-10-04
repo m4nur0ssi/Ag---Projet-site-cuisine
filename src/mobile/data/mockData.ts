@@ -2,11 +2,112 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/10/2026 08:59:37
- * Total: 769 recettes
+ * Dernière mise à jour: 04/10/2026 14:49:51
+ * Total: 770 recettes
  */
-export const exportSyncId = "1791104377628";
+export const exportSyncId = "1791125391439";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7968",
+        "title": "Raviolis Gyozas Asiatiques sans Pliage",
+        "description": "Découvrez une méthode simple et astucieuse pour préparer des raviolis gyozas asiatiques sans pliage, tout en obtenant un résultat joli et appétissant. Apprenez à les cuire parfaitement pour une texture croustillante et moelleuse.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7691939151393885473\" data-video-id=\"7691939151393885473\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7691939151393885473\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             400 g de viande hachée (hauts de cuisse de poulet, porc, bœuf ou crevettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ¼ cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ¼ cuillère à café de poivre moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja claire"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de saké pour cuisine"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de gingembre frais râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             1 blanc de poireau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cébettes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile de sésame grillé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 feuilles à raviolis wonton"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile de tournesol"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau (environ 150 ml pour 20 raviolis)"
+            }
+        ],
+        "steps": [
+            "Pour la farce, prenez 400 g de viande hachée (poulet, porc, bœuf ou crevettes).",
+            "Hachez 2 gousses d'ail. Râpez 1 cuillère à café de gingembre frais. Émincez 3 cébettes et 1 blanc de poireau.",
+            "Dans un grand bol, assaisonnez la viande hachée avec ¼ cuillère à café de sel, ¼ cuillère à café de poivre moulu, 1 cuillère à soupe de saké pour cuisine, 2 cuillères à soupe de sauce soja claire, 1 cuillère à café de sucre, 1 cuillère à soupe de fécule de maïs et 1 cuillère à soupe d'huile de sésame grillé. Ajoutez l'ail haché, le gingembre râpé et 1 œuf.",
+            "Mélangez bien la farce jusqu'à obtenir une consistance collante.",
+            "Incorporez les cébettes et le poireau émincés, puis mélangez à nouveau.",
+            "Formez des boulettes de farce et déposez-les sur du papier cuisson.",
+            "Prenez des feuilles à raviolis wonton prêtes à l'emploi. Humidifiez un côté de chaque feuille avec de l'eau et posez le côté humide sur une boulette de farce.",
+            "Faites tourner la feuille en appuyant légèrement pour qu'elle adhère et se colle autour de la farce, formant ainsi le ravioli.",
+            "À ce stade, vous pouvez congeler les raviolis : disposez-les d'abord séparément sur un plateau, puis une fois durcis, transférez-les dans un sac de congélation.",
+            "Dans une poêle, étalez 1 cuillère à soupe d'huile de tournesol. Déposez les raviolis, côté feuille contre la poêle. Faites chauffer à feu doux à moyen pendant environ 4 minutes, jusqu'à ce que le dessous soit légèrement doré.",
+            "Une fois les raviolis légèrement dorés, versez de l'eau pour couvrir le bas des raviolis (environ 150 ml pour 20 raviolis). Couvrez la poêle et augmentez légèrement le feu. Laissez cuire à la vapeur pendant 5 à 6 minutes.",
+            "Retirez le couvercle. Une fois l'eau presque complètement évaporée, ajoutez 1 cuillère à soupe d'huile de tournesol et 1 cuillère à soupe d'huile de sésame grillé.",
+            "Laissez griller pendant 7 à 8 minutes, en bougeant la poêle de temps en temps pour bien répartir l'huile. Surveillez le dessous des raviolis jusqu'à ce qu'ils soient bien dorés.",
+            "Retournez les raviolis pour griller la face de viande pendant 5 à 6 minutes. Surveillez la cuisson et coupez le feu une fois qu'ils sont bien grillés."
+        ],
+        "tags": [
+            "Asie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7962",
         "title": "Tarte à l'Ananas et aux Amandes",
