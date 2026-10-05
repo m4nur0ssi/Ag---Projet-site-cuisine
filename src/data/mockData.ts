@@ -2,11 +2,89 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/10/2026 16:21:39
- * Total: 774 recettes
+ * Dernière mise à jour: 05/10/2026 22:05:29
+ * Total: 775 recettes
  */
-export const exportSyncId = "1791217299789";
+export const exportSyncId = "1791237929048";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7978",
+        "title": "Cookies façon kinder aux noix de pécan",
+        "description": "Des cookies moelleux et gourmands, fourrés d'une pâte à tartiner à la noisette et agrémentés de pépites de chocolat et de noix de pécan.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7692097667861695776\" data-video-id=\"7692097667861695776\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7692097667861695776\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             5 cuillères de pâte à tartiner à la noisette"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             120 g de beurre doux mou"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cuillère à café de bicarbonate alimentaire"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 g de pépites de chocolat noir ou au lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             70 g de noix de pécan concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             60 g de chocolat (pour la base)"
+            }
+        ],
+        "steps": [
+            "Déposer 5 petits tas de pâte à tartiner à la noisette sur du papier cuisson et placer au congélateur pendant le temps de préparer la pâte.",
+            "Mélanger le beurre mou avec la cassonade et le sucre. Ajouter l'œuf et la vanille, puis mélanger.",
+            "Incorporer la farine, le bicarbonate et le sel. Ajouter les pépites de chocolat et les noix de pécan.",
+            "Diviser la pâte en 5 portions. Aplatir chaque portion, déposer un cœur de noisette congelé au centre et refermer soigneusement.",
+            "Former des boules et réserver au congélateur pendant 30 minutes.",
+            "Enfourner à 180 °C pendant 12 à 15 minutes, jusqu'à ce que les bords soient légèrement dorés et le centre encore moelleux. Laisser refroidir.",
+            "Faire fondre 60 g de chocolat, étaler environ 1 cuillère à café de chocolat en dessous de chaque cookie et laisser figer."
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7976",
         "title": "Velouté de courge et lentilles corail",
