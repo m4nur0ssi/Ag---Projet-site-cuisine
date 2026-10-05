@@ -2,11 +2,155 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/10/2026 09:48:04
- * Total: 772 recettes
+ * Dernière mise à jour: 05/10/2026 16:21:39
+ * Total: 774 recettes
  */
-export const exportSyncId = "1791193684079";
+export const exportSyncId = "1791217299789";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7976",
+        "title": "Velouté de courge et lentilles corail",
+        "description": "Un velouté de courge et lentilles corail, le plat réconfortant automnal par excellence. Facile et rapide à préparer, il est parfait pour un dîner sain et savoureux.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7691734733683838241\" data-video-id=\"7691734733683838241\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7691734733683838241\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             2 carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🥔\n             1 grosse pomme de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de courge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             100 g de lentilles corail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 cuillères à soupe de pulpe de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Bouillon de légumes (quantité suffisante)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de courge (pour décorer)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fraîche (pour décorer)"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, faites chauffer un filet d'huile d'olive et faites revenir l'échalote.",
+            "Ajoutez les carottes, la pomme de terre et la courge coupées en morceaux, le sel, le poivre, le thym et, si vous aimez, une pincée de piment.",
+            "Incorporez les lentilles corail et la pulpe de tomate, couvrez de bouillon de légumes et laissez cuire jusqu'à ce que tous les légumes soient tendres.",
+            "Mixez le tout jusqu'à obtenir une crème lisse et veloutée.",
+            "Servez en complétant avec des graines de courge, un filet d'huile d'olive et un peu de crème fraîche."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Healthy",
+            "Italie",
+            "Pas cher",
+            "Soupes",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7974",
+        "title": "Casserole d'œufs et de chou-fleur au fromage",
+        "description": "Une casserole d'œufs et de chou-fleur au fromage, facile, délicieuse et riche en protéines. Un plat simple et savoureux à déguster en famille.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7691425169579035911\" data-video-id=\"7691425169579035911\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7691425169579035911\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥬\n             Chou-fleur - 250-300 g"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs - 5-6 pièces"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella - 150 g, râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon - 100 g, finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel - au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir - au goût"
+            }
+        ],
+        "steps": [
+            "1. Coupez le chou-fleur en petits bouquets et faites-le bouillir dans de l'eau salée pendant 2 à 4 minutes.",
+            "2. Égouttez très bien le chou-fleur et laissez tout excès d'eau s'écouler.",
+            "3. Tapissez un plat de cuisson de papier sulfurisé et étalez le chou-fleur uniformément à l'intérieur.",
+            "4. Cassez les œufs directement sur le chou-fleur. Ajoutez le jambon finement haché, le sel et le poivre noir.",
+            "5. Mélangez délicatement le tout, en vous assurant que les œufs et le jambon sont uniformément répartis.",
+            "6. Saupoudrez uniformément la mozzarella râpée sur le dessus.",
+            "7. Placez dans un four préchauffé à 190°C (375°F) et faites cuire pendant 20 à 25 minutes, jusqu'à ce que les œufs soient bien pris et que le fromage soit fondu et légèrement doré.",
+            "8. Retirez du four, coupez en portions et savourez ce plat simple, délicieux et riche en protéines !"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Gratins",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7972",
         "title": "Petits pains Sloppy Joe",
