@@ -2,11 +2,178 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/10/2026 22:05:29
- * Total: 775 recettes
+ * Dernière mise à jour: 06/10/2026 08:04:15
+ * Total: 777 recettes
  */
-export const exportSyncId = "1791237929048";
+export const exportSyncId = "1791273855199";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7982",
+        "title": "Rillettes de poulet rôti anti-gaspillage",
+        "description": "Ne jetez plus les restes de votre poulet rôti ! Transformez-les en de délicieuses rillettes ultra crémeuses et pleines de saveurs. Une recette facile et anti-gaspillage, parfaite à tartiner sur du pain grillé ou à déguster à l'apéritif.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693188212092603681\" data-video-id=\"7693188212092603681\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693188212092603681\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Restes de poulet rôti (environ 200 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 filet de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1/2 cuillère à café d'ail semoule (ou 1/2 gousse d'ail râpée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau chaude (facultatif)"
+            }
+        ],
+        "steps": [
+            "Récupérez toute la chair des restes de poulet rôti de la veille. Dépiotez le poulet à la main pour retirer toute la chair, en veillant à ne pas laisser d'os et en retirant la peau. Effilez au maximum les morceaux un peu secs.",
+            "Dans un saladier, ajoutez la chair de poulet effilée, le fromage frais, la moutarde à l'ancienne, la mayonnaise, un filet de jus de citron, du sel (ajustez selon le salage du poulet rôti), du poivre noir, l'ail semoule (ou la gousse d'ail râpée), le paprika fumé et la ciboulette ciselée.",
+            "À l'aide d'une fourchette, mélangez et écrasez le poulet avec les autres ingrédients jusqu'à obtenir une belle rillette. Si des morceaux résistent ou si la préparation est trop difficile à mélanger, ajoutez une cuillère à soupe d'eau chaude et continuez d'écraser et de mélanger."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Astuces",
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7980",
+        "title": "Soupe crémeuse au poulet, légumes et bacon",
+        "description": "Une soupe réconfortante et savoureuse à base de poulet, de légumes variés, de bacon grillé et de cheddar, parfaite pour se réchauffer pendant la saison froide.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693229780073762081\" data-video-id=\"7693229780073762081\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693229780073762081\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             300g de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             250g de poireaux"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             150g de carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             400g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n             130g de brocolis"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             120g de cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             15g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             6g de romarin ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de crème légère"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             3 cuillères à soupe de maïzena diluée dans un peu d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1L de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Faites griller les morceaux de bacon coupés en petits morceaux et réservez-les.",
+            "Dans la même casserole, faites dorer les morceaux de poulet quelques minutes de chaque côté et réservez-les.",
+            "Ajoutez les poireaux et les carottes avec le morceau de beurre, le romarin ciselé et l'ail dans la casserole. Mélangez et faites revenir pendant 3 minutes.",
+            "Versez le lait, la crème, le bouillon de volaille et la maïzena diluée dans un peu d'eau.",
+            "Ajoutez les pommes de terre et un peu de poivre. Couvrez et laissez cuire pendant 10 minutes à feu moyen, en remuant de temps en temps.",
+            "Effilochez le poulet et ajoutez-le dans la soupe avec le brocoli, le cheddar râpé, le bacon grillé et le persil frais.",
+            "Laissez cuire encore une dizaine de minutes.",
+            "Servez bien chaud, éventuellement avec des tranches de pain grillées."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7978",
         "title": "Cookies façon kinder aux noix de pécan",
