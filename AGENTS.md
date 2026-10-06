@@ -18,3 +18,7 @@ When generating or regenerating recipe images for this project:
 - After replacing assets, run `npm run build:home-data` and verify the recipe still points to `/recipes-ia/<id>-carte.webp`.
 
 Approved example: recipe `7830` / "Recette de Maritozzi".
+
+## Image direction (skill)
+
+`docs/image-direction-SKILL.md` définit la méthode (brief structuré, contrôle puis correction ciblée). Elle est branchée dans `scripts/generate-recipe-images.js` : ligne « Usage » dans le prompt, et `controlerImage()` relit chaque image générée (texte, mains, déformations, plat non conforme, angle) puis relance UNE correction ciblée. Non bloquant ; `--sans-controle` pour couper. Tourne automatiquement sur chaque nouvelle recette via `.github/workflows/wp-sync.yml`.

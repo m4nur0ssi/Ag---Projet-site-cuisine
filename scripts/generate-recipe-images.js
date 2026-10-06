@@ -1061,6 +1061,9 @@ function consigne(recette, descPlat) {
         ].filter(Boolean).join(' ');
 
     return [
+        // Skill image-direction (output/claude-image-direction) : on dit d'abord à
+        // quoi sert l'image. Elle sert de vignette de fiche recette en portrait 3:4.
+        'Usage: main portrait 3:4 photo of a recipe card on a cooking website.',
         boisson
             // Vu du dessus, un cocktail n'est qu'un rond de liquide : on perd la
             // transparence, les couches, la glace et la buée. De face, tout revient.
@@ -1138,7 +1141,7 @@ const BIN = '/opt/homebrew/bin'; // yt-dlp + ffmpeg (brew)
  * la marche gratuite du pipeline tombe le jour du retrait. On en garde donc
  * plusieurs : un 404 / « decommissioned » fait passer au suivant.
  */
-const GROQ_VISIONS = (process.env.GROQ_VISION_MODEL || 'qwen/qwen3.6-27b,meta-llama/llama-4-scout-17b-16e-instruct,meta-llama/llama-4-maverick-17b-128e-instruct')
+const GROQ_VISIONS = (process.env.GROQ_VISION_MODEL || 'qwen/qwen3.8-27b,qwen/qwen3.6-27b,meta-llama/llama-4-scout-17b-16e-instruct,meta-llama/llama-4-maverick-17b-128e-instruct')
     .split(',').map((s) => s.trim()).filter(Boolean);
 
 /** Id TikTok depuis le champ videoHtml de la recette. */
@@ -1429,6 +1432,39 @@ async function decrireGemini(recette, frames) {
     throw new Error(`vision gemini indisponible (${dernierStatut})`);
 }
 
+/** Vision OpenAI : même contrat que les autres (une phrase EN, ou null). */
+async function decrireOpenai(recette, frames) {
+    if (!process.env.OPENAI_API_KEY || !frames.length) return null;
+    const contenu = [{
+        type: 'text',
+        text: `These are frames from the opening and the end of a cooking video for a recipe titled "${recette.title}". `
+            + 'Describe ONLY the finished, plated dish as it should look for an editorial food photo: '
+            + 'its exact form/shape, colours, the key visible components, how it is plated and the vessel/plate. '
+            + "The dish counts as visible even when held in someone's hands or partly covered by on-screen text. "
+            + 'Answer with one or two concise English sentences and nothing else. '
+            + 'Never mention the camera, background, hands, on-screen text or people. '
+            + 'If no finished dish appears in any frame, reply exactly: NONE',
+    }];
+    for (const f of frames) {
+        contenu.push({ type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + fs.readFileSync(f).toString('base64'), detail: 'low' } });
+    }
+    try {
+        const rep = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: { authorization: `Bearer ${process.env.OPENAI_API_KEY}`, 'content-type': 'application/json' },
+            body: JSON.stringify({ model: process.env.OPENAI_VISION_MODEL || 'gpt-4o-mini', messages: [{ role: 'user', content: contenu }], max_tokens: 300 }),
+            signal: AbortSignal.timeout(60000),
+        });
+        if (!rep.ok) { console.log(`  👁 vision openai ${rep.status}`); return null; }
+        const d = await rep.json();
+        const txt = String(d?.choices?.[0]?.message?.content || '').replace(/\s+/g, ' ').trim();
+        if (!txt || /^none\b/i.test(txt) || txt.length < 15) return null;
+        return txt.slice(0, 500);
+    } catch (e) {
+        return null;
+    }
+}
+
 /** Regarde la vidéo et renvoie une description du plat, ou null si impossible. */
 async function descriptionDepuisVideo(recette) {
     const id = videoIdDe(recette);
@@ -1450,6 +1486,11 @@ async function descriptionDepuisVideo(recette) {
             // Gemini en panne n'est pas une réponse : on laisse fal trancher.
             if (!/vision gemini indisponible/.test(e.message || '')) throw e;
         }
+        // OpenAI vision (quelques dixièmes de centime) avant fal, coupé depuis le
+        // 2026-09-14 : sans lui, une saturation Groq + Gemini faisait passer la
+        // recette alors que le crédit OpenAI était là.
+        const parOpenai = await decrireOpenai(recette, frames);
+        if (parOpenai) return parOpenai;
         return await decrireFal(recette, frames);
     } catch (e) {
         /*
@@ -1721,8 +1762,132 @@ const PAYANTS = new Set(['openai', 'fal']);
 const MAX_PAYANT = parseInt(valeur('--max-payant') || process.env.IMAGE_MAX_PAYANT || '5', 10);
 let payantes = 0;
 
+/**
+ * CONTRÔLER ET ITÉRER (skill image-direction, section « Contrôler et itérer »).
+ *
+ * Après génération, une vision relit l'image : texte/logo, mains ou personnes,
+ * déformations, plat qui ne correspond pas à la description, angle non plongeant.
+ * Si un défaut ressort, UNE correction ciblée relance la génération avec la même
+ * consigne + l'instruction de corriger ce seul défaut. Le contrôle ne bloque
+ * jamais : clé absente, quota, réponse illisible → l'image est acceptée.
+ * `--sans-controle` le désactive.
+ */
+async function controlerImage(buffer, recette, descPlat, boisson) {
+    if (aOption('--sans-controle')) return null;
+    const cle = cleGemini();
+    const modeles = (process.env.GEMINI_VISION_MODEL || 'gemini-2.5-flash,gemini-3.6-flash')
+        .split(',').map((x) => x.trim()).filter(Boolean);
+    const jpeg = await sharp(buffer).resize({ width: 768, withoutEnlargement: true }).jpeg({ quality: 80 }).toBuffer();
+    const texte = `Inspect this AI-generated photo for a recipe titled "${recette.title}"`
+        + (descPlat ? ` (the real dish: ${descPlat})` : '') + '. '
+        + 'Reply ONLY with JSON {"ok":boolean,"probleme":string,"correction":string}. '
+        + 'ok=false only for a CLEAR defect among: readable text, letters, labels or logos in the image; '
+        + 'a hand, face or person; a clearly deformed or impossible dish/object; '
+        + 'the dish plainly not matching the title/description; '
+        + (boisson ? '' : 'a camera angle that is not overhead/near-overhead; ')
+        + 'a plastic, CGI-looking render. '
+        + '"correction" = one short English instruction fixing only that defect, phrased positively without naming the unwanted thing.';
+    /*
+     * Les modèles ne rendent pas toujours du JSON nu : Gemini a répondu
+     * « Here is the JSON… {…} », qui cassait JSON.parse et faisait passer le
+     * contrôle pour muet. On extrait le premier objet {…} du texte.
+     */
+    const lire = (brut) => {
+        const txt = String(brut || '').split(/<\/think>/i).pop();
+        const m = txt.match(/\{[\s\S]*\}/);
+        if (!m) return undefined;
+        try { return JSON.parse(m[0]); } catch { return undefined; }
+    };
+    const verdict = (j) => {
+        if (j && j.ok === false && j.correction) {
+            return { probleme: String(j.probleme || ''), correction: String(j.correction).slice(0, 300) };
+        }
+        console.log('  🔍 contrôle : OK');
+        return null;
+    };
+    const b64 = jpeg.toString('base64');
+    const pannes = [];
+    // 1. Gemini (gratuit). Un 429 ou une réponse illisible fait passer au suivant.
+    if (cle) {
+        for (const modele of modeles) {
+            try {
+                const rep = await fetch(`${GEMINI_API}/${modele}:generateContent?key=${cle}`, {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: texte }, { inlineData: { mimeType: 'image/jpeg', data: b64 } }] }],
+                        generationConfig: { temperature: 0, maxOutputTokens: 400, responseMimeType: 'application/json' },
+                    }),
+                    signal: AbortSignal.timeout(45000),
+                });
+                if (!rep.ok) { pannes.push(`${modele} ${rep.status}`); continue; }
+                const d = await rep.json();
+                const j = lire((d?.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join(''));
+                if (j === undefined) { pannes.push(`${modele} illisible`); continue; }
+                return verdict(j);
+            } catch (e) { pannes.push(`${modele} ${e.name}`); }
+        }
+    }
+    // 2. Vision Groq (gratuite aussi), même liste de modèles que la description vidéo.
+    if (process.env.GROQ_API_KEY) {
+        for (const modele of GROQ_VISIONS) {
+            try {
+                // Palier gratuit = quelques milliers de tokens/min : un 429 dit
+                // combien attendre (« try again in 7.2s »). Jusqu'à 3 essais.
+                let rep;
+                for (let essai = 1; essai <= 3; essai++) {
+                rep = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+                        'content-type': 'application/json',
+                        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36',
+                    },
+                    body: JSON.stringify({
+                        model: modele,
+                        messages: [{ role: 'user', content: [
+                            { type: 'text', text: texte },
+                            { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + b64 } },
+                        ] }],
+                        max_tokens: 900,
+                        temperature: 0,
+                    }),
+                    signal: AbortSignal.timeout(60000),
+                });
+                if (rep.status !== 429 || essai === 3) break;
+                const m = (await rep.text()).match(/try again in ([\d.]+)s/i);
+                await new Promise((res) => setTimeout(res, m ? Math.ceil(parseFloat(m[1]) * 1000) + 800 : 12000));
+                }
+                if (!rep.ok) { pannes.push(`groq ${modele} ${rep.status}`); continue; }
+                const d = await rep.json();
+                const j = lire(d?.choices?.[0]?.message?.content);
+                if (j === undefined) { pannes.push(`groq ${modele} illisible`); continue; }
+                return verdict(j);
+            } catch (e) { pannes.push(`groq ${modele} ${e.name}`); }
+        }
+    }
+    console.log(`  🔍 contrôle indisponible (${pannes.join(', ') || 'aucune clé vision'}) — image acceptée`);
+    return null;
+}
+
 async function genererUne(recette, descPlat) {
     const consigneTexte = consigne(recette, descPlat);
+    const boisson = recette.category === 'boissons' || recette.category === 'rafraichissements';
+    const premiere = await genererUneConsigne(consigneTexte);
+    const defaut = await controlerImage(premiere.buffer, recette, descPlat, boisson);
+    if (!defaut) return premiere;
+    console.log(`  🔍 contrôle : ${defaut.probleme} → correction ciblée`);
+    try {
+        const seconde = await genererUneConsigne(`${consigneTexte} Correction: ${defaut.correction} Keep the dish, composition, light and style unchanged.`);
+        const encore = await controlerImage(seconde.buffer, recette, descPlat, boisson);
+        // Deux passes sans progrès : on garde la première (skill : ne pas s'acharner).
+        return encore ? premiere : seconde;
+    } catch (e) {
+        return premiere;
+    }
+}
+
+async function genererUneConsigne(consigneTexte) {
     let noms = ordreFournisseurs().filter((n) => FOURNISSEURS[n].dispo());
     if (!noms.length) throw new Error('aucun fournisseur configuré (voir CF_ACCOUNT_ID/CF_API_TOKEN, FAL_KEY)');
     const plafonne = !aOption('--fal') && !aOption('--openai') && !aOption('--force') && payantes >= MAX_PAYANT;
