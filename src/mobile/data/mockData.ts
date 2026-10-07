@@ -2,114 +2,26 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/10/2026 09:35:38
+ * Dernière mise à jour: 07/10/2026 09:56:26
  * Total: 777 recettes
  */
-export const exportSyncId = "1791279338788";
+export const exportSyncId = "1791366986381";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "7982",
-        "title": "Rillettes de poulet rôti anti-gaspillage",
-        "description": "Ne jetez plus les restes de votre poulet rôti ! Transformez-les en de délicieuses rillettes ultra crémeuses et pleines de saveurs. Une recette facile et anti-gaspillage, parfaite à tartiner sur du pain grillé ou à déguster à l'apéritif.",
-        "image": "/recipes-ia/7982-carte.webp",
-        "category": "aperitifs",
+        "id": "7968",
+        "title": "Raviolis Gyozas Asiatiques sans Pliage",
+        "description": "Découvrez une méthode simple et astucieuse pour préparer des raviolis gyozas asiatiques sans pliage, tout en obtenant un résultat joli et appétissant. Apprenez à les cuire parfaitement pour une texture croustillante et moelleuse.",
+        "image": "/recipes-ia/7968-carte.webp",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693188212092603681\" data-video-id=\"7693188212092603681\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693188212092603681\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7691939151393885473\" data-video-id=\"7691939151393885473\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7691939151393885473\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍗\n             Restes de poulet rôti (environ 200 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cuillère à café de moutarde à l'ancienne"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cuillère à café de mayonnaise"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 filet de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1/2 cuillère à café d'ail semoule (ou 1/2 gousse d'ail râpée)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Eau chaude (facultatif)"
-            }
-        ],
-        "steps": [
-            "Récupérez toute la chair des restes de poulet rôti de la veille. Dépiotez le poulet à la main pour retirer toute la chair, en veillant à ne pas laisser d'os et en retirant la peau. Effilez au maximum les morceaux un peu secs.",
-            "Dans un saladier, ajoutez la chair de poulet effilée, le fromage frais, la moutarde à l'ancienne, la mayonnaise, un filet de jus de citron, du sel (ajustez selon le salage du poulet rôti), du poivre noir, l'ail semoule (ou la gousse d'ail râpée), le paprika fumé et la ciboulette ciselée.",
-            "À l'aide d'une fourchette, mélangez et écrasez le poulet avec les autres ingrédients jusqu'à obtenir une belle rillette. Si des morceaux résistent ou si la préparation est trop difficile à mélanger, ajoutez une cuillère à soupe d'eau chaude et continuez d'écraser et de mélanger."
-        ],
-        "tags": [
-            "Apéritifs",
-            "Astuces",
-            "France",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7980",
-        "title": "Soupe crémeuse au poulet, légumes et bacon",
-        "description": "Une soupe réconfortante et savoureuse à base de poulet, de légumes variés, de bacon grillé et de cheddar, parfaite pour se réchauffer pendant la saison froide.",
-        "image": "/recipes-ia/7980-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693229780073762081\" data-video-id=\"7693229780073762081\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693229780073762081\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             300g de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🍐\n             250g de poireaux"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             150g de carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             400g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥦\n             130g de brocolis"
+                "name": "🥚\n             400 g de viande hachée (hauts de cuisse de poulet, porc, bœuf ou crevettes)"
             },
             {
                 "quantity": "",
@@ -117,90 +29,35 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             200g de bacon"
+                "name": "🧂\n             ¼ cuillère à café de sel"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             120g de cheddar râpé"
+                "name": "🌶️\n             ¼ cuillère à café de poivre moulu"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             15g de beurre"
+                "name": "🥫\n             2 cuillères à soupe de sauce soja claire"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             6g de romarin ciselé"
+                "name": "🥣\n             1 cuillère à soupe de saké pour cuisine"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             200ml de lait"
+                "name": "🧂\n             1 cuillère à café de gingembre frais râpé"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             250ml de crème légère"
+                "name": "🍯\n             1 cuillère à café de sucre"
             },
             {
                 "quantity": "",
-                "name": "💧\n             3 cuillères à soupe de maïzena diluée dans un peu d'eau"
+                "name": "🍐\n             1 blanc de poireau"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1L de bouillon de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Faites griller les morceaux de bacon coupés en petits morceaux et réservez-les.",
-            "Dans la même casserole, faites dorer les morceaux de poulet quelques minutes de chaque côté et réservez-les.",
-            "Ajoutez les poireaux et les carottes avec le morceau de beurre, le romarin ciselé et l'ail dans la casserole. Mélangez et faites revenir pendant 3 minutes.",
-            "Versez le lait, la crème, le bouillon de volaille et la maïzena diluée dans un peu d'eau.",
-            "Ajoutez les pommes de terre et un peu de poivre. Couvrez et laissez cuire pendant 10 minutes à feu moyen, en remuant de temps en temps.",
-            "Effilochez le poulet et ajoutez-le dans la soupe avec le brocoli, le cheddar râpé, le bacon grillé et le persil frais.",
-            "Laissez cuire encore une dizaine de minutes.",
-            "Servez bien chaud, éventuellement avec des tranches de pain grillées."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Soupes"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7978",
-        "title": "Cookies façon kinder aux noix de pécan",
-        "description": "Des cookies moelleux et gourmands, fourrés d'une pâte à tartiner à la noisette et agrémentés de pépites de chocolat et de noix de pécan.",
-        "image": "/recipes-ia/7978-carte.webp",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7692097667861695776\" data-video-id=\"7692097667861695776\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7692097667861695776\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             5 cuillères de pâte à tartiner à la noisette"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             120 g de beurre doux mou"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 g de cassonade"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             40 g de sucre blanc"
+                "name": "🥣\n             3 cébettes"
             },
             {
                 "quantity": "",
@@ -208,15 +65,76 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+                "name": "🥣\n             1 cuillère à soupe de fécule de maïs"
             },
             {
                 "quantity": "",
-                "name": "🌾\n             200 g de farine"
+                "name": "🍾\n             2 cuillères à soupe d'huile de sésame grillé"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ½ cuillère à café de bicarbonate alimentaire"
+                "name": "🥣\n             30 feuilles à raviolis wonton"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile de tournesol"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau (environ 150 ml pour 20 raviolis)"
+            }
+        ],
+        "steps": [
+            "Pour la farce, prenez 400 g de viande hachée (poulet, porc, bœuf ou crevettes).",
+            "Hachez 2 gousses d'ail. Râpez 1 cuillère à café de gingembre frais. Émincez 3 cébettes et 1 blanc de poireau.",
+            "Dans un grand bol, assaisonnez la viande hachée avec ¼ cuillère à café de sel, ¼ cuillère à café de poivre moulu, 1 cuillère à soupe de saké pour cuisine, 2 cuillères à soupe de sauce soja claire, 1 cuillère à café de sucre, 1 cuillère à soupe de fécule de maïs et 1 cuillère à soupe d'huile de sésame grillé. Ajoutez l'ail haché, le gingembre râpé et 1 œuf.",
+            "Mélangez bien la farce jusqu'à obtenir une consistance collante.",
+            "Incorporez les cébettes et le poireau émincés, puis mélangez à nouveau.",
+            "Formez des boulettes de farce et déposez-les sur du papier cuisson.",
+            "Prenez des feuilles à raviolis wonton prêtes à l'emploi. Humidifiez un côté de chaque feuille avec de l'eau et posez le côté humide sur une boulette de farce.",
+            "Faites tourner la feuille en appuyant légèrement pour qu'elle adhère et se colle autour de la farce, formant ainsi le ravioli.",
+            "À ce stade, vous pouvez congeler les raviolis : disposez-les d'abord séparément sur un plateau, puis une fois durcis, transférez-les dans un sac de congélation.",
+            "Dans une poêle, étalez 1 cuillère à soupe d'huile de tournesol. Déposez les raviolis, côté feuille contre la poêle. Faites chauffer à feu doux à moyen pendant environ 4 minutes, jusqu'à ce que le dessous soit légèrement doré.",
+            "Une fois les raviolis légèrement dorés, versez de l'eau pour couvrir le bas des raviolis (environ 150 ml pour 20 raviolis). Couvrez la poêle et augmentez légèrement le feu. Laissez cuire à la vapeur pendant 5 à 6 minutes.",
+            "Retirez le couvercle. Une fois l'eau presque complètement évaporée, ajoutez 1 cuillère à soupe d'huile de tournesol et 1 cuillère à soupe d'huile de sésame grillé.",
+            "Laissez griller pendant 7 à 8 minutes, en bougeant la poêle de temps en temps pour bien répartir l'huile. Surveillez le dessous des raviolis jusqu'à ce qu'ils soient bien dorés.",
+            "Retournez les raviolis pour griller la face de viande pendant 5 à 6 minutes. Surveillez la cuisson et coupez le feu une fois qu'ils sont bien grillés."
+        ],
+        "tags": [
+            "Asie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7970",
+        "title": "Pancakes Nutella et Banane",
+        "description": "Absurdement bons. Une pâte de base avec un cœur de Nutella et de banane mûre, scellée et cuite à la poêle. Ils se mangent même sans garniture, tout au plus avec une pincée de sucre glace. ASTUCE EDEN : n'exagérez pas avec la garniture et scellez b...",
+        "image": "/recipes-ia/7970-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690987742372564257\" data-video-id=\"7690987742372564257\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690987742372564257\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             90 g de farine d'épeautre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de levure"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pointe de bicarbonate"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre"
             },
             {
                 "quantity": "",
@@ -224,173 +142,42 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥛\n             100 g de pépites de chocolat noir ou au lait"
+                "name": "🥚\n             1 œuf"
             },
             {
                 "quantity": "",
-                "name": "🥜\n             70 g de noix de pécan concassées"
+                "name": "🥣\n             80 g de yaourt grec"
             },
             {
                 "quantity": "",
-                "name": "🍫\n             60 g de chocolat (pour la base)"
+                "name": "🥛\n             45 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 cuillères à café de Nutella"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             1 banane mûre"
             }
         ],
         "steps": [
-            "Déposer 5 petits tas de pâte à tartiner à la noisette sur du papier cuisson et placer au congélateur pendant le temps de préparer la pâte.",
-            "Mélanger le beurre mou avec la cassonade et le sucre. Ajouter l'œuf et la vanille, puis mélanger.",
-            "Incorporer la farine, le bicarbonate et le sel. Ajouter les pépites de chocolat et les noix de pécan.",
-            "Diviser la pâte en 5 portions. Aplatir chaque portion, déposer un cœur de noisette congelé au centre et refermer soigneusement.",
-            "Former des boules et réserver au congélateur pendant 30 minutes.",
-            "Enfourner à 180 °C pendant 12 à 15 minutes, jusqu'à ce que les bords soient légèrement dorés et le centre encore moelleux. Laisser refroidir.",
-            "Faire fondre 60 g de chocolat, étaler environ 1 cuillère à café de chocolat en dessous de chaque cookie et laisser figer."
+            "Mélangez les ingrédients secs dans un bol.",
+            "Dans un autre bol, mélangez les ingrédients humides.",
+            "Versez les liquides sur les secs et mélangez peu : il doit rester des grumeaux.",
+            "Coupez la banane en tranches épaisses.",
+            "Dans une poêle : déposez une cuillère à soupe de pâte, par-dessus une cuillère à café de Nutella et 3 tranches de banane, puis une autre cuillère à soupe de pâte.",
+            "Scellez bien les bords et faites cuire à feu moyen avec un couvercle, 2 minutes et demie par côté.",
+            "Servez-les tièdes, tels quels ou avec du sucre glace."
         ],
         "tags": [
-            "pâtisserie",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7976",
-        "title": "Velouté de courge et lentilles corail",
-        "description": "Un velouté de courge et lentilles corail, le plat réconfortant automnal par excellence. Facile et rapide à préparer, il est parfait pour un dîner sain et savoureux.",
-        "image": "/recipes-ia/7976-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7691734733683838241\" data-video-id=\"7691734733683838241\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7691734733683838241\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             2 carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🥔\n             1 grosse pomme de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250 g de courge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             100 g de lentilles corail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             2 cuillères à soupe de pulpe de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Bouillon de légumes (quantité suffisante)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive extra vierge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Graines de courge (pour décorer)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème fraîche (pour décorer)"
-            }
-        ],
-        "steps": [
-            "Dans une casserole, faites chauffer un filet d'huile d'olive et faites revenir l'échalote.",
-            "Ajoutez les carottes, la pomme de terre et la courge coupées en morceaux, le sel, le poivre, le thym et, si vous aimez, une pincée de piment.",
-            "Incorporez les lentilles corail et la pulpe de tomate, couvrez de bouillon de légumes et laissez cuire jusqu'à ce que tous les légumes soient tendres.",
-            "Mixez le tout jusqu'à obtenir une crème lisse et veloutée.",
-            "Servez en complétant avec des graines de courge, un filet d'huile d'olive et un peu de crème fraîche."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Healthy",
+            "Glaces",
             "Italie",
-            "Pas cher",
-            "Soupes",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7974",
-        "title": "Casserole d'œufs et de chou-fleur au fromage",
-        "description": "Une casserole d'œufs et de chou-fleur au fromage, facile, délicieuse et riche en protéines. Un plat simple et savoureux à déguster en famille.",
-        "image": "/recipes-ia/7974-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7691425169579035911\" data-video-id=\"7691425169579035911\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7691425169579035911\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥬\n             Chou-fleur - 250-300 g"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Œufs - 5-6 pièces"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mozzarella - 150 g, râpée"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Jambon - 100 g, finement haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel - au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre noir - au goût"
-            }
-        ],
-        "steps": [
-            "1. Coupez le chou-fleur en petits bouquets et faites-le bouillir dans de l'eau salée pendant 2 à 4 minutes.",
-            "2. Égouttez très bien le chou-fleur et laissez tout excès d'eau s'écouler.",
-            "3. Tapissez un plat de cuisson de papier sulfurisé et étalez le chou-fleur uniformément à l'intérieur.",
-            "4. Cassez les œufs directement sur le chou-fleur. Ajoutez le jambon finement haché, le sel et le poivre noir.",
-            "5. Mélangez délicatement le tout, en vous assurant que les œufs et le jambon sont uniformément répartis.",
-            "6. Saupoudrez uniformément la mozzarella râpée sur le dessus.",
-            "7. Placez dans un four préchauffé à 190°C (375°F) et faites cuire pendant 20 à 25 minutes, jusqu'à ce que les œufs soient bien pris et que le fromage soit fondu et légèrement doré.",
-            "8. Retirez du four, coupez en portions et savourez ce plat simple, délicieux et riche en protéines !"
-        ],
-        "tags": [
-            "Accompagnements",
-            "Gratins",
-            "Healthy"
+            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -513,32 +300,192 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7970",
-        "title": "Pancakes Nutella et Banane",
-        "description": "Absurdement bons. Une pâte de base avec un cœur de Nutella et de banane mûre, scellée et cuite à la poêle. Ils se mangent même sans garniture, tout au plus avec une pincée de sucre glace. ASTUCE EDEN : n'exagérez pas avec la garniture et scellez b...",
-        "image": "/recipes-ia/7970-carte.webp",
+        "id": "7974",
+        "title": "Casserole d'œufs et de chou-fleur au fromage",
+        "description": "Une casserole d'œufs et de chou-fleur au fromage, facile, délicieuse et riche en protéines. Un plat simple et savoureux à déguster en famille.",
+        "image": "/recipes-ia/7974-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7691425169579035911\" data-video-id=\"7691425169579035911\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7691425169579035911\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥬\n             Chou-fleur - 250-300 g"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs - 5-6 pièces"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella - 150 g, râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon - 100 g, finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel - au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir - au goût"
+            }
+        ],
+        "steps": [
+            "1. Coupez le chou-fleur en petits bouquets et faites-le bouillir dans de l'eau salée pendant 2 à 4 minutes.",
+            "2. Égouttez très bien le chou-fleur et laissez tout excès d'eau s'écouler.",
+            "3. Tapissez un plat de cuisson de papier sulfurisé et étalez le chou-fleur uniformément à l'intérieur.",
+            "4. Cassez les œufs directement sur le chou-fleur. Ajoutez le jambon finement haché, le sel et le poivre noir.",
+            "5. Mélangez délicatement le tout, en vous assurant que les œufs et le jambon sont uniformément répartis.",
+            "6. Saupoudrez uniformément la mozzarella râpée sur le dessus.",
+            "7. Placez dans un four préchauffé à 190°C (375°F) et faites cuire pendant 20 à 25 minutes, jusqu'à ce que les œufs soient bien pris et que le fromage soit fondu et légèrement doré.",
+            "8. Retirez du four, coupez en portions et savourez ce plat simple, délicieux et riche en protéines !"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Gratins",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7976",
+        "title": "Velouté de courge et lentilles corail",
+        "description": "Un velouté de courge et lentilles corail, le plat réconfortant automnal par excellence. Facile et rapide à préparer, il est parfait pour un dîner sain et savoureux.",
+        "image": "/recipes-ia/7976-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7691734733683838241\" data-video-id=\"7691734733683838241\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7691734733683838241\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             2 carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🥔\n             1 grosse pomme de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de courge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             100 g de lentilles corail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 cuillères à soupe de pulpe de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Bouillon de légumes (quantité suffisante)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de courge (pour décorer)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fraîche (pour décorer)"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, faites chauffer un filet d'huile d'olive et faites revenir l'échalote.",
+            "Ajoutez les carottes, la pomme de terre et la courge coupées en morceaux, le sel, le poivre, le thym et, si vous aimez, une pincée de piment.",
+            "Incorporez les lentilles corail et la pulpe de tomate, couvrez de bouillon de légumes et laissez cuire jusqu'à ce que tous les légumes soient tendres.",
+            "Mixez le tout jusqu'à obtenir une crème lisse et veloutée.",
+            "Servez en complétant avec des graines de courge, un filet d'huile d'olive et un peu de crème fraîche."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Healthy",
+            "Italie",
+            "Pas cher",
+            "Soupes",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7978",
+        "title": "Cookies façon kinder aux noix de pécan",
+        "description": "Des cookies moelleux et gourmands, fourrés d'une pâte à tartiner à la noisette et agrémentés de pépites de chocolat et de noix de pécan.",
+        "image": "/recipes-ia/7978-carte.webp",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690987742372564257\" data-video-id=\"7690987742372564257\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690987742372564257\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7692097667861695776\" data-video-id=\"7692097667861695776\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7692097667861695776\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🌾\n             90 g de farine d'épeautre"
+                "name": "🥣\n             5 cuillères de pâte à tartiner à la noisette"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à café de levure"
+                "name": "🧈\n             120 g de beurre doux mou"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 pointe de bicarbonate"
+                "name": "🥣\n             100 g de cassonade"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             1 cuillère à soupe de sucre"
+                "name": "🍯\n             40 g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cuillère à café de bicarbonate alimentaire"
             },
             {
                 "quantity": "",
@@ -546,62 +493,65 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚\n             1 œuf"
+                "name": "🥛\n             100 g de pépites de chocolat noir ou au lait"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             80 g de yaourt grec"
+                "name": "🥜\n             70 g de noix de pécan concassées"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             45 g de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe d'huile"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5 cuillères à café de Nutella"
-            },
-            {
-                "quantity": "",
-                "name": "🍌\n             1 banane mûre"
+                "name": "🍫\n             60 g de chocolat (pour la base)"
             }
         ],
         "steps": [
-            "Mélangez les ingrédients secs dans un bol.",
-            "Dans un autre bol, mélangez les ingrédients humides.",
-            "Versez les liquides sur les secs et mélangez peu : il doit rester des grumeaux.",
-            "Coupez la banane en tranches épaisses.",
-            "Dans une poêle : déposez une cuillère à soupe de pâte, par-dessus une cuillère à café de Nutella et 3 tranches de banane, puis une autre cuillère à soupe de pâte.",
-            "Scellez bien les bords et faites cuire à feu moyen avec un couvercle, 2 minutes et demie par côté.",
-            "Servez-les tièdes, tels quels ou avec du sucre glace."
+            "Déposer 5 petits tas de pâte à tartiner à la noisette sur du papier cuisson et placer au congélateur pendant le temps de préparer la pâte.",
+            "Mélanger le beurre mou avec la cassonade et le sucre. Ajouter l'œuf et la vanille, puis mélanger.",
+            "Incorporer la farine, le bicarbonate et le sel. Ajouter les pépites de chocolat et les noix de pécan.",
+            "Diviser la pâte en 5 portions. Aplatir chaque portion, déposer un cœur de noisette congelé au centre et refermer soigneusement.",
+            "Former des boules et réserver au congélateur pendant 30 minutes.",
+            "Enfourner à 180 °C pendant 12 à 15 minutes, jusqu'à ce que les bords soient légèrement dorés et le centre encore moelleux. Laisser refroidir.",
+            "Faire fondre 60 g de chocolat, étaler environ 1 cuillère à café de chocolat en dessous de chaque cookie et laisser figer."
         ],
         "tags": [
-            "Glaces",
-            "Italie",
-            "pâtisserie"
+            "pâtisserie",
+            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
     {
-        "id": "7968",
-        "title": "Raviolis Gyozas Asiatiques sans Pliage",
-        "description": "Découvrez une méthode simple et astucieuse pour préparer des raviolis gyozas asiatiques sans pliage, tout en obtenant un résultat joli et appétissant. Apprenez à les cuire parfaitement pour une texture croustillante et moelleuse.",
-        "image": "/recipes-ia/7968-carte.webp",
-        "category": "plats",
+        "id": "7980",
+        "title": "Soupe crémeuse au poulet, légumes et bacon",
+        "description": "Une soupe réconfortante et savoureuse à base de poulet, de légumes variés, de bacon grillé et de cheddar, parfaite pour se réchauffer pendant la saison froide.",
+        "image": "/recipes-ia/7980-carte.webp",
+        "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7691939151393885473\" data-video-id=\"7691939151393885473\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7691939151393885473\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693229780073762081\" data-video-id=\"7693229780073762081\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693229780073762081\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥚\n             400 g de viande hachée (hauts de cuisse de poulet, porc, bœuf ou crevettes)"
+                "name": "🍗\n             300g de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             250g de poireaux"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             150g de carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             400g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n             130g de brocolis"
             },
             {
                 "quantity": "",
@@ -609,80 +559,130 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧂\n             ¼ cuillère à café de sel"
+                "name": "🥣\n             200g de bacon"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             ¼ cuillère à café de poivre moulu"
+                "name": "🧀\n             120g de cheddar râpé"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             2 cuillères à soupe de sauce soja claire"
+                "name": "🧈\n             15g de beurre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de saké pour cuisine"
+                "name": "🧂\n             6g de romarin ciselé"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             1 cuillère à café de gingembre frais râpé"
+                "name": "🥛\n             200ml de lait"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             1 cuillère à café de sucre"
+                "name": "🥛\n             250ml de crème légère"
             },
             {
                 "quantity": "",
-                "name": "🍐\n             1 blanc de poireau"
+                "name": "💧\n             3 cuillères à soupe de maïzena diluée dans un peu d'eau"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             3 cébettes"
+                "name": "🧄\n             1L de bouillon de volaille"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             1 œuf"
+                "name": "🌿\n             Persil frais"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de fécule de maïs"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d'huile de sésame grillé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             30 feuilles à raviolis wonton"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d'huile de tournesol"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Eau (environ 150 ml pour 20 raviolis)"
+                "name": "🌶️\n             Poivre"
             }
         ],
         "steps": [
-            "Pour la farce, prenez 400 g de viande hachée (poulet, porc, bœuf ou crevettes).",
-            "Hachez 2 gousses d'ail. Râpez 1 cuillère à café de gingembre frais. Émincez 3 cébettes et 1 blanc de poireau.",
-            "Dans un grand bol, assaisonnez la viande hachée avec ¼ cuillère à café de sel, ¼ cuillère à café de poivre moulu, 1 cuillère à soupe de saké pour cuisine, 2 cuillères à soupe de sauce soja claire, 1 cuillère à café de sucre, 1 cuillère à soupe de fécule de maïs et 1 cuillère à soupe d'huile de sésame grillé. Ajoutez l'ail haché, le gingembre râpé et 1 œuf.",
-            "Mélangez bien la farce jusqu'à obtenir une consistance collante.",
-            "Incorporez les cébettes et le poireau émincés, puis mélangez à nouveau.",
-            "Formez des boulettes de farce et déposez-les sur du papier cuisson.",
-            "Prenez des feuilles à raviolis wonton prêtes à l'emploi. Humidifiez un côté de chaque feuille avec de l'eau et posez le côté humide sur une boulette de farce.",
-            "Faites tourner la feuille en appuyant légèrement pour qu'elle adhère et se colle autour de la farce, formant ainsi le ravioli.",
-            "À ce stade, vous pouvez congeler les raviolis : disposez-les d'abord séparément sur un plateau, puis une fois durcis, transférez-les dans un sac de congélation.",
-            "Dans une poêle, étalez 1 cuillère à soupe d'huile de tournesol. Déposez les raviolis, côté feuille contre la poêle. Faites chauffer à feu doux à moyen pendant environ 4 minutes, jusqu'à ce que le dessous soit légèrement doré.",
-            "Une fois les raviolis légèrement dorés, versez de l'eau pour couvrir le bas des raviolis (environ 150 ml pour 20 raviolis). Couvrez la poêle et augmentez légèrement le feu. Laissez cuire à la vapeur pendant 5 à 6 minutes.",
-            "Retirez le couvercle. Une fois l'eau presque complètement évaporée, ajoutez 1 cuillère à soupe d'huile de tournesol et 1 cuillère à soupe d'huile de sésame grillé.",
-            "Laissez griller pendant 7 à 8 minutes, en bougeant la poêle de temps en temps pour bien répartir l'huile. Surveillez le dessous des raviolis jusqu'à ce qu'ils soient bien dorés.",
-            "Retournez les raviolis pour griller la face de viande pendant 5 à 6 minutes. Surveillez la cuisson et coupez le feu une fois qu'ils sont bien grillés."
+            "Faites griller les morceaux de bacon coupés en petits morceaux et réservez-les.",
+            "Dans la même casserole, faites dorer les morceaux de poulet quelques minutes de chaque côté et réservez-les.",
+            "Ajoutez les poireaux et les carottes avec le morceau de beurre, le romarin ciselé et l'ail dans la casserole. Mélangez et faites revenir pendant 3 minutes.",
+            "Versez le lait, la crème, le bouillon de volaille et la maïzena diluée dans un peu d'eau.",
+            "Ajoutez les pommes de terre et un peu de poivre. Couvrez et laissez cuire pendant 10 minutes à feu moyen, en remuant de temps en temps.",
+            "Effilochez le poulet et ajoutez-le dans la soupe avec le brocoli, le cheddar râpé, le bacon grillé et le persil frais.",
+            "Laissez cuire encore une dizaine de minutes.",
+            "Servez bien chaud, éventuellement avec des tranches de pain grillées."
         ],
         "tags": [
-            "Asie",
-            "pates"
+            "C'est l'hiver",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7982",
+        "title": "Rillettes de poulet rôti anti-gaspillage",
+        "description": "Ne jetez plus les restes de votre poulet rôti ! Transformez-les en de délicieuses rillettes ultra crémeuses et pleines de saveurs. Une recette facile et anti-gaspillage, parfaite à tartiner sur du pain grillé ou à déguster à l'apéritif.",
+        "image": "/recipes-ia/7982-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693188212092603681\" data-video-id=\"7693188212092603681\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693188212092603681\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Restes de poulet rôti (environ 200 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 filet de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1/2 cuillère à café d'ail semoule (ou 1/2 gousse d'ail râpée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau chaude (facultatif)"
+            }
+        ],
+        "steps": [
+            "Récupérez toute la chair des restes de poulet rôti de la veille. Dépiotez le poulet à la main pour retirer toute la chair, en veillant à ne pas laisser d'os et en retirant la peau. Effilez au maximum les morceaux un peu secs.",
+            "Dans un saladier, ajoutez la chair de poulet effilée, le fromage frais, la moutarde à l'ancienne, la mayonnaise, un filet de jus de citron, du sel (ajustez selon le salage du poulet rôti), du poivre noir, l'ail semoule (ou la gousse d'ail râpée), le paprika fumé et la ciboulette ciselée.",
+            "À l'aide d'une fourchette, mélangez et écrasez le poulet avec les autres ingrédients jusqu'à obtenir une belle rillette. Si des morceaux résistent ou si la préparation est trop difficile à mélanger, ajoutez une cuillère à soupe d'eau chaude et continuez d'écraser et de mélanger."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Astuces",
+            "France",
+            "Pas cher"
         ],
         "isFeatured": false,
         "isFavorite": false,
