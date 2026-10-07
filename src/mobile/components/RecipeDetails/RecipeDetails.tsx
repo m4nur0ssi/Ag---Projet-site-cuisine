@@ -876,6 +876,9 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         autre: '#666666'
     };
     
+    const categoryLink = recipe.category === 'vegetarien' || (recipe.tags || []).some((tag) => /végé|vege|vegetarien/i.test(tag))
+        ? 'vegetarien' : recipe.category;
+
     const recipeCountryTag = recipe.tags?.find(t => countryFlags[t.toLowerCase()]);
     const flag = recipeCountryTag ? countryFlags[recipeCountryTag.toLowerCase()] : null;
     const countryColor = recipeCountryTag ? countryColors[recipeCountryTag.toLowerCase()] : theme.accent;
@@ -943,8 +946,11 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                 />
                             </div>
 
-                            <motion.div
-                                className={styles.categoryTag} 
+                            <motion.a
+                                className={styles.categoryTag}
+                                href={`/?tag=${encodeURIComponent(categoryLink)}`}
+                                aria-label={`Voir toutes les recettes de la catégorie ${categoryLink}`}
+                                onClick={(e) => { e.preventDefault(); ouvrirTag(categoryLink); }}
                                 style={{ 
                                     background: theme.bg, 
                                     color: theme.accent,
@@ -961,7 +967,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                     })()}
                                 </span>
                                 {flag && <span className={styles.categoryFlag}>{flag}</span>}
-                            </motion.div>
+                            </motion.a>
 
                             {/* Même partage que partout ailleurs : la carte image, qui
                                 porte le lien et le QR code. L'état existait déjà ici,

@@ -42,6 +42,9 @@ import { suggerer, memoriserAjout } from '@/lib/suggestionsCourses';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import { usePreferredStore, storeSearchWithQueue } from '@/lib/stores';
 import { onStoreItemDone, obstacleAssistant } from '@/lib/storeFeedback';
+import Portal from '@/mobile/components/Portal';
+import { ouvrirClavier, clavierRepris } from '@/lib/clavier';
+import { useBackToClose } from './retour';
 
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as const;
@@ -163,6 +166,26 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     );
     // Mode « Par recette » : cases cochées, clé `day|meal|rIdx|idx`.
     const [adding, setAdding] = useState(false);
+    useBackToClose(adding, () => setAdding(false));
+    const [addViewport, setAddViewport] = useState<{ top: number; height: number } | null>(null);
+    useEffect(() => {
+        if (!adding) { setAddViewport(null); return; }
+        const viewport = window.visualViewport;
+        const measure = () => setAddViewport({ top: viewport?.offsetTop || 0, height: viewport?.height || window.innerHeight });
+        measure();
+        viewport?.addEventListener('resize', measure);
+        viewport?.addEventListener('scroll', measure);
+        window.addEventListener('resize', measure);
+        return () => {
+            viewport?.removeEventListener('resize', measure);
+            viewport?.removeEventListener('scroll', measure);
+            window.removeEventListener('resize', measure);
+        };
+    }, [adding]);
+    const openAddArticle = () => { haptic(8); ouvrirClavier(); setAdding(true); };
+    const focusArticle = useCallback((el: HTMLInputElement | null) => {
+        if (el) { el.focus({ preventScroll: true }); clavierRepris(); }
+    }, []);
     const [name, setName] = useState('');
     // Propositions à la saisie (dès 2 lettres) + ligne surlignée au clavier.
     const [saisieActive, setSaisieActive] = useState(false);
@@ -679,7 +702,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
        (avec la quantité déjà saisie, sinon 1). `onMouseDown` + preventDefault :
        le champ garde le focus, le clic n'est pas perdu dans le blur. */
     const listePropositions = propositions.length > 0 && (
-        <ul className={styles.courseSugg} role="listbox">
+        <ul className={`${styles.courseSugg} ${adding ? styles.courseModalSugg : ''}`} role="listbox">
             {propositions.map((p, i) => (
                 <li key={p} role="option" aria-selected={i === surligne}>
                     <button
@@ -728,7 +751,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                         {surOrdinateur && (
                             <div className={styles.courseActionsHaut}>
                                 {activeItems.length > 0 && <StoreButton onLaunch={lancerMagasin} dropDown />}
-                                <button className={styles.coursePilule} onClick={() => { haptic(8); setAdding(true); }}>Ajouter</button>
+                                <button className={styles.coursePilule} onClick={openAddArticle}>Ajouter</button>
                                 <button className={styles.coursePilule} onClick={clearAll} disabled={!items.length}>Vider</button>
                                 <button className={`${styles.coursePilule} ${styles.coursePiluleClaire}`} onClick={() => router.push('/tv-planner')}>
                                     Planificateur
@@ -757,44 +780,6 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
 
             {mode === 'semaine' ? (
                 <div className={styles.courseBody}>
-                    {/* Ajout rapide « Apple TV+ » : ajoute à la main un article
-                        qu'aucune recette ne prévoit (pain, café, éponges…). */}
-                    <div className={styles.courseAddBar}>
-                        <input
-                            className={styles.courseAddQty}
-                            value={qty}
-                            onChange={(e) => setQty(e.target.value)}
-                            placeholder="Qté"
-                            inputMode="text"
-                            aria-label="Quantité"
-                        />
-                        <div className={styles.courseAddChamp}>
-                            <input
-                                className={styles.courseAddInput}
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                onKeyDown={clavierSaisie}
-                                onFocus={() => setSaisieActive(true)}
-                                onBlur={() => setTimeout(() => setSaisieActive(false), 150)}
-                                placeholder="Ajouter un ingrédient ou autre…"
-                                enterKeyHint="done"
-                                aria-label="Article à ajouter"
-                                autoComplete="off"
-                                role="combobox"
-                                aria-expanded={propositions.length > 0}
-                            />
-                            {!adding && listePropositions}
-                        </div>
-                        <button
-                            className={styles.courseAddPlus}
-                            onClick={() => addManual()}
-                            disabled={!name.trim()}
-                            aria-label="Ajouter à la liste"
-                        >
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
-                        </button>
-                    </div>
-
                     {hasWeek && (
                         <button
                             className={`${styles.courseJourJ} ${withWeek ? styles.courseJourJOn : ''}`}
@@ -918,8 +903,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                                             className={styles.courseStepInput}
                                                             value={editValue}
                                                             inputMode="decimal"
-                                                            autoFocus
-                                                            onChange={(e) => setEditValue(e.target.value)}
+                                                                                onChange={(e) => setEditValue(e.target.value)}
                                                             onClick={(e) => e.stopPropagation()}
                                                             onKeyDown={(e) => { if (e.key === 'Enter') validerEdition(it); }}
                                                         />
@@ -1205,33 +1189,38 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
               * lui, a rejoint le titre. Le bureau garde l'ensemble.
               */}
 
-            {!surOrdinateur && <div className={styles.planFooter}>
-                <button className={styles.planCompose} onClick={() => { haptic(8); setAdding(true); }}>Ajouter</button>
+            {!surOrdinateur && <div className={`${styles.planFooter} ${styles.courseFooter}`}>
+                <button className={styles.planCompose} onClick={openAddArticle}>Ajouter</button>
                 <button className={styles.planClear} onClick={clearAll} disabled={!items.length}>Vider</button>
                 <button className={styles.planValidate} onClick={() => router.push('/tv-planner')}>
                     Planificateur
                 </button>
             </div>}
 
+            <Portal>
             <AnimatePresence>
                 {adding && (
                     <motion.div
-                        className={styles.menuBackdrop}
+                        className={`${styles.menuBackdrop} ${styles.courseAddDialog}`}
+                        style={addViewport ? { top: addViewport.top, height: addViewport.height, bottom: 'auto' } : undefined}
                         onClick={() => setAdding(false)}
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
                     >
                         <motion.div
-                            className={styles.composeCard}
+                            className={`${styles.composeCard} ${styles.courseAddDialogCard}`}
+                            role="dialog" aria-modal="true" aria-labelledby="add-article-title"
                             onClick={(e) => e.stopPropagation()}
                             initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }}
                             transition={{ type: 'spring', damping: 30, stiffness: 340 }}
                         >
-                            <div className={styles.composeTitle}>Ajouter un article</div>
+                            <button type="button" className={styles.courseAddClose} onClick={() => setAdding(false)} aria-label="Fermer l’ajout d’article">✕</button>
+                            <div id="add-article-title" className={styles.composeTitle}>Ajouter un article</div>
                             <div className={styles.composeHint}>Ce qu&apos;aucune recette ne prévoit : éponges, café, pain…</div>
                             <div className={styles.courseForm}>
                                 <input
                                     className={styles.courseQty}
+                                    aria-label="Quantité"
                                     value={qty}
                                     onChange={(e) => setQty(e.target.value)}
                                     placeholder="2"
@@ -1240,6 +1229,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 <div className={styles.courseAddChamp}>
                                     <input
                                         className={styles.courseInput}
+                                        ref={focusArticle}
+                                        aria-label="Article à ajouter"
+                                        role="combobox" aria-expanded={propositions.length > 0}
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         onKeyDown={clavierSaisie}
@@ -1247,16 +1239,16 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                         onBlur={() => setTimeout(() => setSaisieActive(false), 150)}
                                         placeholder="Baguettes"
                                         autoComplete="off"
-                                        autoFocus
                                     />
                                     {adding && listePropositions}
                                 </div>
                             </div>
-                            <button className={styles.courseAddBtn} onClick={() => addManual()}>Ajouter à la liste</button>
+                            <button className={styles.courseAddBtn} disabled={!name.trim()} onClick={() => addManual()}>Ajouter à la liste</button>
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
+            </Portal>
             <Tip id="courses" />
             <TVToast />
         </div>

@@ -759,6 +759,9 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         autre: '#666666'
     };
     
+    const categoryLink = recipe.category === 'vegetarien' || (recipe.tags || []).some((tag) => /végé|vege|vegetarien/i.test(tag))
+        ? 'vegetarien' : recipe.category;
+
     const recipeCountryTag = recipe.tags?.find(t => countryFlags[t.toLowerCase()]);
     const flag = recipeCountryTag ? countryFlags[recipeCountryTag.toLowerCase()] : null;
     const countryColor = recipeCountryTag ? countryColors[recipeCountryTag.toLowerCase()] : theme.accent;
@@ -833,8 +836,11 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                 className={styles['favorite-btn-action']}
                             />
 
-                            <motion.div 
-                                className={styles.categoryTag} 
+                            <motion.a
+                                className={styles.categoryTag}
+                                href={`/?tag=${encodeURIComponent(categoryLink)}`}
+                                aria-label={`Voir toutes les recettes de la catégorie ${categoryLink}`}
+                                onClick={(e) => { e.preventDefault(); ouvrirTag(categoryLink); }}
                                 style={{ 
                                     background: theme.bg, 
                                     color: theme.accent,
@@ -851,7 +857,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                     })()}
                                 </span>
                                 {flag && <span className={styles.categoryFlag}>{flag}</span>}
-                            </motion.div>
+                            </motion.a>
 
                             {/* Un seul partage par surface : la carte image porte le
                                 lien, le titre et le QR code. Le bouton « Image » de

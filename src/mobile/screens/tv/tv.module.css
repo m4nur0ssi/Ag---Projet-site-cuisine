@@ -6360,3 +6360,29 @@
     border-radius: 14px; background: rgba(128,128,128,.12);
     max-height: min(220px, 30dvh); overflow-y: auto;
 }
+
+/* Actions de la liste : même police, taille et graisse. */
+.courseFooter > button,
+.courseActionsHaut .coursePilule {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+/* La hauteur est celle du visualViewport, donc de l'écran AU-DESSUS du clavier. */
+.courseAddDialog { padding: 16px; box-sizing: border-box; }
+.courseAddDialogCard {
+    position: relative; max-height: 100%; box-sizing: border-box;
+    overflow-y: auto; overscroll-behavior: contain;
+}
+.courseAddDialogCard .composeTitle { padding-right: 28px; }
+.courseAddClose {
+    position: absolute; top: 12px; right: 12px;
+    width: 30px; height: 30px; border: none; border-radius: 50%;
+    color: inherit; background: rgba(128,128,128,.2); cursor: pointer;
+}
+.courseAddDialogCard .courseForm { align-items: flex-start; }
+.courseAddDialogCard .courseAddChamp { flex-direction: column; }
+.courseModalSugg { position: static; margin-top: 6px; max-height: 150px; overflow-y: auto; }
+.courseAddBtn:disabled { opacity: .45; cursor: default; }
