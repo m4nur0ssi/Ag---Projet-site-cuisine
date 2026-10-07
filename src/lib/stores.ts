@@ -42,7 +42,7 @@ export function storeSearchWithQueue(id: StoreId, terms: string[], index = 0): s
     try {
         const payload = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(terms)))));
         const origin = typeof window !== 'undefined' ? encodeURIComponent(window.location.origin) : '';
-        return `${base}#mlist=${payload}&mi=${index}&run=${Date.now()}${origin ? `&mo=${origin}` : ''}`;
+        return `${base}#mlist=${payload}&mi=${index}${origin ? `&mo=${origin}` : ''}`;
     } catch {
         return base;
     }

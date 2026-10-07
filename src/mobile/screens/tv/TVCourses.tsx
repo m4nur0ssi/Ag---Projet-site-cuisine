@@ -20,7 +20,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import {
     buildConsolidatedItems, doneKeysOf, isItemDone, fmtQty, prettyQtyUnit,
-    canonicalIng, carrefourTerm, nomAuPluriel, sourceLineDone, extraLineKey,
+    canonicalIng, carrefourTerm, nomAuPluriel,
     parseIngredient, cleanIngredientText, getIngIcon,
     type ConsolItem,
 } from '@/mobile/lib/ingredients';
@@ -40,7 +40,7 @@ import { ecrireStock } from '@/lib/stockage';
 import { suggerer, memoriserAjout } from '@/lib/suggestionsCourses';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import { usePreferredStore, storeSearchWithQueue } from '@/lib/stores';
-import { onStoreItemDone, obstacleAssistant } from '@/lib/storeFeedback';
+import { onStoreItemDone, isStoreExtensionActive, obstacleAssistant } from '@/lib/storeFeedback';
 
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as const;
@@ -128,6 +128,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const [mode, setMode] = useState<'semaine' | 'jour' | 'plus'>('semaine');
     // « En + » : ingrédients choisis à la main dans les fiches, et articles ajoutés à la main.
     const [cart, setCart] = useState<CartRecipe[]>([]);
+    // Cases cochées de la vue « Par recette » (barrer en faisant les courses).
+    const [cartChecked, setCartChecked] = useState<Set<string>>(new Set());
     useEffect(() => {
         const load = () => setCart(readCart());
         load();
@@ -150,7 +152,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const [editing, setEditing] = useState<string | null>(null);
     const [editValue, setEditValue] = useState('');
     const [dayIdx, setDayIdx] = useState(todayIndex);
-    // « Tout acheter » = semaine + menu spécial + ajouts hors planning.
+    // « La semaine » = TOUT le fusionné : semaine + Jour J + ajouts par recette.
     // Jour J inclus par défaut (pref partagée avec la pastille de nav), le toggle
     // permet de l'exclure ponctuellement.
     const [withJourJ, setWithJourJ] = useState(
@@ -185,8 +187,6 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             setWeekChecked(new Set(j('meal-week-checked', '[]')));
             setDone(new Set(j('shop-done', '[]')));
             setQtyEdits(j('shop-qty', '{}'));
-            setWithWeek(localStorage.getItem('week-in-fused') !== 'false');
-            setWithJourJ(localStorage.getItem('jourj-in-fused') !== 'false');
             setOverrides(readRayonOverrides());
         };
         read();
@@ -198,27 +198,18 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         };
     }, []);
 
-    // Les besoins complets gardent les lignes barrées et leurs liens aux recettes.
-    const sourceItems = useMemo(() => buildConsolidatedItems(plan, weekChecked, list as any, withJourJ, withWeek),
-        [plan, weekChecked, list, withJourJ, withWeek]);
-    const allSourceItems = useMemo(() => buildConsolidatedItems(plan, weekChecked, list as any, true, true), [plan, weekChecked, list]);
-    const remainingItems = useMemo(() => buildConsolidatedItems(plan, weekChecked, list as any, withJourJ, withWeek, done),
-        [plan, weekChecked, list, withJourJ, withWeek, done]);
+    /** Liste fusionnée : moteur de la prod, quantités additionnées. */
     const items = useMemo<ConsolItem[]>(() => {
-        const remaining = new Map(remainingItems.map(it => [it.key.split('|')[0], it]));
-        return sourceItems.map(total => {
-            const rest = remaining.get(total.key.split('|')[0]);
-            const displayed = rest ? { ...total, qty: rest.qty, unit: rest.unit, count: rest.count, display: rest.display } : total;
-            const edited = qtyEdits[total.key];
-            if (edited == null) return displayed;
-            // La quantité retouchée est un besoin total : déduire les achats déjà validés.
-            const bought = rest && total.unit === rest.unit && total.qty != null && rest.qty != null ? total.qty - rest.qty : 0;
-            const q = rest ? Math.max(0, edited - bought) : edited;
-            return { ...displayed, qty: q, display: `${prettyQtyUnit(q, displayed.unit)} ${displayed.name}`.trim() };
+        const base = buildConsolidatedItems(plan, weekChecked, list as any, withJourJ, withWeek);
+        // La retouche remplace la quantité calculée — et rien d'autre : le texte
+        // se recompose, donc le chiffre du badge, le partage et la recherche
+        // magasin suivent d'eux-mêmes.
+        return base.map((it) => {
+            const q = qtyEdits[it.key];
+            if (q == null) return it;
+            return { ...it, qty: q, display: `${prettyQtyUnit(q, it.unit)} ${it.name}`.trim() };
         });
-    }, [sourceItems, remainingItems, qtyEdits]);
-    const extraItems = useMemo(() => buildConsolidatedItems({}, new Set(), list as any, false, false, done), [list, done]);
-    const basiques = items.filter(it => estBasiqueMaison(it.name) && !isItemDone(it, done));
+    }, [plan, weekChecked, list, withJourJ, withWeek, qtyEdits]);
 
     // Les articles tapés à la main (hors recette) : leur propre section dans « En + ».
     const manuels = useMemo(
@@ -252,9 +243,27 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         window.dispatchEvent(new Event('shoppingListUpdated'));
     }, [items, weekChecked, plan, list, withJourJ, withWeek]);
 
-    // Réinitialise uniquement les marques des recettes remplacées.
+    /*
+     * Ménage des marques « je l'ai déjà », à chaque changement de liste.
+     * ================================================================
+     *
+     * Ces marques sont posées par POSITION dans le plan (`Lun|Midi|3`). Une
+     * nouvelle semaine réutilise les mêmes positions : sans ménage, elle héritait
+     * des cases décochées de la semaine passée, et la liste arrivait à moitié
+     * barrée — c'est le bug qu'on vient corriger.
+     *
+     * Deux règles, dans cet ordre :
+     *
+     *   1. un créneau dont la recette a changé perd ses marques (et lui seul :
+     *      les articles déjà pris dans les créneaux inchangés restent barrés,
+     *      on ne casse pas des courses en cours) ;
+     *   2. un article qui apparaît pour la première fois est COCHÉ, sauf s'il
+     *      fait partie des basiques du placard (sel, huile, ail…), qui arrivent
+     *      barrés — voir `estBasiqueMaison`.
+     */
     useEffect(() => {
-        if (!Object.keys(plan).length && !Object.keys(list).length) return;
+        if (!items.length) return;
+
         const lire = (cle: string, defaut: string) => {
             try { return JSON.parse(localStorage.getItem(cle) || defaut); } catch { return JSON.parse(defaut); }
         };
@@ -267,7 +276,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         }));
         const anciennes: Record<string, string> = lire('shop-slots-sig', '{}');
         const creneauxChanges = [...new Set([...Object.keys(anciennes), ...Object.keys(signatures)])]
-            .filter((k) => Object.prototype.hasOwnProperty.call(anciennes, k) && anciennes[k] !== signatures[k]);
+            .filter((k) => anciennes[k] !== signatures[k]);
 
         const vus: string[] = lire('shop-vus', '[]');
         let ensembleVus = new Set<string>(vus);
@@ -279,23 +288,22 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             [...ensembleVus].forEach((k) => { if (k.startsWith(`${creneau}|`)) ensembleVus.delete(k); });
         });
 
-        // Mémorise les sources sans décider de ce qui est déjà chez l'utilisateur.
+        // 2. Premières apparitions : basiques barrés, tout le reste coché.
         let vusChange = creneauxChanges.length > 0;
-        allSourceItems.forEach((it) => {
+        items.forEach((it) => {
             const cles = doneKeysOf(it);
             const nouveau = cles.some((k) => !ensembleVus.has(k));
             if (!nouveau) return;
             cles.forEach((k) => ensembleVus.add(k));
             vusChange = true;
-
+            if (estBasiqueMaison(it.name)) {
+                cles.forEach((k) => { if (!marques.has(k)) { marques.add(k); changement = true; } });
+            }
         });
 
         // Les marques d'articles disparus ne servent plus à rien : elles
         // reviendraient hanter un article homonyme d'une autre semaine.
-        const toutesLesLignes = buildConsolidatedItems(plan, weekChecked, list as any, true, true);
-        const clesVivantes = new Set(toutesLesLignes.flatMap((it) => [...doneKeysOf(it), ...(it.manual ? ['m:' + it.key] : [])]));
-        // Conserve aussi les anciennes clés de ligne, lues pendant la migration.
-        [...clesVivantes].forEach(k => { if (!k.startsWith('m:')) clesVivantes.add(k.split('|').slice(0, 3).join('|')); });
+        const clesVivantes = new Set(items.flatMap((it) => doneKeysOf(it)));
         [...ensembleVus].forEach((k) => { if (!clesVivantes.has(k)) { ensembleVus.delete(k); vusChange = true; } });
         [...marques].forEach((k) => { if (!clesVivantes.has(k)) { marques.delete(k); changement = true; } });
 
@@ -308,7 +316,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         // s'y abonner le ferait tourner en boucle. Les marques posées à la main
         // sont lues au moment où il s'exécute, ce qui suffit.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [allSourceItems, plan]);
+    }, [items, plan]);
 
     /*
      * Rayons repliés (bureau) : la liste entière tenait sur une colonne et
@@ -356,9 +364,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         haptic(8);
         const n = new Set(done);
         const keys = doneKeysOf(it);
-        const already = isItemDone(it, done);
-        n.delete('m:' + it.key);
-        keys.forEach(k => n.delete(k.split('|').slice(0, 3).join('|')));
+        const already = keys.every((k) => n.has(k));
         keys.forEach((k) => (already ? n.delete(k) : n.add(k)));
         persistDone(n);
     };
@@ -384,8 +390,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const ouvrirEdition = (it: ConsolItem) => {
         haptic(8);
         setEditing(it.key);
-        const total = sourceItems.find(source => source.key === it.key);
-        setEditValue(fmtQty(qtyEdits[it.key] ?? total?.qty ?? it.qty ?? 1));
+        setEditValue(it.qty != null ? fmtQty(it.qty) : '1');
     };
 
     const validerEdition = (it: ConsolItem) => {
@@ -492,12 +497,11 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             // Les lignes portent `jour|repas|index|sous-index` ; le masque, lui,
             // travaille au niveau de l'ingrédient : `jour|repas|index`.
             const p = k.split('|');
-            if (p.length >= 3 && !k.startsWith('m:') && !k.startsWith('extra|')) masque.add(k);
+            if (p.length >= 3 && !k.startsWith('m:')) masque.add(`${p[0]}|${p[1]}|${p[2]}`);
         });
         if (masque.size !== weekChecked.size) {
             setWeekChecked(masque);
             ecrireStock('meal-week-checked', JSON.stringify([...masque]));
-            ecrireStock('meal-week-checked-sig', planSignature(plan));
         }
 
         // Les cases cochées de cette ligne n'ont plus d'objet.
@@ -536,7 +540,6 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         Object.keys(plan).forEach((d) => {
             Object.keys(plan[d] || {}).forEach((m) => {
                 (plan[d][m]?.ingredients || []).forEach((_: unknown, idx: number) => checked.add(`${d}|${m}|${idx}`));
-                (plan[d][m]?.side?.ingredients || []).forEach((_: unknown, idx: number) => checked.add(`${d}|${m}|s${idx}`));
             });
         });
         setWeekChecked(checked);
@@ -561,7 +564,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         }));
     };
 
-
+    const restants = items.filter((it) => !isItemDone(it, done)).length;
 
     // ── Vue Jour : les ingrédients repas par repas ─────────────────────────
     /** Ouvre la carte d'une recette par-dessus la liste (la liste reste là dessous). */
@@ -575,14 +578,13 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         return Object.entries(meals).flatMap(([meal, recipe]: [string, any]) => {
             const withSide = recipe?.side ? [recipe, recipe.side] : [recipe];
             return withSide.flatMap((r: any, rIdx: number) =>
-                (r?.ingredients || []).flatMap((ing: any, idx: number) => {
-                    if (weekChecked.has(`${day}|${meal}|${rIdx === 0 ? idx : 's' + idx}`)) return [];
+                (r?.ingredients || []).map((ing: any, idx: number) => {
                     const raw = `${ing?.quantity || ''} ${ing?.name || ''}`.trim();
                     const p = parseIngredient(raw);
                     return {
                         key: `${day}|${meal}|${rIdx}|${idx}`,
                         // Clé de « pris » identique à celle de la prod pour le plat principal.
-                        doneKey: `${day}|${meal}|${rIdx === 0 ? idx : 's' + idx}`,
+                        doneKey: rIdx === 0 ? `${day}|${meal}|${idx}` : `${day}|${meal}|side|${idx}`,
                         meal,
                         recipe: decodeHtml(r?.title || ''),
                         image: r?.image as string | undefined,
@@ -607,7 +609,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
      * titre, là où l'on cherche une action qui concerne la liste entière.
      */
     const partagerListe = async () => {
-        const cibles = activeItems;
+        const cibles = mode === 'jour' ? jourItems : aPrendre;
         if (!cibles.length) return;
         haptic(8);
         const titre = 'Ma liste de courses';
@@ -638,7 +640,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                             const raw = `${ing?.quantity || ''} ${ing?.name || ''}`.trim();
                             const p = parseIngredient(raw);
                             return {
-                                key: `${day}|${meal}|${rIdx === 0 ? idx : 's' + idx}`,
+                                key: `${day}|${meal}|${rIdx}|${idx}`,
                                 icon: getIngIcon(p.name || raw),
                                 nom: p.name || raw,
                                 nombre: nombreDeLigne(p),
@@ -657,7 +659,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     /** Partage d'UNE recette : uniquement les lignes cochées de celle-ci. */
     const shareRecipe = async (r: { title: string; lines: { key: string; text: string }[] }) => {
         // Tout ce qui n'est pas déjà chez soi part au partage.
-        const picked = r.lines.filter((l) => !sourceLineDone(l.key, allSourceItems, done));
+        const picked = r.lines.filter((l) => !done.has(l.key));
         if (!picked.length) return;
         haptic(10);
         const text = `🛒 ${r.title}\n\n` + picked.map((l) => `• ${l.text}`).join('\n');
@@ -672,11 +674,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const toggleDayLine = (doneKey: string) => {
         haptic(6);
         const n = new Set(done);
-        const keys = allSourceItems.flatMap(it => it.keys).filter(k => k.startsWith(doneKey + '|'));
-        allSourceItems.filter(it => it.keys.some(k => k.startsWith(doneKey + '|'))).forEach(it => n.delete('m:' + it.key));
-        if (!keys.length) keys.push(doneKey);
-        if (sourceLineDone(doneKey, allSourceItems, done)) { n.delete(doneKey); keys.forEach(k => n.delete(k)); }
-        else { keys.forEach(k => n.add(k)); }
+        n.has(doneKey) ? n.delete(doneKey) : n.add(doneKey);
         persistDone(n);
     };
 
@@ -691,12 +689,21 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
      * compare donc sur le PRÉFIXE `jour|repas|idx`.
      */
     const jourItems = useMemo(() => {
-        const dayKey = dayIdx === 7 ? 'JourJ' : DAYS[dayIdx];
-        return buildConsolidatedItems({ [dayKey]: plan[dayKey] || {} }, weekChecked, {}, true, true, done);
-    }, [done, plan, dayIdx, weekChecked]);
-    const activeItems = mode === 'jour' ? jourItems : mode === 'plus' ? extraItems : aPrendre;
-    const restants = activeItems.length;
-
+        const dayKey = DAYS[dayIdx];
+        const duJour = new Set<string>();
+        Object.keys(plan[dayKey] || {}).forEach((meal) => {
+            const recette = plan[dayKey][meal];
+            (recette?.ingredients || []).forEach((_: unknown, idx: number) => {
+                const k = `${dayKey}|${meal}|${idx}`;
+                if (!done.has(k)) duJour.add(k);
+            });
+        });
+        if (!duJour.size) return [] as ConsolItem[];
+        return items.filter((it) =>
+            !isItemDone(it, done) &&
+            it.keys.some((k) => duJour.has(k.split('|').slice(0, 3).join('|')))
+        );
+    }, [items, done, plan, dayIdx]);
 
     /*
      * Magasin (bureau uniquement).
@@ -712,11 +719,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     // mobile, mais c'est bien un ordinateur, avec l'extension possible.
     const surOrdinateur = typeof navigator !== 'undefined'
         && !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const ciblesMagasin = activeItems;
+    const ciblesMagasin = mode === 'jour' ? jourItems : aPrendre;
     const ciblesRef = useRef(ciblesMagasin);
     ciblesRef.current = ciblesMagasin;
-    const queueRef = useRef<ConsolItem[]>([]);
-    const storeWindow = useRef<Window | null>(null);
     const doneRef = useRef(done);
     doneRef.current = done;
     const barrer = (it: ConsolItem) => {
@@ -728,18 +733,18 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     barrerRef.current = barrer;
     // L'extension signale chaque article mis au panier → rayé ici en direct.
     useEffect(() => onStoreItemDone(({ index }) => {
-        const it = queueRef.current[index];
+        const it = ciblesRef.current[index];
         if (it) barrerRef.current(it);
-    }, () => storeWindow.current), []);
+    }), []);
     const lancerMagasin = () => {
         const cibles = ciblesRef.current;
         if (!cibles.length) return;
         haptic(8);
         const obstacle = obstacleAssistant();
         if (obstacle) window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: obstacle }));
-        queueRef.current = cibles.map(it => ({ ...it, keys: [...it.keys] }));
-        storeWindow.current = window.open(storeSearchWithQueue(store, cibles.map((x) => carrefourTerm(x.name)), 0), 'storeCart');
-
+        window.open(storeSearchWithQueue(store, cibles.map((x) => carrefourTerm(x.name)), 0), 'storeCart');
+        // Sans extension, personne ne signalera la mise au panier : on raye le premier.
+        if (!isStoreExtensionActive()) barrer(cibles[0]);
     };
 
     /** Clavier dans le champ d'ajout : ↑/↓ parcourent les propositions, Entrée valide. */
@@ -791,7 +796,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                     <div className={styles.planKicker}>Courses</div>
                     <div className={styles.courseTitreLigne}>
                         <h1 className={styles.planTitle}>Ma liste</h1>
-                        {activeItems.length > 0 && (
+                        {(mode === 'jour' ? jourItems.length : aPrendre.length) > 0 && (
                             <button
                                 className={styles.coursePartage}
                                 onClick={partagerListe}
@@ -803,7 +808,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 </svg>
                             </button>
                         )}
-                        {surOrdinateur && activeItems.length > 0 && (
+                        {surOrdinateur && (mode === 'jour' ? jourItems.length : aPrendre.length) > 0 && (
                             <StoreButton onLaunch={lancerMagasin} dropDown />
                         )}
                     </div>
@@ -814,7 +819,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             </header>
 
             <div className={styles.planModes}>
-                {([['semaine', 'Tout acheter'], ['jour', 'Par jour'],
+                {([['semaine', 'La semaine'], ['jour', 'Jour par jour'],
                    ['plus', 'En +']] as const).map(([m, lbl]) => (
                     <button
                         key={m}
@@ -881,20 +886,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                             onClick={() => { haptic(8); setWithJourJ((v) => !v); }}
                         >
                             <span className={styles.courseJourJDot} />
-                            {withJourJ ? 'Menu spécial inclus dans la liste' : 'Ajouter les ingrédients du menu spécial'}
+                            {withJourJ ? 'Jour J inclus dans la liste' : 'Ajouter les ingrédients du Jour J'}
                         </button>
                     )}
-
-                    {basiques.length > 0 && (
-                        <button className={styles.courseJourJ} onClick={() => {
-                            const next = new Set(done);
-                            basiques.forEach(it => doneKeysOf(it).forEach(k => next.add(k)));
-                            persistDone(next);
-                        }}>
-                            Tu les as déjà ? {basiques.map(it => it.name).join(', ')} — Oui, je les ai tous
-                        </button>
-                    )}
-                    <p className={styles.courseEmpty}>Quantités restant à acheter. Les articles barrés sont déjà pris.</p>
 
                     {!items.length && (
                         <p className={styles.courseEmpty}>
@@ -1017,9 +1011,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                                             <span className={styles.courseItemEdited}> · modifié</span>
                                                         )}
                                                     </span>
-                                                ) : (
-                                                    <span className={styles.courseItemQty}>{it.display}</span>
-                                                )}
+                                                ) : null}
                                                 {/* Ces articles-là ne viennent pas du planificateur :
                                                     ils restent quand on change tout le menu, ce qui
                                                     surprend si rien ne le dit. Sous le nom, jamais
@@ -1099,29 +1091,29 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             ) : mode === 'jour' ? (
                 <div className={styles.courseBody}>
                     <div className={styles.planDays}>
-                        {[...DAYS, ...(hasJourJ ? ['Menu spécial'] : [])].map((d, i) => (
+                        {DAYS.map((d, i) => (
                             <button
                                 key={d}
                                 className={`${styles.planDay} ${i === dayIdx ? styles.planDayOn : ''}`}
                                 onClick={() => { haptic(6); setDayIdx(i); }}
                             >
                                 {d}
-                                {Object.keys(plan[i === 7 ? 'JourJ' : d] || {}).length > 0 && <i className={styles.planDot} />}
+                                {Object.keys(plan[d] || {}).length > 0 && <i className={styles.planDot} />}
                             </button>
                         ))}
                     </div>
 
-                    <h2 className={styles.planDayTitle}>{dayIdx === 7 ? 'Menu spécial' : DAY_FULL[DAYS[dayIdx]]}</h2>
+                    <h2 className={styles.planDayTitle}>{DAY_FULL[DAYS[dayIdx]]}</h2>
 
                     {(() => {
-                        const lines = dayLines(dayIdx === 7 ? 'JourJ' : DAYS[dayIdx]);
+                        const lines = dayLines(DAYS[dayIdx]);
                         if (!lines.length) {
                             return <p className={styles.courseEmpty}>Rien de planifié ce jour-là.</p>;
                         }
                         let lastRecipe = '';
                         return lines.map((l) => {
                             const head = l.recipe !== lastRecipe ? (lastRecipe = l.recipe) : null;
-                            const struck = sourceLineDone(l.doneKey, allSourceItems, done);
+                            const struck = done.has(l.doneKey);
                             return (
                                 <div key={l.key}>
                                     {head && (
@@ -1174,7 +1166,6 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                 recette (chacun sous sa recette : photo, nom, et lien vers la carte). */}
             {mode === 'plus' && (
                 <div className={styles.courseBody}>
-                    <p className={styles.courseEmpty}>Ces ajouts sont inclus dans « Tout acheter » et restent quand tu changes le planning.</p>
                     {!cart.length && !manuels.length && (
                         <p className={styles.courseEmpty}>
                             Rien ici pour l’instant. Les articles ajoutés à la main, et les ingrédients que tu coches
@@ -1188,14 +1179,14 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                     <div className={styles.cartTitle}>Ajoutés à la main</div>
                                 </div>
                                 {manuels.map((raw, i) => {
-                                    const k = extraLineKey('manuel', raw);
-                                    const struck = sourceLineDone(k, allSourceItems, done);
+                                    const k = `manuel|${raw}`;
+                                    const struck = cartChecked.has(k);
                                     const texte = cleanIngredientText(raw) || raw;
                                     return (
                                         <div key={`${raw}-${i}`} className={`${styles.courseRow} ${styles.courseRowFlat} ${struck ? styles.courseRowDone : ''}`}>
                                             <button
                                                 className={`${styles.courseCheck} ${struck ? '' : styles.courseCheckOn}`}
-                                                onClick={() => toggleDayLine(k)}
+                                                onClick={() => { haptic(6); setCartChecked((prev) => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }); }}
                                                 aria-label={struck ? 'Je ne l’ai pas : à prendre' : 'Je l’ai déjà'}
                                             >
                                                 {!struck && (
@@ -1206,7 +1197,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                             </button>
                                             <button
                                                 className={styles.courseText}
-                                                onClick={() => toggleDayLine(k)}
+                                                onClick={() => { haptic(6); setCartChecked((prev) => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }); }}
                                             >
                                                 <span className={styles.courseName}>{texte}</span>
                                             </button>
@@ -1241,15 +1232,17 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                     >Retirer</button>
                                 </div>
                                 {r.ingredients.map((ing, i) => {
-                                    const k = extraLineKey(r.id, ing);
-                                    const struck = sourceLineDone(k, allSourceItems, done);
+                                    const k = `${r.id}|${ing}`;
+                                    const struck = cartChecked.has(k);
                                     return (
                                         <button
                                             key={i}
                                             className={`${styles.courseRow} ${styles.courseRowFlat} ${struck ? styles.courseRowDone : ''}`}
-                                            onClick={() => toggleDayLine(k)}
+                                            onClick={() => { haptic(6); setCartChecked((prev) => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }); }}
                                         >
-                                            {/* Même état d'achat dans toutes les vues. */}
+                                            {/* Cochée = à prendre : `cartChecked` retient
+                                                ce qu'on a DÉJÀ, l'affichage montre donc
+                                                l'inverse. */}
                                             <span className={`${styles.courseCheck} ${struck ? '' : styles.courseCheckOn}`}>
                                                 {!struck && (
                                                     <svg viewBox="0 0 24 24" fill="none" width="13" height="13">

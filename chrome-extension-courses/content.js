@@ -18,7 +18,7 @@
         || /\.vercel\.app$/.test(location.hostname)
         || location.hostname === 'localhost';
     if (SUR_LE_SITE) {
-        document.documentElement.setAttribute('data-courses-magiques', '1.5.0');
+        document.documentElement.setAttribute('data-courses-magiques', '1.4.0');
         try { localStorage.setItem('magic-store-ext-active', '1'); } catch (_) {}
         return;
     }
@@ -73,11 +73,6 @@
         } catch (_) { return null; }
     }
 
-    window.addEventListener('hashchange', () => {
-        const next = parseHash();
-        if (next) { remember(next); location.reload(); }
-    });
-
     const fromHash = parseHash();
     const state = fromHash || recall();
 
@@ -122,9 +117,7 @@
             const base = m ? `${location.origin}${m[0]}` : location.origin;
             return `${base}/recherche.aspx?TexteRecherche=${q}`;
         }
-        if (host.includes('auchan')) return `https://www.auchan.fr/recherche?text=${q}`;
-        if (host.includes('intermarche')) return `https://www.intermarche.com/recherche/${q}`;
-        return location.href;
+        return `https://www.google.com/search?q=${q}`;
     }
 
     function goTo(i) {
@@ -199,35 +192,22 @@
             <span class="mcw-count">${state.idx + 1}/${state.list.length}</span>
             <button class="mcw-close" title="Fermer">✕</button>
         </div>
-        <div class="mcw-item"></div>
+        <div class="mcw-item" title="${state.list[state.idx]}">${state.idx + 1}. ${state.list[state.idx]}</div>
         <div class="mcw-actions">
             <button class="mcw-prev" ${state.idx === 0 ? 'disabled' : ''}>◀</button>
             <button class="mcw-next">${atLast ? '✓ Terminer' : 'Ajouté → suivant ▶'}</button>
         </div>
         <div class="mcw-hint">Astuce : ajoute le produit au panier, puis clique « suivant ».</div>
     `;
-    box.querySelector('.mcw-item').textContent = `${state.idx + 1}. ${state.list[state.idx]}`;
     document.documentElement.appendChild(box);
 
-    let advanceTimer = null;
-    let completed = false;
-    function validateAndAdvance() {
-        if (completed) return;
-        if (advanceTimer) clearTimeout(advanceTimer);
-        box.querySelector('.mcw-hint').textContent = 'Produit suivant dans 2 secondes. Chaque ajout relance le délai.';
-        advanceTimer = setTimeout(() => {
-            completed = true;
-            reportDone(state.idx);
-            if (atLast) {
-                forget();
-                box.querySelector('.mcw-item').textContent = '✅ Liste terminée !';
-                box.querySelector('.mcw-actions').remove();
-            } else goTo(state.idx + 1);
-        }, 2000);
-    }
-    box.querySelector('.mcw-close').addEventListener('click', () => { clearTimeout(advanceTimer); forget(); box.remove(); });
-    box.querySelector('.mcw-prev').addEventListener('click', () => { clearTimeout(advanceTimer); goTo(state.idx - 1); });
-    box.querySelector('.mcw-next').addEventListener('click', validateAndAdvance);
+    box.querySelector('.mcw-close').addEventListener('click', () => { forget(); box.remove(); });
+    box.querySelector('.mcw-prev').addEventListener('click', () => goTo(state.idx - 1));
+    box.querySelector('.mcw-next').addEventListener('click', () => {
+        reportDone(state.idx); // « Ajouté » → rayé dans la liste restée ouverte
+        if (atLast) { forget(); box.querySelector('.mcw-item').textContent = '✅ Liste terminée !'; box.querySelector('.mcw-actions').remove(); }
+        else goTo(state.idx + 1);
+    });
 
     // --- Auto-détection du clic "Ajouter au panier" -----------------------
     // Trois pièges rencontrés sur les sites de magasin :
@@ -238,7 +218,7 @@
     //      un simple « Ajouter », suffit à mettre au panier ;
     //   3. le texte n'est parfois qu'une icône : il faut lire aussi l'aria-label,
     //      le data-testid et les classes.
-
+    let advanced = false;
 
     function nodeText(node) {
         const cls = typeof node.className === 'string' ? node.className : (node.getAttribute('class') || '');
@@ -261,19 +241,38 @@
             const node = el.matches && el.matches('button, a, [role="button"], input[type="button"], input[type="submit"]')
                 ? el
                 : (el.closest && el.closest('button, a, [role="button"]'));
-            if (!node || node.disabled || node.getAttribute('aria-disabled') === 'true') continue;
+            if (!node) continue;
             const hay = nodeText(node);
             const cart = /(panier|cart|basket)/.test(hay);
             const add = /\b(ajouter|ajout|add)\b|add[-_ ]?to[-_ ]?cart|addtocart|btn[-_]?add/.test(hay);
             const more = /(augmenter|increment|increase)/.test(hay) && /(quantit|qty)/.test(hay);
-            if ((add && cart) || (cart && /^\s*\+\s*$/.test(node.textContent || '')) || more) return true;
+            if ((add && cart) || (cart && /^\s*\+\s*$/.test(node.textContent || '')) || more || add) return true;
         }
         return false;
     }
 
     document.addEventListener('click', (e) => {
+        if (advanced || atLast) return;
         if (!looksLikeAddToCart(e)) return;
-        validateAndAdvance();
+        advanced = true;
+        reportDone(state.idx);
+        // On le DIT : sans retour visible, un passage au suivant qui tarde
+        // ressemble à une extension qui ne fait rien.
+        const item = box.querySelector('.mcw-item');
+        if (item) item.textContent = 'Ajouté ✓ — je passe au suivant…';
+        setTimeout(() => goTo(state.idx + 1), 1200); // laisse le panier s'enregistrer
     }, true);
 
+    /*
+     * Le site relance la file dans le MÊME onglet (`window.open(..., 'storeCart')`).
+     * Quand seule l'ancre change, le navigateur ne recharge rien : le script
+     * était déjà chargé, il ne relisait jamais la nouvelle file, et l'extension
+     * paraissait éteinte — il fallait recharger la page pour « la réveiller ».
+     */
+    window.addEventListener('hashchange', () => {
+        const neuf = parseHash();
+        if (!neuf) return;
+        remember(neuf);
+        location.reload();
+    });
 })();
