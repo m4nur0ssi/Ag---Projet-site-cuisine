@@ -440,8 +440,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         doneKeysOf(it).forEach((k) => restant.delete(k));
         persistDone(restant);
 
-        // Supprimer est irréversible ; le filet l'est aussi. On ne demande pas
-        // avant, on rattrape après — le temps que la capsule reste à l'écran.
+        // Les suppressions dans « En + » restent silencieuses.
+        if (mode === 'plus') return;
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: {
                 text: `${it.name || it.display} supprimé`,
@@ -1147,9 +1147,6 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                         onClick={() => {
                                             haptic(8);
                                             removeCartRecipe(r.id);
-                                            window.dispatchEvent(new CustomEvent('magic-toast-notify', {
-                                                detail: `${decodeHtml(r.title)} retirée de la liste`,
-                                            }));
                                         }}
                                     >Retirer</button>
                                 </div>

@@ -6371,16 +6371,24 @@
     line-height: 1.2;
 }
 /* La hauteur est celle du visualViewport, donc de l'écran AU-DESSUS du clavier. */
-.courseAddDialog { padding: 16px; box-sizing: border-box; }
+.courseAddDialog {
+    padding: 16px; box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.88);
+    -webkit-backdrop-filter: blur(64px);
+    backdrop-filter: blur(64px);
+}
 .courseAddDialogCard {
     position: relative; max-height: 100%; box-sizing: border-box;
     overflow-y: auto; overscroll-behavior: contain;
 }
-.courseAddDialogCard .composeTitle { padding-right: 28px; }
+.courseAddDialogCard .composeTitle { padding-right: 60px; min-height: 52px; }
 .courseAddClose {
     position: absolute; top: 12px; right: 12px;
-    width: 30px; height: 30px; border: none; border-radius: 50%;
-    color: inherit; background: rgba(128,128,128,.2); cursor: pointer;
+    width: 52px; height: 52px; border-radius: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: white; background: rgba(0, 0, 0, 0.55); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; line-height: 1; font-weight: 800;
 }
 .courseAddDialogCard .courseForm { align-items: flex-start; }
 .courseAddDialogCard .courseAddChamp { flex-direction: column; }
