@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7993",
         "title": "Pâtes à la Carbonara",
         "description": "Découvrez une recette authentique de pâtes à la Carbonara, sans crème fraîche ni lardons industriels. Cette version met en avant le guanciale croustillant et une sauce crémeuse à base de Pecorino Romano, de poivre noir et du gras de cuisson du gua...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7993-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
