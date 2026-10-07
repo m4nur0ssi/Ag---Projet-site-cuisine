@@ -85,6 +85,9 @@ const wordRe = (kw: string): RegExp => {
 // Renvoie l'id du rayon déduit du nom (sans tenir compte des overrides).
 export const autoRayon = (name: string): string => {
     const n = normalizeIng(name);
+    if (/\b(fecule|farine|conserve|poudre|concentre|coulis|sec|seche|sechee)\b/.test(n)) return 'epicerie';
+    if (/\b(sucre glace|glace royale)\b/.test(n)) return 'epicerie';
+    if (/\blait de coco\b/.test(n)) return 'epicerie';
     for (const [rayon, words] of KEYWORDS) {
         for (const w of words) {
             if (wordRe(w).test(n)) return rayon;

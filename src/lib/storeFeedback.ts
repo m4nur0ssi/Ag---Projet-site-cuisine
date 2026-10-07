@@ -13,7 +13,7 @@ import { ecrireStock } from '@/lib/stockage';
 
 const FLAG = 'magic-store-ext-active';
 
-const STORE_HOSTS = ['carrefour.fr', 'picard.fr', 'monoprix.fr', 'leclercdrive.fr'];
+const STORE_HOSTS = ['carrefour.fr', 'picard.fr', 'monoprix.fr', 'leclercdrive.fr', 'auchan.fr', 'intermarche.com'];
 
 function fromStore(origin: string): boolean {
     try {
@@ -31,7 +31,7 @@ export function isStoreExtensionActive(): boolean {
         if (typeof document !== 'undefined'
             && document.documentElement.hasAttribute('data-courses-magiques')) return true;
     } catch { /* rendu serveur */ }
-    try { return localStorage.getItem(FLAG) === '1'; } catch { return false; }
+    return false;
 }
 
 /**
@@ -62,9 +62,10 @@ export function obstacleAssistant(): string {
 export interface StoreDoneMessage { index: number; term: string }
 
 // Renvoie la fonction de désabonnement (à appeler dans le cleanup du useEffect).
-export function onStoreItemDone(cb: (msg: StoreDoneMessage) => void): () => void {
+export function onStoreItemDone(cb: (msg: StoreDoneMessage) => void, sourceWindow?: () => Window | null): () => void {
     const handler = (e: MessageEvent) => {
-        if (!fromStore(e.origin)) return; // seul un site magasin peut nous parler
+        if (!fromStore(e.origin)) return;
+        if (sourceWindow && e.source !== sourceWindow()) return; // seul un site magasin peut nous parler
         const d = e.data as any;
         if (!d || d.source !== 'courses-magiques' || d.type !== 'item-done') return;
         if (typeof d.index !== 'number') return;

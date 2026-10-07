@@ -5,7 +5,7 @@ import { ecrireStock } from '@/lib/stockage';
 
 // Clés localStorage de l'état "courses" synchronisées dans Supabase (table shopping_state).
 // NB: meal-planner-week est déjà synchronisé via la table meal_plans → pas ici.
-const KEYS = ['magic-shopping-list', 'shop-done', 'meal-week-checked', 'jourj-in-fused'];
+const KEYS = ['magic-shopping-list', 'shop-done', 'meal-week-checked', 'jourj-in-fused', 'week-in-fused', 'shop-qty', 'shop-rayon-overrides', 'meal-week-checked-sig', 'shop-vus', 'shop-slots-sig'];
 
 /**
  * Quand ce téléphone a-t-il modifié la liste pour la dernière fois ?
@@ -35,12 +35,15 @@ function appliquerCloud(cloud: Record<string, unknown>, quand?: string | null): 
     hydratationEnCours = true;
     let changed = false;
     KEYS.forEach(k => {
-        if (!(k in cloud)) return;
+        if (!(k in cloud)) {
+            if (localStorage.getItem(k) != null) { localStorage.removeItem(k); changed = true; }
+            return;
+        }
         const v = typeof cloud[k] === 'string' ? (cloud[k] as string) : JSON.stringify(cloud[k]);
         if (localStorage.getItem(k) !== v) { ecrireStock(k, v); changed = true; }
     });
-    hydratationEnCours = false;
     if (changed) window.dispatchEvent(new Event('shoppingListUpdated'));
+    hydratationEnCours = false;
     return changed;
 }
 
@@ -147,6 +150,7 @@ export function startShoppingSync(): void {
     if (started || typeof window === 'undefined') return;
     started = true;
     const schedule = () => {
+        if (hydratationEnCours) return;
         noterGesteLocal();
         if (pushTimer) clearTimeout(pushTimer);
         pushTimer = setTimeout(() => { pushNow().catch(() => {}); }, 1500);

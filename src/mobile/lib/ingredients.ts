@@ -4,10 +4,8 @@ export const normalizeIng = (s: string) =>
     (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
         .replace(/œ/g, 'oe').replace(/æ/g, 'ae').trim();
 
-// Unités de MESURE réelles uniquement. Les contenants (gousse, tranche, sachet, verre…)
-// sont volontairement EXCLUS : ils sont retirés du nom (stripMeasure) pour que
-// "1 gousse d'ail" fusionne avec "ail" (clé par nom, pas par contenant).
-const KNOWN_UNITS = ['g', 'kg', 'mg', 'ml', 'cl', 'l', 'dl', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c'];
+// Conserve les mesures et contenants : une tasse ne devient pas une pièce.
+const KNOWN_UNITS = ['piece', 'pieces', 'gousse', 'gousses', 'tranche', 'tranches', 'tasse', 'tasses', 'sachet', 'sachets', 'verre', 'verres', 'boite', 'boites', 'bouquet', 'bouquets', 'brin', 'brins', 'pot', 'pots', 'barquette', 'barquettes', 'pincee', 'pincees', 'gr', 'gramme', 'grammes', 'litre', 'litres', 'g', 'kg', 'mg', 'ml', 'cl', 'l', 'dl', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c'];
 
 // Conversion vers une unité de base (g pour le poids, ml pour le volume) afin
 // d'ADDITIONNER des quantités exprimées dans des unités différentes (ex. 1 kg + 200 g,
@@ -85,18 +83,19 @@ const stripMeasure = (s: string) => {
 
 export const parseIngredient = (raw: string): ParsedIng => {
     let s = (raw || '').replace(/\s+/g, ' ').trim();
+    s = s.replace(/^(\d+(?:[.,]\d+)?)\s*(?:c\.?\s*[àa]\s*s\.?|cuill[eè]res?\s*[àa]\s*soupe)\s+/i, '$1 cas ').replace(/^(\d+(?:[.,]\d+)?)\s*(?:c\.?\s*[àa]\s*c\.?|cuill[eè]res?\s*[àa]\s*caf[ée])\s+/i, '$1 cac ');
     s = stripLeadingEmoji(s).trim();
     // Fraction en tête : "1/2 oignon rouge" → 0.5
     const frac = s.match(/^(\d+)\s*\/\s*(\d+)\s+(.*)$/);
     if (frac) {
         const q = parseInt(frac[1], 10) / parseInt(frac[2], 10);
-        const name = stripMeasure(frac[3].trim());
-        return { qty: Number.isFinite(q) ? q : null, unit: '', name: name || frac[3].trim() };
+        const parsed = parseIngredient(`1 ${frac[3]}`);
+        return { ...parsed, qty: Number.isFinite(q) ? q * (parsed.qty ?? 1) : null };
     }
     const m = s.match(/^(\d+(?:[.,]\d+)?)\s*([^\s\d]+)?\s*(.*)$/);
     if (m) {
         let qty: number | null = parseFloat(m[1].replace(',', '.'));
-        let unit = (m[2] || '').toLowerCase().replace(/\.$/, '');
+        let unit = normalizeIng(m[2] || '').replace(/\.$/, '');
         let name = (m[3] || '').trim();
         const unitNorm = normalizeIng(unit);
         if (unit && CONTAINER_TO_ML[unitNorm] != null) {
@@ -259,7 +258,11 @@ const SECTION_SUFFIX_RE = /\s+pour\s+(l[ae]s?|l['’]|du|des|une?|le)\s+.+$/;
 const stripPrep = (n: string) => n.replace(SECTION_SUFFIX_RE, '').replace(PREP_RE, '').replace(/\s+/g, ' ').trim();
 
 /** Une pièce et une absence d'unité, c'est la même chose dans un caddie. */
-const uniteDeBase = (u: string) => (u === 'piece' || u === 'pièce' || u === 'pieces' ? '' : u);
+const uniteDeBase = (unit: string) => {
+    const u = normalizeIng(unit);
+    const measures: Record<string, string> = { gousses: 'gousse', tranches: 'tranche', tasses: 'tasse', sachets: 'sachet', verres: 'verre', boites: 'boite', bouquets: 'bouquet', brins: 'brin', pots: 'pot', barquettes: 'barquette', pincees: 'pincee', cs: 'cas', cc: 'cac' };
+    return measures[u] || (u === 'piece' || u === 'pieces' ? '' : u);
+};
 
 export const canonicalIng = (name: string, unit: string = '', raw: string = ''): { name: string; unit: string } => {
     let n = depluralize(stripPrep(
@@ -287,7 +290,7 @@ export const canonicalIng = (name: string, unit: string = '', raw: string = ''):
         return { name: base, unit: uniteDeBase(unit) }; // frais : conserve l'unité (g, etc.) pour additionner
     }
     // La poudre rejoint le produit : « ail en poudre » compte avec « ail ».
-    if (isPowder) return { name: base, unit: '' };
+    if (isPowder) return { name: base, unit: uniteDeBase(unit) };
     return { name: n, unit: uniteDeBase(unit) };
 };
 
@@ -470,8 +473,20 @@ export interface ConsolItem {
 // ── État "rayé / fait" d'une ligne consolidée ──
 // Identité persistée dans localStorage 'shop-done'. Pour un item planifié on raye toutes
 // ses clés de créneau ; pour un ajout manuel on utilise `m:<clé>`.
-export const doneKeysOf = (it: ConsolItem): string[] => (it.keys.length ? it.keys : ['m:' + it.key]);
-export const isItemDone = (it: ConsolItem, done: Set<string>): boolean => doneKeysOf(it).every(k => done.has(k));
+export const extraLineKey = (id: string, raw: string): string => `extra|${encodeURIComponent(id)}|${encodeURIComponent(raw)}`;
+export const doneKeysOf = (it: ConsolItem): string[] => it.keys.length ? it.keys : ['m:' + it.key];
+const sourceKeyDone = (key: string, done: Set<string>): boolean =>
+    done.has(key) || done.has(key.split('|').slice(0, 3).join('|'));
+export const isItemDone = (it: ConsolItem, done: Set<string>): boolean =>
+    (it.manual && done.has('m:' + it.key)) || doneKeysOf(it).every(k => sourceKeyDone(k, done));
+
+export const sourceLineDone = (key: string, items: ConsolItem[], done: Set<string>): boolean => {
+    if (done.has(key)) return true;
+    const sources = items.filter(it => it.keys.some(k => k.startsWith(key + '|')));
+    return sources.length > 0 && sources.every(it =>
+        (it.manual && done.has('m:' + it.key)) ||
+        it.keys.filter(k => k.startsWith(key + '|')).every(k => sourceKeyDone(k, done)));
+};
 
 // Texte d'ingrédient fidèle : retire seulement l'emoji / la puce de tête et normalise
 // les espaces. Conserve la quantité et l'unité exactement comme écrites dans la recette.
@@ -499,13 +514,14 @@ export const buildConsolidatedItems = (
     shoppingList: Record<string, any>,
     includeJourJ: boolean = true,
     includeWeek: boolean = true,
+    done: Set<string> = new Set(),
 ): ConsolItem[] => {
     const map = new Map<string, ConsolItem>();
     let ord = 0;
     // 1 ligne d'ingrédient = 1 entrée (pas de découpage) → identique à la recette.
     // Fusion par produit+unité UNIQUEMENT pour additionner les quantités entre recettes.
     const add = (raw: string, opts?: { slotKey?: string; manual?: boolean }) => {
-        if (isHeadingLine(raw)) return;
+        if (isHeadingLine(raw) || (opts?.slotKey && weekChecked.has(opts.slotKey))) return;
         const clean = cleanIngredientText(raw);
         const p = parseIngredient(raw);
         if (!p.name) return;
@@ -518,6 +534,8 @@ export const buildConsolidatedItems = (
         const dispName = normalizeIng(p.name) === c.name ? p.name : (DISPLAY_ACCENT[c.name] || c.name);
         p.name = dispName; p.unit = b.unit;
         const key = `${c.name}|${b.unit}`;
+        if (opts?.slotKey && sourceKeyDone(opts.slotKey, done)) return;
+        if (opts?.manual && done.has('m:' + key)) return; // anciennes listes
         const existing = map.get(key);
         if (existing) {
             existing.count++;
@@ -566,11 +584,14 @@ export const buildConsolidatedItems = (
             });
         });
     });
-    Object.values(shoppingList || {}).forEach((r: any) => {
+    Object.entries(shoppingList || {}).forEach(([id, r]: [string, any]) => {
         if (r?.source === 'planner') return;
         (r?.ingredients || []).forEach((ing: any) => {
+            if (typeof ing !== 'string' && ing?.checked) return;
             const raw = typeof ing === 'string' ? ing : ing?.name;
-            if (raw) add(raw, { manual: true });
+            if (raw) expandIngredientLines(raw).forEach((piece, sub) => {
+                add(piece, { manual: true, slotKey: `${extraLineKey(id, raw)}|${sub}` });
+            });
         });
     });
     // 2e passe : un MÊME produit exprimé en unités différentes (ex. "brocoli" sans
@@ -601,7 +622,7 @@ export const buildConsolidatedItems = (
             count: group.reduce((s, g) => s + g.count, 0),
             manual: group.some(g => g.manual),
             ord: group.reduce<number | undefined>((m, g) => (g.ord != null && (m == null || g.ord > m) ? g.ord : m), base.ord),
-            display,
+            display, qty: null, unit: '',
         });
     }
     // Tri : alphabétique par NOM d'ingrédient uniquement (quantités ignorées).
@@ -613,14 +634,8 @@ export const buildConsolidatedItems = (
 // Compte le nombre de lignes de la liste fusionnée (pour la pastille de nav).
 export const countConsolidatedLines = (): number => {
     if (typeof window === 'undefined') return 0;
-    const j = (k: string, d: any) => { try { return JSON.parse(localStorage.getItem(k) || d); } catch { return JSON.parse(d); } };
-    const weekPlan = j('meal-planner-week', '{}');
-    const shoppingList = j('magic-shopping-list', '{}');
-    const weekChecked = new Set<string>(j('meal-week-checked', '[]'));
-    const includeJourJ = localStorage.getItem('jourj-in-fused') !== 'false';
-    const includeWeek = localStorage.getItem('week-in-fused') !== 'false';
-    const done = new Set<string>(j('shop-done', '[]'));
-    // Même décompte que l'en-tête « N articles à prendre » : on retire les rayés.
-    return buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ, includeWeek)
-        .filter((it) => !isItemDone(it, done)).length;
+    const j = (k: string, fallback: string) => { try { return JSON.parse(localStorage.getItem(k) || fallback); } catch { return JSON.parse(fallback); } };
+    return buildConsolidatedItems(j('meal-planner-week', '{}'), new Set(j('meal-week-checked', '[]')),
+        j('magic-shopping-list', '{}'), localStorage.getItem('jourj-in-fused') !== 'false',
+        localStorage.getItem('week-in-fused') !== 'false', new Set(j('shop-done', '[]'))).length;
 };
