@@ -1152,11 +1152,34 @@ function videoIdDe(recette) {
 }
 
 /** Télécharge la vidéo + extrait des frames (4 premières secondes, puis fin), réduites à 448px. */
+function miniatureTiktok(id, dossier) {
+    try {
+        const json = execSync(`curl -sL --max-time 30 -A "Mozilla/5.0" "https://www.tiktok.com/oembed?url=https://www.tiktok.com/@t/video/${id}"`).toString();
+        const url = JSON.parse(json).thumbnail_url;
+        if (!url) return null;
+        const out = path.join(dossier, 'miniature.jpg');
+        execSync(`curl -sL --max-time 30 -A "Mozilla/5.0" -o ${JSON.stringify(out)} ${JSON.stringify(url)}`);
+        return fs.existsSync(out) && fs.statSync(out).size > 5000 ? out : null;
+    } catch { return null; }
+}
+
 function framesDeLaVideo(id, dossier) {
     const env = { ...process.env, PATH: `${BIN}:${process.env.PATH}` };
     const mp4 = path.join(dossier, 'v.mp4');
-    execSync(`yt-dlp --no-warnings -o ${JSON.stringify(mp4)} "https://www.tiktok.com/@t/video/${id}"`,
-        { env, stdio: 'ignore', timeout: 90000 });
+    try {
+        execSync(`yt-dlp --no-warnings -o ${JSON.stringify(mp4)} "https://www.tiktok.com/@t/video/${id}"`,
+            { env, stdio: 'ignore', timeout: 90000 });
+    } catch (e) {
+        /*
+         * TikTok refuse le téléchargement aux IP de datacenter : sur le runner
+         * GitHub, yt-dlp échouait et la carbonara 7993 (2026-10-07) est restée
+         * sans photo. L'oEmbed public, lui, répond partout et donne la
+         * miniature officielle de la vidéo — presque toujours le plat fini.
+         */
+        const couv = miniatureTiktok(id, dossier);
+        if (couv) { console.log('  🎬 vidéo refusée → miniature TikTok'); return [couv]; }
+        throw e;
+    }
     const dur = parseFloat(execSync(
         `ffprobe -v error -show_entries format=duration -of csv=p=0 ${JSON.stringify(mp4)}`,
         { env }).toString().trim()) || 10;

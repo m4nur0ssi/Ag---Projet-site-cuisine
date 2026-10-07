@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Courses Magiques — assistant magasin",
-  "version": "1.4.0",
-  "description": "Parcourt ta liste de courses ingrédient par ingrédient directement sur Carrefour / Picard / Monoprix / Leclerc Drive, sans changer d'onglet.",
+  "version": "1.6.0",
+  "description": "Assistant de courses pour Carrefour, Picard, Monoprix, Leclerc Drive, Auchan et Intermarché.",
   "content_scripts": [
     {
       "matches": [
@@ -13,7 +13,9 @@
         "*://lesrecettesmagiques.fr/*",
         "*://www.lesrecettesmagiques.fr/*",
         "*://*.vercel.app/*",
-        "http://localhost/*"
+        "http://localhost/*",
+        "*://*.auchan.fr/*",
+        "*://*.intermarche.com/*"
       ],
       "js": [
         "content.js"

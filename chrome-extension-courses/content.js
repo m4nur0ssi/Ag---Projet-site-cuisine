@@ -18,7 +18,7 @@
         || /\.vercel\.app$/.test(location.hostname)
         || location.hostname === 'localhost';
     if (SUR_LE_SITE) {
-        document.documentElement.setAttribute('data-courses-magiques', '1.4.0');
+        document.documentElement.setAttribute('data-courses-magiques', '1.6.0');
         try { localStorage.setItem('magic-store-ext-active', '1'); } catch (_) {}
         return;
     }
@@ -31,10 +31,13 @@
         const back = p.get('mo') || '';
         if (!raw) return null;
         try {
-            const json = decodeURIComponent(escape(atob(decodeURIComponent(raw))));
-            const list = JSON.parse(json);
-            if (!Array.isArray(list) || !list.length) return null;
-            return { list, idx: Math.max(0, parseInt(p.get('mi') || '0', 10) || 0), raw, back: back ? decodeURIComponent(back) : '' };
+            const json = decodeURIComponent(escape(atob(raw)));
+            const data = JSON.parse(json);
+            const list = Array.isArray(data) ? data : data.terms;
+            if (!Array.isArray(list) || !list.length || !list.every(term => typeof term === 'string')) return null;
+            const session = Array.isArray(data) ? '' : (typeof data.session === 'string' ? data.session : '');
+            const labels = Array.isArray(data.labels) ? data.labels : list;
+            return { list, session, labels, idx: Math.max(0, Math.min(list.length - 1, parseInt(p.get('mi') || '0', 10) || 0)), raw, back };
         } catch (_) { return null; }
     }
 
@@ -66,12 +69,20 @@
             // Une file oubliée depuis une semaine n'est plus la liste du jour.
             if (m && m.at && Date.now() - m.at > 7 * 24 * 3600 * 1000) { forget(); return null; }
             if (!m || !m.raw) return null;
-            const json = decodeURIComponent(escape(atob(decodeURIComponent(m.raw))));
-            const list = JSON.parse(json);
-            if (!Array.isArray(list) || !list.length) return null;
-            return { list, idx: Math.max(0, m.idx || 0), raw: m.raw, back: m.back || '' };
+            const json = decodeURIComponent(escape(atob(m.raw)));
+            const data = JSON.parse(json);
+            const list = Array.isArray(data) ? data : data.terms;
+            if (!Array.isArray(list) || !list.length || !list.every(term => typeof term === 'string')) return null;
+            const session = Array.isArray(data) ? '' : (typeof data.session === 'string' ? data.session : '');
+            const labels = Array.isArray(data.labels) ? data.labels : list;
+            return { list, session, labels, idx: Math.max(0, Math.min(list.length - 1, m.idx || 0)), raw: m.raw, back: m.back || '' };
         } catch (_) { return null; }
     }
+
+    window.addEventListener('hashchange', () => {
+        const next = parseHash();
+        if (next) { remember(next); location.reload(); }
+    });
 
     const fromHash = parseHash();
     const state = fromHash || recall();
@@ -117,27 +128,45 @@
             const base = m ? `${location.origin}${m[0]}` : location.origin;
             return `${base}/recherche.aspx?TexteRecherche=${q}`;
         }
-        return `https://www.google.com/search?q=${q}`;
+        if (host.includes('auchan')) return `https://www.auchan.fr/recherche?text=${q}`;
+        if (host.includes('intermarche')) return `https://www.intermarche.com/recherche/${q}`;
+        return location.href;
     }
 
     function goTo(i) {
         const idx = Math.max(0, Math.min(i, state.list.length - 1));
         // On reconstruit l'URL AVEC le hash → l'état survit à la navigation même-onglet.
         const back = state.back ? `&mo=${encodeURIComponent(state.back)}` : '';
-        location.href = searchUrl(state.list[idx]) + `#mlist=${state.raw}&mi=${idx}${back}`;
+        location.href = searchUrl(state.list[idx]) + `#mlist=${encodeURIComponent(state.raw)}&mi=${idx}${back}`;
     }
 
     // --- Renvoie « article validé » à l'onglet des Recettes Magiques ------
     // L'onglet magasin a été ouvert par le site (window.open nommé), donc
     // `window.opener` est notre page. Origine explicite : jamais '*'.
-    function reportDone(idx) {
-        if (!state.back || !window.opener || window.opener.closed) return;
+    function reportDone(idx, accepted) {
+        if (!state.back || !window.opener || window.opener.closed) {
+            box.querySelector('.mcw-hint').textContent = 'Retour vers la liste indisponible. Reviens dans Recettes Magiques pour valider cet article ; il n’a pas été barré automatiquement.';
+            return;
+        }
+        let timeout;
+        const receive = (event) => {
+            const data = event.data;
+            if (event.origin !== state.back || event.source !== window.opener || !data
+                || data.source !== 'courses-magiques' || data.type !== 'item-done-ack'
+                || data.index !== idx || data.session !== state.session) return;
+            clearTimeout(timeout);
+            window.removeEventListener('message', receive);
+            accepted();
+        };
+        window.addEventListener('message', receive);
+        timeout = setTimeout(() => {
+            window.removeEventListener('message', receive);
+            box.querySelector('.mcw-hint').textContent = 'La liste n’a pas confirmé la validation. Garde-la ouverte et clique de nouveau sur « Ajouté → suivant ».';
+        }, 3000);
         try {
-            window.opener.postMessage(
-                { source: 'courses-magiques', type: 'item-done', index: idx, term: state.list[idx] || '' },
-                state.back,
-            );
-        } catch (_) { /* onglet fermé entre-temps */ }
+            window.opener.postMessage({ source: 'courses-magiques', type: 'item-done', index: idx,
+                term: state.list[idx] || '', session: state.session }, state.back);
+        } catch (_) { clearTimeout(timeout); window.removeEventListener('message', receive); }
     }
 
     const atLast = state.idx >= state.list.length - 1;
@@ -192,22 +221,65 @@
             <span class="mcw-count">${state.idx + 1}/${state.list.length}</span>
             <button class="mcw-close" title="Fermer">✕</button>
         </div>
-        <div class="mcw-item" title="${state.list[state.idx]}">${state.idx + 1}. ${state.list[state.idx]}</div>
+        <div class="mcw-item"></div>
         <div class="mcw-actions">
             <button class="mcw-prev" ${state.idx === 0 ? 'disabled' : ''}>◀</button>
             <button class="mcw-next">${atLast ? '✓ Terminer' : 'Ajouté → suivant ▶'}</button>
         </div>
         <div class="mcw-hint">Astuce : ajoute le produit au panier, puis clique « suivant ».</div>
     `;
+    box.querySelector('.mcw-item').textContent = `${state.idx + 1}. ${state.labels[state.idx] || state.list[state.idx]}`;
     document.documentElement.appendChild(box);
 
-    box.querySelector('.mcw-close').addEventListener('click', () => { forget(); box.remove(); });
-    box.querySelector('.mcw-prev').addEventListener('click', () => goTo(state.idx - 1));
-    box.querySelector('.mcw-next').addEventListener('click', () => {
-        reportDone(state.idx); // « Ajouté » → rayé dans la liste restée ouverte
-        if (atLast) { forget(); box.querySelector('.mcw-item').textContent = '✅ Liste terminée !'; box.querySelector('.mcw-actions').remove(); }
-        else goTo(state.idx + 1);
-    });
+    let advanceTimer = null;
+    let completed = false;
+    let generation = 0;
+    let closed = false;
+    let baseline = null;
+    let productScope = null;
+    let manuallyConfirmed = false;
+    function evidence(scope) {
+        const quantities = scope && scope.querySelectorAll ? [...scope.querySelectorAll(
+            'input[type="number"], [role="spinbutton"], [data-testid*="quantity" i], [class*="quantity-value" i]'
+        )].map(el => {
+            const value = el.value || el.getAttribute('aria-valuenow') || el.textContent || '';
+            return /^\s*\d+(?:[.,]\d+)?\s*$/.test(value) ? Number(value.replace(',', '.')) : 0;
+        }).join('|') : '';
+        const status = [...document.querySelectorAll('[role="status"], [role="alert"], [class*="toast" i]')]
+            .map(el => el.textContent || '').join(' ').toLowerCase();
+        return { quantities, status };
+    }
+    function confirmed(before, after) {
+        if (/erreur|echec|épuisé|indisponible|impossible|error|failed/.test(after.status) && after.status !== before.status) return false;
+        if (after.status !== before.status && /ajout[eé].*(panier)|added.*(cart|basket)/.test(after.status)) return true;
+        const a = before.quantities.split('|').map(Number), b = after.quantities.split('|').map(Number);
+        return b.some((value, i) => value > (a[i] || 0));
+    }
+    function validateAndAdvance(manual = false) {
+        if (completed || closed) return;
+        const currentGeneration = ++generation;
+        manuallyConfirmed = manuallyConfirmed || manual;
+        if (advanceTimer) clearTimeout(advanceTimer);
+        box.querySelector('.mcw-hint').textContent = 'Produit suivant dans 2 secondes après confirmation. Chaque ajout relance le délai.';
+        advanceTimer = setTimeout(() => {
+            if (!manuallyConfirmed && (!baseline || !confirmed(baseline, evidence(productScope)))) {
+                box.querySelector('.mcw-hint').textContent = 'Ajout au panier non confirmé. Vérifie la quantité, puis clique « Ajouté → suivant » si le produit est bien dans ton panier.';
+                return;
+            }
+            reportDone(state.idx, () => {
+                if (closed || completed || generation !== currentGeneration) return;
+                completed = true;
+                if (atLast) {
+                    forget();
+                    box.querySelector('.mcw-item').textContent = '✅ Liste terminée !';
+                    box.querySelector('.mcw-actions').remove();
+                } else goTo(state.idx + 1);
+            });
+        }, 2000);
+    }
+    box.querySelector('.mcw-close').addEventListener('click', () => { closed = true; clearTimeout(advanceTimer); forget(); box.remove(); });
+    box.querySelector('.mcw-prev').addEventListener('click', () => { closed = true; clearTimeout(advanceTimer); goTo(state.idx - 1); });
+    box.querySelector('.mcw-next').addEventListener('click', () => validateAndAdvance(true));
 
     // --- Auto-détection du clic "Ajouter au panier" -----------------------
     // Trois pièges rencontrés sur les sites de magasin :
@@ -218,7 +290,7 @@
     //      un simple « Ajouter », suffit à mettre au panier ;
     //   3. le texte n'est parfois qu'une icône : il faut lire aussi l'aria-label,
     //      le data-testid et les classes.
-    let advanced = false;
+
 
     function nodeText(node) {
         const cls = typeof node.className === 'string' ? node.className : (node.getAttribute('class') || '');
@@ -241,38 +313,22 @@
             const node = el.matches && el.matches('button, a, [role="button"], input[type="button"], input[type="submit"]')
                 ? el
                 : (el.closest && el.closest('button, a, [role="button"]'));
-            if (!node) continue;
+            if (!node || node.disabled || node.getAttribute('aria-disabled') === 'true') continue;
             const hay = nodeText(node);
             const cart = /(panier|cart|basket)/.test(hay);
             const add = /\b(ajouter|ajout|add)\b|add[-_ ]?to[-_ ]?cart|addtocart|btn[-_]?add/.test(hay);
             const more = /(augmenter|increment|increase)/.test(hay) && /(quantit|qty)/.test(hay);
-            if ((add && cart) || (cart && /^\s*\+\s*$/.test(node.textContent || '')) || more || add) return true;
+            if ((add && cart) || (cart && /^\s*\+\s*$/.test(node.textContent || '')) || more) return node;
         }
         return false;
     }
 
     document.addEventListener('click', (e) => {
-        if (advanced || atLast) return;
-        if (!looksLikeAddToCart(e)) return;
-        advanced = true;
-        reportDone(state.idx);
-        // On le DIT : sans retour visible, un passage au suivant qui tarde
-        // ressemble à une extension qui ne fait rien.
-        const item = box.querySelector('.mcw-item');
-        if (item) item.textContent = 'Ajouté ✓ — je passe au suivant…';
-        setTimeout(() => goTo(state.idx + 1), 1200); // laisse le panier s'enregistrer
+        const button = looksLikeAddToCart(e);
+        if (!button) return;
+        const scope = button.closest && button.closest('article, [data-testid*="product" i], [class*="product-card" i], [class*="productCard"], [class*="quantity" i]');
+        if (!baseline || productScope !== scope) { productScope = scope; baseline = evidence(scope); }
+        validateAndAdvance();
     }, true);
 
-    /*
-     * Le site relance la file dans le MÊME onglet (`window.open(..., 'storeCart')`).
-     * Quand seule l'ancre change, le navigateur ne recharge rien : le script
-     * était déjà chargé, il ne relisait jamais la nouvelle file, et l'extension
-     * paraissait éteinte — il fallait recharger la page pour « la réveiller ».
-     */
-    window.addEventListener('hashchange', () => {
-        const neuf = parseHash();
-        if (!neuf) return;
-        remember(neuf);
-        location.reload();
-    });
 })();

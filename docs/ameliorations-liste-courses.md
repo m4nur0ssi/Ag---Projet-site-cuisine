@@ -4,11 +4,28 @@ Date : 7 octobre 2026.
 
 ## Statut et périmètre
 
-À la demande de Manu, les changements réalisés pendant cette conversation sont annulés. Ce document conserve les constats, les demandes et les critères de validation pour une reprise ultérieure. Il décrit des améliorations à faire, pas des fonctionnalités actuellement livrées.
+Les fonctionnalités sont remises en place et publiées à la demande de Manu (7 octobre 2026). Ce document conserve le cahier des améliorations et les critères de validation. La vérification dans chaque magasin avec une extension installée reste distincte des tests locaux.
 
 Le commit annulé est `94dcf953` : `fix: unify shopping views and remaining quantities with store assistant`. La référence avant ces changements est `422d75b7`. Le retour arrière concerne le site, les moteurs d’ingrédients, la synchronisation, le pont magasin, l’extension Chrome, son archive et les tests ajoutés.
 
 Le retour arrière du code ne restaure pas les données de courses des utilisateurs et ne rétrograde pas automatiquement une extension déjà chargée dans Chrome.
+
+## Reprise locale
+
+- Les trois vues et les quantités restantes sont remises localement.
+- Les moteurs ordinateur/mobile partagent le même code.
+- Le libellé « As 5s patate » provient du format source `4 à 5 patates` : les intervalles sont désormais reconnus comme des plages, sans choisir une quantité arbitraire.
+- Les unités incompatibles restent affichées et ne sont pas remplacées par une quantité en pièces.
+- Les retouches sont des besoins totaux ; les achats validés sont déduits et les retouches périmées sont retirées lors d’un changement de source.
+- L’annulation d’un vidage restaure aussi les articles déjà pris et les quantités retouchées.
+- Les masques et validations sont réconciliés avant affichage lorsque les recettes ou leurs accompagnements changent.
+- Les ajouts hors planning restent persistants et utilisent le même état d’achat.
+- Le planificateur et la liste emploient « Menu spécial » pour `JourJ`.
+- L’extension locale 1.6.0 transporte une file stable, un identifiant de session et les quantités à afficher.
+- Le passage au suivant attend deux secondes après le dernier ajout, une preuve visible de l’ajout (ou une confirmation manuelle explicite) et un accusé de réception de la liste.
+- Si le retour vers la liste est indisponible, l’assistant le dit et ne prétend pas que l’article a été barré.
+- Aucune extension n’est installée ou activée dans Chrome par ces changements de code. Les parcours réels par enseigne restent à vérifier avec cette version chargée.
+- Publié en production le 7 octobre 2026, à la demande de Manu.
 
 ## Architecture relevée
 
