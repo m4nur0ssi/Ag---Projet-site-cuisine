@@ -12,6 +12,10 @@
 
 import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import dynamic from 'next/dynamic';
+import { suggerer } from '@/lib/suggestionsCourses';
+
+const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
@@ -43,6 +47,7 @@ import { ecrireStock } from '@/lib/stockage';
 import { readCave, drinkWindow, type CaveWine } from '@/lib/cave';
 import { intentionVin, compacterCave, accordLocal } from '@/lib/accordCave';
 import { clavierRepris } from '@/lib/clavier';
+import { useBackToClose } from './retour';
 
 const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
@@ -102,6 +107,8 @@ interface TVSpotlightProps {
      * de recherche habituel plutôt qu'une liste qui déroule en bas.
      */
     panneau?: boolean;
+    /** Consulter la fiche avant de confirmer le créneau du planificateur. */
+    previewBeforeSelect?: boolean;
 }
 
 /**
@@ -141,11 +148,21 @@ function motsInterdits(mot: string): string[] {
     return [m];
 }
 
-export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false }: TVSpotlightProps) {
+export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false, previewBeforeSelect = false }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
     const [ingInput, setIngInput] = useState('');
+    const [preview, setPreview] = useState<Recipe | null>(null);
+    useBackToClose(!!preview && (open || embedded), () => setPreview(null));
+    const [suggestionIndex, setSuggestionIndex] = useState(-1);
+    const [suggestionsOpen, setSuggestionsOpen] = useState(true);
+    const suggestions = useMemo(() => mode === 'ingredients' && suggestionsOpen
+        ? suggerer(ingInput).filter((name) => !ingTags.some((tag) => normalize(tag) === normalize(name)))
+        : [], [mode, ingInput, ingTags, suggestionsOpen]);
+    useEffect(() => { setSuggestionIndex(-1); }, [ingInput]);
+    // Le fragment en cours participe lui aussi à la recherche, sans attendre Entrée.
+    const searchedIngredients = useMemo(() => [...ingTags, ...(ingInput.trim().length >= 2 ? [ingInput.trim()] : [])], [ingTags, ingInput]);
     /**
      * Régime alimentaire : les ingrédients dont on ne VEUT PAS.
      *
@@ -523,7 +540,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                 normalize(r.category || '') === af ||
                 (r.tags || []).some((t: string) => normalize(t).includes(af)));
         }
-        if (query.trim().length > 1) {
+        if (query.trim().length > 0) {
             const q = normalize(query.trim());
             // « pâte(s) », « pasta » : on cherche des PÂTES. La sous-chaîne rendait
             // aussi la pâte brisée, la pâte à pizza et tout plat tagué « pates ».
@@ -533,7 +550,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                 : normalize(r.title).includes(q) ||
                   (r.tags || []).some((t: string) => normalize(t).includes(q)));
         }
-        if (activeFilters.length === 0 && query.trim().length <= 1) {
+        if (activeFilters.length === 0 && query.trim().length === 0) {
             const sorted = [...pool2].sort((a, b) => parseInt(b.id) - parseInt(a.id));
             // Créneau du planificateur (filter imposé) → on montre TOUT le type
             // demandé (toutes les entrées, tous les plats…), pas seulement 10.
@@ -544,8 +561,8 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
 
     // Mode ingrédients
     const ingredientResults = useMemo(() => {
-        if (mode !== 'ingredients' || ingTags.length === 0) return [];
-        const tags = ingTags.map((t) => t.toLowerCase());
+        if (mode !== 'ingredients' || searchedIngredients.length === 0) return [];
+        const tags = searchedIngredients.map((t) => t.toLowerCase());
         return pool
             .filter((r) => r.category !== 'restaurant')
             .map((r) => {
@@ -561,10 +578,10 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             // Recettes complètes d'abord, puis les plus proches.
             .sort((a, b) => b.matched - a.matched)
             .slice(0, 14);
-    }, [ingTags, mode, pool]);
+    }, [searchedIngredients, mode, pool]);
 
-    const addIngTag = () => {
-        const val = ingInput.trim().toLowerCase();
+    const addIngTag = (name = ingInput) => {
+        const val = name.trim().toLowerCase();
         if (val && !ingTags.includes(val)) setIngTags((prev) => [...prev, val]);
         setIngInput('');
     };
@@ -584,7 +601,22 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         inputRef.current?.focus();
     };
 
-    const pick = (recipe: Recipe) => { haptic(8); onRecipeSelect(recipe); if (!embedded) onClose(); };
+    const pick = (recipe: Recipe) => {
+        haptic(8);
+        if (previewBeforeSelect) {
+            inputRef.current?.blur();
+            stopVoice();
+            setPreview(recipe);
+            return;
+        }
+        onRecipeSelect(recipe);
+        if (!embedded) onClose();
+    };
+    const confirmPreview = (recipe: Recipe) => {
+        setPreview(null);
+        onRecipeSelect(recipe);
+        if (!embedded) onClose();
+    };
 
     /** Le champ prend le focus À SON MONTAGE quand l'écran vient de s'ouvrir. */
     const wantFocusRef = useRef(false);
@@ -668,6 +700,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             document.body.style.overflow = 'hidden';
             return () => { document.body.style.overflow = prev; stop(); if (tv) clearTimeout(tv); };
         }
+        setPreview(null);
         setQuery(''); setIngTags([]); setIngInput(''); setMode('recipe');
         setActiveGroup(null); setActiveFilters([]);
         setAiQuery(''); setAiResults([]); setAiMessage(''); setAiError('');
@@ -803,8 +836,22 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                 <input
                                     ref={attachInput} type="text" className={styles.spInput}
                                     placeholder="Riz, fenouil…"
-                                    value={ingInput} onChange={(e) => setIngInput(e.target.value)}
-                                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addIngTag(); } }}
+                                    value={ingInput} onChange={(e) => { setIngInput(e.target.value); setSuggestionsOpen(true); }}
+                                    onFocus={() => setSuggestionsOpen(true)}
+                                    role="combobox" aria-autocomplete="list" aria-expanded={suggestions.length > 0}
+                                    aria-controls={suggestions.length ? 'planner-ingredient-suggestions' : undefined}
+                                    aria-activedescendant={suggestionIndex >= 0 ? `planner-ingredient-${suggestionIndex}` : undefined}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'ArrowDown' && suggestions.length) {
+                                            e.preventDefault(); setSuggestionIndex((i) => (i + 1) % suggestions.length);
+                                        } else if (e.key === 'ArrowUp' && suggestions.length) {
+                                            e.preventDefault(); setSuggestionIndex((i) => i <= 0 ? suggestions.length - 1 : i - 1);
+                                        } else if (e.key === 'Escape') {
+                                            setSuggestionsOpen(false); setSuggestionIndex(-1);
+                                        } else if (e.key === 'Enter' || e.key === ',') {
+                                            e.preventDefault(); addIngTag(suggestionIndex >= 0 ? suggestions[suggestionIndex] : ingInput);
+                                        }
+                                    }}
                                     enterKeyHint="done" autoComplete="off" autoCorrect="off" spellCheck={false}
                                 />
                             )}
@@ -846,6 +893,19 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                         </div>
                         {!embedded && <button className={styles.spCancel} onClick={onClose}>{hint || 'Terminé'}</button>}
                     </div>
+
+                    {suggestions.length > 0 && (
+                        <ul id="planner-ingredient-suggestions" className={styles.spSuggestions} role="listbox" aria-label="Suggestions d’ingrédients">
+                            {suggestions.map((name, i) => (
+                                <li key={name} id={`planner-ingredient-${i}`} role="option" aria-selected={i === suggestionIndex}>
+                                    <button type="button" className={`${styles.courseSuggItem} ${i === suggestionIndex ? styles.courseSuggOn : ''}`}
+                                        onMouseDown={(e) => e.preventDefault()} onClick={() => addIngTag(name)}>
+                                        <span className={styles.courseSuggNom}>{name}</span><span className={styles.courseSuggPlus}>+</span>
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
 
                     {/* Segmented control : mode */}
                     <div className={styles.spSegment}>
@@ -981,7 +1041,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
 
                         {mode === 'recipe' && (
                             <>
-                                {query.trim().length <= 1 && activeFilters.length === 0 && (
+                                {query.trim().length === 0 && activeFilters.length === 0 && (
                                     <div className={styles.spHint}>Dernières recettes publiées</div>
                                 )}
                                 {filteredRecipes.length > 0
@@ -992,14 +1052,14 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
 
                         {mode === 'ingredients' && (
                             <>
-                                {ingTags.length === 0 ? (
-                                    <div className={styles.spEmpty}>Tape un ingrédient et valide (Entrée)</div>
+                                {searchedIngredients.length === 0 ? (
+                                    <div className={styles.spEmpty}>Tape un ingrédient pour voir les suggestions et les recettes</div>
                                 ) : ingredientResults.length > 0
                                     ? ingredientResults.map(({ recipe, matched, missing }) => (
                                         <ResultItem
                                             key={recipe.id}
                                             recipe={recipe}
-                                            meta={`${recipe.category} • ${matched}/${ingTags.length} ingrédient${ingTags.length > 1 ? 's' : ''}`}
+                                            meta={`${recipe.category} • ${matched}/${searchedIngredients.length} ingrédient${searchedIngredients.length > 1 ? 's' : ''}`}
                                             note={missing.length ? `Il manque : ${missing.join(', ')}` : undefined}
                                         />
                                     ))
@@ -1007,6 +1067,9 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                             </>
                         )}
                     </div>
+                    {preview && (open || embedded) && (
+                        <RecipeSheet recipe={preview} isOpen={true} onClose={() => setPreview(null)} onAddToPlanner={confirmPreview} />
+                    )}
         </>
     );
 
@@ -1023,6 +1086,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             {open && (
                 <motion.div
                     className={`${styles.spRoot} ${styles.spEmbedded} ${styles.spEnPanneau}`}
+                    style={preview ? { visibility: 'hidden' } : undefined}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -1042,6 +1106,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             {open && (
                 <motion.div
                     className={styles.spRoot}
+                    style={preview ? { visibility: 'hidden' } : undefined}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

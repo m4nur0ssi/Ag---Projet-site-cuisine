@@ -16,6 +16,7 @@ interface RecipeSheetProps {
     onClose: () => void;
     allRecipes?: Recipe[];
     recipeIndex?: number;
+    onAddToPlanner?: (recipe: Recipe) => void;
 }
 
 // Distance au-delà de laquelle un glissement lent ferme la fiche. Un geste
@@ -25,7 +26,7 @@ const DISMISS_V = 600;
 const SWIPE_THRESHOLD = 0.25; 
 const SWIPE_VELOCITY = 400;
 
-export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recipeIndex = 0 }: RecipeSheetProps) {
+export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recipeIndex = 0, onAddToPlanner }: RecipeSheetProps) {
     const baseRecipes = useMemo(() => allRecipes && allRecipes.length > 0 ? allRecipes : [recipe], [allRecipes, recipe]);
     const [recipes, setRecipes] = useState(baseRecipes);
     const [currentIdx, setCurrentIdx] = useState(recipeIndex);
@@ -75,7 +76,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
             const bas = rangee.getBoundingClientRect().bottom
                 - zone.getBoundingClientRect().top + zone.scrollTop + 16;
             const plafond = window.innerHeight * 0.96;
-            const cible = Math.round(Math.max(420, Math.min(plafond, bas)));
+            const cible = Math.round(Math.max(420, Math.min(plafond, bas + (onAddToPlanner ? 88 : 0))));
             setHauteur((v) => (v === cible ? v : cible));
         };
         mesurer();
@@ -87,7 +88,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
             clearTimeout(fin);
             window.removeEventListener('resize', mesurer);
         };
-    }, [isOpen, currentIdx, recipes]);
+    }, [isOpen, currentIdx, recipes, onAddToPlanner]);
     /**
      * Les recettes déjà construites, par identifiant.
      *
@@ -185,7 +186,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
             document.body.style.overflow = 'hidden';
 
             // Push a temporary state to handle "Back" button/swipe
-            window.history.pushState({ modal: 'recipe' }, '');
+            if (!onAddToPlanner) window.history.pushState({ modal: 'recipe' }, '');
 
             const handlePopState = () => {
                 /*
@@ -202,7 +203,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
             // Fermeture forcée depuis l'extérieur (ex. clic Accueil dans la barre du bas)
             const handleForceClose = () => onClose();
 
-            window.addEventListener('popstate', handlePopState);
+            if (!onAddToPlanner) window.addEventListener('popstate', handlePopState);
             window.addEventListener('magic-close-sheet', handleForceClose);
             return () => {
                 window.removeEventListener('popstate', handlePopState);
@@ -241,7 +242,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         const frame = requestAnimationFrame(monter);
         const secours = setTimeout(monter, 120);
         return () => { cancelAnimationFrame(frame); clearTimeout(secours); };
-    }, [isOpen, currentIdx, recipes]);
+    }, [isOpen, currentIdx, recipes, onAddToPlanner]);
 
     /**
      * Sortie de la fiche.
@@ -479,7 +480,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         <Portal>
             <AnimatePresence onExitComplete={handleAnimationComplete}>
                 {isOpen && (
-                    <div className={styles.container} ref={containerRef}>
+                    <div className={`${styles.container} ${onAddToPlanner ? styles.plannerPreview : ''}`} ref={containerRef}>
                         <motion.div
                             className={styles.backdrop}
                             initial={{ opacity: 0 }}
@@ -528,7 +529,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             <motion.div 
                                 className={styles.swipeTrack}
                                 ref={brancherPiste}
-                                style={{ x, display: 'flex', width: '100%', height: '100%', position: 'relative' }}
+                                style={{ x, display: 'flex', width: '100%', height: onAddToPlanner ? 'calc(100% - 88px - env(safe-area-inset-bottom, 0px))' : '100%', position: 'relative' }}
                             >
                                 {/*
                                  * LES TROIS EMPLACEMENTS — précédent, courant, suivant.
@@ -573,12 +574,19 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                                                  * image avant de se construire : sans ça, elle se
                                                  * monte pendant la frame où l'on recentre la piste.
                                                  */}
-                                                {(courante || montees.includes(String(r.id))) && <RecipeDetails recipe={r} isModal={true} />}
+                                                {(courante || montees.includes(String(r.id))) && <RecipeDetails recipe={r} isModal={true} hidePlanButton={!!onAddToPlanner} />}
                                             </div>
                                         </div>
                                     );
                                 })}
                             </motion.div>
+
+                            {onAddToPlanner && (
+                                <div className={styles.plannerActions}>
+                                    <button type="button" onClick={onClose}>Retour aux résultats</button>
+                                    <button type="button" className={styles.plannerAdd} onClick={() => onAddToPlanner(recipes[currentIdx])}>Ajouter au planificateur</button>
+                                </div>
+                            )}
 
                             {/* Nav Arrows */}
                             {recipes.length > 1 && (

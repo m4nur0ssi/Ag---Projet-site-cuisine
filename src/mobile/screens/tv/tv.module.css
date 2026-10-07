@@ -6353,3 +6353,10 @@
     .courseRayon .courseAction { width: 29px; height: 29px; }
     .courseRayon .courseAction svg { width: 15px; height: 15px; }
 }
+
+/* Suggestions identiques à l'ajout manuel, dans le flux de la recherche. */
+.spSuggestions {
+    flex: 0 0 auto; margin: 4px 18px 8px; padding: 4px; list-style: none;
+    border-radius: 14px; background: rgba(128,128,128,.12);
+    max-height: min(220px, 30dvh); overflow-y: auto;
+}

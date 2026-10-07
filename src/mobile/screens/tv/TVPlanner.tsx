@@ -1744,6 +1744,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 filter={pickerFilter}
                 panneau={grandEcran}
                 hint="Annuler"
+                previewBeforeSelect
                 onRecipeSelect={(r) => {
                     if (picker?.side) setSide(picker.day, picker.meal, r);
                     else if (picker) changerPlat(picker.day, picker.meal, r);

@@ -58,11 +58,12 @@ interface RecipeDetailsProps {
     prevId?: string | null;
     nextId?: string | null;
     isModal?: boolean;
+    hidePlanButton?: boolean;
 }
 
 type TabId = 'ingredients' | 'steps' | 'video';
 
-export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isModal = false }: RecipeDetailsProps) {
+export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isModal = false, hidePlanButton = false }: RecipeDetailsProps) {
     const recipe = useMemo(() => ({ ...rawRecipe, ingredients: recipeIngredients(rawRecipe.ingredients) }), [rawRecipe]);
     // Volet « Ajouter au planificateur » ouvert depuis la fiche.
     const [planOpen, setPlanOpen] = useState(false);
@@ -1026,7 +1027,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         {/* Caser le plat dans la semaine sans quitter sa fiche.
                             Une recette qui n'entre dans aucun créneau (restaurant,
                             sauce…) ne montre pas le bouton. */}
-                        {!focusMode && (placesPour(recipe).semaine || placesPour(recipe).courses.length > 0) && (
+                        {!hidePlanButton && !focusMode && (placesPour(recipe).semaine || placesPour(recipe).courses.length > 0) && (
                             <button
                                 type="button"
                                 className={styles.heroPlanBtn}

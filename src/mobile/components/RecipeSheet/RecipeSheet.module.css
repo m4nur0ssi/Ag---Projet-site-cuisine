@@ -220,3 +220,20 @@
 @media (min-width: 1024px) {
     .scrollArea { padding-top: 0; }
 }
+
+/* La fiche du choix reste au-dessus de la recherche et du menu du bas. */
+.plannerPreview { z-index: 28000; visibility: visible; }
+.plannerActions {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 1100;
+    height: calc(88px + env(safe-area-inset-bottom, 0px)); box-sizing: border-box;
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: var(--ios-26-bg, #0a0a0c); border-top: 1px solid rgba(128,128,128,.25);
+}
+.plannerActions button {
+    flex: 1; min-height: 48px; padding: 8px 12px; border: 0; border-radius: 16px;
+    background: rgba(128,128,128,.18); color: inherit; font: inherit; font-size: 14px; cursor: pointer;
+}
+.plannerActions .plannerAdd { background: #d7472e; color: #fff; font-weight: 700; }
+
+:global([data-theme='light']) .plannerActions { background: #fff; color: #111; }

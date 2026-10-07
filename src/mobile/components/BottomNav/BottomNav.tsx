@@ -9,6 +9,7 @@ import styles from './BottomNav.module.css';
 import dynamic from 'next/dynamic';
 import Portal from '../Portal';
 import { ouvrirClavier } from '@/lib/clavier';
+import { useKeyboardVisible } from '@/mobile/lib/useKeyboardVisible';
 import { prechargerRecherche, prechargerRechercheAuRepos } from '@/lib/prechargeRecherche';
 // Recherche « Apple TV+ » (la même que le menu), en remplacement de l'ancien
 // SpotlightSearch : la loupe de la barre du bas ouvre désormais ce panneau stylé.
@@ -95,6 +96,7 @@ const CalendarIcon = () => (
 );
 
 export default function BottomNav() {
+    const keyboardVisible = useKeyboardVisible();
     const pathname = usePathname();
     const router = useRouter();
     const [stats, setStats] = useState({ shopping: 0, favorites: 0 });
@@ -478,7 +480,7 @@ export default function BottomNav() {
                 autoVoice={voiceSearch}
             />
 
-            <nav id="bottom-nav" className={styles.navWrapper}>
+            <nav id="bottom-nav" className={styles.navWrapper} style={keyboardVisible ? { display: 'none' } : undefined}>
                 <div className={`${styles.multiPillContainer} ${replie ? styles.isMini : ''}`}>
 
                    {/* 1. MINI MODE: SPLIT LAYOUT */}
