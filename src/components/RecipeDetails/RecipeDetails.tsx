@@ -1,4 +1,5 @@
 'use client';
+import { recipeIngredients, shoppingNames } from '@/lib/recipe-ingredients';
 import { ouvrirTag } from '@/lib/ouvrirTag';
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { grandePhoto } from '@/lib/recipe-photo';
@@ -61,7 +62,8 @@ interface RecipeDetailsProps {
 
 type TabId = 'ingredients' | 'steps' | 'video';
 
-export default function RecipeDetails({ recipe, prevId, nextId, isModal = false }: RecipeDetailsProps) {
+export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isModal = false }: RecipeDetailsProps) {
+    const recipe = useMemo(() => ({ ...rawRecipe, ingredients: recipeIngredients(rawRecipe.ingredients) }), [rawRecipe]);
     // Volet « Ajouter au planificateur » ouvert depuis la fiche.
     const [planOpen, setPlanOpen] = useState(false);
     const { startTimer } = useTimer();
@@ -174,7 +176,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     const [simPage, setSimPage] = useState(0);
     const calorieEstimate = useMemo(() =>
         recipe.category !== 'restaurant' && recipe.ingredients?.length > 0
-            ? estimateRecipeCalories(recipe.ingredients, servings)
+            ? estimateRecipeCalories(rawRecipe.ingredients, servings)
             : null,
     [recipe, servings]);
     /*
@@ -428,12 +430,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         try {
             const selected = recipe.ingredients
                 .filter((_, idx) => checked[idx])
-                .map(ing => {
-                    const cleanName = ing.name.replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF]+\s*/, '');
-                    return ing.quantity
-                        ? `${scaleQuantity(ing.quantity, ratio)} ${cleanName}`
-                        : `${scaleQuantity(cleanName, ratio)}`;
-                });
+                .map(ing => shoppingNames(ing, ratio).join(' + '));
             const data = JSON.parse(window.localStorage.getItem('magic-shopping-list') || '{}');
             if (selected.length === 0) {
                 delete data[recipe.id];
@@ -456,16 +453,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return; }
         try {
             const selectedIngredients = recipe.ingredients
-                .filter((_, idx) => checkedIngredients[idx]) // On ne prend que les COCHÉS (demande client)
-                .map(ing => {
-                    if (ing.quantity) {
-                        return `- ${scaleQuantity(ing.quantity, ratio)} ${ing.name.replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF]+\s*/, '')}`;
-                    } else {
-                        // On nettoie l'émoji éventuel avant de scaler le nom complet
-                        const cleanName = ing.name.replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF]+\s*/, '');
-                        return `- ${scaleQuantity(cleanName, ratio)}`;
-                    }
-                });
+                .filter((_, idx) => checkedIngredients[idx])
+                .map(ing => `- ${shoppingNames(ing, ratio).join(' + ')}`);
 
             if (selectedIngredients.length === 0) {
                 alert('Veuillez cocher au moins un ingrédient à mettre dans votre panier ! 🛒');
@@ -519,12 +508,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return 0; }
         const selectedIngredients = recipe.ingredients
             .filter((_, idx) => checkedIngredients[idx])
-            .map(ing => {
-                const cleanName = ing.name.replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF]+\s*/, '');
-                return ing.quantity
-                    ? `${scaleQuantity(ing.quantity, ratio)} ${cleanName}`
-                    : `${scaleQuantity(cleanName, ratio)}`;
-            });
+            .map(ing => shoppingNames(ing, ratio).join(' + '));
         if (selectedIngredients.length === 0) return 0;
         try {
             const existingData = JSON.parse(window.localStorage.getItem('magic-shopping-list') || '{}');
@@ -1068,7 +1052,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             {/* Ajouter au planificateur : la semaine s'ouvre au centre de l'écran. */}
             {planOpen && (
                 <PlanPicker
-                    recipe={recipe}
+                    recipe={rawRecipe}
                     open={true}
                     onClose={() => setPlanOpen(false)}
                     ouvrirPlanificateur={() => window.dispatchEvent(new Event(OUVRIR_PLANIFICATEUR))}
@@ -1086,7 +1070,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             {recipe.category === 'restaurant' && (
                 <div className={styles.restaurantContent}>
                     <FicheResto
-                        recipe={recipe}
+                        recipe={rawRecipe}
                         note={<StarRating recipeId={recipe.id} size="small" />}
                     />
                 </div>
@@ -1154,9 +1138,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         recipeId={recipe.id}
                                         title={recipe.title}
                                         category={recipe.category}
-                                        ingredients={recipe.ingredients}
+                                        ingredients={rawRecipe.ingredients}
                                     />
-                                    <CaveMatch recipe={recipe} />
+                                    <CaveMatch recipe={rawRecipe} />
                                 </div>
                             </div>
                         </div>
@@ -1508,7 +1492,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             )}
         </div>
 
-        {showShareCard && <RecipeShareCard recipe={recipe} onClose={() => setShowShareCard(false)} />}
+        {showShareCard && <RecipeShareCard recipe={rawRecipe} onClose={() => setShowShareCard(false)} />}
         </>
     );
 }

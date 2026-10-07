@@ -50,6 +50,12 @@ export default function MentionsLegalesPage() {
                 back-office WordPress géré par l’éditeur.
             </p>
 
+            <h2>Crédit photo ingrédient</h2>
+            <p>
+                Guanciale : Sir James, <a href="https://commons.wikimedia.org/wiki/File:2019-01-31_Guanciale_al_Pepe_ca_800g.JPG">Guanciale al Pepe</a>,
+                sous licence <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Photo sans retouche.
+            </p>
+
             <h2>3. Propriété intellectuelle</h2>
             <p>
                 La structure du site, son interface, ses textes de présentation et ses éléments

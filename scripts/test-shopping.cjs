@@ -148,3 +148,29 @@ async function syncTests() {
     console.log('PASS: cloud deletions, preference sync, recent local gesture protection and no hydration echo');
 }
 syncTests().catch(error => { console.error(error); process.exitCode = 1; });
+
+// Produit reconnu indépendamment des indications de découpe et des anciennes images.
+const visualDeps = Object.fromEntries(['ingredient-cache', 'marmiton-ingredients', 'pic-nic-ingredients'].map(n => [`../data/${n}.json`, JSON.parse(fs.readFileSync(root + `/src/data/${n}.json`, 'utf8'))]));
+const visuals = load('src/lib/ingredient-utils.ts', visualDeps);
+const fiche = load('src/lib/recipe-ingredients.ts', { './ingredients': i, './ingredient-utils': visuals, './utils': load('src/lib/utils.ts') });
+const onion = fiche.recipeIngredients([{ name: 'oignon rouge', quantity: '0,5 pièce' }, { name: 'oignon rouge finement émincé', quantity: '75 g' }]);
+assert.equal(onion.length, 1);
+assert.equal(onion[0].name, 'oignon rouge');
+assert.equal(onion[0].quantity, '0,5 pièce + 75 g');
+assert.equal(fiche.shoppingNames(onion[0], 2).join(';'), '1 pièce oignon rouge;150 g oignon rouge');
+const onionCart = i.buildConsolidatedItems({}, new Set(), { test: { ingredients: fiche.shoppingNames(onion[0], 1).map(name => ({ name })) } });
+assert.equal(onionCart.length, 1);
+assert.equal(i.canonicalIng('oignon rouge finement').name, 'oignon rouge');
+assert.equal(i.canonicalIng('cébette finement').name, 'cebette');
+assert.notEqual(i.canonicalIng('ail en poudre').name, i.canonicalIng('ail').name);
+assert.equal(fiche.recipeIngredients([{ name: '75g de oignon rouge finement', quantity: '1' }])[0].quantity, '75 g');
+assert.equal(fiche.recipeIngredients([{ name: '4 à 5 pommes de terre', quantity: '' }])[0].quantity, '4 à 5');
+for (const [name, file] of [['pâtes', 'pasta-package.jpeg'], ['polenta', 'polenta-package.jpg'], ['pignons de pin', 'pine-nuts.jpg'], ['cébette finement', 'meal-spring-onion.png'], ['guanciale', 'guanciale.jpg']]) {
+    assert.equal(visuals.getIngredientVisual(name), '/ingredients/' + file);
+    assert(fs.existsSync(root + '/public/ingredients/' + file));
+}
+assert.notEqual(visuals.getIngredientVisual('pâte feuilletée'), visuals.getIngredientVisual('pâtes'));
+assert.notEqual(visuals.getIngredientVisual('spaghetti'), visuals.getIngredientVisual('pâtes'));
+console.log('PASS : fiches sans doublons, quantités conservées et visuels précis');
+
+assert.equal(i.buildConsolidatedItems({}, new Set(), { test: { ingredients: [{ name: fiche.shoppingNames(onion[0], 1).join(' + ') }] } }).length, 1);

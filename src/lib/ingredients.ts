@@ -258,7 +258,7 @@ const PREP_RE = /\s+(haches?|hachees?|eminces?|emincees?|concasses?|concassees?|
 // Suffixe "section de recette" collé au nom (ex. "ail pour la sauce", "oignon pour la
 // marinade") → on retire pour fusionner avec le même ingrédient sans suffixe.
 const SECTION_SUFFIX_RE = /\s+pour\s+(l[ae]s?|l['’]|du|des|une?|le)\s+.+$/;
-const stripPrep = (n: string) => n.replace(SECTION_SUFFIX_RE, '').replace(PREP_RE, '').replace(/\s+/g, ' ').trim();
+const stripPrep = (n: string) => n.replace(SECTION_SUFFIX_RE, '').replace(PREP_RE, '').replace(/\b(finement|grossierement|prealablement|delicatement|soigneusement)\b/g, '').replace(/\s+/g, ' ').trim();
 
 /** Une pièce et une absence d'unité, c'est la même chose dans un caddie. */
 const uniteDeBase = (unit: string) => {

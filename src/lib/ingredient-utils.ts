@@ -367,6 +367,11 @@ export function getIngredientVisual(name: string): string | null {
     const normCleanName = normalize(searchName);
     const normStripped = strippedName ? normalize(strippedName) : null;
 
+    // Produits précis : priorité sur les anciennes photos et les rapprochements
+    // par mot (une cébette ne doit pas hériter d'une photo d'oignon).
+    const precise = getIngredientProductVisual(name);
+    if (precise) return precise;
+
     // N'accepte que les URLs locales (fiables)
     const acceptLocal = (url: string | undefined): string | null => {
         if (!url || url === 'no-image') return null;
@@ -823,3 +828,16 @@ export function translateIngredientName(name: string): string {
     return result;
 }
 
+
+/** Visuels vérifiés des produits souvent confondus par les anciennes données. */
+export function getIngredientProductVisual(name: string): string | null {
+    const n = cleanIngredientName(name).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    if (/\bpignons?\b/.test(n) && /\bpin[s]?\b/.test(n)) return '/ingredients/pine-nuts.jpg';
+    if (/\bpolenta\b/.test(n)) return '/ingredients/polenta-package.jpg';
+    if (/\bguanciale\b/.test(n)) return '/ingredients/guanciale.jpg';
+    if (/\b(cebettes?|ciboules?|oignons? nouveaux?|oignons? verts?)\b/.test(n)) return '/ingredients/meal-spring-onion.png';
+    if (/\boignons? rouges?\b/.test(n)) return '/ingredients/meal-red-onion.png';
+    // Ne touche pas aux pâtes à tarte ni aux variétés de pâtes nommées.
+    if (/^(pates?|pasta)(?: alimentaires?| seches?)?$/.test(n)) return '/ingredients/pasta-package.jpeg';
+    return null;
+}

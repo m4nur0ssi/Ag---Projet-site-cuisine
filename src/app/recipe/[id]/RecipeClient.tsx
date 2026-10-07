@@ -437,9 +437,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
 
             window.localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
             window.dispatchEvent(new Event('shoppingListUpdated'));
-            window.dispatchEvent(new CustomEvent('magic-toast-notify', {
-                detail: isDeselecting ? 'Retiré du panier' : 'Ajouté au panier !'
-            }));
+
         }
     };
 

@@ -1,4 +1,5 @@
 'use client';
+import { recipeIngredients, shoppingNames } from '@/lib/recipe-ingredients';
 import { ouvrirTag } from '@/lib/ouvrirTag';
 import { etapeVisee, ALLER_ETAPE } from '@/lib/allerEtape';
 import { useState, useMemo, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
@@ -61,7 +62,8 @@ interface RecipeDetailsProps {
 
 type TabId = 'ingredients' | 'steps' | 'video';
 
-export default function RecipeDetails({ recipe, prevId, nextId, isModal = false }: RecipeDetailsProps) {
+export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isModal = false }: RecipeDetailsProps) {
+    const recipe = useMemo(() => ({ ...rawRecipe, ingredients: recipeIngredients(rawRecipe.ingredients) }), [rawRecipe]);
     // Volet « Ajouter au planificateur » ouvert depuis la fiche.
     const [planOpen, setPlanOpen] = useState(false);
     /*
@@ -89,15 +91,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     const [isNavigating, setIsNavigating] = useState(false);
     const [slideDirection, setSlideDirection] = useState<'left'|'right'|null>(null);
     const pageRef = useRef<HTMLDivElement>(null);
-
-    // Toast notification pour le panier
-    const [toast, setToast] = useState<string | null>(null);
-    const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const showToast = (msg: string) => {
-        if (toastTimer.current) clearTimeout(toastTimer.current);
-        setToast(msg);
-        toastTimer.current = setTimeout(() => setToast(null), 2200);
-    };
 
     // Tabs
     const availableTabs: { id: TabId; label: string; count?: number }[] = [
@@ -218,7 +211,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
     const calorieEstimate = useMemo(() =>
         recipe.category !== 'restaurant' && recipe.ingredients?.length > 0
-            ? estimateRecipeCalories(recipe.ingredients, servings)
+            ? estimateRecipeCalories(rawRecipe.ingredients, servings)
             : null,
     [recipe, servings]);
     /*
@@ -496,22 +489,18 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         triggerHaptic();
 
         // Ajout / retrait direct du panier localStorage
-        const cleanName = ing.name
-            .replace(/^[\uD83C-􏰀-\uDFFF☀-➿\s]+/, '')
-            .trim();
-        const displayQty = ing.quantity ? scaleQuantity(ing.quantity, ratio) : '';
-        const entry = `- ${displayQty ? displayQty + ' ' : ''}${cleanName}`.trim();
+        const entries = [`- ${shoppingNames(ing, ratio).join(' + ')}`];
 
         if (typeof window !== 'undefined') {
             const cart = JSON.parse(window.localStorage.getItem('magic-shopping-list') || '{}');
             const recipeCart = cart[recipe.id] || { title: recipe.title, image: recipe.image, ingredients: [] };
 
             if (isNowChecked) {
-                const alreadyIn = recipeCart.ingredients.some((i: any) => i.name === entry);
-                if (!alreadyIn) recipeCart.ingredients.push({ name: entry, checked: false });
-                showToast(`${cleanName} ajouté !`);
+                for (const entry of entries) {
+                    if (!recipeCart.ingredients.some((i: any) => i.name === entry)) recipeCart.ingredients.push({ name: entry, checked: false });
+                }
             } else {
-                recipeCart.ingredients = recipeCart.ingredients.filter((i: any) => i.name !== entry);
+                recipeCart.ingredients = recipeCart.ingredients.filter((i: any) => !entries.includes(i.name));
             }
 
             if (recipeCart.ingredients.length > 0) {
@@ -530,16 +519,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return; }
         try {
             const selectedIngredients = recipe.ingredients
-                .filter((_, idx) => checkedIngredients[idx]) // On ne prend que les COCHÉS (demande client)
-                .map(ing => {
-                    if (ing.quantity) {
-                        return `- ${scaleQuantity(ing.quantity, ratio)} ${ing.name.replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF]+\s*/, '')}`;
-                    } else {
-                        // On nettoie l'émoji éventuel avant de scaler le nom complet
-                        const cleanName = ing.name.replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF]+\s*/, '');
-                        return `- ${scaleQuantity(cleanName, ratio)}`;
-                    }
-                });
+                .filter((_, idx) => checkedIngredients[idx])
+                .map(ing => `- ${shoppingNames(ing, ratio).join(' + ')}`);
 
             if (selectedIngredients.length === 0) {
                 alert('Veuillez cocher au moins un ingrédient à mettre dans votre panier ! 🛒');
@@ -920,23 +901,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             )}
             {/* Ajouter au planificateur : la semaine s'affiche par-dessus la fiche. */}
             {planOpen && (
-                <PlanPicker recipe={recipe} open={true} onClose={() => setPlanOpen(false)} />
+                <PlanPicker recipe={rawRecipe} open={true} onClose={() => setPlanOpen(false)} />
             )}
-
-            {/* Toast panier */}
-            <AnimatePresence>
-                {toast && (
-                    <motion.div
-                        className={styles.toastCart}
-                        initial={{ opacity: 0, y: 60, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 40, scale: 0.9 }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 28 }}
-                    >
-                        🛒 {toast}
-                    </motion.div>
-                )}
-            </AnimatePresence>
 
             <div
                 ref={pageRef}
@@ -1227,7 +1193,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             {recipe.category === 'restaurant' && (
                 <div className={styles.restaurantContent}>
                     <FicheResto
-                        recipe={recipe}
+                        recipe={rawRecipe}
                         note={<StarRating recipeId={recipe.id} size="small" />}
                     />
                 </div>
@@ -1276,8 +1242,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 )}
                                 <PortionsControl value={servings} base={recipe.servings || 4} onChange={setServings} compact />
                                 <MagicConverter />
-                                <WinePairing recipeId={recipe.id} title={recipe.title} category={recipe.category} ingredients={recipe.ingredients} compact />
-                                <CaveMatch recipe={recipe} />
+                                <WinePairing recipeId={recipe.id} title={recipe.title} category={recipe.category} ingredients={rawRecipe.ingredients} compact />
+                                <CaveMatch recipe={rawRecipe} />
                             </div>
                         </div>
                     )}
@@ -1620,7 +1586,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
         </div>
 
-        {showShareCard && <RecipeShareCard recipe={recipe} onClose={() => setShowShareCard(false)} />}
+        {showShareCard && <RecipeShareCard recipe={rawRecipe} onClose={() => setShowShareCard(false)} />}
         </>
     );
 }
