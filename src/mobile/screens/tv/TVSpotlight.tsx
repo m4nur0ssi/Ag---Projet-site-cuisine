@@ -554,7 +554,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             const sorted = [...pool2].sort((a, b) => parseInt(b.id) - parseInt(a.id));
             // Créneau du planificateur (filter imposé) → on montre TOUT le type
             // demandé (toutes les entrées, tous les plats…), pas seulement 10.
-            return filter ? sorted : sorted.slice(0, 10);
+            return sorted;
         }
         return pool2;
     }, [query, mode, activeFilters, pool, filter]);
@@ -811,7 +811,25 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                         </div>
                     )}
 
-                    {/* Champ + Terminé */}
+                    <div className={styles.spModeRow}>
+                    {/* Segmented control : mode */}
+                    <div className={styles.spSegment}>
+                        {([['recipe', 'Recette'], ['ingredients', 'Ingrédients'], ['assistant', 'Assistant']] as [Mode, string][]).map(([m, lbl]) => (
+                            <button
+                                key={m}
+                                className={`${styles.spSeg} ${mode === m ? styles.spSegOn : ''}`}
+                                onClick={() => {
+                                    haptic(8);
+                                    setMode(m); setActiveGroup(null); setActiveFilters([]);
+                                    setTimeout(() => inputRef.current?.focus(), 50);
+                                }}
+                            >{lbl}</button>
+                        ))}
+                    </div>
+                        {!embedded && <button className={styles.spCancel} onClick={onClose}>{hint || 'Terminé'}</button>}
+                    </div>
+
+                    {/* Recherche et nombre de résultats */}
                     <div className={styles.spHead}>
                         <div className={styles.spField}>
                             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" className={styles.spFieldIcon} aria-hidden>
@@ -891,7 +909,10 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                 </button>
                             )}
                         </div>
-                        {!embedded && <button className={styles.spCancel} onClick={onClose}>{hint || 'Terminé'}</button>}
+                        <div className={styles.spResultCount} role="status" aria-live="polite">
+                            <strong>{mode === 'recipe' ? filteredRecipes.length : mode === 'ingredients' ? ingredientResults.length : aiResults.length}</strong>
+                            <span>recette{(mode === 'recipe' ? filteredRecipes.length : mode === 'ingredients' ? ingredientResults.length : aiResults.length) !== 1 ? 's' : ''}</span>
+                        </div>
                     </div>
 
                     {suggestions.length > 0 && (
@@ -907,21 +928,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                         </ul>
                     )}
 
-                    {/* Segmented control : mode */}
-                    <div className={styles.spSegment}>
-                        {([['recipe', 'Recette'], ['ingredients', 'Ingrédients'], ['assistant', 'Assistant']] as [Mode, string][]).map(([m, lbl]) => (
-                            <button
-                                key={m}
-                                className={`${styles.spSeg} ${mode === m ? styles.spSegOn : ''}`}
-                                onClick={() => {
-                                    haptic(8);
-                                    setMode(m); setActiveGroup(null); setActiveFilters([]);
-                                    setTimeout(() => inputRef.current?.focus(), 50);
-                                }}
-                            >{lbl}</button>
-                        ))}
-                    </div>
-
+                    <div className={styles.spFilterRow}>
                     {/* Régime : ce qu'on ne veut PAS voir, quel que soit le mode. */}
                     {!filter && (
                         <div className={styles.spSans}>
@@ -987,6 +994,8 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                         </div>
                     )}
 
+                    </div>
+
                     {mode === 'recipe' && activeGroup && (
                         <div className={styles.spChips}>
                             {(activeGroup === 'tendances'
@@ -1045,7 +1054,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                     <div className={styles.spHint}>Dernières recettes publiées</div>
                                 )}
                                 {filteredRecipes.length > 0
-                                    ? filteredRecipes.map((r) => <ResultItem key={r.id} recipe={r} meta={recipeMeta(r)} />)
+                                    ? (query.trim() || activeFilters.length || filter ? filteredRecipes : filteredRecipes.slice(0, 10)).map((r) => <ResultItem key={r.id} recipe={r} meta={recipeMeta(r)} />)
                                     : <div className={styles.spEmpty}>Aucune recette ne correspond…</div>}
                             </>
                         )}
