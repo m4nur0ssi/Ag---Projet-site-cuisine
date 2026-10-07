@@ -3,7 +3,7 @@
     background: radial-gradient(120% 70% at 50% -8%, #2a1810 0%, rgba(8,8,11,0) 55%), #0b0806;
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-    padding: 22px 16px calc(120px + env(safe-area-inset-bottom, 0px));
+    padding: calc(env(safe-area-inset-top, 0px) + 34px) 16px calc(120px + env(safe-area-inset-bottom, 0px));
 }
 /* Encastré : on garde de vraies gouttières (les cartes touchaient le bord) et
    on réserve la place de la poignée de menu du shell en haut à gauche, qui
@@ -122,6 +122,14 @@
 .sheetTitle { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 20px; text-transform: uppercase; transform: skewX(-5deg); }
 .sheetClose { flex: 0 0 auto; width: 36px; height: 36px; border: none; border-radius: 999px; background: rgba(255,255,255,.1); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 
+.pairFiltres { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.pairFiltre { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: none; border-radius: 999px; background: rgba(255,255,255,.08); color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.pairFiltreOn { background: #fff; color: #111; }
+.pairFiltreN { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: #ff6b4a; color: #fff; font-size: 11px; line-height: 18px; text-align: center; }
+.pairFiltreRaz { height: 34px; padding: 0 10px; border: none; background: none; color: rgba(235,235,245,.6); font-size: 13px; cursor: pointer; font-family: inherit; }
+.pairChips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; max-height: 190px; overflow-y: auto; }
+.pairChip { height: 32px; padding: 0 12px; border: none; border-radius: 999px; background: rgba(255,255,255,.07); color: rgba(235,235,245,.92); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.pairChipOn { background: #ffc24b; color: #1a1006; }
 .pairGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
 .pairCard { border: none; background: rgba(255,255,255,.05); border-radius: 14px; overflow: hidden; cursor: pointer; padding: 0; text-align: left; }
 .pairCard img { width: 100%; height: 84px; object-fit: cover; display: block; }

@@ -119,6 +119,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     /** Vitesse verticale du doigt en px/ms, sur les dernières millisecondes. */
     const vitesseY = useRef(0);
     const gestureType = useRef<'none' | 'horizontal' | 'vertical'>('none');
+    const ignorerGeste = useRef(false);
     const isDraggingY = useRef(false);
     const isDraggingX = useRef(false);
 
@@ -307,6 +308,10 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
 
     // ─── Touch Handlers ──────────────────────────────────────────────────
     const handleTouchStart = useCallback((e: TouchEvent) => {
+        // Un geste né sur un contrôle qui règle une valeur (les étoiles) lui
+        // appartient : ni changement de recette, ni fermeture de la fiche.
+        ignorerGeste.current = !!(e.target as HTMLElement | null)?.closest?.('[data-no-swipe]');
+        if (ignorerGeste.current) { gestureType.current = 'none'; return; }
         touchStartX.current = e.touches[0].clientX;
         touchStartY.current = e.touches[0].clientY;
         touchLastX.current = e.touches[0].clientX;
@@ -319,6 +324,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     }, []);
 
     const handleTouchMove = useCallback((e: TouchEvent) => {
+        if (ignorerGeste.current) return;
         const cx = e.touches[0].clientX;
         const cy = e.touches[0].clientY;
         const dx = cx - touchStartX.current;
@@ -368,6 +374,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     }, [currentIdx, recipes.length, x, y]);
 
     const handleTouchEnd = useCallback((e: TouchEvent) => {
+        if (ignorerGeste.current) { ignorerGeste.current = false; return; }
         const dx = x.get();
         const dy = y.get();
         const width = pasDuCarrousel();

@@ -13,13 +13,12 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { haptic } from './TVHome';
 import styles from './TVTutorial.module.css';
-import DemoVideo from '@/components/DemoVideo/DemoVideo';
-import { listeDemos } from '@/lib/tuto-videos';
 
 type Art =
     | 'hero' | 'rows' | 'press' | 'clic' | 'card' | 'cook' | 'filter' | 'search'
     | 'planner' | 'side' | 'compose' | 'jourj' | 'fill' | 'views' | 'dock' | 'cocktail'
-    | 'cave' | 'ext' | 'sidebar' | 'library' | 'trophy' | 'taste' | 'install';
+    | 'cave' | 'ext' | 'sidebar' | 'library' | 'trophy' | 'taste' | 'install'
+    | 'tags' | 'timers' | 'demarrer' | 'plus';
 
 interface Step {
     kicker: string;
@@ -62,8 +61,8 @@ const T = {
 
 const STEPS_MOBILE: Step[] = [
     { kicker: 'Accueil', title: 'Le grand visuel', art: 'hero', accent: '#FF453A', tint: T.hero,
-      text: "L'accueil s'ouvre sur les dernières recettes, en grand. Balaye la photo pour passer à la suivante ; « Voir la recette » ouvre la fiche.",
-      hint: 'Balaye la grande photo, puis touche « Voir la recette ».' },
+      text: "L'accueil s'ouvre sur les dernières recettes, en grand. Balaye pour passer à la suivante, touche la photo pour ouvrir la fiche. Sous le titre, les #hashtags ouvrent toute leur catégorie.",
+      hint: 'Touche #ITALIE sous la photo : toutes les recettes italiennes s’affichent.' },
     { kicker: 'Accueil', title: 'Les rangées', art: 'rows', accent: '#FF9F0A', tint: T.orange,
       text: 'Sous le visuel : Top 10, Reprendre la cuisine, À faire plus tard, Pour toi, Nouveautés, puis une rangée par catégorie et par thème — Pâtes, Express, Cocktails, Airfryer… Chaque rangée se balaye.',
       hint: 'Touche le titre d’une rangée (le chevron ›) : elle s’ouvre en grille entière.' },
@@ -71,11 +70,17 @@ const STEPS_MOBILE: Step[] = [
       text: 'Garde le doigt une seconde sur une carte : un menu s’ouvre — Favoris, À faire plus tard, Accéder à la catégorie, Partager, Voir la recette.',
       hint: 'Le cœur plein range en favoris, l’horloge dans « À faire plus tard ».' },
     { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158', tint: T.vert,
-      text: 'Ingrédients (nombre de personnes ajustable), étapes, minuteur, ta note au dixième, l’accord vin et l’ajout à la liste. Coche un ingrédient : il file dans « Par recette ».',
-      hint: 'Fiche ouverte : balaye vers la gauche pour la recette voisine.' },
+      text: 'Ingrédients (nombre de personnes ajustable), étapes, ta note au dixième — glisse le doigt sur les étoiles, la fiche ne bouge pas —, l’accord vin et l’ajout à la liste. La barre du bas reste là.',
+      hint: 'Fiche ouverte : balaye vers la gauche pour la recette voisine, la croix en haut la ferme.' },
+    { kicker: 'Recette', title: 'Les hashtags', art: 'tags', accent: '#FF9F0A', tint: T.orange,
+      text: 'Sous la photo de chaque fiche, les #hashtags sont des liens : un toucher, et toutes les recettes de ce thème s’affichent en grille, comme sur l’accueil.',
+      hint: 'Ouvre une fiche, touche un #hashtag.' },
     { kicker: 'Recette', title: 'Cuisiner pas à pas', art: 'cook', accent: '#FF6B4A', tint: T.corail,
       text: '« Lancer la préparation » passe en mode cuisine : une étape à la fois, en grand, avec le minuteur qui démarre tout seul quand l’étape en demande un.',
       hint: 'Une recette commencée revient dans « Reprendre la cuisine », sur l’accueil.' },
+    { kicker: 'Recette', title: 'Plusieurs chronos', art: 'timers', accent: '#FFD60A', tint: T.jaune,
+      text: 'Un chrono par recette, autant que tu veux. La loupe affiche celui qui se termine en premier ; touche-la pour les voir tous, avec la photo et le nom de leur recette.',
+      hint: 'La croix à droite d’un chrono l’arrête.' },
     { kicker: 'Menu', title: 'Filtrer', art: 'filter', accent: '#0A84FF', tint: T.bleu,
       text: 'Le tiroir ouvre Catégories, Tendances et Pays, cochables et repliables. Les filtres se combinent : OU dans un groupe, ET entre groupes — « un dessert espagnol express ».',
       hint: 'Coche Desserts + Espagne, puis touche « Voir N recettes ».' },
@@ -83,26 +88,29 @@ const STEPS_MOBILE: Step[] = [
       text: 'La loupe ouvre Recette (son nom), Ingrédients (ce qu’il te reste au frigo) et Assistant IA, qui comprend une demande en langage courant — à la voix aussi.',
       hint: 'Appui long sur la loupe : la dictée démarre direct sur l’Assistant.' },
     { kicker: 'Planificateur', title: 'Ma semaine', art: 'planner', accent: '#BF5AF2', tint: T.violet,
-      text: 'Un jour par écran, ouvert sur aujourd’hui : Midi et Soir. « Choisir un plat » ouvre le sélecteur, « Surprends-moi » en tire un au hasard.',
+      text: 'Un jour par écran, ouvert sur aujourd’hui : Midi et Soir. « Choisir une recette » ouvre le sélecteur, « Surprends-moi » en tire une au hasard. Appui long sur une carte pour la déplacer : posée sur un repas déjà prévu, elle le remplace.',
       hint: 'Balaye pour changer de jour, ou touche Lun… Dim en haut.' },
     { kicker: 'Planificateur', title: 'L’accompagnement', art: 'side', accent: '#FF2D55', tint: T.rose,
-      text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — ouvre une ligne « Accompagnement » sous lui. Un couscous, déjà complet, n’en demande pas.',
-      hint: 'Mets une viande à midi : la ligne Accompagnement apparaît juste dessous.' },
+      text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — appelle un accompagnement. Plat et accompagnement se changent et se retirent chacun de leur côté.',
+      hint: '« Changer » sur l’accompagnement garde le plat ; « Changer » sur le plat garde l’accompagnement.' },
     { kicker: 'Planificateur', title: 'Composer', art: 'compose', accent: '#64D2FF', tint: T.cyan,
       text: '« Composer » remplit toute la semaine sur une tendance — Italie, Healthy, Barbecue… — sans répéter un plat ni sortir du thème.',
       hint: 'Touche Composer, choisis une tendance, regarde les 14 repas se remplir.' },
     { kicker: 'Planificateur', title: 'Le Jour J', art: 'jourj', accent: '#FF9F0A', tint: T.orange,
-      text: 'Un onglet à part pour un repas complet : apéritif, entrée, plat, accompagnement, dessert et pâtisserie. Idéal pour un dîner d’invités.',
-      hint: 'En haut, bascule « Semaine » → « Jour J ».' },
+      text: 'Un onglet à part pour un repas complet : apéritif, entrée, plat, accompagnement, dessert. « Composer » le remplit d’un coup sur des pays et des tendances — chaque recette trouve sa place toute seule.',
+      hint: 'Les tendances restent ouvertes : coche-en plusieurs, puis touche « Tendances » pour refermer.' },
+    { kicker: 'Jour J', title: 'Démarrer la soirée', art: 'demarrer', accent: '#30D158', tint: T.vert,
+      text: '« Déroulé de la soirée » dit quand lancer chaque plat. Touche une étape pour ouvrir sa recette. « Démarrer » te prévient à chaque étape : OK quand c’est fait, ou « dans 10 min » si tu as du retard — tous les horaires suivent.',
+      hint: 'Sur iPhone, installe l’app sur l’écran d’accueil pour recevoir les notifications.' },
     { kicker: 'Courses', title: 'Remplir la liste', art: 'fill', accent: '#30D158', tint: T.vert,
       text: '« Remplir ma liste de courses » envoie tous les ingrédients du menu dans la liste, regroupés par rayon et sans doublon.',
       hint: 'Menu prêt : touche le bouton blanc en bas du planificateur.' },
     { kicker: 'Courses', title: 'Trois vues', art: 'views', accent: '#0A84FF', tint: T.bleu,
-      text: '« La semaine » fusionne tout par rayon (avec les bascules Semaine / Jour J), « Jour par jour » sépare les repas, « Par recette » garde les plats cochés en fiche.',
-      hint: 'Coche des articles : les boutons Partager et Magasin apparaissent.' },
+      text: '« La semaine » fusionne toute la liste par rayon, « Jour par jour » sépare les repas (touche une recette pour ouvrir sa carte), « En + » rassemble tes ajouts à la main et les ingrédients cochés depuis une fiche, sous leur recette.',
+      hint: 'Dans « En + », la photo de la recette ouvre sa carte.' },
     { kicker: 'Ma cave', title: 'Tes bouteilles', art: 'cave', accent: '#B23A48', tint: T.vin,
       text: 'Photographie l’étiquette : le nom, le cépage, l’année, la région et la vraie photo de la bouteille entrent seuls en cave. Deux étagères — la cave, et « Goûté & approuvé ».',
-      hint: 'Sur un vin, « Quelle recette ? » sort les plats du site qui vont avec.' },
+      hint: 'Sur un vin, « Quelle recette ? » sort les plats qui vont avec — affine par catégorie, pays ou tendance.' },
     { kicker: 'Palmarès', title: 'Tes trophées', art: 'trophy', accent: '#FFC24B', tint: T.jaune,
       text: 'Six badges qui se débloquent en cuisinant pour de vrai : Première flamme, Apprenti, Chef de maison, Collectionneur, Tour du monde, Organisé. Rien à réclamer, ils viennent seuls.',
       hint: '« Tour du monde » compte les pays différents que tu as cuisinés.' },
@@ -134,7 +142,7 @@ const STEPS_BUREAU: Step[] = [
       text: 'Clic droit sur une carte : Favoris, À faire plus tard, Accéder à la catégorie, Partager, Voir la recette. Les flèches ‹ › de chaque rangée la font défiler d’un écran.',
       hint: 'L’icône horloge, au survol d’une carte, met la recette « à faire plus tard ».' },
     { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158', tint: T.vert,
-      text: 'Ingrédients (nombre de personnes ajustable), étapes, minuteur, ta note au dixième, l’accord vin et l’ajout à la liste. Coche un ingrédient : il file dans « Par recette ».',
+      text: 'Ingrédients (nombre de personnes ajustable), étapes, minuteur, ta note au dixième, l’accord vin et l’ajout à la liste. Coche un ingrédient : il file dans l’onglet « En + » de la liste. Les #hashtags sous la photo ouvrent leur catégorie.',
       hint: 'Échap referme la fiche et rend l’accueil à l’endroit exact où tu étais.' },
     { kicker: 'Recette', title: 'Cuisiner pas à pas', art: 'cook', accent: '#FF6B4A', tint: T.corail,
       text: '« Lancer la préparation » passe en mode cuisine : une étape à la fois, en grand, avec le minuteur qui démarre tout seul quand l’étape en demande un.',
@@ -149,7 +157,7 @@ const STEPS_BUREAU: Step[] = [
       text: 'La loupe ouvre Recette (son nom), Ingrédients (ce qu’il te reste au frigo) et Assistant IA, qui comprend une demande en langage courant.',
       hint: 'L’Assistant sort aussi des restaurants : ville, type de cuisine, terrasse.' },
     { kicker: 'Planificateur', title: 'Ma semaine', art: 'planner', accent: '#BF5AF2', tint: T.violet,
-      text: 'Le panneau s’ouvre à droite du menu, ouvert sur aujourd’hui : Midi et Soir. « Choisir un plat » ouvre le sélecteur, « Surprends-moi » en tire un au hasard.',
+      text: 'Le panneau s’ouvre à droite du menu, ouvert sur aujourd’hui : Midi et Soir. « Choisir une recette » ouvre le sélecteur, « Surprends-moi » en tire une au hasard. Plat et accompagnement se changent chacun de leur côté.',
       hint: 'Lun… Dim en haut : un clic suffit pour changer de jour.' },
     { kicker: 'Planificateur', title: 'L’accompagnement', art: 'side', accent: '#FF2D55', tint: T.rose,
       text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — ouvre une ligne « Accompagnement » sous lui. Un couscous, déjà complet, n’en demande pas.',
@@ -164,7 +172,7 @@ const STEPS_BUREAU: Step[] = [
       text: '« Remplir ma liste de courses » envoie tous les ingrédients du menu dans la liste, regroupés par rayon et sans doublon.',
       hint: 'Menu prêt : le bouton blanc est en bas du planificateur.' },
     { kicker: 'Courses', title: 'Trois vues', art: 'views', accent: '#0A84FF', tint: T.bleu,
-      text: '« La semaine » fusionne tout par rayon (avec les bascules Semaine / Jour J), « Jour par jour » sépare les repas, « Par recette » garde les plats cochés en fiche.',
+      text: '« La semaine » fusionne tout par rayon (avec les bascules Semaine / Jour J), « Jour par jour » sépare les repas (clic sur une recette = sa carte), « En + » rassemble les ajouts à la main et les ingrédients cochés en fiche.',
       hint: 'Coche des articles : les boutons Partager et Magasin apparaissent.' },
     { kicker: 'Courses', title: 'L’extension Chrome', art: 'ext', accent: '#8B5CF6', tint: T.mauve,
       text: 'L’extension « Courses Magiques » pose ta liste par-dessus le site du magasin — Carrefour, Monoprix, Picard, Leclerc Drive — et passe au produit suivant toute seule. Plus besoin de changer d’onglet.',
@@ -204,6 +212,59 @@ function Illus({ kind, accent }: { kind: Art; accent: string }) {
     );
 
     switch (kind) {
+        case 'tags': return frame(<>
+            {r(60, 8, 100, 66, 12, `url(#g-${kind})`)}
+            {[['#ITALIE', 36], ['#PÂTES', 92], ['#EXPRESS', 148]].map(([t, x], k) => (
+                <g key={t as string} className={k === 0 ? styles.pulse : undefined}>
+                    {r(x as number, 82, 50, 16, 8, k === 0 ? c : soft2)}
+                    <text x={(x as number) + 25} y="93" textAnchor="middle" fontSize="7" fontWeight="700" fill={k === 0 ? '#111' : '#fff'}>{t}</text>
+                </g>
+            ))}
+            <circle className={styles.tap} cx="61" cy="90" r="9" fill="#fff" fillOpacity="0.85" />
+            {[0, 1, 2, 3, 4, 5].map((k) => r(30 + (k % 6) * 27, 112, 22, 28, 5, k % 2 ? soft : `url(#g-${kind})`))}
+        </>);
+        case 'timers': return frame(<>
+            {r(30, 8, 160, 78, 14, 'rgba(30,30,34,0.95)', soft2)}
+            {[18, 50].map((y, k) => (
+                <g key={y}>
+                    {r(40, y, 26, 26, 6, k === 0 ? `url(#g-${kind})` : soft2)}
+                    {r(72, y + 5, 54, 7, 3, soft2)}{r(72, y + 15, 36, 5, 3, soft)}
+                    <text x="150" y={y + 17} textAnchor="middle" fontSize="11" fontWeight="800" fill="#fff">{k === 0 ? '3:12' : '14:05'}</text>
+                    <circle cx="176" cy={y + 13} r="7" fill={soft2} />
+                    <path d={`M173 ${y + 10}l6 6M179 ${y + 10}l-6 6`} stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
+                </g>
+            ))}
+            {r(30, 106, 130, 30, 15, 'rgba(30,30,34,0.95)', soft2)}
+            <g className={styles.pulse}>
+                <circle cx="176" cy="121" r="15" fill={c} />
+                <text x="176" y="125" textAnchor="middle" fontSize="9" fontWeight="800" fill="#111">3:12</text>
+            </g>
+        </>);
+        case 'demarrer': return frame(<>
+            {['19:05', '19:20', '19:40', '20:00'].map((t, k) => (
+                <g key={t}>
+                    {r(20, 54 + k * 22, 180, 17, 6, k === 0 ? soft2 : soft)}
+                    <text x="30" y={66 + k * 22} fontSize="8" fontWeight="800" fill="#fff">{t}</text>
+                    {r(62, 59 + k * 22, 100 - k * 12, 7, 3, k === 0 ? c : soft2)}
+                </g>
+            ))}
+            <g className={styles.drop}>
+                {r(24, 6, 172, 40, 12, 'rgba(48,22,14,0.95)', c)}
+                <text x="34" y="20" fontSize="8" fontWeight="800" fill={c}>19:05 · C’EST L’HEURE</text>
+                {r(34, 27, 70, 13, 6, '#fff')}<text x="69" y="36" textAnchor="middle" fontSize="7" fontWeight="800" fill="#111">OK, c’est fait</text>
+                {r(110, 27, 70, 13, 6, soft2)}<text x="145" y="36" textAnchor="middle" fontSize="7" fontWeight="700" fill="#fff">Dans 10 min</text>
+            </g>
+        </>);
+        case 'plus': return frame(<>
+            {r(20, 10, 180, 20, 9, soft)}
+            <text x="51" y="23" fontSize="8" fill="#bbb" textAnchor="middle">Semaine</text>
+            <text x="110" y="23" fontSize="8" fill="#bbb" textAnchor="middle">Jour/jour</text>
+            {r(146, 13, 50, 14, 6, '#fff')}<text x="171" y="23" fontSize="8" fontWeight="700" fill="#111" textAnchor="middle">En +</text>
+            {r(20, 40, 180, 100, 12, soft)}
+            {r(30, 48, 30, 30, 7, `url(#g-${kind})`)}{r(68, 56, 90, 9, 4, soft2)}
+            {[88, 104, 120].map((y) => (<g key={y}><circle cx="36" cy={y + 4} r="4" stroke="#fff" strokeWidth="1.6" />{r(46, y, 140, 8, 4, soft2)}</g>))}
+            <circle className={styles.tap} cx="45" cy="63" r="9" fill="#fff" fillOpacity="0.85" />
+        </>);
         case 'hero': return frame(<>
             {r(30, 12, 160, 96, 14, `url(#g-${kind})`)}
             {r(46, 84, 60, 12, 6, 'rgba(0,0,0,0.35)')}
@@ -283,7 +344,7 @@ function Illus({ kind, accent }: { kind: Art; accent: string }) {
             {r(20, 14, 180, 20, 9, soft)}
             {r(24, 17, 54, 14, 6, '#fff')}<text x="51" y="27" fontSize="8" fontWeight="700" fill="#111" textAnchor="middle">Semaine</text>
             <text x="112" y="27" fontSize="8" fill="#bbb" textAnchor="middle">Jour/jour</text>
-            <text x="172" y="27" fontSize="8" fill="#bbb" textAnchor="middle">Recette</text>
+            <text x="172" y="27" fontSize="8" fill="#bbb" textAnchor="middle">En +</text>
             {r(20, 42, 90, 8, 4, c)}
             {[56, 74, 92, 110].map((y) => (<g key={y}><circle cx="30" cy={y + 4} r="4" stroke="#fff" strokeWidth="1.6" />{r(40, y, 160, 8, 4, soft2)}</g>))}
         </>);
@@ -438,17 +499,7 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
      * Les listes dessinées (`STEPS_MOBILE`, `STEPS_BUREAU`) restent en réserve :
      * elles servent de filet si aucune vidéo n'est encore tournée.
      */
-    const FILMÉES: Step[] = listeDemos().map((d) => ({
-        kicker: d.kicker,
-        title: d.titre,
-        text: d.texte,
-        hint: d.conseil,
-        tint: `radial-gradient(60% 100% at 50% 0%, ${d.accent}55, transparent 70%)`,
-        accent: d.accent,
-        art: 'hero',
-        video: d.id,
-    }));
-    const STEPS: Step[] = FILMÉES.length ? FILMÉES : (embedded ? STEPS_BUREAU : STEPS_MOBILE);
+    const STEPS: Step[] = embedded ? STEPS_BUREAU : STEPS_MOBILE;
 
     useEffect(() => { setMounted(true); }, []);
 
@@ -518,11 +569,10 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
 
             <div className={styles.pager} ref={pagerRef} onScroll={onScroll}>
                 {STEPS.map((s, n) => (
-                    <section className={styles.slide} key={s.title}>
-                        <div className={styles.artStage} style={{ ['--tuto-accent' as any]: s.accent }}>
-                            {s.video
-                                ? <DemoVideo id={s.video} accent={s.accent} actif={n === i} />
-                                : <Illus kind={s.art} accent={s.accent} />}
+                    <section className={`${styles.slide} ${n === i ? styles.slideActive : ''}`} key={s.title}>
+                        {/* La scène se rejoue à chaque arrivée sur l'étape (clé = actif). */}
+                        <div key={n === i ? 'on' : 'off'} className={styles.artStage} style={{ ['--tuto-accent' as any]: s.accent }}>
+                            <Illus kind={s.art} accent={s.accent} />
                         </div>
                         <div className={styles.kicker}>{s.kicker} · {n + 1} / {STEPS.length}</div>
                         <h2 className={styles.title}>{s.title}</h2>

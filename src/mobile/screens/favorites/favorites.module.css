@@ -6,7 +6,7 @@
     /* La barre d'état iPhone est transparente (black-translucent) : sans
        l'encoche dans le calcul, le titre « Favoris » passait DESSOUS et
        restait invisible. Même marge haute que « Ma liste » / « Ma semaine ». */
-    padding: calc(env(safe-area-inset-top, 0px) + 18px) 16px calc(120px + env(safe-area-inset-bottom, 0px));
+    padding: calc(env(safe-area-inset-top, 0px) + 34px) 16px calc(120px + env(safe-area-inset-bottom, 0px));
 }
 
 .head {

@@ -84,6 +84,7 @@ import { ouvrirClavier } from '@/lib/clavier';
 
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 const CookingTimeline = dynamic(() => import('@/mobile/components/CookingTimeline/CookingTimeline'), { ssr: false });
+const DemarrageBandeau = dynamic(() => import('@/mobile/components/CookingTimeline/DemarrageBandeau'), { ssr: false });
 const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
 
 
@@ -438,6 +439,37 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         save(next);
     };
 
+    /**
+     * Retire le PLAT sans toucher à l'accompagnement.
+     *
+     * Le créneau ne sait porter qu'une recette principale : quand une garniture
+     * l'accompagnait, c'est elle qui devient la recette du créneau (on peut alors
+     * la « Changer » pour un vrai plat). Rien n'est perdu, rien n'est retiré en
+     * douce.
+     */
+    const retirerPlat = (day: string, meal: string) => {
+        const slot = plan[day]?.[meal];
+        if (!slot) return;
+        if (slot.side) {
+            const next: Plan = { ...plan, [day]: { ...(plan[day] || {}) } };
+            next[day][meal] = { ...(slot.side as Recipe) } as Slot;
+            oublierCoches(day, meal);
+            save(next);
+        } else setSlot(day, meal, null);
+    };
+
+    const sideableSlot = (day: string) => day !== JOUR_J;
+
+    /** Remplace le plat en gardant son accompagnement. */
+    const changerPlat = (day: string, meal: string, r: Recipe) => {
+        const slot = plan[day]?.[meal];
+        const side = slot?.side;
+        const next: Plan = { ...plan, [day]: { ...(plan[day] || {}) } };
+        next[day][meal] = (side ? { ...r, side } : r) as Slot;
+        oublierCoches(day, meal);
+        save(next);
+    };
+
     const clearAll = () => {
         const isJourJ = mode === 'jourj';
         // Plus de fenêtre système : elle cassait net l'écran TV+. On efface, et
@@ -722,8 +754,19 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             const cur = prev[fam];
             return { ...prev, [fam]: cur.includes(tag) ? cur.filter((t) => t !== tag) : [...cur, tag] };
         });
-        setFamOpen(false);
+        // Pays et catégories se replient une fois le choix fait ; les tendances
+        // restent ouvertes pour en cumuler plusieurs, jusqu'à un nouvel appui sur
+        // l'onglet « Tendances ».
+        if (fam !== 'tendances') setFamOpen(false);
     };
+
+    // Le menu du Jour J se remplit course par course (apéritif, entrée, plat…) :
+    // choisir une « catégorie » n'a pas de sens, on ne propose que pays et tendances.
+    useEffect(() => {
+        if (mode !== 'jourj') return;
+        setSel((p) => (p.categorie.length ? { ...p, categorie: [] } : p));
+        setFam((f) => (f === 'categorie' ? 'tendances' : f));
+    }, [mode]);
 
     const [composer, setComposer] = useState(false);
     /*
@@ -757,6 +800,28 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         });
         return out;
     }, [mode, plan]);
+
+    // La recette derrière chaque étape du déroulé : toucher l'étape ouvre sa fiche.
+    const recettesDuDeroule = useMemo(() => {
+        const m = new Map<string, Recipe>();
+        COURSES.forEach((c) => {
+            const slot = plan[JOUR_J]?.[c.label] as Slot | undefined;
+            if (!slot) return;
+            m.set(`${c.label}-${slot.id}`, slot);
+            if (slot.side) m.set(`Accompagnement-${slot.side.id}`, slot.side as Recipe);
+        });
+        return m;
+    }, [plan]);
+    // La fiche ouverte DEPUIS le déroulé : celui-ci s'efface derrière elle et
+    // revient dès qu'on la ferme (il se tient à 26000, la fiche à 20000).
+    const [ficheDuDeroule, setFicheDuDeroule] = useState(false);
+    const ouvrirRecetteDuDeroule = (key: string) => {
+        const r = recettesDuDeroule.get(key);
+        if (!r) return;
+        haptic(8);
+        setFicheDuDeroule(true);
+        setDetail(r);
+    };
 
     const shuffle = <T,>(a: T[]) => [...a].sort(() => Math.random() - 0.5);
 
@@ -867,7 +932,11 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 ...sub.tendances.map((t) => labelOf('tendances', t))].join(' + '))
             : 'Au hasard';
         const enTete = smart.express && mode === 'semaine' ? `Express · ${what}` : what;
-        const msg = offTrend > 0
+        // Jour J : une course sans recette pour le filtre reste simplement
+        // complétée au hasard, sans message — la tendance n'y est pas une promesse.
+        const msg = mode === 'jourj'
+            ? `${enTete} · ${filled} plat${filled > 1 ? 's' : ''} composé${filled > 1 ? 's' : ''}`
+            : offTrend > 0
             ? `${enTete} · ${filled} repas — ${offTrend} créneau${offTrend > 1 ? 'x' : ''} hors filtre, faute de recette`
             : offExpress > 0
                 ? `${enTete} · ${filled} repas — ${offExpress} créneau${offExpress > 1 ? 'x' : ''} au-delà de 45 min, faute de recette rapide`
@@ -945,6 +1014,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             let next = poserRecette(plan, venue.jour, venue.repas, (remplace as Recipe) || null);
             next = poserRecette(next, day, meal, enMain);
             save(next);
+        } else if (sideableSlot(day)) {
+            changerPlat(day, meal, enMain);   // le plat est remplacé, sa garniture reste
         } else {
             setSlot(day, meal, enMain);
         }
@@ -986,7 +1057,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                     Changer
                                 </button>
                             )}
-                            <button className={styles.planRemove} onClick={() => { haptic(10); setSlot(day, meal, null); }}>
+                            <button className={styles.planRemove} onClick={() => { haptic(10); sideable ? retirerPlat(day, meal) : setSlot(day, meal, null); }}>
                                 Retirer
                             </button>
                         </span>
@@ -1001,6 +1072,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             onClick={() => {
                                 // Le clic qui suit un glissé n'ouvre pas la fiche.
                                 if (Date.now() - apresTirage.current < 400) return;
+                                // Une recette est en main : toucher la carte occupée la remplace.
+                                if (enMain && creneauAccepte(enMain, day, meal)) { poserEnMain(day, meal); return; }
                                 haptic(8); setDetail(slot);
                             }}
                             {...prises(day, meal)}
@@ -1074,6 +1147,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                                 </div>
                                             </div>
                                         </button>
+                                        <button className={styles.planSideChange} onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true }); }}>
+                                            Changer
+                                        </button>
                                         <button className={styles.planSideRemove} onClick={() => { haptic(10); setSide(day, meal, null); }}>
                                             Retirer
                                         </button>
@@ -1143,7 +1219,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     </div>
                 </header>
                 <div style={{ padding: '4px 4px 40px' }}>
-                    <CookingTimeline items={timelineItems} />
+                    <CookingTimeline items={timelineItems} onOpenRecipe={ouvrirRecetteDuDeroule} />
                 </div>
             </div>
         );
@@ -1506,8 +1582,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                 </button>
                             </div>
                             <div className={styles.composeHint}>
-                                Coche ce que tu veux — catégories, pays, tendances se combinent —
-                                et {mode === 'jourj' ? 'chaque plat du menu' : 'les quatorze repas'} se remplissent.
+                                {mode === 'jourj'
+                                    ? 'Coche ce que tu veux — pays et tendances se combinent — et chaque plat du menu se remplit.'
+                                    : 'Coche ce que tu veux — catégories, pays, tendances se combinent — et les quatorze repas se remplissent.'}
                             </div>
                             {mode === 'semaine' && (
                                 <div className={styles.smartRow}>
@@ -1535,7 +1612,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                 aux douze premiers. Cocher n'ENVOIE rien — c'est le
                                 bouton du bas qui lance. */}
                             <div className={styles.famTabs}>
-                                {(['tendances', 'pays', 'categorie'] as FilterGroup[]).map((g) => (
+                                {((mode === 'jourj' ? ['tendances', 'pays'] : ['tendances', 'pays', 'categorie']) as FilterGroup[]).map((g) => (
                                     <button
                                         key={g}
                                         className={`${styles.famTab} ${fam === g ? styles.famTabOn : ''}`}
@@ -1599,7 +1676,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             {/* Pied épinglé : le compte et le bouton ne doivent jamais
                                 partir sous le pli quand les pastilles défilent. */}
                             <div className={styles.composeFooter}>
-                                {(selCount > 0 || smart.express) && selMatches < NEEDED && (
+                                {mode !== 'jourj' && (selCount > 0 || smart.express) && selMatches < NEEDED && (
                                     <div className={styles.selCountLow}>
                                         Trop peu pour {NEEDED} créneaux — certains sortiront du filtre.
                                     </div>
@@ -1628,6 +1705,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     <motion.div
                         className={styles.menuBackdrop}
                         onClick={() => setShowTimeline(false)}
+                        style={ficheDuDeroule && detail ? { visibility: 'hidden' } : undefined}
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
                     >
@@ -1646,7 +1724,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                                 </button>
                             </div>
-                            <CookingTimeline items={timelineItems} />
+                            <CookingTimeline items={timelineItems} onOpenRecipe={ouvrirRecetteDuDeroule} />
                         </motion.div>
                     </motion.div>
                 )}
@@ -1661,14 +1739,17 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 hint="Annuler"
                 onRecipeSelect={(r) => {
                     if (picker?.side) setSide(picker.day, picker.meal, r);
-                    else if (picker) setSlot(picker.day, picker.meal, r);
+                    else if (picker) changerPlat(picker.day, picker.meal, r);
                     setPicker(null);
                 }}
             />
 
             {detail && (
-                <RecipeSheet recipe={detail} isOpen={true} onClose={() => setDetail(null)} />
+                <RecipeSheet recipe={detail} isOpen={true} onClose={() => { setDetail(null); setFicheDuDeroule(false); }} />
             )}
+
+            {/* Déroulé démarré : la prochaine étape, l'heure qui sonne, OK / dans 10 min. */}
+            {timelineItems.length > 0 && <DemarrageBandeau items={timelineItems} />}
             {/* ── La recette qu'on tient ─────────────────────────────────────
                 Tant qu'elle n'est pas posée, elle reste visible : c'est ce qui
                 explique pourquoi les créneaux disent « Poser ici », et c'est la

@@ -374,7 +374,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
         triggerHaptic();
         if (newChecked[index]) {
             const minutes = parseDuration(recipe.steps[index]);
-            if (minutes) startTimer(minutes, stripHtml(recipe.steps[index]).substring(0, 50), recipe.id);
+            if (minutes) startTimer(minutes, stripHtml(recipe.steps[index]).substring(0, 50), recipe.id, { titre: recipe.title, image: recipe.image });
         }
     };
 

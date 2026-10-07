@@ -48,7 +48,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: calc(env(safe-area-inset-top, 0px) + 14px) 18px 10px;
+    padding: calc(env(safe-area-inset-top, 0px) + 30px) 18px 10px;
 }
 
 .bar {
@@ -133,6 +133,52 @@
     animation: tutoArtIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .art { width: 100%; height: 100%; display: block; }
+/*
+ * Motion design : la scène se construit pièce par pièce quand on arrive sur
+ * l'étape, puis le geste à faire (le doigt, la notification, le chrono) se
+ * rejoue en boucle. Plus léger qu'une vidéo, et jamais en retard d'une version.
+ */
+.slideActive .art > :not(defs) {
+    animation: tutoPiece 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.slideActive .art > :nth-child(2) { animation-delay: 0.05s; }
+.slideActive .art > :nth-child(3) { animation-delay: 0.1s; }
+.slideActive .art > :nth-child(4) { animation-delay: 0.15s; }
+.slideActive .art > :nth-child(5) { animation-delay: 0.2s; }
+.slideActive .art > :nth-child(6) { animation-delay: 0.25s; }
+.slideActive .art > :nth-child(7) { animation-delay: 0.3s; }
+.slideActive .art > :nth-child(8) { animation-delay: 0.35s; }
+.slideActive .art > :nth-child(n + 9) { animation-delay: 0.4s; }
+@keyframes tutoPiece {
+    from { opacity: 0; transform: translateY(8px) scale(0.92); }
+    to { opacity: 1; transform: none; }
+}
+/* Le doigt qui touche : il apparaît, appuie, s'efface. */
+.slideActive .art > .tap {
+    animation: tutoTap 1.8s ease-in-out 0.7s infinite both;
+}
+@keyframes tutoTap {
+    0% { opacity: 0; transform: scale(1.6); }
+    25% { opacity: 1; transform: scale(1); }
+    40% { opacity: 1; transform: scale(0.8); }
+    70%, 100% { opacity: 0; transform: scale(1.3); }
+}
+/* L'élément visé respire. */
+.slideActive .art .pulse { animation: tutoPulse 1.8s ease-in-out 0.7s infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes tutoPulse { 0%, 100% { transform: scale(1); } 40% { transform: scale(1.08); } }
+/* La notification qui tombe du haut. */
+.slideActive .art > .drop { animation: tutoDrop 2.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s infinite both; }
+@keyframes tutoDrop {
+    0% { opacity: 0; transform: translateY(-30px); }
+    18%, 80% { opacity: 1; transform: none; }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .slideActive .art > *, .slideActive .art .pulse { animation: none !important; }
+}
+
 @keyframes tutoArtIn {
     from { opacity: 0; transform: translateY(10px) scale(0.96); }
     to { opacity: 1; transform: none; }

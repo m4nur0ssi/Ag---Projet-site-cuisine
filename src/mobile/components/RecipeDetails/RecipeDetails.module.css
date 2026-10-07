@@ -345,6 +345,14 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.detailTagLink {
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s, transform 0.2s;
+}
+.detailTagLink:active { transform: scale(0.94); background: rgba(255, 255, 255, 0.14); }
+
 .imageCardContainer {
     position: relative;
     width: 100%;

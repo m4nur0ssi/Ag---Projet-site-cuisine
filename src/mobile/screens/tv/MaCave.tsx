@@ -16,12 +16,14 @@ import { useRouter } from 'next/navigation';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import {
-    readCave, addWine, removeWine, seedCaveIfEmpty, recipesForWine, wineProfile,
+    readCave, addWine, removeWine, seedCaveIfEmpty, recipesForWine, wineProfile, isDrinkRecipe,
     openBottle, setQty, drinkWindow, drinkRange, updateWine, findKnownWine,
     moveToTasted, moveToCave, shelfOf, wineMatches, CavePleine,
     CAVE_EVENT, type CaveWine, type WineColor, type WineShelf, type DrinkStatus,
 } from '@/lib/cave';
 import { whenCaveReady } from '@/mobile/lib/caveSync';
+import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
+import { matchesTag } from './themes';
 // Détourage + mise à taille fixe des bouteilles. Voir `bouteille.ts` : c'est
 // lui qui garantit que toutes les silhouettes d'une étagère se ressemblent.
 import { normaliserBouteille, normaliserDepuisUrl, estNormalisee, CADRE_H } from '@/lib/bouteille';
@@ -307,7 +309,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                     : aUneImage ? { visuelV: VISUEL_VERSION } : {};
                 if (Object.keys(maj).length === 0) continue;
                 if (!updateWine(w.id, maj)) {
-                    toast('Cave pleine côté navigateur — les bouteilles restantes gardent leur image.');
+                    toast('Plus de place sur cet appareil — les bouteilles restantes gardent leur image actuelle.');
                     return;
                 }
                 if (visuel && visuel !== w.photo) faites++;
@@ -373,10 +375,15 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             rouge: 'Rouges', blanc: 'Blancs', rose: 'Rosés', liqueur: 'Liqueurs',
             champagne: 'Champagnes', cidre: 'Cidres', 'cidre-rose': 'Cidres rosés',
         };
+        // Le chiffre compte les bouteilles DISPONIBLES (celles qu'on a en cave) :
+        // « 9 blancs » qui en comptait un rangé dans « Goûté & approuvé » promettait
+        // une bouteille qu'on ne peut plus ouvrir. L'onglet, lui, reste tant qu'il y a
+        // une bouteille de cette couleur sur l'une ou l'autre étagère.
+        const dispo = wines.filter((w) => shelfOf(w) === 'cave');
         const present = order
-            .map((c) => ({ key: c, label: plural[c], n: wines.filter((w) => w.color === c).length }))
-            .filter((t) => t.n > 0);
-        return [{ key: 'tous' as const, label: 'Tous', n: wines.length }, ...present];
+            .filter((c) => wines.some((w) => w.color === c))
+            .map((c) => ({ key: c, label: plural[c], n: dispo.filter((w) => w.color === c).length }));
+        return [{ key: 'tous' as const, label: 'Tous', n: dispo.length }, ...present];
     }, [wines]);
 
     /** Pastilles de maturité — seules celles qui ont des bouteilles s'affichent. */
@@ -387,7 +394,9 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             { key: 'jeune', label: 'Trop jeune' },
             { key: 'tard', label: 'Sans tarder' },
         ];
-        const pool = filter === 'tous' ? wines : wines.filter((w) => w.color === filter);
+        // Disponibles seulement : une bouteille déjà bue n'est plus « à boire ».
+        const dispo = wines.filter((w) => shelfOf(w) === 'cave');
+        const pool = filter === 'tous' ? dispo : dispo.filter((w) => w.color === filter);
         return order
             .map((t) => ({ ...t, n: pool.filter((w) => drinkWindow(w)?.status === t.key).length }))
             .filter((t) => t.n > 0);
@@ -1708,7 +1717,35 @@ function WineSheet({ wine, voisines, onNavigate, onClose, onPair, onEdit, onZoom
 
 /* ── Accord : recettes du site pour ce vin ────────────────────────────────── */
 function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () => void; embedded?: boolean }) {
-    const accords = useMemo(() => recipesForWine(wine, mockRecipes as any, 12), [wine]);
+    /*
+     * Filtres (catégorie, pays, tendances) pour ouvrir le choix au-delà des
+     * accords proposés. Même règle qu'ailleurs : entre familles c'est un ET,
+     * dans une famille un OU. Catégorie et pays se replient dès qu'on a
+     * choisi ; les tendances restent ouvertes pour en cumuler plusieurs.
+     */
+    const [sel, setSel] = useState<Record<FilterGroup, string[]>>({ categorie: [], pays: [], tendances: [] });
+    const [groupe, setGroupe] = useState<FilterGroup | null>(null);
+    const nbFiltres = sel.categorie.length + sel.pays.length + sel.tendances.length;
+    const basculer = (g: FilterGroup, tag: string) => {
+        setSel((p) => ({ ...p, [g]: p[g].includes(tag) ? p[g].filter((t) => t !== tag) : [...p[g], tag] }));
+        if (g !== 'tendances') setGroupe(null);
+    };
+    const accords = useMemo(() => {
+        if (!nbFiltres) return recipesForWine(wine, mockRecipes as any, 12);
+        const groupes = (['categorie', 'pays', 'tendances'] as FilterGroup[]).filter((g) => sel[g].length);
+        const opts = { ignoreCategoryGuards: !!sel.categorie.length };
+        const passe = (r: any) => groupes.every((g) => sel[g].some((t) => matchesTag(r, t, opts)));
+        const pool = (mockRecipes as any[]).filter(passe);
+        // D'abord les recettes qui vont VRAIMENT avec ce vin (avec leur raison),
+        // puis le reste de la sélection : le but est d'avoir plus de choix.
+        const bons = recipesForWine(wine, pool, 60);
+        const deja = new Set(bons.map((b: any) => String(b.recipe.id)));
+        const autres = pool
+            .filter((r) => r.image && !deja.has(String(r.id)) && (r.category || '').toLowerCase() !== 'restaurant' && !isDrinkRecipe(r))
+            .slice(0, 60)
+            .map((r) => ({ recipe: r, why: '' }));
+        return [...bons, ...autres];
+    }, [wine, sel, nbFiltres]);
     const profil = useMemo(() => wineProfile(wine), [wine]);
     /**
      * Encastrée dans le shell desktop, la cave ouvre la fiche FLOTTANTE
@@ -1739,6 +1776,37 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
                     </div>
                     <button className={styles.sheetClose} onClick={onClose}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
                 </div>
+                {/* Affiner : catégorie, pays, tendances. */}
+                <div className={styles.pairFiltres}>
+                    {(['categorie', 'pays', 'tendances'] as FilterGroup[]).map((g) => (
+                        <button
+                            key={g}
+                            className={`${styles.pairFiltre} ${groupe === g ? styles.pairFiltreOn : ''}`}
+                            onClick={() => setGroupe(groupe === g ? null : g)}
+                        >
+                            {g === 'categorie' ? 'Catégorie' : g === 'pays' ? 'Pays' : 'Tendances'}
+                            {sel[g].length > 0 && <span className={styles.pairFiltreN}>{sel[g].length}</span>}
+                        </button>
+                    ))}
+                    {nbFiltres > 0 && (
+                        <button className={styles.pairFiltreRaz} onClick={() => { setSel({ categorie: [], pays: [], tendances: [] }); setGroupe(null); }}>
+                            Effacer
+                        </button>
+                    )}
+                </div>
+                {groupe && (
+                    <div className={styles.pairChips}>
+                        {FILTER_GROUPS[groupe].map((f) => (
+                            <button
+                                key={f.tag}
+                                className={`${styles.pairChip} ${sel[groupe].includes(f.tag) ? styles.pairChipOn : ''}`}
+                                onClick={() => basculer(groupe, f.tag)}
+                            >
+                                {f.label}
+                            </button>
+                        ))}
+                    </div>
+                )}
                 <div className={styles.pairGrid}>
                     {accords.map(({ recipe: r, why }: any) => (
                         <button key={r.id} className={styles.pairCard} onClick={() => open(r)}>
@@ -1746,7 +1814,7 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
                             <span>{decodeHtml(r.title)}</span>
                             {/* La RAISON de l'accord : sans elle, une grille de photos
                                 ne vaut pas mieux qu'une liste au hasard. */}
-                            <em className={styles.pairWhy}>{why}</em>
+                            {why && <em className={styles.pairWhy}>{why}</em>}
                         </button>
                     ))}
                     {!accords.length && (
@@ -2065,10 +2133,10 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
             } catch {
                 try {
                     ranger(undefined);
-                    toast('Cave pleine côté navigateur : la bouteille est gardée, sans sa photo.');
+                    toast('Plus de place sur cet appareil : la bouteille est gardée, sans sa photo.');
                 } catch {
                     setBusy(false);
-                    setScanMsg('Cave pleine côté navigateur — retire un vin puis réessaie.');
+                    setScanMsg('Plus de place sur cet appareil — retire une bouteille puis réessaie.');
                     return;
                 }
             }
@@ -2146,9 +2214,9 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
             if (!(plein instanceof CavePleine)) { setScanMsg('Ajout impossible — réessaie.'); return; }
             try {
                 ranger(undefined);
-                toast('Cave pleine côté navigateur : la bouteille est gardée, sans sa photo.');
+                toast('Plus de place sur cet appareil : la bouteille est gardée, sans sa photo.');
             } catch {
-                setScanMsg('Cave pleine côté navigateur — retire un vin puis réessaie.');
+                setScanMsg('Plus de place sur cet appareil — retire une bouteille puis réessaie.');
                 return;
             }
         }

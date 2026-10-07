@@ -158,6 +158,8 @@ function StarSlider({ value, onChange }: { value: number; onChange: (v: number) 
         <div
             ref={barRef}
             className={styles.starSlider}
+            // Le carrousel de fiches ignore les gestes qui naissent ici (voir RecipeSheet).
+            data-no-swipe
             role="slider"
             aria-valuemin={0}
             aria-valuemax={5}

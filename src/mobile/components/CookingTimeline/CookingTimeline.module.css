@@ -100,3 +100,16 @@
 .stepT { font-size: 16px; min-width: 52px; }
 .stepD { font-size: 14.5px; }
 .gain { font-size: 13.5px; margin-top: 4px; }
+
+/* ── Démarrer le déroulé ── */
+.demarrerBtn { height: 38px; padding: 0 18px; border: none; border-radius: 999px; background: #fff; color: #111;
+    font-weight: 800; font-size: 14px; cursor: pointer; font-family: inherit; }
+.demarrerBtn:active { transform: scale(0.95); }
+.demarrerAide { flex: 1 0 100%; margin: 0; font-size: 12.5px; line-height: 1.45; color: rgba(235, 235, 245, 0.55); }
+.range:disabled { opacity: 0.4; }
+.stepLien { cursor: pointer; }
+.stepLien:active { background: rgba(255, 255, 255, 0.1); }
+.stepChevron { margin-left: auto; align-self: center; font-size: 22px; line-height: 1; color: rgba(235, 235, 245, 0.4); }
+.stepFait { opacity: 0.45; }
+.stepFait .stepD { text-decoration: line-through; }
+.stepCoche { margin-left: auto; align-self: center; color: #30D158; font-weight: 900; }

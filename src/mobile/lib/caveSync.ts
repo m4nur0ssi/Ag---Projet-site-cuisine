@@ -1,7 +1,7 @@
 'use client';
 
 import { supabase } from './supabase';
-import { CAVE_KEY, CAVE_EVENT } from '@/lib/cave';
+import { CAVE_EVENT, lireCaveComplete, ecrireCaveBrute, type CaveWine } from '@/lib/cave';
 import { ecrireStock } from '@/lib/stockage';
 
 /**
@@ -59,10 +59,8 @@ function markPulled() {
     laisserAfficher();
 }
 
-const readLocal = (): unknown[] => {
-    try { const v = JSON.parse(localStorage.getItem(CAVE_KEY) || '[]'); return Array.isArray(v) ? v : []; }
-    catch { return []; }
-};
+/** La cave locale avec ses photos EN CLAIR : le nuage n'a que faire d'un repère IndexedDB. */
+const readLocal = (): Promise<CaveWine[]> => lireCaveComplete();
 
 /** À la connexion : le nuage hydrate la cave locale s'il est plus récent. */
 export async function pullCave(): Promise<void> {
@@ -80,7 +78,7 @@ export async function pullCave(): Promise<void> {
     if (!data) { markPulled(); return; }              // compte neuf : le local fera foi
 
     const cloud = Array.isArray(data.data) ? data.data : [];
-    const local = readLocal();
+    const local = await readLocal();
     const mine = Number(localStorage.getItem(STAMP_KEY) || 0);
     const theirs = new Date(data.updated_at).getTime();
 
@@ -89,7 +87,7 @@ export async function pullCave(): Promise<void> {
     if (local.length && mine > theirs) { markPulled(); return; }
     if (JSON.stringify(cloud) === JSON.stringify(local)) { markPulled(); return; }
 
-    ecrireStock(CAVE_KEY, JSON.stringify(cloud));
+    ecrireCaveBrute(cloud as CaveWine[]);   // les photos lourdes partent dans IndexedDB
     ecrireStock(STAMP_KEY, String(theirs));
     markPulled();
     window.dispatchEvent(new Event(CAVE_EVENT));
@@ -105,7 +103,7 @@ async function pushNow(): Promise<void> {
     const now = new Date();
     const { error } = await supabase.from('cave_state').upsert({
         user_id: session.user.id,
-        data: readLocal(),
+        data: await readLocal(),
         updated_at: now.toISOString(),
     });
     if (!error) ecrireStock(STAMP_KEY, String(now.getTime()));

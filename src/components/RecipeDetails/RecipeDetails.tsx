@@ -1,4 +1,5 @@
 'use client';
+import { ouvrirTag } from '@/lib/ouvrirTag';
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { grandePhoto } from '@/lib/recipe-photo';
 import Link from 'next/link';
@@ -996,9 +997,15 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         {/* 2. Hashtags centrés sous la photo */}
                         <div className={styles.detailsHashtags}>
                             {recipe.tags?.filter(t => !countryFlags[t.toLowerCase()]).slice(0, 3).map(tag => (
-                                <span key={tag} className={styles.detailTag}>
+                                <button
+                                    key={tag}
+                                    type="button"
+                                    className={`${styles.detailTag} ${styles.detailTagLink}`}
+                                    onClick={() => ouvrirTag(tag)}
+                                    aria-label={`Voir toutes les recettes ${tag}`}
+                                >
                                     #{tag.toUpperCase()}
-                                </span>
+                                </button>
                             ))}
                         </div>
                     </div>

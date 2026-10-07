@@ -937,7 +937,14 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                 <button
                                     key={f.tag}
                                     className={`${styles.spChip} ${activeFilters.includes(f.tag) ? styles.spChipOn : ''}`}
-                                    onClick={() => { haptic(8); toggleFilter(f.tag); setActiveGroup(null); }}
+                                    onClick={() => {
+                                        haptic(8);
+                                        toggleFilter(f.tag);
+                                        // Catégorie et pays se replient une fois le choix fait ;
+                                        // les tendances restent ouvertes (on en cumule plusieurs)
+                                        // jusqu'à un nouvel appui sur « Tendances ».
+                                        if (activeGroup !== 'tendances') setActiveGroup(null);
+                                    }}
                                 >{stripEmoji(f.label)}</button>
                             ))}
                         </div>

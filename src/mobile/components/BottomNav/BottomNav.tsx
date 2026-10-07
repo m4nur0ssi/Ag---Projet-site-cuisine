@@ -129,7 +129,7 @@ export default function BottomNav() {
     const inCave = pathname === '/ma-cave';
     const [showTimerMode, setShowTimerMode] = useState(false);
     const [isTimerExpanded, setIsTimerExpanded] = useState(false);
-    const { activeTimer, stopTimer } = useTimer();
+    const { activeTimer, timers, stopTimer } = useTimer();
     const dockRef = useRef<HTMLDivElement>(null);
     const autoCloseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -214,11 +214,11 @@ export default function BottomNav() {
         setIsTimerExpanded(true);
         handleVibrate(15);
         
-        // Auto-close after 2 seconds
+        // Laisse le temps de lire plusieurs chronos avant de se refermer.
         if (autoCloseTimerRef.current) clearTimeout(autoCloseTimerRef.current);
         autoCloseTimerRef.current = setTimeout(() => {
             setIsTimerExpanded(false);
-        }, 2000);
+        }, 8000);
     };
 
     const handleSearchOrTimerClick = (e: React.MouseEvent) => {
@@ -636,28 +636,48 @@ export default function BottomNav() {
                                 </motion.div>
 
                                 <AnimatePresence>
-                                    {isTimerExpanded && activeTimer && (
-                                        <motion.div 
+                                    {isTimerExpanded && timers.length > 0 && (
+                                        <motion.div
                                             className={styles.expandedTimerBubble}
                                             initial={{ opacity: 0, y: 20, scale: 0.8 }}
                                             animate={{ opacity: 1, y: 0, scale: 1 }}
                                             exit={{ opacity: 0, y: 20, scale: 0.8 }}
+                                            onPointerDown={() => {
+                                                // On lit la liste : elle ne se referme pas sous le doigt.
+                                                if (autoCloseTimerRef.current) clearTimeout(autoCloseTimerRef.current);
+                                            }}
                                         >
-                                            <div className={styles.expandedTime}>
-                                                {Math.floor(activeTimer.remaining / 60)}:{(activeTimer.remaining % 60).toString().padStart(2, '0')}
-                                            </div>
-                                            <div 
-                                                className={styles.closeTimerBtn}
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    stopTimer();
-                                                    setIsTimerExpanded(false);
-                                                }}
-                                            >
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                                                    <path d="M18 6L6 18M6 6l12 12" />
-                                                </svg>
-                                            </div>
+                                            {/* Un chrono par ligne : la recette (photo + nom) à gauche
+                                                du temps, une croix pour l'arrêter. Le plus proche de
+                                                la fin en premier. */}
+                                            {timers.map((t) => (
+                                                <div key={t.id} className={styles.timerRow}>
+                                                    {t.recette?.image
+                                                        ? <img src={t.recette.image} alt="" className={styles.timerPhoto} draggable={false} />
+                                                        : <span className={styles.timerPhoto} aria-hidden />}
+                                                    <div className={styles.timerTexte}>
+                                                        <div className={styles.timerNom}>{t.recette?.titre || t.label}</div>
+                                                        {t.recette && <div className={styles.timerEtape}>{t.label}</div>}
+                                                    </div>
+                                                    <div className={styles.expandedTime}>
+                                                        {Math.floor(t.remaining / 60)}:{(t.remaining % 60).toString().padStart(2, '0')}
+                                                    </div>
+                                                    <div
+                                                        className={styles.closeTimerBtn}
+                                                        role="button"
+                                                        aria-label={`Arrêter le chrono ${t.recette?.titre || t.label}`}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            stopTimer(t.id);
+                                                            if (timers.length <= 1) setIsTimerExpanded(false);
+                                                        }}
+                                                    >
+                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+                                                            <path d="M18 6L6 18M6 6l12 12" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            ))}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>

@@ -28,6 +28,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
+import { ouvrirTag, OUVRIR_TAG, type OuvrirTagDetail } from '@/lib/ouvrirTag';
 import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf, minimumRangee } from './themes';
 import { ageAAfficher, estRecetteBebe, pourAdultes } from '@/lib/bebe';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal, tiktokDemandeExplicite } from '@/lib/tiktok-consent';
@@ -416,21 +417,7 @@ function Card({
             // Après un appui long, le clic de relâchement ne doit pas ouvrir la fiche.
             onClick={() => { if (lp.consumed.current) { lp.consumed.current = false; return; } haptic(8); onOpen(); }}
         >
-            <div
-                className={styles.thumb}
-                /*
-                 * Vitrine : le VISUEL lance la vidéo, le titre ouvre la fiche —
-                 * même partage des rôles que sur les cartes de catégorie. Sans
-                 * lui, la vidéo ne partait qu'au bout d'une seconde et demie au
-                 * centre de la rangée, et jamais si la garde avait renoncé.
-                 */
-                onClick={showcase && vid && onWantVideo ? (e) => {
-                    e.stopPropagation();
-                    if (lp.consumed.current) { lp.consumed.current = false; return; }
-                    haptic(8);
-                    onWantVideo(!videoId);
-                } : undefined}
-            >
+            <div className={styles.thumb}>
                 <img
                     src={recipe.image}
                     alt={label(recipe)}
@@ -541,12 +528,8 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
                 className={styles.thumb}
                 onClick={() => {
                     if (lp.consumed.current) { lp.consumed.current = false; return; }
-                    if (!vid) { onOpen(); return; }   // pas de vidéo → la fiche
-                    // Un appui sur la carte EST une demande de vidéo : on tente,
-                    // même si la garde avait renoncé. Si ça échoue, la photo revient.
-                    if (!tiktokAllowed()) tiktokDemandeExplicite();
                     haptic(8);
-                    setPlaying((p) => !p);
+                    onOpen();   // l'image ouvre toujours la fiche, vidéo ou pas
                 }}
             >
                 <img src={recipe.image} alt="" className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
@@ -877,16 +860,10 @@ function TopTenRow({
                                 onContextMenu={(e) => { e.preventDefault(); onLongPress(r); }}
                                 // Vidéo lancée : le tap sert à nos commandes, pas à ouvrir
                                 // la fiche (le titre s'en charge).
-                                onClick={playing ? undefined : () => {
+                                onClick={() => {
                                     if (pressConsumed.current) { pressConsumed.current = false; return; }
-                                    // Le VISUEL lance la vidéo — le bloc de texte, en bas,
-                                    // reste la porte de la fiche. Avant, il fallait attendre
-                                    // les deux secondes de lecture auto, sans moyen de la
-                                    // demander.
-                                    if (!vid) { onOpen(recipes, i); return; }
-                                    if (!tiktokAllowed()) tiktokDemandeExplicite();
-                                    haptic(8);
-                                    setPlayingId(id);
+                                    // L'image ouvre toujours la fiche, même avec une vidéo.
+                                    onOpen(recipes, i);
                                 }}
                             >
                                 <img src={r.image} alt={label(r)} className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
@@ -1069,7 +1046,25 @@ function Row({
      * rangée quitte l'écran.
      */
     const manuel = useRef(false);
-    const shown = recipes.slice(0, 14);
+    /*
+     * Les cartes ne se montent qu'à l'approche de la rangée (600 px avant).
+     * L'accueil en compte une vingtaine — 478 cartes et autant d'images créées
+     * d'un coup au lancement de la PWA, alors qu'on n'en voit que deux rangées.
+     * Une fois montées, elles restent : revenir en arrière ne recharge rien.
+     */
+    const rangee = useRef<HTMLElement>(null);
+    const [proche, setProche] = useState(false);
+    useEffect(() => {
+        if (proche) return;
+        const el = rangee.current;
+        if (!el || typeof IntersectionObserver === 'undefined') { setProche(true); return; }
+        const io = new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { setProche(true); io.disconnect(); }
+        }, { rootMargin: '600px 0px' });
+        io.observe(el);
+        return () => io.disconnect();
+    }, [proche]);
+    const shown = proche ? recipes.slice(0, 14) : [];
 
     useEffect(() => {
         if (!showcase) return;
@@ -1137,7 +1132,7 @@ function Row({
     };
 
     return (
-        <section className={styles.row} data-reveal>
+        <section className={styles.row} data-reveal ref={rangee}>
             <div className={styles.rowHeadWrap}>
                 <button className={styles.rowHead} onClick={() => { haptic(8); onSeeAll(title, recipes); }}>
                     <h2 className={styles.rowTitle}>{title}</h2>
@@ -1152,7 +1147,12 @@ function Row({
                     </button>
                 )}
             </div>
-            <div className={`${styles.rowScroll} ${showcase ? styles.rowScrollShowcase : ''}`} ref={scroller}>
+            <div
+                className={`${styles.rowScroll} ${showcase ? styles.rowScrollShowcase : ''}`}
+                ref={scroller}
+                // Place réservée tant que les cartes ne sont pas montées : la page ne saute pas.
+                style={proche ? undefined : { minHeight: showcase ? 360 : 190 }}
+            >
                 {shown.map((r, i) => (
                     <Card
                         key={r.id}
@@ -1637,16 +1637,10 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                                 onClick={() => {
                                     haptic(8);
                                     if (!on) { setIndex(real); return; }
-                                    if (!currentVid) { onOpen(recipes, real); return; }
-                                    if (playing) { setPlaying(false); setVideoOn(false); return; }
-                                    if (!tiktokAllowed()) tiktokDemandeExplicite();
-                                    setPlaying(true);
+                                    onOpen(recipes, real);
                                 }}
                                 aria-label={
-                                    !on ? label(r)
-                                    : !currentVid ? `Voir ${label(r)}`
-                                    : playing ? `Arrêter la vidéo de ${label(r)}`
-                                    : `Lancer la vidéo de ${label(r)}`
+                                    !on ? label(r) : `Voir ${label(r)}`
                                 }
                                 aria-current={on || undefined}
                                 aria-hidden={ghost || undefined}
@@ -1718,9 +1712,15 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                         </div>
 
                         <div className={styles.heroActionsSplit}>
-                            <button className={styles.heroPlaySplit} onClick={() => { haptic(10); onOpen(recipes, index); }}>
-                                Voir la recette
-                            </button>
+                            {/* Les hashtags remplacent « Voir la recette » : la photo ouvre
+                                déjà la fiche, eux ouvrent la catégorie entière. */}
+                            <div className={styles.heroTagsSplit}>
+                                {(current.tags || []).slice(0, 3).map((t: string) => (
+                                    <button key={t} className={styles.heroTagChip} onClick={() => { haptic(8); ouvrirTag(t); }}>
+                                        #{t.toUpperCase()}
+                                    </button>
+                                ))}
+                            </div>
                             <FavoriteButton
                                 recipeId={String(current.id)}
                                 imageUrl={current.image}
@@ -1941,9 +1941,12 @@ export default function TVHome() {
     useEffect(() => {
         const bar = document.getElementById('bottom-nav');
         if (!bar) return;
-        bar.style.display = overlayOpen ? 'none' : '';
+        // La fiche recette garde la barre du bas : on y passe d'un onglet à
+        // l'autre (Accueil, planificateur, courses) sans la fermer d'abord.
+        const masquer = overlayOpen && !sheet;
+        bar.style.display = masquer ? 'none' : '';
         return () => { bar.style.display = ''; };
-    }, [overlayOpen]);
+    }, [overlayOpen, sheet]);
 
     /*
      * Étapes, ingrédients et embeds vidéo ne servent qu'une fois une fiche
@@ -2074,6 +2077,25 @@ export default function TVHome() {
             u.searchParams.delete('tag');
             window.history.replaceState({}, '', u.pathname + u.search + u.hash);
         } catch { /* noop */ }
+    }, [openAll]);
+
+    // Hashtag cliqué (fiche, affiche du héros) : même grille que /?tag=…, sans recharger.
+    useEffect(() => {
+        const ouvrir = (e: Event) => {
+            const d = (e as CustomEvent<OuvrirTagDetail>).detail;
+            if (!d?.tag) return;
+            const low = d.tag.toLowerCase();
+            const theme = THEMES.find((t) => t.tag.toLowerCase() === low)
+                || THEMES.find((t) => t.title.toLowerCase() === low);
+            const list = mockRecipes.filter((r) => r.image && matchesTag(r, theme?.tag || d.tag));
+            if (!list.length) return;
+            d.pris = true;
+            setSheet(null);
+            setSearchOpen(false);
+            openAll(theme?.title || d.tag.charAt(0).toUpperCase() + d.tag.slice(1), list);
+        };
+        window.addEventListener(OUVRIR_TAG, ouvrir);
+        return () => window.removeEventListener(OUVRIR_TAG, ouvrir);
     }, [openAll]);
 
     /*

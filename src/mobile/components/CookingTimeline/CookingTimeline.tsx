@@ -7,6 +7,7 @@
  */
 import { useMemo, useState } from 'react';
 import { buildCookingTimeline, fmtClock, type TimelineInput } from '@/lib/cooking-timeline';
+import { useDemarrage, demarrer, arreter } from '@/lib/demarrage';
 import styles from './CookingTimeline.module.css';
 
 const COLORS = ['#30D158', '#FF6B4A', '#BF5AF2', '#0A84FF', '#FFC24B', '#FF3B6B'];
@@ -73,8 +74,17 @@ function IcoPassif({ label }: { label: string }) {
     return <IcoFour />;
 }
 
-export default function CookingTimeline({ items, defaultServe = 20 * 60 }: { items: TimelineInput[]; defaultServe?: number }) {
-    const [serve, setServe] = useState(defaultServe);
+export default function CookingTimeline({ items, defaultServe = 20 * 60, onOpenRecipe }: {
+    items: TimelineInput[];
+    defaultServe?: number;
+    /** Toucher une étape ouvre la fiche de sa recette ; la fermer ramène ici. */
+    onOpenRecipe?: (key: string) => void;
+}) {
+    const demarre = useDemarrage();
+    const [serveLibre, setServe] = useState(defaultServe);
+    // Déroulé lancé : l'heure de service est celle qu'on a démarrée, et elle ne se règle plus.
+    const serve = demarre ? demarre.serve : serveLibre;
+    const decalage = demarre?.decalage || 0;
     const res = useMemo(() => buildCookingTimeline(items, serve), [items, serve]);
 
     if (!items.length) {
@@ -110,12 +120,28 @@ export default function CookingTimeline({ items, defaultServe = 20 * 60 }: { ite
                     className={styles.range}
                     type="range" min={11 * 60} max={23 * 60} step={5}
                     value={serve} onChange={(e) => setServe(+e.target.value)}
+                    disabled={!!demarre}
                     aria-label="Heure de service"
                 />
                 <div className={styles.startPill}>
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M12 3c1.4 2.8.6 4.6-.9 6.1C9.4 10.8 8.5 12 8.5 14a3.5 3.5 0 0 0 7 0c0-1.2-.5-2.1-1-2.9 1.6.4 2.3 2 2.3 3.5A4.8 4.8 0 0 1 12 19.5 4.8 4.8 0 0 1 7 14.6c0-2.9 2-4.4 3.4-6.1C11.5 7 12 5.6 12 3z" fill="currentColor" /></svg>
                     Départ {fmtClock(start)}
                 </div>
+                {demarre ? (
+                    <button className={styles.demarrerBtn} onClick={arreter}>
+                        Arrêter{decalage >= 1 ? ` · +${Math.round(decalage)} min` : ''}
+                    </button>
+                ) : (
+                    <button className={styles.demarrerBtn} onClick={() => demarrer(items, serve)}>
+                        Démarrer
+                    </button>
+                )}
+                {!demarre && (
+                    <p className={styles.demarrerAide}>
+                        Démarre : à chaque étape, une notification te dit quoi faire. Tu réponds « OK » ou « dans 10 min »
+                        si tu as du retard — tous les horaires se mettent à jour.
+                    </p>
+                )}
             </div>
 
             <div className={styles.legend}>
@@ -172,23 +198,43 @@ export default function CookingTimeline({ items, defaultServe = 20 * 60 }: { ite
             </div>
 
             <ol className={styles.steps}>
-                {events.map((e, i) => (
-                    <li key={i} className={styles.step}>
-                        <span className={styles.stepT}>{fmtClock(e.t)}</span>
-                        {/* Entre l'heure et la consigne : ce que la minute demande —
-                            les mains, le four, le frais, ou le service. */}
-                        <span className={`${styles.stepIco} ${e.kind === 'act' ? styles.icoAct : e.kind === 'serve' ? styles.icoServe : styles.icoPass}`}>
-                            {e.kind === 'act' && <IcoPrepa />}
-                            {e.kind === 'pass' && e.x && <IcoPassif label={e.x.passiveLabel || 'Cuisson'} />}
-                            {e.kind === 'serve' && <IcoService />}
-                        </span>
-                        <span className={styles.stepD}>
-                            {e.kind === 'act' && e.x && <>Prépare <b>{e.x.label.toLowerCase()}</b> — <span className={`${styles.stepPlat} ${classeService(e.x.label)}`}>{e.x.title}</span></>}
-                            {e.kind === 'pass' && e.x && <>Lance <b>{(e.x.passiveLabel || 'la cuisson').toLowerCase()}</b> de <span className={`${styles.stepPlat} ${classeService(e.x.label)}`}>{e.x.title}</span> — {e.x.passive} min sans toi</>}
-                            {e.kind === 'serve' && <b>Service — tout est prêt</b>}
-                        </span>
-                    </li>
-                ))}
+                {events.map((e, i) => {
+                    const id = e.kind === 'serve' ? 'serve' : `${e.x!.key}:${e.kind}`;
+                    const fait = !!demarre?.faits.includes(id);
+                    // Étape non faite : l'heure suit le retard accumulé.
+                    const t = demarre && !fait ? e.t + decalage : e.t;
+                    const ouvre = !!(onOpenRecipe && e.x);
+                    return (
+                        <li
+                            key={i}
+                            className={`${styles.step} ${fait ? styles.stepFait : ''} ${ouvre ? styles.stepLien : ''}`}
+                            {...(ouvre ? {
+                                role: 'button' as const,
+                                tabIndex: 0,
+                                onClick: () => onOpenRecipe!(e.x!.key),
+                                onKeyDown: (ev: React.KeyboardEvent) => {
+                                    if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); onOpenRecipe!(e.x!.key); }
+                                },
+                                'aria-label': `Voir la recette ${e.x!.title}`,
+                            } : {})}
+                        >
+                            <span className={styles.stepT}>{fmtClock(t)}</span>
+                            {/* Entre l'heure et la consigne : ce que la minute demande —
+                                les mains, le four, le frais, ou le service. */}
+                            <span className={`${styles.stepIco} ${e.kind === 'act' ? styles.icoAct : e.kind === 'serve' ? styles.icoServe : styles.icoPass}`}>
+                                {e.kind === 'act' && <IcoPrepa />}
+                                {e.kind === 'pass' && e.x && <IcoPassif label={e.x.passiveLabel || 'Cuisson'} />}
+                                {e.kind === 'serve' && <IcoService />}
+                            </span>
+                            <span className={styles.stepD}>
+                                {e.kind === 'act' && e.x && <>Prépare <b>{e.x.label.toLowerCase()}</b> — <span className={`${styles.stepPlat} ${classeService(e.x.label)}`}>{e.x.title}</span></>}
+                                {e.kind === 'pass' && e.x && <>Lance <b>{(e.x.passiveLabel || 'la cuisson').toLowerCase()}</b> de <span className={`${styles.stepPlat} ${classeService(e.x.label)}`}>{e.x.title}</span> — {e.x.passive} min sans toi</>}
+                                {e.kind === 'serve' && <b>Service — tout est prêt</b>}
+                            </span>
+                            {fait ? <span className={styles.stepCoche} aria-hidden>✓</span> : ouvre ? <span className={styles.stepChevron} aria-hidden>›</span> : null}
+                        </li>
+                    );
+                })}
             </ol>
         </div>
     );

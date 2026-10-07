@@ -287,29 +287,6 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                             </div>
                         </div>
 
-                        {/* Case de recherche : se combine avec les filtres cochés. */}
-                        <div className={styles.navSearch}>
-                            <svg className={styles.navSearchIcon} viewBox="0 0 24 24" fill="none" aria-hidden>
-                                <path d={ICONS.search} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                            <input
-                                className={styles.navSearchInput}
-                                value={query}
-                                onChange={(e) => onQuery(e.target.value)}
-                                placeholder="Rechercher une recette"
-                                type="search"
-                                enterKeyHint="search"
-                                autoComplete="off"
-                                autoCorrect="off"
-                                spellCheck={false}
-                            />
-                            {query && (
-                                <button className={styles.navSearchClear} onClick={() => onQuery('')} aria-label="Effacer">
-                                    <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
-                                </button>
-                            )}
-                        </div>
-
                         <nav className={styles.navScroll}>
                             <div className={styles.navGroup}>
                                 <button className={styles.navRow} onClick={onClose}>

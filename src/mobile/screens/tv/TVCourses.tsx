@@ -125,8 +125,8 @@ function planSignature(p: Record<string, Record<string, any>>): string {
 
 export default function TVCourses({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
-    const [mode, setMode] = useState<'semaine' | 'jour' | 'recette' | 'panier'>('semaine');
-    // « Par recette » : ingrédients choisis à la main dans les fiches.
+    const [mode, setMode] = useState<'semaine' | 'jour' | 'plus'>('semaine');
+    // « En + » : ingrédients choisis à la main dans les fiches, et articles ajoutés à la main.
     const [cart, setCart] = useState<CartRecipe[]>([]);
     // Cases cochées de la vue « Par recette » (barrer en faisant les courses).
     const [cartChecked, setCartChecked] = useState<Set<string>>(new Set());
@@ -137,8 +137,6 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         window.addEventListener('storage', load);
         return () => { window.removeEventListener(CART_EVENT, load); window.removeEventListener('storage', load); };
     }, []);
-    // L'onglet « Par recette » disparaît quand le panier se vide : on retombe sur la semaine.
-    useEffect(() => { if (mode === 'recette' && cart.length === 0) setMode('semaine'); }, [mode, cart.length]);
     const [list, setList] = useState<ListData>({});
     const [plan, setPlan] = useState<Record<string, Record<string, any>>>({});
     const [weekChecked, setWeekChecked] = useState<Set<string>>(new Set());
@@ -212,6 +210,12 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             return { ...it, qty: q, display: `${prettyQtyUnit(q, it.unit)} ${it.name}`.trim() };
         });
     }, [plan, weekChecked, list, withJourJ, withWeek, qtyEdits]);
+
+    // Les articles tapés à la main (hors recette) : leur propre section dans « En + ».
+    const manuels = useMemo(
+        () => (list.manuel?.ingredients || []).map((i) => (typeof i === 'string' ? i : i.name)).filter(Boolean) as string[],
+        [list],
+    );
 
     const hasJourJ = Object.keys(plan.JourJ || {}).length > 0;
     const hasWeek = Object.keys(plan).some((d) => d !== 'JourJ' && Object.keys(plan[d] || {}).length > 0);
@@ -563,6 +567,12 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const restants = items.filter((it) => !isItemDone(it, done)).length;
 
     // ── Vue Jour : les ingrédients repas par repas ─────────────────────────
+    /** Ouvre la carte d'une recette par-dessus la liste (la liste reste là dessous). */
+    const ouvrirFiche = (fiche: { id?: unknown } | undefined | null) => {
+        if (!fiche?.id) return;
+        window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: fiche }));
+    };
+
     const dayLines = (day: string) => {
         const meals = plan[day] || {};
         return Object.entries(meals).flatMap(([meal, recipe]: [string, any]) => {
@@ -578,6 +588,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                         meal,
                         recipe: decodeHtml(r?.title || ''),
                         image: r?.image as string | undefined,
+                        // La recette elle-même : toucher son titre ouvre sa fiche.
+                        fiche: r,
                         icon: getIngIcon(p.name || raw),
                         nom: p.name || raw,
                         nombre: nombreDeLigne(p),
@@ -808,7 +820,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
 
             <div className={styles.planModes}>
                 {([['semaine', 'La semaine'], ['jour', 'Jour par jour'],
-                   ...(cart.length > 0 ? [['recette', 'Par recette'] as const] : [])] as const).map(([m, lbl]) => (
+                   ['plus', 'En +']] as const).map(([m, lbl]) => (
                     <button
                         key={m}
                         className={`${styles.planMode} ${mode === m ? styles.planModeOn : ''}`}
@@ -1106,11 +1118,19 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 <div key={l.key}>
                                     {head && (
                                         <h3 className={styles.courseRecipe}>
-                                            {l.image && <img src={l.image} alt="" className={styles.courseRecipeThumb} draggable={false} />}
-                                            <span className={styles.courseRecipeTexts}>
-                                                <span className={styles.courseMeal}>{l.meal}</span>
-                                                <span className={styles.courseRecipeName}>{head}</span>
-                                            </span>
+                                            {/* Toucher la recette ouvre sa carte, sans quitter la liste. */}
+                                            <button
+                                                className={styles.courseRecipeLien}
+                                                onClick={() => { haptic(8); ouvrirFiche(l.fiche); }}
+                                                aria-label={`Voir la recette ${head}`}
+                                            >
+                                                {l.image && <img src={l.image} alt="" className={styles.courseRecipeThumb} draggable={false} />}
+                                                <span className={styles.courseRecipeTexts}>
+                                                    <span className={styles.courseMeal}>{l.meal}</span>
+                                                    <span className={styles.courseRecipeName}>{head}</span>
+                                                </span>
+                                                <span className={styles.courseRecipeChevron} aria-hidden>›</span>
+                                            </button>
                                         </h3>
                                     )}
                                     <div
@@ -1141,16 +1161,65 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                 </div>
             ) : null}
 
-            {/* « Par recette » : les recettes dont on a tapé des ingrédients depuis la
-                fiche (panier hand-picked, magic-shopping-list). N'apparaît que si non vide. */}
-            {mode === 'recette' && (
+            {/* « En + » : tout ce qui ne vient PAS du planificateur — les articles
+                ajoutés à la main, et les ingrédients cochés depuis la carte d'une
+                recette (chacun sous sa recette : photo, nom, et lien vers la carte). */}
+            {mode === 'plus' && (
                 <div className={styles.courseBody}>
+                    {!cart.length && !manuels.length && (
+                        <p className={styles.courseEmpty}>
+                            Rien ici pour l’instant. Les articles ajoutés à la main, et les ingrédients que tu coches
+                            depuis la carte d’une recette, s’affichent dans cet onglet.
+                        </p>
+                    )}
                     <div className={styles.cartList}>
+                        {manuels.length > 0 && (
+                            <div className={styles.cartCard}>
+                                <div className={styles.cartCardHead}>
+                                    <div className={styles.cartTitle}>Ajoutés à la main</div>
+                                </div>
+                                {manuels.map((raw, i) => {
+                                    const k = `manuel|${raw}`;
+                                    const struck = cartChecked.has(k);
+                                    const texte = cleanIngredientText(raw) || raw;
+                                    return (
+                                        <div key={`${raw}-${i}`} className={`${styles.courseRow} ${styles.courseRowFlat} ${struck ? styles.courseRowDone : ''}`}>
+                                            <button
+                                                className={`${styles.courseCheck} ${struck ? '' : styles.courseCheckOn}`}
+                                                onClick={() => { haptic(6); setCartChecked((prev) => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }); }}
+                                                aria-label={struck ? 'Je ne l’ai pas : à prendre' : 'Je l’ai déjà'}
+                                            >
+                                                {!struck && (
+                                                    <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
+                                                        <path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                )}
+                                            </button>
+                                            <button
+                                                className={styles.courseText}
+                                                onClick={() => { haptic(6); setCartChecked((prev) => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }); }}
+                                            >
+                                                <span className={styles.courseName}>{texte}</span>
+                                            </button>
+                                            <button className={styles.cartRemove} onClick={() => removeManual(texte)}>Retirer</button>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
                         {cart.map((r) => (
                             <div key={r.id} className={styles.cartCard}>
                                 <div className={styles.cartCardHead}>
-                                    {r.image && <img src={r.image} alt="" className={styles.cartThumb} draggable={false} />}
-                                    <div className={styles.cartTitle}>{decodeHtml(r.title)}</div>
+                                    {/* La recette (photo + nom) est un lien vers sa carte. */}
+                                    <button
+                                        className={styles.cartLien}
+                                        onClick={() => { haptic(8); ouvrirFiche({ id: r.id, title: r.title, image: r.image } as { id: string }); }}
+                                        aria-label={`Voir la recette ${decodeHtml(r.title)}`}
+                                    >
+                                        {r.image && <img src={r.image} alt="" className={styles.cartThumb} draggable={false} />}
+                                        <span className={styles.cartTitle}>{decodeHtml(r.title)}</span>
+                                        <span className={styles.courseRecipeChevron} aria-hidden>›</span>
+                                    </button>
                                     <button
                                         className={styles.cartRemove}
                                         onClick={() => {

@@ -31,7 +31,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: calc(env(safe-area-inset-top, 0px) + 14px) 18px 8px;
+    padding: calc(env(safe-area-inset-top, 0px) + 30px) 18px 8px;
 }
 
 .back {

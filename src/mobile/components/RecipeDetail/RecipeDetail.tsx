@@ -81,7 +81,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
             if (minutes) {
                 const cleanLabel = stripHtml(stepText);
                 const shortLabel = cleanLabel.length > 50 ? cleanLabel.substring(0, 47) + '...' : cleanLabel;
-                startTimer(minutes, shortLabel, recipe.id);
+                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image });
             }
         }
     };

@@ -882,7 +882,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: calc(14px + env(safe-area-inset-top, 0px)) 18px 12px;
+    padding: calc(30px + env(safe-area-inset-top, 0px)) 18px 12px;
     background: linear-gradient(180deg, rgba(10, 10, 12, 0.96) 60%, rgba(10, 10, 12, 0));
 }
 
@@ -1489,7 +1489,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: calc(env(safe-area-inset-top, 0px) + 14px) 16px 12px;
+    padding: calc(env(safe-area-inset-top, 0px) + 30px) 16px 12px;
 }
 
 .spField {
@@ -1983,6 +1983,31 @@
     pointer-events: auto;
 }
 
+.heroTagsSplit {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    max-width: 260px;
+}
+.heroTagChip {
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.14);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 8px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.28s var(--tv-ease);
+}
+.heroTagChip:active { transform: scale(0.94); }
+
 /* Bouton compact : il partage la colonne avec le cœur. */
 .heroPlaySplit {
     display: inline-flex;
@@ -2222,7 +2247,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: calc(env(safe-area-inset-top, 0px) + 18px) 18px 12px;
+    padding: calc(env(safe-area-inset-top, 0px) + 32px) 18px 12px;
 }
 
 .planBack {
@@ -2873,6 +2898,25 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
     cursor: pointer;
 }
+.planSideChange {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(10, 10, 12, 0.7);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+@media (min-width: 900px) { .planSideChange { top: 12px; left: 14px; } }
+
 .planSideRemove {
     position: absolute;
     top: 10px;
@@ -3469,6 +3513,16 @@
     letter-spacing: -0.01em;
     color: #fff;
 }
+/* Le titre d'une recette est un lien vers sa carte (jour par jour, « En + »). */
+.courseRecipeLien, .cartLien {
+    display: flex; align-items: center; gap: 11px;
+    flex: 1 1 auto; min-width: 0;
+    padding: 0; border: none; background: none; cursor: pointer;
+    color: inherit; font: inherit; text-align: left;
+    -webkit-tap-highlight-color: transparent;
+}
+.courseRecipeLien:active, .cartLien:active { opacity: 0.6; }
+.courseRecipeChevron { margin-left: auto; flex: 0 0 auto; font-size: 22px; line-height: 1; color: rgba(235, 235, 245, 0.4); }
 /* Photo de la recette à gauche du titre (vue « jour par jour »). */
 .courseRecipeThumb {
     width: 42px; height: 42px; flex: 0 0 auto;
@@ -4478,7 +4532,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: calc(env(safe-area-inset-top, 0px) + 14px) 18px 10px;
+    padding: calc(env(safe-area-inset-top, 0px) + 30px) 18px 10px;
 }
 
 .extBack {
@@ -5491,7 +5545,7 @@
 .pagePlanner .planRail { z-index: 2; }
 
 .pagePlanner .planHead {
-    padding-top: calc(env(safe-area-inset-top, 0px) + 24px);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 38px);
 }
 
 .pagePlanner .planKicker {

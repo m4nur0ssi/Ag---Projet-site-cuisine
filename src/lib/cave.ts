@@ -5,6 +5,10 @@
 // seule la bouteille change.
 
 import { ecrireStock } from '@/lib/stockage';
+import {
+    estRepere, idDuRepere, repereDe, photoEnMemoire, hydraterPhotos, idbDisponible,
+    rangerPhoto, oublierPhoto, SEUIL_OCTETS,
+} from '@/lib/cave-photos';
 /**
  * Ce qu'il y a dans la bouteille — et, accessoirement, la forme de celle-ci.
  *
@@ -121,13 +125,51 @@ export function drinkWindow(wine: CaveWine): { status: DrinkStatus; label: strin
 export const CAVE_KEY = 'ma-cave-v1';
 export const CAVE_EVENT = 'ma-cave-change';
 
-export function readCave(): CaveWine[] {
+/**
+ * La cave TELLE QUE STOCKÉE : une photo déplacée dans IndexedDB y figure sous
+ * forme de repère. C'est de CETTE lecture que partent toutes les écritures —
+ * partir de la lecture d'affichage (repère sans image → « pas de photo »)
+ * effacerait les photos.
+ */
+function lireBrut(): CaveWine[] {
     if (typeof window === 'undefined') return [];
     try {
         const raw = JSON.parse(localStorage.getItem(CAVE_KEY) || '[]');
         return Array.isArray(raw) ? raw : [];
     } catch { return []; }
 }
+
+/** La cave pour l'AFFICHAGE : chaque repère est remplacé par son image. */
+export function readCave(): CaveWine[] {
+    return lireBrut().map((w) => {
+        if (!estRepere(w.photo)) return w;
+        return { ...w, photo: photoEnMemoire(idDuRepere(w.photo!)) };   // pas encore lue → pas d'image
+    });
+}
+
+/** La cave avec TOUTES ses images en clair, prête à partir au nuage. */
+export async function lireCaveComplete(): Promise<CaveWine[]> {
+    await hydraterPhotos();
+    return readCave();
+}
+
+/** Au démarrage : charge les photos, migre les anciennes, puis prévient les écrans. */
+let demarre = false;
+export function demarrerPhotosCave(): void {
+    if (demarre || typeof window === 'undefined') return;
+    demarre = true;
+    void hydraterPhotos().then(() => {
+        // Les fiches d'avant gardaient leur photo en base64 dans le stockage local :
+        // on les déménage, ce qui libère la place qu'elles occupaient.
+        const brut = lireBrut();
+        if (brut.some((w) => photoADeplacer(w))) write(brut);
+        else window.dispatchEvent(new Event(CAVE_EVENT));
+    });
+}
+
+/** Une photo en clair, assez lourde pour qu'on la sorte du stockage local. */
+const photoADeplacer = (w: CaveWine) =>
+    !!w.photo && w.photo.startsWith('data:') && w.photo.length > SEUIL_OCTETS && idbDisponible();
 
 /**
  * La cave n'a pas pu être écrite : le stockage du navigateur est plein.
@@ -142,24 +184,53 @@ export class CavePleine extends Error {
     constructor() { super('Cave pleine : le stockage du navigateur est saturé.'); this.name = 'CavePleine'; }
 }
 
-/** Écrit la cave. Renvoie `false` si le navigateur a refusé (quota). */
+/**
+ * Écrit la cave. Renvoie `false` si le navigateur a refusé (quota).
+ *
+ * Les photos lourdes partent dans IndexedDB et la fiche n'en garde que le
+ * repère. Si IndexedDB refuse d'en confirmer une, elle revient dans la fiche :
+ * la photo ne doit jamais n'exister nulle part.
+ */
 function write(list: CaveWine[]): boolean {
-    const ok = ecrireStock(CAVE_KEY, JSON.stringify(list));
+    const aRanger: CaveWine[] = [];
+    const stocke = list.map((w) => {
+        if (!photoADeplacer(w)) return w;
+        aRanger.push(w);
+        return { ...w, photo: repereDe(w.id) };
+    });
+    const ok = ecrireStock(CAVE_KEY, JSON.stringify(stocke));
+    // Les images passent en mémoire AVANT l'événement : les écrans qui se
+    // relisent aussitôt les trouvent, au lieu d'une fiche sans photo.
+    const rangements = ok ? aRanger.map((w) => rangerPhoto(w.id, w.photo!).then((range) => ({ w, range }))) : [];
     // L'événement part même en cas d'échec : les écrans se resynchronisent
     // alors sur ce qui est RÉELLEMENT stocké, plutôt que sur ce qu'on croyait.
     window.dispatchEvent(new Event(CAVE_EVENT));
+    rangements.forEach((p) => void p.then(({ w, range }) => {
+        if (range) return;
+        // Pas de place dans IndexedDB non plus : la photo retourne dans la fiche.
+        const courante = lireBrut();
+        if (courante.some((x) => x.id === w.id && estRepere(x.photo))) {
+            ecrireStock(CAVE_KEY, JSON.stringify(courante.map((x) => (x.id === w.id ? { ...x, photo: w.photo } : x))));
+            window.dispatchEvent(new Event(CAVE_EVENT));
+        }
+    }));
     return ok;
+}
+
+/** Écrit une cave venue d'ailleurs (le nuage) : mêmes règles que `write`. */
+export function ecrireCaveBrute(list: CaveWine[]): boolean {
+    return write(list);
 }
 
 /** Ajoute une bouteille. Lève `CavePleine` si le stockage a refusé. */
 export function addWine(w: Omit<CaveWine, 'id' | 'addedAt'>): CaveWine {
     const wine: CaveWine = { qty: 1, ...w, id: `w${Date.now()}${Math.floor(Math.random() * 999)}`, addedAt: Date.now() };
-    if (!write([wine, ...readCave()])) throw new CavePleine();
+    if (!write([wine, ...lireBrut()])) throw new CavePleine();
     return wine;
 }
 
 export function updateWine(id: string, patch: Partial<CaveWine>): boolean {
-    return write(readCave().map((w) => (w.id === id ? { ...w, ...patch } : w)));
+    return write(lireBrut().map((w) => (w.id === id ? { ...w, ...patch } : w)));
 }
 
 /**
@@ -189,7 +260,7 @@ export function moveToCave(id: string, qty = 1) {
 
 /** « Ouvrir une bouteille » → décrémente le stock. */
 export function openBottle(id: string) {
-    const w = readCave().find((x) => x.id === id);
+    const w = lireBrut().find((x) => x.id === id);
     if (!w) return;
     // Ouvrir marque le vin comme dégusté : c'est ce qui permet, des mois plus
     // tard, d'annoncer « déjà dégusté » quand on rescanne la même étiquette.
@@ -251,7 +322,8 @@ export function findKnownWine(name: string, cave = readCave()): CaveWine | undef
 }
 
 export function removeWine(id: string) {
-    write(readCave().filter((w) => w.id !== id));
+    write(lireBrut().filter((w) => w.id !== id));
+    void oublierPhoto(id);
 }
 
 // Quelques vins d'exemple pour que la maquette ne soit pas vide au 1er
@@ -355,7 +427,7 @@ const COLOR_WORD: Record<WineColor, string> = {
  */
 const DRINK_KW = /(cocktails?|mojitos?|margaritas?|daiquiris?|spritz|negronis?|caipirinhas?|colada|sangrias?|punchs?|mocktails?|smoothies?|milkshakes?|frapp[ée]s?|limonades?|citronnade|jus\b|nectar|th[ée] glac[ée]|iced (tea|latte|coffee)|latte|cappuccino|caf[ée]\b|infusion|granit[ée]s?|slush|lassi|bissap|shots?\b|sours?\b|gin[- ]tonic|bloody mary)/i;
 
-const isDrinkRecipe = (r: { title?: string; category?: string; tags?: string[] }) => {
+export const isDrinkRecipe = (r: { title?: string; category?: string; tags?: string[] }) => {
     const cat = (r.category || '').toLowerCase();
     if (cat === 'boissons') return true;
     if ((r.tags || []).some((t) => /boisson|cocktail|jus|rafra/i.test(t))) return true;
@@ -544,3 +616,6 @@ export function recipesForWine<T extends { id: string | number; title: string; c
         why: x.pourquoi || `l’accord classique d’${profil.style}`,
     }));
 }
+
+// Dès que le module est chargé dans un navigateur : photos en mémoire, anciennes fiches migrées.
+if (typeof window !== 'undefined') queueMicrotask(demarrerPhotosCave);

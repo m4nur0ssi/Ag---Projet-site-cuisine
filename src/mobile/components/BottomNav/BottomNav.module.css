@@ -353,22 +353,54 @@
     position: absolute;
     bottom: 85px; /* Above the dock */
     right: 0;
-    width: 160px;
-    height: 54px;
-    border-radius: 20px;
-    background: rgba(40, 40, 40, 0.4);
+    width: min(320px, calc(100vw - 40px));
+    max-height: 50vh;
+    overflow-y: auto;
+    border-radius: 22px;
+    background: rgba(30, 30, 32, 0.62);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px;
     color: white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     z-index: 2000;
     pointer-events: auto;
+}
+
+.timerRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 4px 6px 6px;
+}
+.timerPhoto {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: rgba(255, 255, 255, 0.12);
+}
+.timerTexte { flex: 1 1 auto; min-width: 0; }
+.timerNom {
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.timerEtape {
+    font-size: 11px;
+    opacity: 0.65;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .expandedTimerText {
@@ -385,7 +417,8 @@
 }
 
 .expandedTime {
-    font-size: 24px;
+    flex: 0 0 auto;
+    font-size: 22px;
     font-weight: 900;
     font-variant-numeric: tabular-nums;
 }

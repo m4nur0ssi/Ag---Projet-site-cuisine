@@ -74,7 +74,8 @@
     overscroll-behavior: none;
     position: relative;
     padding-top: 40px;
-    padding-bottom: 120px;
+    /* La barre du bas reste visible sur la fiche : on garde sa hauteur libre. */
+    padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px));
     z-index: 10;
     scrollbar-width: none;
     touch-action: pan-y;
@@ -90,23 +91,23 @@
 
 .closeBtn {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 36px;
-    height: 36px;
-    border-radius: 18px;
-    background: rgba(0, 0, 0, 0.4);
+    top: 26px;
+    right: 16px;
+    width: 52px;
+    height: 52px;
+    border-radius: 26px;
+    background: rgba(0, 0, 0, 0.55);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 1000;
-    font-size: 14px;
+    font-size: 26px;
+    line-height: 1;
     font-weight: 800;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }

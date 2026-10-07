@@ -1,4 +1,5 @@
 'use client';
+import { ouvrirTag } from '@/lib/ouvrirTag';
 import { useState, useMemo, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
 import { grandePhoto } from '@/lib/recipe-photo';
 import Link from 'next/link';
@@ -445,7 +446,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, recipe.id);
+                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image });
             }
         }
     };
@@ -698,7 +699,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, recipe.id);
+                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image });
             }
         } else {
             setTermine(true);
@@ -1096,9 +1097,15 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         {/* 2. Hashtags centrés sous la photo */}
                         <div className={styles.detailsHashtags}>
                             {recipe.tags?.filter(t => !countryFlags[t.toLowerCase()]).slice(0, 3).map(tag => (
-                                <span key={tag} className={styles.detailTag}>
+                                <button
+                                    key={tag}
+                                    type="button"
+                                    className={`${styles.detailTag} ${styles.detailTagLink}`}
+                                    onClick={() => ouvrirTag(tag)}
+                                    aria-label={`Voir toutes les recettes ${tag}`}
+                                >
                                     #{tag.toUpperCase()}
-                                </span>
+                                </button>
                             ))}
                         </div>
                     </div>

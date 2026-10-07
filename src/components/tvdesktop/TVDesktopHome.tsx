@@ -32,6 +32,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf, minimumRangee } from '@/mobile/screens/tv/themes';
 import { ageAAfficher, estRecetteBebe, pourAdultes } from '@/lib/bebe';
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
+import { OUVRIR_TAG, type OuvrirTagDetail } from '@/lib/ouvrirTag';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
 import { startScrollReveal } from '@/lib/scrollReveal';
 import { startSectionSnap, SnapController } from '@/lib/sectionSnap';
@@ -1022,6 +1023,23 @@ export default function TVDesktopHome() {
             u.searchParams.delete('tag');
             window.history.replaceState({}, '', u.pathname + u.search + u.hash);
         } catch { /* noop */ }
+    }, [openCollection]);
+
+    // Hashtag cliqué (fiche, affiche du héros) : même grille que /?tag=…, sans recharger.
+    useEffect(() => {
+        const ouvrir = (e: Event) => {
+            const d = (e as CustomEvent<OuvrirTagDetail>).detail;
+            if (!d?.tag) return;
+            const low = d.tag.toLowerCase();
+            const theme = THEMES.find((t) => t.tag.toLowerCase() === low)
+                || THEMES.find((t) => t.title.toLowerCase() === low);
+            const list = mockRecipes.filter((r) => r.image && matchesTag(r, theme?.tag || d.tag));
+            if (!list.length) return;
+            d.pris = true;
+            openCollection(theme?.title || d.tag.charAt(0).toUpperCase() + d.tag.slice(1), list);
+        };
+        window.addEventListener(OUVRIR_TAG, ouvrir);
+        return () => window.removeEventListener(OUVRIR_TAG, ouvrir);
     }, [openCollection]);
 
     /*
