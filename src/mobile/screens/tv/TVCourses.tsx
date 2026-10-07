@@ -120,6 +120,15 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const [mode, setMode] = useState<'semaine' | 'jour' | 'plus'>('semaine');
     // « En + » : ingrédients choisis à la main dans les fiches, et articles ajoutés à la main.
     const [cart, setCart] = useState<CartRecipe[]>([]);
+    // Arrivée depuis « Liste de courses » du planificateur : la vue d'ensemble,
+    // déjà réglée sur la semaine OU le menu spécial (voir TVPlanner.validate).
+    useEffect(() => {
+        try {
+            if (sessionStorage.getItem('courses-vue') === 'semaine') setMode('semaine');
+            sessionStorage.removeItem('courses-vue');
+        } catch { /* stockage refusé : on garde la vue par défaut */ }
+    }, []);
+
     useEffect(() => {
         const load = () => setCart(readCart());
         load();
@@ -458,6 +467,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             detail: {
                 text: `Liste vidée · ${vides} article${vides > 1 ? 's' : ''} retiré${vides > 1 ? 's' : ''}`,
                 undoLabel: 'Annuler',
+                duree: 2000,
                 onUndo: () => {
                     ecrireStock('magic-shopping-list', JSON.stringify(listeAvant));
                     setList(listeAvant);
@@ -791,7 +801,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                             onClick={() => { haptic(8); ecrireStock('week-in-fused', withWeek ? 'false' : 'true'); setWithWeek(!withWeek); window.dispatchEvent(new Event('shoppingListUpdated')); }}
                         >
                             <span className={styles.courseJourJDot} />
-                            {withWeek ? 'Semaine incluse dans la liste' : 'Ajouter les ingrédients de la semaine'}
+                            {withWeek ? 'Semaine incluse dans la liste' : 'Afficher les ingrédients de la semaine'}
                         </button>
                     )}
                     {hasJourJ && (
@@ -800,7 +810,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                             onClick={() => { haptic(8); ecrireStock('jourj-in-fused', withJourJ ? 'false' : 'true'); setWithJourJ(!withJourJ); window.dispatchEvent(new Event('shoppingListUpdated')); }}
                         >
                             <span className={styles.courseJourJDot} />
-                            {withJourJ ? 'Menu spécial inclus dans la liste' : 'Ajouter les ingrédients du menu spécial'}
+                            {withJourJ ? 'Menu spécial inclus dans la liste' : 'Afficher les ingrédients du menu spécial'}
                         </button>
                     )}
 

@@ -24,9 +24,11 @@ export interface ToastDetail {
     text: string;
     undoLabel?: string;
     onUndo?: () => void;
+    /** Durée d'affichage en ms, quand le message doit être plus bref que d'habitude. */
+    duree?: number;
 }
 
-type Shown = { text: string; undoLabel: string; onUndo?: () => void };
+type Shown = { text: string; undoLabel: string; onUndo?: () => void; duree?: number };
 
 export default function TVToast() {
     const [msg, setMsg] = useState<Shown | null>(null);
@@ -39,14 +41,14 @@ export default function TVToast() {
                 typeof detail === 'string'
                     ? (detail.trim() ? { text: detail, undoLabel: '' } : null)
                     : (detail && typeof detail.text === 'string' && detail.text.trim()
-                        ? { text: detail.text, undoLabel: detail.undoLabel || 'Annuler', onUndo: detail.onUndo }
+                        ? { text: detail.text, undoLabel: detail.undoLabel || 'Annuler', onUndo: detail.onUndo, duree: detail.duree }
                         : null);
             if (!next) return;
             setMsg(next);
             if (timer.current) clearTimeout(timer.current);
             // Un filet mérite plus de temps qu'une simple nouvelle : le geste de
             // rattrapage doit être possible sans courir.
-            timer.current = setTimeout(() => setMsg(null), next.onUndo ? 7000 : 3600);
+            timer.current = setTimeout(() => setMsg(null), next.duree ?? (next.onUndo ? 7000 : 3600));
         };
         window.addEventListener('magic-toast-notify', onToast);
         return () => {

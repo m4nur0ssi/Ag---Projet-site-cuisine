@@ -673,14 +673,21 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         }
 
         ecrireStock('magic-shopping-list', JSON.stringify(data));
+        /*
+         * Pas de message : on va DIRECTEMENT à la liste, réglée sur ce qu'on vient
+         * de planifier — le menu spécial seul depuis l'onglet Menu spécial, la
+         * semaine seule depuis l'onglet Semaine. Les bascules de la liste
+         * permettent ensuite d'afficher l'autre.
+         */
+        const jourJ = mode === 'jourj';
+        ecrireStock('week-in-fused', jourJ ? 'false' : 'true');
+        ecrireStock('jourj-in-fused', jourJ ? 'true' : 'false');
+        try { sessionStorage.setItem('courses-vue', 'semaine'); } catch { /* noop */ }
         window.dispatchEvent(new Event('shoppingListUpdated'));
-        window.dispatchEvent(new CustomEvent('magic-toast-notify', {
-            detail: `${lines.size} ingrédient${lines.size > 1 ? 's' : ''} ajouté${lines.size > 1 ? 's' : ''} à ta liste 🛒`,
-        }));
-        setRecap({
-            total: lines.size,
-            rayons: [...rayonCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([id, n]) => ({ id, n })),
-        });
+        setRecap(null);
+        // Au bureau, le planificateur est un panneau : la liste s'ouvre à sa place.
+        if (embedded) window.dispatchEvent(new Event('magic-open-courses'));
+        else router.push('/tv-courses');
     };
 
     /**
