@@ -26,6 +26,13 @@
     position: relative;
     width: 94%;
     height: 92vh;
+    /*
+     * `vh` sur iPhone = l'écran SANS les barres de Safari : la fiche, posée en
+     * bas, dépassait par le haut sous la barre d'adresse et la barre d'état —
+     * on ne voyait ni le haut de la carte ni la croix. On la borne donc à la
+     * hauteur réellement visible (`dvh`), moins l'encoche.
+     */
+    height: min(92dvh, calc(100dvh - env(safe-area-inset-top, 0px) - 12px));
     max-width: 800px;
     margin: 0 auto;
     background: var(--ios-26-bg, #0a0a0c);
@@ -91,7 +98,7 @@
 
 .closeBtn {
     position: absolute;
-    top: 26px;
+    top: 18px;
     right: 16px;
     width: 52px;
     height: 52px;

@@ -37,12 +37,13 @@ export const STORE_BY_ID: Record<StoreId, StoreDef> =
 // faire défiler les produits sans changer d'onglet. Sans extension : ignoré.
 // `mo` = notre origine : l'extension y renvoie « article validé » (postMessage
 // ciblé, pas de '*'), ce qui raye l'ingrédient ici pendant qu'on est au magasin.
-export function storeSearchWithQueue(id: StoreId, terms: string[], index = 0): string {
+export function storeSearchWithQueue(id: StoreId, terms: string[], index = 0, session = '', labels: string[] = []): string {
     const base = STORE_BY_ID[id].search(terms[index] || '');
     try {
-        const payload = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(terms)))));
+        const data = session ? { session, terms, labels } : terms;
+        const payload = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(data)))));
         const origin = typeof window !== 'undefined' ? encodeURIComponent(window.location.origin) : '';
-        return `${base}#mlist=${payload}&mi=${index}${origin ? `&mo=${origin}` : ''}`;
+        return `${base}#mlist=${payload}&mi=${index}&run=${Date.now()}${origin ? `&mo=${origin}` : ''}`;
     } catch {
         return base;
     }

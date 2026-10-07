@@ -39,14 +39,16 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
     // `listRef` évite de ré-abonner à chaque rendu (la liste est recalculée) ;
     // les hooks restent AVANT le `return null` sous peine de casser leur ordre.
     const listRef = useRef(list);
-    listRef.current = list;
+    const sessionRef = useRef('');
     const shoppedRef = useRef(onShopped);
     shoppedRef.current = onShopped;
-    useEffect(() => onStoreItemDone(({ index }) => {
+    useEffect(() => onStoreItemDone(({ index, session, term }) => {
+        if (session !== sessionRef.current) return false;
         const it = listRef.current[index];
-        if (!it) return;
+        if (!it || !shoppedRef.current || carrefourTerm(it.name) !== term) return false;
         shoppedRef.current?.(it);
         setIdx(Math.min(index + 1, listRef.current.length - 1));
+        return true;
     }), []);
 
     if (!list.length) return null;
@@ -76,10 +78,12 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
         // Ouvre le magasin avec la file complète (hash #mlist) → l'extension "Courses
         // Magiques" fait défiler les produits sans changer d'onglet. Fenêtre nommée réutilisée.
         const queue = list.map(x => carrefourTerm(x.name));
-        window.open(storeSearchWithQueue(store, queue, i), 'storeCart');
+        listRef.current = list.map(item => ({ ...item, keys: [...item.keys] }));
+        sessionRef.current = crypto.randomUUID();
+        window.open(storeSearchWithQueue(store, queue, i, sessionRef.current, list.map(item => item.display)), 'storeCart');
         // Avec l'extension, c'est la mise au panier qui raye (plus juste). Sans elle,
         // personne ne nous préviendra : on raye dès la recherche, comme avant.
-        if (!isStoreExtensionActive()) onShopped?.(it);
+
     };
     const go = (i: number) => { const n = Math.max(0, Math.min(i, list.length - 1)); setIdx(n); openStore(n); };
 

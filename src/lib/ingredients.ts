@@ -4,10 +4,8 @@ export const normalizeIng = (s: string) =>
     (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
         .replace(/œ/g, 'oe').replace(/æ/g, 'ae').trim();
 
-// Unités de MESURE réelles uniquement. Les contenants (gousse, tranche, sachet, verre…)
-// sont volontairement EXCLUS : ils sont retirés du nom (stripMeasure) pour que
-// "1 gousse d'ail" fusionne avec "ail" (clé par nom, pas par contenant).
-const KNOWN_UNITS = ['g', 'kg', 'mg', 'ml', 'cl', 'l', 'dl', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c'];
+// Conserve les mesures et contenants : une tasse ne devient pas une pièce.
+const KNOWN_UNITS = ['piece', 'pieces', 'tete', 'tetes', 'cuillere', 'cuilleres', 'poignee', 'poignees', 'gousse', 'gousses', 'tranche', 'tranches', 'tasse', 'tasses', 'sachet', 'sachets', 'verre', 'verres', 'boite', 'boites', 'bouquet', 'bouquets', 'brin', 'brins', 'pot', 'pots', 'brique', 'briques', 'barquette', 'barquettes', 'pincee', 'pincees', 'gr', 'gramme', 'grammes', 'litre', 'litres', 'g', 'kg', 'mg', 'ml', 'cl', 'l', 'dl', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c'];
 
 // Conversion vers une unité de base (g pour le poids, ml pour le volume) afin
 // d'ADDITIONNER des quantités exprimées dans des unités différentes (ex. 1 kg + 200 g,
@@ -15,7 +13,7 @@ const KNOWN_UNITS = ['g', 'kg', 'mg', 'ml', 'cl', 'l', 'dl', 'cas', 'cac', 'cs',
 const WEIGHT_TO_G: Record<string, number> = { g: 1, gr: 1, gramme: 1, grammes: 1, mg: 0.001, kg: 1000 };
 const VOLUME_TO_ML: Record<string, number> = { ml: 1, cl: 10, dl: 100, l: 1000, litre: 1000, litres: 1000 };
 // Contenants à volume standard connu (en ml). "1 brique de crème" = 20 cl = 200 ml.
-const CONTAINER_TO_ML: Record<string, number> = { brique: 200, briques: 200 };
+const CONTAINER_TO_ML: Record<string, number> = {}; // Aucun volume inventé pour un contenant.
 
 // Ramène (qty, unit) à l'unité de base (g ou ml). Renvoie l'unité d'origine si inconnue.
 const toBaseUnit = (qty: number | null, unit: string): { qty: number | null; unit: string } => {
@@ -49,7 +47,7 @@ const MEASURE_WORDS = [
     'g', 'gr', 'gramme', 'grammes', 'kg', 'mg', 'ml', 'cl', 'l', 'litre', 'litres',
 ];
 
-export interface ParsedIng { qty: number | null; unit: string; name: string; }
+export interface ParsedIng { qty: number | null; unit: string; name: string; range?: [number, number]; }
 
 // Retire les émojis (et puces) en tête de chaîne — sans flag /u (target ES5)
 const stripLeadingEmoji = (s: string) =>
@@ -84,19 +82,31 @@ const stripMeasure = (s: string) => {
 };
 
 export const parseIngredient = (raw: string): ParsedIng => {
-    let s = (raw || '').replace(/\s+/g, ' ').trim();
+    let s = stripLeadingEmoji((raw || '').replace(/\s+/g, ' ').trim()).trim();
+    const fractions: Record<string, string> = { '½': '1/2', '¼': '1/4', '¾': '3/4', '⅓': '1/3', '⅔': '2/3', '⅛': '1/8' };
+    s = s.replace(/^([½¼¾⅓⅔⅛])\s*/, (_, fraction) => fractions[fraction] + ' ');
+    s = s.replace(/^(\d+(?:[.,]\d+)?)\s*(?:c\.?\s*[àa]\s*s\.?|cuill[eè]res?\s*[àa]\s*soupe)\s+/i, '$1 cas ').replace(/^(\d+(?:[.,]\d+)?)\s*(?:c\.?\s*[àa]\s*c\.?|cuill[eè]res?\s*[àa]\s*caf[ée])\s+/i, '$1 cac ');
     s = stripLeadingEmoji(s).trim();
+    // Certains exports placent la mesure après le produit : « mozzarella - 150 g ».
+    const suffix = s.match(/^(.+?)\s+[-:]\s*(\d+(?:[.,]\d+)?(?:\s*(?:à|a|-)\s*\d+(?:[.,]\d+)?)?)\s*(g|kg|mg|ml|cl|dl|l|gr|pi[eè]ces?)(?:\s*,.*)?$/i);
+    if (suffix) s = `${suffix[2]} ${suffix[3]} ${suffix[1]}`;
+    const interval = s.match(/^(\d+(?:[.,]\d+)?)\s*(à|a|-|\/)\s*(\d+(?:[.,]\d+)?)\s+(.*)$/i);
+    if (interval && (interval[2] !== '/' || (Number(interval[1]) >= 10 && Number(interval[3]) >= 10))) {
+        const lo = Number(interval[1].replace(',', '.')), hi = Number(interval[3].replace(',', '.'));
+        const parsed = parseIngredient(`1 ${interval[4]}`);
+        return { ...parsed, qty: null, range: [Math.min(lo, hi), Math.max(lo, hi)] };
+    }
     // Fraction en tête : "1/2 oignon rouge" → 0.5
     const frac = s.match(/^(\d+)\s*\/\s*(\d+)\s+(.*)$/);
     if (frac) {
         const q = parseInt(frac[1], 10) / parseInt(frac[2], 10);
-        const name = stripMeasure(frac[3].trim());
-        return { qty: Number.isFinite(q) ? q : null, unit: '', name: name || frac[3].trim() };
+        const parsed = parseIngredient(`1 ${frac[3]}`);
+        return { ...parsed, qty: Number.isFinite(q) ? q * (parsed.qty ?? 1) : null };
     }
     const m = s.match(/^(\d+(?:[.,]\d+)?)\s*([^\s\d]+)?\s*(.*)$/);
     if (m) {
         let qty: number | null = parseFloat(m[1].replace(',', '.'));
-        let unit = (m[2] || '').toLowerCase().replace(/\.$/, '');
+        let unit = normalizeIng(m[2] || '').replace(/\.$/, '');
         let name = (m[3] || '').trim();
         const unitNorm = normalizeIng(unit);
         if (unit && CONTAINER_TO_ML[unitNorm] != null) {
@@ -132,7 +142,7 @@ const SYNONYMS: Record<string, string> = {
     // Crème liquide : variantes du même produit (≠ crème fraîche / épaisse).
     'creme': 'creme liquide', 'creme entiere': 'creme liquide', 'creme fleurette': 'creme liquide',
     'creme liquide entiere': 'creme liquide', 'creme fraiche liquide': 'creme liquide',
-    'creme de soja': 'creme liquide', 'creme liquide 30': 'creme liquide',
+    'creme de soja': 'creme de soja', 'creme liquide 30': 'creme liquide',
 };
 
 // Ingrédients où la forme "en poudre" est un PRODUIT distinct du frais
@@ -142,16 +152,8 @@ const DISPLAY_ACCENT: Record<string, string> = {
     'creme liquide': 'crème liquide', 'creme fraiche': 'crème fraîche', 'creme epaisse': 'crème épaisse',
 };
 
-/*
- * Plus aucune variante « en poudre » à part.
- * =========================================
- *
- * L'ail en poudre, la coriandre moulue et la menthe séchée avaient chacun leur
- * ligne, à côté du produit frais. Dans un caddie, c'est le même rayon et le
- * même geste : on additionne. (Liste gardée vide plutôt que supprimée : le
- * réglage se redonne en une ligne si besoin.)
- */
-const POWDER_DISTINCT: string[] = [];
+// Les poudres d'aromates sont des produits distincts du frais.
+const POWDER_DISTINCT: string[] = ['ail', 'oignon', 'gingembre', 'coriandre'];
 
 /*
  * Épithètes qui ne changent pas le produit qu'on achète.
@@ -164,7 +166,7 @@ const POWDER_DISTINCT: string[] = [];
  * PAS dans la liste — « jaune » y est, car il ne fait que redire la couleur
  * par défaut.
  */
-const QUALIF_RE = /\s*\b(bio|biologiques?|non\s+traitee?s?|confite?s?|du\s+jardin|de\s+saison|entiere?s?|entiers?|de\s+qualite|extra)\b/g;
+const QUALIF_RE = /\s*\b(bio|biologiques?|non\s+traitee?s?|du\s+jardin|de\s+saison|entiere?s?|entiers?|de\s+qualite|extra)\b/g;
 
 /*
  * Un produit, une ligne.
@@ -177,8 +179,8 @@ const QUALIF_RE = /\s*\b(bio|biologiques?|non\s+traitee?s?|confite?s?|du\s+jardi
  * blanc) d'œuf n'est pas un œuf.
  */
 const FUSION_PRODUITS: { motif: RegExp; nom: string; sauf?: RegExp }[] = [
-    { motif: /\bcitrons?\b/, nom: 'citron', sauf: /\bverte?s?\b/ },
-    { motif: /\boignons?\b/, nom: 'oignon', sauf: /\brouges?\b/ },
+    { motif: /\bcitrons?\b/, nom: 'citron', sauf: /\bverte?s?\b|\bconfit/ },
+    { motif: /\boignons?\b/, nom: 'oignon', sauf: /\brouges?\b|\bfrit/ },
     { motif: /\b(oeufs?|œufs?)\b/, nom: 'oeuf', sauf: /\b(jaunes?|blancs?)\s+d/ },
     { motif: /\bails?\b/, nom: 'ail', sauf: /\bours?\b|\bnoirs?\b|\bfermente?s?\b/ },
     { motif: /\bcoriandres?\b/, nom: 'coriandre' },
@@ -252,14 +254,18 @@ const depluralize = (n: string) => n.split(' ').map(w => {
 // Adjectifs de préparation retirés pour la fusion (oignon émincé = oignon).
 // NB : on ne retire PAS "frais/fraiche" (crème fraîche ≠ crème) ni les couleurs
 // (oignon rouge ≠ oignon blanc), qui distinguent de vrais produits.
-const PREP_RE = /\s+(haches?|hachees?|eminces?|emincees?|concasses?|concassees?|ciseles?|ciselees?|rapes?|rapees?|coupes?|coupees?|fondus?|fondues?|surgeles?|surgelees?|congeles?|congelees?|decongeles?|decongelees?|grilles?|grillees?|rotis?|roties?|cuits?|cuites?|precuits?|precuites?|crus?|crues?|blanchis?|blanchies?|revenus?|revenues?|mixes?|mixees?|moulines?|moulinees?|ecrases?|ecrasees?|presses?|pressees?|bouillis?|bouillies?|natures?|en des|en lamelles|en rondelles|en tranches|en morceaux|en quartiers|en cubes|en julienne)\b/g;
+const PREP_RE = /\s+(haches?|hachees?|eminces?|emincees?|concasses?|concassees?|ciseles?|ciselees?|rapes?|rapees?|coupes?|coupees?|fondus?|fondues?|decongeles?|decongelees?|grilles?|grillees?|rotis?|roties?|cuits?|cuites?|precuits?|precuites?|crus?|crues?|blanchis?|blanchies?|revenus?|revenues?|mixes?|mixees?|moulines?|moulinees?|ecrases?|ecrasees?|presses?|pressees?|bouillis?|bouillies?|natures?|en des|en lamelles|en rondelles|en tranches|en morceaux|en quartiers|en cubes|en julienne)\b/g;
 // Suffixe "section de recette" collé au nom (ex. "ail pour la sauce", "oignon pour la
 // marinade") → on retire pour fusionner avec le même ingrédient sans suffixe.
 const SECTION_SUFFIX_RE = /\s+pour\s+(l[ae]s?|l['’]|du|des|une?|le)\s+.+$/;
 const stripPrep = (n: string) => n.replace(SECTION_SUFFIX_RE, '').replace(PREP_RE, '').replace(/\s+/g, ' ').trim();
 
 /** Une pièce et une absence d'unité, c'est la même chose dans un caddie. */
-const uniteDeBase = (u: string) => (u === 'piece' || u === 'pièce' || u === 'pieces' ? '' : u);
+const uniteDeBase = (unit: string) => {
+    const u = normalizeIng(unit);
+    const measures: Record<string, string> = { gousses: 'gousse', tranches: 'tranche', tasses: 'tasse', sachets: 'sachet', verres: 'verre', boites: 'boite', bouquets: 'bouquet', brins: 'brin', pots: 'pot', barquettes: 'barquette', pincees: 'pincee', tetes: 'tete', cuilleres: 'cuillere', poignees: 'poignee', briques: 'brique', cs: 'cas', cc: 'cac' };
+    return measures[u] || (u === 'piece' || u === 'pieces' ? '' : u);
+};
 
 export const canonicalIng = (name: string, unit: string = '', raw: string = ''): { name: string; unit: string } => {
     let n = depluralize(stripPrep(
@@ -272,22 +278,23 @@ export const canonicalIng = (name: string, unit: string = '', raw: string = ''):
     ));
     if (!n) n = depluralize(stripPrep(normalizeIng(name).replace(/\s+/g, ' ').trim()));
     n = retirerJaune(n).replace(TAILLE_RE, '').replace(/\s+/g, ' ').trim();
+    const originalPowder = POWDER_RE.test(n) || /\bsemoule\b/.test(n);
     for (const r of FUSION_PRODUITS) {
         if (r.motif.test(n) && !(r.sauf && r.sauf.test(n))) { n = r.nom; break; }
     }
     if (SYNONYMS[n]) n = SYNONYMS[n];
     const u = normalizeIng(unit);
-    const isPowder = POWDER_RE.test(n) || /\bsemoule\b/.test(n);
+    const isPowder = originalPowder || POWDER_RE.test(n) || /\bsemoule\b/.test(n);
     const base = n.replace(POWDER_RE, '').trim();
     if (POWDER_DISTINCT.includes(base)) {
         // càc/càs d'ail = ail en poudre (convention demandée), unité neutralisée pour fusionner.
-        if (isPowder || SPOON_UNITS.includes(u) || (raw && isSpoonRaw(raw))) {
-            return { name: base + ' en poudre', unit: '' };
+        if (isPowder) {
+            return { name: base + ' en poudre', unit: uniteDeBase(unit) };
         }
         return { name: base, unit: uniteDeBase(unit) }; // frais : conserve l'unité (g, etc.) pour additionner
     }
-    // La poudre rejoint le produit : « ail en poudre » compte avec « ail ».
-    if (isPowder) return { name: base, unit: '' };
+    // Les autres formes partagent leur produit, tout en conservant leurs unités.
+    if (isPowder) return { name: base, unit: uniteDeBase(unit) };
     return { name: n, unit: uniteDeBase(unit) };
 };
 
@@ -464,6 +471,8 @@ export interface ConsolItem {
     manual?: boolean;    // ajout manuel → affiché en tête de liste
     ord?: number;        // ordre d'ajout (manuel récent = plus grand)
     display: string;     // texte FIDÈLE à afficher (quantité + unité telles qu'écrites)
+    range?: [number, number];
+    mixedUnits?: boolean; // Une seule quantité ne peut pas remplacer des mesures incompatibles.
     count: number;       // nb d'occurrences fusionnées (>1 = additionné)
 }
 
@@ -518,13 +527,27 @@ export const estBasiqueMaison = (nom: string): boolean => {
     return BASIQUES_RX.test(n);
 };
 
-export const doneKeysOf = (it: ConsolItem): string[] => (it.keys.length ? it.keys : ['m:' + it.key]);
-export const isItemDone = (it: ConsolItem, done: Set<string>): boolean => doneKeysOf(it).every(k => done.has(k));
+export const extraLineKey = (id: string, raw: string): string => `extra|${encodeURIComponent(id)}|${encodeURIComponent(raw)}`;
+export const doneKeysOf = (it: ConsolItem): string[] => it.keys.length ? it.keys : ['m:' + it.key];
+const sourceKeyDone = (key: string, done: Set<string>): boolean =>
+    done.has(key) || done.has(key.split('|').slice(0, 3).join('|'));
+export const isItemDone = (it: ConsolItem, done: Set<string>): boolean =>
+    (it.manual && done.has('m:' + it.key)) || doneKeysOf(it).every(k => sourceKeyDone(k, done));
+
+export const sourceLineDone = (key: string, items: ConsolItem[], done: Set<string>): boolean => {
+    if (sourceKeyDone(key, done)) return true;
+    const sources = items.filter(it => it.keys.some(k => (k === key || k.startsWith(key + '|'))));
+    return sources.length > 0 && sources.every(it =>
+        (it.manual && done.has('m:' + it.key)) ||
+        it.keys.filter(k => (k === key || k.startsWith(key + '|'))).every(k => sourceKeyDone(k, done)));
+};
 
 // Texte d'ingrédient fidèle : retire seulement l'emoji / la puce de tête et normalise
 // les espaces. Conserve la quantité et l'unité exactement comme écrites dans la recette.
 export const cleanIngredientText = (raw: string) => {
-    let s = (raw || '').replace(/\s+/g, ' ').trim();
+    let s = stripLeadingEmoji((raw || '').replace(/\s+/g, ' ').trim()).trim();
+    const fractions: Record<string, string> = { '½': '1/2', '¼': '1/4', '¾': '3/4', '⅓': '1/3', '⅔': '2/3', '⅛': '1/8' };
+    s = s.replace(/^([½¼¾⅓⅔⅛])\s*/, (_, fraction) => fractions[fraction] + ' ');
     s = s.replace(/^(?:[\uD800-\uDBFF][\uDC00-\uDFFF]|[←-⇿⌀-➿⬀-⯿️•\-\s])+/, '').trim();
     return s;
 };
@@ -537,6 +560,14 @@ const isHeadingLine = (raw: string) => {
     if (/:\s*$/.test(s)) return true;
     if (/^pour\b/i.test(s) && /\b(sauce|boulettes?|garniture|p[âa]te|montage|d[ée]cor|service|accompagnement|marinade|farce|cr[èe]me|gla[çc]age|sirop|nappage|topping|base|fond|dressage|finition)\b/i.test(s)) return true;
     return false;
+};
+
+/** Préparations utilisant l'eau du robinet ou des glaçons, pas un achat alimentaire. */
+export const isPreparationNeed = (raw: string): boolean => {
+    const n = normalizeIng(raw).replace(/^[^a-z]+/, '');
+    return /^(?:grand |petit )?(?:bol|saladier|bain) (?:d |d['’])?eau.*(?:froide|glacon|glace)/.test(n)
+        || /^eau (?:de cuisson|pour (?:cuire|la cuisson|rincer)|chaude|froide|du robinet)(?:\b|$)/.test(n)
+        || /^(?:un |une )?(?:bain de glace|bain marie|papier cuisson|papier sulfurise)\b/.test(n);
 };
 
 // Liste fusionnée = ingrédients de la semaine planifiée (hors cochés) + ajouts manuels.
@@ -555,38 +586,47 @@ export const buildConsolidatedItems = (
      * stockage : l'un obéissait au réglage, l'autre l'ignorait.
      */
     includeWeek: boolean = true,
+    done: Set<string> = new Set(),
 ): ConsolItem[] => {
     const map = new Map<string, ConsolItem>();
     let ord = 0;
     // 1 ligne d'ingrédient = 1 entrée (pas de découpage) → identique à la recette.
     // Fusion par produit+unité UNIQUEMENT pour additionner les quantités entre recettes.
     const add = (raw: string, opts?: { slotKey?: string; manual?: boolean }) => {
-        if (isHeadingLine(raw)) return;
+        if (isHeadingLine(raw) || (!opts?.manual && isPreparationNeed(raw)) || (opts?.slotKey && weekChecked.has(opts.slotKey))) return;
         const clean = cleanIngredientText(raw);
         const p = parseIngredient(raw);
         if (!p.name) return;
         // Canonicalisation : regroupe les variantes du même ingrédient (ex. ail).
         const c = canonicalIng(p.name, p.unit, raw);
         // Unité ramenée à la base (g / ml) pour additionner cl + ml + brique, kg + g…
-        const b = toBaseUnit(p.qty, c.unit);
+        const b = toBaseUnit(p.range ? p.range[0] : p.qty, c.unit);
+        const range: [number, number] | undefined = p.range ? [b.qty ?? p.range[0], toBaseUnit(p.range[1], c.unit).qty ?? p.range[1]] : undefined;
+        if (range) b.qty = null;
         // Nom AFFICHÉ : on garde l'accentuation d'origine si le canonique = l'original
         // (juste normalisé) ; sinon on ré-accentue les cas connus, sinon le canonique.
         const dispName = normalizeIng(p.name) === c.name ? p.name : (DISPLAY_ACCENT[c.name] || c.name);
         p.name = dispName; p.unit = b.unit;
         const key = `${c.name}|${b.unit}`;
+        if (opts?.slotKey && sourceKeyDone(opts.slotKey, done)) return;
+        if (opts?.manual && done.has('m:' + key)) return; // anciennes listes
         const existing = map.get(key);
         if (existing) {
             existing.count++;
-            if (b.qty != null) existing.qty = (existing.qty || 0) + b.qty;
+            if (range || existing.range) {
+                const old = existing.range || [existing.qty || 0, existing.qty || 0];
+                const add = range || [b.qty || 0, b.qty || 0];
+                existing.range = [old[0] + add[0], old[1] + add[1]]; existing.qty = null;
+            } else if (b.qty != null) existing.qty = (existing.qty || 0) + b.qty;
             if (opts?.slotKey) existing.keys.push(opts.slotKey);
             if (opts?.manual) { existing.manual = true; existing.ord = ++ord; }
             // Fusionné → on recompose un affichage avec la quantité additionnée (unité lisible).
-            existing.display = existing.qty != null
+            existing.display = existing.range ? `${fmtQty(existing.range[0])} à ${fmtQty(existing.range[1])}${existing.unit ? ' ' + existing.unit : ''} ${existing.name}` : existing.qty != null
                 ? `${prettyQtyUnit(existing.qty, existing.unit)} ${nomAuPluriel(existing.name, existing.qty, existing.unit)}`.trim()
                 : existing.name;
         } else {
             map.set(key, {
-                key, icon: getIngIcon(p.name), name: capFirst(p.name), unit: b.unit, qty: b.qty,
+                key, icon: getIngIcon(p.name), name: capFirst(p.name), unit: b.unit, qty: b.qty, range,
                 keys: opts?.slotKey ? [opts.slotKey] : [],
                 manual: opts?.manual, ord: opts?.manual ? ++ord : undefined,
                 display: clean || capFirst(p.name), count: 1,
@@ -622,11 +662,14 @@ export const buildConsolidatedItems = (
             });
         });
     });
-    Object.values(shoppingList || {}).forEach((r: any) => {
+    Object.entries(shoppingList || {}).forEach(([id, r]: [string, any]) => {
         if (r?.source === 'planner') return;
         (r?.ingredients || []).forEach((ing: any) => {
+            if (typeof ing !== 'string' && ing?.checked) return;
             const raw = typeof ing === 'string' ? ing : ing?.name;
-            if (raw) add(raw, { manual: true });
+            if (raw) expandIngredientLines(raw).forEach((piece, sub) => {
+                add(piece, { manual: true, slotKey: `${extraLineKey(id, raw)}|${sub}` });
+            });
         });
     });
     // 2e passe : un MÊME produit exprimé en unités différentes (ex. "brocoli" sans
@@ -645,8 +688,8 @@ export const buildConsolidatedItems = (
         if (group.length === 1) { merged.push(group[0]); continue; }
         const base = group[0];
         const amounts = group
-            .filter(g => g.qty != null)
-            .map(g => prettyQtyUnit(g.qty as number, g.unit));
+            .filter(g => g.qty != null || g.range)
+            .map(g => g.range ? `${fmtQty(g.range[0])} à ${fmtQty(g.range[1])}${g.unit ? ' ' + g.unit : ''}` : prettyQtyUnit(g.qty as number, g.unit));
         const display =
             amounts.length === 0 ? base.name
             : amounts.length === 1 ? `${amounts[0]} ${base.name}`.trim()
@@ -657,7 +700,7 @@ export const buildConsolidatedItems = (
             count: group.reduce((s, g) => s + g.count, 0),
             manual: group.some(g => g.manual),
             ord: group.reduce<number | undefined>((m, g) => (g.ord != null && (m == null || g.ord > m) ? g.ord : m), base.ord),
-            display,
+            display, qty: null, range: undefined, unit: '', mixedUnits: true,
         });
     }
     // Tri : alphabétique par NOM d'ingrédient uniquement (quantités ignorées).
@@ -669,10 +712,8 @@ export const buildConsolidatedItems = (
 // Compte le nombre de lignes de la liste fusionnée (pour la pastille de nav).
 export const countConsolidatedLines = (): number => {
     if (typeof window === 'undefined') return 0;
-    const j = (k: string, d: any) => { try { return JSON.parse(localStorage.getItem(k) || d); } catch { return JSON.parse(d); } };
-    const weekPlan = j('meal-planner-week', '{}');
-    const shoppingList = j('magic-shopping-list', '{}');
-    const weekChecked = new Set<string>(j('meal-week-checked', '[]'));
-    const includeJourJ = localStorage.getItem('jourj-in-fused') !== 'false';
-    return buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ).length;
+    const j = (k: string, fallback: string) => { try { return JSON.parse(localStorage.getItem(k) || fallback); } catch { return JSON.parse(fallback); } };
+    return buildConsolidatedItems(j('meal-planner-week', '{}'), new Set(j('meal-week-checked', '[]')),
+        j('magic-shopping-list', '{}'), localStorage.getItem('jourj-in-fused') !== 'false',
+        localStorage.getItem('week-in-fused') !== 'false', new Set(j('shop-done', '[]'))).length;
 };

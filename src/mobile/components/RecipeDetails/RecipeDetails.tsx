@@ -1,5 +1,6 @@
 'use client';
 import { ouvrirTag } from '@/lib/ouvrirTag';
+import { etapeVisee, ALLER_ETAPE } from '@/lib/allerEtape';
 import { useState, useMemo, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
 import { grandePhoto } from '@/lib/recipe-photo';
 import Link from 'next/link';
@@ -124,6 +125,31 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     const [note, setNote] = useState<NoteStats>({ moyenne: 0, votants: 0, mienne: 0, connecte: false });
 
     const [activeTab, setActiveTab] = useState<TabId>(defaultTab);
+    /*
+     * Arrivée depuis un chrono : la fiche s'ouvre sur l'onglet « Étapes » et
+     * descend jusqu'à l'étape qui l'a lancé, allumée un instant.
+     */
+    const [etapeAllumee, setEtapeAllumee] = useState<number | null>(null);
+    useEffect(() => {
+        let t1: ReturnType<typeof setTimeout> | undefined;
+        let t2: ReturnType<typeof setTimeout> | undefined;
+        const viser = () => {
+            const n = etapeVisee(String(recipe.id));
+            if (n == null) return;
+            setActiveTab('steps');
+            setEtapeAllumee(n);
+            clearTimeout(t1); clearTimeout(t2);
+            // Le temps que la fiche monte et que l'onglet se dessine.
+            t1 = setTimeout(() => {
+                const el = document.querySelector<HTMLElement>(`[data-fiche="${recipe.id}"] [data-etape="${n}"]`);
+                el?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }, 450);
+            t2 = setTimeout(() => setEtapeAllumee(null), 3200);
+        };
+        viser();
+        window.addEventListener(ALLER_ETAPE, viser);
+        return () => { window.removeEventListener(ALLER_ETAPE, viser); clearTimeout(t1); clearTimeout(t2); };
+    }, [recipe.id]);
     const [prevTab, setPrevTab] = useState<TabId | null>(null);
     const tabContentRef = useRef<HTMLDivElement>(null);
 
@@ -446,7 +472,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image });
+                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image, etape: index });
             }
         }
     };
@@ -699,7 +725,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image });
+                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image, etape: nextIdx });
             }
         } else {
             setTermine(true);
@@ -1351,11 +1377,12 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                     </div>
                                 </div>
 
-                                <div className={styles.stepsList}>
+                                <div className={styles.stepsList} data-fiche={recipe.id}>
                                     {recipe.steps.map((step, index) => (
                                         <div
                                             key={index}
-                                            className={`${styles.stepCard} ${checkedSteps[index] ? styles.stepDone : ''}`}
+                                            data-etape={index}
+                                            className={`${styles.stepCard} ${checkedSteps[index] ? styles.stepDone : ''} ${etapeAllumee === index ? styles.stepVisee : ''}`}
                                             onClick={() => toggleStep(index)}
                                             style={{ animationDelay: `${index * 50}ms` }}
                                         >

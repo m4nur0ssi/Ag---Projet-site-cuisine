@@ -10,7 +10,7 @@
  *   • Semaine — Lun→Dim, deux créneaux (Midi / Soir), uniquement des PLATS.
  *     Un plat servi nu (viande ou poisson sans féculent ni légume) ouvre une
  *     ligne « Accompagnement », stockée dans `recipe.side` comme en prod.
- *   • Jour J  — un repas complet : apéritif, entrée, plat, accompagnement,
+ *   • Menu spécial  — un repas complet : apéritif, entrée, plat, accompagnement,
  *     dessert, pâtisserie. Chaque carte n'accepte que sa catégorie.
  *
  * Les données restent CELLES DU PLANIFICATEUR EXISTANT : même clé locale
@@ -490,7 +490,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: {
                 text: isJourJ
-                    ? `Menu du Jour J effacé · ${retires} plat${retires > 1 ? 's' : ''} retiré${retires > 1 ? 's' : ''}`
+                    ? `Menu du Menu spécial effacé · ${retires} plat${retires > 1 ? 's' : ''} retiré${retires > 1 ? 's' : ''}`
                     : `Semaine effacée · ${retires} repas retiré${retires > 1 ? 's' : ''}`,
                 undoLabel: 'Annuler',
                 onUndo: () => { save(avant); haptic(8); },
@@ -739,7 +739,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     }, [sel, mode, selFits, smart.express, dureeTotale]);
 
     // Nombre de créneaux à remplir : sert à prévenir quand la sélection est trop
-    // étroite pour la semaine (14 repas) ou le menu du Jour J.
+    // étroite pour la semaine (14 repas) ou le menu du Menu spécial.
     const NEEDED = mode === 'semaine' ? DAYS.length * MEALS.length : COURSES.filter((c) => c.label !== 'Accompagnement').length;
 
     const famItems = useMemo(() => {
@@ -760,7 +760,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         if (fam !== 'tendances') setFamOpen(false);
     };
 
-    // Le menu du Jour J se remplit course par course (apéritif, entrée, plat…) :
+    // Le menu du Menu spécial se remplit course par course (apéritif, entrée, plat…) :
     // choisir une « catégorie » n'a pas de sens, on ne propose que pays et tendances.
     useEffect(() => {
         if (mode !== 'jourj') return;
@@ -779,7 +779,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const [showTimeline, setShowTimeline] = useState(false);
     // Semaine intelligente : express en semaine.
 
-    // Déroulé de la soirée (Jour J) : un item par plat du menu, avec sa part
+    // Déroulé de la soirée (Menu spécial) : un item par plat du menu, avec sa part
     // active (prépa) et passive (four/frigo) devinée depuis les étapes.
     const timelineItems = useMemo<TimelineInput[]>(() => {
         if (mode !== 'jourj') return [];
@@ -932,7 +932,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 ...sub.tendances.map((t) => labelOf('tendances', t))].join(' + '))
             : 'Au hasard';
         const enTete = smart.express && mode === 'semaine' ? `Express · ${what}` : what;
-        // Jour J : une course sans recette pour le filtre reste simplement
+        // Menu spécial : une course sans recette pour le filtre reste simplement
         // complétée au hasard, sans message — la tendance n'y est pas une promesse.
         const msg = mode === 'jourj'
             ? `${enTete} · ${filled} plat${filled > 1 ? 's' : ''} composé${filled > 1 ? 's' : ''}`
@@ -992,7 +992,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         setSlot(day, meal, pick);
     };
 
-    // ── Rendu d'un créneau (semaine ou Jour J) ─────────────────────────────
+    // ── Rendu d'un créneau (semaine ou Menu spécial) ─────────────────────────────
     /**
      * Poser la recette qu'on tient dans ce créneau.
      *
@@ -1214,7 +1214,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                         <svg viewBox="0 0 8 14" fill="none" width="13" height="13"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </button>
                     <div>
-                        <div className={styles.planKicker}>Planificateur · Jour J</div>
+                        <div className={styles.planKicker}>Planificateur · Menu spécial</div>
                         <h1 className={styles.planTitle}>Déroulé de la soirée</h1>
                     </div>
                 </header>
@@ -1258,7 +1258,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 )}
                 <div>
                     <div className={styles.planKicker}>Planificateur</div>
-                    <h1 className={styles.planTitle}>{mode === 'jourj' ? 'Jour J' : 'Ma semaine'}</h1>
+                    <h1 className={styles.planTitle}>{mode === 'jourj' ? 'Menu spécial' : 'Ma semaine'}</h1>
                 </div>
                 <div className={styles.planCount}>
                     {planned} {mode === 'jourj' ? 'plat' : 'repas'}<br />planifié{planned > 1 ? 's' : ''}
@@ -1396,7 +1396,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                         className={`${styles.planMode} ${mode === m ? styles.planModeOn : ''}`}
                         onClick={() => { haptic(6); setMode(m); setRecap(null); }}
                     >
-                        {m === 'semaine' ? 'Semaine' : 'Jour J'}
+                        {m === 'semaine' ? 'Semaine' : 'Menu spécial'}
                     </button>
                 ))}
                 {/* 3ᵉ onglet : n'apparaît que si on a choisi des ingrédients dans une recette. */}
@@ -1456,7 +1456,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         décide de remplacer un plat par un autre. */}
                                     <PrixMoyen prix={prixParJour.jours[day]} libelle="Ce jour" taille="petite" sombre />
                                 </div>
-                                {/* Même grille que le Jour J : les cartes du jour gardent
+                                {/* Même grille que le Menu spécial : les cartes du jour gardent
                                     le format affiche plutôt que le bandeau pleine largeur. */}
                                 <div className={styles.semaineGrid}>
                                 {(() => {
@@ -1571,7 +1571,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             <div className={styles.composeHead}>
                                 <div>
                                     <div className={styles.composeKicker}>
-                                        {mode === 'jourj' ? 'Menu du Jour J' : 'Sept jours, quatorze repas'}
+                                        {mode === 'jourj' ? 'Menu du Menu spécial' : 'Sept jours, quatorze repas'}
                                     </div>
                                     <div className={styles.composeTitle}>
                                         Composer {mode === 'jourj' ? 'le menu' : 'la semaine'}

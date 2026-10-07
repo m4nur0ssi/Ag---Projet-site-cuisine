@@ -512,6 +512,9 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             transition={{ type: 'spring', damping: 35, stiffness: 400, mass: 0.6 }}
                         >
                             <div className={styles.dragHandleContainer} />
+                            {/* La croix vit sur la FICHE, pas dans le contenu qui défile :
+                                elle reste visible quoi qu'on fasse défiler. */}
+                            <button className={styles.closeBtn} onClick={onClose} aria-label="Fermer la recette">✕</button>
 
                             {recipes.length > 1 && (
                                 <div className={styles.pagination}>
@@ -565,7 +568,6 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                                                 className={styles.scrollArea}
                                                 ref={courante ? (el) => { scrollRefs.current[currentIdx] = el; } : undefined}
                                             >
-                                                {courante && <button className={styles.closeBtn} onClick={onClose}>✕</button>}
                                                 {/*
                                                  * La carte voisine qui vient d'apparaître attend une
                                                  * image avant de se construire : sans ça, elle se

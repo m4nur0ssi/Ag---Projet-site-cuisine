@@ -27,7 +27,7 @@ const DEFAULT_RAYON = 'autre';
 // Mots-clés par rayon (normalisés sans accents). Premier match gagne, dans cet ordre.
 // "surgelé" testé en premier car prioritaire sur le produit lui-même (ex: petits pois surgelés).
 const KEYWORDS: [string, string[]][] = [
-    ['surgele', ['surgel', 'glace', 'glacon', 'creme glacee', 'sorbet']],
+    ['surgele', ['surgele', 'surgelee', 'congele', 'congelee', 'glace', 'glacon', 'creme glacee', 'sorbet']],
     ['cremerie', [
         'lait', 'beurre', 'oeuf', 'creme', 'yaourt', 'yogourt', 'fromage', 'parmesan', 'mozzarella',
         'gruyere', 'emmental', 'comte', 'feta', 'ricotta', 'mascarpone', 'chevre', 'cheddar', 'roquefort',
@@ -85,6 +85,9 @@ const wordRe = (kw: string): RegExp => {
 // Renvoie l'id du rayon déduit du nom (sans tenir compte des overrides).
 export const autoRayon = (name: string): string => {
     const n = normalizeIng(name);
+    if (/\b(fecules?|farine|conserve|poudre|concentre|coulis|secs?|seche|sechee|en boite)\b/.test(n)) return 'epicerie';
+    if (/\b(sucre glace|glace royale)\b/.test(n)) return 'epicerie';
+    if (/\blait de coco\b/.test(n)) return 'epicerie';
     for (const [rayon, words] of KEYWORDS) {
         for (const w of words) {
             if (wordRe(w).test(n)) return rayon;

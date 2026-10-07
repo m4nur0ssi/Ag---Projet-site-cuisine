@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 /** Ce qu'on affiche à côté d'un chrono : de quelle recette il vient. */
-export interface RecetteChrono { titre: string; image?: string }
+export interface RecetteChrono { titre: string; image?: string; /** Index de l'étape qui a lancé le chrono. */ etape?: number }
 
 export interface Chrono {
     id: string;

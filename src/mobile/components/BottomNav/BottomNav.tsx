@@ -1,5 +1,6 @@
 'use client';
 
+import { allerAEtape } from '@/lib/allerEtape';
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -651,7 +652,18 @@ export default function BottomNav() {
                                                 du temps, une croix pour l'arrêter. Le plus proche de
                                                 la fin en premier. */}
                                             {timers.map((t) => (
-                                                <div key={t.id} className={styles.timerRow}>
+                                                <div
+                                                    key={t.id}
+                                                    className={styles.timerRow}
+                                                    role={t.recipeId ? 'button' : undefined}
+                                                    onClick={t.recipeId ? (e) => {
+                                                        // La recette, ouverte sur l'étape qui a lancé ce chrono.
+                                                        e.stopPropagation();
+                                                        handleVibrate(10);
+                                                        setIsTimerExpanded(false);
+                                                        allerAEtape({ id: t.recipeId!, title: t.recette?.titre, image: t.recette?.image }, t.recette?.etape ?? 0);
+                                                    } : undefined}
+                                                >
                                                     {t.recette?.image
                                                         ? <img src={t.recette.image} alt="" className={styles.timerPhoto} draggable={false} />
                                                         : <span className={styles.timerPhoto} aria-hidden />}
