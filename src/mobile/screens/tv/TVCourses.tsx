@@ -713,8 +713,17 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 </svg>
                             </button>
                         )}
-                        {surOrdinateur && activeItems.length > 0 && (
-                            <StoreButton onLaunch={lancerMagasin} dropDown />
+                        {/* Au bureau, les actions de la liste rejoignent le magasin, en haut :
+                            mêmes pilules, même hauteur (la rangée les étire sur lui). */}
+                        {surOrdinateur && (
+                            <div className={styles.courseActionsHaut}>
+                                {activeItems.length > 0 && <StoreButton onLaunch={lancerMagasin} dropDown />}
+                                <button className={styles.coursePilule} onClick={() => { haptic(8); setAdding(true); }}>Ajouter</button>
+                                <button className={styles.coursePilule} onClick={clearAll} disabled={!items.length}>Vider</button>
+                                <button className={`${styles.coursePilule} ${styles.coursePiluleClaire}`} onClick={() => router.push('/tv-planner')}>
+                                    Planificateur
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -1186,13 +1195,13 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
               * lui, a rejoint le titre. Le bureau garde l'ensemble.
               */}
 
-            <div className={styles.planFooter}>
+            {!surOrdinateur && <div className={styles.planFooter}>
                 <button className={styles.planCompose} onClick={() => { haptic(8); setAdding(true); }}>Ajouter</button>
                 <button className={styles.planClear} onClick={clearAll} disabled={!items.length}>Vider</button>
                 <button className={styles.planValidate} onClick={() => router.push('/tv-planner')}>
                     Planificateur
                 </button>
-            </div>
+            </div>}
 
             <AnimatePresence>
                 {adding && (
