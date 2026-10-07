@@ -2,11 +2,112 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/10/2026 11:24:55
- * Total: 778 recettes
+ * Dernière mise à jour: 07/10/2026 17:46:52
+ * Total: 779 recettes
  */
-export const exportSyncId = "1791372296007";
+export const exportSyncId = "1791395212631";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7995",
+        "title": "Tajine de poulet aux olives et au citron confit",
+        "description": "Un délicieux tajine de poulet mijoté avec des olives vertes, du citron confit et un mélange d'épices parfumées, idéal pour un repas savoureux et réconfortant. Cette recette facile à suivre vous guidera pas à pas pour un plat plein de saveurs orien...",
+        "image": "/recipes-ia/7995-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693975415810985248\" data-video-id=\"7693975415810985248\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693975415810985248\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             8 pilons de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 petit bouquet de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 cuillères à soupe de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à soupe de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 cuillères à soupe de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 fiole de safran"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 bon filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g d'olives vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron confit"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             500ml de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile neutre (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais (pour la garniture)"
+            }
+        ],
+        "steps": [
+            "Hacher l'oignon, l'ail et le persil.",
+            "Réunir les épices indiquées (curcuma, sel, poivre, cumin, paprika).",
+            "Infuser le safran dans un petit bol d'eau chaude du robinet (pas de l'eau qui bout).",
+            "Mettre le poulet dans un saladier, ajouter l'oignon, l'ail, le persil, les épices, le safran infusé et l'huile d'olive.",
+            "Laisser mariner au frais pendant au moins 1 heure.",
+            "Dans un tajine, une cocotte ou un faitout, faire chauffer de l'huile neutre à feu fort pour saisir le poulet.",
+            "Une fois saisi des deux côtés, le retirer.",
+            "Ajouter le reste de la marinade et faire suer pendant 2 à 3 minutes.",
+            "Déglacer avec le bouillon et gratter tous les sucs de cuisson.",
+            "Remettre le poulet.",
+            "Enfourner à 180°C pendant 1 heure à couvert.",
+            "Pendant ce temps, faire bouillir les olives pendant 3 à 4 minutes pour les dessaler.",
+            "Au bout d'une heure, ajouter les olives et le citron confit coupé en lamelles.",
+            "Remettre au four à découvert pour environ 15 minutes.",
+            "Ajouter du persil frais et dresser avec des frites."
+        ],
+        "tags": [
+            "Afrique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7993",
         "title": "Pâtes à la Carbonara",
