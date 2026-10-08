@@ -2,11 +2,61 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/10/2026 17:46:52
+ * Dernière mise à jour: 08/10/2026 09:41:42
  * Total: 779 recettes
  */
-export const exportSyncId = "1791395212631";
+export const exportSyncId = "1791452502853";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7993",
+        "title": "Pâtes à la Carbonara",
+        "description": "Découvrez une recette authentique de pâtes à la Carbonara, sans crème fraîche ni lardons industriels. Cette version met en avant le guanciale croustillant et une sauce crémeuse à base de Pecorino Romano, de poivre noir et du gras de cuisson du gua...",
+        "image": "/recipes-ia/7993-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7464172814279478550\" data-video-id=\"7464172814279478550\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7464172814279478550\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             300g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de guanciale"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de Pecorino Romano"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🍝\n             Eau de cuisson des pâtes"
+            }
+        ],
+        "steps": [
+            "Faites cuire le guanciale dans une poêle bien chaude, sans matière grasse, jusqu'à ce qu'il soit bien coloré et que tout le gras se soit rendu dans la poêle.",
+            "Réservez la moitié du guanciale cuit et laissez le reste dans la poêle.",
+            "Préparez la crème : dans un bol, mélangez le Pecorino Romano, le poivre noir, une cuillère du gras de cuisson du guanciale et une petite louche d'eau de cuisson des pâtes.",
+            "Mélangez jusqu'à obtenir une crème bien lisse et jaune.",
+            "Ajoutez les pâtes cuites directement dans la poêle avec le guanciale restant.",
+            "Éteignez le feu et incorporez la crème aux pâtes.",
+            "Servez les pâtes crémeuses. Ajoutez un peu de Pecorino Romano et de poivre noir pour finir. Dégustez."
+        ],
+        "tags": [
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7995",
         "title": "Tajine de poulet aux olives et au citron confit",
@@ -103,56 +153,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Afrique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7993",
-        "title": "Pâtes à la Carbonara",
-        "description": "Découvrez une recette authentique de pâtes à la Carbonara, sans crème fraîche ni lardons industriels. Cette version met en avant le guanciale croustillant et une sauce crémeuse à base de Pecorino Romano, de poivre noir et du gras de cuisson du gua...",
-        "image": "/recipes-ia/7993-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7464172814279478550\" data-video-id=\"7464172814279478550\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7464172814279478550\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             300g de pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             200g de guanciale"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g de Pecorino Romano"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🍝\n             Eau de cuisson des pâtes"
-            }
-        ],
-        "steps": [
-            "Faites cuire le guanciale dans une poêle bien chaude, sans matière grasse, jusqu'à ce qu'il soit bien coloré et que tout le gras se soit rendu dans la poêle.",
-            "Réservez la moitié du guanciale cuit et laissez le reste dans la poêle.",
-            "Préparez la crème : dans un bol, mélangez le Pecorino Romano, le poivre noir, une cuillère du gras de cuisson du guanciale et une petite louche d'eau de cuisson des pâtes.",
-            "Mélangez jusqu'à obtenir une crème bien lisse et jaune.",
-            "Ajoutez les pâtes cuites directement dans la poêle avec le guanciale restant.",
-            "Éteignez le feu et incorporez la crème aux pâtes.",
-            "Servez les pâtes crémeuses. Ajoutez un peu de Pecorino Romano et de poivre noir pour finir. Dégustez."
-        ],
-        "tags": [
-            "Italie",
-            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
