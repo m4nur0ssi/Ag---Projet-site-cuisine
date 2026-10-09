@@ -2,11 +2,61 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/10/2026 09:48:01
- * Total: 779 recettes
+ * Dernière mise à jour: 09/10/2026 20:44:31
+ * Total: 780 recettes
  */
-export const exportSyncId = "1791539281274";
+export const exportSyncId = "1791578671142";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7999",
+        "title": "Fleurs feuilletées au chorizo",
+        "description": "Découvrez des fleurs feuilletées au chorizo, une idée d'apéritif facile et rapide à préparer pour régaler vos amis. Ces petites bouchées sont non seulement délicieuses mais aussi très jolies sur une table d'apéro.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693573412249144609\" data-video-id=\"7693573412249144609\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693573412249144609\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             Pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Coulis de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Chorizo"
+            }
+        ],
+        "steps": [
+            "Étalez un peu de coulis de tomate sur votre pâte feuilletée.",
+            "Ajoutez de l'origan et du fromage râpé.",
+            "Découpez ensuite la pâte en petites bandes.",
+            "Déposez quelques tranches de chorizo sur chaque bande.",
+            "Enroulez-les bien serré pour former des petites fleurs, en veillant à bien les serrer pour éviter qu'elles ne se défassent.",
+            "Déposez-les dans un moule et enfournez pendant environ 15 minutes à 180°C, jusqu'à ce qu'elles soient bien dorées."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Espagne",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7993",
         "title": "Pâtes à la Carbonara",
