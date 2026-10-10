@@ -2,16 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/10/2026 20:44:31
+ * Dernière mise à jour: 10/10/2026 09:27:37
  * Total: 780 recettes
  */
-export const exportSyncId = "1791578671142";
+export const exportSyncId = "1791624457265";
 export const mockRecipes: Recipe[] = [
     {
         "id": "7999",
         "title": "Fleurs feuilletées au chorizo",
         "description": "Découvrez des fleurs feuilletées au chorizo, une idée d'apéritif facile et rapide à préparer pour régaler vos amis. Ces petites bouchées sont non seulement délicieuses mais aussi très jolies sur une table d'apéro.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7999-carte.webp",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
