@@ -2,11 +2,71 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/10/2026 19:38:05
- * Total: 782 recettes
+ * Dernière mise à jour: 10/10/2026 20:04:16
+ * Total: 783 recettes
  */
-export const exportSyncId = "1791661085738";
+export const exportSyncId = "1791662656968";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8008",
+        "title": "Rougail Saucisses",
+        "description": "Découvrez comment préparer un authentique rougail saucisses, un plat réunionnais savoureux et facile à réaliser. Cette recette étape par étape vous guidera pour obtenir un plat mijoté avec des saucisses fumées, des tomates, des oignons et de l'ail...",
+        "image": "/recipes-ia/8008-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7695054617645731104\" data-video-id=\"7695054617645731104\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7695054617645731104\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 saucisses fumées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 tomates bien charnues"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 gros oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Un peu de poudre de piment de Cayenne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 filet d'huile"
+            }
+        ],
+        "steps": [
+            "Plongez les saucisses fumées dans une casserole d'eau chaude et laissez-les cuire pendant une dizaine de minutes.",
+            "Pendant ce temps, épluchez un oignon rouge et une gousse d'ail, puis émincez-les finement.",
+            "Prenez de belles tomates charnues et coupez-les grossièrement en morceaux.",
+            "Une fois les saucisses cuites, retirez-les de l'eau et plongez-les directement dans de l'eau froide pour stopper la cuisson.",
+            "Coupez ensuite les saucisses en morceaux assez épais.",
+            "Dans une poêle bien chaude avec un filet d'huile, faites griller les morceaux de saucisses sur toutes les faces pour obtenir une belle coloration.",
+            "Une fois qu'ils sont bien dorés, retirez-les de la poêle et réservez-les quelques instants.",
+            "Dans la même poêle, faites suer l'oignon avec la gousse d'ail écrasée, en récupérant tous les sucs laissés par les saucisses.",
+            "Ajoutez ensuite les morceaux de tomates et laissez-les commencer à fondre tranquillement.",
+            "Remettez les saucisses grillées, ajoutez un peu de piment de Cayenne selon vos goûts et mélangez bien le tout.",
+            "Laissez mijoter quelques minutes pour que les tomates réduisent et viennent bien compoter autour des saucisses, jusqu'à obtenir une texture homogène."
+        ],
+        "tags": [
+            "épicé",
+            "France",
+            "Pas cher",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8005",
         "title": "Fondant à la pistache",
