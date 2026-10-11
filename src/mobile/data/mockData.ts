@@ -2,11 +2,507 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/10/2026 09:28:05
- * Total: 783 recettes
+ * Dernière mise à jour: 11/10/2026 16:23:06
+ * Total: 789 recettes
  */
-export const exportSyncId = "1791710885201";
+export const exportSyncId = "1791735786347";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8024",
+        "title": "Poulet façon grand-mère",
+        "description": "Un plat familial et réconfortant, avec un poulet fondant et une sauce crémeuse et généreuse. Parfait pour les journées froides, il se déguste avec une purée, des frites ou du riz.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7694615008730189088\" data-video-id=\"7694615008730189088\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7694615008730189088\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 poulet coupé en morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             200 g de lardons fumés"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             3 carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de champignons de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 c. à café de confit d'ail ou 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 c. à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             25 cl de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             40 cl de fond de champignons ou de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             20 cl de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 c. à soupe de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bouquet garni"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graisse de canard ou huile si nécessaire"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Salez et poivrez le poulet.",
+            "Faites revenir les lardons fumés dans une cocotte. Si nécessaire, ajoutez un peu de matière grasse comme de la graisse de canard. Réservez les lardons.",
+            "Faites dorer le poulet dans la même cocotte jusqu'à ce qu'il soit bien coloré. Réservez le poulet.",
+            "Dans la même cocotte, faites revenir les échalotes et les carottes pendant quelques minutes.",
+            "Ajoutez les champignons.",
+            "Saupoudrez d'un peu de farine pour former un roux.",
+            "Versez le vin blanc et grattez bien les sucs au fond de la cocotte avec une cuillère qui ne raye pas.",
+            "Ajoutez l'ail.",
+            "Versez le fond de champignons ou de volaille et remuez.",
+            "Remettez les lardons et le poulet dans la cocotte. Ajoutez le bouquet garni.",
+            "Couvrez et laissez mijoter à feu doux pendant environ 50 minutes.",
+            "Retirez le bouquet garni.",
+            "Incorporez la crème fraîche et la moutarde à l'ancienne.",
+            "Poursuivez la cuisson sans couvercle à feu doux pendant 10 à 15 minutes pour que la sauce réduise et épaississe.",
+            "Goûtez et rectifiez l'assaisonnement en sel et en poivre si nécessaire."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8022",
+        "title": "Côte de porc sauce charcutière",
+        "description": "Un grand classique de la cuisine française, cette recette de côte de porc est dorée et nappée d'une sauce charcutière relevée aux échalotes, cornichons, moutarde et vinaigre de vin. Économique et rapide à préparer, elle est parfaite pour un repas ...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690605439578279200\" data-video-id=\"7690605439578279200\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690605439578279200\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 côtes de porc"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 cornichons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe de vinaigre de vin"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             15 cl de vin blanc sec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 cl de fond de veau"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Saisissez les côtes de porc sur les deux faces pour bien les colorer, puis réservez-les.",
+            "Ajoutez un beau morceau de beurre et faites revenir les échalotes.",
+            "Déglacez ensuite avec le vinaigre de vin et le vin blanc.",
+            "Une fois que le vin blanc a réduit de moitié, ajoutez le fond de veau et laissez épaissir légèrement.",
+            "Remettez les côtes de porc dans la sauce pour terminer leur cuisson.",
+            "Lorsque les côtes de porc sont bien cuites, réservez-les.",
+            "Pour terminer la sauce, sur feu doux, ajoutez une cuillère à soupe de moutarde et mélangez bien.",
+            "Goûtez et rectifiez l'assaisonnement en sel et poivre.",
+            "Hors du feu, terminez la sauce avec quelques morceaux de beurre froid.",
+            "Ajoutez les cornichons hachés."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "Plats",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8020",
+        "title": "Renversé poire, chocolat et noisette",
+        "description": "Des poires caramélisées, un gâteau au chocolat bien moelleux et une touche de noisette, une version automnale du traditionnel gâteau renversé.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690260069212081441\" data-video-id=\"7690260069212081441\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690260069212081441\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍐\n             380 g de poires"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre pour le caramel"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             90 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             70 g de vergeoise brune"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             20 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             80 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             100 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             35 g de poudre de noisette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 g de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            }
+        ],
+        "steps": [
+            "Coupez les poires en fines lamelles.",
+            "Faites un caramel à sec, versez-le dans le moule (20 cm) puis disposez les poires en rosace.",
+            "Faites fondre le chocolat et le beurre.",
+            "Ajoutez les œufs, les sucres, le lait et la vanille.",
+            "Incorporez la farine, la poudre de noisette, la levure et le sel.",
+            "Versez la préparation sur les poires.",
+            "Faites cuire à 170°C en chaleur tournante pendant 28 à 30 minutes.",
+            "Laissez reposer 8 à 10 minutes, puis démoulez encore tiède.",
+            "Pour la finition : ajoutez des noisettes torréfiées et de fins filets de chocolat noir."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8011",
+        "title": "Tarte mille-feuille de pomme de terre à la cancoillotte",
+        "description": "Découvrez une tarte salée gourmande et réconfortante, inspirée de la Franche-Comté. Cette recette emblématique de l'auteur se compose d'une pâte feuilletée garnie de fines tranches de pommes de terre, de saucisse de Morteau croustillante, d'oignon...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F10%2Frecette-8011.webp&v=1791740313000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7694343237707828512\" data-video-id=\"7694343237707828512\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7694343237707828512\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 saucisse de Morteau"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15 cl de vin du Jura"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             500 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             250 g de cancoillotte à l'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait (quantité non spécifiée)"
+            }
+        ],
+        "steps": [
+            "Coupez la saucisse de Morteau déjà cuite en petits cubes.",
+            "Faites revenir les cubes de saucisse dans une poêle jusqu'à ce qu'ils soient bien croustillants, puis réservez-les.",
+            "Dans la même poêle, faites revenir les oignons jusqu'à ce qu'ils soient fondants.",
+            "Ajoutez la saucisse réservée aux oignons.",
+            "Déglacez avec le vin du Jura et laissez bien réduire le vin.",
+            "Préparez l'appareil : dans un saladier, mélangez la cancoillotte à l'ail avec les œufs, un peu de lait pour la détendre et du poivre. Mélangez jusqu'à obtenir un appareil bien lisse.",
+            "Foncez un plat à tarte avec la pâte feuilletée.",
+            "Déposez le mélange d'oignons et de saucisse sur le fond de tarte.",
+            "Ajoutez une ou deux louches de l'appareil à la cancoillotte.",
+            "Disposez joliment les pommes de terre coupées en fines tranches sur le dessus.",
+            "Versez le reste de l'appareil sur les pommes de terre, en le laissant bien pénétrer.",
+            "Enfournez la tarte pendant 1 heure à 170 degrés Celsius."
+        ],
+        "tags": [
+            "France",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8013",
+        "title": "Spaghettis au poulet barbecue et cheddar",
+        "description": "Découvrez l'épisode 15 de la série One Pot Meal : des spaghettis au poulet barbecue et cheddar, un plat gourmand et riche en protéines (558 kcal, 51,2 g de protéines par portion) parfait pour se faire plaisir même en période de diète.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F10%2Frecette-8013.webp&v=1791740307000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7695076711402163488\" data-video-id=\"7695076711402163488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7695076711402163488\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             300 g de cuisses de poulet désossées sans peau"
+            },
+            {
+                "quantity": "",
+                "name": "🍝\n             140 g de pâtes Protein+ Barilla (poids cru)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             20 g de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             20 g de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             10 g de vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10 g de stévia"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un peu d'eau"
+            }
+        ],
+        "steps": [
+            "Coupez le poulet en morceaux, assaisonnez-le avec du sel et du paprika. Faites-le revenir dans une poêle avec l'oignon rouge et le poivron émincés.",
+            "Mélangez le concentré de tomate, la sauce soja, le vinaigre, la stévia et un peu d'eau. Versez cette sauce barbecue sur le poulet et les légumes, mélangez bien puis réservez.",
+            "Dans la même poêle, ajoutez les pâtes crues et suffisamment d'eau pour les cuire. Laissez mijoter en remuant régulièrement et ajoutez de l'eau si nécessaire.",
+            "Une fois les pâtes cuites, remettez le poulet et les légumes dans la poêle. Mélangez bien, ajoutez le cheddar râpé et laissez-le fondre. Terminez avec quelques morceaux d'oignon rouge cru et de la verdure pour apporter de la fraîcheur."
+        ],
+        "tags": [
+            "barbecue",
+            "Healthy",
+            "pates",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8015",
+        "title": "Potatoes de Butternut au Parmesan",
+        "description": "Découvrez une recette de frites de courge butternut croustillantes et savoureuses, enrobées d'une marinade aux épices et de parmesan râpé, puis cuites au four. Elles sont servies avec une sauce crémeuse au yaourt grec, mayonnaise et citron vert, o...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F10%2Frecette-8015.webp&v=1791740300000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7695330639700102433\" data-video-id=\"7695330639700102433\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7695330639700102433\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 grosse courge butternut"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 pincées de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à soupe de poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             4 cuillères à soupe de yaourt grec épais (ou crème épaisse / sour cream)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika fumé (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café de poudre d'oignon (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un demi citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette fraîche"
+            }
+        ],
+        "steps": [
+            "Coupez la courge butternut en deux, retirez les graines, puis épluchez-la. Coupez ensuite la courge en frites assez épaisses, comme des potatoes.",
+            "Dans un grand bol, préparez une marinade en mélangeant l'huile d'olive, le sel, le paprika fumé, l'origan et la poudre d'oignon.",
+            "Ajoutez les bâtonnets de butternut dans le bol et mélangez bien pour les enrober uniformément de marinade.",
+            "Dans un autre bol, mettez le parmesan fraîchement râpé. Trempez chaque frite dans le fromage pour bien les recouvrir sur les deux faces.",
+            "Disposez les frites sur une plaque recouverte de papier cuisson. Faites-les cuire au four pendant environ 20 à 30 minutes à 200°C. Environ 5 minutes avant la fin de la cuisson, retournez les frites pour bien griller les deux côtés. Si vous le souhaitez, ajoutez un peu de fromage sur le dessus avant de remettre au four pour les dorer.",
+            "Pendant ce temps, préparez la sauce : mélangez tous les ingrédients de la sauce dans un bol (yaourt grec, mayonnaise, paprika fumé, poudre d'oignon, sel, poivre, jus de citron vert et ciboulette fraîche). Goûtez et ajustez l'assaisonnement selon votre goût.",
+            "Servez les potatoes de butternut bien croustillantes et chaudes avec la sauce."
+        ],
+        "tags": [
+            "Accompagnements",
+            "C'est l'hiver",
+            "épicé",
+            "Healthy",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8008",
         "title": "Rougail Saucisses",
