@@ -2,11 +2,275 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/10/2026 18:00:38
- * Total: 790 recettes
+ * Dernière mise à jour: 12/10/2026 20:53:15
+ * Total: 793 recettes
  */
-export const exportSyncId = "1791828038337";
+export const exportSyncId = "1791838395911";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8035",
+        "title": "Sauce crémeuse aux champignons",
+        "description": "Une sauce onctueuse aux champignons, vin blanc et fond de veau, idéale pour sublimer vos pièces de viande.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7666519580340210976\" data-video-id=\"7666519580340210976\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7666519580340210976\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             5 à 6 champignons de Paris bruns"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 ml de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             100 ml d'eau chaude"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de fond de veau"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 ml de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Nettoyez soigneusement les champignons sans les gorger d'eau et émincez-les en conservant la peau.",
+            "Hachez finement l'échalote et la gousse d'ail.",
+            "Faites cuire votre pièce de viande dans une poêle en l'arrosant généreusement de beurre, puis débarrassez la viande en conservant les sucs de cuisson.",
+            "Dans la même poêle, ajoutez l'échalote et l'ail hachés, puis faites-les suer pendant 2 à 3 minutes.",
+            "Déglacez avec le vin blanc en grattant le fond de la poêle pour détacher les sucs, puis laissez réduire de moitié.",
+            "Ajoutez les champignons émincés, salez, poivrez et poursuivez la cuisson pendant environ 5 minutes.",
+            "Diluez le fond de veau dans l'eau chaude, versez dans la poêle pour déglacer à nouveau et laissez réduire pendant 3 à 4 minutes.",
+            "Baissez le feu, incorporez la crème liquide ainsi que le jus rendu par la viande réservée.",
+            "Laissez mijoter 2 à 3 minutes jusqu'à ce que la sauce épaississe, puis servez aussitôt."
+        ],
+        "tags": [
+            "France",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8033",
+        "title": "Buns à la noisette et crème vanille",
+        "description": "Des petits pains moelleux à la noisette, garnis d'une crème pâtissière onctueuse à la noisette et à la vanille.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7695491897258872097\" data-video-id=\"7695491897258872097\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7695491897258872097\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200-225 g de farine tout usage (1 ⅔-1 ¾ tasses)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             50 g de noisettes moulues, grillées (½ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre (3 c. à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à café de levure sèche (5 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             110 ml de lait tiède (½ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40 g de beurre mou (2 ½ c. à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             De la vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250 ml de lait (1 tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50 g de sucre (¼ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 g de fécule de maïs (¼ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             15 g de beurre (1 c. à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             40 g de noisettes moulues, grillées (⅓ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 jaune d'œuf + 1 c. à soupe de lait (pour la dorure)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             30 g de noisettes effilées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Du sucre glace"
+            }
+        ],
+        "steps": [
+            "1. Faites griller 90 g de noisettes moulues dans une poêle sèche jusqu'à ce qu'elles soient dorées. 50 g seront pour la pâte, 40 g pour la crème pâtissière.",
+            "2. Crème pâtissière : Faites chauffer le lait avec la vanille. Battez les jaunes d'œufs, le sucre et la fécule de maïs jusqu'à ce que le mélange blanchisse, incorporez le lait, filtrez et faites cuire jusqu'à épaississement. Incorporez le beurre et les noisettes. Couvrez et laissez refroidir complètement.",
+            "3. Pâte : Mélangez la farine et les noisettes, faites un puits. Ajoutez la levure, 1 c. à café de sucre et un peu de lait, le sel sur le bord. Attendez 10 minutes jusqu'à ce que le mélange mousse.",
+            "4. Ajoutez le reste du sucre, le lait, l'œuf et la vanille et pétrissez. Ajoutez un peu de farine si la pâte est collante. Incorporez le beurre morceau par morceau. Laissez lever environ 1 heure.",
+            "5. Façonnez 9-10 boules (50-55 g chacune), placez-les sur une plaque recouverte de papier cuisson et laissez lever 30 minutes.",
+            "6. Badigeonnez avec le mélange jaune d'œuf/lait, saupoudrez de noisettes. Faites cuire à 180 °C (350 °F) pendant 15-18 minutes. Laissez refroidir complètement.",
+            "7. Coupez-les en deux, garnissez de crème pâtissière et saupoudrez de sucre glace. Dégustez !"
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8031",
+        "title": "Soupe à l'oignon gratinée",
+        "description": "Découvrez une recette gourmande et économique de soupe à l'oignon gratinée, un véritable classique français réconfortant. Avec ses oignons caramélisés, son bouillon savoureux, son pain grillé et sa généreuse couche de comté fondu, elle saura ravir...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7695451189873331489\" data-video-id=\"7695451189873331489\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7695451189873331489\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             8 oignons jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 noisette de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             2 litres de bouillon de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Comté râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            }
+        ],
+        "steps": [
+            "Émincez tous les oignons.",
+            "Faites revenir les oignons émincés dans une poêle chaude avec une noisette de beurre, du sel, du poivre et le sucre.",
+            "Laissez les oignons devenir fondants et caramélisés.",
+            "Ajoutez la farine et mélangez bien.",
+            "Versez le bouillon de bœuf, puis ajoutez le thym et le laurier.",
+            "Laissez mijoter à feu doux pendant 30 minutes.",
+            "Pendant ce temps, faites griller quelques tranches de pain au four.",
+            "Frottez les tranches de pain grillé avec une gousse d'ail.",
+            "Versez la soupe dans des bols adaptés au four.",
+            "Ajoutez les tranches de pain grillé dans chaque bol.",
+            "Parsemez généreusement de comté râpé.",
+            "Passez les bols sous le gril pendant environ 5 minutes, ou jusqu'à ce que le fromage soit bien fondu et gratiné.",
+            "Ajoutez un peu de ciboulette avant de servir."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Gratins",
+            "Pas cher",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8029",
         "title": "Gratin de chou-fleur, pommes de terre et jambon",
