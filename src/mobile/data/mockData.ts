@@ -340,7 +340,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8013",
         "title": "Spaghettis au poulet barbecue et cheddar",
         "description": "Découvrez l'épisode 15 de la série One Pot Meal : des spaghettis au poulet barbecue et cheddar, un plat gourmand et riche en protéines (558 kcal, 51,2 g de protéines par portion) parfait pour se faire plaisir même en période de diète.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F10%2Frecette-8013.webp&v=1791740307000",
+        "image": "/recipes-ia/8013-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
