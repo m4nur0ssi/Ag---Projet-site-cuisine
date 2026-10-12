@@ -2,11 +2,93 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/10/2026 10:17:35
- * Total: 789 recettes
+ * Dernière mise à jour: 12/10/2026 18:00:38
+ * Total: 790 recettes
  */
-export const exportSyncId = "1791800255039";
+export const exportSyncId = "1791828038337";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8029",
+        "title": "Gratin de chou-fleur, pommes de terre et jambon",
+        "description": "Un gratin bien crémeux et réconfortant, parfait pour un repas en famille ou un dîner cosy. Avec une béchamel maison onctueuse, des légumes fondants et du comté gratiné au four, c'est un plat auquel il est impossible de résister !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7608236797155429654\" data-video-id=\"7608236797155429654\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7608236797155429654\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥬\n             1 chou-fleur"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             5 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             4 tranches de jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             50 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             60 cl de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             200 g de comté râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            }
+        ],
+        "steps": [
+            "Prélevez les fleurettes d'un chou-fleur et nettoyez-les avec de l'eau et un peu de jus de citron.",
+            "Coupez les pommes de terre en gros morceaux. Faites cuire le chou-fleur et les pommes de terre à la vapeur.",
+            "Faites cuire les œufs pour qu'ils soient durs. Découpez le jambon blanc en grandes lanières.",
+            "Râpez le comté.",
+            "Préparez une béchamel en réalisant un roux avec du beurre et de la farine, puis montez-le avec du lait entier.",
+            "Assaisonnez la béchamel avec du sel, du poivre et de la noix de muscade. Coupez les œufs durs en quatre morceaux.",
+            "Dans un plat à gratin, déposez la moitié des légumes cuits, puis les lanières de jambon et les œufs. Ajoutez une couche de comté râpé, puis le reste des légumes.",
+            "Versez toute la béchamel et terminez avec le reste du comté râpé.",
+            "Enfournez pour environ 30 à 35 minutes à 190 degrés, jusqu'à ce que le gratin soit bien doré. Servez avec une salade verte bien vinaigrée."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Gratins",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8020",
         "title": "Renversé poire, chocolat et noisette",
