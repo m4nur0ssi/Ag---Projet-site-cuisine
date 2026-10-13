@@ -2,54 +2,54 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/10/2026 09:54:04
+ * Dernière mise à jour: 13/10/2026 17:53:28
  * Total: 793 recettes
  */
-export const exportSyncId = "1791885244128";
+export const exportSyncId = "1791914008551";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "8035",
-        "title": "Sauce crémeuse aux champignons",
-        "description": "Une sauce onctueuse aux champignons, vin blanc et fond de veau, idéale pour sublimer vos pièces de viande.",
-        "image": "/recipes-ia/8035-carte.webp",
-        "category": "sauces",
+        "id": "8029",
+        "title": "Gratin de chou-fleur, pommes de terre et jambon",
+        "description": "Un gratin bien crémeux et réconfortant, parfait pour un repas en famille ou un dîner cosy. Avec une béchamel maison onctueuse, des légumes fondants et du comté gratiné au four, c'est un plat auquel il est impossible de résister !",
+        "image": "/recipes-ia/8029-carte.webp",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7666519580340210976\" data-video-id=\"7666519580340210976\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7666519580340210976\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7608236797155429654\" data-video-id=\"7608236797155429654\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7608236797155429654\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             5 à 6 champignons de Paris bruns"
+                "name": "🥬\n             1 chou-fleur"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 échalote"
+                "name": "🍎\n             5 pommes de terre"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
+                "name": "🥓\n             4 tranches de jambon blanc"
             },
             {
                 "quantity": "",
-                "name": "💧\n             200 ml de vin blanc"
+                "name": "🥚\n             4 œufs"
             },
             {
                 "quantity": "",
-                "name": "💧\n             100 ml d'eau chaude"
+                "name": "🧈\n             50 g de beurre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à café de fond de veau"
+                "name": "🌾\n             50 g de farine"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             200 ml de crème liquide"
+                "name": "🥛\n             60 cl de lait entier"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             Beurre"
+                "name": "🧀\n             200 g de comté râpé"
             },
             {
                 "quantity": "",
@@ -58,22 +58,123 @@ export const mockRecipes: Recipe[] = [
             {
                 "quantity": "",
                 "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
             }
         ],
         "steps": [
-            "Nettoyez soigneusement les champignons sans les gorger d'eau et émincez-les en conservant la peau.",
-            "Hachez finement l'échalote et la gousse d'ail.",
-            "Faites cuire votre pièce de viande dans une poêle en l'arrosant généreusement de beurre, puis débarrassez la viande en conservant les sucs de cuisson.",
-            "Dans la même poêle, ajoutez l'échalote et l'ail hachés, puis faites-les suer pendant 2 à 3 minutes.",
-            "Déglacez avec le vin blanc en grattant le fond de la poêle pour détacher les sucs, puis laissez réduire de moitié.",
-            "Ajoutez les champignons émincés, salez, poivrez et poursuivez la cuisson pendant environ 5 minutes.",
-            "Diluez le fond de veau dans l'eau chaude, versez dans la poêle pour déglacer à nouveau et laissez réduire pendant 3 à 4 minutes.",
-            "Baissez le feu, incorporez la crème liquide ainsi que le jus rendu par la viande réservée.",
-            "Laissez mijoter 2 à 3 minutes jusqu'à ce que la sauce épaississe, puis servez aussitôt."
+            "Prélevez les fleurettes d'un chou-fleur et nettoyez-les avec de l'eau et un peu de jus de citron.",
+            "Coupez les pommes de terre en gros morceaux. Faites cuire le chou-fleur et les pommes de terre à la vapeur.",
+            "Faites cuire les œufs pour qu'ils soient durs. Découpez le jambon blanc en grandes lanières.",
+            "Râpez le comté.",
+            "Préparez une béchamel en réalisant un roux avec du beurre et de la farine, puis montez-le avec du lait entier.",
+            "Assaisonnez la béchamel avec du sel, du poivre et de la noix de muscade. Coupez les œufs durs en quatre morceaux.",
+            "Dans un plat à gratin, déposez la moitié des légumes cuits, puis les lanières de jambon et les œufs. Ajoutez une couche de comté râpé, puis le reste des légumes.",
+            "Versez toute la béchamel et terminez avec le reste du comté râpé.",
+            "Enfournez pour environ 30 à 35 minutes à 190 degrés, jusqu'à ce que le gratin soit bien doré. Servez avec une salade verte bien vinaigrée."
         ],
         "tags": [
+            "C'est l'hiver",
             "France",
-            "Sauces"
+            "Gratins",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8031",
+        "title": "Soupe à l'oignon gratinée",
+        "description": "Découvrez une recette gourmande et économique de soupe à l'oignon gratinée, un véritable classique français réconfortant. Avec ses oignons caramélisés, son bouillon savoureux, son pain grillé et sa généreuse couche de comté fondu, elle saura ravir...",
+        "image": "/recipes-ia/8031-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7695451189873331489\" data-video-id=\"7695451189873331489\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7695451189873331489\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             8 oignons jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 noisette de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             2 litres de bouillon de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Comté râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            }
+        ],
+        "steps": [
+            "Émincez tous les oignons.",
+            "Faites revenir les oignons émincés dans une poêle chaude avec une noisette de beurre, du sel, du poivre et le sucre.",
+            "Laissez les oignons devenir fondants et caramélisés.",
+            "Ajoutez la farine et mélangez bien.",
+            "Versez le bouillon de bœuf, puis ajoutez le thym et le laurier.",
+            "Laissez mijoter à feu doux pendant 30 minutes.",
+            "Pendant ce temps, faites griller quelques tranches de pain au four.",
+            "Frottez les tranches de pain grillé avec une gousse d'ail.",
+            "Versez la soupe dans des bols adaptés au four.",
+            "Ajoutez les tranches de pain grillé dans chaque bol.",
+            "Parsemez généreusement de comté râpé.",
+            "Passez les bols sous le gril pendant environ 5 minutes, ou jusqu'à ce que le fromage soit bien fondu et gratiné.",
+            "Ajoutez un peu de ciboulette avant de servir."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Gratins",
+            "Pas cher",
+            "Soupes"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -181,48 +282,48 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "8031",
-        "title": "Soupe à l'oignon gratinée",
-        "description": "Découvrez une recette gourmande et économique de soupe à l'oignon gratinée, un véritable classique français réconfortant. Avec ses oignons caramélisés, son bouillon savoureux, son pain grillé et sa généreuse couche de comté fondu, elle saura ravir...",
-        "image": "/recipes-ia/8031-carte.webp",
-        "category": "entrees",
+        "id": "8035",
+        "title": "Sauce crémeuse aux champignons",
+        "description": "Une sauce onctueuse aux champignons, vin blanc et fond de veau, idéale pour sublimer vos pièces de viande.",
+        "image": "/recipes-ia/8035-carte.webp",
+        "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7695451189873331489\" data-video-id=\"7695451189873331489\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7695451189873331489\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7666519580340210976\" data-video-id=\"7666519580340210976\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7666519580340210976\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🧅\n             8 oignons jaunes"
+                "name": "🥣\n             5 à 6 champignons de Paris bruns"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
+                "name": "🧅\n             1 échalote"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             1 noisette de beurre"
+                "name": "🧄\n             1 gousse d'ail"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             1 cuillère à soupe de sucre"
+                "name": "💧\n             200 ml de vin blanc"
             },
             {
                 "quantity": "",
-                "name": "🌾\n             1 cuillère à soupe de farine"
+                "name": "💧\n             100 ml d'eau chaude"
             },
             {
                 "quantity": "",
-                "name": "🥩\n             2 litres de bouillon de bœuf"
+                "name": "🥣\n             1 cuillère à café de fond de veau"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Thym"
+                "name": "🥛\n             200 ml de crème liquide"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Laurier"
+                "name": "🧈\n             Beurre"
             },
             {
                 "quantity": "",
@@ -231,123 +332,22 @@ export const mockRecipes: Recipe[] = [
             {
                 "quantity": "",
                 "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pain"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Comté râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
             }
         ],
         "steps": [
-            "Émincez tous les oignons.",
-            "Faites revenir les oignons émincés dans une poêle chaude avec une noisette de beurre, du sel, du poivre et le sucre.",
-            "Laissez les oignons devenir fondants et caramélisés.",
-            "Ajoutez la farine et mélangez bien.",
-            "Versez le bouillon de bœuf, puis ajoutez le thym et le laurier.",
-            "Laissez mijoter à feu doux pendant 30 minutes.",
-            "Pendant ce temps, faites griller quelques tranches de pain au four.",
-            "Frottez les tranches de pain grillé avec une gousse d'ail.",
-            "Versez la soupe dans des bols adaptés au four.",
-            "Ajoutez les tranches de pain grillé dans chaque bol.",
-            "Parsemez généreusement de comté râpé.",
-            "Passez les bols sous le gril pendant environ 5 minutes, ou jusqu'à ce que le fromage soit bien fondu et gratiné.",
-            "Ajoutez un peu de ciboulette avant de servir."
+            "Nettoyez soigneusement les champignons sans les gorger d'eau et émincez-les en conservant la peau.",
+            "Hachez finement l'échalote et la gousse d'ail.",
+            "Faites cuire votre pièce de viande dans une poêle en l'arrosant généreusement de beurre, puis débarrassez la viande en conservant les sucs de cuisson.",
+            "Dans la même poêle, ajoutez l'échalote et l'ail hachés, puis faites-les suer pendant 2 à 3 minutes.",
+            "Déglacez avec le vin blanc en grattant le fond de la poêle pour détacher les sucs, puis laissez réduire de moitié.",
+            "Ajoutez les champignons émincés, salez, poivrez et poursuivez la cuisson pendant environ 5 minutes.",
+            "Diluez le fond de veau dans l'eau chaude, versez dans la poêle pour déglacer à nouveau et laissez réduire pendant 3 à 4 minutes.",
+            "Baissez le feu, incorporez la crème liquide ainsi que le jus rendu par la viande réservée.",
+            "Laissez mijoter 2 à 3 minutes jusqu'à ce que la sauce épaississe, puis servez aussitôt."
         ],
         "tags": [
-            "C'est l'hiver",
             "France",
-            "Gratins",
-            "Pas cher",
-            "Soupes"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8029",
-        "title": "Gratin de chou-fleur, pommes de terre et jambon",
-        "description": "Un gratin bien crémeux et réconfortant, parfait pour un repas en famille ou un dîner cosy. Avec une béchamel maison onctueuse, des légumes fondants et du comté gratiné au four, c'est un plat auquel il est impossible de résister !",
-        "image": "/recipes-ia/8029-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7608236797155429654\" data-video-id=\"7608236797155429654\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7608236797155429654\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥬\n             1 chou-fleur"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             5 pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             4 tranches de jambon blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             50 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             50 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             60 cl de lait entier"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             200 g de comté râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Muscade"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            }
-        ],
-        "steps": [
-            "Prélevez les fleurettes d'un chou-fleur et nettoyez-les avec de l'eau et un peu de jus de citron.",
-            "Coupez les pommes de terre en gros morceaux. Faites cuire le chou-fleur et les pommes de terre à la vapeur.",
-            "Faites cuire les œufs pour qu'ils soient durs. Découpez le jambon blanc en grandes lanières.",
-            "Râpez le comté.",
-            "Préparez une béchamel en réalisant un roux avec du beurre et de la farine, puis montez-le avec du lait entier.",
-            "Assaisonnez la béchamel avec du sel, du poivre et de la noix de muscade. Coupez les œufs durs en quatre morceaux.",
-            "Dans un plat à gratin, déposez la moitié des légumes cuits, puis les lanières de jambon et les œufs. Ajoutez une couche de comté râpé, puis le reste des légumes.",
-            "Versez toute la béchamel et terminez avec le reste du comté râpé.",
-            "Enfournez pour environ 30 à 35 minutes à 190 degrés, jusqu'à ce que le gratin soit bien doré. Servez avec une salade verte bien vinaigrée."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France",
-            "Gratins",
-            "Pas cher"
+            "Sauces"
         ],
         "isFeatured": false,
         "isFavorite": false,
