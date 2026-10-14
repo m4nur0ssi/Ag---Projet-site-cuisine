@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/10/2026 19:44:33
+ * Dernière mise à jour: 14/10/2026 08:11:12
  * Total: 798 recettes
  */
-export const exportSyncId = "1791920673345";
+export const exportSyncId = "1791965472890";
 export const mockRecipes: Recipe[] = [
     {
         "id": "8043",
@@ -113,7 +113,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8049",
         "title": "Toasts de butternut rôtie",
         "description": "Découvrez une recette saine et ultra-gourmande de toasts à base de courge butternut rôtie, parfaits pour l'automne. Un pur délice facile à préparer et équilibré.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F10%2Frecette-8049.webp&v=1791927131000",
+        "image": "/recipes-ia/8049-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
