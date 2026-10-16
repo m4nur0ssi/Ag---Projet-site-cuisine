@@ -2,11 +2,87 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/10/2026 07:40:33
- * Total: 798 recettes
+ * Dernière mise à jour: 16/10/2026 10:12:27
+ * Total: 799 recettes
  */
-export const exportSyncId = "1792136433062";
+export const exportSyncId = "1792145547227";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8056",
+        "title": "Gâteau moelleux aux poires, amandes et chocolat",
+        "description": "Un gâteau d'automne ultra moelleux et fondant garni de morceaux de poires fraîches, de pépites de chocolat et d'amandes effilées croustillantes.",
+        "image": "/recipes-ia/8056-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696939760446737697\" data-video-id=\"7696939760446737697\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696939760446737697\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             75 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             180 g de farine (plus 1 cuillère à café)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             75 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             10 cl de crème légère 4%"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             4 poires"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             80 g de pépites de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Amandes effilées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre glace"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 180°C.",
+            "Dans un saladier, blanchissez les œufs avec le sucre à l'aide d'un fouet.",
+            "Ajoutez progressivement la farine et la levure chimique, puis mélangez.",
+            "Versez le beurre fondu et la crème liquide légère, puis mélangez bien jusqu'à l'obtention d'une pâte lisse.",
+            "Épluchez les poires. Coupez une partie des poires en morceaux et le reste en fines tranches.",
+            "Enrobez les pépites de chocolat d'une cuillère à café de farine pour éviter qu'elles ne tombent au fond du moule, puis incorporez-les à la pâte avec les morceaux de poire.",
+            "Versez la pâte dans un moule de 20 cm préalablement beurré ou tapissé de papier sulfurisé.",
+            "Déposez joliment les tranches de poires sur le dessus du gâteau et parsemez d'amandes effilées.",
+            "Enfournez à 180°C pendant 45 minutes. Vérifiez la cuisson au centre à l'aide de la lame d'un couteau et prolongez de 5 minutes si nécessaire.",
+            "Laissez refroidir pendant 10 à 15 minutes, puis saupoudrez d'un voile de sucre glace avant de servir."
+        ],
+        "tags": [
+            "France",
+            "Glaces",
+            "Pas cher",
+            "pâtisserie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8041",
         "title": "Barres aux noix et chocolat noir",
