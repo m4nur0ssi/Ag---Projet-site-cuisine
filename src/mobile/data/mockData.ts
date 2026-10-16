@@ -2,11 +2,133 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/10/2026 07:53:01
+ * Dernière mise à jour: 16/10/2026 07:40:33
  * Total: 798 recettes
  */
-export const exportSyncId = "1792050781856";
+export const exportSyncId = "1792136433062";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8041",
+        "title": "Barres aux noix et chocolat noir",
+        "description": "Préparez de délicieuses barres aux noix et au chocolat noir directement dans le moule, sans salir de vaisselle. Les noix sont grillées puis le chocolat est fondu par la chaleur résiduelle, offrant une collation saine et croustillante.",
+        "image": "/recipes-ia/8041-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7688672881789701409\" data-video-id=\"7688672881789701409\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7688672881789701409\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             80g (1/2 tasse) d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             70g (1/2 tasse) de noix de cajou"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             75g (1/2 tasse) de pistaches"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sirop d'érable ou de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100g de tablette de chocolat noir (70% ou plus recommandé)"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 180°C (160°C chaleur tournante / 350°F) et tapissez un moule à cake de papier sulfurisé.",
+            "Ajoutez les amandes, les noix de cajou et les pistaches directement dans le moule.",
+            "Arrosez de sirop d'érable et ajoutez une pincée de sel.",
+            "Mélangez le tout jusqu'à ce que les noix soient uniformément enrobées.",
+            "Enfournez pour 15 à 20 minutes, ou jusqu'à ce que les noix soient dorées. Retirez ensuite le moule du four et placez immédiatement la tablette de chocolat noir directement sur les noix encore chaudes.",
+            "Laissez reposer 2 à 3 minutes jusqu'à ce que le chocolat fonde, puis inclinez délicatement le moule pour qu'il s'étale uniformément sur le dessus et sur les bords. Vous pouvez remettre le moule dans le four éteint pour accélérer le processus de fonte.",
+            "Laissez le moule refroidir complètement à température ambiante avant de le transférer au réfrigérateur pour que le chocolat prenne. Coupez en barres ou en carrés et dégustez !"
+        ],
+        "tags": [
+            "Desserts",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8047",
+        "title": "Petits pains au double chocolat",
+        "description": "Découvrez comment préparer de délicieux petits pains moelleux au double chocolat, garnis de pâte à tartiner cacao-noisette et parsemés de pépites de chocolat. Parfaits pour le petit-déjeuner ou le goûter, ces pains sont faciles à réaliser avec une...",
+        "image": "/recipes-ia/8047-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7692871179333356833\" data-video-id=\"7692871179333356833\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7692871179333356833\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             500 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 ml de lait tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             8 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             60 g de beurre à température ambiante"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             20 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             8 g de levure sèche"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             1,5 tasse de pépites de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Pâte à tartiner cacao-noisette"
+            }
+        ],
+        "steps": [
+            "Mettez la farine dans un saladier et formez un puits au centre. Ajoutez la levure et le lait tiède, puis laissez la levure s'activer pendant environ 5 minutes.",
+            "Ensuite, ajoutez les œufs et le sel, et pétrissez la pâte.",
+            "Une fois que la pâte commence à s'agglomérer, ajoutez le beurre et pétrissez à nouveau jusqu'à obtenir une pâte souple.",
+            "Farinez légèrement votre plan de travail, rassemblez la pâte, ajoutez les pépites de chocolat et incorporez-les.",
+            "Divisez la pâte en 12 morceaux égaux et formez des boules.",
+            "Étalez chaque morceau pour obtenir un carré d'environ 15×15 cm. Ajoutez la garniture au chocolat, scellez bien les bords et disposez les pains sur une plaque de cuisson.",
+            "Laissez-les lever pendant environ 30 minutes.",
+            "Badigeonnez le dessus avec du lait et faites cuire dans un four préchauffé à 180 °C (chaleur statique/sans ventilateur) jusqu'à ce qu'ils soient bien dorés. Placez la plaque sur la grille du bas pour une cuisson uniforme."
+        ],
+        "tags": [
+            "chocolat",
+            "Pâte levée",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8043",
         "title": "Sauce Choron",
@@ -160,128 +282,6 @@ export const mockRecipes: Recipe[] = [
             "C'est l'hiver",
             "Healthy",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8047",
-        "title": "Petits pains au double chocolat",
-        "description": "Découvrez comment préparer de délicieux petits pains moelleux au double chocolat, garnis de pâte à tartiner cacao-noisette et parsemés de pépites de chocolat. Parfaits pour le petit-déjeuner ou le goûter, ces pains sont faciles à réaliser avec une...",
-        "image": "/recipes-ia/8047-carte.webp",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7692871179333356833\" data-video-id=\"7692871179333356833\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7692871179333356833\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             500 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             200 ml de lait tiède"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             8 g de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             60 g de beurre à température ambiante"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             20 g de sucre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             8 g de levure sèche"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             1,5 tasse de pépites de chocolat"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             Pâte à tartiner cacao-noisette"
-            }
-        ],
-        "steps": [
-            "Mettez la farine dans un saladier et formez un puits au centre. Ajoutez la levure et le lait tiède, puis laissez la levure s'activer pendant environ 5 minutes.",
-            "Ensuite, ajoutez les œufs et le sel, et pétrissez la pâte.",
-            "Une fois que la pâte commence à s'agglomérer, ajoutez le beurre et pétrissez à nouveau jusqu'à obtenir une pâte souple.",
-            "Farinez légèrement votre plan de travail, rassemblez la pâte, ajoutez les pépites de chocolat et incorporez-les.",
-            "Divisez la pâte en 12 morceaux égaux et formez des boules.",
-            "Étalez chaque morceau pour obtenir un carré d'environ 15×15 cm. Ajoutez la garniture au chocolat, scellez bien les bords et disposez les pains sur une plaque de cuisson.",
-            "Laissez-les lever pendant environ 30 minutes.",
-            "Badigeonnez le dessus avec du lait et faites cuire dans un four préchauffé à 180 °C (chaleur statique/sans ventilateur) jusqu'à ce qu'ils soient bien dorés. Placez la plaque sur la grille du bas pour une cuisson uniforme."
-        ],
-        "tags": [
-            "chocolat",
-            "Pâte levée",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8041",
-        "title": "Barres aux noix et chocolat noir",
-        "description": "Préparez de délicieuses barres aux noix et au chocolat noir directement dans le moule, sans salir de vaisselle. Les noix sont grillées puis le chocolat est fondu par la chaleur résiduelle, offrant une collation saine et croustillante.",
-        "image": "/recipes-ia/8041-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7688672881789701409\" data-video-id=\"7688672881789701409\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7688672881789701409\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             80g (1/2 tasse) d'amandes"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             70g (1/2 tasse) de noix de cajou"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             75g (1/2 tasse) de pistaches"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de sirop d'érable ou de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100g de tablette de chocolat noir (70% ou plus recommandé)"
-            }
-        ],
-        "steps": [
-            "Préchauffez votre four à 180°C (160°C chaleur tournante / 350°F) et tapissez un moule à cake de papier sulfurisé.",
-            "Ajoutez les amandes, les noix de cajou et les pistaches directement dans le moule.",
-            "Arrosez de sirop d'érable et ajoutez une pincée de sel.",
-            "Mélangez le tout jusqu'à ce que les noix soient uniformément enrobées.",
-            "Enfournez pour 15 à 20 minutes, ou jusqu'à ce que les noix soient dorées. Retirez ensuite le moule du four et placez immédiatement la tablette de chocolat noir directement sur les noix encore chaudes.",
-            "Laissez reposer 2 à 3 minutes jusqu'à ce que le chocolat fonde, puis inclinez délicatement le moule pour qu'il s'étale uniformément sur le dessus et sur les bords. Vous pouvez remettre le moule dans le four éteint pour accélérer le processus de fonte.",
-            "Laissez le moule refroidir complètement à température ambiante avant de le transférer au réfrigérateur pour que le chocolat prenne. Coupez en barres ou en carrés et dégustez !"
-        ],
-        "tags": [
-            "Desserts",
-            "Healthy"
         ],
         "isFeatured": false,
         "isFavorite": false,
