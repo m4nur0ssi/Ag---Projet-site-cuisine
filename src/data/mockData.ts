@@ -2,11 +2,192 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 18/10/2026 07:33:50
- * Total: 799 recettes
+ * Dernière mise à jour: 18/10/2026 16:11:55
+ * Total: 801 recettes
  */
-export const exportSyncId = "1792308830087";
+export const exportSyncId = "1792339915359";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8061",
+        "title": "Cake marbré cacao et cacahuète",
+        "description": "Une recette gourmande de cake marbré au cacao et à la cacahuète, avec un cœur de praliné, imbibé d'un sirop vanillé et recouvert d'un glaçage rocher au chocolat au lait et cacahuètes hachées. Parfait pour l'automne.",
+        "image": "/recipes-ia/8061-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7697295296170151201\" data-video-id=\"7697295296170151201\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7697295296170151201\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de cacahuètes torréfiées (pour le praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre (pour le praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de fleur de sel (pour le praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120g de sucre (pour l'appareil cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             60g de beurre (pour l'appareil cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf (pour l'appareil cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             110g de farine (pour l'appareil cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             20g de cacao en poudre (pour l'appareil cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             5g de levure chimique (pour l'appareil cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2g de sel fin (pour l'appareil cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             110g de crème liquide à 30% (pour l'appareil cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             90g de sucre (pour l'appareil cacahuète)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             20g de beurre (pour l'appareil cacahuète)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80g de praliné cacahuète (pour l'appareil cacahuète)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf (pour l'appareil cacahuète)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             115g de farine (pour l'appareil cacahuète)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5g de levure chimique (pour l'appareil cacahuète)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2g de sel fin (pour l'appareil cacahuète)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             110g de crème liquide à 30% (pour l'appareil cacahuète)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             80g d'eau (pour le sirop d'imbibage)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40g de sucre (pour le sirop d'imbibage)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille (pour le sirop d'imbibage)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200g de chocolat au lait Jivara Valrhona (pour le glaçage rocher)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             25g d'huile neutre (pour le glaçage rocher)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g de cacahuètes hachées (pour le glaçage rocher)"
+            }
+        ],
+        "steps": [
+            "Pour le praliné cacahuète : Réaliser un caramel à sec avec les 100g de sucre. Le couler sur un tapis de cuisson en silicone (silpat) jusqu'à refroidissement complet. Mixer le caramel refroidi avec les 200g de cacahuètes torréfiées et la pincée de fleur de sel jusqu'à l'obtention d'une pâte fluide.",
+            "Pour l'appareil cacao (inspiration François Perret) : À l'aide de la feuille du robot, crémer les 60g de beurre avec les 120g de sucre. Ajouter l'œuf et mélanger. Ajouter la farine, le cacao en poudre, la levure chimique et le sel fin tamisés, puis mélanger jusqu'à obtenir une texture bien homogène. Terminer par les 110g de crème liquide et mélanger.",
+            "Pour l'appareil cacahuète : À l'aide de la feuille du robot, crémer les 20g de beurre avec les 90g de sucre et les 80g de praliné cacahuète. Ajouter l'œuf et mélanger. Ajouter la farine, la levure chimique et le sel fin tamisés, puis mélanger jusqu'à obtenir une texture bien homogène. Terminer par les 110g de crème liquide et mélanger.",
+            "Mettre les deux appareils (cacao et cacahuète) dans des poches à douille séparées. Dans un moule à cake de 25 cm beurré et chemisé de papier cuisson, pocher les appareils en bandes alternées. Marbrer la pâte à l'aide d'un couteau d'office et déposer une fine ligne de beurre sur le dessus.",
+            "Cuire le cake pendant 55 minutes à 1 heure à 160°C en chaleur tournante. Démouler le cake encore chaud.",
+            "Pour le sirop d'imbibage : Faire bouillir les 80g d'eau, les 40g de sucre et la gousse de vanille. Laisser refroidir le sirop. Imbiber le cake encore chaud avec le sirop refroidi.",
+            "Laisser complètement refroidir le cake. Pocher une couche de praliné sur le dessus du cake, puis le placer 15 à 20 minutes au congélateur.",
+            "Pour le glaçage rocher chocolat au lait, cacahuète : Faire fondre les 200g de chocolat au lait Jivara Valrhona. Ajouter les 25g d'huile neutre et les 50g de cacahuètes hachées, puis mélanger.",
+            "Utiliser le glaçage entre 30 et 35°C sur le cake froid."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8059",
+        "title": "Bâtonnets sablés au chocolat",
+        "description": "Découvrez une recette simple et économique de délicieux bâtonnets sablés, réputés plus savoureux que les chocolats Milka. Faciles à préparer, ils sont parfaits pour une pause gourmande, trempés dans du chocolat fondu.",
+        "image": "/recipes-ia/8059-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7680597211327008018\" data-video-id=\"7680597211327008018\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7680597211327008018\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             75g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             180g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Du chocolat (pour la trempette)"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, mélanger le beurre, le sucre glace et la farine jusqu'à obtenir une texture sableuse.",
+            "Ajouter l'œuf et pétrir rapidement la pâte jusqu'à ce qu'elle soit homogène.",
+            "Étaler la pâte sur une surface légèrement farinée (sans l'étaler trop finement) et la couper en bâtonnets.",
+            "Disposer les bâtonnets sur une plaque de cuisson recouverte de papier sulfurisé.",
+            "Enfourner à 180°C pendant 5 à 7 minutes, jusqu'à ce qu'ils soient légèrement dorés.",
+            "Une fois les bâtonnets refroidis, les tremper dans du chocolat fondu. Laisser durcir le chocolat avant de servir."
+        ],
+        "tags": [
+            "Pas cher",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8056",
         "title": "Gâteau moelleux aux poires, amandes et chocolat",
