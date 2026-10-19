@@ -2,11 +2,60 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 18/10/2026 16:11:55
+ * Dernière mise à jour: 19/10/2026 08:14:44
  * Total: 801 recettes
  */
-export const exportSyncId = "1792339915359";
+export const exportSyncId = "1792397684207";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8059",
+        "title": "Bâtonnets sablés au chocolat",
+        "description": "Découvrez une recette simple et économique de délicieux bâtonnets sablés, réputés plus savoureux que les chocolats Milka. Faciles à préparer, ils sont parfaits pour une pause gourmande, trempés dans du chocolat fondu.",
+        "image": "/recipes-ia/8059-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7680597211327008018\" data-video-id=\"7680597211327008018\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7680597211327008018\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             75g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             180g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Du chocolat (pour la trempette)"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, mélanger le beurre, le sucre glace et la farine jusqu'à obtenir une texture sableuse.",
+            "Ajouter l'œuf et pétrir rapidement la pâte jusqu'à ce qu'elle soit homogène.",
+            "Étaler la pâte sur une surface légèrement farinée (sans l'étaler trop finement) et la couper en bâtonnets.",
+            "Disposer les bâtonnets sur une plaque de cuisson recouverte de papier sulfurisé.",
+            "Enfourner à 180°C pendant 5 à 7 minutes, jusqu'à ce qu'ils soient légèrement dorés.",
+            "Une fois les bâtonnets refroidis, les tremper dans du chocolat fondu. Laisser durcir le chocolat avant de servir."
+        ],
+        "tags": [
+            "Pas cher",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8061",
         "title": "Cake marbré cacao et cacahuète",
@@ -133,55 +182,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "C'est l'hiver",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8059",
-        "title": "Bâtonnets sablés au chocolat",
-        "description": "Découvrez une recette simple et économique de délicieux bâtonnets sablés, réputés plus savoureux que les chocolats Milka. Faciles à préparer, ils sont parfaits pour une pause gourmande, trempés dans du chocolat fondu.",
-        "image": "/recipes-ia/8059-carte.webp",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7680597211327008018\" data-video-id=\"7680597211327008018\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7680597211327008018\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n             75g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             70g de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             180g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             Du chocolat (pour la trempette)"
-            }
-        ],
-        "steps": [
-            "Dans un saladier, mélanger le beurre, le sucre glace et la farine jusqu'à obtenir une texture sableuse.",
-            "Ajouter l'œuf et pétrir rapidement la pâte jusqu'à ce qu'elle soit homogène.",
-            "Étaler la pâte sur une surface légèrement farinée (sans l'étaler trop finement) et la couper en bâtonnets.",
-            "Disposer les bâtonnets sur une plaque de cuisson recouverte de papier sulfurisé.",
-            "Enfourner à 180°C pendant 5 à 7 minutes, jusqu'à ce qu'ils soient légèrement dorés.",
-            "Une fois les bâtonnets refroidis, les tremper dans du chocolat fondu. Laisser durcir le chocolat avant de servir."
-        ],
-        "tags": [
-            "Pas cher",
             "pâtisserie"
         ],
         "isFeatured": false,
