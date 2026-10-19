@@ -2,11 +2,83 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/10/2026 09:22:49
- * Total: 802 recettes
+ * Dernière mise à jour: 19/10/2026 15:15:45
+ * Total: 803 recettes
  */
-export const exportSyncId = "1792401769580";
+export const exportSyncId = "1792422945863";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8068",
+        "title": "Poireauflette",
+        "description": "Une variante réconfortante de la tartiflette, cette poireauflette met à l'honneur les poireaux de saison. L'auteur suggère qu'elle est potentiellement plus légère grâce aux légumes verts. Elle combine des poireaux et des pommes de terre cuits à la...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696200452454599969\" data-video-id=\"7696200452454599969\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696200452454599969\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             Poireaux"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Lardons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Reblochon"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Préparez les poireaux : cassez chaque feuille de poireau en gardant un peu de vert. Incisez-les deux fois dans la longueur pour faire une \" martifouette \", ce qui permettra à tout le sable coincé entre chaque feuille de partir. Rincez-les sous l'eau, égouttez l'excédent d'eau et tranchez-les en morceaux aléatoires.",
+            "Cuisez les légumes : épluchez les pommes de terre. Envoyez les poireaux et les pommes de terre coupées en morceaux à la vapeur pendant 15 à 20 minutes.",
+            "Préparez la base de la sauce : épluchez et émincez les oignons. Coupez un beau morceau de lard pour en faire des lardons. Dans une poêle à feu moyen, faites rissoler les oignons et les lardons avec une noix de beurre.",
+            "Déglacez et liez la sauce : quand les lardons sont cuits, déglacez la poêle avec un doigt de vin blanc. Ajoutez une cuillère à soupe de crème fraîche.",
+            "Mélangez les ingrédients : incorporez les pommes de terre cuites et concassez-les grossièrement pour qu'elles absorbent un peu la sauce. Ajoutez ensuite les poireaux. Assaisonnez avec du sel et du poivre.",
+            "Assemblez le gratin : versez la préparation dans un plat. Coupez un reblochon en deux dans l'épaisseur et déposez les moitiés sur la préparation, croûte vers le haut.",
+            "Gratinez : faites gratiner au four préchauffé à 200 °C pendant 15 à 20 minutes."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Gratins",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8065",
         "title": "Ferrero Rocher Maison",
