@@ -1672,6 +1672,10 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                 </div>
 
                 {/* Le texte désigne l'affiche active : il se substitue en fondu. */}
+                {/* Emplacement à hauteur FIXE (téléphone) : les affiches prennent la
+                    place restante, elle ne doit donc dépendre ni de la longueur du
+                    titre, ni du nombre de hashtags, ni du fondu entre deux textes. */}
+                <div className={styles.heroInfoSlot}>
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={current.id}
@@ -1731,6 +1735,7 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                         </div>
                     </motion.div>
                 </AnimatePresence>
+                </div>
             </motion.div>
 
         </div>
