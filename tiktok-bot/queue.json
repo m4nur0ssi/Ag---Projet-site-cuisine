@@ -1,21 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdCVgDRS/",
-      "country": "Express",
-      "timestamp": "2026-10-20T10:32:21.571Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdCVVQ7q/",
-      "country": "Express",
-      "timestamp": "2026-10-20T10:33:01.754Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdCVbcCS/",
-      "country": "Accompagnements",
-      "timestamp": "2026-10-20T10:33:32.147Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN82kvpyD/",
