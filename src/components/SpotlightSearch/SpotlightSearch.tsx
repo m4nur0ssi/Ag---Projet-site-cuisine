@@ -55,7 +55,7 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
     const watchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    const localSearch = (q: string) => smartLocalSearch(mockRecipes as any, q, 5);
+    const localSearch = (q: string) => smartLocalSearch(mockRecipes as any, q, 60);
 
     const askAssistant = async (raw?: string) => {
         const q = (raw ?? aiQuery).trim();
@@ -139,7 +139,7 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
             }
             // Le repli cherche dans le vivier déjà filtré, sinon il rendrait
             // des recettes que la contrainte de note vient d'écarter.
-            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 5);
+            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 60);
             if (local.length) { setAiResults(local); setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : 'Voici ce que j\'ai trouvé sur le site 👇'); }
             else setAiError('Aucune recette du site ne correspond. Reformule ta demande ✨');
         } finally {

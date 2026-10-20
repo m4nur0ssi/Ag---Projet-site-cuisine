@@ -62,11 +62,11 @@ const GlassCheckIcon = () => (
 
 /*
  * Le cœur suit la règle de la barre — seule l'icône de l'onglet actif s'allume —
- * mais il s'allume en ROUGE, plein, là où les autres passent au blanc. Éteint,
+ * et il s'allume en blanc plein, comme les autres onglets. Éteint,
  * il est gris comme ses voisins, qu'il y ait des favoris ou non.
  */
 const HeartIcon = ({ isActive }: { isActive?: boolean }) => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill={isActive ? "#ff3b30" : "none"} stroke={isActive ? "#ff3b30" : "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill={isActive ? "#ffffff" : "none"} stroke={isActive ? "#ffffff" : "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
     </svg>
 );
@@ -122,6 +122,8 @@ export default function BottomNav() {
     const forceMiniTimerRef = useRef<NodeJS.Timeout | null>(null);
     const [lastViewed, setLastViewed] = useState<any>(null);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
+    // Sélection de la recherche d'où vient la fiche : on la parcourt aux flèches.
+    const [sheetList, setSheetList] = useState<{ recipes: any[]; index: number } | null>(null);
 
     /**
      * Dans « Ma cave », la pastille du milieu ne sert à rien : elle propose la
@@ -462,7 +464,8 @@ export default function BottomNav() {
         }
     };
 
-    const handleRecipeSelect = (recipe: any) => {
+    const handleRecipeSelect = (recipe: any, list?: any[], index?: number) => {
+        setSheetList(list && list.length > 1 && typeof index === 'number' && index >= 0 ? { recipes: list, index } : null);
         setLastViewed(recipe);
         setIsSheetOpen(true);
         setIsSearchOpen(false);
@@ -541,6 +544,8 @@ export default function BottomNav() {
                                     className={styles.miniCenter}
                                     onClick={() => {
                                         if (lastViewed) {
+                                            // La mini-barre rouvre LA dernière fiche, seule.
+                                            setSheetList(null);
                                             setIsSheetOpen(true);
                                             handleVibrate(15);
                                         }
@@ -702,7 +707,10 @@ export default function BottomNav() {
             </nav>
             {lastViewed && (
                 <RecipeSheet 
-                    recipe={lastViewed} 
+                    recipe={sheetList ? sheetList.recipes[sheetList.index] : lastViewed}
+                    allRecipes={sheetList?.recipes}
+                    recipeIndex={sheetList?.index ?? 0}
+                    fleches={!!sheetList}
                     isOpen={isSheetOpen} 
                     onClose={() => setIsSheetOpen(false)} 
                 />

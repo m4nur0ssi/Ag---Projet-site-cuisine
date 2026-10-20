@@ -6421,3 +6421,120 @@
 .spEmbedded .spModeRow, .spEnPanneau .spModeRow { padding: 0 0 0; max-width: 720px; }
 .spEmbedded .spModeRow .spSegment, .spEnPanneau .spModeRow .spSegment { margin: 0 0 12px; max-width: none; }
 .spEmbedded .spFilterRow, .spEnPanneau .spFilterRow { padding: 0 4px 12px; }
+
+/* Carte de recherche bornée à l'écran visible, même avec le clavier Safari. */
+.spRoot {
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
+    height: calc(100dvh - env(safe-area-inset-top, 0px) - 8px);
+    bottom: auto; left: 3%; right: 3%; width: 94%;
+    box-sizing: border-box; border-radius: 32px 32px 0 0;
+    border: 1px solid rgba(255,255,255,.12);
+    overflow: hidden; padding-top: 18px;
+}
+.spRoot .spModeRow { flex-shrink: 0; }
+.spRoot .spResults { min-height: 0; overflow-y: auto; }
+.spRoot.spEnPanneau { overflow: hidden; }
+@media (max-width: 767px) {
+    .spRoot.spEnPanneau { padding: 18px 12px calc(96px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* Partager la sélection : à côté du nombre de recettes. */
+.spShare {
+    flex: 0 0 auto;
+    min-width: 40px; height: 40px; padding: 0 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: none; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .14);
+    color: #fff; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform .2s var(--tv-ease), background .2s ease;
+}
+.spShare:active { transform: scale(.9); }
+.spShare:hover { background: rgba(255, 255, 255, 0.16); }
+.spShareMsg { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.spHead { gap: 10px; }
+
+/* Téléphone : cartes des rangées de l'accueil un peu plus grandes (~ +12 %).
+   Au-delà de 760 px, useFittedCards calcule déjà les largeurs. */
+@media (max-width: 759px) {
+    .small  { width: 140px; }
+    .poster { width: 148px; }
+    .square { width: 166px; }
+    .medium { width: 200px; }
+    .wide   { width: 300px; }
+    .hugeCard { width: 324px; }
+    .top10Card { flex: 0 0 196px; }
+}
+
+/* Courses › En + : ajouts manuels rangés par rayon. */
+.cartRayon {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px 4px;
+    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 800;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: rgba(235, 235, 245, 0.55);
+}
+.cartRayon .courseRayonCount { margin-left: auto; letter-spacing: 0; }
+
+/* Téléphone : affiches du grand carrousel un peu plus grandes. La hauteur
+   reste commandée par la place libre (le titre ne doit pas passer sous la
+   barre du bas) : on gagne en LARGEUR, en plafond, et les voisines sont
+   moins réduites. Toutes gardent la même largeur (voir .heroPoster). */
+@media (max-width: 759px) {
+    .heroPoster {
+        aspect-ratio: 10 / 13;
+        max-height: 420px;
+        transform: scale(0.8);
+    }
+    .heroPosterOn { transform: scale(1); }
+    .heroTrack { padding-top: 2px; padding-bottom: 10px; }
+}
+
+/* ── Héros : rangée d'actions ordonnée ───────────────────────────────────
+   Les hashtags s'enroulaient dans une colonne de 260 px et le cœur flottait
+   à droite, à mi-hauteur. Désormais : UNE rangée centrée où pastilles et cœur
+   sont frères, à la même hauteur ; si la place manque, la rangée passe à la
+   ligne d'un bloc, toujours centrée. Les pastilles reprennent le verre sombre
+   du sur-titre « Nº 1 », pour que le bloc parle une seule langue. */
+.heroActionsSplit {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 6px;
+    --hero-action-h: 40px;
+}
+.heroTagsSplit { display: contents; }
+.heroTagChip {
+    display: inline-flex;
+    align-items: center;
+    height: var(--hero-action-h);
+    padding: 0 16px;
+    border: none;
+    background: rgba(28, 28, 30, 0.55);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+}
+@media (hover: hover) {
+    .heroTagChip:hover { background: rgba(60, 60, 67, 0.6); color: #fff; }
+}
+.heroFavSplit {
+    width: var(--hero-action-h) !important;
+    height: var(--hero-action-h) !important;
+    flex: 0 0 auto;
+}
+@media (min-width: 760px) {
+    .heroActionsSplit { --hero-action-h: 44px; gap: 10px; }
+    .heroTagChip { font-size: 13px; padding: 0 18px; }
+}
+@media (max-height: 730px) {
+    .heroActionsSplit { --hero-action-h: 36px; }
+    .heroTagChip { padding: 0 13px; font-size: 11px; }
+}

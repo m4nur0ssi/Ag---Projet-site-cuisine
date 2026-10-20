@@ -243,6 +243,17 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         [list],
     );
 
+    /** Les ajouts manuels rangés par rayon, dans l'ordre du magasin. */
+    const manuelsParRayon = useMemo(() => {
+        const map = new Map<string, string[]>();
+        manuels.forEach((raw) => {
+            const rid = rayonOf(cleanIngredientText(raw) || raw, overrides);
+            if (!map.has(rid)) map.set(rid, []);
+            map.get(rid)!.push(raw);
+        });
+        return [...map.entries()].sort((a, b) => (RAYON_ORDER[a[0]] ?? 99) - (RAYON_ORDER[b[0]] ?? 99));
+    }, [manuels, overrides]);
+
     const hasJourJ = Object.keys(plan.JourJ || {}).length > 0;
     const hasWeek = Object.keys(plan).some((d) => d !== 'JourJ' && Object.keys(plan[d] || {}).length > 0);
 
@@ -1100,7 +1111,14 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 <div className={styles.cartCardHead}>
                                     <div className={styles.cartTitle}>Ajoutés à la main</div>
                                 </div>
-                                {manuels.map((raw, i) => {
+                                {manuelsParRayon.map(([rid, lignes]) => (
+                                <div key={rid}>
+                                <div className={styles.cartRayon}>
+                                    <span aria-hidden>{RAYON_BY_ID[rid]?.emoji || '📦'}</span>
+                                    <span>{RAYON_BY_ID[rid]?.label || 'Divers'}</span>
+                                    <span className={styles.courseRayonCount}>{lignes.length}</span>
+                                </div>
+                                {lignes.map((raw, i) => {
                                     const k = extraLineKey('manuel', raw);
                                     const struck = sourceLineDone(k, allSourceItems, done);
                                     const texte = cleanIngredientText(raw) || raw;
@@ -1127,6 +1145,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                         </div>
                                     );
                                 })}
+                                </div>
+                                ))}
                             </div>
                         )}
                         {cart.map((r) => (

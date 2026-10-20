@@ -210,6 +210,39 @@
     .navArrow {
         display: none; /* Cache les flèches sur mobile pour privilégier le swipe */
     }
+    /* Sélection venue de la recherche : les flèches restent, plus discrètes,
+       posées au tiers haut pour ne pas couvrir la liste d'ingrédients. */
+    .navArrow.navForce {
+        display: flex;
+        top: 34%;
+        width: 38px;
+        height: 38px;
+        border-radius: 19px;
+        font-size: 22px;
+        background: rgba(0, 0, 0, 0.42);
+    }
+    .navForce.navLeft { left: 8px; }
+    .navForce.navRight { right: 8px; }
+}
+
+/* « 3 / 42 » : remplace les points quand la sélection est longue. */
+.compteur {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 101;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.42);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
 }
 
 /* ── Au bureau : la fiche se comporte comme celle du reste du site ───────

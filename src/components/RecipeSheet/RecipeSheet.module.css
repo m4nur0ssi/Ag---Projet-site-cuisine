@@ -115,3 +115,27 @@
 .closeBtn:active {
     transform: scale(0.9);
 }
+
+/* Parcours d'une sélection de recherche. */
+.navCompteur {
+    position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+    z-index: 101; padding: 4px 10px; border-radius: 999px;
+    background: rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    color: #fff; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+.navFleche {
+    position: absolute; top: 40%; transform: translateY(-50%);
+    z-index: 105; width: 44px; height: 44px; border-radius: 22px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.42);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff; font-size: 26px; line-height: 1; cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+.navFleche:hover { background: rgba(0, 0, 0, 0.62); }
+.navFleche:active { transform: translateY(-50%) scale(0.92); }
+.navGauche { left: 12px; }
+.navDroite { right: 12px; }

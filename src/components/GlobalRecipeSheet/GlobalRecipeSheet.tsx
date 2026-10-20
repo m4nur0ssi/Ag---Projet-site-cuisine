@@ -12,19 +12,28 @@ import { FERMER_FICHE } from '@/lib/ficheEvents';
  */
 export default function GlobalRecipeSheet() {
     const [recipe, setRecipe] = useState<any>(null);
+    /** Sélection de la recherche : la fiche la parcourt avec ‹ › et le clavier. */
+    const [liste, setListe] = useState<{ recettes: any[]; index: number } | null>(null);
+    const completer = (d: any) => {
+        const full = mockRecipes.find((r: any) => String(r.id) === String(d.id));
+        const base = full ? { ...d, ...full } : d;
+        return { category: 'plats', steps: [], ingredients: [], tags: [], ...base };
+    };
 
     useEffect(() => {
         const open = (e: any) => {
-            const d = e.detail;
-            if (!d) return;
-            const full = mockRecipes.find((r: any) => String(r.id) === String(d.id));
-            const base = full ? { ...d, ...full } : d;
-            setRecipe({ category: 'plats', steps: [], ingredients: [], tags: [], ...base });
+            const brut = e.detail;
+            if (!brut) return;
+            const { __liste, __index, ...d } = brut;
+            if (Array.isArray(__liste) && __liste.length > 1 && typeof __index === 'number') {
+                setListe({ recettes: __liste, index: __index });
+            } else setListe(null);
+            setRecipe(completer(d));
         };
         /* Fermeture demandée par un écran qui prend la main : « Ouvrir le
            planificateur » depuis le volet de planification, par exemple. La
            fiche flotte au-dessus de tout et suivrait sinon. */
-        const close = () => setRecipe(null);
+        const close = () => { setRecipe(null); setListe(null); };
         window.addEventListener('openRecipeFromPlanner', open);
         window.addEventListener(FERMER_FICHE, close);
         // Signale qu'un hôte écoute : un lien entrant (`/?fiche=…`) attend ce
@@ -39,5 +48,22 @@ export default function GlobalRecipeSheet() {
     }, []);
 
     if (!recipe) return null;
-    return <RecipeSheet recipe={recipe} isOpen={true} onClose={() => setRecipe(null)} />;
+    const aller = (i: number) => {
+        if (!liste || i < 0 || i >= liste.recettes.length) return;
+        setListe({ ...liste, index: i });
+        setRecipe(completer(liste.recettes[i]));
+    };
+    return (
+        <RecipeSheet
+            recipe={recipe}
+            isOpen={true}
+            onClose={() => { setRecipe(null); setListe(null); }}
+            navigation={liste ? {
+                position: liste.index + 1,
+                total: liste.recettes.length,
+                precedent: liste.index > 0 ? () => aller(liste.index - 1) : undefined,
+                suivant: liste.index < liste.recettes.length - 1 ? () => aller(liste.index + 1) : undefined,
+            } : undefined}
+        />
+    );
 }

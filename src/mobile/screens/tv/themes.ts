@@ -203,6 +203,35 @@ export function isSavoryMiscat(recipe: Recipe): boolean {
     return SAVORY_TITLE.test(t);
 }
 
+/** Tarte, quiche, pizza… : le mot dans le titre. */
+const TARTE_TITLE = /\b(tarte(let)?(te)?s?|quiches?|pizz?as?|pissaladi[èe]re|flammenk[uü]che|tourtes?)\b/;
+/** Ce qui fait d'une tarte une tarte SUCRÉE, lu dans le titre (sans accents). */
+const SWEET_TART_TITLE = /\b(pommes?|poires?|citrons?|fraises?|framboises?|myrtilles?|abricots?|peches?|prunes?|cerises?|rhubarbe|bananes?|figues?|mangues?|ananas|fruits? rouges|chocolat|caramel|sucre|praline|frangipane|amandine|bourdaloue|tatin|normande|meringuee|creme patissiere|nutella|speculoos|coco|noix de pecan|pecan|creme brulee|flan|vanille|miel)\b/;
+
+/**
+ * Une tarte sucrée : rangée en dessert/pâtisserie (sans être un salé mal
+ * rangé), ou annoncée sucrée par son titre sans rien de salé dedans.
+ */
+/** Ingrédients qui trahissent une tarte salée rangée en dessert. */
+const SAVORY_ING = /\b(feta|mozza(rella)?|chevre|cheddar|comte|gruyere|emmental|parmesan|ricotta salee|jambon|bresaola|lardons?|bacon|chorizo|poulet|boeuf|thon|saumon|anchois|olives?|tomates?|poivrons?|oignons?|echalotes?|ail\b|avocats?|courgettes?|aubergines?|epinards?|champignons?|poireaux?|cornichons?|radis|moutarde|poivre)\b/;
+
+export function estTarteSucree(recipe: Recipe): boolean {
+    // « pomme de terre » n'a rien d'un fruit.
+    const t = norm((recipe.title || '').toLowerCase()).replace(/\bpommes? de terre\b/g, 'patate');
+    if (!TARTE_TITLE.test((recipe.title || '').toLowerCase()) && !/\b(tarte|tartelette)s?\b/.test(t)) return false;
+    if (SAVORY_TITLE.test(t) || /\bpatate\b|cancoillotte/.test(t)) return false;
+    /*
+     * Au build, la recette a encore ses ingrédients : deux ingrédients salés
+     * (féta, tomates, jambon…) suffisent à démasquer une tarte salée rangée en
+     * dessert — « Tarte couronne », « Tarte Cheesy Crust ».
+     */
+    const ings = (recipe.ingredients || []).map((i: any) => norm(String(i?.name || '').toLowerCase()));
+    if (ings.filter((n) => SAVORY_ING.test(n)).length >= 2) return false;
+    const cat = (recipe.category || '').toLowerCase();
+    if (['patisserie', 'desserts', 'glaces'].includes(cat)) return !isSavoryMiscat(recipe);
+    return SWEET_TART_TITLE.test(t);
+}
+
 export function matchesTag(
     recipe: Recipe,
     tag: string,
@@ -245,6 +274,10 @@ export function matchesTag(
     // Recettes salées mal rangées en pâtisserie (tiramisu salé, cheesecake salé,
     // tarte protéinée…) : on les sort des vues sucrées.
     if ((tagLower === 'patisserie' || tagLower === 'desserts') && isSavoryMiscat(recipe)) return false;
+    // Une tarte SALÉE rangée en dessert (« Tarte couronne », « Tarte Cheesy
+    // Crust ») reste dans « Tartes, quiches & pizzas », pas avec les gâteaux.
+    if ((tagLower === 'patisserie' || tagLower === 'desserts')
+        && TARTE_TITLE.test(titleLower) && !estTarteSucree(recipe)) return false;
 
     if (tagLower === 'vegetarien') {
         if (recipeTags.some((t) => t.includes('végé') || t.includes('vege') || t.includes('vegetarien')) || recipeCat === 'vegetarien') return true;
@@ -410,6 +443,16 @@ export function matchesTag(
         );
     }
     if (tagLower === 'tarte' || tagLower === 'tartes') {
+        // « Tartes, quiches & pizzas » : rien que du SALÉ. Les tartes sucrées
+        // vont en pâtisserie (voir plus bas).
+        if (estTarteSucree(recipe)) return false;
+        // Cheesecake, torta della nonna… rangés en dessert et tagués « tarte » :
+        // sucrés, sauf si leurs ingrédients disent le contraire.
+        if (['patisserie', 'desserts', 'glaces', 'boissons'].includes(recipeCat) && !isSavoryMiscat(recipe)) {
+            const ings = (recipe.ingredients || []).map((i: any) => norm(String(i?.name || '').toLowerCase()));
+            if (ings.filter((n) => SAVORY_ING.test(n)).length < 2) return false;
+        }
+
         return (
             recipeTags.some((t) => /\b(tarte|quiche|pizza)/.test(t)) ||
             /\b(tarte(let)?(te)?s?|quiches?|pizz?as?|pissaladi[èe]re|flammenk[uü]che|tourtes?)\b/.test(titleLower)
@@ -458,6 +501,9 @@ export function matchesTag(
         // sauf si l'utilisateur a explicitement coché une catégorie.
         return !guards || !['desserts', 'patisserie', 'glaces', 'boissons', 'sauces'].includes(recipeCat);
     }
+
+    // Une tarte sucrée a sa place en pâtisserie, même rangée ailleurs.
+    if (tagLower === 'patisserie' && estTarteSucree(recipe)) return true;
 
     // Repli générique : texte, catégorie ou tag (avec et sans accents).
     const normTag = norm(tagLower);

@@ -17,7 +17,16 @@ interface RecipeSheetProps {
     allRecipes?: Recipe[];
     recipeIndex?: number;
     onAddToPlanner?: (recipe: Recipe) => void;
+    /**
+     * Flèches ‹ › visibles AUSSI sur téléphone. Ouverte depuis la recherche,
+     * la fiche fait défiler toute la sélection : le balayage seul ne se devine
+     * pas, les flèches le disent.
+     */
+    fleches?: boolean;
 }
+
+/** Au-delà, une rangée de points déborde de l'écran : on affiche « 3 / 42 ». */
+const MAX_POINTS = 15;
 
 // Distance au-delà de laquelle un glissement lent ferme la fiche. Un geste
 // rapide n'a pas à l'atteindre : la vitesse suffit (voir handleTouchEnd).
@@ -26,7 +35,7 @@ const DISMISS_V = 600;
 const SWIPE_THRESHOLD = 0.25; 
 const SWIPE_VELOCITY = 400;
 
-export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recipeIndex = 0, onAddToPlanner }: RecipeSheetProps) {
+export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recipeIndex = 0, onAddToPlanner, fleches = false }: RecipeSheetProps) {
     const baseRecipes = useMemo(() => allRecipes && allRecipes.length > 0 ? allRecipes : [recipe], [allRecipes, recipe]);
     const [recipes, setRecipes] = useState(baseRecipes);
     const [currentIdx, setCurrentIdx] = useState(recipeIndex);
@@ -307,6 +316,19 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         });
     }, [currentIdx, x, snapBack]);
 
+    // Clavier : ← → parcourent la sélection, comme les flèches à l'écran.
+    useEffect(() => {
+        if (!isOpen || recipes.length < 2) return;
+        const onKey = (e: KeyboardEvent) => {
+            const cible = e.target as HTMLElement | null;
+            if (cible && /^(INPUT|TEXTAREA|SELECT)$/.test(cible.tagName)) return;
+            if (e.key === 'ArrowRight' && currentIdx < recipes.length - 1) goToIndex(currentIdx + 1);
+            else if (e.key === 'ArrowLeft' && currentIdx > 0) goToIndex(currentIdx - 1);
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [isOpen, recipes.length, currentIdx, goToIndex]);
+
     // ─── Touch Handlers ──────────────────────────────────────────────────
     const handleTouchStart = useCallback((e: TouchEvent) => {
         // Un geste né sur un contrôle qui règle une valeur (les étoiles) lui
@@ -517,11 +539,16 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                                 elle reste visible quoi qu'on fasse défiler. */}
                             <button className={styles.closeBtn} onClick={onClose} aria-label="Fermer la recette">✕</button>
 
-                            {recipes.length > 1 && (
+                            {recipes.length > 1 && recipes.length <= MAX_POINTS && (
                                 <div className={styles.pagination}>
                                     {recipes.map((_, i) => (
                                         <div key={i} className={`${styles.dot} ${i === currentIdx ? styles.dotActive : ''}`} />
                                     ))}
+                                </div>
+                            )}
+                            {recipes.length > MAX_POINTS && (
+                                <div className={styles.compteur} aria-live="polite">
+                                    {currentIdx + 1} / {recipes.length}
                                 </div>
                             )}
 
@@ -591,8 +618,8 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             {/* Nav Arrows */}
                             {recipes.length > 1 && (
                                 <>
-                                    {currentIdx > 0 && <button className={`${styles.navArrow} ${styles.navLeft}`} onClick={() => goToIndex(currentIdx - 1)}>‹</button>}
-                                    {currentIdx < recipes.length - 1 && <button className={`${styles.navArrow} ${styles.navRight}`} onClick={() => goToIndex(currentIdx + 1)}>›</button>}
+                                    {currentIdx > 0 && <button className={`${styles.navArrow} ${styles.navLeft} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx - 1)} aria-label="Recette précédente">‹</button>}
+                                    {currentIdx < recipes.length - 1 && <button className={`${styles.navArrow} ${styles.navRight} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx + 1)} aria-label="Recette suivante">›</button>}
                                 </>
                             )}
                         </motion.div>

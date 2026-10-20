@@ -1708,7 +1708,8 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                                 const d = timingOf(current).difficulty;
                                 return d === 'facile' ? 'Facile' : d === 'moyen' ? 'Moyen' : 'Difficile';
                             })()}</span>
-                            <span className={styles.heroBadge}>{current.servings || 4} pers.</span>
+                            <span className={styles.heroDot}>·</span>
+                            <span>{current.servings || 4} pers.</span>
                         </div>
 
                         <div className={styles.heroActionsSplit}>
@@ -1750,7 +1751,7 @@ export default function TVHome() {
      */
     const [all, setAll] = useState<{ title: string; recipes: Recipe[]; classement?: boolean } | null>(null);
     const [triTop, setTriTop] = useState<'note' | 'date'>('note');
-    const [sheet, setSheet] = useState<{ recipes: Recipe[]; index: number } | null>(null);
+    const [sheet, setSheet] = useState<{ recipes: Recipe[]; index: number; fleches?: boolean } | null>(null);
     const [menu, setMenu] = useState<{ recipe: Recipe; coll?: Coll } | null>(null);
     // Recette à caser dans la semaine (volet « Ajouter au planificateur »).
     const [planFor, setPlanFor] = useState<Recipe | null>(null);
@@ -2079,6 +2080,26 @@ export default function TVHome() {
         } catch { /* noop */ }
     }, [openAll]);
 
+    /*
+     * Sélection partagée depuis la recherche (/?selection=12,48,7&titre=…) :
+     * la grille s'ouvre avec EXACTEMENT ces recettes, dans cet ordre.
+     */
+    useEffect(() => {
+        let sp: URLSearchParams;
+        try { sp = new URLSearchParams(window.location.search); } catch { return; }
+        const brut = sp.get('selection');
+        if (!brut) return;
+        const parId = new Map(mockRecipes.map((r) => [String(r.id), r]));
+        const list = brut.split(',').map((id) => parId.get(id.trim())).filter(Boolean) as Recipe[];
+        if (list.length) openAll((sp.get('titre') || '').trim().slice(0, 80) || 'Sélection partagée', list);
+        try {
+            const u = new URL(window.location.href);
+            u.searchParams.delete('selection');
+            u.searchParams.delete('titre');
+            window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+        } catch { /* noop */ }
+    }, [openAll]);
+
     // Hashtag cliqué (fiche, affiche du héros) : même grille que /?tag=…, sans recharger.
     useEffect(() => {
         const ouvrir = (e: Event) => {
@@ -2140,6 +2161,22 @@ export default function TVHome() {
          * première seconde), la fiche s'affiche et se complète juste après.
          */
         setSheet({ recipes: list.slice(start, start + SHEET_WINDOW).map(completer), index: index - start });
+        if (!detailsPrets()) {
+            chargerVideos().then(() => {
+                setSheet((ouvert) => (ouvert ? { ...ouvert, recipes: ouvert.recipes.map(completer) } : ouvert));
+            });
+        }
+    }, []);
+
+    /*
+     * Fiche ouverte depuis la RECHERCHE : toute la sélection, sans fenêtre de
+     * 24 — la fiche affiche « 3 / 42 » au lieu des points quand elle est longue
+     * — et des flèches visibles pour passer d'une recette à l'autre.
+     */
+    const openSelection = useCallback<OpenSheet>((list, index) => {
+        const opened = list[index];
+        if (opened) pushSeen(String(opened.id));
+        setSheet({ recipes: list.map(completer), index, fleches: list.length > 1 });
         if (!detailsPrets()) {
             chargerVideos().then(() => {
                 setSheet((ouvert) => (ouvert ? { ...ouvert, recipes: ouvert.recipes.map(completer) } : ouvert));
@@ -2630,6 +2667,7 @@ export default function TVHome() {
                     isOpen={true}
                     allRecipes={sheet.recipes}
                     recipeIndex={sheet.index}
+                    fleches={!!sheet.fleches}
                     onClose={() => setSheet(null)}
                 />
             )}
@@ -2637,7 +2675,7 @@ export default function TVHome() {
             <TVSpotlight
                 open={searchOpen}
                 onClose={() => setSearchOpen(false)}
-                onRecipeSelect={(r) => openSheet([r], 0)}
+                onRecipeSelect={(r, list, index) => openSelection(list && typeof index === 'number' ? list : [r], typeof index === 'number' ? index : 0)}
                 initialQuery={seed?.q}
                 initialIngredients={seed?.ing}
                 filter={seedFilter}

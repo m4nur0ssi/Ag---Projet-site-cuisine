@@ -26,7 +26,15 @@
 // document. Elles ont désormais la même seconde chance que le reste.
 // v10 : partage d'une recette = lien seul `/r/<id>` (2026-09-29). Un téléphone
 // déjà venu gardait l'ancien code et envoyait image + texte + lien en double.
+// v11 (2026-10-20) : lancement rapide. La page n'attend plus le réseau plus
+// de 900 ms : passé ce délai, la copie en cache (si elle a moins de 3 jours)
+// s'affiche tout de suite et le réseau la rafraîchit en arrière-plan pour le
+// prochain lancement. Le nom du cache ne change pas : rien n'est purgé.
 const CACHE = 'recettes-magiques-v10';
+/** Attente maximale du réseau avant d'ouvrir la copie en cache. */
+const DELAI_RESEAU_MS = 900;
+/** Au-delà, une copie est trop vieille pour être servie en raccourci. */
+const COPIE_MAX_MS = 3 * 24 * 3600 * 1000;
 const OFFLINE_URL = new URL('offline.html', self.location).toString();
 
 self.addEventListener('install', (event) => {
@@ -80,6 +88,26 @@ async function reseauAvecSecondeChance(request) {
     }
 }
 
+/** Range une page en cache avec son heure de rangement (en-tête maison). */
+async function rangerPage(request, response) {
+    try {
+        if (!response || response.status !== 200 || response.type === 'opaque') return;
+        const headers = new Headers(response.headers);
+        headers.set('x-sw-range-le', String(Date.now()));
+        const corps = await response.blob();
+        const cache = await caches.open(CACHE);
+        await cache.put(request, new Response(corps, { status: 200, statusText: response.statusText, headers }));
+    } catch (_) { /* quota, réponse illisible : on ignore */ }
+}
+
+/** Une copie récente de cette page, ou null. */
+async function copieRecente(request) {
+    const cached = await caches.match(request);
+    if (!cached) return null;
+    const le = Number(cached.headers.get('x-sw-range-le') || 0);
+    return le && Date.now() - le < COPIE_MAX_MS ? cached : null;
+}
+
 /** Prévient les pages ouvertes qu'elles affichent une copie, pas le site. */
 async function signalerCopie() {
     const clients = await self.clients.matchAll({ type: 'window' });
@@ -96,12 +124,26 @@ self.addEventListener('fetch', (event) => {
 
     // 1) Navigations : réseau d'abord, sinon cache, sinon page offline.
     if (request.mode === 'navigate') {
+        /*
+         * Lancement rapide : le réseau a 900 ms pour répondre. Au-delà, si une
+         * copie RÉCENTE existe, elle s'affiche aussitôt — c'est le cas typique
+         * du lancement sur iPhone, quand la radio se réveille. Le réseau, lui,
+         * continue et range la page fraîche pour le prochain lancement ; s'il
+         * apporte une nouvelle version, VersionAJour la charge au retour.
+         */
+        const reseau = reseauAvecSecondeChance(request);
+        const rangement = reseau.then((net) => rangerPage(request, net.clone())).catch(() => {});
+        event.waitUntil(rangement);
         event.respondWith((async () => {
             try {
-                const net = await reseauAvecSecondeChance(request);
-                const cache = await caches.open(CACHE);
-                cache.put(request, net.clone());
-                return net;
+                const vite = await Promise.race([
+                    reseau.then((net) => ({ net })),
+                    new Promise((r) => setTimeout(() => r({ lent: true }), DELAI_RESEAU_MS)),
+                ]);
+                if (vite.net) return vite.net;
+                const copie = await copieRecente(request);
+                if (copie) return copie;
+                return await reseau;
             } catch (_) {
                 const cached = await caches.match(request);
                 if (cached) {

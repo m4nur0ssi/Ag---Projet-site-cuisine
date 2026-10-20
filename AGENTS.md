@@ -22,3 +22,7 @@ Approved example: recipe `7830` / "Recette de Maritozzi".
 ## Image direction (skill)
 
 `docs/image-direction-SKILL.md` définit la méthode (brief structuré, contrôle puis correction ciblée). Elle est branchée dans `scripts/generate-recipe-images.js` : ligne « Usage » dans le prompt, et `controlerImage()` relit chaque image générée (texte, mains, déformations, plat non conforme, angle) puis relance UNE correction ciblée. Non bloquant ; `--sans-controle` pour couper. Tourne automatiquement sur chaque nouvelle recette via `.github/workflows/wp-sync.yml`.
+
+## Vercel account selection
+
+The user has several Vercel accounts. Before every new deployment, including a Git push that triggers deployment, ask the user which Vercel account/team to use and wait for their answer. Verify the active account and project scope before publishing. The team selected on 2026-10-12 is `lavillarossi-8420s-projects` (display name: lavillarossi-8420's projects); this selection does not waive confirmation for future deployments.

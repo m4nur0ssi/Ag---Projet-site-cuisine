@@ -11,9 +11,11 @@ interface RecipeSheetProps {
     recipe: Recipe;
     isOpen: boolean;
     onClose: () => void;
+    /** Parcours d'une sélection (recherche) : flèches ‹ ›, clavier ← →, « 3 / 42 ». */
+    navigation?: { position: number; total: number; precedent?: () => void; suivant?: () => void };
 }
 
-export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose }: RecipeSheetProps) {
+export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, navigation }: RecipeSheetProps) {
     const [currentRecipe, setCurrentRecipe] = useState(initialRecipe);
     const [shouldRender, setShouldRender] = useState(isOpen);
     const scrollYRef = useRef(0);
@@ -21,6 +23,22 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose }: 
 
     // Sync when parent changes recipe
     useEffect(() => { setCurrentRecipe(initialRecipe); }, [initialRecipe]);
+
+    // Clavier ← → : recette précédente / suivante de la sélection.
+    useEffect(() => {
+        if (!isOpen || !navigation) return;
+        const onKey = (e: KeyboardEvent) => {
+            const cible = e.target as HTMLElement | null;
+            if (cible && /^(INPUT|TEXTAREA|SELECT)$/.test(cible.tagName)) return;
+            if (e.key === 'ArrowRight') navigation.suivant?.();
+            else if (e.key === 'ArrowLeft') navigation.precedent?.();
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [isOpen, navigation]);
+
+    // Nouvelle recette de la sélection : on repart du haut de la fiche.
+    useEffect(() => { scrollRef.current?.scrollTo({ top: 0 }); }, [initialRecipe]);
 
     // Listen for openRecipe event from similar recipes
     useEffect(() => {
@@ -192,6 +210,18 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose }: 
 
                             {/* Croix fixe — hors du scrollArea pour rester cliquable */}
                             <button className={styles.closeBtn} onClick={onClose}>✕</button>
+
+                            {navigation && (
+                                <>
+                                    <div className={styles.navCompteur}>{navigation.position} / {navigation.total}</div>
+                                    {navigation.precedent && (
+                                        <button className={`${styles.navFleche} ${styles.navGauche}`} onClick={navigation.precedent} aria-label="Recette précédente">‹</button>
+                                    )}
+                                    {navigation.suivant && (
+                                        <button className={`${styles.navFleche} ${styles.navDroite}`} onClick={navigation.suivant} aria-label="Recette suivante">›</button>
+                                    )}
+                                </>
+                            )}
 
                             <div
                                 className={styles.scrollArea}

@@ -203,7 +203,10 @@ const tiktokId = (recipe: Recipe) => recipe.videoHtml?.match(/data-video-id="(\d
 const AUTOPLAY_DELAY = 2000;
 
 /** Ouvre la fiche recette flottante du desktop (RecipeSheet via GlobalRecipeSheet). */
-const openRecipe = (r: Recipe) => window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: r }));
+const openRecipe = (r: Recipe, liste?: Recipe[], index?: number) => window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', {
+    // Depuis la recherche : la sélection entière voyage avec, pour les flèches de la fiche.
+    detail: liste && liste.length > 1 && typeof index === 'number' ? { ...r, __liste: liste, __index: index } : r,
+}));
 
 // ── Icônes (trait fin, esprit SF Symbols) ──────────────────────────────────
 
@@ -1025,6 +1028,23 @@ export default function TVDesktopHome() {
         } catch { /* noop */ }
     }, [openCollection]);
 
+    // Sélection partagée depuis la recherche (/?selection=12,48,7&titre=…).
+    useEffect(() => {
+        let sp: URLSearchParams;
+        try { sp = new URLSearchParams(window.location.search); } catch { return; }
+        const brut = sp.get('selection');
+        if (!brut) return;
+        const parId = new Map(mockRecipes.map((r) => [String(r.id), r]));
+        const list = brut.split(',').map((id) => parId.get(id.trim())).filter(Boolean) as Recipe[];
+        if (list.length) openCollection((sp.get('titre') || '').trim().slice(0, 80) || 'Sélection partagée', list);
+        try {
+            const u = new URL(window.location.href);
+            u.searchParams.delete('selection');
+            u.searchParams.delete('titre');
+            window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+        } catch { /* noop */ }
+    }, [openCollection]);
+
     // Hashtag cliqué (fiche, affiche du héros) : même grille que /?tag=…, sans recharger.
     useEffect(() => {
         const ouvrir = (e: Event) => {
@@ -1363,7 +1383,7 @@ export default function TVDesktopHome() {
                                             embedded
                                             open
                                             onClose={() => setPanel('none')}
-                                            onRecipeSelect={(r) => openRecipe(r)}
+                                            onRecipeSelect={(r, liste, index) => openRecipe(r, liste, index)}
                                             initialQuery={seed?.q}
                                             initialIngredients={seed?.ing}
                                             filter={seedFilter}

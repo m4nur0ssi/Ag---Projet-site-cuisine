@@ -47,9 +47,22 @@ function shortlistForLLM(query: string, recipes: CompactRecipe[]): CompactRecipe
         id: String(r.id), t: r.t, cat: r.cat, tags: (r.tags || []).slice(0, 3), ing: (r.ing || []).slice(0, 5),
     }));
 }
+/**
+ * Plafond de la sélection rendue. L'utilisateur veut TOUTES les recettes qui
+ * répondent à sa demande, pas un échantillon de cinq : on ne coupe qu'au-delà
+ * de ce qu'une liste à l'écran peut raisonnablement montrer.
+ */
+const MAX_IDS = 80;
+
 // Repli si l'IA ne renvoie rien : les entrées qui partagent le plus de mots avec la demande.
+// On garde celles qui atteignent le meilleur score (toutes les mots trouvés),
+// pas une simple poignée.
 function keywordFallback(query: string, recipes: CompactRecipe[]): string[] {
-    return scoreByQuery(query, recipes).filter(x => x.s > 0).slice(0, 5).map(x => String(x.r.id));
+    const scored = scoreByQuery(query, recipes).filter(x => x.s > 0);
+    if (!scored.length) return [];
+    const best = scored[0].s;
+    const seuil = best > 1 ? best - 1 : 1;
+    return scored.filter(x => x.s >= seuil).slice(0, MAX_IDS).map(x => String(x.r.id));
 }
 
 /**
@@ -77,11 +90,12 @@ function lireJson(raw: string): any {
 const SYSTEM = `Tu es l'assistant culinaire d'un site de recettes.
 On te donne la demande d'un utilisateur (en langage naturel) et la LISTE des recettes disponibles sur le site (id, titre, catégorie, tags, et "ing" = mots-clés d'ingrédients principaux).
 Sers-toi des ingrédients ("ing") : ex. une demande « gâteau au chocolat » doit matcher une recette dont "ing" contient "chocolat" même si son titre ne le dit pas (ex. "Gâteau Suzy").
-Ta mission : proposer les entrées EXISTANTES de la liste qui répondent le mieux à la demande.
+Ta mission : renvoyer TOUTES les entrées EXISTANTES de la liste qui répondent à la demande — pas un échantillon. Si 30 recettes correspondent, renvoie les 30.
 La liste contient des RECETTES et aussi des RESTAURANTS (catégorie "restaurant" ; leurs tags incluent le type de cuisine — italien, brasserie, asiatique… —, la/les ville(s) et "terrasse" s'il y a une terrasse).
 Règles STRICTES :
 - Choisis UNIQUEMENT des id présents dans la liste fournie. N'invente JAMAIS d'entrée ni d'id.
-- Renvoie de 1 à 5 entrées, la plus pertinente en premier.
+- Renvoie TOUTES les entrées qui correspondent vraiment (jusqu'à 80), classées de la plus pertinente à la moins pertinente. Ne t'arrête pas à 5 ou 6.
+- N'ajoute PAS d'entrées hors sujet pour gonfler la liste : chaque entrée doit respecter la demande (type de plat, ingrédient, régime, pays…).
 - Si la demande porte sur un RESTAURANT / un lieu où sortir manger / par ville / type de cuisine / terrasse → propose des RESTAURANTS (catégorie "restaurant").
 - Si la demande porte sur un plat à cuisiner → propose des RECETTES. Ne mélange pas recettes et restaurants dans une même réponse.
 - IMPORTANT : la VILLE d'un restaurant est écrite dans ses tags (ex. tag "gonesse", "paris", "le blanc-mesnil"). Si l'utilisateur cite une ville, propose TOUS les restaurants dont les tags contiennent cette ville (compare en minuscules, ignore les accents). Un restaurant peut avoir plusieurs villes.
@@ -111,6 +125,9 @@ Règles STRICTES :
 Réponds STRICTEMENT en JSON : {"ids":["…"],"message":"…"} sans texte autour.`;
 
 async function callGroq(userMsg: string, system: string = SYSTEM, temperature = 0.5, maxTokens = 500, jsonStrict = true) {
+    // Les modèles gpt-oss raisonnent avant de répondre, et ce raisonnement est
+    // compté dans max_tokens : un effort « low » laisse la place à la liste.
+    const raisonnement = /gpt-oss/i.test(GROQ_MODEL) ? { reasoning_effort: 'low' } : {};
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { 'content-type': 'application/json', authorization: `Bearer ${GROQ_KEY}` },
@@ -118,6 +135,7 @@ async function callGroq(userMsg: string, system: string = SYSTEM, temperature = 
             model: GROQ_MODEL,
             temperature,
             max_tokens: maxTokens,
+            ...raisonnement,
             ...(jsonStrict ? { response_format: { type: 'json_object' } } : {}),
             messages: [
                 { role: 'system', content: system },
@@ -219,7 +237,9 @@ export async function POST(request: Request) {
          */
         let raw: string;
         try {
-            raw = await callGroq(userMsg);
+            // Une liste complète d'identifiants est plus longue que cinq : de la
+            // place pour la réponse, sinon le JSON est coupé et refusé.
+            raw = await callGroq(userMsg, SYSTEM, 0.3, 2500);
         } catch (e: any) {
             const refus = String(e?.message || '');
             if (!/\b(413|429)\b|rate|too large/i.test(refus)) throw e;
@@ -227,14 +247,18 @@ export async function POST(request: Request) {
             if (fb.length) return NextResponse.json({ kind: 'recipes', ids: fb, message: 'Voici ce qui se rapproche le plus 👇' });
             return NextResponse.json({ error: 'Aucune recette trouvée' }, { status: 404 });
         }
-        let parsed: any;
-        try { parsed = JSON.parse(raw); } catch { return NextResponse.json({ error: 'Réponse IA illisible' }, { status: 502 }); }
+        const parsed: any = lireJson(raw);
+        if (!parsed) {
+            const fb = keywordFallback(query, recipes);
+            if (fb.length) return NextResponse.json({ kind: 'recipes', ids: fb, message: 'Voici ce qui se rapproche le plus 👇' });
+            return NextResponse.json({ error: 'Réponse IA illisible' }, { status: 502 });
+        }
 
         const validIds = new Set(recipes.map(r => String(r.id)));
         const ids = (Array.isArray(parsed?.ids) ? parsed.ids : [])
             .map((id: any) => String(id))
-            .filter((id: string) => validIds.has(id))
-            .slice(0, 5);
+            .filter((id: string, i: number, all: string[]) => validIds.has(id) && all.indexOf(id) === i)
+            .slice(0, MAX_IDS);
 
         if (!ids.length) {
             // L'IA n'a rien renvoyé de valide → repli mots-clés (ville/type/tags…).

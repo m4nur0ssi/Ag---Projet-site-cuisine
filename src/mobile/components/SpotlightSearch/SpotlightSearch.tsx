@@ -37,7 +37,7 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
     const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     // Recherche locale intelligente (secours si l'IA échoue / pas de clé) — type de plat, pays, régime
-    const localSearch = (q: string) => smartLocalSearch(mockRecipes as any, q, 5);
+    const localSearch = (q: string) => smartLocalSearch(mockRecipes as any, q, 60);
 
     const askAssistant = async (raw?: string) => {
         const q = (raw ?? aiQuery).trim();
@@ -99,7 +99,7 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
             if (err?.name === 'AbortError' || seq !== searchSeqRef.current) return;
             // Secours : recherche texte locale, DANS le vivier déjà filtré —
             // sinon elle rendrait ce que la contrainte de note vient d'écarter.
-            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 5);
+            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 60);
             if (local.length) {
                 setAiResults(local);
                 setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : 'Voici ce que j\'ai trouvé sur le site 👇');

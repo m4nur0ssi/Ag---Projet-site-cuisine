@@ -77,7 +77,40 @@ export default function VersionAJour() {
 
         document.addEventListener('visibilitychange', surVisibilite);
         window.addEventListener('pageshow', surPageshow);
+
+        /*
+         * Au lancement, la page a pu venir de la copie rapide du service worker
+         * (réseau trop lent à se réveiller). On vérifie la version une fois :
+         * si elle a changé ET que l'on n'a encore rien touché, on recharge —
+         * les fichiers sont en cache, c'est quasi instantané. Dès le premier
+         * geste, on ne recharge plus : ce sera au prochain retour dans l'app.
+         */
+        let touche = false;
+        const marquer = () => { touche = true; };
+        const gestes = ['pointerdown', 'touchstart', 'keydown', 'wheel'] as const;
+        gestes.forEach((g) => window.addEventListener(g, marquer, { passive: true, once: true }));
+        const auLancement = window.setTimeout(async () => {
+            if (touche) return;
+            try {
+                const res = await fetch('/api/version', { cache: 'no-store' });
+                if (!res.ok) return;
+                const { version } = (await res.json()) as { version?: string };
+                if (!version || version === VERSION || touche) return;
+                if (minuteur.current || calqueOuvert() || document.hidden) return;
+                // Une seule fois par minute : si la copie servie est encore
+                // l'ancienne (réseau lent), on ne boucle pas.
+                try {
+                    const dernier = Number(sessionStorage.getItem('maj-lancement') || 0);
+                    if (Date.now() - dernier < 60_000) return;
+                    sessionStorage.setItem('maj-lancement', String(Date.now()));
+                } catch { return; }
+                window.location.reload();
+            } catch { /* hors ligne */ }
+        }, 600);
+
         return () => {
+            window.clearTimeout(auLancement);
+            gestes.forEach((g) => window.removeEventListener(g, marquer));
             document.removeEventListener('visibilitychange', surVisibilite);
             window.removeEventListener('pageshow', surPageshow);
         };

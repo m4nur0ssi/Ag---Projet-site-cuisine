@@ -68,7 +68,12 @@ type Mode = 'recipe' | 'ingredients' | 'assistant';
 interface TVSpotlightProps {
     open: boolean;
     onClose: () => void;
-    onRecipeSelect: (recipe: Recipe) => void;
+    /**
+     * Ouvre une recette. `list` / `index` : la sélection affichée au moment du
+     * choix, pour que la fiche passe d'une recette à l'autre (flèches, balayage)
+     * sans revenir aux résultats.
+     */
+    onRecipeSelect: (recipe: Recipe, list?: Recipe[], index?: number) => void;
     /**
      * Restreint le vivier de recettes proposées. Le planificateur s'en sert pour
      * n'offrir que des PLATS dans un créneau, ou que des ACCOMPAGNEMENTS quand on
@@ -239,7 +244,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             return !champs.some((c) => bannis.some((b) => b && c.includes(b)));
         });
     }, [filter, exclus]);
-    const localSearch = (q: string) => smartLocalSearch(pool as any, q, 5) as Recipe[];
+    const localSearch = (q: string) => smartLocalSearch(pool as any, q, 60) as Recipe[];
 
     const abortRef = useRef<AbortController | null>(null);
     const searchSeqRef = useRef<number>(0);
@@ -345,7 +350,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             }
             // Le repli cherche dans le VIVIER déjà filtré : une recherche de
             // secours ne doit pas rendre ce que la contrainte vient d'écarter.
-            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 5) as Recipe[];
+            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 60) as Recipe[];
             if (local.length) {
                 setAiResults(local);
                 setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : 'Voici ce que j\'ai trouvé sur le site');
@@ -580,6 +585,52 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             .slice(0, 14);
     }, [searchedIngredients, mode, pool]);
 
+    /**
+     * La sélection telle qu'elle est AFFICHÉE, dans l'ordre de l'écran.
+     * C'est elle que la fiche fait défiler et elle que l'on partage.
+     */
+    const selection = useMemo<Recipe[]>(() => {
+        if (mode === 'assistant') return aiResults;
+        if (mode === 'ingredients') return ingredientResults.map((x) => x.recipe);
+        return query.trim() || activeFilters.length || filter ? filteredRecipes : filteredRecipes.slice(0, 10);
+    }, [mode, aiResults, ingredientResults, filteredRecipes, query, activeFilters, filter]);
+
+    /** Intitulé de la sélection partagée : « « tarte » · Desserts · Italie ». */
+    const titreSelection = () => {
+        if (mode === 'assistant') return aiQuery.trim() || 'Sélection de l’assistant';
+        if (mode === 'ingredients') return `Avec ${searchedIngredients.join(', ')}`;
+        const tous = [...FILTER_GROUPS.categorie, ...FILTER_GROUPS.pays, ...FILTER_GROUPS.tendances];
+        const parts = activeFilters.map((t) => stripEmoji(tous.find((f) => f.tag === t)?.label || t));
+        if (query.trim()) parts.unshift(`« ${query.trim()} »`);
+        return parts.join(' · ') || 'Dernières recettes';
+    };
+
+    /*
+     * Partager la sélection : un lien qui rouvre EXACTEMENT ces recettes, dans
+     * cet ordre, chez celui qui le reçoit. Les identifiants voyagent dans
+     * l'adresse — une réponse de l'assistant ne se rejoue pas à l'identique,
+     * une liste d'identifiants si. Plafond à 150 pour garder un lien raisonnable.
+     */
+    const [partageMsg, setPartageMsg] = useState('');
+    const partagerSelection = async () => {
+        if (!selection.length) return;
+        haptic(10);
+        const titre = titreSelection();
+        const ids = selection.slice(0, 150).map((r) => String(r.id)).join(',');
+        const url = `${window.location.origin}/?selection=${ids}&titre=${encodeURIComponent(titre.slice(0, 80))}`;
+        const n = selection.length;
+        const texte = `${n} recette${n > 1 ? 's' : ''} — ${titre}`;
+        try {
+            if (navigator.share) { await navigator.share({ title: titre, text: texte, url }); return; }
+            await navigator.clipboard.writeText(url);
+            setPartageMsg('Lien copié');
+        } catch (e: any) {
+            if (e?.name === 'AbortError') return; // partage annulé
+            try { await navigator.clipboard.writeText(url); setPartageMsg('Lien copié'); } catch { setPartageMsg('Partage impossible'); }
+        }
+        setTimeout(() => setPartageMsg(''), 1800);
+    };
+
     const addIngTag = (name = ingInput) => {
         const val = name.trim().toLowerCase();
         if (val && !ingTags.includes(val)) setIngTags((prev) => [...prev, val]);
@@ -609,7 +660,9 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             setPreview(recipe);
             return;
         }
-        onRecipeSelect(recipe);
+        const index = selection.findIndex((r) => String(r.id) === String(recipe.id));
+        if (index >= 0) onRecipeSelect(recipe, selection, index);
+        else onRecipeSelect(recipe);
         if (!embedded) onClose();
     };
     const confirmPreview = (recipe: Recipe) => {
@@ -799,6 +852,32 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         return [r.category, time, d].filter(Boolean).join(' • ');
     };
 
+    // Safari décale le viewport visible lorsque le clavier ouvre : la carte
+    // suit ce rectangle pour garder son en-tête sous la barre d'état.
+    const [searchViewport, setSearchViewport] = useState<{ top: number; height: number } | null>(null);
+    useEffect(() => {
+        if (!open || embedded) return;
+        const viewport = window.visualViewport;
+        const measure = () => setSearchViewport({ top: viewport?.offsetTop || 0, height: viewport?.height || window.innerHeight });
+        measure();
+        viewport?.addEventListener('resize', measure);
+        viewport?.addEventListener('scroll', measure);
+        window.addEventListener('resize', measure);
+        return () => {
+            viewport?.removeEventListener('resize', measure);
+            viewport?.removeEventListener('scroll', measure);
+            window.removeEventListener('resize', measure);
+        };
+    }, [open, embedded]);
+    const searchStyle = {
+        ...(searchViewport ? {
+            top: `calc(${searchViewport.top}px + env(safe-area-inset-top, 0px) + 8px)`,
+            height: `calc(${searchViewport.height}px - env(safe-area-inset-top, 0px) - 8px)`,
+            bottom: 'auto',
+        } : {}),
+        ...(preview ? { visibility: 'hidden' as const } : {}),
+    };
+
     const body = (
         <>
                     <Tip id="recherche" delay={1400} />
@@ -913,6 +992,26 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                             <strong>{mode === 'recipe' ? filteredRecipes.length : mode === 'ingredients' ? ingredientResults.length : aiResults.length}</strong>
                             <span>recette{(mode === 'recipe' ? filteredRecipes.length : mode === 'ingredients' ? ingredientResults.length : aiResults.length) !== 1 ? 's' : ''}</span>
                         </div>
+                        {/* Partager la sélection affichée (lien qui la rouvre telle quelle). */}
+                        {selection.length > 0 && !previewBeforeSelect && (
+                            <button
+                                type="button"
+                                className={styles.spShare}
+                                onMouseDown={(e) => e.preventDefault()}
+                                onClick={partagerSelection}
+                                aria-label="Partager cette sélection"
+                                title="Partager cette sélection"
+                            >
+                                {partageMsg
+                                    ? <span className={styles.spShareMsg}>{partageMsg}</span>
+                                    : (
+                                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden>
+                                            <path d="M12 3v12M7.5 7.5 12 3l4.5 4.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                                            <path d="M7 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-1" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+                                        </svg>
+                                    )}
+                            </button>
+                        )}
                     </div>
 
                     {suggestions.length > 0 && (
@@ -1095,7 +1194,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             {open && (
                 <motion.div
                     className={`${styles.spRoot} ${styles.spEmbedded} ${styles.spEnPanneau}`}
-                    style={preview ? { visibility: 'hidden' } : undefined}
+                    style={searchStyle}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -1110,12 +1209,12 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         return typeof document === 'undefined' ? calque : createPortal(calque, document.body);
     }
 
-    return (
+    const overlay = (
         <AnimatePresence>
             {open && (
                 <motion.div
                     className={styles.spRoot}
-                    style={preview ? { visibility: 'hidden' } : undefined}
+                    style={searchStyle}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -1126,4 +1225,5 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             )}
         </AnimatePresence>
     );
+    return typeof document === 'undefined' ? overlay : createPortal(overlay, document.body);
 }
