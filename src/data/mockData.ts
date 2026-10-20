@@ -2,11 +2,211 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/10/2026 09:16:37
- * Total: 804 recettes
+ * Dernière mise à jour: 20/10/2026 10:48:17
+ * Total: 807 recettes
  */
-export const exportSyncId = "1792487797880";
+export const exportSyncId = "1792493297505";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8076",
+        "title": "Pommes de terre caramélisées au miel et à la sauce soja",
+        "description": "Une recette rapide et facile de pommes de terre caramélisées, parfaite pour les soirs de flemme et prête en environ 20 minutes.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7375410577327361312\" data-video-id=\"7375410577327361312\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7375410577327361312\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             300 g de petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             250 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             80 ml de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette (ou cébette)"
+            }
+        ],
+        "steps": [
+            "Lavez les petites pommes de terre et coupez-les en quartiers.",
+            "Faites revenir les pommes de terre dans un peu d'huile de sésame dans une poêle pendant environ quatre minutes.",
+            "Ajoutez les gousses d'ail émincées et poursuivez la cuisson pendant 8 minutes, jusqu'à ce que les pommes de terre soient légèrement dorées.",
+            "Dans un bol, préparez un mélange avec l'eau, le miel et la sauce soja.",
+            "Versez ce mélange dans la poêle avec les pommes de terre et laissez toute l'eau s'évaporer. Les pommes de terre vont caraméliser et prendre une belle couleur.",
+            "Servez les pommes de terre caramélisées dans une assiette, puis saupoudrez de graines de sésame et de ciboulette ciselée."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Asie",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8074",
+        "title": "Petits pains de pomme de terre fourrés au fromage",
+        "description": "Découvrez comment réaliser facilement des petits pains express et gourmands à base de pommes de terre, généreusement fourrés au fromage et cuits à la poêle. Une recette simple et réconfortante, parfaite pour un repas rapide ou une collation savour...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7685347251295767840\" data-video-id=\"7685347251295767840\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7685347251295767840\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre (3 grosses)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine (160g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage (de votre choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Épices (de votre choix, facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre (facultatif)"
+            }
+        ],
+        "steps": [
+            "Faites d'abord cuire les pommes de terre à l'eau. Une fois refroidies (vous pouvez les préparer la veille), écrasez-les dans un saladier.",
+            "Ajoutez du sel et la farine. Travaillez la pâte et formez une boule avec vos mains.",
+            "Ensuite, formez des petits pains et insérez du fromage à l'intérieur (vous pouvez utiliser un morceau entier de fromage ou du fromage râpé). Refermez bien et formez une nouvelle boule.",
+            "Écrasez légèrement la boule pour lui donner la forme d'un pain.",
+            "Faites cuire les petits pains dans une poêle avec un peu d'huile d'olive. Laissez dorer quelques minutes à feu moyen pour obtenir une belle couleur, puis retournez-les. Continuez la cuisson quelques minutes à couvert.",
+            "Vous pouvez agrémenter la pâte avec les épices de votre choix. Au moment de servir, vous pouvez ajouter de la fleur de sel et de la coriandre."
+        ],
+        "tags": [
+            "express",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8072",
+        "title": "Tarte aux pommes de terre écrasées et au saumon",
+        "description": "Découvrez une recette facile et rapide de tarte salée à base de pommes de terre grenaille écrasées, de saumon fumé et d'une sauce crémeuse au yaourt grec, ail et citron. Un plat gourmand et simple à réaliser.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7412562721037765920\" data-video-id=\"7412562721037765920\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7412562721037765920\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             200 g de pommes de terre grenaille cuites"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30 g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 branche de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 g de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             4 tranches de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             1 poignée de roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 pincée de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 180°C.",
+            "Placez les pommes de terre cuites sur une plaque de cuisson.",
+            "À l'aide d'un verre, écrasez chaque pomme de terre pour former des disques.",
+            "Saupoudrez les pommes de terre de parmesan et de thym.",
+            "Enfournez pour 30 minutes à 180°C.",
+            "Pendant ce temps, dans un bol, versez le yaourt grec.",
+            "Ajoutez l'ail émincé et le jus d'un citron. Mélangez bien.",
+            "Une fois les pommes de terre cuites et sorties du four, étalez la préparation au yaourt sur celles-ci.",
+            "Disposez les tranches de saumon fumé.",
+            "Ajoutez un peu de roquette, du zeste de citron, une pincée de poivre et un filet d'huile d'olive."
+        ],
+        "tags": [
+            "express",
+            "Healthy",
+            "Poissons et crustacés",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8070",
         "title": "Chou réconfortant au bœuf et bacon",
