@@ -2,11 +2,172 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/10/2026 08:04:05
- * Total: 803 recettes
+ * Dernière mise à jour: 20/10/2026 09:16:37
+ * Total: 804 recettes
  */
-export const exportSyncId = "1792483445421";
+export const exportSyncId = "1792487797880";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8070",
+        "title": "Chou réconfortant au bœuf et bacon",
+        "description": "Un plat réconfortant et savoureux, parfait pour les jours froids. Cette recette combine du bœuf haché, du bacon de dinde croustillant, du chou tendre et une riche sauce tomate épicée, le tout mijoté à la perfection.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7698410157797133600\" data-video-id=\"7698410157797133600\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7698410157797133600\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥩\n             1,4 kg de bœuf haché (80 % de matières grasses, 20 % de protéines)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 paquet de bacon de dinde haché (environ 170 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 gros chou vert (environ 1,2 à 1,4 kg, coupé en tranches épaisses)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 gros oignon jaune haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron rouge haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron jaune haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 boîte de 410 g de tomates concassées avec leur jus"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             250 ml de bouillon de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 cuillères à soupe de concentré de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café de poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café de poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café d'assaisonnement cajun"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café d'assaisonnement italien séché"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/2 cuillère à café de flocons de piment rouge (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel (ou selon votre goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/2 cuillère à café de poivre noir moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 cuillères à soupe de beurre non salé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 cuillères à soupe de persil frais haché"
+            }
+        ],
+        "steps": [
+            "Retirez les feuilles extérieures abîmées du chou.",
+            "Lavez soigneusement le chou à l'eau froide courante.",
+            "Coupez le chou en quatre et retirez le cœur dur.",
+            "Coupez le chou en gros morceaux.",
+            "Émincez l'oignon jaune et les poivrons.",
+            "Pelez et hachez les gousses d'ail.",
+            "Coupez le bacon de dinde en petits morceaux.",
+            "Chauffez une grande poêle profonde à feu moyen.",
+            "Ajoutez le bacon de dinde haché.",
+            "Faites cuire 5 à 7 minutes, jusqu'à ce qu'il soit doré et croustillant.",
+            "Réservez le bacon de dinde cuit dans une assiette.",
+            "Ajoutez l'huile d'olive dans la même poêle.",
+            "Ajoutez le bœuf haché par petites quantités.",
+            "Émiettez le bœuf à l'aide d'une cuillère en bois.",
+            "Faites cuire 8 à 10 minutes, jusqu'à ce qu'il soit bien doré.",
+            "Égouttez la majeure partie du gras, en en conservant un peu pour le goût.",
+            "Ajoutez l'oignon émincé au bœuf doré.",
+            "Faites cuire 3 minutes, jusqu'à ce que l'oignon commence à ramollir.",
+            "Ajoutez les poivrons rouges et jaunes.",
+            "Faites cuire encore 3 minutes en remuant de temps en temps.",
+            "Ajoutez l'ail haché.",
+            "Faites cuire 30 secondes, jusqu'à ce que le mélange soit parfumé.",
+            "Incorporez le concentré de tomates jusqu'à ce que le bœuf soit bien enrobé.",
+            "Ajoutez les tomates concassées avec leur jus.",
+            "Versez la sauce Worcestershire.",
+            "Saupoudrez de paprika fumé et de poudre d'ail.",
+            "Ajoutez de la poudre d'oignon et de l'assaisonnement cajun.",
+            "Saupoudrez d'assaisonnement italien et de flocons de piment rouge broyés.",
+            "Assaisonnez avec du sel et du poivre noir.",
+            "Mélangez soigneusement pour bien répartir les assaisonnements.",
+            "Ajoutez le chou, coupé en morceaux épais, en plusieurs fois.",
+            "Incorporez délicatement chaque portion au mélange de bœuf assaisonné.",
+            "Versez le bouillon de bœuf uniformément sur le chou.",
+            "Disposez le beurre non salé sur les légumes.",
+            "Couvrez la poêle avec un couvercle hermétique.",
+            "Réduisez le feu à intensité moyenne-douce.",
+            "Laissez cuire pendant 15 minutes, jusqu'à ce que le chou commence à ramollir.",
+            "Retirez le couvercle et mélangez délicatement la préparation.",
+            "Poursuivez la cuisson, à découvert, pendant 10 à 15 minutes, jusqu'à ce que le chou devienne tendre.",
+            "Laissez une partie du liquide de cuisson réduire pour obtenir une sauce riche et savoureuse.",
+            "Remettez le bacon de dinde croustillant dans la poêle.",
+            "Incorporez le bacon au mélange de chou et de bœuf.",
+            "Faites cuire encore 3 minutes, jusqu'à ce que le tout soit bien chaud.",
+            "Goûtez la préparation et rectifiez l'assaisonnement en sel ou en épices cajun, si nécessaire.",
+            "Retirez la poêle du feu.",
+            "Saupoudrez de persil fraîchement ciselé.",
+            "Laissez reposer le plat pendant 5 minutes avant de servir.",
+            "Répartissez de généreuses portions dans des bols.",
+            "Servez chaud, accompagné de pommes de terre à la vapeur."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "épicé",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8068",
         "title": "Poireauflette",
