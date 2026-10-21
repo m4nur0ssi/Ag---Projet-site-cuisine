@@ -67,6 +67,9 @@ type Mode = 'recipe' | 'ingredients' | 'assistant';
 
 interface TVSpotlightProps {
     open: boolean;
+    /** Conserver la recherche pendant la consultation d’une fiche. */
+    retainOnSelect?: boolean;
+    suspended?: boolean;
     onClose: () => void;
     /**
      * Ouvre une recette. `list` / `index` : la sélection affichée au moment du
@@ -153,7 +156,7 @@ function motsInterdits(mot: string): string[] {
     return [m];
 }
 
-export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false, previewBeforeSelect = false }: TVSpotlightProps) {
+export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false, previewBeforeSelect = false, retainOnSelect = false, suspended = false }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
@@ -660,10 +663,12 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             setPreview(recipe);
             return;
         }
+        inputRef.current?.blur();
+        stopVoice();
         const index = selection.findIndex((r) => String(r.id) === String(recipe.id));
         if (index >= 0) onRecipeSelect(recipe, selection, index);
         else onRecipeSelect(recipe);
-        if (!embedded) onClose();
+        if (!embedded && !retainOnSelect) onClose();
     };
     const confirmPreview = (recipe: Recipe) => {
         setPreview(null);
@@ -877,7 +882,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             height: `calc(${searchViewport.height}px - env(safe-area-inset-top, 0px) - 8px)`,
             bottom: 'auto',
         } : {}),
-        ...(preview ? { visibility: 'hidden' as const } : {}),
+        ...((preview || suspended) ? { visibility: 'hidden' as const, pointerEvents: 'none' as const } : {}),
     };
 
     const body = (

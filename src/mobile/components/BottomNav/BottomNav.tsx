@@ -468,7 +468,6 @@ export default function BottomNav() {
         setSheetList(list && list.length > 1 && typeof index === 'number' && index >= 0 ? { recipes: list, index } : null);
         setLastViewed(recipe);
         setIsSheetOpen(true);
-        setIsSearchOpen(false);
     };
 
     if (!mounted) return null;
@@ -477,6 +476,8 @@ export default function BottomNav() {
         <>
             <TVSpotlight
                 open={isSearchOpen}
+                retainOnSelect
+                suspended={isSheetOpen}
                 onClose={() => { setIsSearchOpen(false); setVoiceSearch(false); }}
                 onRecipeSelect={handleRecipeSelect}
                 initialMode={voiceSearch ? 'assistant' : undefined}

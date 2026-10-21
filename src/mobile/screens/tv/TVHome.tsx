@@ -2679,6 +2679,8 @@ export default function TVHome() {
 
             <TVSpotlight
                 open={searchOpen}
+                retainOnSelect
+                suspended={!!sheet}
                 onClose={() => setSearchOpen(false)}
                 onRecipeSelect={(r, list, index) => openSelection(list && typeof index === 'number' ? list : [r], typeof index === 'number' ? index : 0)}
                 initialQuery={seed?.q}
