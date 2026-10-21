@@ -869,7 +869,9 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             window.removeEventListener('resize', measure);
         };
     }, [open, embedded]);
+    const keyboardOpen = !!searchViewport && window.innerHeight - searchViewport.height > 120;
     const searchStyle = {
+        ...(keyboardOpen ? { paddingBottom: 12 } : {}),
         ...(searchViewport ? {
             top: `calc(${searchViewport.top}px + env(safe-area-inset-top, 0px) + 8px)`,
             height: `calc(${searchViewport.height}px - env(safe-area-inset-top, 0px) - 8px)`,
@@ -890,6 +892,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                         </div>
                     )}
 
+                    <div className={styles.spSearchControls} role="group" aria-label="Recherche et filtres">
                     <div className={styles.spModeRow}>
                     {/* Segmented control : mode */}
                     <div className={styles.spSegment}>
@@ -905,7 +908,6 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                             >{lbl}</button>
                         ))}
                     </div>
-                        {!embedded && <button className={styles.spCancel} onClick={onClose}>{hint || 'Terminé'}</button>}
                     </div>
 
                     {/* Recherche et nombre de résultats */}
@@ -1130,6 +1132,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                     )}
 
                     {/* Résultats */}
+                    </div>
                     <div className={styles.spResults}>
                         {mode === 'assistant' && (
                             <>
@@ -1150,10 +1153,10 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                         {mode === 'recipe' && (
                             <>
                                 {query.trim().length === 0 && activeFilters.length === 0 && (
-                                    <div className={styles.spHint}>Dernières recettes publiées</div>
+                                    <div className={styles.spHint}>Toutes les recettes · les plus récentes d’abord</div>
                                 )}
                                 {filteredRecipes.length > 0
-                                    ? (query.trim() || activeFilters.length || filter ? filteredRecipes : filteredRecipes.slice(0, 10)).map((r) => <ResultItem key={r.id} recipe={r} meta={recipeMeta(r)} />)
+                                    ? filteredRecipes.map((r) => <ResultItem key={r.id} recipe={r} meta={recipeMeta(r)} />)
                                     : <div className={styles.spEmpty}>Aucune recette ne correspond…</div>}
                             </>
                         )}

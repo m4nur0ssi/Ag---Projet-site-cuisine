@@ -6617,3 +6617,49 @@
         height: calc(31px + 3 * 1.08 * clamp(18px, 5.7vw, 25px) + 16px + 36px + 3 * 11px + 6px);
     }
 }
+
+/* Recherche : une seule surface de commandes, une seule zone de défilement.
+   Le clavier ne doit pas comprimer les résultats dans un petit cadre noir. */
+.spSearchControls {
+    flex: 0 0 auto;
+    margin: 0 14px 18px;
+    padding: 14px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, rgba(255, 245, 224, .12), rgba(255, 255, 255, .04));
+    border: 1px solid rgba(255, 242, 218, .16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 12px 34px rgba(0, 0, 0, .2);
+}
+.spSearchControls .spModeRow { padding: 0; }
+.spSearchControls .spSegment { width: 100%; max-width: none; margin: 0 0 14px; padding: 4px; }
+.spSearchControls .spSeg { flex: 1; padding: 10px 6px; font-size: 14px; }
+.spSearchControls .spHead { padding: 0 0 14px; max-width: none; gap: 8px; }
+.spSearchControls .spField { border-radius: 18px; }
+.spSearchControls .spFilterRow { padding: 0; gap: 7px; }
+.spSearchControls .spGroup, .spSearchControls .spSansAdd { min-height: 36px; font-size: 13px; padding: 8px 12px; }
+.spSearchControls .spChips { padding: 12px 0 0; }
+.spRoot, .spRoot.spEnPanneau {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    scroll-padding-top: 16px;
+}
+.spRoot .spResults {
+    flex: 0 0 auto;
+    overflow: visible;
+    min-height: 0;
+}
+.spEmbedded > .spSearchControls { margin: 0 0 18px; max-width: 720px; }
+@media (max-width: 380px) {
+    .spSearchControls { margin-inline: 8px; padding: 12px; }
+    .spSearchControls .spResultCount { min-width: 42px; }
+    .spSearchControls .spGroup, .spSearchControls .spSansAdd { padding-inline: 9px; }
+}
+.spRoot { --tv-dim: rgba(235, 235, 245, .64); scrollbar-width: none; }
+.spRoot::-webkit-scrollbar { display: none; }
+.spSearchControls .spHead { flex-wrap: wrap; }
+.spSearchControls .spField { flex-basis: 100%; }
+.spSearchControls .spResultCount { display: flex; flex: 1; align-items: baseline; gap: 5px; text-align: left; }
+.spSearchControls .spResultCount strong { font-size: 16px; }
+.spSearchControls .spShare { height: 32px; min-width: 32px; }
+.spSearchControls .spFilterRow { gap: 6px; }
+.spSearchControls .spGroup, .spSearchControls .spSansAdd { font-size: 12px; padding-inline: 9px; }
