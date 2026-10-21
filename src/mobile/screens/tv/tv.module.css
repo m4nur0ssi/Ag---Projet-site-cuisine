@@ -6562,17 +6562,14 @@
     .heroInfoSlot .heroKicker { margin-top: auto; }
     .heroInfoSlot .heroTitleSplit { height: auto; }
     .heroInfoSlot .heroActionsSplit { margin-top: auto; }
-    /* Rangée d'actions : hashtags centrés dans leur zone, cœur épinglé à
-       droite — il ne bouge plus, quelle que soit la longueur des hashtags.
-       Deux hashtags au plus : une seule ligne, jamais coupée en deux. */
+    /* Hashtags et cœur forment une seule rangée centrée sur l’écran. */
     .heroActionsSplit {
-        display: grid;
-        grid-template-columns: var(--hero-action-h) minmax(0, 1fr) var(--hero-action-h);
+        display: flex;
+        justify-content: center;
         align-items: center;
         flex-wrap: nowrap;
     }
     .heroTagsSplit {
-        grid-column: 2;
         display: flex;
         flex-wrap: nowrap;
         justify-content: center;
@@ -6583,10 +6580,40 @@
     }
     .heroTagChip { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
     .heroTagChip:nth-child(n + 3) { display: none; }
-    .heroFavSplit { grid-column: 3; justify-self: end; }
+    .heroFavSplit { flex-shrink: 0; }
 }
 @media (max-width: 759px) and (max-height: 730px) {
     .heroInfoSlot {
         height: calc(31px + 3 * 1.02 * clamp(17px, 5.4vw, 23px) + 16px + var(--hero-action-h, 36px) + 3 * 11px + 6px);
+    }
+}
+
+/* Accueil : séparer la marque du carrousel et aérer les informations. */
+.brandRow { gap: 8px; }
+.brandKicker { font-size: 12px; }
+.brandWord { margin-top: 5px; font-size: 46px; }
+.brandCount { font-size: 12px; color: rgba(255, 255, 255, 0.82); }
+.brandRule { margin-top: 10px; }
+.heroContent {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 138px);
+    gap: 24px;
+}
+.heroInfo { align-items: center; text-align: center; }
+.heroTitleSplit { text-align: center; line-height: 1.08; }
+.heroActionsSplit { justify-content: center; }
+@media (max-width: 759px) {
+    .heroContent { padding-bottom: calc(var(--tv-hero-floor) - 12px); }
+    .heroTitleSplit { font-size: clamp(20px, 6.2vw, 28px); }
+    .heroInfoSlot {
+        height: calc(31px + 3 * 1.08 * clamp(20px, 6.2vw, 28px) + 17px + 40px + 3 * 11px + 6px);
+    }
+}
+@media (max-width: 759px) and (max-height: 730px) {
+    .brandWord { font-size: 42px; }
+    .brandRow { gap: 6px; }
+    .heroContent { padding-top: calc(env(safe-area-inset-top, 0px) + 126px); gap: 18px; }
+    .heroTitleSplit { font-size: clamp(18px, 5.7vw, 25px); }
+    .heroInfoSlot {
+        height: calc(31px + 3 * 1.08 * clamp(18px, 5.7vw, 25px) + 16px + 36px + 3 * 11px + 6px);
     }
 }

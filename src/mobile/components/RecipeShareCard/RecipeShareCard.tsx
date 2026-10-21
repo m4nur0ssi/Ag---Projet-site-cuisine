@@ -6,9 +6,9 @@
  *
  * Deux affiches, pas une :
  *
- *   • une RECETTE — photo en bandeau, titre, méta, QR ;
+ *   • une RECETTE — photo en bandeau, titre, méta, domaine ;
  *   • une COLLECTION — trois cartes en éventail sur un fond teinté par la photo
- *     elle-même, le nom de la collection, le compte en pastille, le QR en pied.
+ *     elle-même, le nom de la collection, le compte en pastille et le domaine en pied.
  *     Une seule photo ne disait pas qu'il y avait vingt-cinq recettes derrière ;
  *     la pile, si.
  *
@@ -19,7 +19,6 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import QRCode from 'qrcode';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import { decodeHtml } from '@/mobile/lib/utils';
 import styles from './RecipeShareCard.module.css';
@@ -137,7 +136,7 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
         const imgs: (HTMLImageElement | null)[] = [null, null, null];
 
         /* ── Affiche RECETTE ────────────────────────────────────────────── */
-        const peindreRecette = (img: HTMLImageElement | null, qrImg: HTMLImageElement | null) => {
+        const peindreRecette = (img: HTMLImageElement | null) => {
             const t = estimateRecipeTiming(recipe.steps);
             const title = titreRecette.toUpperCase();
             // Partagée depuis l'accueil, la recette n'a pas encore ses étapes :
@@ -156,17 +155,9 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
             ctx.fillStyle = g; ctx.fillRect(0, H * 0.24, W, H * 0.36);
 
             ctx.textAlign = 'left';
-            const QR = 220, PAD = 16, qx = W - QR - 88, qy = H - QR - 96;
-            /*
-             * Le titre tient DANS sa zone, entre la photo et le QR.
-             *
-             * `titrer` ne surveille que la largeur : un titre de quatre lignes
-             * restait à son corps de départ et sa dernière ligne venait buter
-             * contre le carré blanc du QR. On le rapetisse donc tant que le bloc
-             * dépasse la hauteur disponible.
-             */
+            // Garder le titre entre la photo et la signature du site.
             const HAUT = H * 0.58 + 70;
-            const BAS = qy - PAD - 56;
+            const BAS = H - 280;
             let t2 = titrer(ctx, title, W - 176, 4, 104, 46);
             while (t2.corps > 46 && t2.lignes.length * (t2.corps + 10) > BAS - HAUT) {
                 t2 = titrer(ctx, title, W - 176, 4, t2.corps - 6, 46);
@@ -181,21 +172,13 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
             ctx.font = `900 ${t2.corps}px -apple-system, system-ui, sans-serif`;
             t2.lignes.forEach((l, i) => ctx.fillText(l, 88, yTitre + i * (t2.corps + 10) + t2.corps * 0.82));
 
-            if (qrImg) {
-                ctx.fillStyle = '#fff';
-                rrect(ctx, qx - PAD, qy - PAD, QR + PAD * 2, QR + PAD * 2, 24); ctx.fill();
-                ctx.drawImage(qrImg, qx, qy, QR, QR);
-            }
             ctx.fillStyle = 'rgba(235,235,245,.6)';
             ctx.font = '600 44px -apple-system, system-ui, sans-serif';
             ctx.fillText('lesrecettesmagiques.fr', 88, H - 150);
-            ctx.font = '600 34px -apple-system, system-ui, sans-serif';
-            ctx.fillStyle = 'rgba(235,235,245,.4)';
-            ctx.fillText('Scanne pour la recette', 88, H - 100);
         };
 
         /* ── Affiche COLLECTION : l'éventail ────────────────────────────── */
-        const peindreCollection = (coll: ShareColl, qrImg: HTMLImageElement | null) => {
+        const peindreCollection = (coll: ShareColl) => {
             const dispo = imgs.filter(Boolean) as HTMLImageElement[];
             const t = teinte(dispo[0] || null);
 
@@ -241,17 +224,10 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
             if (dispo[2]) carte(dispo[2], null, 238, 44, 11, 0.84);
             if (dispo[0]) carte(dispo[0], titreRecette, 0, 0, 0, 1);
 
-            /*
-             * Le pied se construit DEPUIS LE BAS : le QR est un point d'ancrage,
-             * pas un reste. Le domaine tient la dernière ligne, le QR juste
-             * au-dessus, et le bloc de titre prend ce qui reste — quel que soit
-             * le nombre de lignes du nom de la collection.
-             */
+            // Signature en pied ; le titre et le compteur restent groupés au-dessus.
             ctx.textAlign = 'center';
-            const QR = 158, PAD = 13;
-            const yDomaine = H - 78;
-            const qy = yDomaine - 64 - QR;
-            const yPastille = qy - PAD - 76 - 82;
+            const yDomaine = H - 100;
+            const yPastille = H - 330;
 
             const tt = titrer(ctx, coll.label.toUpperCase(), W - 130, 2, 140, 58);
             const hBloc = tt.lignes.length * (tt.corps + 6);
@@ -270,16 +246,10 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
             ctx.fillStyle = ACCENT; rrect(ctx, W / 2 - lp / 2, yPastille, lp, 82, 41); ctx.fill();
             ctx.fillStyle = '#1b0a05'; ctx.fillText(texte, W / 2, yPastille + 56);
 
-            if (qrImg) {
-                const qx = (W - QR) / 2;
-                ctx.fillStyle = '#fff'; rrect(ctx, qx - PAD, qy - PAD, QR + PAD * 2, QR + PAD * 2, 22); ctx.fill();
-                ctx.drawImage(qrImg, qx, qy, QR, QR);
-            }
             ctx.fillStyle = 'rgba(255,255,255,.45)'; ctx.font = '600 32px -apple-system, system-ui, sans-serif';
             ctx.fillText('lesrecettesmagiques.fr', W / 2, yDomaine);
         };
 
-        let qrImg: HTMLImageElement | null = null;
         // La carte se dessine TOUT DE SUITE, sans attendre les photos, et se
         // redessine à chaque arrivée. L'ordre inverse laissait l'aperçu vide et
         // le bouton éteint pour toujours dès qu'une image ne répondait NI par un
@@ -287,8 +257,8 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
         const render = () => {
             ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.textAlign = 'left';
-            if (category) peindreCollection(category, qrImg);
-            else peindreRecette(imgs[0], qrImg);
+            if (category) peindreCollection(category);
+            else peindreRecette(imgs[0]);
             try { setUrl(cv.toDataURL('image/png')); setTainted(false); }
             catch { setTainted(true); }
         };
@@ -322,12 +292,6 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
         };
         sources.forEach(charger);
 
-        // QR en parallèle : quand il est prêt, on redessine avec le QR.
-        try {
-            QRCode.toDataURL(shareUrl, { margin: 0, width: 320, errorCorrectionLevel: 'M', color: { dark: '#0d0b10', light: '#ffffff' } })
-                .then((durl) => { const q = new Image(); q.onload = () => { qrImg = q; render(); }; q.src = durl; })
-                .catch(() => { /* pas de QR, tant pis */ });
-        } catch { /* pas de QR */ }
         // `mounted` DOIT figurer ici : au premier rendu le composant renvoie null
         // (le portail n'existe pas encore), donc `canvasRef` est vide et l'effet
         // sortait aussitôt. Sans cette dépendance il ne se rejouait jamais — le
