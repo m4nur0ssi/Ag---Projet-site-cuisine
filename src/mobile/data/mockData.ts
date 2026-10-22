@@ -2,93 +2,54 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 21/10/2026 08:08:48
+ * Dernière mise à jour: 22/10/2026 08:06:56
  * Total: 807 recettes
  */
-export const exportSyncId = "1792570128211";
+export const exportSyncId = "1792656416247";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "8076",
-        "title": "Pommes de terre caramélisées au miel et à la sauce soja",
-        "description": "Une recette rapide et facile de pommes de terre caramélisées, parfaite pour les soirs de flemme et prête en environ 20 minutes.",
-        "image": "/recipes-ia/8076-carte.webp",
+        "id": "8068",
+        "title": "Poireauflette",
+        "description": "Une variante réconfortante de la tartiflette, cette poireauflette met à l'honneur les poireaux de saison. L'auteur suggère qu'elle est potentiellement plus légère grâce aux légumes verts. Elle combine des poireaux et des pommes de terre cuits à la...",
+        "image": "/recipes-ia/8068-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7375410577327361312\" data-video-id=\"7375410577327361312\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7375410577327361312\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696200452454599969\" data-video-id=\"7696200452454599969\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696200452454599969\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍎\n             300 g de petites pommes de terre"
+                "name": "🍎\n             Pommes de terre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Huile de sésame"
+                "name": "🍐\n             Poireaux"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             3 gousses d'ail"
+                "name": "🥓\n             Lardons"
             },
             {
                 "quantity": "",
-                "name": "💧\n             250 ml d'eau"
+                "name": "🧅\n             Oignons"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de miel"
+                "name": "🧈\n             Beurre"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             80 ml de sauce soja"
+                "name": "💧\n             Vin blanc"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Graines de sésame"
+                "name": "🥛\n             Crème fraîche"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Ciboulette (ou cébette)"
-            }
-        ],
-        "steps": [
-            "Lavez les petites pommes de terre et coupez-les en quartiers.",
-            "Faites revenir les pommes de terre dans un peu d'huile de sésame dans une poêle pendant environ quatre minutes.",
-            "Ajoutez les gousses d'ail émincées et poursuivez la cuisson pendant 8 minutes, jusqu'à ce que les pommes de terre soient légèrement dorées.",
-            "Dans un bol, préparez un mélange avec l'eau, le miel et la sauce soja.",
-            "Versez ce mélange dans la poêle avec les pommes de terre et laissez toute l'eau s'évaporer. Les pommes de terre vont caraméliser et prendre une belle couleur.",
-            "Servez les pommes de terre caramélisées dans une assiette, puis saupoudrez de graines de sésame et de ciboulette ciselée."
-        ],
-        "tags": [
-            "Accompagnements",
-            "Asie",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8074",
-        "title": "Petits pains de pomme de terre fourrés au fromage",
-        "description": "Découvrez comment réaliser facilement des petits pains express et gourmands à base de pommes de terre, généreusement fourrés au fromage et cuits à la poêle. Une recette simple et réconfortante, parfaite pour un repas rapide ou une collation savour...",
-        "image": "/recipes-ia/8074-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7685347251295767840\" data-video-id=\"7685347251295767840\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7685347251295767840\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre (3 grosses)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine (160g)"
+                "name": "🥣\n             Reblochon"
             },
             {
                 "quantity": "",
@@ -96,112 +57,23 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fromage (de votre choix)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Épices (de votre choix, facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre (facultatif)"
+                "name": "🌶️\n             Poivre"
             }
         ],
         "steps": [
-            "Faites d'abord cuire les pommes de terre à l'eau. Une fois refroidies (vous pouvez les préparer la veille), écrasez-les dans un saladier.",
-            "Ajoutez du sel et la farine. Travaillez la pâte et formez une boule avec vos mains.",
-            "Ensuite, formez des petits pains et insérez du fromage à l'intérieur (vous pouvez utiliser un morceau entier de fromage ou du fromage râpé). Refermez bien et formez une nouvelle boule.",
-            "Écrasez légèrement la boule pour lui donner la forme d'un pain.",
-            "Faites cuire les petits pains dans une poêle avec un peu d'huile d'olive. Laissez dorer quelques minutes à feu moyen pour obtenir une belle couleur, puis retournez-les. Continuez la cuisson quelques minutes à couvert.",
-            "Vous pouvez agrémenter la pâte avec les épices de votre choix. Au moment de servir, vous pouvez ajouter de la fleur de sel et de la coriandre."
+            "Préparez les poireaux : cassez chaque feuille de poireau en gardant un peu de vert. Incisez-les deux fois dans la longueur pour faire une \" martifouette \", ce qui permettra à tout le sable coincé entre chaque feuille de partir. Rincez-les sous l'eau, égouttez l'excédent d'eau et tranchez-les en morceaux aléatoires.",
+            "Cuisez les légumes : épluchez les pommes de terre. Envoyez les poireaux et les pommes de terre coupées en morceaux à la vapeur pendant 15 à 20 minutes.",
+            "Préparez la base de la sauce : épluchez et émincez les oignons. Coupez un beau morceau de lard pour en faire des lardons. Dans une poêle à feu moyen, faites rissoler les oignons et les lardons avec une noix de beurre.",
+            "Déglacez et liez la sauce : quand les lardons sont cuits, déglacez la poêle avec un doigt de vin blanc. Ajoutez une cuillère à soupe de crème fraîche.",
+            "Mélangez les ingrédients : incorporez les pommes de terre cuites et concassez-les grossièrement pour qu'elles absorbent un peu la sauce. Ajoutez ensuite les poireaux. Assaisonnez avec du sel et du poivre.",
+            "Assemblez le gratin : versez la préparation dans un plat. Coupez un reblochon en deux dans l'épaisseur et déposez les moitiés sur la préparation, croûte vers le haut.",
+            "Gratinez : faites gratiner au four préchauffé à 200 °C pendant 15 à 20 minutes."
         ],
         "tags": [
-            "express",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8072",
-        "title": "Tarte aux pommes de terre écrasées et au saumon",
-        "description": "Découvrez une recette facile et rapide de tarte salée à base de pommes de terre grenaille écrasées, de saumon fumé et d'une sauce crémeuse au yaourt grec, ail et citron. Un plat gourmand et simple à réaliser.",
-        "image": "/recipes-ia/8072-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7412562721037765920\" data-video-id=\"7412562721037765920\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7412562721037765920\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             200 g de pommes de terre grenaille cuites"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             30 g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 branche de thym"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150 g de yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🐟\n             4 tranches de saumon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             1 poignée de roquette"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 pincée de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 filet d'huile d'olive"
-            }
-        ],
-        "steps": [
-            "Préchauffez votre four à 180°C.",
-            "Placez les pommes de terre cuites sur une plaque de cuisson.",
-            "À l'aide d'un verre, écrasez chaque pomme de terre pour former des disques.",
-            "Saupoudrez les pommes de terre de parmesan et de thym.",
-            "Enfournez pour 30 minutes à 180°C.",
-            "Pendant ce temps, dans un bol, versez le yaourt grec.",
-            "Ajoutez l'ail émincé et le jus d'un citron. Mélangez bien.",
-            "Une fois les pommes de terre cuites et sorties du four, étalez la préparation au yaourt sur celles-ci.",
-            "Disposez les tranches de saumon fumé.",
-            "Ajoutez un peu de roquette, du zeste de citron, une pincée de poivre et un filet d'huile d'olive."
-        ],
-        "tags": [
-            "express",
-            "Healthy",
-            "Poissons et crustacés",
-            "tarte"
+            "C'est l'hiver",
+            "France",
+            "Gratins",
+            "Pas cher"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -369,48 +241,99 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "8068",
-        "title": "Poireauflette",
-        "description": "Une variante réconfortante de la tartiflette, cette poireauflette met à l'honneur les poireaux de saison. L'auteur suggère qu'elle est potentiellement plus légère grâce aux légumes verts. Elle combine des poireaux et des pommes de terre cuits à la...",
-        "image": "/recipes-ia/8068-carte.webp",
+        "id": "8072",
+        "title": "Tarte aux pommes de terre écrasées et au saumon",
+        "description": "Découvrez une recette facile et rapide de tarte salée à base de pommes de terre grenaille écrasées, de saumon fumé et d'une sauce crémeuse au yaourt grec, ail et citron. Un plat gourmand et simple à réaliser.",
+        "image": "/recipes-ia/8072-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696200452454599969\" data-video-id=\"7696200452454599969\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696200452454599969\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7412562721037765920\" data-video-id=\"7412562721037765920\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7412562721037765920\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍎\n             Pommes de terre"
+                "name": "🍎\n             200 g de pommes de terre grenaille cuites"
             },
             {
                 "quantity": "",
-                "name": "🍐\n             Poireaux"
+                "name": "🧀\n             30 g de parmesan"
             },
             {
                 "quantity": "",
-                "name": "🥓\n             Lardons"
+                "name": "🌿\n             1 branche de thym"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             Oignons"
+                "name": "🥣\n             150 g de yaourt grec"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             Beurre"
+                "name": "🧄\n             1 gousse d'ail"
             },
             {
                 "quantity": "",
-                "name": "💧\n             Vin blanc"
+                "name": "🍋\n             1 citron"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             Crème fraîche"
+                "name": "🐟\n             4 tranches de saumon fumé"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Reblochon"
+                "name": "🥗\n             1 poignée de roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 pincée de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 180°C.",
+            "Placez les pommes de terre cuites sur une plaque de cuisson.",
+            "À l'aide d'un verre, écrasez chaque pomme de terre pour former des disques.",
+            "Saupoudrez les pommes de terre de parmesan et de thym.",
+            "Enfournez pour 30 minutes à 180°C.",
+            "Pendant ce temps, dans un bol, versez le yaourt grec.",
+            "Ajoutez l'ail émincé et le jus d'un citron. Mélangez bien.",
+            "Une fois les pommes de terre cuites et sorties du four, étalez la préparation au yaourt sur celles-ci.",
+            "Disposez les tranches de saumon fumé.",
+            "Ajoutez un peu de roquette, du zeste de citron, une pincée de poivre et un filet d'huile d'olive."
+        ],
+        "tags": [
+            "express",
+            "Healthy",
+            "Poissons et crustacés",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8074",
+        "title": "Petits pains de pomme de terre fourrés au fromage",
+        "description": "Découvrez comment réaliser facilement des petits pains express et gourmands à base de pommes de terre, généreusement fourrés au fromage et cuits à la poêle. Une recette simple et réconfortante, parfaite pour un repas rapide ou une collation savour...",
+        "image": "/recipes-ia/8074-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7685347251295767840\" data-video-id=\"7685347251295767840\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7685347251295767840\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre (3 grosses)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine (160g)"
             },
             {
                 "quantity": "",
@@ -418,23 +341,100 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "🥣\n             Fromage (de votre choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Épices (de votre choix, facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre (facultatif)"
             }
         ],
         "steps": [
-            "Préparez les poireaux : cassez chaque feuille de poireau en gardant un peu de vert. Incisez-les deux fois dans la longueur pour faire une \" martifouette \", ce qui permettra à tout le sable coincé entre chaque feuille de partir. Rincez-les sous l'eau, égouttez l'excédent d'eau et tranchez-les en morceaux aléatoires.",
-            "Cuisez les légumes : épluchez les pommes de terre. Envoyez les poireaux et les pommes de terre coupées en morceaux à la vapeur pendant 15 à 20 minutes.",
-            "Préparez la base de la sauce : épluchez et émincez les oignons. Coupez un beau morceau de lard pour en faire des lardons. Dans une poêle à feu moyen, faites rissoler les oignons et les lardons avec une noix de beurre.",
-            "Déglacez et liez la sauce : quand les lardons sont cuits, déglacez la poêle avec un doigt de vin blanc. Ajoutez une cuillère à soupe de crème fraîche.",
-            "Mélangez les ingrédients : incorporez les pommes de terre cuites et concassez-les grossièrement pour qu'elles absorbent un peu la sauce. Ajoutez ensuite les poireaux. Assaisonnez avec du sel et du poivre.",
-            "Assemblez le gratin : versez la préparation dans un plat. Coupez un reblochon en deux dans l'épaisseur et déposez les moitiés sur la préparation, croûte vers le haut.",
-            "Gratinez : faites gratiner au four préchauffé à 200 °C pendant 15 à 20 minutes."
+            "Faites d'abord cuire les pommes de terre à l'eau. Une fois refroidies (vous pouvez les préparer la veille), écrasez-les dans un saladier.",
+            "Ajoutez du sel et la farine. Travaillez la pâte et formez une boule avec vos mains.",
+            "Ensuite, formez des petits pains et insérez du fromage à l'intérieur (vous pouvez utiliser un morceau entier de fromage ou du fromage râpé). Refermez bien et formez une nouvelle boule.",
+            "Écrasez légèrement la boule pour lui donner la forme d'un pain.",
+            "Faites cuire les petits pains dans une poêle avec un peu d'huile d'olive. Laissez dorer quelques minutes à feu moyen pour obtenir une belle couleur, puis retournez-les. Continuez la cuisson quelques minutes à couvert.",
+            "Vous pouvez agrémenter la pâte avec les épices de votre choix. Au moment de servir, vous pouvez ajouter de la fleur de sel et de la coriandre."
         ],
         "tags": [
-            "C'est l'hiver",
-            "France",
-            "Gratins",
-            "Pas cher"
+            "express",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8076",
+        "title": "Pommes de terre caramélisées au miel et à la sauce soja",
+        "description": "Une recette rapide et facile de pommes de terre caramélisées, parfaite pour les soirs de flemme et prête en environ 20 minutes.",
+        "image": "/recipes-ia/8076-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7375410577327361312\" data-video-id=\"7375410577327361312\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7375410577327361312\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             300 g de petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             250 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             80 ml de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette (ou cébette)"
+            }
+        ],
+        "steps": [
+            "Lavez les petites pommes de terre et coupez-les en quartiers.",
+            "Faites revenir les pommes de terre dans un peu d'huile de sésame dans une poêle pendant environ quatre minutes.",
+            "Ajoutez les gousses d'ail émincées et poursuivez la cuisson pendant 8 minutes, jusqu'à ce que les pommes de terre soient légèrement dorées.",
+            "Dans un bol, préparez un mélange avec l'eau, le miel et la sauce soja.",
+            "Versez ce mélange dans la poêle avec les pommes de terre et laissez toute l'eau s'évaporer. Les pommes de terre vont caraméliser et prendre une belle couleur.",
+            "Servez les pommes de terre caramélisées dans une assiette, puis saupoudrez de graines de sésame et de ciboulette ciselée."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Asie",
+            "Pas cher",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
