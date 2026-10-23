@@ -1690,7 +1690,11 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                         {/* Mot par mot : l'inclinaison porte sur chaque mot, jamais
                             sur le bloc — sinon les lignes s'escaladent vers la
                             droite et la première lettre sort de la colonne. */}
-                        <h1 className={styles.heroTitleSplit}>
+                        <h1
+                            className={`${styles.heroTitleSplit} ${styles.heroTitleLien}`}
+                            role="link"
+                            onClick={() => { haptic(8); onOpen(recipes, index); }}
+                        >
                             {label(current).split(/\s+/).filter(Boolean).map((w, n, all) => (
                                 <Fragment key={`${w}-${n}`}>
                                     <span className={styles.heroTitleWord}>{w}</span>
