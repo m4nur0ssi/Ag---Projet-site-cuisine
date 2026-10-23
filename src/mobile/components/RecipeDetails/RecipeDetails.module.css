@@ -901,17 +901,17 @@
     animation: tabFadeIn 0.2s ease-out;
 }
 
+.tabContent {
+    scrollbar-width: none;
+}
+
 .tabContent::-webkit-scrollbar {
-    width: 3px;
+    display: none;
 }
 
-.tabContent::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.tabContent::-webkit-scrollbar-thumb {
-    background: var(--glass-border);
-    border-radius: 2px;
+.heroTitleLink {
+    color: inherit;
+    text-decoration: none;
 }
 
 @keyframes tabFadeIn {

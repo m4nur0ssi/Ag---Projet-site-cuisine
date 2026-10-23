@@ -985,7 +985,9 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
 
                         <div className={styles.heroMainContent}>
                             <h1 className={styles.heroTitleElegant}>
-                                <SplitTitle text={decodeHtml(recipe.title)} noAnimation={true} plain />
+                                <Link href={`/recipe/${recipe.id}`} className={styles.heroTitleLink}>
+                                    <SplitTitle text={decodeHtml(recipe.title)} noAnimation={true} plain />
+                                </Link>
                             </h1>
                             
                             {recipe.description && (
