@@ -849,22 +849,12 @@
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: var(--glass-border) transparent;
+    scrollbar-width: none;
     animation: tabFadeIn 0.2s ease-out;
 }
 
 .tabContent::-webkit-scrollbar {
-    width: 3px;
-}
-
-.tabContent::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.tabContent::-webkit-scrollbar-thumb {
-    background: var(--glass-border);
-    border-radius: 2px;
+    display: none;
 }
 
 @keyframes tabFadeIn {

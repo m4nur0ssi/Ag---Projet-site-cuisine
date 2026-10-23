@@ -631,7 +631,13 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                 {/* Mot par mot : l'inclinaison porte sur chaque mot, sinon le
                     skew du bloc décale chaque ligne et les premières lettres
                     ne s'alignent plus. */}
-                <h1 className={styles.heroTitle}>
+                <h1
+                    className={`${styles.heroTitle} ${styles.heroTitleLien}`}
+                    role="link"
+                    tabIndex={0}
+                    onClick={() => openRecipe(current)}
+                    onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); openRecipe(current); } }}
+                >
                     {label(current).split(/\s+/).filter(Boolean).map((w, n, all) => (
                         <Fragment key={`${w}-${n}`}>
                             <span className={styles.heroTitleWord}>{w}</span>

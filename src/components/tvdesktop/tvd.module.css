@@ -489,6 +489,8 @@
    pivoter autour de son centre : la 1re ligne partait à droite, la dernière à
    gauche, et les premières lettres dessinaient un escalier. Mot par mot avec
    l'origine en bas à gauche, toutes les lignes repartent de la même marge. */
+.heroTitleLien { cursor: pointer; }
+
 .heroTitleWord {
     display: inline-block;
     transform: skewX(-7deg);
