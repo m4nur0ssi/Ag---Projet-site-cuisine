@@ -1957,7 +1957,7 @@
 
 /* Un mot = un bloc incliné. Tous partagent la même ligne de base, donc aucune
    ligne ne se décale : c'est l'italique du titre, sans l'escalier. */
-.heroTitleLien { cursor: pointer; width: fit-content; max-width: 100%; }
+.heroTitleLien { cursor: pointer; width: fit-content; max-width: 100%; pointer-events: auto; /* le bloc texte parent ignore la souris */ }
 
 .heroTitleWord {
     display: inline-block;

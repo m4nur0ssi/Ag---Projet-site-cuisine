@@ -675,3 +675,10 @@ html.is-mobile [data-no-press]:active {
     --tv-gold-3: #ffb66e;
     --tv-gold-4: #b8d66d;
 }
+
+/* Version mobile : pas d'ascenseur sur le côté de la page (Chrome en fenêtre étroite
+   l'affichait). Le défilement reste actif. */
+@media (max-width: 900px) {
+    html, body { scrollbar-width: none; }
+    html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+}
