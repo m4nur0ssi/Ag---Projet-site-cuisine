@@ -235,6 +235,23 @@ const PRIX: Record<string, Tarif> = {
 };
 
 /**
+ * Produits vendus à la DOSE, en grammes par dose.
+ *
+ * Le safran se compte en fioles, sachets ou dosettes de 0,1 g. Lu comme une
+ * pièce de 100 g (« 1 fiole de safran ») ou un sachet de 10 g, il coûtait
+ * 300 € à la ligne. Tout décompte sans poids explicite vaut ici une dose.
+ */
+const DOSE: Record<string, number> = { 'safran': 0.1 };
+
+/**
+ * Bouillons et fonds : tarifés au kilo de cube ou de poudre, mais souvent
+ * comptés en volume de bouillon PRÊT (« 2 litres de bouillon de bœuf »). On
+ * compte alors la poudre qu'il faut pour ce volume — un cube de 10 g pour un
+ * demi-litre — et non deux kilos de cubes.
+ */
+const DILUE: Record<string, number> = { 'bouillon': 20, 'fond de veau': 20, 'fond de volaille': 20 };   // g par litre
+
+/**
  * Poids d'UNE pièce, en grammes.
  *
  * Sert quand la ligne compte des unités sans le dire : « 2 oignons », « 3
@@ -380,9 +397,9 @@ const ENTREES = Object.keys(PRIX).map((k) => ({ k, mots: k.split(' ') }));
  * au prix de la gousse : 135 €. À position égale, la plus précise l'emporte
  * (« huile d olive » avant « huile »).
  */
-const tarifDe = (nom: string): { tarif: Tarif; connu: boolean } => {
+const tarifDe = (nom: string): { tarif: Tarif; connu: boolean; k?: string } => {
     const n = cle(nom);
-    if (PRIX[n]) return { tarif: PRIX[n], connu: true };
+    if (PRIX[n]) return { tarif: PRIX[n], connu: true, k: n };
     const mots = n.split(' ');
     let meilleur: { k: string; pos: number; long: number } | null = null;
     for (const e of ENTREES) {
@@ -398,7 +415,7 @@ const tarifDe = (nom: string): { tarif: Tarif; connu: boolean } => {
             break;   // pour cette entrée, la première position suffit
         }
     }
-    return meilleur ? { tarif: PRIX[meilleur.k], connu: true } : { tarif: DEFAUT, connu: false };
+    return meilleur ? { tarif: PRIX[meilleur.k], connu: true, k: meilleur.k } : { tarif: DEFAUT, connu: false };
 };
 
 /** Prix d'UNE ligne d'ingrédient, en euros. */
@@ -406,7 +423,7 @@ function prixLigne(brut: string): { bas: number; haut: number; connu: boolean } 
     const p = parseIngredient(brut);
     if (!p.name) return null;
     const nom = canonicalIng(p.name, p.unit, brut).name;
-    const { tarif, connu } = tarifDe(nom);
+    const { tarif, connu, k } = tarifDe(nom);
     const [bas, haut, base, portion] = tarif;
     const n = cle(brut);
     const poids = POIDS_PIECE[cle(nom)] || 100;
@@ -415,8 +432,12 @@ function prixLigne(brut: string): { bas: number; haut: number; connu: boolean } 
     /** Quantité retenue, dans l'unité de la base : kg, l, ou nombre de pièces. */
     let quantite: number;
 
-    if (q && 'g' in q) {
+    if (k && DOSE[k] && q && 'n' in q) {
+        quantite = (q.n * DOSE[k]) / 1000;
+    } else if (q && 'g' in q) {
         quantite = base === 'piece' ? q.g / poids : q.g / 1000;
+    } else if (k && DILUE[k] && q && 'ml' in q) {
+        quantite = (q.ml / 1000) * DILUE[k] / 1000;
     } else if (q && 'ml' in q) {
         quantite = base === 'piece' ? q.ml / 100 : q.ml / 1000;
     } else if (q) {
@@ -426,9 +447,11 @@ function prixLigne(brut: string): { bas: number; haut: number; connu: boolean } 
          * Le contenant doit suivre le nombre de PRÈS. « 6 piments chipotles en
          * conserve » compte six piments, pas six conserves — chercher le mot
          * n'importe où dans la ligne facturait 2,4 kg de piment. On ne regarde
-         * donc que les quelques mots qui suivent le chiffre.
+         * donc que les quelques mots qui suivent le chiffre — quatre, pas trois :
+         * avec trois, « 2 cuilleres a soupe » perdait « soupe » et deux
+         * cuillères de curcuma devenaient 200 g.
          */
-        const fenetre = n.slice(n.search(/\d/)).split(' ').slice(0, 3).join(' ');
+        const fenetre = n.slice(n.search(/\d/)).split(' ').slice(0, 4).join(' ');
         const mesure = MESURES.find(([re]) => re.test(fenetre));
         if (mesure) {
             const total = q.n * mesure[1];   // g ou ml, même ordre de grandeur
