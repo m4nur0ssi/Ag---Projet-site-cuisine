@@ -2,11 +2,108 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 24/10/2026 20:40:22
+ * Dernière mise à jour: 24/10/2026 21:05:42
  * Total: 812 recettes
  */
-export const exportSyncId = "1792874422436";
+export const exportSyncId = "1792875942275";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8089",
+        "title": "Tarte Amandine Poire Chocolat",
+        "description": "Découvrez la meilleure tarte du monde entier ! Cette merveilleuse alliance de poire, chocolat et amande est une dinguerie totale. Suivez cette recette facile pour préparer une pâte sablée maison, une ganache chocolat onctueuse et une crème d'amand...",
+        "image": "/recipes-ia/8089-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7464564591553416470\" data-video-id=\"7464564591553416470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7464564591553416470\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de beurre froid"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             125g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             125g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             Des poires au sirop"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Des amandes effilées"
+            }
+        ],
+        "steps": [
+            "Préparez la pâte sablée. Dans le bol d'un robot (Thermomix), mélangez le sucre avec les jaunes d'œufs pendant 15 secondes à vitesse 4.",
+            "Ajoutez le beurre froid et la farine, puis mélangez pendant 20 secondes à vitesse 5.",
+            "Ramassez la pâte et formez une boule. Aplatissez-la légèrement pour l'étaler sans difficulté.",
+            "Étalez la pâte entre deux feuilles de papier sulfurisé.",
+            "Foncez la pâte dans un moule à tarte graissé (idéalement à fond amovible), en insistant sur les côtés. Retirez l'excédent à l'aide d'un couteau.",
+            "Piquez le fond de la pâte avec une fourchette pour éviter qu'elle ne gonfle pendant la pré-cuisson.",
+            "Recouvrez la pâte de papier cuisson et de billes de cuisson.",
+            "Préchauffez le four à 180°C en chaleur tournante.",
+            "Faites précuire la pâte pendant 10 minutes.",
+            "Pendant ce temps, préparez la ganache chocolat. Mettez le chocolat noir en morceaux dans le bol du robot et mixez pendant 10 secondes à vitesse 8.",
+            "Ajoutez la crème liquide et chauffez pendant 2 minutes à 50°C, vitesse 2.",
+            "Sortez le fond de tarte précuit du four. Garnissez-le de ganache chocolat et égalisez sur toute la surface.",
+            "Préparez la crème d'amande. Dans le bol du robot, mélangez le beurre mou avec le sucre pendant 20 secondes à vitesse 4.",
+            "Ajoutez les œufs et la crème liquide, puis mélangez pendant 20 secondes à vitesse 4.",
+            "Terminez en ajoutant la poudre d'amande et mélangez pendant 20 secondes à vitesse 6.",
+            "Mettez la crème d'amande dans une poche à douille pour la répartir de façon équilibrée sur la ganache chocolat.",
+            "Coupez finement les demi-poires au sirop et disposez-les allongées sur la crème d'amande.",
+            "Ajoutez des amandes effilées pour décorer.",
+            "Enfournez la tarte dans le bas du four pendant environ 45 minutes.",
+            "Laissez refroidir avant de démouler et de vous régaler !"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie",
+            "tarte",
+            "Thermomix"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8093",
         "title": "Tarte Bourdaloue aux poires",
@@ -186,103 +283,6 @@ export const mockRecipes: Recipe[] = [
             "pâtisserie",
             "tarte",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8089",
-        "title": "Tarte Amandine Poire Chocolat",
-        "description": "Découvrez la meilleure tarte du monde entier ! Cette merveilleuse alliance de poire, chocolat et amande est une dinguerie totale. Suivez cette recette facile pour préparer une pâte sablée maison, une ganache chocolat onctueuse et une crème d'amand...",
-        "image": "/recipes-ia/8089-carte.webp",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7464564591553416470\" data-video-id=\"7464564591553416470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7464564591553416470\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n             100g de beurre froid"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             200g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200g de chocolat noir"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             150g de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             125g de beurre mou"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             60g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             50g de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             125g de poudre d'amande"
-            },
-            {
-                "quantity": "",
-                "name": "🍐\n             Des poires au sirop"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Des amandes effilées"
-            }
-        ],
-        "steps": [
-            "Préparez la pâte sablée. Dans le bol d'un robot (Thermomix), mélangez le sucre avec les jaunes d'œufs pendant 15 secondes à vitesse 4.",
-            "Ajoutez le beurre froid et la farine, puis mélangez pendant 20 secondes à vitesse 5.",
-            "Ramassez la pâte et formez une boule. Aplatissez-la légèrement pour l'étaler sans difficulté.",
-            "Étalez la pâte entre deux feuilles de papier sulfurisé.",
-            "Foncez la pâte dans un moule à tarte graissé (idéalement à fond amovible), en insistant sur les côtés. Retirez l'excédent à l'aide d'un couteau.",
-            "Piquez le fond de la pâte avec une fourchette pour éviter qu'elle ne gonfle pendant la pré-cuisson.",
-            "Recouvrez la pâte de papier cuisson et de billes de cuisson.",
-            "Préchauffez le four à 180°C en chaleur tournante.",
-            "Faites précuire la pâte pendant 10 minutes.",
-            "Pendant ce temps, préparez la ganache chocolat. Mettez le chocolat noir en morceaux dans le bol du robot et mixez pendant 10 secondes à vitesse 8.",
-            "Ajoutez la crème liquide et chauffez pendant 2 minutes à 50°C, vitesse 2.",
-            "Sortez le fond de tarte précuit du four. Garnissez-le de ganache chocolat et égalisez sur toute la surface.",
-            "Préparez la crème d'amande. Dans le bol du robot, mélangez le beurre mou avec le sucre pendant 20 secondes à vitesse 4.",
-            "Ajoutez les œufs et la crème liquide, puis mélangez pendant 20 secondes à vitesse 4.",
-            "Terminez en ajoutant la poudre d'amande et mélangez pendant 20 secondes à vitesse 6.",
-            "Mettez la crème d'amande dans une poche à douille pour la répartir de façon équilibrée sur la ganache chocolat.",
-            "Coupez finement les demi-poires au sirop et disposez-les allongées sur la crème d'amande.",
-            "Ajoutez des amandes effilées pour décorer.",
-            "Enfournez la tarte dans le bas du four pendant environ 45 minutes.",
-            "Laissez refroidir avant de démouler et de vous régaler !"
-        ],
-        "tags": [
-            "France",
-            "pâtisserie",
-            "tarte",
-            "Thermomix"
         ],
         "isFeatured": false,
         "isFavorite": false,
