@@ -2,58 +2,287 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 24/10/2026 14:19:03
- * Total: 809 recettes
+ * Dernière mise à jour: 24/10/2026 20:40:22
+ * Total: 812 recettes
  */
-export const exportSyncId = "1792851543439";
+export const exportSyncId = "1792874422436";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "8085",
-        "title": "Rouleaux de mangue et jambon cru",
-        "description": "Une entrée ou un apéritif festif et rapide à préparer en seulement 5 minutes, parfait pour les fêtes de fin d'année. Ces rouleaux combinent la douceur de la mangue, le salé du jambon cru, la fraîcheur de la roquette et du fromage frais, le tout re...",
-        "image": "/recipes-ia/8085-carte.webp",
-        "category": "plats",
+        "id": "8093",
+        "title": "Tarte Bourdaloue aux poires",
+        "description": "Découvrez la Tarte Bourdaloue, un dessert français classique composé d'une pâte sucrée croustillante, d'une frangipane onctueuse et de poires Williams pochées, le tout glacé à la marmelade.",
+        "image": "/recipes-ia/8093-carte.webp",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7698322151421578497\" data-video-id=\"7698322151421578497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7698322151421578497\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7479808607744249110\" data-video-id=\"7479808607744249110\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7479808607744249110\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥓\n             Jambon cru (ou autre charcuterie séchée)"
+                "name": "💧\n             1000 ml d'eau"
             },
             {
                 "quantity": "",
-                "name": "🥗\n             Roquette"
+                "name": "🍯\n             500 g de sucre en poudre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Mangue"
+                "name": "🍐\n             3 poires (variété Williams)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fromage frais (type Philadelphia)"
+                "name": "🥣\n             2 étoiles de badiane"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Amandes"
+                "name": "🥣\n             1 bâton de cannelle"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Sauce balsamique"
+                "name": "🧈\n             150 g de beurre (ramolli)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             150 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 g de poudre d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs (Clarence Court)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20 g de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre (ramolli)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 jaunes d'œufs (Clarence Court)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             20 g d'amandes effilées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de marmelade (sans morceaux)"
             }
         ],
         "steps": [
-            "Déposez les tranches de jambon cru sur une surface plane.",
-            "Ajoutez une cuillère de fromage frais, quelques feuilles de roquette et un morceau de mangue sur chaque tranche.",
-            "Roulez chaque tranche pour former un petit rouleau.",
-            "Saupoudrez les rouleaux d'amandes concassées et arrosez-les de sauce balsamique avant de servir."
+            "Préparez les poires pochées : Pelez les poires, coupez-les en deux et retirez le cœur à l'aide d'une cuillère parisienne.",
+            "Dans une casserole, portez à ébullition 1000 ml d'eau avec 500 g de sucre en poudre, les étoiles de badiane et le bâton de cannelle.",
+            "Ajoutez les poires pelées, couvrez d'une cartouche (papier sulfurisé) et laissez cuire doucement pendant environ 20 minutes, ou jusqu'à ce qu'elles soient tendres. Laissez-les refroidir complètement, puis coupez-les en tranches.",
+            "Préparez la pâte sucrée : Dans un grand bol, battez 100 g de beurre ramolli avec 70 g de sucre glace jusqu'à obtenir une consistance crémeuse et fouettée.",
+            "Incorporez les 3 jaunes d'œufs et mélangez pendant 30 secondes.",
+            "Ajoutez la pincée de sel et les 200 g de farine tout usage, puis mélangez jusqu'à ce que la pâte soit homogène.",
+            "Étalez la pâte entre deux feuilles de papier sulfurisé et placez-la au réfrigérateur pour qu'elle durcisse.",
+            "Une fois la pâte ferme, foncez-la délicatement dans un moule à tarte. Remettez le moule garni au réfrigérateur pour que la pâte prenne bien.",
+            "Préparez la frangipane : Dans un autre bol, battez 150 g de beurre ramolli avec 150 g de sucre glace jusqu'à obtenir une consistance crémeuse et fouettée.",
+            "Incorporez les 2 œufs et mélangez pendant 30 secondes.",
+            "Ajoutez les 150 g de poudre d'amandes, les graines de la gousse de vanille et les 20 g de fécule de maïs, puis mélangez jusqu'à ce que le tout soit bien combiné.",
+            "Transférez la frangipane dans une poche à douille ou gardez-la prête à être étalée à la spatule.",
+            "Montez et cuisez la tarte : Préchauffez votre four à 175°C.",
+            "Garnissez le fond de tarte refroidi avec la frangipane.",
+            "Disposez harmonieusement les tranches de poires pochées sur la frangipane.",
+            "Saupoudrez les espaces vides avec les 20 g d'amandes effilées.",
+            "Enfournez la tarte pour 40 minutes, ou jusqu'à ce qu'elle soit dorée et bien cuite.",
+            "Une fois la tarte sortie du four, badigeonnez-la immédiatement avec les 2 cuillères à soupe de marmelade fondue pour la glacer."
         ],
         "tags": [
-            "C'est l'hiver",
-            "Espagne",
-            "Noël"
+            "France",
+            "Glaces",
+            "pâtisserie",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8091",
+        "title": "Tarte Bourdaloue aux poires",
+        "description": "La classique tarte amandine aux poires, garnie d'une crème d'amande parfumée à la vanille et au rhum, puis parsemée d'amandes effilées.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7204756334259064069\" data-video-id=\"7204756334259064069\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7204756334259064069\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 fond de tarte (préalablement foncé)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre pommade"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Arôme de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Rhum (ou autre arôme au choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             5 demi-poires au sirop"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Amandes effilées"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 180 °C.",
+            "Dans un récipient, mélangez le beurre pommade bien mou avec le sucre blanc.",
+            "Ajoutez la poudre d'amande et incorporez les œufs un à un en mélangeant bien entre chaque ajout jusqu'à obtenir une texture homogène.",
+            "Parfumez la crème avec un trait d'arôme de vanille et un peu de rhum.",
+            "Versez la crème d'amande sur le fond de tarte préalablement foncé et répartissez-la uniformément à l'aide d'une spatule ou d'une maryse.",
+            "Tranchez finement les demi-poires au sirop et déposez-les harmonieusement sur la crème.",
+            "Parsemez d'amandes effilées selon votre goût.",
+            "Enfournez à 180 °C pendant environ 30 minutes jusqu'à ce que la tarte soit joliment dorée."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie",
+            "tarte",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8089",
+        "title": "Tarte Amandine Poire Chocolat",
+        "description": "Découvrez la meilleure tarte du monde entier ! Cette merveilleuse alliance de poire, chocolat et amande est une dinguerie totale. Suivez cette recette facile pour préparer une pâte sablée maison, une ganache chocolat onctueuse et une crème d'amand...",
+        "image": "/recipes-ia/8089-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7464564591553416470\" data-video-id=\"7464564591553416470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7464564591553416470\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de beurre froid"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             125g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             125g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             Des poires au sirop"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Des amandes effilées"
+            }
+        ],
+        "steps": [
+            "Préparez la pâte sablée. Dans le bol d'un robot (Thermomix), mélangez le sucre avec les jaunes d'œufs pendant 15 secondes à vitesse 4.",
+            "Ajoutez le beurre froid et la farine, puis mélangez pendant 20 secondes à vitesse 5.",
+            "Ramassez la pâte et formez une boule. Aplatissez-la légèrement pour l'étaler sans difficulté.",
+            "Étalez la pâte entre deux feuilles de papier sulfurisé.",
+            "Foncez la pâte dans un moule à tarte graissé (idéalement à fond amovible), en insistant sur les côtés. Retirez l'excédent à l'aide d'un couteau.",
+            "Piquez le fond de la pâte avec une fourchette pour éviter qu'elle ne gonfle pendant la pré-cuisson.",
+            "Recouvrez la pâte de papier cuisson et de billes de cuisson.",
+            "Préchauffez le four à 180°C en chaleur tournante.",
+            "Faites précuire la pâte pendant 10 minutes.",
+            "Pendant ce temps, préparez la ganache chocolat. Mettez le chocolat noir en morceaux dans le bol du robot et mixez pendant 10 secondes à vitesse 8.",
+            "Ajoutez la crème liquide et chauffez pendant 2 minutes à 50°C, vitesse 2.",
+            "Sortez le fond de tarte précuit du four. Garnissez-le de ganache chocolat et égalisez sur toute la surface.",
+            "Préparez la crème d'amande. Dans le bol du robot, mélangez le beurre mou avec le sucre pendant 20 secondes à vitesse 4.",
+            "Ajoutez les œufs et la crème liquide, puis mélangez pendant 20 secondes à vitesse 4.",
+            "Terminez en ajoutant la poudre d'amande et mélangez pendant 20 secondes à vitesse 6.",
+            "Mettez la crème d'amande dans une poche à douille pour la répartir de façon équilibrée sur la ganache chocolat.",
+            "Coupez finement les demi-poires au sirop et disposez-les allongées sur la crème d'amande.",
+            "Ajoutez des amandes effilées pour décorer.",
+            "Enfournez la tarte dans le bas du four pendant environ 45 minutes.",
+            "Laissez refroidir avant de démouler et de vous régaler !"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie",
+            "tarte",
+            "Thermomix"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -152,6 +381,58 @@ export const mockRecipes: Recipe[] = [
             "Glaces",
             "pâtisserie",
             "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8085",
+        "title": "Rouleaux de mangue et jambon cru",
+        "description": "Une entrée ou un apéritif festif et rapide à préparer en seulement 5 minutes, parfait pour les fêtes de fin d'année. Ces rouleaux combinent la douceur de la mangue, le salé du jambon cru, la fraîcheur de la roquette et du fromage frais, le tout re...",
+        "image": "/recipes-ia/8085-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7698322151421578497\" data-video-id=\"7698322151421578497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7698322151421578497\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon cru (ou autre charcuterie séchée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Mangue"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais (type Philadelphia)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce balsamique"
+            }
+        ],
+        "steps": [
+            "Déposez les tranches de jambon cru sur une surface plane.",
+            "Ajoutez une cuillère de fromage frais, quelques feuilles de roquette et un morceau de mangue sur chaque tranche.",
+            "Roulez chaque tranche pour former un petit rouleau.",
+            "Saupoudrez les rouleaux d'amandes concassées et arrosez-les de sauce balsamique avant de servir."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Espagne",
+            "Noël"
         ],
         "isFeatured": false,
         "isFavorite": false,
