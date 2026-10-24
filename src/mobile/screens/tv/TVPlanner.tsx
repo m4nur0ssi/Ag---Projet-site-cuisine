@@ -336,6 +336,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         window.removeEventListener('pointermove', enMouvement);
         window.removeEventListener('pointerup', auLacher);
         window.removeEventListener('pointercancel', auLacher);
+        window.removeEventListener('touchmove', bloquerDefilement);
         if (t?.presse) clearTimeout(t.presse);
         t?.sosie?.remove();
         const cible = t?.actif
@@ -357,6 +358,14 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const lacherRef = useRef<(e: PointerEvent) => void>(() => {});
     const enMouvement = useCallback((e: PointerEvent) => bougerRef.current(e), []);
     const auLacher = useCallback((e: PointerEvent) => lacherRef.current(e), []);
+    /*
+     * Carte décollée au doigt : le navigateur ne doit plus faire défiler la
+     * page, sinon il annule le geste (pointercancel) et la carte retombe. Avant
+     * le décollage, rien n'est bloqué — un glissé rapide reste un défilement.
+     */
+    const bloquerDefilement = useCallback((e: TouchEvent) => {
+        if (tirage.current?.actif && e.cancelable) e.preventDefault();
+    }, []);
 
     bougerRef.current = (e: PointerEvent) => {
         const t = tirage.current;
@@ -413,6 +422,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             window.addEventListener('pointermove', enMouvement, { passive: false });
             window.addEventListener('pointerup', auLacher);
             window.addEventListener('pointercancel', auLacher);
+            if (touch) window.addEventListener('touchmove', bloquerDefilement, { passive: false });
             // Au doigt, l'appui TENU décolle la carte : un glissé immédiat doit
             // rester un défilement de la page.
             if (touch) t.presse = setTimeout(() => { if (tirage.current === t) demarrerTirage(); }, 300);
