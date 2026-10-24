@@ -6,6 +6,7 @@
 // Utilisé côté mobile ET desktop (import partagé).
 
 import { estRecettePates } from './pates';
+import { texteRessemble } from './fuzzy';
 
 export const normalizeFr = (s: string) =>
     (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -106,6 +107,7 @@ export function smartLocalSearch<T extends Matchable>(recipes: T[], query: strin
             for (const w of posWords) {
                 if (title.includes(w)) score += 2;
                 else if (tags.some(t => t.includes(w))) score += 1;
+                else if (texteRessemble(w, title)) score += 1; // faute de frappe
             }
 
             // Négation : la recette contient un terme explicitement exclu → on l'écarte.

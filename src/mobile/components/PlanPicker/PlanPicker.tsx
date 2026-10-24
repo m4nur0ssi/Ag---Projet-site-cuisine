@@ -28,7 +28,7 @@ import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-emb
 import { supabase } from '@/mobile/lib/supabase';
 import {
     DAYS, DAY_FULL, MEALS, JOUR_J, COURSES,
-    chargerPlan, enregistrerPlan, lirePlan, placesPour, poserRecette, prendreEnMain, todayIndex,
+    chargerPlan, enregistrerPlan, lirePlan, placesPour, poserRecette, prendreEnMain, recetteEnMain, reposer, todayIndex,
     type Plan,
 } from '@/mobile/screens/tv/plan';
 import styles from './PlanPicker.module.css';
@@ -194,6 +194,9 @@ export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlani
         const next = poserRecette(plan, jour, repas, cestMoi ? null : recipe);
         setPlan(next);
         void enregistrerPlan(next);
+        // Créneau choisi : la recette n'a plus à rester en main (sinon le
+        // planificateur la proposerait encore, avec son « Annuler »).
+        if (!cestMoi && String(recetteEnMain()?.id) === id) reposer();
         buzz(cestMoi ? 8 : 14);
         if (!cestMoi) setFlash(`${jour}|${repas}`);
     }, [plan, id, recipe, connecte, enMain, deplacer]);
@@ -433,7 +436,8 @@ export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlani
                                     /* La recette part AVEC nous : le planificateur la
                                        trouvera en main et proposera de la poser
                                        directement, sans avoir à la rechercher. */
-                                    prendreEnMain(recipe);
+                                    if (poses > 0) { if (String(recetteEnMain()?.id) === id) reposer(); }
+                                    else prendreEnMain(recipe);
                                     window.dispatchEvent(new Event(FERMER_FICHE));
                                     if (ouvrirPlanificateur) { onClose(); ouvrirPlanificateur(); }
                                     else router.push('/tv-planner');

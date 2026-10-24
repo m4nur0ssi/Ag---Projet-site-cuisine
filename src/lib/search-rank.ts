@@ -2,6 +2,7 @@
 // Tape "oeuf farine chocolat" → recettes 3/3 en haut, puis 2/3, etc.
 import { normalizeIng, cleanIngredientText } from './ingredients';
 import type { Recipe } from '@/types';
+import { texteRessemble } from './fuzzy';
 
 // Mots à ignorer dans la requête (liaisons, articles).
 const STOP = new Set([
@@ -60,7 +61,7 @@ export const rankByIngredients = (recipes: Recipe[], query: string): RankedRecip
         const hay = haystackOf(recipe);
         const matchedTokens: string[] = [];
         const missingTokens: string[] = [];
-        tokens.forEach(t => (hay.includes(t) ? matchedTokens : missingTokens).push(t));
+        tokens.forEach(t => (hay.includes(t) || texteRessemble(t, hay) ? matchedTokens : missingTokens).push(t));
         return { recipe, matched: matchedTokens.length, total: tokens.length, matchedTokens, missingTokens };
     });
 
