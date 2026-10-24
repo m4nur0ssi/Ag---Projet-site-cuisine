@@ -1,21 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8Dk16kh/",
-      "country": "Pâtisserie",
-      "timestamp": "2026-10-24T20:19:45.434Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8DhnA3r/",
-      "country": "Pâtisserie",
-      "timestamp": "2026-10-24T20:20:03.772Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8Dhw5uc/",
-      "country": "Pâtisserie",
-      "timestamp": "2026-10-24T20:23:31.426Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN82kvpyD/",
