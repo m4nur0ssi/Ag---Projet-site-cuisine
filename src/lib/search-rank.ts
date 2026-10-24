@@ -2,7 +2,7 @@
 // Tape "oeuf farine chocolat" → recettes 3/3 en haut, puis 2/3, etc.
 import { normalizeIng, cleanIngredientText } from './ingredients';
 import type { Recipe } from '@/types';
-import { texteRessemble } from './fuzzy';
+import { motLePlusProche, vocabulaireDe, type Vocabulaire } from './fuzzy';
 
 // Mots à ignorer dans la requête (liaisons, articles).
 const STOP = new Set([
@@ -57,11 +57,21 @@ export const rankByIngredients = (recipes: Recipe[], query: string): RankedRecip
     const tokens = queryTokens(query);
     if (tokens.length < 1) return null;
 
-    const ranked = recipes.map<RankedRecipe>(recipe => {
-        const hay = haystackOf(recipe);
+    const hays = recipes.map(haystackOf);
+    // Faute de frappe : un mot absent de TOUT le catalogue est remplacé par le
+    // mot existant le plus proche (« cocola » → « chocolat »). Un mot présent
+    // quelque part reste tel quel (« poire » ne devient jamais « poivre »).
+    let voc: Vocabulaire | null = null;
+    const corriges = tokens.map(t => {
+        if (hays.some(h => h.includes(t))) return t;
+        voc ??= vocabulaireDe(hays);
+        return motLePlusProche(t, voc) ?? t;
+    });
+
+    const ranked = recipes.map<RankedRecipe>((recipe, i) => {
         const matchedTokens: string[] = [];
         const missingTokens: string[] = [];
-        tokens.forEach(t => (hay.includes(t) || texteRessemble(t, hay) ? matchedTokens : missingTokens).push(t));
+        corriges.forEach(t => (hays[i].includes(t) ? matchedTokens : missingTokens).push(t));
         return { recipe, matched: matchedTokens.length, total: tokens.length, matchedTokens, missingTokens };
     });
 

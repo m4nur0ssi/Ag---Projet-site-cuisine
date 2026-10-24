@@ -1,6 +1,8 @@
 // Tolérance aux fautes de frappe (« cocola » → « chocolat »).
-// Repli seulement : on n'y recourt que si la recherche exacte ne trouve rien
-// dans le texte. Les textes arrivent déjà normalisés (minuscules, sans accents).
+// Repli seulement : un mot tapé qui existe quelque part dans le catalogue est
+// cherché tel quel. Sinon on le remplace par le mot le plus proche qui existe
+// (« poire » ne devient donc jamais « poivre »). Textes déjà normalisés
+// (minuscules, sans accents).
 
 /** Distance d'édition (Damerau : l'inversion de deux lettres compte pour 1). */
 const distance = (a: string, b: string): number => {
@@ -36,8 +38,29 @@ export function motRessemble(tape: string, mot: string): boolean {
     return tape.length / mot.length >= 0.7 && sousSuite(tape, mot);
 }
 
-/** Le texte contient-il un mot qui ressemble au mot tapé ? */
-export function texteRessemble(tape: string, texte: string): boolean {
-    for (const mot of texte.split(/[^a-z0-9]+/)) if (mot && motRessemble(tape, mot)) return true;
-    return false;
+/** Vocabulaire du catalogue : chaque mot avec son nombre d'apparitions. */
+export type Vocabulaire = Map<string, number>;
+
+export function vocabulaireDe(textes: string[]): Vocabulaire {
+    const voc: Vocabulaire = new Map();
+    for (const texte of textes) {
+        for (const mot of texte.split(/[^a-z0-9]+/)) if (mot.length >= 4) voc.set(mot, (voc.get(mot) || 0) + 1);
+    }
+    return voc;
+}
+
+/**
+ * Mot du catalogue le plus proche du mot tapé, ou null si rien ne lui
+ * ressemble. À n'appeler que pour un mot introuvable tel quel.
+ * L'écart compte, mais un mot fréquent l'emporte sur un mot rare à peine plus
+ * proche : « cocola » → « chocolat » (68 recettes) plutôt que « cocoa » (1).
+ */
+export function motLePlusProche(tape: string, voc: Vocabulaire): string | null {
+    let meilleur: string | null = null, score = Infinity;
+    for (const [mot, n] of voc) {
+        if (!motRessemble(tape, mot)) continue;
+        const s = distance(tape, mot) - Math.log2(n) / 2;
+        if (s < score) { meilleur = mot; score = s; }
+    }
+    return meilleur;
 }

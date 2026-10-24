@@ -6,7 +6,7 @@
 // Utilisé côté mobile ET desktop (import partagé).
 
 import { estRecettePates } from './pates';
-import { texteRessemble } from './fuzzy';
+import { motLePlusProche, vocabulaireDe, type Vocabulaire } from './fuzzy';
 
 export const normalizeFr = (s: string) =>
     (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -83,7 +83,17 @@ export function smartLocalSearch<T extends Matchable>(recipes: T[], query: strin
     const noMeat = [...negWords].some(w => /viande|carne/.test(w));
     const MEAT_RX = /\b(viande|poulet|b(?:oeuf|ouf)|steak|bavette|paleron|entrecote|rumsteck|veau|agneau|mouton|gigot|porc|lardon|jambon|bacon|saucisse|chorizo|merguez|cotelette|escalope|magret|kefta|charcuterie|hachee|hache)\b/;
     // Les mots niés ne comptent PAS comme correspondance positive.
-    const posWords = words.filter(w => !negWords.has(w));
+    // Faute de frappe : un mot absent de tous les titres et tags est remplacé par
+    // le mot existant le plus proche (« cocola » → « chocolat »). Les mots compris
+    // par les lexiques (type, pays, régime) restent tels quels.
+    const textes = recipes.map(r => normalizeFr(`${r.title || ''} ${(r.tags || []).join(' ')}`));
+    const compris = (w: string) => [...TYPE_LEX, ...COUNTRY_LEX, ...DIET_LEX].some(l => l.rx.test(` ${w} `));
+    let voc: Vocabulaire | null = null;
+    const posWords = words.filter(w => !negWords.has(w)).map(w => {
+        if (compris(w) || textes.some(t => t.includes(w))) return w;
+        voc ??= vocabulaireDe(textes);
+        return motLePlusProche(w, voc) ?? w;
+    });
 
     const rank = (penalizeWrongType: boolean) => recipes
         .filter(r => normalizeFr(r.category || '') !== 'restaurant')
@@ -107,7 +117,6 @@ export function smartLocalSearch<T extends Matchable>(recipes: T[], query: strin
             for (const w of posWords) {
                 if (title.includes(w)) score += 2;
                 else if (tags.some(t => t.includes(w))) score += 1;
-                else if (texteRessemble(w, title)) score += 1; // faute de frappe
             }
 
             // Négation : la recette contient un terme explicitement exclu → on l'écarte.
