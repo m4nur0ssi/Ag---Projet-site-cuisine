@@ -9,7 +9,7 @@
 
 import { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { mockRecipes } from '@/mobile/data/mockData';
+import { homeRecipes as mockRecipes } from '@/mobile/data/home-recipes';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './tvAuthGate.module.css';
 

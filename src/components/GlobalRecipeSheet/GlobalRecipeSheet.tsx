@@ -1,8 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
-import RecipeSheet from '@/components/RecipeSheet/RecipeSheet';
-import { mockRecipes } from '@/mobile/data/mockData';
+import dynamic from 'next/dynamic';
+import type { Recipe } from '@/mobile/types';
 import { FERMER_FICHE } from '@/lib/ficheEvents';
+
+// La fiche et le catalogue complet (2 Mo) n'arrivent qu'à la première ouverture :
+// l'accueil n'a pas à les payer au démarrage.
+const RecipeSheet = dynamic(() => import('@/components/RecipeSheet/RecipeSheet'), { ssr: false });
+let catalogue: Recipe[] | null = null;
+const chargerCatalogue = () => import('@/mobile/data/mockData').then((m) => { catalogue = m.mockRecipes; });
 
 /**
  * Hôte global de la recette flottante (RecipeSheet).
@@ -15,7 +21,7 @@ export default function GlobalRecipeSheet() {
     /** Sélection de la recherche : la fiche la parcourt avec ‹ › et le clavier. */
     const [liste, setListe] = useState<{ recettes: any[]; index: number } | null>(null);
     const completer = (d: any) => {
-        const full = mockRecipes.find((r: any) => String(r.id) === String(d.id));
+        const full = catalogue?.find((r: any) => String(r.id) === String(d.id));
         const base = full ? { ...d, ...full } : d;
         return { category: 'plats', steps: [], ingredients: [], tags: [], ...base };
     };
@@ -28,7 +34,8 @@ export default function GlobalRecipeSheet() {
             if (Array.isArray(__liste) && __liste.length > 1 && typeof __index === 'number') {
                 setListe({ recettes: __liste, index: __index });
             } else setListe(null);
-            setRecipe(completer(d));
+            if (catalogue) setRecipe(completer(d));
+            else void chargerCatalogue().then(() => setRecipe(completer(d)), () => setRecipe(completer(d)));
         };
         /* Fermeture demandée par un écran qui prend la main : « Ouvrir le
            planificateur » depuis le volet de planification, par exemple. La

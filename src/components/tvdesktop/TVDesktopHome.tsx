@@ -25,7 +25,10 @@ import { Recipe } from '@/mobile/types';
  * est petit : il voyage avec le reste.
  */
 import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
-import { mockRecipes } from '@/mobile/data/mockData';
+// Catalogue allégé (comme l'accueil mobile) : sans étapes, ingrédients ni
+// embeds, mais avec les rangées thématiques pré-calculées au build. Le
+// catalogue complet n'arrive qu'à l'ouverture d'une fiche (GlobalRecipeSheet).
+import { homeRecipes as mockRecipes } from '@/mobile/data/home-recipes';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
@@ -198,7 +201,8 @@ function writeLibrary(items: LibraryItem[]) {
 }
 
 // Identifiant de la vidéo TikTok d'une recette (même règle que le mobile).
-const tiktokId = (recipe: Recipe) => recipe.videoHtml?.match(/data-video-id="(\d+)"/)?.[1] || null;
+const tiktokId = (recipe: Recipe) =>
+    (recipe as { tiktokId?: string }).tiktokId || recipe.videoHtml?.match(/data-video-id="(\d+)"/)?.[1] || null;
 // Deux secondes de photo fixe avant que la vidéo prenne le relais.
 const AUTOPLAY_DELAY = 2000;
 
@@ -409,6 +413,9 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
 
 // ── Rangée horizontale (flèches au survol) ─────────────────────────────────
 
+/** Cartes montées d'emblée dans une rangée (≈ deux écrans). */
+const PREMIERES_CARTES = 14;
+
 function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onToggleLater, ranked, inlaid }: {
     title: string; recipes: Recipe[]; shape: CardShape;
     /** Thème partageable : ajoute le bouton « Partager » (lien /?tag=…). */
@@ -426,13 +433,20 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
     // La rangée SAIT ce qu'elle est : son titre (ou son tag de thème) suffit à
     // nommer la collection que ses cartes partagent.
     const coll = collOf(title, recipes, shareTag);
+    // Une rangée n'affiche d'abord que ce qui tient sur deux écrans : l'accueil
+    // montait sinon ~3 000 cartes d'un coup. Le reste arrive dès que la souris
+    // approche, qu'on fait défiler la rangée ou qu'on touche une flèche.
+    const [tout, setTout] = useState(false);
     if (!recipes.length) return null;
+    const visibles = tout ? recipes : recipes.slice(0, PREMIERES_CARTES);
+    const toutMonter = () => { if (!tout && recipes.length > PREMIERES_CARTES) setTout(true); };
     const nudge = (dir: number) => {
+        toutMonter();
         const el = scroller.current;
         if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' });
     };
     return (
-        <section className={styles.row} data-reveal data-snap>
+        <section className={styles.row} data-reveal data-snap onPointerEnter={toutMonter} onFocus={toutMonter}>
             <div className={styles.rowHeadWrap}>
                 <button className={styles.rowHead} onClick={() => onSeeAll(title, recipes)}>
                     <h2 className={styles.rowTitle}>{title}</h2>
@@ -451,8 +465,8 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
                 <button className={`${styles.rowArrow} ${styles.rowArrowL}`} onClick={() => nudge(-1)} aria-label="Précédent">
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
-                <div className={`${styles.rowScroll} ${ranked ? styles.rowScrollRanked : ''}`} ref={scroller}>
-                    {recipes.map((r, i) => (
+                <div className={`${styles.rowScroll} ${ranked ? styles.rowScrollRanked : ''}`} ref={scroller} onScroll={toutMonter}>
+                    {visibles.map((r, i) => (
                         <Card
                             key={r.id}
                             recipe={r}
