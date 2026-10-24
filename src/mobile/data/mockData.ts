@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 24/10/2026 21:05:42
+ * Dernière mise à jour: 24/10/2026 21:20:58
  * Total: 812 recettes
  */
-export const exportSyncId = "1792875942275";
+export const exportSyncId = "1792876858690";
 export const mockRecipes: Recipe[] = [
     {
         "id": "8089",
@@ -223,7 +223,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8091",
         "title": "Tarte Bourdaloue aux poires",
         "description": "La classique tarte amandine aux poires, garnie d'une crème d'amande parfumée à la vanille et au rhum, puis parsemée d'amandes effilées.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8091-carte.webp",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
