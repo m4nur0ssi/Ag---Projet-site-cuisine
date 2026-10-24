@@ -2,11 +2,161 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 24/10/2026 07:45:50
- * Total: 807 recettes
+ * Dernière mise à jour: 24/10/2026 14:19:03
+ * Total: 809 recettes
  */
-export const exportSyncId = "1792827950951";
+export const exportSyncId = "1792851543439";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8085",
+        "title": "Rouleaux de mangue et jambon cru",
+        "description": "Une entrée ou un apéritif festif et rapide à préparer en seulement 5 minutes, parfait pour les fêtes de fin d'année. Ces rouleaux combinent la douceur de la mangue, le salé du jambon cru, la fraîcheur de la roquette et du fromage frais, le tout re...",
+        "image": "/recipes-ia/8085-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7698322151421578497\" data-video-id=\"7698322151421578497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7698322151421578497\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon cru (ou autre charcuterie séchée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Mangue"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais (type Philadelphia)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce balsamique"
+            }
+        ],
+        "steps": [
+            "Déposez les tranches de jambon cru sur une surface plane.",
+            "Ajoutez une cuillère de fromage frais, quelques feuilles de roquette et un morceau de mangue sur chaque tranche.",
+            "Roulez chaque tranche pour former un petit rouleau.",
+            "Saupoudrez les rouleaux d'amandes concassées et arrosez-les de sauce balsamique avant de servir."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Espagne",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8083",
+        "title": "Le Courchevel Gâteau de Crêpes",
+        "description": "Un élégant gâteau de crêpes inspiré de Courchevel, alliant la tradition pâtissière française à la simplicité. Composé de crêpes, de coulis de framboises, de crème au mascarpone et de fruits rouges, il est impressionnant mais facile à réaliser à la...",
+        "image": "/recipes-ia/8083-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7698921988923936021\" data-video-id=\"7698921988923936021\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7698921988923936021\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             375 ml (1½ tasses) de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 gros œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             190 g de farine de blé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             150 g (¾ tasse) de sucre semoule"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 ml (¾ tasse) d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n             125 g (4½ oz) de framboises fraîches"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             16 biscuits à la cuillère (Savoiardi)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             500 ml (2 tasses) de crème liquide entière, plus un supplément pour servir"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             250 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60 g de sucre glace, plus un supplément pour servir"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café de pâte de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             200 g de fraises, finement hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n             125 g de framboises fraîches"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de confiture d'abricot"
+            }
+        ],
+        "steps": [
+            "Pour préparer les crêpes, fouettez le lait, la farine, les œufs et une pincée de sel jusqu'à obtenir une pâte lisse. Laissez reposer la pâte pendant au moins 30 minutes.",
+            "Faites chauffer une poêle antiadhésive de 30 cm légèrement graissée à feu moyen et cuisez 5 crêpes, environ 2-3 minutes chacune. Coupez deux crêpes à 30 cm de diamètre. Laissez-les refroidir.",
+            "Préparez le coulis de framboises : placez les ingrédients du coulis (sucre, eau, framboises) dans une petite casserole à feu moyen. Laissez mijoter pendant 10 minutes en remuant et en pressant légèrement les framboises pour libérer leur jus. Passez le coulis à travers une passoire fine, jetez les solides et laissez-le refroidir complètement. Pendant ce temps, fouettez la crème, le mascarpone, le sucre glace et la pâte de vanille ensemble jusqu'à obtenir une consistance épaisse et mousseuse.",
+            "Chemisez le fond et les côtés d'un moule à charnière de 20 cm avec 3 crêpes, en les faisant légèrement se chevaucher et en laissant une partie dépasser des bords. Placez une crêpe coupée dans le fond pour couvrir les éventuels espaces. Étalez de la crème sur le fond, puis trempez les biscuits à la cuillère dans le coulis et disposez-les en couches dans le moule. Parsemez de fraises hachées. Répétez ces couches deux fois. Terminez par la dernière crêpe coupée, puis repliez les crêpes qui dépassent pour sceller le tout. Réfrigérez couvert pendant au moins 6 heures (idéalement une nuit).",
+            "Démoulez délicatement le gâteau sur un plat de service. Faites chauffer la confiture d'abricot avec une cuillère à café d'eau et badigeonnez légèrement les crêpes pour une finition brillante. Garnissez avec le reste de crème et les framboises fraîches, puis saupoudrez légèrement de sucre glace avant de servir. Bon appétit !"
+        ],
+        "tags": [
+            "France",
+            "Glaces",
+            "pâtisserie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8068",
         "title": "Poireauflette",
