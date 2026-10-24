@@ -80,7 +80,10 @@
     /* Stoppe le rebond élastique + le scroll-chaining (changement de recette/dismiss saccadé) */
     overscroll-behavior: none;
     position: relative;
-    padding-top: 40px;
+    /* Pas de marge ici : elle laissait une bande noire entre le bord arrondi
+       et le halo de la photo. L'espace qui dégage la poignée, les points et la
+       croix est pris DANS le halo (voir .modalMode .heroNewLayout). */
+    padding-top: 0;
     /* La barre du bas reste visible sur la fiche : on garde sa hauteur libre. */
     padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px));
     z-index: 10;
@@ -243,15 +246,6 @@
     font-weight: 700;
     letter-spacing: 0.02em;
     font-variant-numeric: tabular-nums;
-}
-
-/* ── Au bureau : la fiche se comporte comme celle du reste du site ───────
-   Pas de bande noire au-dessus de la photo — le halo doit toucher le bord —
-   et la hauteur est mesurée sur le contenu (voir RecipeSheet.tsx) pour
-   s'arrêter juste sous la rangée note / calories. Sur téléphone, la marge
-   du haut reste : c'est elle qui dégage la poignée et l'encoche. */
-@media (min-width: 1024px) {
-    .scrollArea { padding-top: 0; }
 }
 
 /* La fiche du choix reste au-dessus de la recherche et du menu du bas. */

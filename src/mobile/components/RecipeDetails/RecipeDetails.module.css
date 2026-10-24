@@ -71,6 +71,14 @@
 .modalMode .heroNewLayout {
     padding-top: 20px !important;
 }
+/* Sur téléphone, le halo monte jusqu'au bord arrondi de la fiche : les 40 px
+   qui dégagent la poignée, les points et la croix sont pris dedans (ils
+   étaient autrefois une marge noire au-dessus, dans RecipeSheet). */
+@media (max-width: 1023px) {
+    .modalMode .heroNewLayout {
+        padding-top: 60px !important;
+    }
+}
 
 /* Le halo du haut — c'est LUI que l'on voit en ouvrant une fiche.
    Il descend depuis la photo et s'éteint au niveau des pilules (préparation,
