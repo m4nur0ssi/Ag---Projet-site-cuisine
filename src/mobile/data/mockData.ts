@@ -2,11 +2,80 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 24/10/2026 21:20:58
+ * Dernière mise à jour: 25/10/2026 07:57:19
  * Total: 812 recettes
  */
-export const exportSyncId = "1792876858690";
+export const exportSyncId = "1792915039424";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8091",
+        "title": "Tarte Bourdaloue aux poires",
+        "description": "La classique tarte amandine aux poires, garnie d'une crème d'amande parfumée à la vanille et au rhum, puis parsemée d'amandes effilées.",
+        "image": "/recipes-ia/8091-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7204756334259064069\" data-video-id=\"7204756334259064069\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7204756334259064069\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 fond de tarte (préalablement foncé)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre pommade"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Arôme de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Rhum (ou autre arôme au choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             5 demi-poires au sirop"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Amandes effilées"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 180 °C.",
+            "Dans un récipient, mélangez le beurre pommade bien mou avec le sucre blanc.",
+            "Ajoutez la poudre d'amande et incorporez les œufs un à un en mélangeant bien entre chaque ajout jusqu'à obtenir une texture homogène.",
+            "Parfumez la crème avec un trait d'arôme de vanille et un peu de rhum.",
+            "Versez la crème d'amande sur le fond de tarte préalablement foncé et répartissez-la uniformément à l'aide d'une spatule ou d'une maryse.",
+            "Tranchez finement les demi-poires au sirop et déposez-les harmonieusement sur la crème.",
+            "Parsemez d'amandes effilées selon votre goût.",
+            "Enfournez à 180 °C pendant environ 30 minutes jusqu'à ce que la tarte soit joliment dorée."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie",
+            "tarte",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8089",
         "title": "Tarte Amandine Poire Chocolat",
@@ -214,75 +283,6 @@ export const mockRecipes: Recipe[] = [
             "Glaces",
             "pâtisserie",
             "tarte"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8091",
-        "title": "Tarte Bourdaloue aux poires",
-        "description": "La classique tarte amandine aux poires, garnie d'une crème d'amande parfumée à la vanille et au rhum, puis parsemée d'amandes effilées.",
-        "image": "/recipes-ia/8091-carte.webp",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7204756334259064069\" data-video-id=\"7204756334259064069\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7204756334259064069\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 fond de tarte (préalablement foncé)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             100 g de beurre pommade"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100 g de sucre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 g de poudre d'amande"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             Arôme de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             Rhum (ou autre arôme au choix)"
-            },
-            {
-                "quantity": "",
-                "name": "🍐\n             5 demi-poires au sirop"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Amandes effilées"
-            }
-        ],
-        "steps": [
-            "Préchauffez votre four à 180 °C.",
-            "Dans un récipient, mélangez le beurre pommade bien mou avec le sucre blanc.",
-            "Ajoutez la poudre d'amande et incorporez les œufs un à un en mélangeant bien entre chaque ajout jusqu'à obtenir une texture homogène.",
-            "Parfumez la crème avec un trait d'arôme de vanille et un peu de rhum.",
-            "Versez la crème d'amande sur le fond de tarte préalablement foncé et répartissez-la uniformément à l'aide d'une spatule ou d'une maryse.",
-            "Tranchez finement les demi-poires au sirop et déposez-les harmonieusement sur la crème.",
-            "Parsemez d'amandes effilées selon votre goût.",
-            "Enfournez à 180 °C pendant environ 30 minutes jusqu'à ce que la tarte soit joliment dorée."
-        ],
-        "tags": [
-            "France",
-            "pâtisserie",
-            "tarte",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
