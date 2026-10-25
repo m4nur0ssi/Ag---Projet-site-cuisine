@@ -3,6 +3,7 @@
 // aux connectés. Table Supabase `ratings` (user_id, recipe_id, stars, updated_at).
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import { lireStatsNotes, ecrireStatsNotes, oublierStatsNotes } from '@/lib/ratingsCache';
 
 export interface RatingStat { avg: number; count: number; }
 
@@ -13,6 +14,10 @@ let inflight: Promise<Map<string, RatingStat>> | null = null;
 export async function loadAllRatingStats(force = false): Promise<Map<string, RatingStat>> {
     if (cache && !force) return cache;
     if (inflight && !force) return inflight;
+    if (!force) {
+        const gardees = lireStatsNotes();
+        if (gardees) { cache = gardees; return gardees; }
+    }
     inflight = (async () => {
         const { data } = await supabase.from('ratings').select('recipe_id, stars');
         const acc = new Map<string, { sum: number; count: number }>();
@@ -25,6 +30,12 @@ export async function loadAllRatingStats(force = false): Promise<Map<string, Rat
         });
         const out = new Map<string, RatingStat>();
         acc.forEach((v, k) => out.set(k, { avg: v.count ? v.sum / v.count : 0, count: v.count }));
+        // Réponse vide ou refusée (quota, réseau) : on sert les anciennes moyennes plutôt que rien.
+        if (!out.size) {
+            const anciennes = lireStatsNotes(true);
+            if (anciennes) { cache = anciennes; inflight = null; return anciennes; }
+        }
+        ecrireStatsNotes(out);
         cache = out;
         inflight = null;
         return out;
@@ -68,6 +79,7 @@ export async function submitRating(recipeId: string, stars: number): Promise<{ o
         return { ok: false, raison: "La note n'a pas pu être enregistrée." };
     }
     cache = null; // invalide le cache → prochaine lecture rafraîchie
+    oublierStatsNotes();
     return { ok: true };
 }
 

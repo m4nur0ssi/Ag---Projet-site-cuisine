@@ -3,6 +3,7 @@
 // Moyenne PUBLIQUE (lecture ouverte), vote réservé aux connectés.
 import { useEffect, useState } from 'react';
 import { supabase } from '@/mobile/lib/supabase';
+import { lireStatsNotes, ecrireStatsNotes, oublierStatsNotes } from '@/lib/ratingsCache';
 
 export interface RatingStat {
     avg: number;
@@ -17,6 +18,10 @@ let inflight: Promise<Map<string, RatingStat>> | null = null;
 export async function loadAllRatingStats(force = false): Promise<Map<string, RatingStat>> {
     if (cache && !force) return cache;
     if (inflight && !force) return inflight;
+    if (!force) {
+        const gardees = lireStatsNotes();
+        if (gardees) { cache = gardees; return gardees; }
+    }
     inflight = (async () => {
         /*
          * La date de la note sert à trier le Top par « Notées récemment ». Si
@@ -38,6 +43,12 @@ export async function loadAllRatingStats(force = false): Promise<Map<string, Rat
         });
         const out = new Map<string, RatingStat>();
         acc.forEach((v, k) => out.set(k, { avg: v.count ? v.sum / v.count : 0, count: v.count, last: v.last || undefined }));
+        // Réponse vide ou refusée (quota, réseau) : on sert les anciennes moyennes plutôt que rien.
+        if (!out.size) {
+            const anciennes = lireStatsNotes(true);
+            if (anciennes) { cache = anciennes; inflight = null; return anciennes; }
+        }
+        ecrireStatsNotes(out);
         cache = out;
         inflight = null;
         return out;
@@ -79,6 +90,7 @@ export async function submitRating(recipeId: string, stars: number): Promise<{ o
         return { ok: false, raison: "La note n'a pas pu être enregistrée." };
     }
     cache = null;
+    oublierStatsNotes();
     return { ok: true };
 }
 

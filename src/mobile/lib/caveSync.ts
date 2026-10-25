@@ -67,6 +67,22 @@ export async function pullCave(): Promise<void> {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) { markPulled(); return; }           // hors compte : rien à descendre
 
+    /*
+     * D'abord la seule date : la cave porte des photos en clair (plusieurs Mo)
+     * et la redescendre à CHAQUE ouverture de l'app épuisait la bande passante
+     * Supabase. Si la copie locale est déjà aussi récente que le nuage, rien à
+     * télécharger.
+     */
+    const { data: tete, error: erreurTete } = await supabase
+        .from('cave_state')
+        .select('updated_at')
+        .eq('user_id', session.user.id)
+        .maybeSingle();
+    if (erreurTete) return;                           // réseau/quota KO : même règle que ci-dessous
+    if (!tete) { markPulled(); return; }              // compte neuf : le local fera foi
+    const miennePre = Number(localStorage.getItem(STAMP_KEY) || 0);
+    if (miennePre >= new Date(tete.updated_at).getTime() && (await readLocal()).length) { markPulled(); return; }
+
     const { data, error } = await supabase
         .from('cave_state')
         .select('data, updated_at')
