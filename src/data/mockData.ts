@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 29/10/2026 09:07:30
+ * Dernière mise à jour: 30/10/2026 09:14:31
  * Total: 817 recettes
  */
-export const exportSyncId = "1793264850390";
+export const exportSyncId = "1793351671881";
 export const mockRecipes: Recipe[] = [
     {
         "id": "8110",
@@ -89,7 +89,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8098",
         "title": "Macaroni au fromage cuit au four façon pizza pepperoni",
         "description": "Une version gourmande et réconfortante du classique macaroni au fromage, agrémentée de saveurs de pizza et de pepperoni. Ce plat cuit au four est parfait pour les amateurs de fromage et de pizza.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F10%2Frecette-8098.webp&v=1793223969000",
+        "image": "/recipes-ia/8098-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
