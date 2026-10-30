@@ -62,6 +62,25 @@ function markPulled() {
 /** La cave locale avec ses photos EN CLAIR : le nuage n'a que faire d'un repère IndexedDB. */
 const readLocal = (): Promise<CaveWine[]> => lireCaveComplete();
 
+/**
+ * Ce qui monte dans le nuage : la cave SANS ses photos prises à l'appareil.
+ *
+ * Une photo scannée voyage en clair (`data:…`, des centaines de Ko). Deux
+ * comptes portaient ainsi 8 et 5 Mo par ligne : chaque appareil qui
+ * redescendait la cave tirait ces Mo, et le quota mensuel de Supabase (5 Go
+ * sortants) a été épuisé — site entier coupé : connexion, notes, favoris.
+ * Les photos de marchand (URL) restent, elles ne pèsent rien. Les photos
+ * scannées vivent sur l'appareil qui les a prises (IndexedDB).
+ */
+const sansPhotosLourdes = (cave: CaveWine[]): CaveWine[] =>
+    cave.map((w) => (w.photo && w.photo.startsWith('data:') ? { ...w, photo: undefined } : w));
+
+/** Le nuage n'a plus les photos scannées : on garde celles de l'appareil. */
+function garderPhotosLocales(cloud: CaveWine[], local: CaveWine[]): CaveWine[] {
+    const parId = new Map(local.map((w) => [String(w.id), w.photo]));
+    return cloud.map((w) => (w.photo ? w : { ...w, photo: parId.get(String(w.id)) }));
+}
+
 /** À la connexion : le nuage hydrate la cave locale s'il est plus récent. */
 export async function pullCave(): Promise<void> {
     const { data: { session } } = await supabase.auth.getSession();
@@ -101,9 +120,19 @@ export async function pullCave(): Promise<void> {
     // Cave locale non vide et plus fraîche que le nuage : c'est elle qui gagne,
     // et c'est à elle de monter (le push s'en charge juste après).
     if (local.length && mine > theirs) { markPulled(); return; }
-    if (JSON.stringify(cloud) === JSON.stringify(local)) { markPulled(); return; }
+    const fusion = garderPhotosLocales(cloud as CaveWine[], local);
+    /*
+     * Identique : on NOTE la date quand même. Sans ça, l'appareil restait « en
+     * retard » sur le nuage et retéléchargeait la cave entière à CHAQUE
+     * ouverture, pour constater à chaque fois qu'elle n'avait pas changé.
+     */
+    if (JSON.stringify(fusion) === JSON.stringify(local)) {
+        ecrireStock(STAMP_KEY, String(theirs));
+        markPulled();
+        return;
+    }
 
-    ecrireCaveBrute(cloud as CaveWine[]);   // les photos lourdes partent dans IndexedDB
+    ecrireCaveBrute(fusion);   // les photos lourdes partent dans IndexedDB
     ecrireStock(STAMP_KEY, String(theirs));
     markPulled();
     window.dispatchEvent(new Event(CAVE_EVENT));
@@ -119,7 +148,7 @@ async function pushNow(): Promise<void> {
     const now = new Date();
     const { error } = await supabase.from('cave_state').upsert({
         user_id: session.user.id,
-        data: await readLocal(),
+        data: sansPhotosLourdes(await readLocal()),
         updated_at: now.toISOString(),
     });
     if (!error) ecrireStock(STAMP_KEY, String(now.getTime()));
