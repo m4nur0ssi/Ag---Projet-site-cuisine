@@ -1,16 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8y6Hwme/",
-      "country": "Desserts",
-      "timestamp": "2026-11-02T10:51:11.900Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8y6GuD5/",
-      "country": "Pâtisserie",
-      "timestamp": "2026-11-02T10:55:22.825Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN82kgXNg/",
