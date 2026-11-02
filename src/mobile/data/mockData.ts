@@ -2,11 +2,97 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 01/11/2026 09:57:29
- * Total: 817 recettes
+ * Dernière mise à jour: 02/11/2026 07:55:41
+ * Total: 818 recettes
  */
-export const exportSyncId = "1793527049727";
+export const exportSyncId = "1793606141442";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8113",
+        "title": "Bavette à l'échalote",
+        "description": "Un grand classique de la cuisine française, la bavette à l'échalote, simple à réaliser et réconfortante. Découvrez les astuces pour une viande tendre et une sauce savoureuse.",
+        "image": "/recipes-ia/8113-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7278693004309712160\" data-video-id=\"7278693004309712160\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7278693004309712160\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 belle bavette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 belles échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre (20g + quelques noisettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail chemisée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Romarin"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             20cL de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à café de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre du moulin"
+            }
+        ],
+        "steps": [
+            "Préparez la bavette : nettoyez-la pour éviter que les nerfs ne rétrécissent à la cuisson.",
+            "Taillez la bavette comme un magret en faisant de légères incisions en quadrillage.",
+            "Assaisonnez la bavette de fleur de sel de chaque côté, puis réservez-la sur une plaque.",
+            "Préparez les échalotes : faites une incision, retirez la peau, coupez-les en deux et émincez-les dans le sens de la longueur.",
+            "Faites chauffer un filet d'huile d'olive dans une poêle et saisissez la bavette des deux côtés.",
+            "Pour une cuisson bleue, ajoutez des noisettes de beurre, une gousse d'ail chemisée et du romarin pour parfumer la viande.",
+            "Arrosez généreusement la viande des deux côtés, puis réservez-la sur une grille.",
+            "Dans la même poêle, conservez les sucs de cuisson et faites-y confire les échalotes.",
+            "Déglacez ensuite avec le vin blanc pour récupérer les sucs.",
+            "Ajoutez quelques gouttes de sauce Worcestershire et de vinaigre balsamique pour l'acidité.",
+            "Montez la sauce au beurre pour la rendre brillante.",
+            "Assaisonnez la sauce avec du sel et du poivre du moulin.",
+            "Découpez la viande.",
+            "Nappez la bavette découpée avec la sauce à l'échalote."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8110",
         "title": "Rondelles de pommes façon pancake",
