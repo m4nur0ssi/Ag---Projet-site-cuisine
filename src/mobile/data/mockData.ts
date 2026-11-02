@@ -2,11 +2,84 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/11/2026 10:21:18
- * Total: 819 recettes
+ * Dernière mise à jour: 02/11/2026 10:38:31
+ * Total: 820 recettes
  */
-export const exportSyncId = "1793614878216";
+export const exportSyncId = "1793615911297";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8118",
+        "title": "Croquettes de chou-fleur",
+        "description": "Une recette de croquettes de chou-fleur, idéale pour faire manger des légumes à tous, même aux plus réticents.",
+        "image": "/recipes-ia/8118-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7414145910403304736\" data-video-id=\"7414145910403304736\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7414145910403304736\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥬\n             1 chou-fleur"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 cuillères à soupe de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             1 cuillère à soupe de chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curry (en option)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Cumin (en option)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Maïzena"
+            }
+        ],
+        "steps": [
+            "Dans une casserole d'eau bouillante salée, faites cuire votre chou-fleur découpé en morceaux. Ces derniers doivent être tendres lorsqu'on les pique à la fourchette.",
+            "Dans un saladier, écrasez vos choux-fleurs avec une fourchette ou un ustensile à purée.",
+            "Ajoutez les œufs, la maïzena, la chapelure, le parmesan, le sel, le poivre, le persil, le curry et le cumin, puis mélangez le tout.",
+            "Formez des petites boulettes et placez-les sur une plaque recouverte de papier cuisson, puis badigeonnez d'huile d'olive au pinceau.",
+            "Enfournez 30 minutes à 180°C (mais peut aussi être cuit en galette à la poêle, quelques minutes pour faire dorer). Bon appétit !"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8116",
         "title": "Purée de pommes de terre façon Joël Robuchon",
