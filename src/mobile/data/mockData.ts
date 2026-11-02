@@ -2,11 +2,359 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/11/2026 10:38:31
- * Total: 820 recettes
+ * Dernière mise à jour: 02/11/2026 11:09:44
+ * Total: 824 recettes
  */
-export const exportSyncId = "1793615911297";
+export const exportSyncId = "1793617784558";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8127",
+        "title": "Gâteau renversé au Lotus avec cœur coulant au caramel",
+        "description": "Tu dois absolument l'essayer - difficile de faire plus crémeux, croustillant et délicieux ! Enregistre la recette dès maintenant ! 📌✨",
+        "image": "/recipes-ia/8127-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700329459085298977\" data-video-id=\"7700329459085298977\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700329459085298977\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400 g de biscuits Lotus"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             150 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             500 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             520 g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 sachets de fixateur de chantilly"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             2 cuillères à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             80 g de crème liquide"
+            }
+        ],
+        "steps": [
+            "Base : Broyer finement les biscuits Lotus dans un mixeur, mélanger avec le beurre fondu et presser fermement sur le fond et les bords d'un moule à charnière. Placer au réfrigérateur pendant environ 15 à 30 minutes.",
+            "Caramel : Faire fondre le sucre. Incorporer le beurre, puis ajouter la crème et laisser mijoter environ 1 minute jusqu'à obtenir une sauce caramel onctueuse. Laisser refroidir.",
+            "Crème : Fouetter la crème liquide avec le fixateur de chantilly, le sucre glace et l'extrait de vanille jusqu'à obtenir une consistance ferme. Incorporer délicatement le mascarpone.",
+            "Montage : Étaler la moitié de la crème sur la base de biscuits et former un creux au centre. Y verser le caramel et recouvrir avec le reste de la crème, puis lisser.",
+            "Réfrigération et service : Placer au réfrigérateur, couvert, pendant une nuit. Le lendemain, poser une assiette dessus, retourner, ouvrir le moule à charnière et déguster ! 😍🔥"
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8125",
+        "title": "Riz au lait crémeux à la portugaise (Arroz doce)",
+        "description": "Une version ultra crémeuse et parfumée du traditionnel riz au lait portugais, relevée d'agrumes, de cannelle et enrichie au lait concentré sucré.",
+        "image": "/recipes-ia/8125-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703267994708839712\" data-video-id=\"7703267994708839712\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703267994708839712\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             165 g de riz rond à dessert"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 litre de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             397 g de lait concentré sucré (1 petite boîte)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 zestes d'orange"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 zestes de citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 à 2 bâtons de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cannelle en poudre"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, versez le lait concentré sucré, ajoutez le jaune d'œuf, mélangez bien et réservez.",
+            "Dans une casserole, déposez le riz rond, les zestes de citron et d'orange, les bâtons de cannelle ainsi qu'une pincée de sel.",
+            "Versez le lait et faites cuire à feu doux en remuant régulièrement pendant une dizaine de minutes, jusqu'à ce que le riz absorbe le lait et devienne bien fondant.",
+            "Retirez la casserole du feu dès que le riz est cuit, puis incorporez la préparation au lait concentré sucré en mélangeant soigneusement.",
+            "Versez la préparation dans un grand plat de service traditionnel.",
+            "Dégustez tiède ou placez au réfrigérateur pendant une nuit complète pour une texture plus ferme.",
+            "Saupoudrez de cannelle en poudre en formant un joli quadrillage avant de servir."
+        ],
+        "tags": [
+            "Desserts",
+            "Pas cher",
+            "Sans Gluten",
+            "Végé",
+            "Portugal"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8123",
+        "title": "Francesinha Portugaise",
+        "description": "Découvrez la Francesinha, une véritable institution culinaire portugaise. Ce plat réconfortant, composé d'un sandwich généreusement garni de viandes et de fromage, est sublimé par une sauce riche et savoureuse, dont le secret réside dans sa prépar...",
+        "image": "/recipes-ia/8123-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7701399643611024672\" data-video-id=\"7701399643611024672\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7701399643611024672\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             50 cl de bière blonde"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl de vin blanc sec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 cl de Porto rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 cl de whisky"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             150 g de coulis de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 gros oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15 cl de bouillon de viande"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à soupe de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 c. à soupe de sauce anglaise (Worcestershire)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 c. à soupe de moutarde jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Du piri-piri ou de la sauce piquante, selon votre goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques morceaux de linguiça (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             8 tranches de pain de mie épais"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 steaks de bœuf de 150 g chacun"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 linguiças (pour les sandwichs)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 chouriço"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10 à 12 tranches de fromage fondant"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Du sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Du poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Frites maison (pour l'accompagnement)"
+            }
+        ],
+        "steps": [
+            "Pour la sauce, faites revenir l'oignon, l'ail et les feuilles de laurier dans de l'huile d'olive et un peu de beurre.",
+            "Une fois les légumes bien colorés, déglacez avec le whisky, le Porto, le coulis de tomates et la bière.",
+            "Ajoutez la sauce anglaise, le vin blanc, la moutarde jaune, le paprika et le bouillon de viande.",
+            "Incorporez quelques gouttes de piri-piri selon votre goût.",
+            "Dès que la sauce commence à bouillir, ajoutez des petits morceaux de linguiça.",
+            "Mixez le tout et laissez cuire à feu doux pendant environ 20 à 30 minutes pour que la sauce se concentre en saveurs.",
+            "Pendant ce temps, toastez les tranches de pain de mie dans une poêle bien chaude légèrement beurrée.",
+            "Dans la même poêle, faites revenir les tranches de linguiça jusqu'à ce qu'elles soient bien dorées, puis retirez-les.",
+            "Faites cuire les steaks de bœuf un aller-retour dans la poêle bien chaude.",
+            "Pour le montage de la Francesinha : sur une tranche de pain de mie, déposez du jambon, la linguiça légèrement croustillante, une tranche de fromage, le steak de bœuf, puis le chouriço.",
+            "Refermez le sandwich avec une autre tranche de pain de mie.",
+            "Recouvrez entièrement le sandwich de fromage fondant.",
+            "Enfournez à 200°C pendant 3 minutes, jusqu'à ce que le fromage soit bien fondu.",
+            "Faites cuire un œuf au plat et déposez-le sur le sandwich.",
+            "Versez généreusement la sauce qui se sera bien concentrée en saveurs sur la Francesinha.",
+            "Servez avec des frites maison tout autour."
+        ],
+        "tags": [
+            "épicé",
+            "Portugal",
+            "Sandwichs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8121",
+        "title": "Brie au four, miel et prosciutto",
+        "description": "Un apéritif réconfortant et très facile à préparer. Ce brie au four, sucré, salé et fondant est délicieux. Idéal pour une soirée cocooning !",
+        "image": "/recipes-ia/8121-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693208827616939272\" data-video-id=\"7693208827616939272\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693208827616939272\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Brie, coupé en cubes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Prosciutto"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge, finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail, hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petite échalote, finement hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            }
+        ],
+        "steps": [
+            "Coupez le brie en cubes et placez-les dans un plat de cuisson allant au four.",
+            "Dans un petit bol, mélangez le miel, l'oignon rouge, l'ail et l'échalote.",
+            "Placez de petites rosettes de prosciutto entre les cubes de brie.",
+            "Arrosez le brie du mélange au miel.",
+            "Faites cuire au four à 190°C (380°F) pendant environ 20 minutes, ou jusqu'à ce que le brie soit fondu et coulant.",
+            "Assaisonnez de sel et de poivre, puis parsemez de persil frais.",
+            "Servez chaud avec des crackers, une baguette grillée ou du pain croustillant."
+        ],
+        "tags": [
+            "Apéritifs",
+            "C'est l'hiver",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8118",
         "title": "Croquettes de chou-fleur",
