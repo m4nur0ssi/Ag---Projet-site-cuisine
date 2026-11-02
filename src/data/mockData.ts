@@ -2,11 +2,68 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/11/2026 07:55:41
- * Total: 818 recettes
+ * Dernière mise à jour: 02/11/2026 10:21:18
+ * Total: 819 recettes
  */
-export const exportSyncId = "1793606141442";
+export const exportSyncId = "1793614878216";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8116",
+        "title": "Purée de pommes de terre façon Joël Robuchon",
+        "description": "Découvrez la recette emblématique de la purée de pommes de terre du chef Joël Robuchon, une préparation onctueuse et savoureuse à base de pommes de terre Ratte, de beurre et de lait chaud.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7572638771640831254\" data-video-id=\"7572638771640831254\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7572638771640831254\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1 kg de pommes de terre Ratte"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             250 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait chaud (quantité à convenance)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gros sel (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour l'assaisonnement)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, placez les pommes de terre Ratte.",
+            "Recouvrez les pommes de terre d'eau, environ 2 à 3 centimètres au-dessus.",
+            "Ajoutez du gros sel, environ 10 g par litre d'eau.",
+            "Faites cuire pendant environ 30 à 40 minutes.",
+            "Pour vérifier la cuisson, piquez une pomme de terre avec un couteau : si elle tombe facilement, elle est cuite.",
+            "Passez les pommes de terre cuites au tamis ou utilisez un presse-purée.",
+            "Remettez la purée sur le feu pour évaporer l'excédent d'eau.",
+            "Incorporez le beurre petit à petit tout en chauffant la purée.",
+            "Une fois le beurre entièrement incorporé, ajoutez le lait chaud progressivement, selon la texture désirée.",
+            "Assaisonnez avec du sel et du poivre."
+        ],
+        "tags": [
+            "France",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8113",
         "title": "Bavette à l'échalote",
