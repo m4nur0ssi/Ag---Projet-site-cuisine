@@ -2,143 +2,178 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/11/2026 11:09:44
- * Total: 824 recettes
+ * Dernière mise à jour: 02/11/2026 11:35:57
+ * Total: 825 recettes
  */
-export const exportSyncId = "1793617784558";
+export const exportSyncId = "1793619357897";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "8127",
-        "title": "Gâteau renversé au Lotus avec cœur coulant au caramel",
-        "description": "Tu dois absolument l'essayer - difficile de faire plus crémeux, croustillant et délicieux ! Enregistre la recette dès maintenant ! 📌✨",
-        "image": "/recipes-ia/8127-carte.webp",
-        "category": "patisserie",
+        "id": "8133",
+        "title": "Shakshuka d'automne aux poireaux et lait de coco",
+        "description": "Découvrez une version automnale et réconfortante de la shakshuka, revisitée avec une fondue de poireaux au curry et lait de coco. Ce plat végétarien complet est agrémenté de pois chiches, d'œufs, et servi avec du pain pita, des noix de cajou et de...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700329459085298977\" data-video-id=\"7700329459085298977\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700329459085298977\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7701790379137420576\" data-video-id=\"7701790379137420576\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7701790379137420576\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             400 g de biscuits Lotus"
+                "name": "🍐\n             4 poireaux"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             150 g de beurre fondu"
+                "name": "🧅\n             1 oignon"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             500 g de mascarpone"
+                "name": "🧄\n             2 gousses d'ail"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             520 g de crème liquide"
+                "name": "🫘\n             120 g de pois chiches"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             3 sachets de fixateur de chantilly"
+                "name": "🍅\n             100 ml de sauce tomate"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de sucre glace"
+                "name": "🥛\n             200 ml de lait de coco"
             },
             {
                 "quantity": "",
-                "name": "🍦\n             2 cuillères à café d'extrait de vanille"
+                "name": "🥚\n             3 œufs"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             120 g de sucre"
+                "name": "🧂\n             1,5 cuillère à soupe de curry"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             50 g de beurre"
+                "name": "🧂\n             1 cuillère à café de curcuma"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             80 g de crème liquide"
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix de cajou"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain pita"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feta"
             }
         ],
         "steps": [
-            "Base : Broyer finement les biscuits Lotus dans un mixeur, mélanger avec le beurre fondu et presser fermement sur le fond et les bords d'un moule à charnière. Placer au réfrigérateur pendant environ 15 à 30 minutes.",
-            "Caramel : Faire fondre le sucre. Incorporer le beurre, puis ajouter la crème et laisser mijoter environ 1 minute jusqu'à obtenir une sauce caramel onctueuse. Laisser refroidir.",
-            "Crème : Fouetter la crème liquide avec le fixateur de chantilly, le sucre glace et l'extrait de vanille jusqu'à obtenir une consistance ferme. Incorporer délicatement le mascarpone.",
-            "Montage : Étaler la moitié de la crème sur la base de biscuits et former un creux au centre. Y verser le caramel et recouvrir avec le reste de la crème, puis lisser.",
-            "Réfrigération et service : Placer au réfrigérateur, couvert, pendant une nuit. Le lendemain, poser une assiette dessus, retourner, ouvrir le moule à charnière et déguster ! 😍🔥"
+            "Émincez les poireaux et l'oignon.",
+            "Dans une poêle huilée, faites suer l'oignon et l'ail (vous pouvez remplacer l'ail par une échalote si vous le digérez mal) pendant 2 minutes.",
+            "Ajoutez les épices (curry, curcuma, paprika) et faites-les revenir 1 minute.",
+            "Incorporez les poireaux émincés et laissez-les fondre à feu doux.",
+            "Ajoutez les pois chiches.",
+            "Versez la sauce tomate et le lait de coco, puis laissez mijoter à feu doux.",
+            "Creusez 3 puits dans la préparation, cassez-y les œufs et couvrez la poêle pendant 4 à 6 minutes, jusqu'à ce que les œufs soient cuits à votre convenance.",
+            "Assaisonnez de sel et de poivre.",
+            "Parsemez de coriandre fraîche, de noix de cajou et de feta émiettée.",
+            "Servez chaud, accompagné de pain pita."
         ],
         "tags": [
-            "Glaces",
-            "pâtisserie"
+            "Accompagnements",
+            "C'est l'hiver",
+            "épicé",
+            "Healthy",
+            "Orient",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
     {
-        "id": "8125",
-        "title": "Riz au lait crémeux à la portugaise (Arroz doce)",
-        "description": "Une version ultra crémeuse et parfumée du traditionnel riz au lait portugais, relevée d'agrumes, de cannelle et enrichie au lait concentré sucré.",
-        "image": "/recipes-ia/8125-carte.webp",
-        "category": "desserts",
+        "id": "8121",
+        "title": "Brie au four, miel et prosciutto",
+        "description": "Un apéritif réconfortant et très facile à préparer. Ce brie au four, sucré, salé et fondant est délicieux. Idéal pour une soirée cocooning !",
+        "image": "/recipes-ia/8121-carte.webp",
+        "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703267994708839712\" data-video-id=\"7703267994708839712\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703267994708839712\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693208827616939272\" data-video-id=\"7693208827616939272\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693208827616939272\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍚\n             165 g de riz rond à dessert"
+                "name": "🥣\n             Brie, coupé en cubes"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             1 litre de lait"
+                "name": "🥣\n             Prosciutto"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             397 g de lait concentré sucré (1 petite boîte)"
+                "name": "🍯\n             2 cuillères à soupe de miel"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 zestes d'orange"
+                "name": "🧅\n             Oignon rouge, finement haché"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             2 zestes de citron jaune"
+                "name": "🧄\n             1 gousse d'ail, hachée"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 à 2 bâtons de cannelle"
+                "name": "🧅\n             1 petite échalote, finement hachée"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf"
+                "name": "🧂\n             Sel"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
+                "name": "🌶️\n             Poivre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Cannelle en poudre"
+                "name": "🌿\n             Persil frais"
             }
         ],
         "steps": [
-            "Dans un saladier, versez le lait concentré sucré, ajoutez le jaune d'œuf, mélangez bien et réservez.",
-            "Dans une casserole, déposez le riz rond, les zestes de citron et d'orange, les bâtons de cannelle ainsi qu'une pincée de sel.",
-            "Versez le lait et faites cuire à feu doux en remuant régulièrement pendant une dizaine de minutes, jusqu'à ce que le riz absorbe le lait et devienne bien fondant.",
-            "Retirez la casserole du feu dès que le riz est cuit, puis incorporez la préparation au lait concentré sucré en mélangeant soigneusement.",
-            "Versez la préparation dans un grand plat de service traditionnel.",
-            "Dégustez tiède ou placez au réfrigérateur pendant une nuit complète pour une texture plus ferme.",
-            "Saupoudrez de cannelle en poudre en formant un joli quadrillage avant de servir."
+            "Coupez le brie en cubes et placez-les dans un plat de cuisson allant au four.",
+            "Dans un petit bol, mélangez le miel, l'oignon rouge, l'ail et l'échalote.",
+            "Placez de petites rosettes de prosciutto entre les cubes de brie.",
+            "Arrosez le brie du mélange au miel.",
+            "Faites cuire au four à 190°C (380°F) pendant environ 20 minutes, ou jusqu'à ce que le brie soit fondu et coulant.",
+            "Assaisonnez de sel et de poivre, puis parsemez de persil frais.",
+            "Servez chaud avec des crackers, une baguette grillée ou du pain croustillant."
         ],
         "tags": [
-            "Desserts",
-            "Pas cher",
-            "Sans Gluten",
-            "Végé",
-            "Portugal"
+            "Apéritifs",
+            "C'est l'hiver",
+            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -289,67 +324,137 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "8121",
-        "title": "Brie au four, miel et prosciutto",
-        "description": "Un apéritif réconfortant et très facile à préparer. Ce brie au four, sucré, salé et fondant est délicieux. Idéal pour une soirée cocooning !",
-        "image": "/recipes-ia/8121-carte.webp",
-        "category": "aperitifs",
+        "id": "8125",
+        "title": "Riz au lait crémeux à la portugaise (Arroz doce)",
+        "description": "Une version ultra crémeuse et parfumée du traditionnel riz au lait portugais, relevée d'agrumes, de cannelle et enrichie au lait concentré sucré.",
+        "image": "/recipes-ia/8125-carte.webp",
+        "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693208827616939272\" data-video-id=\"7693208827616939272\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693208827616939272\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703267994708839712\" data-video-id=\"7703267994708839712\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703267994708839712\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             Brie, coupé en cubes"
+                "name": "🍚\n             165 g de riz rond à dessert"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Prosciutto"
+                "name": "🥛\n             1 litre de lait"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de miel"
+                "name": "🥛\n             397 g de lait concentré sucré (1 petite boîte)"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             Oignon rouge, finement haché"
+                "name": "🥣\n             2 zestes d'orange"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 gousse d'ail, hachée"
+                "name": "🍋\n             2 zestes de citron jaune"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 petite échalote, finement hachée"
+                "name": "🥣\n             1 à 2 bâtons de cannelle"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel"
+                "name": "🥚\n             1 jaune d'œuf"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "🧂\n             1 pincée de sel"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Persil frais"
+                "name": "🥣\n             Cannelle en poudre"
             }
         ],
         "steps": [
-            "Coupez le brie en cubes et placez-les dans un plat de cuisson allant au four.",
-            "Dans un petit bol, mélangez le miel, l'oignon rouge, l'ail et l'échalote.",
-            "Placez de petites rosettes de prosciutto entre les cubes de brie.",
-            "Arrosez le brie du mélange au miel.",
-            "Faites cuire au four à 190°C (380°F) pendant environ 20 minutes, ou jusqu'à ce que le brie soit fondu et coulant.",
-            "Assaisonnez de sel et de poivre, puis parsemez de persil frais.",
-            "Servez chaud avec des crackers, une baguette grillée ou du pain croustillant."
+            "Dans un saladier, versez le lait concentré sucré, ajoutez le jaune d'œuf, mélangez bien et réservez.",
+            "Dans une casserole, déposez le riz rond, les zestes de citron et d'orange, les bâtons de cannelle ainsi qu'une pincée de sel.",
+            "Versez le lait et faites cuire à feu doux en remuant régulièrement pendant une dizaine de minutes, jusqu'à ce que le riz absorbe le lait et devienne bien fondant.",
+            "Retirez la casserole du feu dès que le riz est cuit, puis incorporez la préparation au lait concentré sucré en mélangeant soigneusement.",
+            "Versez la préparation dans un grand plat de service traditionnel.",
+            "Dégustez tiède ou placez au réfrigérateur pendant une nuit complète pour une texture plus ferme.",
+            "Saupoudrez de cannelle en poudre en formant un joli quadrillage avant de servir."
         ],
         "tags": [
-            "Apéritifs",
-            "C'est l'hiver",
-            "Italie"
+            "Desserts",
+            "Pas cher",
+            "Sans Gluten",
+            "Végé",
+            "Portugal"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8127",
+        "title": "Gâteau renversé au Lotus avec cœur coulant au caramel",
+        "description": "Tu dois absolument l'essayer - difficile de faire plus crémeux, croustillant et délicieux ! Enregistre la recette dès maintenant ! 📌✨",
+        "image": "/recipes-ia/8127-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700329459085298977\" data-video-id=\"7700329459085298977\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700329459085298977\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400 g de biscuits Lotus"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             150 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             500 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             520 g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 sachets de fixateur de chantilly"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             2 cuillères à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             80 g de crème liquide"
+            }
+        ],
+        "steps": [
+            "Base : Broyer finement les biscuits Lotus dans un mixeur, mélanger avec le beurre fondu et presser fermement sur le fond et les bords d'un moule à charnière. Placer au réfrigérateur pendant environ 15 à 30 minutes.",
+            "Caramel : Faire fondre le sucre. Incorporer le beurre, puis ajouter la crème et laisser mijoter environ 1 minute jusqu'à obtenir une sauce caramel onctueuse. Laisser refroidir.",
+            "Crème : Fouetter la crème liquide avec le fixateur de chantilly, le sucre glace et l'extrait de vanille jusqu'à obtenir une consistance ferme. Incorporer délicatement le mascarpone.",
+            "Montage : Étaler la moitié de la crème sur la base de biscuits et former un creux au centre. Y verser le caramel et recouvrir avec le reste de la crème, puis lisser.",
+            "Réfrigération et service : Placer au réfrigérateur, couvert, pendant une nuit. Le lendemain, poser une assiette dessus, retourner, ouvrir le moule à charnière et déguster ! 😍🔥"
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
