@@ -31,6 +31,7 @@ import { supabase } from '@/mobile/lib/supabase';
 import { ouvrirTag, OUVRIR_TAG, type OuvrirTagDetail } from '@/lib/ouvrirTag';
 import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf, minimumRangee } from './themes';
 import { ageAAfficher, estRecetteBebe, pourAdultes } from '@/lib/bebe';
+import { consentementAccepte } from '@/lib/consentement';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal, tiktokDemandeExplicite } from '@/lib/tiktok-consent';
 import { personalizedRecipes } from '@/lib/personalize';
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
@@ -741,13 +742,26 @@ function TopTenRow({
         if (wide) { setPlayingId(null); return; }
         // Sans accord aux traceurs (ou sur un navigateur qui ne lit rien), pas de
         // lecteur : la photo reste, comme dans les autres rangées.
-        if (!visibleId || !rowVisible || !tiktokAllowed()) {
+        if (!visibleId || !rowVisible || !consentementAccepte()) {
             setPlayingId(null);
             return;
         }
         const t = setTimeout(() => setPlayingId(visibleId), AUTOPLAY_DELAY);
         return () => clearTimeout(t);
     }, [visibleId, rowVisible, wide]);
+
+    // Le lecteur reste invisible tant qu'il n'a pas prouvé qu'il joue : sans
+    // cela, son bandeau de cookies ou « Player error » recouvrait la photo.
+    const [videoReady, setVideoReady] = useState(false);
+    useEffect(() => {
+        setVideoReady(false);
+        if (!playingId) return;
+        const onMessage = (e: MessageEvent) => {
+            if (tiktokSignal(e) === 'play') { setVideoReady(true); tiktokPlayed(); }
+        };
+        window.addEventListener('message', onMessage);
+        return () => window.removeEventListener('message', onMessage);
+    }, [playingId]);
 
     // Nouvelle vidéo = état neuf (sans commandes, progression à zéro).
     useEffect(() => {
@@ -873,7 +887,7 @@ function TopTenRow({
                                 {playing && (
                                     <iframe
                                         ref={frameRef}
-                                        className={styles.top10Video}
+                                        className={`${styles.top10Video} ${videoReady ? styles.top10VideoOn : ''}`}
                                         // Toute l'interface TikTok est coupée (controls=0) :
                                         // ni barre de progression, ni colonne like/commentaire.
                                         // On pilote le lecteur par postMessage à la place.
@@ -1092,7 +1106,10 @@ function Row({
             if (manuel.current) return;   // le doigt a choisi : on ne recentre pas
             setPlayId(null);
             // Navigateur qui n'a jamais réussi à lire : on ne tente rien.
-            if (!onScreen || !tiktokAllowed()) return;
+            // Seul l'accord aux traceurs compte : le lecteur reste INVISIBLE tant qu'il
+            // n'a pas prouvé qu'il joue, la garde « échecs » n'a donc plus de
+            // raison de couper une vidéo qui n'a jamais été montrée.
+            if (!onScreen || !consentementAccepte()) return;
             timer = setTimeout(() => setPlayId(centred()), 600);
         };
         const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(schedule); };

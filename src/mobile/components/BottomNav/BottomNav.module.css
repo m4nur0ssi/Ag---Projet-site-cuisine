@@ -6,7 +6,7 @@
     position: fixed;
     /* Presque au ras du bord : 30 px la faisaient flotter haut et mangeaient
        une bande de contenu. On garde de quoi dégager la barre d'accueil iOS. */
-    bottom: calc(4px + env(safe-area-inset-bottom, 0px) * 0.4);
+    bottom: calc(env(safe-area-inset-bottom, 0px) * 0.25);
     left: 20px;
     right: 20px;
     z-index: 25000;
@@ -305,7 +305,7 @@
    la marge de sécurité complète (34 px) la faisait flotter trop haut. On garde
    de quoi dégager la barre d'accueil iOS, pas davantage. */
 @media (display-mode: standalone) {
-    .navWrapper { bottom: calc(2px + env(safe-area-inset-bottom, 0px) * 0.4); }
+    .navWrapper { bottom: calc(env(safe-area-inset-bottom, 0px) * 0.25); }
 }
 
 /* Media Queries */

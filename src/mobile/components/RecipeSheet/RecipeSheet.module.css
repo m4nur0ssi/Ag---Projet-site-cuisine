@@ -57,8 +57,12 @@
     .sheet {
         width: 100%;
         max-width: none;
-        height: calc(100dvh - env(safe-area-inset-top, 0px));
-        border-radius: 38px 38px 0 0;
+        /* La barre du bas vit SOUS la carte, jamais dedans : on lui réserve sa
+           hauteur (dock 72 px + marge) au pied de l'écran. */
+        --zone-barre: calc(96px + env(safe-area-inset-bottom, 0px) * 0.4);
+        height: calc(100dvh - env(safe-area-inset-top, 0px) - var(--zone-barre));
+        margin-bottom: var(--zone-barre);
+        border-radius: 38px;
         border-left: 0;
         border-right: 0;
         border-bottom: 0;
@@ -103,7 +107,7 @@
        croix est pris DANS le halo (voir .modalMode .heroNewLayout). */
     padding-top: 0;
     /* La barre du bas reste visible sur la fiche : on garde sa hauteur libre. */
-    padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: 28px;
     z-index: 10;
     scrollbar-width: none;
     touch-action: pan-y;
