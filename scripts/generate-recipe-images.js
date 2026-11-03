@@ -246,7 +246,7 @@ const CADRAGES = [
     'The dish sits off-centre to the left, the served portion and cutlery filling the right third.',
     'The dish sits in the lower half, clean plates and ingredients spread across the top.',
     'The dish is pushed to the upper right, a folded cloth and the served portion anchoring the lower left.',
-    'Tight crop: the dish fills most of the frame, only the edge of a plate and a fork visible.',
+    'The dish sits centred and a little larger in the frame, with the surrounding table, a glass and the recipe ingredients still clearly visible on every side (never a close-up).',
     'The dish sits centred but seen slightly wider, with generous empty surface around it.',
 ];
 
@@ -258,18 +258,19 @@ const CADRAGES = [
  * par l'identifiant, donc stable pour une recette et varié sur la grille.
  */
 const DECORS = [
-    'Set in a real room: the corner of a neighbouring laid table just behind, slightly out of focus, '
-    + 'with glasses and a water carafe on it, and the raw ingredients of the recipe scattered around the dish.',
-    'Set on a bar counter: behind the dish, out of focus, the bar itself with a row of hanging glasses and '
-    + 'bottles, a filled wine glass near the plate, and the raw ingredients of the recipe lying beside it.',
-    'Set beside a window: daylight coming through the panes behind the dish, the view outside blown out and '
-    + 'blurred, a glass of water catching the light, and the raw ingredients of the recipe spread around.',
-    'Set in a lived-in kitchen: a worktop behind with a wooden board, a chopping knife and glasses out of focus, '
-    + 'the raw ingredients of the recipe and their trimmings left around the dish.',
-    'Set at a table laid for a meal: a second place setting with its glass at the top of the frame, slightly out '
-    + 'of focus, a carafe and a bread basket beside it, and the raw ingredients of the recipe around the dish.',
-    'Set on a bistro terrace table: the edge of another table with two glasses behind, softly blurred, a small '
-    + 'carafe of wine, and the raw ingredients of the recipe laid near the plate.',
+    'Set in a real room, still seen straight down: along the top edge of the frame, the corner of a neighbouring laid table '
+    + 'with glasses and a water carafe on it (their tops and rims visible from above), and the raw ingredients of the recipe scattered around the dish.',
+    'Set on a bar counter, still seen straight down: the polished bar counter top fills the frame, a filled wine glass '
+    + 'and an empty glass standing near the plate (seen from above as circles), and the raw ingredients of the recipe lying beside it. '
+    + 'No bar back-shelf, no standing bottles in the distance, no horizon.',
+    'Set beside a window, still seen straight down: a bright patch of daylight falling across the table from one side, '
+    + 'a glass of water catching the light, and the raw ingredients of the recipe spread around. No window panes or view in the picture.',
+    'Set in a lived-in kitchen, still seen straight down: the worktop around the dish with a wooden board, a chopping knife '
+    + 'and glasses, the raw ingredients of the recipe and their trimmings left around the dish.',
+    'Set at a table laid for a meal, still seen straight down: a second place setting with its glass along the top of the frame, '
+    + 'a carafe and a bread basket beside it, and the raw ingredients of the recipe around the dish.',
+    'Set on a bistro terrace table, still seen straight down: the edge of another table with two glasses along one side of the frame, '
+    + 'a small carafe of wine, and the raw ingredients of the recipe laid near the plate.',
 ];
 
 /** La vaisselle : c'est elle qui donne la couleur dominante de l'image. */
@@ -923,7 +924,7 @@ const VUE_DESSUS = {
     // « everything sharp » + « generous negative space » se battaient avec le
     // décor demandé (table voisine floue derrière) : le plat reste net, la
     // pièce derrière décroche.
-    camera: 'Camera directly overhead at 90 degrees, the dish and what surrounds it sharp, the room further back falling gently out of focus, natural colours, an abundant lived-in arrangement.',
+    camera: 'Flat top-down view, camera pointing straight down at 90 degrees, no perspective, no horizon line, no walls, shelves or vertical surfaces visible, the dish and what surrounds it sharp, only the outer edges of the frame falling gently out of focus, natural colours, an abundant lived-in arrangement.',
 };
 /*
  * DEMANDE DE L'UTILISATEUR (2026-09-13), à ne pas rediscuter : toutes les photos

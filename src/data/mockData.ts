@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8133",
         "title": "Shakshuka d'automne aux poireaux et lait de coco",
         "description": "Découvrez une version automnale et réconfortante de la shakshuka, revisitée avec une fondue de poireaux au curry et lait de coco. Ce plat végétarien complet est agrémenté de pois chiches, d'œufs, et servi avec du pain pita, des noix de cajou et de...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8133-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
