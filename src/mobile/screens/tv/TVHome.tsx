@@ -431,7 +431,7 @@ function Card({
                         className={`${styles.cardVideo} ${vidReady ? styles.cardVideoOn : ''}`}
                         // Lecteur nu : ni commandes, ni barre, ni logo, ni pseudo —
                         // le cadre est agrandi pour que l'habillage sorte du champ.
-                        src={`https://www.tiktok.com/player/v1/${videoId}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        src={`https://www.tiktok.com/player/v1/${videoId}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                         allow="autoplay; encrypted-media"
                         title={label(recipe)}
                     />
@@ -596,7 +596,7 @@ const tiktokId = (recipe: Recipe) =>
     || null;
 
 /** Délai d'affichage avant que la vidéo ne démarre. */
-const AUTOPLAY_DELAY = 2000;
+const AUTOPLAY_DELAY = 600;
 
 /**
  * Collection d'où l'on partage : la rangée ou la page « Voir tout » qui porte
@@ -739,7 +739,9 @@ function TopTenRow({
     useEffect(() => {
         // Sur grand écran, c'est le survol qui commande : aucune lecture d'office.
         if (wide) { setPlayingId(null); return; }
-        if (!visibleId || !rowVisible) {
+        // Sans accord aux traceurs (ou sur un navigateur qui ne lit rien), pas de
+        // lecteur : la photo reste, comme dans les autres rangées.
+        if (!visibleId || !rowVisible || !tiktokAllowed()) {
             setPlayingId(null);
             return;
         }
@@ -875,7 +877,7 @@ function TopTenRow({
                                         // Toute l'interface TikTok est coupée (controls=0) :
                                         // ni barre de progression, ni colonne like/commentaire.
                                         // On pilote le lecteur par postMessage à la place.
-                                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                                         allow="autoplay; encrypted-media"
                                         title={label(r)}
                                     />
@@ -1091,7 +1093,7 @@ function Row({
             setPlayId(null);
             // Navigateur qui n'a jamais réussi à lire : on ne tente rien.
             if (!onScreen || !tiktokAllowed()) return;
-            timer = setTimeout(() => setPlayId(centred()), 1500);
+            timer = setTimeout(() => setPlayId(centred()), 600);
         };
         const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(schedule); };
 

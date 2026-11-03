@@ -58,6 +58,13 @@
     font-size: 0.78rem;
 }
 
+.signature {
+    color: rgba(235, 235, 245, 0.62);
+    text-decoration: none;
+}
+
+.signature:hover { color: #ffffff; text-decoration: underline; }
+
 /* Sur ordinateur, le feed est large : le pied de page respire davantage. */
 @media (min-width: 1024px) {
     .footer {

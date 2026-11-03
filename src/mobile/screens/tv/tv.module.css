@@ -1300,10 +1300,15 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     /* Respire : un vrai espace entre le champ de recherche et le bloc Accueil… */
-    padding: 18px 12px 0;
+    padding: 18px 12px 28px;
     scrollbar-width: none;
+    /* Le geste vertical reste au défilement, jamais au glissé du volet. */
+    touch-action: pan-y;
+    overscroll-behavior-y: contain;
+    min-height: 0;
 }
 .navScroll::-webkit-scrollbar { display: none; }
+.navGroupHead { scroll-margin-top: 6px; }
 
 /* Intitulé de section, gris et petit, comme « Bibliothèque » chez Apple. */
 .navLabel {
@@ -4773,6 +4778,60 @@
     padding: 2px 16px 10px;
 }
 
+/* Téléphone : le prix à gauche, les barres de l'assiette à droite. */
+.planPrixStats {
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+.planPrixStats > :first-child { flex: 0 0 auto; }
+.planStats {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 210px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 12px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+.planStat {
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr) 14px;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.1;
+}
+.planStatNom {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255, 244, 228, 0.72);
+    white-space: nowrap;
+}
+.planStatPiste {
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.10);
+    overflow: hidden;
+}
+.planStatPiste > span {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.planStatN {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    text-align: right;
+    color: rgba(255, 244, 228, 0.6);
+}
+
 /* Le titre du jour et son prix sur la même ligne, le prix poussé à droite. */
 .planDayHead {
     display: flex;
@@ -6665,3 +6724,17 @@
 .spSearchControls .spShare { height: 32px; min-width: 32px; }
 .spSearchControls .spFilterRow { gap: 6px; }
 .spSearchControls .spGroup, .spSearchControls .spSansAdd { font-size: 12px; padding-inline: 9px; }
+
+/* Croix de la recherche, à droite des modes : le chemin du retour, visible. */
+.spCloseX {
+    flex: 0 0 auto;
+    width: 40px; height: 40px;
+    margin: 0 0 12px;
+    display: flex; align-items: center; justify-content: center;
+    border: none; border-radius: 999px; cursor: pointer;
+    background: rgba(255, 255, 255, .12); color: #fff;
+    box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .16);
+    -webkit-tap-highlight-color: transparent;
+}
+.spCloseX:active { transform: scale(.92); opacity: .7; }
+.spSearchControls .spCloseX { margin-bottom: 14px; }

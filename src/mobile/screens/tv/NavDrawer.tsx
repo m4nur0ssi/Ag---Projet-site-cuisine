@@ -186,7 +186,21 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
             <>
                 <button
                     className={styles.navGroupHead}
-                    onClick={() => { haptic(8); setOpenGroups((g) => ({ ...g, [title]: !g[title] })); }}
+                    data-nav-group={title}
+                    onClick={() => {
+                        haptic(8);
+                        setOpenGroups((g) => ({ ...g, [title]: !g[title] }));
+                        // Le groupe s'ouvre SOUS la ligne cliquée, hors de l'écran : on
+                        // remonte son en-tête en haut de la liste pour que les choix
+                        // se voient et se fassent défiler d'un doigt. (`Group` est
+                        // recréé à chaque rendu : on retrouve le bouton par son nom.)
+                        if (!expanded) {
+                            setTimeout(() => {
+                                document.querySelector(`[data-nav-group="${title}"]`)
+                                    ?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+                            }, 90);
+                        }
+                    }}
                     aria-expanded={expanded}
                 >
                     <span className={styles.navLabel}>{title}</span>

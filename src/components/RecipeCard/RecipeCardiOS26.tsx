@@ -133,7 +133,7 @@ export default function RecipeCardiOS26({
     const embedUrl = videoId ? `https://www.tiktok.com/player/v1/${videoId}?autoplay=1&muted=0&controls=1&loop=1` : null;
 
     const countryFlags: Record<string, string> = {
-        france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷',
+        france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', portugal: '🇵🇹',
         liban: '🇱🇧', usa: '🇺🇸', mexique: '🇲🇽', orient: '🕌',
         maroc: '🇲🇦', japon: '🇯🇵', asie: '🥢', afrique: '🌍'
     };

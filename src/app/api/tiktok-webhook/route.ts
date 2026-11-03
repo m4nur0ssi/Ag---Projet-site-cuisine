@@ -10,7 +10,7 @@ const MENU_ITEMS = [
     "Barbecue", "Bébé", "C'est l'hiver", "Desserts", "Entrées", "Épicé", "Espagne",
     "Express", "Famille", "France", "Gratins", "Grèce", "Healthy", "Italie",
     "Les Glaces", "Liban", "Mexique", "Minceur", "Noël", "Orient", "Pas Cher",
-    "Pâques", "Pâtes", "Pâtisserie", "Plats", "Poissons et crustacés",
+    "Pâques", "Pâtes", "Pâtisserie", "Plats", "Poissons et crustacés", "Portugal",
     "Rafraîchissements", "Restaurants", "Salades", "Sandwichs",
     "Sans gluten", "Sans lactose", "Sans sel", "Sans sucre", "Sauces",
     "Simplissime", "Soupes", "Tarte", "USA", "Végétarien", "Voilà l'été"
@@ -287,7 +287,7 @@ async function handleRequest(request: Request) {
                 "Epice", "Epicé", "Épicé", "Espagne",
                 "Express", "Famille", "France",
                 "Glaces", "Glace", "Les Glaces",
-                "Gratins", "Gratin", "Grece", "Grèce", "Healthy", "Italie", "Liban", "Mexique",
+                "Gratins", "Gratin", "Grece", "Grèce", "Healthy", "Italie", "Liban", "Mexique", "Portugal",
                 "Noel", "Noël", "Orient", "Paques", "Pâques", "Pas Cher", "Pas-Cher",
                 "Pates", "Pâtes", "Patisserie", "Pâtisserie",
                 "Plats", "Plat",

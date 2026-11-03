@@ -444,7 +444,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
 
     const progress = (checkedSteps.filter(Boolean).length / (recipe?.steps?.length || 1)) * 100;
 
-    const countryFlags: Record<string, string> = { france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', liban: '🇱🇧', usa: '🇺🇸', mexique: '🇲🇽', orient: '🕌', autre: '🗺️' };
+    const countryFlags: Record<string, string> = { france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', portugal: '🇵🇹', liban: '🇱🇧', usa: '🇺🇸', mexique: '🇲🇽', orient: '🕌', autre: '🗺️' };
     const recipeCountryTag = recipe.tags?.find(t => countryFlags[t.toLowerCase()]);
     const flag = recipeCountryTag ? countryFlags[recipeCountryTag.toLowerCase()] : null;
 

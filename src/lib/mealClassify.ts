@@ -95,3 +95,43 @@ export const isSideDish = (r: any): boolean => {
     // Doit ressembler à un légume / féculent (par le titre).
     return SIDE_RX.test(r?.title || '');
 };
+
+/*
+ * Ce qu'il y a dans l'assiette, pour les statistiques du planificateur.
+ *
+ * La protéine vient de `proteinOf` (titre d'abord). Légumes et féculents se
+ * lisent dans les INGRÉDIENTS : un « poulet basquaise » est plein de poivrons
+ * sans le dire dans son titre. Les aromates (oignon, ail, échalote, herbes) et
+ * les liants (farine, fécule, chapelure) ne comptent pas — sinon tout plat
+ * serait « avec légumes » et « avec féculent ».
+ */
+const LEGUME_RX = /carotte|courgette|aubergine|poivron|tomate(?!s? (concentr|s[ée]ch))|brocoli|chou|[ée]pinard|haricots? verts?|petits? pois|poireau|champignon|salade|laitue|roquette|m[âa]che|concombre|courge|potiron|potimarron|butternut|c[ée]leri|fenouil|asperge|artichaut|betterave|navet|radis|endive|blette|cresson|ma[ïi]s|avocat|l[ée]gume|ratatouille|pak ?cho[iï]|edamame|okra|gombo/i;
+const FECULENT_RX = /\briz\b|risotto|p[âa]tes|spaghetti|tagliatelle|penne|fusilli|linguine|macaroni|lasagne|nouille|vermicelle|ramen|udon|soba|gnocchi|pomme(s)? de terre|patate|frites?\b|pur[ée]e|semoule|couscous|boulgour|quinoa|polenta|lentille|pois chiche|haricots? (blancs?|rouges?|noirs?|secs?)|flageolet|\bpain\b(?! d['’][ée]pice)|baguette|pita|tortilla|wrap|naan|galette de bl|bun\b/i;
+const PROTEINE_VEGE_RX = /\b[œo]eufs?\b|tofu|tempeh|seitan|lentille|pois chiche|haricots? rouges|halloumi|f[ée]ta|mozzarella|parmesan|fromage|ricotta|skyr|yaourt grec/i;
+
+export interface Assiette {
+    viandeRouge: boolean;
+    viandeBlanche: boolean;
+    poisson: boolean;
+    proteines: boolean;
+    legumes: boolean;
+    feculents: boolean;
+}
+
+export const assietteOf = (r: any): Assiette => {
+    const p = proteinOf(r);
+    const textes = [r?.title || '', ...(r?.ingredients || []).map((i: any) => i?.name || '')];
+    const a = (rx: RegExp) => textes.some((t) => rx.test(t));
+    // Porc avec la volaille : c'est ainsi qu'on le range en cuisine, en France.
+    const viandeRouge = p === 'boeuf' || p === 'agneau';
+    const viandeBlanche = p === 'poulet' || p === 'porc';
+    const poisson = p === 'poisson';
+    return {
+        viandeRouge,
+        viandeBlanche,
+        poisson,
+        proteines: viandeRouge || viandeBlanche || poisson || a(PROTEINE_VEGE_RX),
+        legumes: a(LEGUME_RX),
+        feculents: a(FECULENT_RX),
+    };
+};

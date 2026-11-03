@@ -173,7 +173,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
     };
 
     const countryFlags: Record<string, string> = {
-        france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', 
+        france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', portugal: '🇵🇹', 
         liban: '🇱🇧', usa: '🇺🇸', mexique: '🇲🇽', orient: '🕌',
         maroc: '🇲🇦', japon: '🇯🇵', autre: '🗺️'
     };

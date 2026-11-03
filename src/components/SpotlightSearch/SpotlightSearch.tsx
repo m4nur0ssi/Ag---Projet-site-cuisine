@@ -279,7 +279,7 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
     const countryFlags: Record<string, string> = {
         'france': '🇫🇷', 'italie': '🇮🇹', 'espagne': '🇪🇸', 'mexique': '🇲🇽',
         'afrique': '🌍', 'orient': '🕌', 'asie': '🥢', 'usa': '🇺🇸',
-        'liban': '🇱🇧', 'grece': '🇬🇷'
+        'liban': '🇱🇧', 'grece': '🇬🇷', 'portugal': '🇵🇹'
     };
 
     // Ouvre la recette en flottant (RecipeSheet global), pas de navigation /recipe/:id

@@ -47,6 +47,24 @@
     border: 1px solid var(--ios-26-border);
 }
 
+/*
+ * Façon TikTok : sur téléphone la carte prend toute la largeur, remonte jusqu'à
+ * la barre d'état (l'heure, le Wi-Fi et la batterie restent lisibles au-dessus)
+ * et ses coins du haut sont arrondis à la manière de l'écran de l'iPhone. Plus
+ * de bandes sur les côtés ni de marge au-dessus.
+ */
+@media (max-width: 767px) {
+    .sheet {
+        width: 100%;
+        max-width: none;
+        height: calc(100dvh - env(safe-area-inset-top, 0px));
+        border-radius: 38px 38px 0 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+    }
+}
+
 .dragHandle {
     position: absolute;
     top: 12px;

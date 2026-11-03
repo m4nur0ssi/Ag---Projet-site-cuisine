@@ -6474,7 +6474,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Jambon sauce Madère",
         "description": "Découvrez une recette économique et délicieuse de jambon roulé en sauce Madère, agrémentée de champignons et d'échalotes. Un plat réconfortant, parfait avec une purée maison.",
         "image": "/recipes-ia/7887-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,

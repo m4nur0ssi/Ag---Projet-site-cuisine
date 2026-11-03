@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { CONTACT_EMAIL, LEGAL_LINKS, TAKEDOWN_DELAY } from '@/lib/legal';
 import styles from './siteFooter.module.css';
 import BoutonCookies from './BoutonCookies';
+import LogoCommOne from './LogoCommOne';
 
 /*
  * Pied de page du feed d'accueil, mobile et ordinateur. Il ferme la page façon
@@ -36,7 +37,11 @@ export default function SiteFooter() {
             </p>
 
             <p className={styles.copy}>
-                © {new Date().getFullYear()} Les Recettes Magiques
+                © 2026{' '}
+                <LogoCommOne />{' '}
+                <a href="https://comm-one.fr" target="_blank" rel="noopener" className={styles.signature}>
+                    comm-one.fr
+                </a>
             </p>
         </footer>
     );

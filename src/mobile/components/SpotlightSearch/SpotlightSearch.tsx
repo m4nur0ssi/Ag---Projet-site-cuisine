@@ -243,7 +243,7 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
     const countryFlags: Record<string, string> = {
         'france': '🇫🇷', 'italie': '🇮🇹', 'espagne': '🇪🇸', 'mexique': '🇲🇽',
         'afrique': '🌍', 'orient': '🕌', 'asie': '🥢', 'usa': '🇺🇸',
-        'liban': '🇱🇧', 'grece': '🇬🇷'
+        'liban': '🇱🇧', 'grece': '🇬🇷', 'portugal': '🇵🇹'
     };
 
     // Mode recette

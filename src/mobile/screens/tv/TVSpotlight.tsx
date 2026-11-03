@@ -913,6 +913,21 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                             >{lbl}</button>
                         ))}
                     </div>
+                    {/* La croix : la carte de recherche s'ouvre par-dessus un écran
+                        (le planificateur, l'accueil) et doit dire comment y revenir.
+                        Le geste retour suffisait au bureau, pas au téléphone. */}
+                    {!embedded && (
+                        <button
+                            type="button"
+                            className={styles.spCloseX}
+                            onClick={() => { haptic(8); onClose(); }}
+                            aria-label={hint || 'Fermer la recherche'}
+                        >
+                            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden>
+                                <path d="M6 6l12 12M18 6L6 18" />
+                            </svg>
+                        </button>
+                    )}
                     </div>
 
                     {/* Recherche et nombre de résultats */}

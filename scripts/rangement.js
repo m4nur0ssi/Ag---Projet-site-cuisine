@@ -51,11 +51,12 @@ const estGlace = (titre) => themes.ICE_TITLE.test(sansAccents(titre));
 
 /**
  * Est-ce vraiment une sauce ? Le mot doit OUVRIR le titre : « Sauce Roquefort »
- * en est une, « Kefta de poisson, sauce yaourt menthe » est un plat.
+ * en est une, « Kefta de poisson, sauce yaourt menthe » est un plat, et
+ * « Jambon sauce Madère » aussi (un plat nommé avant le mot).
  */
 const estSauce = (titre) =>
     !themes.SALAD_TITLE.test(sansAccents(titre)) &&
-    themes.SAUCE_TITLE.test(sansAccents(titre).split(/\s+/).slice(0, 3).join(' '));
+    themes.ouvreSurSauce(sansAccents(titre));
 
 /**
  * Où va une recette sortie des glaces ou des sauces ? Son titre le dit :

@@ -30,7 +30,7 @@ import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
 import { prixRecette, additionner } from '@/lib/recipe-price';
 import { normalizeIng, parseIngredient, buildConsolidatedItems } from '@/mobile/lib/ingredients';
 import { rayonOf } from '@/lib/rayons';
-import { isCookable, hasSideIncluded, isSweet, proteinOf } from '@/lib/mealClassify';
+import { isCookable, hasSideIncluded, isSweet, proteinOf, assietteOf, type Assiette } from '@/lib/mealClassify';
 import { isTVSide, isTVMain, sidePool } from './sides';
 import {
     DAYS, DAY_FULL, MEALS, JOUR_J, COURSES, todayIndex,
@@ -60,6 +60,17 @@ const FAMILLE_PROTEINE: Record<string, string> = {
     poisson: 'Poisson', vege: 'Végé',
 };
 const FAMILLES = ['Viande', 'Poisson', 'Végé', 'Autre'] as const;
+
+/* Les barres du téléphone, à droite du prix : ce que la semaine met dans
+   l'assiette, compté en repas (un plat et sa garniture font un repas). */
+const STATS: { cle: keyof Assiette; nom: string; couleur: string }[] = [
+    { cle: 'proteines', nom: 'Protéines', couleur: 'linear-gradient(90deg,#ffd08e,#ff9d5c)' },
+    { cle: 'viandeRouge', nom: 'Viande rouge', couleur: 'linear-gradient(90deg,#ff8a7a,#d8434b)' },
+    { cle: 'viandeBlanche', nom: 'Viande blanche', couleur: 'linear-gradient(90deg,#ffe2c2,#f0b98a)' },
+    { cle: 'poisson', nom: 'Poisson', couleur: 'linear-gradient(90deg,#9fd8ff,#4a9fe0)' },
+    { cle: 'legumes', nom: 'Légumes', couleur: 'linear-gradient(90deg,#b8ee9a,#5cbf5a)' },
+    { cle: 'feculents', nom: 'Féculents', couleur: 'linear-gradient(90deg,#f4e3a1,#d9b45a)' },
+];
 
 /* Les pays que les étiquettes des recettes savent nommer. */
 const PAYS_LABEL: Record<string, string> = {
@@ -620,6 +631,26 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             } catch { /* le portrait est un bonus : jamais il ne casse la page */ }
         }
         return { total: plats.length, familles, pays, vides, lignes, rayons: rayons.size };
+    }, [plan, mode]);
+
+    /** Les barres du téléphone : pour chaque repas posé, ce qu'il contient. */
+    const assiettes = useMemo(() => {
+        const jours: string[] = mode === 'jourj' ? [JOUR_J] : [...DAYS];
+        const creneaux: string[] = mode === 'jourj' ? COURSES.map((c) => c.label) : [...MEALS];
+        const compte: Record<keyof Assiette, number> = {
+            viandeRouge: 0, viandeBlanche: 0, poisson: 0, proteines: 0, legumes: 0, feculents: 0,
+        };
+        let repas = 0;
+        jours.forEach((d) => creneaux.forEach((m) => {
+            const slot = plan[d]?.[m] as Slot | undefined;
+            if (!slot) return;
+            repas += 1;
+            const parts = [assietteOf(slot), ...(slot.side ? [assietteOf(slot.side)] : [])];
+            (Object.keys(compte) as (keyof Assiette)[]).forEach((k) => {
+                if (parts.some((a) => a[k])) compte[k] += 1;
+            });
+        }));
+        return { repas, compte };
     }, [plan, mode]);
 
     /** Ce que le choix en cours doit accepter. */
@@ -1296,16 +1327,31 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 d'actions reste fixée en bas de l'écran. */}
             <div className={styles.planRail} ref={railRef}>
             {mode !== 'panier' && planned > 0 && (
-                <div className={styles.planPrix}>
+                <div className={`${styles.planPrix} ${!grandEcran ? styles.planPrixStats : ''}`}>
                     {prixCourant ? (
                         <PrixMoyen
                             prix={prixCourant}
-                            libelle={mode === 'jourj' ? 'Prix du menu' : 'Prix de la semaine'}
+                            libelle={mode === 'jourj' ? 'Prix du menu' : (grandEcran ? 'Prix de la semaine' : 'Prix moyen semaine')}
                             taille="grande"
                             sombre
                             action={boutonPartage}
                         />
                     ) : boutonPartage}
+                    {/* Téléphone : le prix à gauche, l'assiette de la semaine à
+                        droite. Au bureau, le panneau « Équilibre » fait ce travail. */}
+                    {!grandEcran && assiettes.repas > 0 && (
+                        <div className={styles.planStats} aria-label="Ce que contient le menu">
+                            {STATS.map(({ cle, nom, couleur }) => (
+                                <div key={cle} className={styles.planStat}>
+                                    <span className={styles.planStatNom}>{nom}</span>
+                                    <span className={styles.planStatPiste}>
+                                        <span style={{ width: `${(assiettes.compte[cle] / assiettes.repas) * 100}%`, background: couleur }} />
+                                    </span>
+                                    <span className={styles.planStatN}>{assiettes.compte[cle]}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             )}
 

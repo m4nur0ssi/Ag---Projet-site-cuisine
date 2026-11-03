@@ -706,7 +706,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
     );
 
     const countryFlags: Record<string, string | React.ReactNode> = {
-        france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷',
+        france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', portugal: '🇵🇹',
         liban: '🇱🇧', usa: '🇺🇸', mexique: '🇲🇽', orient: '🕌',
         asie: '🥢', afrique: AFRICA_SILHOUETTE,
         autre: '🗺️'

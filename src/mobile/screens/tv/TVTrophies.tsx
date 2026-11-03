@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { mockRecipes } from '@/mobile/data/mockData';
 import Tip from '@/components/Tip/Tip';
 
-const COUNTRY_TAGS = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'asie', 'afrique'];
+const COUNTRY_TAGS = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'asie', 'afrique', 'portugal'];
 const SEEN_KEY = 'trophies-seen-v1';
 
 function cookedIds(): string[] {

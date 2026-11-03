@@ -177,7 +177,8 @@ const COUNTRIES: { tag: string; label: string }[] = [
     { tag: 'espagne', label: 'Espagne' }, { tag: 'france', label: 'France' },
     { tag: 'grece', label: 'Grèce' }, { tag: 'italie', label: 'Italie' },
     { tag: 'liban', label: 'Liban' }, { tag: 'mexique', label: 'Mexique' },
-    { tag: 'orient', label: 'Orient' }, { tag: 'usa', label: 'USA' },
+    { tag: 'orient', label: 'Orient' }, { tag: 'portugal', label: 'Portugal' },
+    { tag: 'usa', label: 'USA' },
 ];
 
 const LATER_KEY = 'tv-later-v1';

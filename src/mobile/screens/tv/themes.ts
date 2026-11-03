@@ -79,7 +79,7 @@ const COLLECTION_TAGS: Record<string, string> = {
     bebe: 'bebe', bebes: 'bebe', 'pour les bebes': 'bebe',
     afrique: 'afrique', asie: 'asie', espagne: 'espagne', france: 'france',
     grece: 'grece', italie: 'italie', liban: 'liban', mexique: 'mexique',
-    orient: 'orient', usa: 'usa',
+    orient: 'orient', portugal: 'portugal', usa: 'usa',
 };
 
 /**
@@ -150,6 +150,19 @@ function recipeText(recipe: Recipe) {
 export const ICE_TITLE = /\b(glaces?|glacee?s?|sorbets?|sorbetto|granites?|esquimaux?|mcflurry|milkshakes?|semifreddo|popsicles?|frozen|vacherin)\b/;
 /** Titre qui annonce vraiment une sauce, un dip ou un condiment. */
 export const SAUCE_TITLE = /\b(sauces?|dips?|tartinades?|vinaigrettes?|marinades?|mayonnaises?|pestos?|tzatzikis?|guacamole|aiolis?|tapenades?|coulis|chimichurri|bearnaise|hollandaise|ketchup|pico de gallo|remoulade|chermoula|toum|ktipiti|houmous|hummus|raita|beurre|creme (?:epaisse|ciboulette|fraiche)|huile pimentee)\b/;
+/**
+ * Ce qui, placé AVANT le mot sauce, fait du titre un plat : « Jambon sauce
+ * Madère » est un jambon, servi en sauce. Sans ce garde-fou, le mot « sauce »
+ * dans les trois premiers mots suffisait à ranger le plat aux sauces — et une
+ * sauce n'a pas de place au planificateur.
+ */
+export const PLAT_AVANT_SAUCE = /\b(jambons?|poulets?|volaille|dinde|canard|lapin|b(?:oe|œ)uf|veau|porc|agneau|steaks?|escalopes?|filets?|cotes?|rotis?|boulettes?|saucisses?|paupiettes?|saumon|cabillaud|thon|poissons?|crevettes?|gambas|moules|calamars?|oeufs?|pates|gnocchis?|raviolis?|tortellinis?|frites|pommes? de terre)\b/;
+/** Le titre (sans accents) ouvre-t-il sur une sauce ? Trois premiers mots, sans plat devant. */
+export const ouvreSurSauce = (normTitle: string): boolean => {
+    const debut = normTitle.split(/\s+/).slice(0, 3).join(' ');
+    const m = SAUCE_TITLE.exec(debut);
+    return !!m && !PLAT_AVANT_SAUCE.test(debut.slice(0, m.index));
+};
 /** Titre qui annonce vraiment un sandwich (pain garni, tenu à la main). */
 export const SANDWICH_TITLE = /\b(sandwichs?|burgers?|cheeseburgers?|wraps?|paninis?|croque[- ]?(?:monsieur|madame|mcdo)|bagels?|hot[- ]?dogs?|kebabs?|pitas?|tacos?|fajitas?|shawarmas?|banh mi|pan bagnat)\b/;
 /**
@@ -411,7 +424,7 @@ export function matchesTag(
         // reconnaît à son titre, et au fait qu'elle l'ouvre : « Sauce Roquefort »
         // en est une, « Kefta de poisson, sauce yaourt menthe » est un plat.
         if (recipeCat !== 'sauces' || SALAD_TITLE.test(normTitle)) return false;
-        return SAUCE_TITLE.test(normTitle.split(/\s+/).slice(0, 3).join(' '));
+        return ouvreSurSauce(normTitle);
     }
 
     // Thèmes stricts : tag explicite ou catégorie (barbecue exclut les sauces).

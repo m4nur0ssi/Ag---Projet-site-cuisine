@@ -30,5 +30,6 @@ export const COUNTRY_OPTIONS: { token: string; label: string }[] = [
     { token: 'p:liban', label: 'Liban' },
     { token: 'p:mexique', label: 'Mexique' },
     { token: 'p:orient', label: 'Orient' },
+    { token: 'p:portugal', label: 'Portugal' },
     { token: 'p:usa', label: 'USA' },
 ];

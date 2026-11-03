@@ -52,7 +52,7 @@ const countryColors: Record<string, string> = {
 };
 
 const countryFlags: Record<string, string> = {
-    france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', 
+    france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', portugal: '🇵🇹', 
     liban: '🇱🇧', usa: '🇺🇸', mexique: '🇲🇽', orient: '🕌',
     maroc: '🇲🇦', japon: '🇯🇵', autre: '🗺️'
 };

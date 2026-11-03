@@ -748,7 +748,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     const checkedCount = checkedIngredients.filter(Boolean).length;
 
     const countryFlags: Record<string, string> = {
-        france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', 
+        france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', portugal: '🇵🇹', 
         liban: '🇱🇧', usa: '🇺🇸', mexique: '🇲🇽', orient: '🕌',
         autre: '🗺️'
     };
