@@ -162,12 +162,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
 
     // Safety cleanup on unmount — ensures body is never left locked
     useEffect(() => {
-        return () => {
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            document.body.style.overflow = '';
-        };
+        return () => { delete document.body.dataset.fiche; };
     }, []);
 
     // Scroll lock and History State — only depends on isOpen
@@ -189,10 +184,18 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
              * `scrollYRef` garde la vraie position pour la rendre à la fermeture
              * — on revient exactement là où on avait cliqué.
              */
-            document.body.style.top = '0px';
-            document.body.style.position = 'fixed';
-            document.body.style.width = '100vw';
-            document.body.style.overflow = 'hidden';
+            /*
+             * Plus de verrou `position: fixed` sur le corps.
+             *
+             * Une page qui ne défile plus fait réafficher à Safari sa barre
+             * d'outils du bas en entier : à l'ouverture d'une fiche, la barre du
+             * menu remontait au-dessus d'elle au lieu de rester tout en bas, là où
+             * elle est sur l'accueil. Le corps reste donc défilable ; le fond, lui,
+             * ne bouge pas parce que le voile avale les gestes (`touch-action:
+             * none`) et que la fiche ne les rend pas au corps (`overscroll-behavior`).
+             * La page reste où elle était : plus de saut en haut, plus de retour.
+             */
+            document.body.dataset.fiche = 'ouverte';
 
             // Push a temporary state to handle "Back" button/swipe
             if (!onAddToPlanner) window.history.pushState({ modal: 'recipe' }, '');
@@ -217,11 +220,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
             return () => {
                 window.removeEventListener('popstate', handlePopState);
                 window.removeEventListener('magic-close-sheet', handleForceClose);
-                document.body.style.position = '';
-                document.body.style.top = '';
-                document.body.style.width = '';
-                document.body.style.overflow = '';
-                window.scrollTo(0, scrollYRef.current);
+                delete document.body.dataset.fiche;
             };
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

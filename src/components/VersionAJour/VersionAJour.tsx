@@ -31,7 +31,7 @@ const ABSENCE_MIN_MS = 30 * 1000;
 function calqueOuvert(): boolean {
     const b = document.body;
     if (b.style.overflow === 'hidden' || b.style.position === 'fixed') return true;
-    if (b.dataset.recherche === 'ouverte') return true;
+    if (b.dataset.recherche === 'ouverte' || b.dataset.fiche === 'ouverte') return true;
     const barre = document.getElementById('bottom-nav');
     return !!barre && barre.style.display === 'none';
 }

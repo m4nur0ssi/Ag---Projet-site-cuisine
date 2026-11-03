@@ -20,6 +20,8 @@
     backdrop-filter: blur(28px) saturate(140%);
     z-index: 5001;
     pointer-events: auto;
+    /* Le voile avale les gestes : le fond ne défile pas derrière la fiche. */
+    touch-action: none;
 }
 
 .sheet {
