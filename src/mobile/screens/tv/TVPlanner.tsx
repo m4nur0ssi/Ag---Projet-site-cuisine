@@ -679,6 +679,17 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         haptic(12);
         // Remplir la liste = on la veut : si elle avait été vidée, elle revient d'abord.
         rendreListe();
+        /*
+         * Et on lève le masque « déjà consommé ». L'ancien « Vider » marquait toutes
+         * les lignes du plan comme prises : ce masque survivait au remplissage, si
+         * bien que la liste s'ouvrait VIDE, et que « Par jour » aussi. Remplir la
+         * liste, c'est la vouloir : on repart des ingrédients du plan. Les cases
+         * barrées (`shop-done`) ne bougent pas.
+         */
+        try {
+            localStorage.removeItem('meal-week-checked');
+            localStorage.removeItem('meal-week-checked-sig');
+        } catch { /* noop */ }
 
         let data: Record<string, any> = {};
         try { data = JSON.parse(localStorage.getItem('magic-shopping-list') || '{}'); } catch { /* vide */ }
