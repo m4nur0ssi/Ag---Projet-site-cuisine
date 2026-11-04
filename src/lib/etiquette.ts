@@ -996,3 +996,113 @@ export async function composerSurBouteilleType(
     const webp = out.toDataURL('image/webp', qualite);
     return webp.startsWith('data:image/webp') ? webp : out.toDataURL('image/png');
 }
+
+/* ── La voie du SCAN : l'étiquette visée, posée telle quelle ──────────────── */
+
+/**
+ * Pose l'image du CADRE DE VISÉE sur la bouteille type de la couleur.
+ *
+ * POURQUOI UNE SECONDE VOIE
+ * -------------------------
+ * `composerSurBouteilleType` cherche l'étiquette sur une bouteille détourée.
+ * Au scan, c'est le mauvais problème : on part d'une photo large (plan de
+ * travail, étagère) ou d'un packshot de marchand qui n'est pas toujours le bon
+ * vin, et la « détection » tombait sur le verre noir, le bandeau du bas, ou
+ * rien du tout. Trois résultats sur le téléphone : bouteille sans étiquette,
+ * photo brute sans bouteille, étiquette d'un autre vin.
+ *
+ * Or au scan, l'étiquette, on L'A : c'est exactement ce qui était dans le cadre
+ * quand la photo est partie (le cadrage serré envoyé au modèle de lecture). On
+ * ne cherche donc plus rien. On la pose, pleine largeur du verre, centrée dans
+ * la bande d'étiquette du gabarit, réenroulée sur le cylindre et ombrée.
+ *
+ * Ne renvoie `null` que pour une liqueur (son flacon reste le sien) ou une
+ * image illisible.
+ */
+export async function poserEtiquetteScannee(
+    etiquette: string,
+    couleur: CouleurVerre,
+    opts: { hauteur?: number; qualite?: number } = {},
+): Promise<string | null> {
+    if (couleur === 'liqueur') return null;
+    const { hauteur = CADRE_H, qualite = 0.9 } = opts;
+    const img = await charger(etiquette);
+    if (!img || img.width < 20 || img.height < 20) return null;
+
+    const l = Math.round(hauteur * CADRE_L / CADRE_H);
+    const out = document.createElement('canvas');
+    out.width = l; out.height = hauteur;
+    const ctx = out.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return null;
+
+    // 1. La bouteille type, et la bande où une étiquette se pose.
+    const gab = await chargerGabarit(couleur);
+    let bandeHaut: number, bandeBas: number, gauche: number, droite: number;
+    if (gab && gab.boite && isFinite(gab.haut) && isFinite(gab.bas)) {
+        ctx.drawImage(gab.image, 0, 0, l, hauteur);
+        let gpx: ImageData;
+        try { gpx = ctx.getImageData(0, 0, l, hauteur); } catch { return null; }
+        const k = l / gab.cadre[0];
+        const bY = gab.boite.y * k, bH = gab.boite.h * k;
+        bandeHaut = bY + bH * Math.min(gab.haut, gab.bas);
+        bandeBas = bY + bH * Math.max(gab.haut, gab.bas);
+        const bords = largeurA(gpx, (bandeHaut + bandeBas) / 2);
+        if (!bords) return null;
+        gauche = bords.gauche; droite = bords.droite;
+    } else {
+        const p = dessinerVerre(ctx, l, hauteur, couleur);
+        const haut = p.basY - p.hautY;
+        bandeHaut = p.hautY + haut * 0.52;
+        bandeBas = p.hautY + haut * 0.88;
+        const demi = p.demiLargeur((bandeHaut + bandeBas) / 2);
+        gauche = l / 2 - demi; droite = l / 2 + demi;
+    }
+
+    // 2. Taille de l'étiquette : la largeur du verre (moins un liseré de verre
+    //    nu de chaque côté), la hauteur selon SES proportions. Trop haute pour
+    //    la bande : on garde son centre — c'est là que sont le nom et le blason.
+    const largVerre = droite - gauche;
+    const W = Math.round(largVerre * 0.92);
+    const bande = bandeBas - bandeHaut;
+    const maxH = Math.min(bande * 1.25, hauteur * 0.42);
+    let sx = 0, sy = 0, sw = img.width, sh = img.height;
+    let H = W * (sh / sw);
+    if (H > maxH) {
+        const garde = sh * (maxH / H);
+        sy = (sh - garde) / 2; sh = garde; H = maxH;
+    }
+    // Une étiquette très plate (bandeau) : on lui donne au moins un tiers de bande.
+    H = Math.max(H, bande * 0.33);
+    const x0 = gauche + (largVerre - W) / 2;
+    const y0 = Math.max(bandeHaut - bande * 0.15, (bandeHaut + bandeBas) / 2 - H / 2);
+
+    // 3. Réenroulement : colonne par colonne, le papier se tasse vers les bords
+    //    comme sur un cylindre (arc visible de ±62°).
+    const arc = (62 * Math.PI) / 180;
+    const R = W / 2 / Math.sin(arc);
+    for (let i = 0; i < W; i++) {
+        const dx = i + 0.5 - W / 2;
+        const phi = Math.asin(Math.max(-1, Math.min(1, dx / R)));
+        const u = (phi / arc + 1) / 2;
+        const col = sx + Math.min(sw - 1, Math.max(0, u * sw));
+        ctx.drawImage(img, col, sy, Math.max(1, sw / W), sh, x0 + i, y0, 1, H);
+    }
+
+    // 4. Ombrage : bords qui tournent dans l'ombre, reflet doux à gauche, et un
+    //    filet sombre en haut et en bas pour que le papier se lise comme collé.
+    const ombre = ctx.createLinearGradient(x0, 0, x0 + W, 0);
+    ombre.addColorStop(0, 'rgba(0,0,0,.55)');
+    ombre.addColorStop(0.16, 'rgba(0,0,0,.16)');
+    ombre.addColorStop(0.34, 'rgba(255,255,255,.10)');
+    ombre.addColorStop(0.46, 'rgba(0,0,0,0)');
+    ombre.addColorStop(0.80, 'rgba(0,0,0,.14)');
+    ombre.addColorStop(1, 'rgba(0,0,0,.60)');
+    ctx.fillStyle = ombre;
+    ctx.fillRect(x0, y0, W, H);
+    ctx.fillStyle = 'rgba(0,0,0,.28)';
+    ctx.fillRect(x0, y0, W, 1);
+    ctx.fillRect(x0, y0 + H - 1, W, 1);
+
+    const webp = out.toDataURL('image/webp', qualite);
+    return webp.startsWith('data:image/webp') ? webp : out.toDataURL('image/png');
+}

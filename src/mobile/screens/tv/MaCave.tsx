@@ -29,7 +29,7 @@ import { matchesTag } from './themes';
 import { normaliserBouteille, normaliserDepuisUrl, estNormalisee, CADRE_H } from '@/lib/bouteille';
 // L'étiquette réelle, reportée sur un verre dessiné : c'est ce qui donne à
 // l'étagère une silhouette unique. Voir `etiquette.ts`.
-import { composerSurBouteilleType } from '@/lib/etiquette';
+import { composerSurBouteilleType, poserEtiquetteScannee } from '@/lib/etiquette';
 import styles from './MaCave.module.css';
 // Le menu d'appui long réutilise TEL QUEL l'habillage de celui de l'accueil :
 // même taille, même grain, mêmes séparateurs. Deux menus dessinés séparément
@@ -1957,12 +1957,32 @@ async function visuelBouteille(scan: string, photoMarchand?: string, couleur?: W
     return sienne?.dataUrl || photoMarchand || mienne?.dataUrl || '';
 }
 
+/**
+ * Le visuel d'une bouteille SCANNÉE.
+ *
+ * Une règle, sans détection : la bouteille type de la couleur, et dessus
+ * l'étiquette telle qu'elle était dans le cadre de visée. Ni la photo du
+ * marchand (souvent un autre millésime, parfois un autre vin), ni la photo
+ * large (le plan de travail) ne décident plus de l'image.
+ *
+ * Seule la LIQUEUR garde l'ancienne voie : son flacon est ce qui l'identifie.
+ */
+async function visuelScan(etiquette: string, large: string, photoMarchand: string | undefined, couleur: WineColor): Promise<string> {
+    if (couleur !== 'liqueur' && etiquette) {
+        const pose = await poserEtiquetteScannee(etiquette, couleur);
+        if (pose) return pose;
+    }
+    return visuelBouteille(large, photoMarchand, couleur);
+}
+
 function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = false }: { onClose: () => void; shelf?: WineShelf; straightToCamera?: boolean }) {
     // Où ranger la bouteille : en cave (on l'a) ou dans « Goûté & approuvé »
     // (bue chez un ami, au restaurant — on ne la possède pas).
     const [shelf, setShelf] = useState<WineShelf>(initialShelf);
     const [photo, setPhoto] = useState<string>('');       // aperçu (pleine taille)
     const [photoSmall, setPhotoSmall] = useState<string>(''); // version stockable
+    // Le cadre de visée, net : c'est LUI qui devient l'étiquette de la bouteille type.
+    const [etiquetteScan, setEtiquetteScan] = useState<string>('');
     const [photoUrl, setPhotoUrl] = useState('');
     const [busy, setBusy] = useState(false);
     const [form, setForm] = useState<{ name: string; grape: string; year: string; color: WineColor; region: string; note: string }>(
@@ -1978,7 +1998,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
      * fiche s'affiche maintenant d'abord — note des dégustateurs comprise — et
      * c'est le doigt qui tranche.
      */
-    const [candidat, setCandidat] = useState<{ vin: VinLu; source: string; scan: string } | null>(null);
+    const [candidat, setCandidat] = useState<{ vin: VinLu; source: string; scan: string; etiquette: string } | null>(null);
     /**
      * La photo de la bouteille, DÉJÀ mise en scène (fond de cave, bords fondus).
      *
@@ -2002,7 +2022,8 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         if (!candidat) { setScenePrete(''); return; }
         let vivant = true;
         (async () => {
-            const scene = await visuelBouteille(candidat.scan, candidat.vin.photo, (candidat.vin.color || 'rouge') as WineColor);
+            setScenePrete('');
+            const scene = await visuelScan(candidat.etiquette, candidat.scan, candidat.vin.photo, (candidat.vin.color || 'rouge') as WineColor);
             if (vivant && scene) setScenePrete(scene);
         })();
         return () => { vivant = false; };
@@ -2071,10 +2092,19 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         const small = await compress(dataUrl);              // serré : pour la lecture
         const gardee = keep === dataUrl ? small : await compress(keep);
         setPhotoSmall(gardee);
+        // L'étiquette garde plus de pixels que la lecture : c'est elle qu'on verra.
+        const etiquette = await compress(dataUrl, 1000);
+        setEtiquetteScan(etiquette);
+
+        // Sans plafond, une recherche qui ne répond pas laissait le viseur sur
+        // « Recherche de la bouteille… » jusqu'à relancer l'application.
+        const stop = new AbortController();
+        const minuteur = setTimeout(() => stop.abort(), 25000);
 
         try {
-            const res = await fetch('/api/wine-lookup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ image: small }) });
+            const res = await fetch('/api/wine-lookup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ image: small }), signal: stop.signal });
             const data = await res.json();
+            clearTimeout(minuteur);
             const w = data?.wine;
             if (w?.name) {
                 /*
@@ -2087,7 +2117,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
                 clearTimeout(step2);
                 setBusy(false); setScanMsg('');
                 setViewfinder(false);
-                setCandidat({ vin: w, source: String(data?.source || ''), scan: gardee });
+                setCandidat({ vin: w, source: String(data?.source || ''), scan: gardee, etiquette });
                 return;
             }
             // Étiquette non reconnue : on REND LA MAIN au lieu de laisser le
@@ -2096,10 +2126,13 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
             setViewfinder(false);
             if (data?.quota) setScanMsg('Trop de scans d’affilée (quota IA) — réessaie dans une minute, ou tape le nom ci-dessous.');
             else setScanMsg('Étiquette illisible — tape le nom du vin ci-dessous, la photo est déjà gardée.');
-        } catch {
+        } catch (e) {
             setViewfinder(false);
-            setScanMsg('Reconnaissance impossible — tape le nom du vin ci-dessous, la photo est déjà gardée.');
+            setScanMsg((e as Error)?.name === 'AbortError'
+                ? 'La recherche ne répond pas — tape le nom du vin ci-dessous, ou rescanne.'
+                : 'Reconnaissance impossible — tape le nom du vin ci-dessous, la photo est déjà gardée.');
         }
+        clearTimeout(minuteur);
         clearTimeout(step2);
         setBusy(false);
     };
@@ -2121,7 +2154,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         // Ta photo, mise en packshot — voir `visuelBouteille` pour l'ordre des
         // préférences. Le plus souvent elle est déjà prête (`scenePrete`) :
         // elle s'est fabriquée pendant que la fiche proposée était à l'écran.
-        const photoFinale = scenePrete || (await visuelBouteille(candidat.scan, w.photo, (w.color || 'rouge') as WineColor));
+        const photoFinale = scenePrete || (await visuelScan(candidat.etiquette, candidat.scan, w.photo, (w.color || 'rouge') as WineColor));
 
         const ranger = (photo?: string) => addWine({
             name: w.name, grape: w.grape || '', year: w.year || '',
@@ -2217,7 +2250,9 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         const colle = photoUrl.trim();
         const scene = colle
             ? (await studioFromUrl(colle)) || colle
-            : await visuelBouteille(photoSmall, official.photo, form.color);
+            : etiquetteScan
+                ? await visuelScan(etiquetteScan, photoSmall, official.photo, form.color)
+                : await visuelBouteille(photoSmall, official.photo, form.color);
         const known = findKnownWine(name);
         const ranger = (photo?: string) => addWine({
             ...form, name,
@@ -2276,6 +2311,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
                         etagere={shelf}
                         occupe={busy}
                         message={scanMsg}
+                        onCouleur={(c) => setCandidat((k) => (k ? { ...k, vin: { ...k.vin, color: c } } : k))}
                         onAnnuler={() => { setCandidat(null); setScanMsg(''); }}
                         onValider={ajouterCandidat}
                     />
@@ -2354,7 +2390,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
  * une recherche Google pour le reste. On ne recopie pas leurs avis : ils ne
  * nous appartiennent pas, et un lien reste à jour.
  */
-function VinPropose({ vin, scan, scene, etagere, occupe, message, onAnnuler, onValider }: {
+function VinPropose({ vin, scan, scene, etagere, occupe, message, onCouleur, onAnnuler, onValider }: {
     vin: VinLu;
     scan: string;
     /** La photo déjà posée sur le fond de cave, quand elle est prête. */
@@ -2362,13 +2398,17 @@ function VinPropose({ vin, scan, scene, etagere, occupe, message, onAnnuler, onV
     etagere: WineShelf;
     occupe: boolean;
     message: string;
+    onCouleur: (c: WineColor) => void;
     onAnnuler: () => void;
     onValider: () => void;
 }) {
     // La mise en scène dès qu'elle est prête — c'est l'image qui entrera en
     // cave, sur le même fond sombre que toutes les autres. En attendant, la
     // photo du marchand, puis la nôtre.
-    const photo = scene || vin.photo || scan;
+    // Jamais la photo du marchand ici : ce n'est pas toujours le même vin, et
+    // ce n'est pas l'image qui entrera en cave. En attendant la bouteille
+    // composée, on montre ce qui a été scanné.
+    const photo = scene || scan;
     const note = typeof vin.rating === 'number' && vin.rating > 0 ? vin.rating : null;
     const ligne = [vin.year, vin.region, vin.grape].filter(Boolean).join(' · ');
     const requete = encodeURIComponent(`${vin.name} ${vin.year || ''} vin avis`.trim());
@@ -2406,6 +2446,17 @@ function VinPropose({ vin, scan, scene, etagere, occupe, message, onAnnuler, onV
                     </div>
                 </div>
             )}
+
+            {/* La couleur décide de la bouteille : lue par l'IA, elle se trompe
+                parfois (un rouge pris pour un rosé). Un doigt la corrige, et la
+                bouteille se recompose aussitôt. */}
+            <div className={styles.colorPick}>
+                {(['rouge', 'blanc', 'rose', 'champagne', 'cidre', 'liqueur'] as WineColor[]).map((c) => (
+                    <button key={c} className={`${styles.colorOpt} ${(vin.color || 'rouge') === c ? styles.colorOptOn : ''}`} onClick={() => onCouleur(c)} disabled={occupe}>
+                        <span className={styles.colorDot} style={{ background: COLOR_GLASS[c] }} />{COLOR_LABEL[c]}
+                    </button>
+                ))}
+            </div>
 
             <div className={styles.proposeNom}>{vin.name}</div>
             {ligne && <div className={styles.proposeMeta}>{ligne}</div>}
