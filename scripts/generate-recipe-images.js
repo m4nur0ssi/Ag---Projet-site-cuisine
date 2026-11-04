@@ -1501,6 +1501,15 @@ async function descriptionDepuisVideo(recette) {
         // gratuits d'abord — Groq (capé à 200k tokens/jour) puis Gemini — et
         // fal seulement quand les deux sont indisponibles.
         if (aOption('--vision-fal')) return await decrireFal(recette, frames);
+        /*
+         * `--openai` = ChatGPT seul, de bout en bout : la vision ne sort pas vers
+         * les gratuits ni vers fal. Si OpenAI ne répond pas, la recette est passée.
+         */
+        if (aOption('--openai')) {
+            const seul = await decrireOpenai(recette, frames);
+            if (seul) return seul;
+            throw new Error('vision openai indisponible (pas de repli, --openai)');
+        }
         const parGroq = await decrirePlat(recette, frames);
         if (parGroq) return parGroq;
         try {
