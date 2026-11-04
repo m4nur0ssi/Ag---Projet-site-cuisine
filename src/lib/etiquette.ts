@@ -654,23 +654,9 @@ const gabarits = new Map<CouleurVerre, Promise<Gabarit | null>>();
  * fichier dans `public/gabarits/` — il passe devant.
  */
 const REPLI: Record<CouleurVerre, CouleurVerre[]> = {
-    /*
-     * Rouge, blanc et rosé : AUCUN packshot, le verre dessiné.
-     *
-     * Les anciens gabarits photographiques étaient de vraies bouteilles dont on
-     * avait gommé l'étiquette, mais pas le relief : le rouge portait encore le
-     * « Châteauneuf-du-Pape » moulé dans le verre, sous l'étiquette scannée. La
-     * bouteille n'était donc ni neutre ni la même d'une fiche à l'autre. Le
-     * verre dessiné est strictement identique pour toutes les bouteilles d'une
-     * couleur, et l'étiquette scannée y est entière, centrée et lisible.
-     */
-    rouge: [],
-    blanc: [],
-    // Le rosé est le gabarit du blanc, teinte décalée vers le saumon : même
-    // verre clair, robe différente. Un rosé posé tel quel sur le gabarit du
-    // blanc aurait l'air d'un vin blanc, ce qui est la seule chose qu'on
-    // demande à une vignette de ne pas faire.
-    rose: [],
+    rouge: ['rouge'],
+    blanc: ['blanc'],
+    rose: ['rose', 'blanc'],
     /*
      * Une liqueur n'est JAMAIS composée — voir `composerSurBouteilleType`.
      *
