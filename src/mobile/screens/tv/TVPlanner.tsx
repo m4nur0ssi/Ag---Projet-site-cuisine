@@ -30,6 +30,7 @@ import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
 import { prixRecette, additionner } from '@/lib/recipe-price';
 import { normalizeIng, parseIngredient, buildConsolidatedItems } from '@/mobile/lib/ingredients';
 import { rayonOf } from '@/lib/rayons';
+import { rendreListe } from '@/lib/videeCourses';
 import { isCookable, hasSideIncluded, isSweet, proteinOf, assietteOf, type Assiette } from '@/lib/mealClassify';
 import { isTVSide, isTVMain, sidePool } from './sides';
 import {
@@ -676,6 +677,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         const recipes: Recipe[] = slots.flatMap((s) => (s.side ? [s, s.side] : [s]));
         if (!recipes.length) return;
         haptic(12);
+        // Remplir la liste = on la veut : si elle avait été vidée, elle revient d'abord.
+        rendreListe();
 
         let data: Record<string, any> = {};
         try { data = JSON.parse(localStorage.getItem('magic-shopping-list') || '{}'); } catch { /* vide */ }

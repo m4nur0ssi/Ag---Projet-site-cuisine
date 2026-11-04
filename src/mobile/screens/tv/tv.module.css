@@ -6741,3 +6741,13 @@
 }
 .spCloseX:active { transform: scale(.92); opacity: .7; }
 .spSearchControls .spCloseX { margin-bottom: 14px; }
+
+/* Liste vidée : le message et le bouton pour la retrouver. */
+.courseVidee {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+    margin: 6px 0 14px; padding: 16px 18px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .07);
+    box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .14);
+}
+.courseVidee p { margin: 0; font-size: 14px; line-height: 1.45; color: rgba(235, 235, 245, .72); }
