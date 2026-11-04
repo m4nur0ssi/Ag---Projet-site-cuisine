@@ -1482,9 +1482,11 @@ async function decrireOpenai(recette, frames) {
         if (!rep.ok) { console.log(`  👁 vision openai ${rep.status}`); return null; }
         const d = await rep.json();
         const txt = String(d?.choices?.[0]?.message?.content || '').replace(/\s+/g, ' ').trim();
+        console.log(`  👁 vision openai : « ${txt.slice(0, 120)} »`);
         if (!txt || /^none\b/i.test(txt) || txt.length < 15) return null;
         return txt.slice(0, 500);
     } catch (e) {
+        console.log(`  👁 vision openai, erreur : ${e.message}`);
         return null;
     }
 }
