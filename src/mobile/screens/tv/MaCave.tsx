@@ -917,41 +917,80 @@ function AddTile({ onClick, label }: { onClick: () => void; label: string }) {
 
 /* ── Zoom plein écran de la bouteille (molette / pincement + glisser) ──────── */
 function ZoomView({ src, onClose }: { src: string; onClose: () => void }) {
-    const [scale, setScale] = useState(1);
-    const [pos, setPos] = useState({ x: 0, y: 0 });
-    const drag = useRef<{ x: number; y: number } | null>(null);
-    /**
-     * Glissé vers le BAS = fermeture, comme partout ailleurs sur un téléphone.
-     * On ne l'écoute qu'à l'échelle 1 : une fois zoomé, le même geste sert à
-     * déplacer l'image, et fermer sous le doigt serait insupportable.
-     */
-    const bas = useRef<{ y: number; t: number } | null>(null);
+    const [vue, setVue] = useState({ s: 1, x: 0, y: 0 });
+    const vueRef = useRef(vue);
+    vueRef.current = vue;
+    // Les doigts posés, par identifiant : un seul = déplacer, deux = pincer.
+    const doigts = useRef(new Map<number, { x: number; y: number }>());
+    const pince = useRef<{ d: number; s: number } | null>(null);
+    const depart = useRef<{ x: number; y: number; t: number; bouge: boolean } | null>(null);
+    const dernierTap = useRef(0);
+    const MAX = 6;
+
+    const poser = (s: number, x: number, y: number) => {
+        const sc = Math.min(MAX, Math.max(1, s));
+        // À l'échelle 1 l'image est centrée ; au-delà, on borne le déplacement.
+        const lim = (sc - 1) * 260;
+        setVue({ s: sc, x: sc === 1 ? 0 : Math.min(lim, Math.max(-lim, x)), y: sc === 1 ? 0 : Math.min(lim * 1.6, Math.max(-lim * 1.6, y)) });
+    };
+    const dist = () => {
+        const p = [...doigts.current.values()];
+        return p.length < 2 ? 0 : Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+    };
+
+    const bas = (e: React.PointerEvent) => {
+        (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+        doigts.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        if (doigts.current.size === 2) { pince.current = { d: dist(), s: vueRef.current.s }; depart.current = null; }
+        else depart.current = { x: e.clientX, y: e.clientY, t: Date.now(), bouge: false };
+    };
+    const bouge = (e: React.PointerEvent) => {
+        const prec = doigts.current.get(e.pointerId);
+        if (!prec) return;
+        doigts.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        const v = vueRef.current;
+        if (doigts.current.size >= 2 && pince.current) {
+            const d = dist();
+            if (pince.current.d > 0) poser(pince.current.s * (d / pince.current.d), v.x, v.y);
+        } else if (v.s > 1) {
+            poser(v.s, v.x + (e.clientX - prec.x), v.y + (e.clientY - prec.y));
+        }
+        const dp = depart.current;
+        if (dp && Math.hypot(e.clientX - dp.x, e.clientY - dp.y) > 8) dp.bouge = true;
+    };
+    const haut = (e: React.PointerEvent) => {
+        doigts.current.delete(e.pointerId);
+        if (doigts.current.size < 2) pince.current = null;
+        const dp = depart.current;
+        if (!dp || doigts.current.size) return;
+        depart.current = null;
+        const v = vueRef.current;
+        // Glissé rapide vers le bas à l'échelle 1 : fermeture, comme ailleurs.
+        if (v.s <= 1.02 && e.clientY - dp.y > 90 && Date.now() - dp.t < 700) { onClose(); return; }
+        // Double tape : 1 ↔ 2,5.
+        if (!dp.bouge && Date.now() - dp.t < 300) {
+            const now = Date.now();
+            if (now - dernierTap.current < 320) { dernierTap.current = 0; poser(v.s > 1.05 ? 1 : 2.5, 0, 0); }
+            else dernierTap.current = now;
+        }
+    };
+
     return (
         <div
             className={styles.zoomBack}
-            onClick={onClose}
-            onWheel={(e) => { setScale((s) => Math.min(5, Math.max(1, s - e.deltaY * 0.002))); }}
-            onPointerDown={(e) => { bas.current = { y: e.clientY, t: Date.now() }; }}
-            onPointerUp={(e) => {
-                const d = bas.current;
-                bas.current = null;
-                if (!d || scale > 1) return;
-                const parcouru = e.clientY - d.y;
-                const rapide = Date.now() - d.t < 700;
-                if (parcouru > 90 && rapide) onClose();
-            }}
+            onClick={(e) => { if (e.target === e.currentTarget && vueRef.current.s <= 1.02) onClose(); }}
+            onWheel={(e) => { const v = vueRef.current; poser(v.s - e.deltaY * 0.004, v.x, v.y); }}
+            onPointerDown={bas}
+            onPointerMove={bouge}
+            onPointerUp={haut}
+            onPointerCancel={haut}
         >
-            <button className={styles.zoomClose} onClick={onClose}><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
+            <button className={styles.zoomClose} onClick={onClose} onPointerDown={(e) => e.stopPropagation()} aria-label="Fermer"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
             <img
                 src={src} alt="" className={styles.zoomImg} draggable={false}
-                style={{ transform: `translate(${pos.x}px, ${pos.y}px) scale(${scale})` }}
-                onClick={(e) => e.stopPropagation()}
-                onDoubleClick={() => { setScale((s) => (s > 1 ? 1 : 2.5)); setPos({ x: 0, y: 0 }); }}
-                onPointerDown={(e) => { drag.current = { x: e.clientX - pos.x, y: e.clientY - pos.y }; }}
-                onPointerMove={(e) => { if (drag.current && scale > 1) setPos({ x: e.clientX - drag.current.x, y: e.clientY - drag.current.y }); }}
-                onPointerUp={() => { drag.current = null; }}
+                style={{ transform: `translate(${vue.x}px, ${vue.y}px) scale(${vue.s})` }}
             />
-            <div className={styles.zoomHint}>Molette / double-clic pour zoomer · glisser pour déplacer</div>
+            <div className={styles.zoomHint}>Pince pour zoomer · double tape · glisse pour déplacer</div>
         </div>
     );
 }
@@ -1105,11 +1144,6 @@ function WineCard({ wine, onPair, onRemove, onOpen, onZoom, onMenu, bureau = fal
                         ? <img src={wine.photo} alt="" className={styles.bottlePhoto} draggable={false} />
                         : <BottleSVG color={wine.color} />}
                 </div>
-                {wine.photo && (
-                    <button className={styles.zoomBtn} onClick={(e) => { e.stopPropagation(); onZoom(); }} aria-label="Agrandir">
-                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4M11 8v6M8 11h6" /></svg>
-                    </button>
-                )}
                 <span className={`${styles.colorTag} ${styles['tag_' + wine.color]}`}>{COLOR_LABEL[wine.color]}</span>
                 {/* Le stock se lit SUR l'affiche : c'est ce qu'on cherche en
                     balayant l'étagère (« qu'est-ce qu'il me reste ? »). Les

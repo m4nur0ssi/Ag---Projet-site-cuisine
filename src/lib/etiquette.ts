@@ -1019,15 +1019,91 @@ export async function composerSurBouteilleType(
  * Ne renvoie `null` que pour une liqueur (son flacon reste le sien) ou une
  * image illisible.
  */
+/**
+ * Remet l'étiquette « à la lumière du jour ».
+ *
+ * Une photo prise dans une cuisine ou une cave est sombre et terne : l'étiquette
+ * posée telle quelle se lit grise, noyée dans le verre. On étire donc les
+ * niveaux (le 2ᵉ au 98ᵉ centile deviennent noir et blanc), puis on relève les
+ * tons moyens jusqu'à ce que le papier soit franchement clair. Même coefficient
+ * sur les trois canaux : les teintes (le rouge d'un blason, l'or d'un titre)
+ * restent celles de l'étiquette, on ne fait que l'éclairer.
+ */
+function eclaircir(img: HTMLImageElement): HTMLCanvasElement | null {
+    const cote = 1100;
+    const r = Math.min(1, cote / Math.max(img.width, img.height));
+    const cv = document.createElement('canvas');
+    cv.width = Math.max(1, Math.round(img.width * r)); cv.height = Math.max(1, Math.round(img.height * r));
+    const ctx = cv.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return null;
+    ctx.drawImage(img, 0, 0, cv.width, cv.height);
+    let px: ImageData;
+    try { px = ctx.getImageData(0, 0, cv.width, cv.height); } catch { return null; }
+    const d = px.data;
+
+    /*
+     * Balance des blancs, seulement si c'est du papier.
+     *
+     * Une lampe jaune ou un néon bleuté teinte toute la photo. Le papier clair
+     * d'une étiquette est censé être presque neutre : si les hautes lumières des
+     * trois canaux sont proches, l'écart vient de l'éclairage et on le résorbe.
+     * Si elles sont très différentes (étiquette rouge, noire à lettres d'or),
+     * la teinte est celle de l'étiquette : on n'y touche pas.
+     */
+    const hc = [new Uint32Array(256), new Uint32Array(256), new Uint32Array(256)];
+    let np = 0;
+    for (let i = 0; i < d.length; i += 40) { hc[0][d[i]]++; hc[1][d[i + 1]]++; hc[2][d[i + 2]]++; np++; }
+    const p95 = (h: Uint32Array) => { let c = 0; for (let v = 0; v < 256; v++) { c += h[v]; if (c >= np * 0.95) return Math.max(1, v); } return 255; };
+    const hautes = [p95(hc[0]), p95(hc[1]), p95(hc[2])];
+    const plus = Math.max(...hautes), moins = Math.min(...hautes);
+    if (plus / moins < 1.6) {
+        const gain = hautes.map((h) => 1 + (plus / h - 1) * 0.8);
+        for (let i = 0; i < d.length; i += 4) {
+            d[i] = Math.min(255, d[i] * gain[0]); d[i + 1] = Math.min(255, d[i + 1] * gain[1]); d[i + 2] = Math.min(255, d[i + 2] * gain[2]);
+        }
+    }
+
+    const hist = new Uint32Array(256);
+    let n = 0;
+    // Le centre seulement : les bords sont du verre, de la table, du décor.
+    const x0 = Math.floor(cv.width * 0.1), x1 = Math.ceil(cv.width * 0.9);
+    const y0 = Math.floor(cv.height * 0.1), y1 = Math.ceil(cv.height * 0.9);
+    for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) {
+        const i = (y * cv.width + x) * 4;
+        hist[(d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114) | 0]++; n++;
+    }
+    const centile = (q: number) => { let c = 0; for (let v = 0; v < 256; v++) { c += hist[v]; if (c >= n * q) return v; } return 255; };
+    const lo = centile(0.02);
+    const hi = Math.max(centile(0.98), lo + 40);
+    const etendue = hi - lo;
+    // Clarté moyenne après étirement → gamma qui la ramène vers 0,60.
+    let somme = 0;
+    for (let v = 0; v < 256; v++) somme += hist[v] * Math.min(1, Math.max(0, (v - lo) / etendue));
+    const moy = Math.min(0.9, Math.max(0.05, somme / Math.max(1, n)));
+    const gamma = Math.min(1, Math.max(0.45, Math.log(0.60) / Math.log(moy)));
+    const table = new Uint8ClampedArray(256);
+    for (let v = 0; v < 256; v++) table[v] = Math.round(255 * Math.pow(Math.min(1, Math.max(0, (v - lo) / etendue)), gamma));
+    for (let i = 0; i < d.length; i += 4) { d[i] = table[d[i]]; d[i + 1] = table[d[i + 1]]; d[i + 2] = table[d[i + 2]]; }
+    ctx.putImageData(px, 0, 0);
+    return cv;
+}
+
 export async function poserEtiquetteScannee(
     etiquette: string,
     couleur: CouleurVerre,
     opts: { hauteur?: number; qualite?: number } = {},
 ): Promise<string | null> {
     if (couleur === 'liqueur') return null;
-    const { hauteur = CADRE_H, qualite = 0.9 } = opts;
-    const img = await charger(etiquette);
-    if (!img || img.width < 20 || img.height < 20) return null;
+    /*
+     * Rendu en ×3 (1380 × 1842) : c'est ce qui permet de LIRE l'étiquette au
+     * zoom. À 460 px de haut, le papier ne faisait que 130 px de large et le
+     * texte n'était plus que des taches. Les mises en page du gabarit sont en
+     * proportions : seule la définition change.
+     */
+    const { hauteur = CADRE_H * 3, qualite = 0.9 } = opts;
+    const brut = await charger(etiquette);
+    if (!brut || brut.width < 20 || brut.height < 20) return null;
+    const img = eclaircir(brut) ?? brut;
 
     const l = Math.round(hauteur * CADRE_L / CADRE_H);
     const out = document.createElement('canvas');
@@ -1091,17 +1167,19 @@ export async function poserEtiquetteScannee(
     // 4. Ombrage : bords qui tournent dans l'ombre, reflet doux à gauche, et un
     //    filet sombre en haut et en bas pour que le papier se lise comme collé.
     const ombre = ctx.createLinearGradient(x0, 0, x0 + W, 0);
-    ombre.addColorStop(0, 'rgba(0,0,0,.55)');
-    ombre.addColorStop(0.16, 'rgba(0,0,0,.16)');
-    ombre.addColorStop(0.34, 'rgba(255,255,255,.10)');
+    // Léger : l'étiquette doit rester CLAIRE. Seuls les tout derniers bords
+    // tournent dans l'ombre, pour qu'elle épouse le verre sans le cacher.
+    ombre.addColorStop(0, 'rgba(0,0,0,.32)');
+    ombre.addColorStop(0.07, 'rgba(0,0,0,.10)');
+    ombre.addColorStop(0.30, 'rgba(255,255,255,.12)');
     ombre.addColorStop(0.46, 'rgba(0,0,0,0)');
-    ombre.addColorStop(0.80, 'rgba(0,0,0,.14)');
-    ombre.addColorStop(1, 'rgba(0,0,0,.60)');
+    ombre.addColorStop(0.90, 'rgba(0,0,0,.06)');
+    ombre.addColorStop(1, 'rgba(0,0,0,.36)');
     ctx.fillStyle = ombre;
     ctx.fillRect(x0, y0, W, H);
-    ctx.fillStyle = 'rgba(0,0,0,.28)';
-    ctx.fillRect(x0, y0, W, 1);
-    ctx.fillRect(x0, y0 + H - 1, W, 1);
+    ctx.fillStyle = 'rgba(0,0,0,.18)';
+    ctx.fillRect(x0, y0, W, Math.max(1, Math.round(hauteur / 614)));
+    ctx.fillRect(x0, y0 + H - Math.max(1, Math.round(hauteur / 614)), W, Math.max(1, Math.round(hauteur / 614)));
 
     const webp = out.toDataURL('image/webp', qualite);
     return webp.startsWith('data:image/webp') ? webp : out.toDataURL('image/png');
