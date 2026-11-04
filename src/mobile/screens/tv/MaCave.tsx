@@ -271,9 +271,27 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             } catch { return ''; }
         };
 
+        /*
+         * Remise à zéro unique des rouges, blancs et rosés (demande du 2026-11-04) :
+         * les anciennes fiches portaient des bouteilles de gabarits différents, on
+         * repart propre. Les LIQUEURS restent. Passe une fois par appareil, une
+         * fois le nuage lu (sinon les fiches redescendraient), et le drapeau n'est
+         * posé qu'après coup : une coupure en route reprend au lancement suivant.
+         */
+        const purger = () => {
+            const DRAPEAU = 'cave-purge-rbr-2026-11-04';
+            try { if (localStorage.getItem(DRAPEAU)) return; } catch { return; }
+            readCave()
+                .filter((w) => w.color === 'rouge' || w.color === 'blanc' || w.color === 'rose')
+                .forEach((w) => removeWine(w.id));
+            try { localStorage.setItem(DRAPEAU, '1'); } catch { /* noop */ }
+        };
+
         const rattraper = async () => {
             await whenCaveReady();
-            if (!vivant || (typeof navigator !== 'undefined' && navigator.onLine === false)) return;
+            if (!vivant) return;
+            purger();
+            if (typeof navigator !== 'undefined' && navigator.onLine === false) return;
             const aFaire = readCave().filter((w) => (w.visuelV ?? 0) < VISUEL_VERSION);
             if (!aFaire.length) return;
             // Des fiches qui changent d'aspect sans un mot, ça inquiète.
@@ -381,7 +399,9 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         // une bouteille de cette couleur sur l'une ou l'autre étagère.
         const dispo = wines.filter((w) => shelfOf(w) === 'cave');
         const present = order
-            .filter((c) => wines.some((w) => w.color === c))
+            // Champagnes et cidres ont TOUJOURS leur section, même vide : c'est
+            // là qu'on s'attend à les trouver et qu'on pense à en ajouter.
+            .filter((c) => c === 'champagne' || c === 'cidre' || wines.some((w) => w.color === c))
             .map((c) => ({ key: c, label: plural[c], n: dispo.filter((w) => w.color === c).length }));
         return [{ key: 'tous' as const, label: 'Tous', n: dispo.length }, ...present];
     }, [wines]);
@@ -1337,7 +1357,7 @@ function EditWine({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
 
                         <div className={styles.editLabel}>Couleur</div>
                         <div className={styles.colorPick}>
-                            {(['rouge', 'blanc', 'rose', 'liqueur'] as WineColor[]).map((c) => (
+                            {(['rouge', 'blanc', 'rose', 'champagne', 'cidre', 'cidre-rose', 'liqueur'] as WineColor[]).map((c) => (
                                 <button key={c} className={`${styles.colorOpt} ${f.color === c ? styles.colorOptOn : ''}`} onClick={() => setF({ ...f, color: c })}>
                                     <span className={styles.colorDot} style={{ background: COLOR_GLASS[c] }} />{COLOR_LABEL[c]}
                                 </button>
@@ -2308,7 +2328,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
                         <input className={styles.inp} value={form.region} onChange={(e) => setForm({ ...form, region: e.target.value })} placeholder="Région / appellation" />
                         <input className={styles.inp} value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} placeholder="Lien de la photo officielle (optionnel, colle depuis le marchand)" />
                         <div className={styles.colorPick}>
-                            {(['rouge', 'blanc', 'liqueur'] as WineColor[]).map((c) => (
+                            {(['rouge', 'blanc', 'rose', 'champagne', 'cidre', 'cidre-rose', 'liqueur'] as WineColor[]).map((c) => (
                                 <button key={c} className={`${styles.colorOpt} ${form.color === c ? styles.colorOptOn : ''}`} onClick={() => setForm({ ...form, color: c })}>
                                     <span className={styles.colorDot} style={{ background: COLOR_GLASS[c] }} />{COLOR_LABEL[c]}
                                 </button>

@@ -38,7 +38,7 @@ import Tip from '@/components/Tip/Tip';
 import SwipeRow from '@/mobile/components/SwipeRow/SwipeRow';
 import TVToast from './TVToast';
 import { ecrireStock } from '@/lib/stockage';
-import { lireVidage, poserVidage, rendreListe, type Vidage } from '@/lib/videeCourses';
+import { lireVidage, poserVidage, rendreListe, oublierVidage, type Vidage } from '@/lib/videeCourses';
 import { suggerer, memoriserAjout } from '@/lib/suggestionsCourses';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import { usePreferredStore, storeSearchWithQueue } from '@/lib/stores';
@@ -141,7 +141,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         return () => { window.removeEventListener(CART_EVENT, load); window.removeEventListener('storage', load); };
     }, []);
     const [list, setList] = useState<ListData>({});
-    // Liste vidée (copie gardée) : « Tout acheter » est vide, « Par jour » reste complet.
+    // Copie gardée du dernier « Vider » (articles barrés effacés) : sert au bouton « Retrouver ma liste ».
     const [vidage, setVidage] = useState<Vidage | null>(null);
     const [plan, setPlan] = useState<Record<string, Record<string, any>>>({});
     const [weekChecked, setWeekChecked] = useState<Set<string>>(new Set());
@@ -205,7 +205,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             const nextPlan = j('meal-planner-week', '{}');
             // Le plan a changé depuis le vidage : c'est une autre semaine, la liste revient.
             let vid = lireVidage();
-            if (vid && vid.sig !== planSignature(nextPlan)) { nextList = rendreListe() ?? nextList; vid = null; }
+            if (vid && vid.sig !== planSignature(nextPlan)) { oublierVidage(); vid = null; }
             setVidage(vid);
             const next = reconcileShoppingState(nextPlan, nextList, new Set(j('shop-done', '[]')),
                 new Set(j('meal-week-checked', '[]')), j('shop-qty', '{}'), j('shop-slots-sig', '{}'), j('shop-qty-signatures', '{}'));
@@ -232,9 +232,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     }, []);
 
     // Les besoins complets gardent les lignes barrées et leurs liens aux recettes.
-    // Liste vidée : « Tout acheter » ne regarde plus le planificateur (seulement les
-    // ajouts faits depuis). Les vues par jour, elles, lisent toujours `plan`.
-    const planListe = useMemo(() => (vidage ? {} : plan), [vidage, plan]);
+    const planListe = plan;
     const sourceItems = useMemo(() => buildConsolidatedItems(planListe, weekChecked, list as any, withJourJ, withWeek),
         [planListe, weekChecked, list, withJourJ, withWeek]);
     const allSourceItems = useMemo(() => buildConsolidatedItems(plan, weekChecked, list as any, true, true), [plan, weekChecked, list]);
@@ -481,21 +479,45 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     };
 
     /**
-     * « Vider » : la liste fusionnée et les ajouts à la main partent, pas le
-     * planificateur. Les ingrédients restent, jour par jour, dans « Par jour »
-     * (les barrés sont déjà pris) et une copie des ajouts est gardée : le bouton
-     * « Retrouver ma liste » les ramène. Aucun bouton « Annuler » : on ne perd rien.
+     * « Vider » : seuls les articles BARRÉS (déjà pris) quittent la liste
+     * principale ; ceux qui ne le sont pas restent affichés. Une copie de ce qui
+     * part est gardée : « Retrouver ma liste » le ramène (barré, comme avant).
      */
     const clearAll = () => {
+        const barres = items.filter((it) => isItemDone(it, done));
+        if (!barres.length) {
+            window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+                detail: { text: 'Rien de barré à effacer — barre ce que tu as pris', duree: 2400 },
+            }));
+            return;
+        }
         haptic(12);
-        const vides = items.length;
-        poserVidage(planSignature(plan), JSON.parse(localStorage.getItem('magic-shopping-list') || '{}'));
-        localStorage.removeItem('magic-shopping-list');
-        setList({});
+        const listeAvant: ListData = JSON.parse(localStorage.getItem('magic-shopping-list') || '{}');
+        let next: ListData = list;
+        const restant = new Set(done);
+        const masque = new Set(weekChecked);
+        const masqueAjoute: string[] = [];
+        const marquesRetirees: string[] = [];
+        barres.forEach((it) => {
+            next = removeShoppingProduct(next, canonicalIng(it.name, it.unit).name, restant);
+            doneKeysOf(it).forEach((k) => {
+                const p = k.split('|');
+                if (p.length >= 3 && !k.startsWith('m:') && !k.startsWith('extra|') && !masque.has(k)) { masque.add(k); masqueAjoute.push(k); }
+                if (done.has(k)) marquesRetirees.push(k);
+                restant.delete(k);
+            });
+        });
+        poserVidage(planSignature(plan), listeAvant, masqueAjoute, marquesRetirees);
+        saveList(next);
+        if (masqueAjoute.length) {
+            setWeekChecked(masque);
+            ecrireStock('meal-week-checked', JSON.stringify([...masque]));
+            ecrireStock('meal-week-checked-sig', planSignature(plan));
+        }
+        persistDone(restant);
         setVidage(lireVidage());
-        window.dispatchEvent(new Event('shoppingListUpdated'));
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
-            detail: { text: `Liste vidée · ${vides} article${vides > 1 ? 's' : ''} — retrouve-les par jour ou avec « Retrouver ma liste »`, duree: 3200 },
+            detail: { text: `${barres.length} article${barres.length > 1 ? 's' : ''} barré${barres.length > 1 ? 's' : ''} effacé${barres.length > 1 ? 's' : ''} — « Retrouver ma liste » les ramène`, duree: 3200 },
         }));
     };
 
@@ -721,7 +743,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const retrouverBandeau = (
         <div className={styles.courseVidee}>
             <p>
-                Liste vidée. Tes ingrédients sont toujours là, jour par jour, dans « Par jour » (les articles barrés sont déjà pris).
+                Les articles barrés ont été effacés. Les autres restent à acheter.
             </p>
             <button className={styles.coursePilule} onClick={retrouverListe}>Retrouver ma liste</button>
         </div>
@@ -759,7 +781,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                             <div className={styles.courseActionsHaut}>
                                 {activeItems.length > 0 && <StoreButton onLaunch={lancerMagasin} dropDown />}
                                 <button className={styles.coursePilule} onClick={openAddArticle}>Ajouter</button>
-                                <button className={styles.coursePilule} onClick={clearAll} disabled={!items.length}>Vider</button>
+                                <button className={styles.coursePilule} onClick={clearAll} disabled={!items.some((it) => isItemDone(it, done))}>Vider</button>
                                 <button className={`${styles.coursePilule} ${styles.coursePiluleClaire}`} onClick={() => router.push('/tv-planner')}>
                                     Planificateur
                                 </button>
@@ -787,7 +809,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
 
             {mode === 'semaine' ? (
                 <div className={styles.courseBody}>
-                    {hasWeek && !vidage && (
+                    {hasWeek && (
                         <button
                             className={`${styles.courseJourJ} ${withWeek ? styles.courseJourJOn : ''}`}
                             onClick={() => { haptic(8); ecrireStock('week-in-fused', withWeek ? 'false' : 'true'); setWithWeek(!withWeek); window.dispatchEvent(new Event('shoppingListUpdated')); }}
@@ -796,7 +818,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                             {withWeek ? 'Semaine incluse dans la liste' : 'Afficher les ingrédients de la semaine'}
                         </button>
                     )}
-                    {hasJourJ && !vidage && (
+                    {hasJourJ && (
                         <button
                             className={`${styles.courseJourJ} ${withJourJ ? styles.courseJourJOn : ''}`}
                             onClick={() => { haptic(8); ecrireStock('jourj-in-fused', withJourJ ? 'false' : 'true'); setWithJourJ(!withJourJ); window.dispatchEvent(new Event('shoppingListUpdated')); }}
@@ -1206,7 +1228,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
 
             {!surOrdinateur && <div className={`${styles.planFooter} ${styles.courseFooter}`}>
                 <button className={styles.planCompose} onClick={openAddArticle}>Ajouter</button>
-                <button className={styles.planClear} onClick={clearAll} disabled={!items.length}>Vider</button>
+                <button className={styles.planClear} onClick={clearAll} disabled={!items.some((it) => isItemDone(it, done))}>Vider</button>
                 <button className={styles.planValidate} onClick={() => router.push('/tv-planner')}>
                     Planificateur
                 </button>

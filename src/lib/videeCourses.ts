@@ -7,11 +7,10 @@ import { ecrireStock } from '@/lib/stockage';
  * n'avait pas encore achetés : une erreur de doigt coûtait la liste, et le seul
  * recours était un bouton « Annuler » de deux secondes.
  *
- * Désormais, vider ne touche QU'À la liste fusionnée (« Tout acheter ») et aux
- * ajouts à la main. Le planificateur et les cases barrées ne bougent pas : la
- * vue « Par jour » montre toujours, recette par recette, ce qu'il y a à acheter
- * et ce qui est déjà pris. Une copie des ajouts à la main est gardée ici, avec
- * la signature du plan, pour le bouton « Retrouver ma liste ».
+ * Désormais, vider n'efface de la liste principale (« Tout acheter ») QUE les
+ * articles barrés (déjà pris). Ceux qui ne sont pas barrés restent affichés.
+ * Une copie (ajouts à la main, lignes masquées, cases barrées) est gardée ici,
+ * avec la signature du plan, pour le bouton « Retrouver ma liste ».
  */
 
 type Liste = Record<string, any>;
@@ -25,6 +24,10 @@ export interface Vidage {
     /** La liste (ajouts à la main) telle qu'elle était. */
     list: Liste;
     at: number;
+    /** Lignes du planificateur masquées par le vidage (à démasquer en retrouvant la liste). */
+    masque?: string[];
+    /** Cases barrées retirées par le vidage (à re-barrer en retrouvant la liste). */
+    marques?: string[];
 }
 
 export function lireVidage(): Vidage | null {
@@ -34,8 +37,13 @@ export function lireVidage(): Vidage | null {
     } catch { return null; }
 }
 
-export function poserVidage(sig: string, list: Liste): void {
-    ecrireStock(KEY, JSON.stringify({ sig, list, at: Date.now() } satisfies Vidage));
+export function poserVidage(sig: string, list: Liste, masque: string[] = [], marques: string[] = []): void {
+    ecrireStock(KEY, JSON.stringify({ sig, list, at: Date.now(), masque, marques } satisfies Vidage));
+}
+
+/** Oublie la copie (le plan a changé : ce qu'elle rendrait n'a plus de sens). */
+export function oublierVidage(): void {
+    try { localStorage.removeItem(KEY); } catch { /* noop */ }
 }
 
 /** Les ajouts de la copie rejoignent la liste en cours, sans doublon. */
@@ -62,6 +70,22 @@ export function rendreListe(): Liste | null {
     try { courante = JSON.parse(localStorage.getItem(LISTE) || '{}'); } catch { /* liste illisible : repart de la copie */ }
     const fusion = fusionner(courante, v.list);
     ecrireStock(LISTE, JSON.stringify(fusion));
+    // Les lignes du planificateur masquées par le vidage redeviennent visibles…
+    if (v.masque?.length) {
+        try {
+            const m = new Set<string>(JSON.parse(localStorage.getItem('meal-week-checked') || '[]'));
+            v.masque.forEach((k) => m.delete(k));
+            ecrireStock('meal-week-checked', JSON.stringify([...m]));
+        } catch { /* masque illisible : on laisse tel quel */ }
+    }
+    // … et les cases barrées reviennent barrées : c'est ce qu'on avait acheté.
+    if (v.marques?.length) {
+        try {
+            const d = new Set<string>(JSON.parse(localStorage.getItem('shop-done') || '[]'));
+            v.marques.forEach((k) => d.add(k));
+            ecrireStock('shop-done', JSON.stringify([...d]));
+        } catch { /* noop */ }
+    }
     try { localStorage.removeItem(KEY); } catch { /* noop */ }
     return fusion;
 }

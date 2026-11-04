@@ -150,8 +150,8 @@
 .two > * { flex: 1 1 0; min-width: 0; }
 .inp { flex: 1; height: 46px; padding: 0 14px; border: none; border-radius: 12px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); color: #fff; font-size: 15px; }
 .inp::placeholder { color: rgba(235,235,245,.4); }
-.colorPick { display: flex; gap: 8px; }
-.colorOpt { flex: 1; height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: none; border-radius: 12px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); color: rgba(235,235,245,.8); font-size: 13.5px; font-weight: 600; cursor: pointer; }
+.colorPick { display: flex; flex-wrap: wrap; gap: 8px; }
+.colorOpt { flex: 1 1 calc(33% - 8px); height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: none; border-radius: 12px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); color: rgba(235,235,245,.8); font-size: 13.5px; font-weight: 600; cursor: pointer; }
 .colorOptOn { background: #fff; color: #111; }
 .colorDot { width: 12px; height: 12px; border-radius: 999px; }
 .saveBtn { height: 52px; border: none; border-radius: 15px; cursor: pointer; background: #fff; color: #111; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 16px; }
