@@ -1020,16 +1020,155 @@ export async function composerSurBouteilleType(
  * image illisible.
  */
 /**
+ * Où est le PAPIER de l'étiquette dans le cadre de visée ?
+ *
+ * Le cadre contient bien plus que l'étiquette : du verre noir au-dessus et en
+ * dessous, parfois une bande de décor sur un bord. Posé tel quel sur la
+ * bouteille, ce rectangle laissait voir ces bords, et le papier ne remplissait
+ * jamais la largeur du verre.
+ *
+ * Le papier est la zone CLAIRE qui tranche avec le verre. On la trouve par ses
+ * proportions de pixels clairs, ligne par ligne puis colonne par colonne, ce qui
+ * résiste à l'encre (les lettres sombres trouent le papier mais ne changent pas
+ * la proportion d'ensemble) et aux reflets (trop étroits pour tenir une ligne).
+ *
+ * Renvoie `null` si rien de franc ne ressort (étiquette noire sur verre noir) :
+ * l'appelant retombe alors sur le centre du cadre.
+ */
+export function trouverPapier(img: HTMLImageElement | HTMLCanvasElement): { x: number; y: number; w: number; h: number } | null {
+    const r = Math.min(1, 320 / Math.max(img.width, img.height));
+    const w = Math.max(8, Math.round(img.width * r)), h = Math.max(8, Math.round(img.height * r));
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    const ctx = cv.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return null;
+    ctx.drawImage(img, 0, 0, w, h);
+    let d: Uint8ClampedArray;
+    try { d = ctx.getImageData(0, 0, w, h).data; } catch { return null; }
+
+    const L = new Uint8Array(w * h);
+    const hist = new Uint32Array(256);
+    for (let i = 0, p = 0; i < d.length; i += 4, p++) { const v = (d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114) | 0; L[p] = v; hist[v]++; }
+
+    // Seuil d'Otsu : sépare « papier » et « verre/ombre ».
+    let total = w * h, somme = 0;
+    for (let v = 0; v < 256; v++) somme += v * hist[v];
+    let sB = 0, wB = 0, best = 0, seuil = 110;
+    for (let v = 0; v < 256; v++) {
+        wB += hist[v]; if (!wB) continue;
+        const wF = total - wB; if (!wF) break;
+        sB += v * hist[v];
+        const mB = sB / wB, mF = (somme - sB) / wF;
+        const ec = wB * wF * (mB - mF) * (mB - mF);
+        if (ec > best) { best = ec; seuil = v; }
+    }
+    seuil = Math.min(170, Math.max(70, seuil));
+    const clair = (x: number, y: number) => L[y * w + x] > seuil;
+
+    // Plus longue plage de valeurs ≥ `min`, en tolérant de petits trous (l'encre).
+    const plage = (f: Float32Array, min: number, trou: number, centre: number) => {
+        let meilleure: [number, number] | null = null, score = -1;
+        let debut = -1, fin = -1, vides = 0;
+        const clore = () => {
+            if (debut < 0) return;
+            const longueur = fin - debut + 1;
+            // À longueur proche, celle qui contient le centre l'emporte : c'est
+            // là que l'utilisateur a visé l'étiquette.
+            const s = longueur + (centre >= debut && centre <= fin ? f.length * 0.08 : 0);
+            if (s > score) { score = s; meilleure = [debut, fin]; }
+            debut = -1; fin = -1; vides = 0;
+        };
+        for (let i = 0; i < f.length; i++) {
+            if (f[i] >= min) { if (debut < 0) debut = i; fin = i; vides = 0; }
+            else if (debut >= 0 && ++vides > trou) clore();
+        }
+        clore();
+        return meilleure as [number, number] | null;
+    };
+
+    const profilLignes = (x0: number, x1: number) => {
+        const f = new Float32Array(h);
+        for (let y = 0; y < h; y++) { let n = 0; for (let x = x0; x < x1; x++) if (clair(x, y)) n++; f[y] = n / Math.max(1, x1 - x0); }
+        return f;
+    };
+    const profilColonnes = (y0: number, y1: number) => {
+        const f = new Float32Array(w);
+        for (let x = 0; x < w; x++) { let n = 0; for (let y = y0; y <= y1; y++) if (clair(x, y)) n++; f[x] = n / Math.max(1, y1 - y0 + 1); }
+        return f;
+    };
+
+    // 1. Les lignes : sur la partie centrale, là où le papier se trouve.
+    let lignes = plage(profilLignes(Math.floor(w * 0.25), Math.ceil(w * 0.75)), 0.5, Math.round(h * 0.03), Math.floor(h / 2));
+    if (!lignes) return null;
+    // 2. Les colonnes, sur ces lignes seulement.
+    let cols = plage(profilColonnes(lignes[0], lignes[1]), 0.45, Math.max(1, Math.round(w * 0.012)), Math.floor(w / 2));
+    if (!cols) return null;
+    // 3. On revient sur les lignes, cette fois sur la largeur trouvée : le bord
+    //    haut et bas se resserre sur le papier.
+    const lignes2 = plage(profilLignes(cols[0], cols[1] + 1), 0.55, Math.round(h * 0.03), Math.floor((lignes[0] + lignes[1]) / 2));
+    if (lignes2) lignes = lignes2;
+
+    /*
+     * Le papier n'est pas tout clair : un bandeau doré ou coloré (nom du
+     * domaine) est plus SOMBRE que le fond de l'étiquette sans être du verre.
+     * On étend donc le haut et le bas tant que la ligne reste ENTIÈREMENT
+     * « pas du verre » (plus claire que la moitié du seuil sur ≥ 85 % de la
+     * largeur). Le verre, même avec ses reflets, garde toujours des zones noires.
+     */
+    const bas = Math.max(40, seuil * 0.5);
+    const ligneNonVerre = (y: number) => {
+        let n = 0; const total = cols![1] - cols![0] + 1;
+        for (let x = cols![0]; x <= cols![1]; x++) if (L[y * w + x] > bas) n++;
+        return n / total >= 0.85;
+    };
+    const limite = Math.round((lignes[1] - lignes[0] + 1) * 0.3);
+    // Un liseré noir ou doré sépare souvent le bandeau du papier : on le franchit.
+    const trouE = Math.max(2, Math.round(h * 0.07));
+    {
+        let y = lignes[0], vides = 0, ext = 0;
+        while (y > 0 && ext < limite) { y--; ext++; if (ligneNonVerre(y)) { lignes[0] = y; vides = 0; } else if (++vides > trouE) break; }
+        y = lignes[1]; vides = 0; ext = 0;
+        while (y < h - 1 && ext < limite) { y++; ext++; if (ligneNonVerre(y)) { lignes[1] = y; vides = 0; } else if (++vides > trouE) break; }
+    }
+
+    /*
+     * Resserrer les côtés sur le VRAI bord du papier.
+     *
+     * Une bande de décor claire, collée au papier, passait pour du papier. Le
+     * vrai bord se reconnaît à un saut net de clarté moyenne d'une colonne à la
+     * suivante (le papier est uniforme, le décor non) : on le cherche dans les
+     * 14 % extérieurs de chaque côté et on s'y cale s'il est franc.
+     */
+    {
+        const moy = new Float32Array(w);
+        for (let x = 0; x < w; x++) { let t = 0; for (let y = lignes[0]; y <= lignes[1]; y++) t += L[y * w + x]; moy[x] = t / (lignes[1] - lignes[0] + 1); }
+        const fen = Math.round((cols[1] - cols[0] + 1) * 0.14);
+        const saut = (i: number) => Math.abs(moy[Math.min(w - 1, i + 2)] - moy[Math.max(0, i - 2)]);
+        let mg = 0, ig = -1;
+        for (let i = cols[0] + 2; i < cols[0] + fen; i++) { const v = saut(i); if (v > mg) { mg = v; ig = i; } }
+        if (ig > 0 && mg >= 16) cols[0] = ig + 2;
+        let md = 0, id = -1;
+        for (let i = cols[1] - 2; i > cols[1] - fen; i--) { const v = saut(i); if (v > md) { md = v; id = i; } }
+        if (id > 0 && md >= 16) cols[1] = id - 2;
+    }
+
+    const bw = cols[1] - cols[0] + 1, bh = lignes[1] - lignes[0] + 1;
+    const part = (bw * bh) / (w * h);
+    // Trop petit : un reflet. Presque tout : rien n'a été séparé.
+    if (part < 0.18 || part > 0.97 || bw < w * 0.35 || bh < h * 0.2) return null;
+    return { x: cols[0] / r, y: lignes[0] / r, w: bw / r, h: bh / r };
+}
+
+/**
  * Remet l'étiquette « à la lumière du jour ».
  *
  * Une photo prise dans une cuisine ou une cave est sombre et terne : l'étiquette
  * posée telle quelle se lit grise, noyée dans le verre. On étire donc les
  * niveaux (le 2ᵉ au 98ᵉ centile deviennent noir et blanc), puis on relève les
- * tons moyens jusqu'à ce que le papier soit franchement clair. Même coefficient
+ * tons moyens jusqu'à ce que le papier soit franchement clair (cible : 0,68 de clarté moyenne). Même coefficient
  * sur les trois canaux : les teintes (le rouge d'un blason, l'or d'un titre)
  * restent celles de l'étiquette, on ne fait que l'éclairer.
  */
-function eclaircir(img: HTMLImageElement): HTMLCanvasElement | null {
+function eclaircir(img: HTMLImageElement | HTMLCanvasElement): HTMLCanvasElement | null {
     const cote = 1100;
     const r = Math.min(1, cote / Math.max(img.width, img.height));
     const cv = document.createElement('canvas');
@@ -1080,10 +1219,20 @@ function eclaircir(img: HTMLImageElement): HTMLCanvasElement | null {
     let somme = 0;
     for (let v = 0; v < 256; v++) somme += hist[v] * Math.min(1, Math.max(0, (v - lo) / etendue));
     const moy = Math.min(0.9, Math.max(0.05, somme / Math.max(1, n)));
-    const gamma = Math.min(1, Math.max(0.45, Math.log(0.60) / Math.log(moy)));
+    const gamma = Math.min(1, Math.max(0.42, Math.log(0.68) / Math.log(moy)));
     const table = new Uint8ClampedArray(256);
     for (let v = 0; v < 256; v++) table[v] = Math.round(255 * Math.pow(Math.min(1, Math.max(0, (v - lo) / etendue)), gamma));
-    for (let i = 0; i < d.length; i += 4) { d[i] = table[d[i]]; d[i + 1] = table[d[i + 1]]; d[i + 2] = table[d[i + 2]]; }
+    /*
+     * On applique la courbe à la CLARTÉ, pas à chaque canal : une courbe par
+     * canal sature d'abord le canal dominant et pousse une étiquette crème vers
+     * l'orange. En multipliant les trois canaux du même facteur, la teinte du
+     * papier reste la sienne.
+     */
+    for (let i = 0; i < d.length; i += 4) {
+        const y = d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114;
+        const g = table[y | 0] / Math.max(6, y);
+        d[i] = Math.min(255, d[i] * g); d[i + 1] = Math.min(255, d[i + 1] * g); d[i + 2] = Math.min(255, d[i + 2] * g);
+    }
     ctx.putImageData(px, 0, 0);
     return cv;
 }
@@ -1103,7 +1252,26 @@ export async function poserEtiquetteScannee(
     const { hauteur = CADRE_H * 3, qualite = 0.9 } = opts;
     const brut = await charger(etiquette);
     if (!brut || brut.width < 20 || brut.height < 20) return null;
-    const img = eclaircir(brut) ?? brut;
+
+    /*
+     * 1. Le PAPIER, rien que lui.
+     *
+     * On repère l'étiquette dans le cadre, puis on rentre de 2,5 % : la
+     * détection est juste à quelques pixels près, et un liséré de verre ou de
+     * décor sur le bord se voit tout de suite. Rien trouvé → le centre du cadre.
+     */
+    const zone = trouverPapier(brut) ?? { x: brut.width * 0.08, y: brut.height * 0.14, w: brut.width * 0.84, h: brut.height * 0.72 };
+    const ix = zone.w * 0.025, iy = zone.h * 0.025;
+    const cx = Math.max(0, zone.x + ix), cy = Math.max(0, zone.y + iy);
+    const cw = Math.min(brut.width - cx, zone.w - 2 * ix), ch = Math.min(brut.height - cy, zone.h - 2 * iy);
+    const rogne = document.createElement('canvas');
+    const k = Math.min(1, 1100 / Math.max(cw, ch));
+    rogne.width = Math.max(1, Math.round(cw * k)); rogne.height = Math.max(1, Math.round(ch * k));
+    rogne.getContext('2d')?.drawImage(brut, cx, cy, cw, ch, 0, 0, rogne.width, rogne.height);
+
+    // 2. Éclairci APRÈS le recadrage : les niveaux se calculent sur le papier,
+    //    pas sur le verre noir qui l'entourait.
+    const img = (eclaircir(rogne) ?? rogne) as HTMLCanvasElement;
 
     const l = Math.round(hauteur * CADRE_L / CADRE_H);
     const out = document.createElement('canvas');
@@ -1134,23 +1302,23 @@ export async function poserEtiquetteScannee(
         gauche = l / 2 - demi; droite = l / 2 + demi;
     }
 
-    // 2. Taille de l'étiquette : la largeur du verre (moins un liseré de verre
-    //    nu de chaque côté), la hauteur selon SES proportions. Trop haute pour
-    //    la bande : on garde son centre — c'est là que sont le nom et le blason.
+    // 2. La PLAQUE : même largeur pour toutes les bouteilles — celle du verre,
+    //    d'arête à arête. Seule la hauteur suit l'étiquette, dans des bornes
+    //    (ni un timbre, ni une étiquette qui avale le corps) : au-delà, on
+    //    rogne le haut et le bas plutôt que de déformer le texte.
     const largVerre = droite - gauche;
-    const W = Math.round(largVerre * 0.92);
+    const W = Math.round(largVerre * 0.97);
     const bande = bandeBas - bandeHaut;
-    const maxH = Math.min(bande * 1.25, hauteur * 0.42);
+    const rapportSource = img.height / img.width;
+    const rapport = Math.min(1.25, Math.max(0.62, rapportSource));
+    const H = W * rapport;
     let sx = 0, sy = 0, sw = img.width, sh = img.height;
-    let H = W * (sh / sw);
-    if (H > maxH) {
-        const garde = sh * (maxH / H);
-        sy = (sh - garde) / 2; sh = garde; H = maxH;
+    if (rapportSource > rapport) {
+        // Trop haute pour la plaque : on garde le milieu.
+        sh = img.width * rapport; sy = (img.height - sh) / 2;
     }
-    // Une étiquette très plate (bandeau) : on lui donne au moins un tiers de bande.
-    H = Math.max(H, bande * 0.33);
     const x0 = gauche + (largVerre - W) / 2;
-    const y0 = Math.max(bandeHaut - bande * 0.15, (bandeHaut + bandeBas) / 2 - H / 2);
+    const y0 = (bandeHaut + bandeBas) / 2 - H / 2 + bande * 0.02;
 
     // 3. Réenroulement : colonne par colonne, le papier se tasse vers les bords
     //    comme sur un cylindre (arc visible de ±62°).
