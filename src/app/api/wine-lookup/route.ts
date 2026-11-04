@@ -170,7 +170,7 @@ function toWine(raw: string, fallbackName: string): Wine {
 
 /**
  * Fusion lecture d'étiquette + fiche Vivino. Vivino fait foi sur tout ce qui est
- * vérifiable (photo, cépage, appellation, couleur, millésime) ; la phrase de
+ * vérifiable (photo, cépage, appellation) — pas sur la couleur, qui choisit le gabarit ; la phrase de
  * dégustation de l'IA est gardée si Vivino n'en fournit pas.
  */
 function merge(read: Wine | null, v: BouteilleTrouvee): Wine {
@@ -186,16 +186,16 @@ function merge(read: Wine | null, v: BouteilleTrouvee): Wine {
         grape: v.grape || read?.grape || '',
         year,
         /*
-         * La couleur du MARCHAND ne fait foi que s'il en connaît une meilleure.
+         * La couleur — donc le GABARIT de bouteille — vient de la LECTURE de
+         * l'étiquette scannée, jamais du marchand.
          *
-         * Son catalogue ne range qu'en rouge/blanc/rosé/liquoreux : un champagne
-         * y est « blanc », un cidre n'y est pas du tout. Quand l'étiquette, elle,
-         * annonce un format que le marchand ignore, c'est la lecture qui gagne —
-         * c'est elle qui a vu le muselet.
+         * C'était l'inverse : le marchand l'emportait pour rouge/blanc/rosé/
+         * liqueur. Or son catalogue est approximatif (homonymes, cuvée voisine
+         * rangée en rosé) et un rouge scanné ressortait sur une bouteille de
+         * rosé. L'IA a la bouteille sous les yeux ; le marchand ne l'a pas.
+         * Il ne reprend la main que si la lecture n'a rien donné.
          */
-        color: read && !['rouge', 'blanc', 'rose', 'liqueur'].includes(read.color)
-            ? read.color
-            : v.color,
+        color: read?.color || v.color,
         region: v.region || read?.region || '',
         note: read?.note || v.note || '',
         photo: v.photo,
