@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8135",
         "title": "Brownies Tiramisu",
         "description": "Des brownies moelleux imbibés de café, surmontés d'une crème onctueuse au mascarpone et saupoudrés de cacao.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8135-carte.webp",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
