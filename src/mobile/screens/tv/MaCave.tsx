@@ -22,6 +22,7 @@ import {
     CAVE_EVENT, type CaveWine, type WineColor, type WineShelf, type DrinkStatus,
 } from '@/lib/cave';
 import { whenCaveReady } from '@/mobile/lib/caveSync';
+import { useFermerClavierSurResultats } from '@/lib/clavier';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { matchesTag } from './themes';
 // Détourage + mise à taille fixe des bouteilles. Voir `bouteille.ts` : c'est
@@ -351,6 +352,9 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         else s.sort((a, b) => b.addedAt - a.addedAt);
         return s;
     }, [wines, filter, ripe, q, sort]);
+    // La recherche de la page : le clavier se retire quand des bouteilles sont trouvées.
+    const rechercheRef = useRef<HTMLInputElement>(null);
+    useFermerClavierSurResultats(q, shown.length, rechercheRef);
     const detail = useMemo(() => wines.find((w) => w.id === detailId) || null, [wines, detailId]);
     /**
      * Les bouteilles entre lesquelles on navigue d'un glissé, dans la fiche :
@@ -496,7 +500,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             <div className={styles.toolbar}>
                 <div className={styles.searchWrap}>
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4" /></svg>
-                    <input className={styles.search} value={q} onChange={(e) => setQ(e.target.value)} placeholder="Chercher (nom, région, cépage…)" />
+                    <input ref={rechercheRef} className={styles.search} value={q} onChange={(e) => setQ(e.target.value)} placeholder="Chercher (nom, région, cépage…)" />
                 </div>
                 <div className={styles.sortWrap}>
                     {([['recent', 'Récent'], ['annee', 'Année'], ['region', 'Région']] as const).map(([k, lbl]) => (
@@ -618,6 +622,8 @@ function WineSearch({ wines, onPick, onClose }: { wines: CaveWine[]; onPick: (id
         const all = [...wines].sort((a, b) => b.addedAt - a.addedAt);
         return q.trim() ? all.filter((w) => wineMatches(w, q)) : all;
     }, [wines, q]);
+    // Les bouteilles trouvées sont là : le clavier se retire pour les montrer.
+    useFermerClavierSurResultats(q, liste.length, inputRef);
 
     return createPortal(
         <div className={styles.pickBackdrop} onClick={onClose}>

@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 /**
  * Ouvrir le clavier AVANT que le champ existe.
  * ============================================
@@ -50,4 +52,39 @@ export function ouvrirClavier() {
 /** Le vrai champ a pris le focus : plus besoin du filet. */
 export function clavierRepris() {
     if (releaseTimer) { clearTimeout(releaseTimer); releaseTimer = null; }
+}
+
+/**
+ * Le clavier se retire tout seul quand les résultats sont là.
+ *
+ * Sur téléphone, le clavier couvre la moitié de l'écran : on tapait trois
+ * lettres, les résultats s'affichaient… dessous, et il fallait fermer le clavier
+ * à la main pour les voir.
+ *
+ * Règle : dès que le texte fait au moins `min` lettres ET qu'il y a au moins un
+ * résultat, on attend une courte pause dans la frappe (`delai`, pour ne pas
+ * couper quelqu'un qui tape encore son mot), puis on retire le focus du champ —
+ * ce qui baisse le clavier. Toucher le champ le remonte, et la prochaine pause
+ * le rebaissera. Rien ne se passe sur ordinateur (pas de clavier à l'écran).
+ *
+ * `actif` laisse l'appelant dire que les résultats ne correspondent pas encore
+ * au texte (l'assistant, par exemple, répond après coup).
+ */
+export function useFermerClavierSurResultats(
+    texte: string,
+    nbResultats: number,
+    champ: { current: HTMLElement | null },
+    opts: { min?: number; delai?: number; actif?: boolean } = {},
+) {
+    const { min = 3, delai = 650, actif = true } = opts;
+    useEffect(() => {
+        if (!actif || nbResultats <= 0 || texte.trim().length < min) return;
+        if (typeof window === 'undefined' || !window.matchMedia?.('(pointer: coarse)').matches) return;
+        const t = setTimeout(() => {
+            const el = champ.current;
+            if (el && document.activeElement === el) el.blur();
+        }, delai);
+        return () => clearTimeout(t);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [texte, nbResultats, actif, min, delai]);
 }

@@ -46,7 +46,7 @@ import Tip from '@/components/Tip/Tip';
 import { ecrireStock } from '@/lib/stockage';
 import { readCave, drinkWindow, type CaveWine } from '@/lib/cave';
 import { intentionVin, compacterCave, accordLocal } from '@/lib/accordCave';
-import { clavierRepris } from '@/lib/clavier';
+import { clavierRepris, useFermerClavierSurResultats } from '@/lib/clavier';
 import { useBackToClose } from './retour';
 
 const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -587,6 +587,21 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             .sort((a, b) => b.matched - a.matched)
             .slice(0, 14);
     }, [searchedIngredients, mode, pool]);
+
+    /*
+     * Le clavier se retire quand les résultats sont là (≥ 3 lettres + au moins
+     * un résultat cohérent) : sans ça il couvre la liste qu'on vient d'obtenir.
+     * Les trois modes ont leur propre texte et leurs propres résultats.
+     */
+    useFermerClavierSurResultats(query, mode === 'recipe' ? filteredRecipes.length : 0, inputRef, { actif: mode === 'recipe' });
+    // Ingrédients : on laisse un peu plus de temps, on en tape souvent plusieurs.
+    useFermerClavierSurResultats(ingInput, mode === 'ingredients' ? ingredientResults.length : 0, inputRef, { actif: mode === 'ingredients', delai: 1000 });
+    // Assistant : la réponse arrive après coup ; on ne ferme que lorsqu'elle
+    // correspond bien au texte tapé (sinon on couperait la frappe suivante).
+    useFermerClavierSurResultats(
+        aiQuery, mode === 'assistant' ? aiResults.length + aiWines.length : 0, inputRef,
+        { actif: mode === 'assistant' && !aiBusy && aiQuery.trim() === lastExecutedQueryRef.current, delai: 250 },
+    );
 
     /**
      * La sélection telle qu'elle est AFFICHÉE, dans l'ordre de l'écran.

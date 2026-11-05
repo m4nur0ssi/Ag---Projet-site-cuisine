@@ -83,6 +83,11 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     const [activeStepIndex, setActiveStepIndex] = useState(0);
     const [mounted, setMounted] = useState(false);
     const [isListening, setIsListening] = useState(false);
+    // Micro DEMANDÉ par l'utilisateur (il reste demandé pendant que l'appli parle,
+    // même si l'écoute est suspendue le temps de la phrase).
+    const [micDemande, setMicDemande] = useState(false);
+    const [micRefus, setMicRefus] = useState(false);
+    const [micIndispo, setMicIndispo] = useState(false);
 
     // Swipe navigation state
     const router = useRouter();
@@ -632,63 +637,82 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         } catch (e) { /* noop */ }
     }, []);
 
+    /**
+     * La meilleure voix française de l'appareil (même règle que Pilvoice, où la
+     * voix fonctionne) : fr-FR d'abord, voix « améliorée/premium » et locale
+     * avant les voix réseau. Sans voix choisie, iOS reste parfois muet.
+     */
+    const voixFr = () => {
+        try {
+            const vs = window.speechSynthesis.getVoices().filter((v) => /^fr/i.test(v.lang || ''));
+            const note = (v: SpeechSynthesisVoice) =>
+                (/fr[-_]FR/i.test(v.lang) ? 10 : 0) + (/premium|enhanced|améliorée|siri/i.test(v.name) ? 6 : 0) + (v.localService ? 3 : 0);
+            return vs.sort((x, y) => note(y) - note(x))[0] || null;
+        } catch { return null; }
+    };
+
+    /** Le texte annoncé pour une étape : où l'on en est, puis quoi faire. */
+    const texteEtape = (i: number) => {
+        const n = recipe.steps.length;
+        const rang = n <= 1 ? '' : i === n - 1 ? `Dernière étape. ` : `Étape ${i + 1} sur ${n}. `;
+        return rang + stripHtml(recipe.steps[i] || '');
+    };
+
+    /**
+     * Parler, dans l'ordre que l'iPhone impose.
+     *
+     * Tant que le micro est ouvert, iOS garde l'audio en mode ENREGISTREMENT et
+     * la synthèse ne sort pas (ou ne démarre jamais). L'ancien code ne coupait le
+     * micro qu'au début de la lecture (`onstart`)… qui n'arrivait donc jamais :
+     * après le premier « suivant », plus rien n'était lu. Désormais :
+     *   1. on marque « je parle » tout de suite (le micro ne se rouvre plus) ;
+     *   2. on COUPE le micro, on laisse 350 ms à iOS pour rendre l'audio ;
+     *   3. on parle ; à la fin de la phrase, le micro se rouvre.
+     * Le tout premier énoncé (bouton « Lancer la préparation ») part sans délai :
+     * il doit rester dans le geste du doigt, et le micro n'est pas encore ouvert.
+     */
     const speak = (text: string) => {
-        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-            // On n'annule QUE s'il y a de quoi : sur iPhone, un `cancel()` suivi
-            // aussitôt d'un `speak()` avale la nouvelle phrase, et on n'entend rien.
-            if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
-                window.speechSynthesis.cancel();
-            }
-            const utterance = new SpeechSynthesisUtterance(stripHtml(text));
-            utterance.lang = 'fr-FR';
-            utterance.rate = 1.0;
-            // iOS : forcer une voix française si dispo (sinon l'utterance peut rester muet
-            // tant que les voix ne sont pas chargées).
-            try {
-                const voices = window.speechSynthesis.getVoices();
-                const frVoice = voices.find(v => (v.lang || '').toLowerCase().startsWith('fr'));
-                if (frVoice) utterance.voice = frVoice;
-            } catch (e) { /* noop */ }
-            
-            utterance.onstart = () => {
-                isSpeakingRef.current = true;
-                // On stoppe la reconnaissance pour éviter de se détecter soi-même
-                if (recognitionRef.current) {
-                    try { recognitionRef.current.stop(); } catch(e) {}
-                }
-                // Sécurité : si onend ne se déclenche jamais
-                setTimeout(() => {
-                    if (isSpeakingRef.current) {
-                        isSpeakingRef.current = false;
-                        if (focusModeRef.current) startRecognitionRef.current();
-                    }
-                }, 8000);
-            };
-            
-            utterance.onend = () => {
-                isSpeakingRef.current = false;
-                if (focusModeRef.current) setTimeout(() => startRecognitionRef.current(), 300);
-            };
-            // Sans ça, une synthèse interrompue laissait `isSpeakingRef` à true et
-            // la reconnaissance restait bloquée jusqu'au filet de sécurité (8 s).
-            utterance.onerror = () => {
-                isSpeakingRef.current = false;
-                if (focusModeRef.current) setTimeout(() => startRecognitionRef.current(), 300);
-            };
-
-            window.speechSynthesis.speak(utterance);
-
-            // Filet : il arrive que la toute première phrase reste coincée dans la
-            // file (l'iPhone met la synthèse en pause de lui-même). Si rien n'a
-            // démarré au bout d'une seconde, on la relance une fois.
-            setTimeout(() => {
-                if (isSpeakingRef.current) return;
-                try {
-                    window.speechSynthesis.resume();
-                    if (!window.speechSynthesis.speaking) window.speechSynthesis.speak(utterance);
-                } catch (e) { /* noop */ }
-            }, 1000);
+        if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+        const synth = window.speechSynthesis;
+        isSpeakingRef.current = true;
+        const enCours = !!recognitionRef.current;
+        if (recognitionRef.current) {
+            try { recognitionRef.current.abort ? recognitionRef.current.abort() : recognitionRef.current.stop(); } catch (e) { /* noop */ }
+            recognitionRef.current = null;
         }
+        setIsListening(false);
+
+        const lancer = () => {
+            try { synth.resume(); } catch (e) { /* noop */ }
+            // On n'annule QUE s'il y a de quoi : sur iPhone, un `cancel()` suivi
+            // aussitôt d'un `speak()` avale la nouvelle phrase.
+            if (synth.speaking || synth.pending) synth.cancel();
+            const propre = stripHtml(text);
+            const u = new SpeechSynthesisUtterance(propre);
+            u.lang = 'fr-FR'; u.rate = 0.95; u.volume = 1;
+            const v = voixFr(); if (v) u.voice = v;
+
+            let fini = false;
+            const finir = () => {
+                if (fini) return; fini = true;
+                isSpeakingRef.current = false;
+                if (focusModeRef.current && voiceOnRef.current) setTimeout(() => startRecognitionRef.current(), 400);
+            };
+            u.onend = finir;
+            u.onerror = finir;
+            // Filet : si `onend` ne vient jamais, on rouvre le micro quand la phrase
+            // a eu le temps d'être dite (≈ 75 ms par caractère), pas avant — un
+            // délai fixe de 8 s rouvrait le micro au milieu des longues étapes.
+            setTimeout(() => { if (!synth.speaking) finir(); else setTimeout(() => { if (!synth.speaking) finir(); }, 4000); }, 1500 + propre.length * 75);
+            synth.speak(u);
+            // Première phrase coincée (l'iPhone met parfois la file en pause) :
+            // une relance après une seconde.
+            setTimeout(() => {
+                if (fini || synth.speaking) return;
+                try { synth.resume(); if (!synth.speaking && !synth.pending) synth.speak(u); } catch (e) { /* noop */ }
+            }, 1000);
+        };
+        if (enCours) setTimeout(lancer, 350); else lancer();
     };
 
     const recognitionRef = useRef<any>(null);
@@ -711,17 +735,20 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             }
         } else {
             setTermine(true);
+            speak('C’est terminé. Bon appétit ! Dites « quitter » pour fermer.');
         }
     };
 
     const handlePrevStep = () => {
         if (activeStepIndex > 0) {
             setActiveStepIndex(prev => prev - 1);
+        } else {
+            speak('Vous êtes à la première étape. ' + texteEtape(0));
         }
     };
 
     const handleRepeatStep = () => {
-        speak(recipe.steps[activeStepIndex]);
+        speak(texteEtape(activeStepIndex));
     };
 
     // Refs pour accéder aux handlers frais dans les closures de l'écoute vocale
@@ -738,6 +765,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     const startRecognition = useCallback(() => {
         if (typeof window !== 'undefined') {
             const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+            if (!SpeechRecognition && voiceOnRef.current) { setMicIndispo(true); return; }
             if (SpeechRecognition && !recognitionRef.current && focusModeRef.current && voiceOnRef.current && !isSpeakingRef.current) {
                 const recognition = new SpeechRecognition();
                 recognition.lang = 'fr-FR';
@@ -749,6 +777,9 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                     console.log('🎤 Micro activé');
                 };
                 recognition.onend = () => {
+                    // Une écoute coupée pour laisser parler l'appli se termine en
+                    // retard : elle ne doit pas effacer celle qui a pris sa place.
+                    if (recognitionRef.current && recognitionRef.current !== recognition) return;
                     setIsListening(false);
                     recognitionRef.current = null;
                     if (focusModeRef.current && voiceOnRef.current && !isSpeakingRef.current) {
@@ -762,21 +793,27 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                     const transcript = event.results[event.results.length - 1][0].transcript.toLowerCase();
                     console.log('🗣️ Commande reçue:', transcript);
                     
-                    if (/suivant|prochain|allez|aller|go|on y va|prêt|c'est bon/.test(transcript)) {
+                    if (/suivant|suivante|prochain|prochaine|on y va|c'est bon|c'est fait|ok suivant/.test(transcript)) {
                         handlersRef.current.handleNextStep();
                     } 
-                    else if (/précédent|retour|avant|revenir|reviens/.test(transcript)) {
+                    else if (/précédent|précédente|retour|revenir|reviens|en arrière/.test(transcript)) {
                         handlersRef.current.handlePrevStep();
                     } 
-                    else if (/répète|répéter|encore|qu'est-ce|pardon|comment|redis/.test(transcript)) {
+                    else if (/répète|répéter|repete|redis|encore une fois|pardon|j'ai pas compris/.test(transcript)) {
                         handlersRef.current.handleRepeatStep();
                     }
-                    else if (/quitter|stop|terminer|fin|fermer/.test(transcript)) {
+                    else if (/quitter|quitte|arrête|arrêter|fermer|terminer/.test(transcript)) {
                         setFocusMode(false);
                     }
                 };
 
                 recognition.onerror = (err: any) => {
+                    // Micro refusé : inutile de relancer en boucle, on le dit.
+                    if (err.error === 'not-allowed' || err.error === 'service-not-allowed') {
+                        voiceOnRef.current = false; setMicDemande(false);
+                        setMicRefus(true);
+                        return;
+                    }
                     if (err.error !== 'no-speech' && err.error !== 'aborted') {
                         console.error('❌ Erreur Micro:', err.error);
                     }
@@ -810,8 +847,10 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
 
     // Tap-to-talk : le tap fournit le geste utilisateur exigé par iOS Safari.
     const toggleMic = useCallback(() => {
+        setMicRefus(false);
         if (voiceOnRef.current) {
             voiceOnRef.current = false;
+            setMicDemande(false);
             setIsListening(false);
             if (recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) {} recognitionRef.current = null; }
             return;
@@ -820,6 +859,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         if (typeof window !== 'undefined' && 'speechSynthesis' in window) window.speechSynthesis.cancel();
         isSpeakingRef.current = false;
         voiceOnRef.current = true;
+        setMicDemande(true);
         startRecognition();
     }, [startRecognition]);
 
@@ -827,6 +867,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     useEffect(() => {
         if (!focusMode) {
             voiceOnRef.current = false;
+            setMicDemande(false);
             if (recognitionRef.current) {
                 try {
                     recognitionRef.current.stop();
@@ -858,7 +899,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         if (!focusMode) { spokenRef.current = null; return; }
         if (spokenRef.current === activeStepIndex) return; // déjà lue dans le geste
         spokenRef.current = activeStepIndex;
-        speak(recipe.steps[activeStepIndex]);
+        speak(texteEtape(activeStepIndex));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeStepIndex, focusMode]);
 
@@ -1017,12 +1058,14 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                 // jour qu'au prochain rendu, trop tard pour ces closures.
                                 focusModeRef.current = true;
                                 voiceOnRef.current = true;
+                                setMicDemande(true);
+                                setMicRefus(false);
                                 spokenRef.current = 0; // l'étape 1 est lue ici, pas deux fois
                                 // La VOIX D'ABORD, le micro ensuite (il s'ouvre tout seul
                                 // quand la lecture s'achève). Ouvrir le micro avant fait
                                 // basculer la sortie audio de l'iPhone en mode
                                 // enregistrement : la synthèse partait, mais muette.
-                                speak(recipe.steps[0]);
+                                speak('C’est parti. Dites « suivant », « précédent » ou « répète ». ' + texteEtape(0));
                             }}>
                                 <span className={styles.focusBtnIcon}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1439,8 +1482,8 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                             {/* Micro « tap-to-talk » : le tap fournit le geste utilisateur
                                 exigé par iOS pour démarrer la reconnaissance vocale. */}
                             <button
-                                className={`${styles.focusMic} ${isListening ? styles.focusMicOn : ''}`}
-                                aria-label={isListening ? 'Couper le micro' : 'Dicter'}
+                                className={`${styles.focusMic} ${micDemande ? styles.focusMicOn : ''}`}
+                                aria-label={micDemande ? 'Couper le micro' : 'Activer le micro'}
                                 onClick={() => { triggerHaptic(); toggleMic(); }}
                             >
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1578,8 +1621,16 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         </motion.div>
                         
                         {/* Indicateur vocal basique */}
-                        <div className={styles.voiceCommandsHint}>
-                            &quot;Suivant&quot; • &quot;Précédent&quot; • &quot;Répète&quot;
+                        <div className={styles.voiceCommandsHint} role="status">
+                            {micIndispo
+                                ? 'Commande vocale indisponible ici — l’étape est lue, touche Suivant'
+                                : micRefus
+                                ? 'Micro refusé — autorise le micro dans Réglages › Safari, puis touche 🎙'
+                                : !micDemande
+                                    ? 'Micro coupé — touche 🎙 pour piloter à la voix'
+                                    : isListening
+                                        ? <>🎙 À l’écoute : &quot;Suivant&quot; • &quot;Précédent&quot; • &quot;Répète&quot;</>
+                                        : 'Lecture de l’étape…'}
                         </div>
                     </div>
                 </div>
