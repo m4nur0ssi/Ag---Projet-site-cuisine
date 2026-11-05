@@ -2970,3 +2970,10 @@
 
 .categoryTag { text-decoration: none; cursor: pointer; }
 .categoryTag:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+/* L'écran de préparation couvre toute la page : sans ce décalage, l'en-tête
+   (titre, micro, croix) passait SOUS la barre d'état et l'îlot, et on ne
+   pouvait plus le fermer. */
+.focusOverlay .focusHeader {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 12px);
+}
