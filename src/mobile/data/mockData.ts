@@ -2,11 +2,73 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/11/2026 10:04:57
- * Total: 826 recettes
+ * Dernière mise à jour: 05/11/2026 21:45:56
+ * Total: 827 recettes
  */
-export const exportSyncId = "1793873097360";
+export const exportSyncId = "1793915156043";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8140",
+        "title": "Torrone (Nougat) maison aux fruits secs",
+        "description": "Laissez-vous tenter par le croquant sucré du Torrone maison ! Riche en miel et en fruits secs torréfiés, c'est la gâterie parfaite pour la saison des fêtes. 🎄🥜",
+        "image": "/recipes-ia/8140-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7450081843463916832\" data-video-id=\"7450081843463916832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7450081843463916832\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍯\n             1 tasse et demie de sucre (320g)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1/2 tasse + 1 cuillère à soupe de miel (200g + 20g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             2 tasses de fruits secs mélangés (amandes, noisettes, pistaches ou autres) (400g)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1/2 tasse d'eau (120ml)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1/4 tasse de blancs d'œufs (environ 2 gros blancs, 70g)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             3 cuillères à soupe de sucre glace (25g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de papier azyme"
+            }
+        ],
+        "steps": [
+            "Faites chauffer 200g de miel dans une casserole et portez-le à 120°C (250°F).",
+            "Dans une casserole séparée, combinez 320g de sucre, 20g de miel et 120ml d'eau, en chauffant jusqu'à ce que le mélange atteigne 140°C (285°F).",
+            "Pendant que les sirops chauffent, fouettez les blancs d'œufs avec le sucre glace jusqu'à obtenir des pics fermes.",
+            "Versez progressivement le miel chaud (à 120°C) en filet dans les blancs d'œufs fouettés, en battant continuellement.",
+            "Incorporez ensuite lentement le sirop de sucre chaud (à 140°C), en mélangeant jusqu'à ce que la préparation devienne brillante et lisse.",
+            "Incorporez les fruits secs mélangés (torréfiés si vous préférez), en vous assurant qu'ils sont uniformément répartis.",
+            "Tapissez un moule à pâtisserie d'une feuille de papier azyme, versez-y la préparation de nougat et lissez-la avec une spatule.",
+            "Placez la deuxième feuille de papier azyme par-dessus, en appuyant doucement pour l'aplatir.",
+            "Laissez le nougat refroidir et prendre dans un endroit frais et sec pendant environ 10 heures.",
+            "Coupez en morceaux et servez."
+        ],
+        "tags": [
+            "Desserts",
+            "Italie",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8116",
         "title": "Purée de pommes de terre façon Joël Robuchon",
