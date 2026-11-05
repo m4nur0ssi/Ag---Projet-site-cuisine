@@ -2,11 +2,144 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/11/2026 10:07:48
+ * Dernière mise à jour: 05/11/2026 10:04:57
  * Total: 826 recettes
  */
-export const exportSyncId = "1793786868062";
+export const exportSyncId = "1793873097360";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8116",
+        "title": "Purée de pommes de terre façon Joël Robuchon",
+        "description": "Découvrez la recette emblématique de la purée de pommes de terre du chef Joël Robuchon, une préparation onctueuse et savoureuse à base de pommes de terre Ratte, de beurre et de lait chaud.",
+        "image": "/recipes-ia/8116-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7572638771640831254\" data-video-id=\"7572638771640831254\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7572638771640831254\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1 kg de pommes de terre Ratte"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             250 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait chaud (quantité à convenance)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gros sel (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour l'assaisonnement)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, placez les pommes de terre Ratte.",
+            "Recouvrez les pommes de terre d'eau, environ 2 à 3 centimètres au-dessus.",
+            "Ajoutez du gros sel, environ 10 g par litre d'eau.",
+            "Faites cuire pendant environ 30 à 40 minutes.",
+            "Pour vérifier la cuisson, piquez une pomme de terre avec un couteau : si elle tombe facilement, elle est cuite.",
+            "Passez les pommes de terre cuites au tamis ou utilisez un presse-purée.",
+            "Remettez la purée sur le feu pour évaporer l'excédent d'eau.",
+            "Incorporez le beurre petit à petit tout en chauffant la purée.",
+            "Une fois le beurre entièrement incorporé, ajoutez le lait chaud progressivement, selon la texture désirée.",
+            "Assaisonnez avec du sel et du poivre."
+        ],
+        "tags": [
+            "France",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8135",
+        "title": "Brownies Tiramisu",
+        "description": "Des brownies moelleux imbibés de café, surmontés d'une crème onctueuse au mascarpone et saupoudrés de cacao.",
+        "image": "/recipes-ia/8135-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703877346050329889\" data-video-id=\"7703877346050329889\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703877346050329889\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             110g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             90g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 petit verre d'espresso (pour l'imbibage)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70g de sucre glace (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Cacao en poudre non sucré (pour le saupoudrage)"
+            }
+        ],
+        "steps": [
+            "Faire fondre le chocolat noir et le beurre dans une petite casserole, puis ajouter le sucre et bien mélanger.",
+            "Incorporer les œufs un par un, en mélangeant bien après chaque ajout.",
+            "Ajouter progressivement la farine tamisée, en mélangeant délicatement.",
+            "Faire cuire au four à 175°C pendant 25 à 30 minutes.",
+            "Laisser refroidir le brownie, puis le piquer à l'aide d'une fourchette.",
+            "Verser l'espresso sur le brownie pour l'imbiber.",
+            "Fouetter les 250ml de crème liquide entière, puis incorporer les 250g de mascarpone et les 70g de sucre glace (facultatif).",
+            "Étaler cette crème sur le brownie.",
+            "Avant de servir, saupoudrer de cacao en poudre non sucré."
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8133",
         "title": "Shakshuka d'automne aux poireaux et lait de coco",
@@ -107,82 +240,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Orient",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8135",
-        "title": "Brownies Tiramisu",
-        "description": "Des brownies moelleux imbibés de café, surmontés d'une crème onctueuse au mascarpone et saupoudrés de cacao.",
-        "image": "/recipes-ia/8135-carte.webp",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703877346050329889\" data-video-id=\"7703877346050329889\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703877346050329889\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n             110g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200g de chocolat noir"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             50g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g de cassonade"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             3 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             90g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 petit verre d'espresso (pour l'imbibage)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             250g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             250ml de crème liquide entière"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             70g de sucre glace (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             Cacao en poudre non sucré (pour le saupoudrage)"
-            }
-        ],
-        "steps": [
-            "Faire fondre le chocolat noir et le beurre dans une petite casserole, puis ajouter le sucre et bien mélanger.",
-            "Incorporer les œufs un par un, en mélangeant bien après chaque ajout.",
-            "Ajouter progressivement la farine tamisée, en mélangeant délicatement.",
-            "Faire cuire au four à 175°C pendant 25 à 30 minutes.",
-            "Laisser refroidir le brownie, puis le piquer à l'aide d'une fourchette.",
-            "Verser l'espresso sur le brownie pour l'imbiber.",
-            "Fouetter les 250ml de crème liquide entière, puis incorporer les 250g de mascarpone et les 70g de sucre glace (facultatif).",
-            "Étaler cette crème sur le brownie.",
-            "Avant de servir, saupoudrer de cacao en poudre non sucré."
-        ],
-        "tags": [
-            "Italie",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -603,63 +660,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Accompagnements",
             "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8116",
-        "title": "Purée de pommes de terre façon Joël Robuchon",
-        "description": "Découvrez la recette emblématique de la purée de pommes de terre du chef Joël Robuchon, une préparation onctueuse et savoureuse à base de pommes de terre Ratte, de beurre et de lait chaud.",
-        "image": "/recipes-ia/8116-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7572638771640831254\" data-video-id=\"7572638771640831254\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7572638771640831254\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             1 kg de pommes de terre Ratte"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             250 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Lait chaud (quantité à convenance)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gros sel (pour la cuisson)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour l'assaisonnement)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Dans une casserole, placez les pommes de terre Ratte.",
-            "Recouvrez les pommes de terre d'eau, environ 2 à 3 centimètres au-dessus.",
-            "Ajoutez du gros sel, environ 10 g par litre d'eau.",
-            "Faites cuire pendant environ 30 à 40 minutes.",
-            "Pour vérifier la cuisson, piquez une pomme de terre avec un couteau : si elle tombe facilement, elle est cuite.",
-            "Passez les pommes de terre cuites au tamis ou utilisez un presse-purée.",
-            "Remettez la purée sur le feu pour évaporer l'excédent d'eau.",
-            "Incorporez le beurre petit à petit tout en chauffant la purée.",
-            "Une fois le beurre entièrement incorporé, ajoutez le lait chaud progressivement, selon la texture désirée.",
-            "Assaisonnez avec du sel et du poivre."
-        ],
-        "tags": [
-            "France",
             "Végé"
         ],
         "isFeatured": false,
