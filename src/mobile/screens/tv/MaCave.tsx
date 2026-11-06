@@ -74,6 +74,15 @@ const COLOR_LABEL: Record<WineColor, string> = {
     rouge: 'Rouge', blanc: 'Blanc', rose: 'Rosé', liqueur: 'Liqueur',
     champagne: 'Champagne', cidre: 'Cidre', 'cidre-rose': 'Cidre rosé',
 };
+/**
+ * La FAMILLE d'une couleur, pour les onglets : un cidre rosé est un cidre.
+ *
+ * La couleur reste distincte sur la fiche (c'est elle qui choisit la bouteille
+ * type — verre brun-vert ou rosé), mais dans la cave tous les cidres vivent sous
+ * le même onglet « Cidres ».
+ */
+const famille = (c: WineColor): WineColor => (c === 'cidre-rose' ? 'cidre' : c);
+
 const COLOR_GLASS: Record<WineColor, string> = {
     rouge: '#7b1e2b', blanc: '#e6d27a', rose: '#e08a97', liqueur: '#c98a2b',
     champagne: '#e8cf82', cidre: '#d79a3f', 'cidre-rose': '#e2a48f',
@@ -349,7 +358,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     }, []);
 
     const shown = useMemo(() => {
-        let list = filter === 'tous' ? wines : wines.filter((w) => w.color === filter);
+        let list = filter === 'tous' ? wines : wines.filter((w) => famille(w.color) === filter);
         if (ripe !== 'tous') list = list.filter((w) => drinkWindow(w)?.status === ripe);
         // Même moteur que la loupe de la barre du bas (`wineMatches`) : les deux
         // recherches donnaient des résultats différents pour la même frappe.
@@ -373,7 +382,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
      */
     const voisines = useMemo(() => {
         if (!detail) return [];
-        const meme = wines.filter((w) => shelfOf(w) === shelfOf(detail) && w.color === detail.color);
+        const meme = wines.filter((w) => shelfOf(w) === shelfOf(detail) && famille(w.color) === famille(detail.color));
         return meme.sort((a, b) => b.addedAt - a.addedAt);
     }, [wines, detail]);
 
@@ -400,7 +409,8 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         // L'ordre des onglets, du plus courant au plus rare. Un onglet vide ne
         // s'affiche pas (voir le filtre plus bas), donc la liste peut être longue
         // sans encombrer une cave qui ne contient que des rouges.
-        const order: WineColor[] = ['rouge', 'blanc', 'rose', 'champagne', 'liqueur', 'cidre', 'cidre-rose'];
+        // Pas d'onglet « cidre rosé » : ils sont dans « Cidres » (voir `famille`).
+        const order: WineColor[] = ['rouge', 'blanc', 'rose', 'champagne', 'liqueur', 'cidre'];
         const plural: Record<WineColor, string> = {
             rouge: 'Rouges', blanc: 'Blancs', rose: 'Rosés', liqueur: 'Liqueurs',
             champagne: 'Champagnes', cidre: 'Cidres', 'cidre-rose': 'Cidres rosés',
@@ -414,7 +424,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             // Champagnes et cidres ont TOUJOURS leur section, même vide : c'est
             // là qu'on s'attend à les trouver et qu'on pense à en ajouter.
             .filter((c) => c === 'champagne' || c === 'cidre' || wines.some((w) => w.color === c))
-            .map((c) => ({ key: c, label: plural[c], n: dispo.filter((w) => w.color === c).length }));
+            .map((c) => ({ key: c, label: plural[c], n: dispo.filter((w) => famille(w.color) === c).length }));
         return [{ key: 'tous' as const, label: 'Tous', n: dispo.length }, ...present];
     }, [wines]);
 
@@ -428,7 +438,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         ];
         // Disponibles seulement : une bouteille déjà bue n'est plus « à boire ».
         const dispo = wines.filter((w) => shelfOf(w) === 'cave');
-        const pool = filter === 'tous' ? dispo : dispo.filter((w) => w.color === filter);
+        const pool = filter === 'tous' ? dispo : dispo.filter((w) => famille(w.color) === filter);
         return order
             .map((t) => ({ ...t, n: pool.filter((w) => drinkWindow(w)?.status === t.key).length }))
             .filter((t) => t.n > 0);
@@ -2499,7 +2509,7 @@ function VinPropose({ vin, scan, scene, etagere, occupe, message, onCouleur, onA
                 parfois (un rouge pris pour un rosé). Un doigt la corrige, et la
                 bouteille se recompose aussitôt. */}
             <div className={styles.colorPick}>
-                {(['rouge', 'blanc', 'rose', 'champagne', 'cidre', 'liqueur'] as WineColor[]).map((c) => (
+                {(['rouge', 'blanc', 'rose', 'champagne', 'cidre', 'cidre-rose', 'liqueur'] as WineColor[]).map((c) => (
                     <button key={c} className={`${styles.colorOpt} ${(vin.color || 'rouge') === c ? styles.colorOptOn : ''}`} onClick={() => onCouleur(c)} disabled={occupe}>
                         <span className={styles.colorDot} style={{ background: COLOR_GLASS[c] }} />{COLOR_LABEL[c]}
                     </button>
