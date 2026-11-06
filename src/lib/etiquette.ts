@@ -646,6 +646,17 @@ type Gabarit = {
 const gabarits = new Map<CouleurVerre, Promise<Gabarit | null>>();
 
 /**
+ * Version des fichiers de `public/gabarits/`. À INCRÉMENTER quand on en retouche un.
+ *
+ * Le service worker sert les images « en cache d'abord, rafraîchies après » :
+ * sans changer l'adresse, un iPhone qui a déjà vu `rouge.webp` continue d'en
+ * afficher l'ancienne version pendant toute une session — c'est ainsi que le
+ * relief « Châteauneuf-du-Pape » est resté sur les bouteilles après son
+ * effacement. Une adresse différente = une entrée de cache différente.
+ */
+const GABARIT_V = 2;
+
+/**
  * Quel gabarit sert à quelle couleur.
  *
  * Un rosé et un liquoreux se vendent en verre CLAIR, comme un blanc : le
@@ -686,10 +697,10 @@ function chargerGabarit(couleur: CouleurVerre): Promise<Gabarit | null> {
         try {
             // Pas de `force-cache` : un gabarit se retouche, et le cache rendait la
             // retouche invisible jusqu'à vider le navigateur.
-            const meta = await fetch(`/gabarits/${nom}.json`);
+            const meta = await fetch(`/gabarits/${nom}.json?v=${GABARIT_V}`);
             if (!meta.ok) continue;
             const j = await meta.json();
-            const image = await charger(`/gabarits/${nom}.webp`);
+            const image = await charger(`/gabarits/${nom}.webp?v=${GABARIT_V}`);
             if (!image) continue;
             return {
                 image,
@@ -1369,6 +1380,171 @@ function tourner(img: HTMLImageElement | HTMLCanvasElement, deg: number): HTMLCa
     return cv;
 }
 
+/**
+ * Rend les lignes de texte DROITES, même quand elles sont courbées.
+ *
+ * Une étiquette photographiée sur une bouteille ronde n'a pas des lignes de
+ * texte horizontales : elles forment des arcs (la photo est prise d'un peu
+ * au-dessus, d'un peu en dessous, ou de côté). Le redressement par un simple
+ * angle n'y peut rien : un arc symétrique a une pente moyenne nulle.
+ *
+ * On cherche donc le décalage vertical d(x) = a·u + b·u² + c·u³ (u de -1 à 1
+ * d'un bord à l'autre) qui rend les rangées d'encre les plus NETTES — c'est le
+ * critère des scanners de livres : des lignes droites donnent un profil de
+ * rangées tranché (rangées pleines / rangées vides), des lignes courbes le
+ * délavent. Puis on décale chaque colonne de l'image de d(x).
+ *
+ * Sans lignes de texte nettes (étiquette toute en logo), le gain est faible et
+ * on ne touche à rien.
+ */
+function redresserTexte(src: HTMLCanvasElement): HTMLCanvasElement {
+    const r = Math.min(1, 360 / Math.max(src.width, src.height));
+    const w = Math.max(16, Math.round(src.width * r)), h = Math.max(16, Math.round(src.height * r));
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    const ctx = cv.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return src;
+    ctx.drawImage(src, 0, 0, w, h);
+    let d: Uint8ClampedArray;
+    try { d = ctx.getImageData(0, 0, w, h).data; } catch { return src; }
+    const L = new Float32Array(w * h);
+    for (let i = 0, p = 0; i < d.length; i += 4, p++) L[p] = d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114;
+
+    /*
+     * Ce qu'on regarde : les ARÊTES HORIZONTALES nettes — le haut et le bas des
+     * lettres, les filets, les bords de bandeau. Pas l'encre elle-même : une
+     * grande zone sombre (le verre sur le côté, un bandeau doré) comptait comme
+     * des milliers de points d'« encre » et noyait les lignes de texte. Une
+     * zone unie n'a pas d'arête ; seul son bord en a une, et c'est bien une
+     * ligne qu'il faut redresser.
+     */
+    const us: number[] = [], ys: number[] = [], ws: number[] = [];
+    const demi = w / 2;
+    const candidats: Array<[number, number, number]> = [];
+    for (let y = Math.max(2, Math.floor(h * 0.04)); y < h * 0.96; y++) for (let x = Math.floor(w * 0.04); x < w * 0.96; x++) {
+        const gy = Math.abs(L[(y + 1) * w + x] - L[(y - 1) * w + x]);
+        const gx = Math.abs(L[y * w + x + 1] - L[y * w + x - 1]);
+        // Arête plutôt horizontale (le saut est vertical) et franche.
+        if (gy > 34 && gy > 0.8 * gx) candidats.push([(x + 0.5 - demi) / demi, y - h / 2, Math.min(gy, 110) / 110]);
+    }
+    const saut = Math.max(1, Math.ceil(candidats.length / 28000));
+    for (let i = 0; i < candidats.length; i += saut) { us.push(candidats[i][0]); ys.push(candidats[i][1]); ws.push(candidats[i][2]); }
+    if (us.length < 150) return src;
+
+    const marge = Math.ceil(demi * 1.1) + 4;
+    const taille = h + 2 * marge;
+    const bins = new Float32Array(taille);
+    const demiH = h / 2;
+    /*
+     * Le décalage vertical d(u, v) de la colonne u (-1…1), à la hauteur v
+     * (-1 en haut … 1 en bas) :  d = (a·u + b·u² + c·u³) · (1 + k·v).
+     * Le facteur k dit que la courbure n'est pas la même en haut et en bas de
+     * l'étiquette — c'est la perspective : les lignes proches de l'axe de la
+     * caméra sont presque droites, les autres de plus en plus courbes.
+     */
+    const score = (a: number, b: number, c3: number, k: number) => {
+        bins.fill(0);
+        for (let i = 0; i < us.length; i++) {
+            const u = us[i];
+            const dy = demi * (a * u + b * u * u + c3 * u * u * u) * (1 + k * (ys[i] / demiH));
+            const idx = Math.round(ys[i] - dy + taille / 2);
+            if (idx >= 0 && idx < taille) bins[idx] += ws[i];
+        }
+        let s = 0; for (let i = 0; i < taille; i++) s += bins[i] * bins[i];
+        // Un léger penchant pour « pas de correction » : le bruit ne doit pas tordre une étiquette.
+        return s * (1 - 0.15 * (a * a + b * b + c3 * c3 + 0.3 * k * k));
+    };
+    const s0 = score(0, 0, 0, 0);
+    let A = 0, B = 0, C = 0, K = 0, best = s0;
+    for (let a = -0.45; a <= 0.45; a += 0.03) for (let b = -0.28; b <= 0.28; b += 0.04) {
+        const s = score(a, b, 0, 0); if (s > best) { best = s; A = a; B = b; }
+    }
+    for (let tour = 0; tour < 4; tour++) {
+        const f = 1 / (tour + 1);
+        for (let k = -4; k <= 4; k++) { const s = score(A + k * 0.015 * f, B, C, K); if (s > best) { best = s; A = A + k * 0.015 * f; } }
+        for (let k = -4; k <= 4; k++) { const s = score(A, B + k * 0.02 * f, C, K); if (s > best) { best = s; B = B + k * 0.02 * f; } }
+        for (let k = -6; k <= 6; k++) { const s = score(A, B, C + k * 0.025 * f, K); if (s > best) { best = s; C = C + k * 0.025 * f; } }
+        for (let k = -6; k <= 6; k++) { const s = score(A, B, C, K + k * 0.1 * f); if (s > best) { best = s; K = K + k * 0.1 * f; } }
+    }
+    K = Math.max(-0.8, Math.min(0.8, K));
+    // Gain trop faible, ou correction ridicule : pas assez de lignes nettes pour se fier au résultat.
+    if (best < s0 * 1.06 || (Math.abs(A) < 0.012 && Math.abs(B) < 0.012 && Math.abs(C) < 0.012 && Math.abs(K) < 0.1)) return src;
+
+    /*
+     * Application, pixel par pixel : chaque point de sortie va chercher son
+     * point d'origine, plus haut ou plus bas selon sa colonne et sa hauteur.
+     * Le décalage dépend de la hauteur ; on le cherche donc en deux passes
+     * (point fixe), puis on lisse (interpolation bilinéaire). Les bords du haut
+     * et du bas sont répétés : aucun trou.
+     */
+    const W = src.width, H = src.height;
+    const sctx = src.getContext('2d', { willReadFrequently: true });
+    if (!sctx) return src;
+    let sd: ImageData;
+    try { sd = sctx.getImageData(0, 0, W, H); } catch { return src; }
+    const dsrc = sd.data;
+    const out = document.createElement('canvas');
+    out.width = W; out.height = H;
+    const octx = out.getContext('2d');
+    if (!octx) return src;
+    const od = octx.createImageData(W, H);
+    const dst = od.data;
+    const demiW = W / 2, demiHF = H / 2;
+    for (let i = 0; i < W; i++) {
+        const u = (i + 0.5 - demiW) / demiW;
+        const poly = demiW * (A * u + B * u * u + C * u * u * u);
+        for (let j = 0; j < H; j++) {
+            let y = j;
+            for (let it = 0; it < 3; it++) y = j + poly * (1 + K * ((y - demiHF) / demiHF));
+            const yc = Math.max(0, Math.min(H - 1.001, y));
+            const y0 = Math.floor(yc), fy = yc - y0;
+            const p0 = (y0 * W + i) * 4, p1 = p0 + W * 4, q = (j * W + i) * 4;
+            for (let c = 0; c < 4; c++) dst[q + c] = dsrc[p0 + c] * (1 - fy) + dsrc[p1 + c] * fy;
+        }
+    }
+    octx.putImageData(od, 0, 0);
+    return out;
+}
+
+/**
+ * Retire les bandes de FOND qui bordent le papier à gauche et à droite.
+ *
+ * Une fenêtre ou un mur claire, collée au papier, passait pour du papier : un
+ * liséré bleuté sur le côté d'une étiquette jaune. On compare la couleur
+ * médiane de chaque colonne de bord à celle du centre ; tant qu'elle s'en
+ * écarte nettement, la colonne part. Jamais plus de 10 % de chaque côté.
+ */
+function rognerBords(src: HTMLCanvasElement): HTMLCanvasElement {
+    const W = src.width, H = src.height;
+    const ctx = src.getContext('2d', { willReadFrequently: true });
+    if (!ctx || W < 40 || H < 40) return src;
+    let d: Uint8ClampedArray;
+    try { d = ctx.getImageData(0, 0, W, H).data; } catch { return src; }
+    const y0 = Math.floor(H * 0.15), y1 = Math.ceil(H * 0.85);
+    const mediane = (x0: number, x1: number): [number, number, number] => {
+        const r: number[] = [], g: number[] = [], b: number[] = [];
+        for (let y = y0; y < y1; y += 2) for (let x = x0; x <= x1; x++) { const i = (y * W + x) * 4; r.push(d[i]); g.push(d[i + 1]); b.push(d[i + 2]); }
+        const m = (t: number[]) => { t.sort((p, q) => p - q); return t[t.length >> 1]; };
+        return [m(r), m(g), m(b)];
+    };
+    const centre = mediane(Math.floor(W * 0.3), Math.ceil(W * 0.7));
+    const etranger = (x: number) => {
+        const m = mediane(x, x);
+        return Math.hypot(m[0] - centre[0], m[1] - centre[1], m[2] - centre[2]) > 70;
+    };
+    const max = Math.floor(W * 0.1);
+    let g = 0, dr = 0;
+    while (g < max && etranger(g)) g++;
+    while (dr < max && etranger(W - 1 - dr)) dr++;
+    // Un ou deux pixels de plus : la frontière est floue.
+    if (g) g = Math.min(max, g + 2);
+    if (dr) dr = Math.min(max, dr + 2);
+    if (!g && !dr) return src;
+    const out = document.createElement('canvas');
+    out.width = W - g - dr; out.height = H;
+    out.getContext('2d')?.drawImage(src, g, 0, W - g - dr, H, 0, 0, W - g - dr, H);
+    return out;
+}
+
 export async function poserEtiquetteScannee(
     etiquette: string,
     couleur: CouleurVerre,
@@ -1420,7 +1596,10 @@ export async function poserEtiquetteScannee(
 
     // 2. Éclairci APRÈS le recadrage : les niveaux se calculent sur le papier,
     //    pas sur le verre noir qui l'entourait.
-    const img = (eclaircir(rogne) ?? rogne) as HTMLCanvasElement;
+    let img = (eclaircir(rogne) ?? rogne) as HTMLCanvasElement;
+    // 3. Les lignes de texte, DROITES ; les bandes de fond sur les côtés, retirées.
+    img = rognerBords(img);
+    img = redresserTexte(img);
 
     const l = Math.round(hauteur * CADRE_L / CADRE_H);
     const out = document.createElement('canvas');
@@ -1466,8 +1645,9 @@ export async function poserEtiquetteScannee(
     const rapportSource = img.height / img.width;
     let W = largVerre * 0.92;
     let H = W * rapportSource;
-    // Un peu plus haut que la bande, jamais au-delà : on rétrécit plutôt.
-    const hMax = bande * 1.18;
+    // Jamais plus haute que la bande : une grande étiquette descendait sur le
+    // culot. On rétrécit plutôt, et elle reste centrée sur la bande.
+    const hMax = bande * 1.0;
     if (H > hMax) { H = hMax; W = H / rapportSource; }
     W = Math.round(W); H = Math.round(H);
     const x0 = Math.round(gauche + (largVerre - W) / 2);
