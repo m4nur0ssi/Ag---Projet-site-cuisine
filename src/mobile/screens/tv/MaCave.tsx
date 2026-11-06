@@ -282,7 +282,15 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         const purger = () => {
             const DRAPEAU = 'cave-purge-rbr-2026-11-04';
             try { if (localStorage.getItem(DRAPEAU)) return; } catch { return; }
+            /*
+             * Seulement les fiches d'AVANT la remise à zéro. Sans cette borne, le
+             * premier appareil à passer ici après coup (ordinateur, iPad) effaçait
+             * aussi les bouteilles scannées depuis sur le téléphone, puis renvoyait
+             * cette cave amputée au nuage.
+             */
+            const AVANT = Date.parse('2026-11-04T15:00:00+01:00');
             readCave()
+                .filter((w) => (w.addedAt || 0) < AVANT)
                 .filter((w) => w.color === 'rouge' || w.color === 'blanc' || w.color === 'rose')
                 .forEach((w) => removeWine(w.id));
             try { localStorage.setItem(DRAPEAU, '1'); } catch { /* noop */ }
