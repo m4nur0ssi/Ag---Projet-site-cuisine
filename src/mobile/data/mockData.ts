@@ -2,11 +2,334 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/11/2026 09:26:26
- * Total: 827 recettes
+ * Dernière mise à jour: 07/11/2026 14:14:50
+ * Total: 832 recettes
  */
-export const exportSyncId = "1794043586225";
+export const exportSyncId = "1794060890909";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8143",
+        "title": "Fonkie (Cookie et Fondant au Chocolat)",
+        "description": "Découvrez la recette du Fonkie, un dessert gourmand qui combine un cookie moelleux et un fondant au chocolat intense, le tout cuit en deux étapes pour une texture parfaite.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8143.webp&v=1794063760000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7704997233699097889\" data-video-id=\"7704997233699097889\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7704997233699097889\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             30 g de sucre (de coco ou roux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             115 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de pépites de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             30 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Cacao en poudre (pour saupoudrer)"
+            }
+        ],
+        "steps": [
+            "Pour le cookie : dans un saladier, crémez 100 g de beurre pommade avec 30 g de sucre (de coco ou roux) à l'aide d'une maryse.",
+            "Ajoutez 1 œuf, puis 115 g de farine et incorporez le tout avec la maryse.",
+            "Terminez en ajoutant 100 g de pépites de chocolat. Mélangez.",
+            "Chemisez un moule à charnière de 18 cm et étalez la pâte à cookie au fond en la tassant bien.",
+            "Enfournez le cookie pour 8 minutes à 180°C.",
+            "Pendant ce temps, préparez le fondant au chocolat : faites fondre 40 g de beurre avec 100 g de chocolat noir. Réservez.",
+            "Dans un autre saladier, fouettez 3 œufs.",
+            "Ajoutez 30 g de farine et 30 g de maïzena, puis incorporez le mélange de chocolat et beurre fondu. Mélangez bien.",
+            "Récupérez le cookie pré-cuit. Versez la préparation du fondant sur le dessus du cookie.",
+            "Ré-enfournez pour 6 minutes à 200°C.",
+            "Saupoudrez de cacao en poudre pour une jolie finition et dégustez tiède."
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8154",
+        "title": "Magret de canard séché aux 5 épices chinoises",
+        "description": "Découvrez la recette d'un magret de canard séché aux cinq épices chinoises, une préparation savoureuse et parfumée qui rappelle le foie gras aux quatre épices. Un délice à préparer pour les amateurs de charcuterie maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8154.webp&v=1794063751000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696538351293222177\" data-video-id=\"7696538351293222177\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696538351293222177\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Magret de canard"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cinq épices chinoises"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre de Sichuan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Zeste d'orange"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre cassonade"
+            }
+        ],
+        "steps": [
+            "Commencez par parer et dénerver le magret de canard au maximum pour obtenir une viande propre, en veillant à conserver une couche de gras sur le dessus.",
+            "Sur une plaque, tapissez le fond de gros sel. Déposez les magrets de canard et recouvrez-les entièrement d'une bonne couche de sel, en vous assurant qu'aucun morceau de viande ne dépasse.",
+            "Laissez déshydrater pendant au moins 12 heures.",
+            "Pendant ce temps, préparez le mélange d'épices : mélangez les cinq épices chinoises, le poivre de Sichuan, le zeste d'orange et une cuillère de sucre cassonade. Réservez.",
+            "Une fois le temps de déshydratation écoulé, dessalez le magret en le plongeant rapidement dans un grand volume d'eau pour retirer tout le sel collé à la surface.",
+            "Épongez soigneusement le magret entre deux papiers absorbants, puis placez-le sur un torchon propre (non lavé avec de la lessive pour éviter d'altérer le goût).",
+            "Enrobez généreusement le magret de canard avec le mélange d'épices. Enveloppez-le fermement dans le torchon et déposez-le sur une grille posée sur une plaque. Laissez sécher au réfrigérateur pendant deux semaines."
+        ],
+        "tags": [
+            "Asie",
+            "C'est l'hiver",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8145",
+        "title": "Martini Caramel Brûlée",
+        "description": "Un cocktail festif inspiré du menu de Noël de Starbucks, avec une touche alcoolisée de Baileys Caramel Salé, de vodka et de caramel, garni de crème fouettée et de sauce caramel.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8145.webp&v=1794062545000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7704873652126354701\" data-video-id=\"7704873652126354701\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7704873652126354701\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             45 ml de Baileys Caramel Salé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             45 ml de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 ml de vodka"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de caramel salé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre, pour caraméliser au chalumeau"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fouettée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce caramel"
+            }
+        ],
+        "steps": [
+            "Dans un shaker rempli de glace, verser le Baileys Caramel Salé, la crème épaisse, la vodka et le caramel salé.",
+            "Secouer vigoureusement jusqu'à ce que le mélange soit bien frais.",
+            "Filtrer et verser dans un verre à martini.",
+            "Garnir généreusement de crème fouettée.",
+            "Saupoudrer la crème fouettée d'une cuillère à soupe de sucre et caraméliser délicatement à l'aide d'un chalumeau de cuisine.",
+            "Arroser d'un filet de sauce caramel pour la touche finale."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Noël",
+            "Rafraîchissements",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8147",
+        "title": "Espresso Martini au Baileys Caramel Salé",
+        "description": "Une boisson festive et gourmande, parfaite pour la saison des fêtes. Ce cocktail combine l'intensité de l'espresso avec la douceur du Baileys Caramel Salé, une touche de vodka et un soupçon de vanille, le tout servi frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8147.webp&v=1794062538000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703996791389293857\" data-video-id=\"7703996791389293857\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703996791389293857\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 à 5 glaçons"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             40 ml d'espresso"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             50 ml de Baileys Caramel Salé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20 ml de vodka (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             2 à 3 gouttes d'extrait de vanille"
+            }
+        ],
+        "steps": [
+            "Mettre les glaçons dans un shaker.",
+            "Ajouter l'espresso, le Baileys Caramel Salé, la vodka (si utilisée) et l'extrait de vanille.",
+            "Secouer vigoureusement jusqu'à ce que le mélange soit bien frais.",
+            "Filtrer et verser dans un verre à cocktail."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Noël",
+            "Rafraîchissements"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8149",
+        "title": "Spritz Apérol des Fêtes",
+        "description": "Si vous cherchez une boisson pour la saison des fêtes, préparez ce Spritz Apérol des Fêtes. Le sirop maison de canneberge et romarin épicé a le goût de Noël en bouteille et est également parfait pour de nombreux autres cocktails et mocktails.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8149.webp&v=1794062530000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7705095580011334926\" data-video-id=\"7705095580011334926\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7705095580011334926\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             90 ml de prosecco, réfrigéré"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 ml d'Apérol, réfrigéré"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             15 ml de sirop de canneberge et romarin épicé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 ml de club soda, réfrigéré"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Canneberges fraîches pour la garniture"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Brin de romarin pour la garniture"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Anis étoilé pour la garniture"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour le sirop de canneberge et romarin épicé :"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             240 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200 g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de canneberges fraîches"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 brin de romarin frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 ou 2 bâtons de cannelle entiers"
+            }
+        ],
+        "steps": [
+            "Préparer le sirop de canneberge et romarin épicé : Dans une casserole, mélanger l'eau, le sucre blanc, les canneberges fraîches, le brin de romarin frais et les bâtons de cannelle entiers.",
+            "Porter à ébullition, puis réduire le feu et laisser mijoter pendant environ 10 à 15 minutes, jusqu'à ce que les canneberges éclatent et que le sirop épaississe légèrement.",
+            "Retirer du feu et laisser infuser pendant au moins 30 minutes (ou plus pour un goût plus prononcé), puis filtrer le sirop pour retirer les solides. Laisser refroidir complètement avant utilisation.",
+            "Pour préparer le Spritz Apérol des Fêtes : Dans un verre à vin ou un grand verre rempli de glaçons, verser le prosecco réfrigéré, l'Apérol réfrigéré et le sirop de canneberge et romarin épicé.",
+            "Compléter avec le club soda réfrigéré.",
+            "Garnir avec quelques canneberges fraîches, un brin de romarin et un anis étoilé. Servir immédiatement."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Italie",
+            "Noël",
+            "Rafraîchissements"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8140",
         "title": "Torrone (Nougat) maison aux fruits secs",
