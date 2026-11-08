@@ -7334,7 +7334,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Œufs mimosa frits croustillants à la crème de curry, bacon et cresson",
         "description": "Une nouvelle version des populaires œufs mimosa frits. Les jaunes d'œufs durs sont mélangés avec du fromage frais, du curry et de la moutarde, et les blancs d'œufs sont frits. C'est une entrée parfaite pour Pâques.",
         "image": "/recipes-ia/7858-carte.webp",
-        "category": "aperitifs",
+        "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,

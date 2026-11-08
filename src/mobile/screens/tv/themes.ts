@@ -382,7 +382,7 @@ export function matchesTag(
     // rangée que « Rafraîchissements ».
     if (tagLower === 'cocktail' || tagLower === 'cocktail-sans-alcool' || tagLower === 'boissons') {
         // Vrais cocktails (avec ou sans alcool selon la préparation).
-        const cocktailWords = /\b(cocktails?|mojitos?|margaritas?|daiquiris?|spritz(er)?|mimosas?|sangrias?|punchs?|cosmopolitans?|colada|caipirinhas?|negronis?|bloody mary|mai[- ]?tai|cuba libre|gin[- ]?tonic|tequila sunrise|sex on the beach|mocktails?|virgin|piscine|americano|bellini|kir|sangria)\b/;
+        const cocktailWords = /\b(cocktails?|mojitos?|margaritas?|daiquiris?|spritz(er)?|sangrias?|punchs?|cosmopolitans?|colada|caipirinhas?|negronis?|bloody mary|mai[- ]?tai|cuba libre|gin[- ]?tonic|tequila sunrise|sex on the beach|mocktails?|virgin|piscine|americano|bellini|kir|sangria)\b/;
         // Boissons fraîches non alcoolisées → rangée « sans alcool » (pour la garnir).
         const softWords = /\b(smoothies?|milkshakes?|frapp[ée]s?|limonades?|jus\b|nectar|the glac[ée]|th[ée] glac[ée]|iced tea|granit[ée]s?|slush|infusion glac[ée]e|eau infus[ée]e|lassi)\b/;
         const alcohol = /\b(rhum|vodkas?|gin|t[ée]quilas?|whiskys?|whiskey|cognac|liqueurs?|cura[cç]ao|cointreau|triple[- ]sec|aperol|campari|martini|vermouth|prosecco|champagne|vin[- ](blanc|rouge|ros[ée]|mousseux|p[ée]tillant)|ros[ée]|bi[èe]res?|cidre|kahlua|baileys|amaretto|malibu|limoncello|porto|absinthe|calvados|armagnac|marsala|sak[ée]|pastis|ricard|schnaps|grand marnier|chartreuse|alcool|liquor|spirit)\b/;
@@ -393,7 +393,7 @@ export function matchesTag(
             .test(normFull);
         // Un mojito reste un mojito même si la recette ne nomme pas le rhum :
         // les cocktails classiquement alcoolisés comptent comme tels.
-        const boozyNames = /\b(mojitos?|margaritas?|daiquiris?|spritz(er)?|negronis?|caipirinhas?|cosmopolitans?|bloody mary|cuba libre|gin[- ]?tonic|tequila sunrise|sex on the beach|mai[- ]?tai|colada|sangrias?|bellini|americano|mimosas?|aperol|spritz)\b/;
+        const boozyNames = /\b(mojitos?|margaritas?|daiquiris?|spritz(er)?|negronis?|caipirinhas?|cosmopolitans?|bloody mary|cuba libre|gin[- ]?tonic|tequila sunrise|sex on the beach|mai[- ]?tai|colada|sangrias?|bellini|americano|aperol|spritz)\b/;
         const hasAlcohol = !noAlcohol && (alcohol.test(normFull) || boozyNames.test(norm(titleLower)));
         const isCocktail =
             recipeTags.some((t) => /cocktail|mojito|mocktail/.test(norm(t))) ||
