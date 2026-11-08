@@ -340,7 +340,7 @@ function extractRecipeData(post) {
             if ((tags.includes('glaces') || tags.includes('sorbet')) && estGlace(title)) return "glaces";
             // Rafraîchissements : toutes variantes (rafraichissements / rafraîchissements / smoothie...)
             if (tags.some(t => t.includes('rafra'))) return "rafraichissements";
-            if (tags.includes('boissons') || tags.includes('cocktail') || tags.includes('smoothie') || tags.includes('jus')) return "rafraichissements";
+            if (tags.includes('boissons') || tags.some(t => t.startsWith('cocktail')) || tags.includes('smoothie') || tags.includes('jus')) return "rafraichissements";
             if (tags.includes('apéro') || tags.includes('apéritifs')) return "aperitifs";
             if (tags.includes('entrées')) return "entrees";
             if (tags.includes('plats')) return "plats";
