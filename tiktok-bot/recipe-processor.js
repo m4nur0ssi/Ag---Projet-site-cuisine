@@ -583,9 +583,22 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         analysis.category = 'rafraichissements';
     }
 
+    // RÈGLE ALCOOL = COCKTAIL (2026-11-08) : une boisson qui contient de l'alcool
+    // reçoit le tag « Cocktails » (rangée alcoolisée du site). Les mocktails,
+    // « sans alcool » et « vierge » restent des rafraîchissements.
+    const alcoolRe = /\b(rhum|vodka|gin|tequila|whisky|whiskey|cognac|liqueur|cointreau|triple sec|aperol|campari|martini|vermouth|prosecco|champagne|baileys|kahlua|amaretto|limoncello|pastis|bière|cidre|vin blanc|vin rouge|vin rosé)\b/;
+    const sansAlcool = /\b(sans alcool|vierge|virgin|mocktail)\b/;
+    if (analysis.category === 'rafraichissements' && alcoolRe.test(allTextLower) && !sansAlcool.test(allTextLower)) {
+        if (!analysis.tags.some(t => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === 'cocktails')) analysis.tags.push('Cocktails');
+    }
+
     // Override si l'utilisateur a choisi une thématique depuis le raccourci iPhone
     if (country) {
         const cl = country.toLowerCase();
+        if (cl.includes('cocktail')) {
+            analysis.category = 'rafraichissements';
+            if (!analysis.tags.some(t => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === 'cocktails')) analysis.tags.push('Cocktails');
+        }
         if (cl.includes('glace')) analysis.category = 'glaces';
         if (cl.includes('rafra')) analysis.category = 'rafraichissements';
         if (cl.includes('été') || cl.includes('ete')) {

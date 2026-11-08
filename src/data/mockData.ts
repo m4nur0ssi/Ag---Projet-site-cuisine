@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8158",
         "title": "Carottes enrobées de bacon avec un glaçage érable et Dijon",
         "description": "Ces carottes enrobées de bacon et nappées d'un glaçage sucré-salé à l'érable et à la moutarde de Dijon sont le plat d'accompagnement idéal pour votre menu de Thanksgiving. La cuisson sur une grille assure un bacon croustillant de tous les côtés et...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8158-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
