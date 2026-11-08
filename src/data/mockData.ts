@@ -275,7 +275,7 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Noël",
-            "Rafraîchissements",
+            "Cocktails",
             "USA"
         ],
         "isFeatured": false,
@@ -324,7 +324,7 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Noël",
-            "Rafraîchissements"
+            "Cocktails"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -407,7 +407,7 @@ export const mockRecipes: Recipe[] = [
             "C'est l'hiver",
             "Italie",
             "Noël",
-            "Rafraîchissements"
+            "Cocktails"
         ],
         "isFeatured": false,
         "isFavorite": false,
