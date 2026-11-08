@@ -339,8 +339,15 @@ function extractRecipeData(post) {
             //    pancakes : le titre doit parler de glace ou de sorbet.
             if ((tags.includes('glaces') || tags.includes('sorbet')) && estGlace(title)) return "glaces";
             // Rafraîchissements : toutes variantes (rafraichissements / rafraîchissements / smoothie...)
-            if (tags.some(t => t.includes('rafra'))) return "rafraichissements";
-            if (tags.includes('boissons') || tags.some(t => t.startsWith('cocktail')) || tags.includes('smoothie') || tags.includes('jus')) return "rafraichissements";
+            // RÈGLE : une boisson qui contient de l'alcool est un COCKTAIL. Le texte
+            // complet (titre + corps) est lu ; « sans alcool / vierge / mocktail »
+            // dans le TITRE garde la boisson en rafraîchissement (le mot « mocktails »
+            // dans une phrase de conclusion ne compte pas).
+            const corps = (title + ' ' + String(post.content?.rendered || '').replace(/<[^>]+>/g, ' ')).toLowerCase();
+            const ALCOOL = /\b(rhum|vodkas?|gin|t[ée]quilas?|whisky|whiskey|cognac|liqueurs?|cura[cç]ao|cointreau|triple[- ]sec|ap[ée]rol|campari|martini|vermouth|prosecco|champagne|baileys|kahlua|amaretto|limoncello|pastis|bi[èe]res?|cidre|vin (?:blanc|rouge|ros[ée]|mousseux|p[ée]tillant)|spritz|mojito|margarita)\b/;
+            const SANS_ALCOOL = /\b(sans[ -]alcool|vierge|virgin|mocktails?)\b/;
+            const estBoisson = tags.some(t => t.includes('rafra') || t.startsWith('cocktail')) || tags.includes('boissons') || tags.includes('smoothie') || tags.includes('jus');
+            if (estBoisson) return (ALCOOL.test(corps) && !SANS_ALCOOL.test(title)) ? "cocktails" : "rafraichissements";
             if (tags.includes('apéro') || tags.includes('apéritifs')) return "aperitifs";
             if (tags.includes('entrées')) return "entrees";
             if (tags.includes('plats')) return "plats";
@@ -349,6 +356,7 @@ function extractRecipeData(post) {
 
             // 2. Détection par mots-clés dans le titre
             if (title.includes('glace') || title.includes('sorbet')) return "glaces";
+            if (title.includes('cocktail') && !/sans[ -]alcool|vierge|virgin|mocktail/.test(title)) return "cocktails";
             if (title.includes('smoothie') || title.includes('boisson') || title.includes('cocktail') || title.includes('rafraîchissement') || title.includes('jus de')) return "rafraichissements";
             if (title.includes('croquetas') || title.includes('apéro') || title.includes('tapas') || title.includes('houmous')) return "aperitifs";
             if (title.includes('salade') || title.includes('soupe') || title.includes('velouté') || title.includes('œuf') || title.includes('carpaccio')) return "entrees";

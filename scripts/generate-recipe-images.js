@@ -1001,7 +1001,7 @@ function consigne(recette, descPlat) {
     const decorsSansAlcool = DECORS.filter((d) => !/bar counter|wine|bistro terrace/i.test(d));
     const decor = tirage(pourBebe ? decorsSansAlcool : DECORS, id, 97);
 
-    const boisson = recette.category === 'boissons' || recette.category === 'rafraichissements';
+    const boisson = ['boissons', 'rafraichissements', 'cocktails'].includes(recette.category);
     // Angle de prise de vue (70 % dessus / 30 % autres), stable par id.
     const vue = tirage(VUES, id, 67);
 
@@ -1011,7 +1011,7 @@ function consigne(recette, descPlat) {
      * réclament une lumière et des surfaces claires.
      */
     const fraiche = /salade|crudit|gaspacho|ceviche|tartare|smoothie|sorbet|granit[ée]|fruits?\b/i
-        .test(recette.title || '') || ['entrees', 'rafraichissements'].includes(recette.category);
+        .test(recette.title || '') || ['entrees', 'rafraichissements', 'cocktails'].includes(recette.category);
 
     const palette = fraiche
         ? 'Bright airy palette, cool clean whites and fresh greens, crisp high-key lighting.'
@@ -1907,7 +1907,7 @@ async function controlerImage(buffer, recette, descPlat, boisson) {
 
 async function genererUne(recette, descPlat) {
     const consigneTexte = consigne(recette, descPlat);
-    const boisson = recette.category === 'boissons' || recette.category === 'rafraichissements';
+    const boisson = ['boissons', 'rafraichissements', 'cocktails'].includes(recette.category);
     const premiere = await genererUneConsigne(consigneTexte);
     const defaut = await controlerImage(premiere.buffer, recette, descPlat, boisson);
     if (!defaut) return premiere;

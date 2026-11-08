@@ -30,6 +30,7 @@ export const CATEGORY_LABEL: Record<string, string> = {
     boissons: 'Boisson',
     sauces: 'Sauce',
     rafraichissements: 'Rafraîchissement',
+    cocktails: 'Cocktail',
 };
 
 /**
@@ -42,7 +43,7 @@ export const COLLECTION_LABEL: Record<string, string> = {
     aperitifs: 'Apéritifs', entrees: 'Entrées', plats: 'Plats',
     accompagnements: 'Accompagnements', desserts: 'Desserts', patisserie: 'Pâtisseries',
     restaurant: 'Comme au resto', vegetarien: 'Végétarien', glaces: 'Glaces',
-    boissons: 'Boissons', sauces: 'Sauces', rafraichissements: 'Rafraîchissements',
+    boissons: 'Boissons', sauces: 'Sauces', rafraichissements: 'Rafraîchissements', cocktails: 'Cocktails',
 };
 
 export const titreDe = (r: Recipe) => decodeHtml(r.title || '');
