@@ -43763,10 +43763,10 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6353",
-        "title": "Mojito express",
+        "title": "Virgin Mojito",
         "description": "Un mojito express, prêt en seulement 2 minutes.",
         "image": "/recipes-ia/6353-carte.webp",
-        "category": "cocktails",
+        "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
