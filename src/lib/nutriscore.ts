@@ -280,7 +280,7 @@ export const scoreDepuisValeurs = (v: Valeurs100g, boisson: boolean): { points: 
 };
 
 /** Les catégories du site qui se jugent au barème des boissons. */
-const CATEGORIES_BOISSON = new Set(['boissons', 'rafraichissements']);
+const CATEGORIES_BOISSON = new Set(['boissons', 'rafraichissements', 'cocktails']);
 
 /*
  * Les boissons alcoolisées n'ont pas de Nutri-Score, et c'est voulu.
