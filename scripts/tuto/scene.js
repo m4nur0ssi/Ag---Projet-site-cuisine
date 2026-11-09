@@ -30,7 +30,7 @@ const DOIGT = `
 `;
 
 /** Une page pilotée : gestes de haut niveau, tous « filmables ». */
-function pilote(page) {
+function pilote(page, { souris = false } = {}) {
     const evaluer = async (expr) => {
         const r = await page.envoyer('Runtime.evaluate', { expression: expr, awaitPromise: true, returnByValue: true });
         if (r.exceptionDetails) throw new Error(r.exceptionDetails.text + ' — ' + (r.exceptionDetails.exception?.description || ''));
@@ -39,10 +39,22 @@ function pilote(page) {
     const doigt = (methode, ...args) => evaluer(`window.__doigt && window.__doigt.${methode}(${args.join(',')})`);
 
     const toucher = async (type, x, y) => {
+        // Bureau : une vraie souris (clic gauche) ; téléphone : un doigt.
+        if (souris) {
+            const evt = type === 'touchStart' ? 'mousePressed' : type === 'touchEnd' ? 'mouseReleased' : 'mouseMoved';
+            await page.envoyer('Input.dispatchMouseEvent', { type: evt, x, y, button: 'left', buttons: evt === 'mousePressed' ? 1 : 0, clickCount: 1 });
+            return;
+        }
         await page.envoyer('Input.dispatchTouchEvent', {
             type,
             touchPoints: type === 'touchEnd' ? [] : [{ x, y, radiusX: 12, radiusY: 12, force: 1 }],
         });
+    };
+    /** Bureau : clic droit (menu contextuel d'une carte). */
+    const clicDroit = async (x, y) => {
+        await page.envoyer('Input.dispatchMouseEvent', { type: 'mouseMoved', x, y });
+        await page.envoyer('Input.dispatchMouseEvent', { type: 'mousePressed', x, y, button: 'right', buttons: 2, clickCount: 1 });
+        await page.envoyer('Input.dispatchMouseEvent', { type: 'mouseReleased', x, y, button: 'right', buttons: 0, clickCount: 1 });
     };
 
     /*
@@ -81,6 +93,14 @@ function pilote(page) {
             await doigt('appuyer', 'true');
             await toucher('touchStart', x, y); await dormir(90);
             await toucher('touchEnd', x, y);
+            await doigt('appuyer', 'false'); await dormir(apres);
+            await doigt('cacher');
+        },
+        /** Bureau : clic droit, le menu d'une carte s'ouvre. */
+        async clicDroitSur(x, y, { avant = 300, apres = 1400 } = {}) {
+            await doigt('montrer', x, y); await dormir(avant);
+            await doigt('appuyer', 'true');
+            await clicDroit(x, y);
             await doigt('appuyer', 'false'); await dormir(apres);
             await doigt('cacher');
         },
@@ -209,7 +229,7 @@ function pilote(page) {
  * l'HEURE de chaque image, sinon le montage étire les moments immobiles et
  * précipite les gestes.
  */
-async function filmer(page, dossier, jouer) {
+async function filmer(page, dossier, jouer, { largeur = 780, hauteur = 1688 } = {}) {
     fs.mkdirSync(dossier, { recursive: true });
     let n = 0;
     const minutage = [];
@@ -219,7 +239,7 @@ async function filmer(page, dossier, jouer) {
         minutage.push({ nom, t: metadata?.timestamp ?? Date.now() / 1000 });
         try { await page.envoyer('Page.screencastFrameAck', { sessionId }); } catch { /* fin de film */ }
     });
-    await page.envoyer('Page.startScreencast', { format: 'jpeg', quality: 82, everyNthFrame: 1, maxWidth: 780, maxHeight: 1688 });
+    await page.envoyer('Page.startScreencast', { format: 'jpeg', quality: 82, everyNthFrame: 1, maxWidth: largeur, maxHeight: hauteur });
     await jouer();
     await page.envoyer('Page.stopScreencast');
     fs.writeFileSync(path.join(dossier, 'minutage.json'), JSON.stringify(minutage, null, 1));

@@ -53,7 +53,6 @@ const MesRecettes = dynamic(() => import('@/mobile/screens/tv/MesRecettes'), { s
 import { listerMesRecettes, versFiche } from '@/mobile/lib/mesRecettes';
 const AuthButton = dynamic(() => import('@/components/AuthButton/AuthButton'), { ssr: false });
 // Visite guidée du site (version desktop) : composant autonome, habillé en ligne de menu.
-const TVTutorial = dynamic(() => import('@/mobile/screens/tv/TVTutorial'), { ssr: false });
 const InstallerApp = dynamic(() => import('@/components/InstallerApp/InstallerApp'), { ssr: false });
 const ExtensionGuide = dynamic(() => import('@/mobile/screens/tv/ExtensionGuide'), { ssr: false });
 import { MAIL_RECETTE } from '@/lib/mail-recette';
@@ -793,7 +792,7 @@ export default function TVDesktopHome() {
     // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
-    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris' | 'search' | 'tuto' | 'gouts' | 'extension' | 'mesvideos'>('none');
+    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris' | 'search' | 'gouts' | 'extension' | 'mesvideos'>('none');
     /*
      * « Mes vidéos » : les recettes que la personne s'est faites depuis une
      * vidéo. Elles ne sont pas dans le catalogue (compilé au build) — on va les
@@ -1014,7 +1013,7 @@ export default function TVDesktopHome() {
         let raw: string | null = null;
         try { raw = new URLSearchParams(window.location.search).get('panel'); } catch { return; }
         if (!raw) return;
-        const PANNEAUX = ['planner', 'courses', 'trophies', 'cave', 'favoris', 'search', 'tuto', 'gouts', 'extension', 'mesvideos'] as const;
+        const PANNEAUX = ['planner', 'courses', 'trophies', 'cave', 'favoris', 'search', 'gouts', 'extension', 'mesvideos'] as const;
         const p = PANNEAUX.find((x) => x === raw);
         if (p) setPanel(p);
         try {
@@ -1182,7 +1181,6 @@ export default function TVDesktopHome() {
         favoris: () => { setCollection(null); setFilters([]); setPanel('favoris'); },
         recherche: () => { setCollection(null); setFilters([]); setPanel('search'); },
         mesvideos: () => { setCollection(null); setFilters([]); setPanel('mesvideos'); },
-        tutoriel: () => { setCollection(null); setFilters([]); setPanel('tuto'); },
         gouts: () => { setCollection(null); setFilters([]); setPanel('gouts'); },
     };
 
@@ -1326,7 +1324,6 @@ export default function TVDesktopHome() {
                     <NavItem icon="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" token="s:cave" active={panel === 'cave'} onClick={SHORTCUTS.cave}>Ma cave</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
                         fournit que l'icône et la ligne de menu. */}
-                    <NavItem icon={ICONS.book} token="s:tutoriel" active={panel === 'tuto'} onClick={SHORTCUTS.tutoriel}>Tutoriel</NavItem>
                     {/* La visite guidée du bureau finit sur « installe-le » : sans
                         cette ligne, elle désignerait un bouton absent. Le composant
                         se retire tout seul quand l'app est déjà installée. */}
@@ -1368,7 +1365,7 @@ export default function TVDesktopHome() {
                         </div>
                     ))}
                     {library.length === 0 && (
-                        <div className={styles.libraryHint}>Glisse ici une catégorie, une tendance, un pays — ou un raccourci du menu (Palmarès, Ma cave, Tutoriel…).</div>
+                        <div className={styles.libraryHint}>Glisse ici une catégorie, une tendance, un pays — ou un raccourci du menu (Palmarès, Ma cave…).</div>
                     )}
                 </nav>
 
@@ -1384,7 +1381,7 @@ export default function TVDesktopHome() {
             <main className={`${styles.content} ${accueilPlein ? styles.contentRailed : ''}`} ref={contentRef}>
                 {panel !== 'none' ? (
                     <div className={styles.panelHost}>
-                        {!user && panel !== 'trophies' && panel !== 'cave' && panel !== 'search' && panel !== 'tuto' && panel !== 'gouts' && panel !== 'extension' ? (
+                        {!user && panel !== 'trophies' && panel !== 'cave' && panel !== 'search' && panel !== 'gouts' && panel !== 'extension' ? (
                             <TVAuthGate
                                 subtitle={panel === 'planner'
                                     ? 'Le planificateur de la semaine est réservé aux membres connectés.'
@@ -1396,7 +1393,6 @@ export default function TVDesktopHome() {
                             : panel === 'trophies' ? <TVTrophies embedded />
                                 : panel === 'cave' ? <MaCave embedded />
                                 : panel === 'favoris' ? <Favoris embedded />
-                                    : panel === 'tuto' ? <TVTutorial embedded onClose={() => setPanel('none')} />
                                     : panel === 'gouts' ? <TasteOnboarding embedded onClose={() => setPanel('none')} />
                                     : panel === 'extension' ? <ExtensionGuide embedded onClose={() => setPanel('none')} />
                                     : panel === 'mesvideos' ? <MesRecettes embedded />

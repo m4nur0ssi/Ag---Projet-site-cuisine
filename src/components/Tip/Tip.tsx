@@ -64,7 +64,7 @@ export default function Tip({ id, delay = 1000, bureau }: {
                 </button>
                 {etape?.video ? (
                     <div className={styles.demo}>
-                        <DemoVideo id={etape.video} />
+                        <DemoVideo id={etape.video} paysage={bureau ?? !coarse} />
                     </div>
                 ) : etape && aSceneReelle(etape.art) ? (
                     <div className={styles.scene}>

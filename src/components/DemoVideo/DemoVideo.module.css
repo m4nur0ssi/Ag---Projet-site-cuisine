@@ -27,3 +27,11 @@
         0 20px 44px rgba(0, 0, 0, 0.22),
         0 0 36px -14px var(--demo-accent, rgba(0, 0, 0, 0.2));
 }
+
+/* Fenêtre de Mac : la vidéo bureau est filmée en 1280 × 800, on la présente telle quelle. */
+.paysage {
+    width: min(560px, 100%);
+    max-height: none;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+}

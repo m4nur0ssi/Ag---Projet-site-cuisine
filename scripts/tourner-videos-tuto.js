@@ -28,14 +28,17 @@ async function tourner(nom, scene) {
     // Le décor d'une scène peut être calculé (de vraies recettes tirées du
     // catalogue, voir tuto/recettes.js) : on accepte donc aussi une fonction.
     const avant = typeof scene.avant === 'function' ? scene.avant() : (scene.avant || '');
-    const chrome = await lancerChrome({ largeur: 390, hauteur: 844 });
+    // Une scène « bureau » se film en fenêtre de Mac (paysage, souris) ; sinon en téléphone.
+    const bureau = !!scene.bureau;
+    const L = bureau ? 1280 : 390, H = bureau ? 800 : 844;
+    const chrome = await lancerChrome({ largeur: L, hauteur: H });
     const brut = fs.mkdtempSync(path.join(os.tmpdir(), `tuto-${nom}-`));
     try {
         const page = await ouvrirPage(chrome.port);
-        await page.envoyer('Emulation.setDeviceMetricsOverride', {
-            width: 390, height: 844, deviceScaleFactor: 2, mobile: true,
-        });
-        await page.envoyer('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 5 });
+        await page.envoyer('Emulation.setDeviceMetricsOverride', bureau
+            ? { width: L, height: H, deviceScaleFactor: 1, mobile: false }
+            : { width: L, height: H, deviceScaleFactor: 2, mobile: true });
+        await page.envoyer('Emulation.setTouchEmulationEnabled', { enabled: !bureau, maxTouchPoints: bureau ? 1 : 5 });
         /*
          * On déblaie l'écran AVANT le premier rendu : bulles d'astuce, bandeau
          * des cookies, invitation à installer l'application. Ces panneaux sont
@@ -61,7 +64,7 @@ async function tourner(nom, scene) {
             ${avant}`,
         });
 
-        const p = pilote(page);
+        const p = pilote(page, { souris: bureau });
         await p.allerA(BASE + scene.page);
         // Le bandeau des cookies mangerait le bas de l'image.
         await p.evaluer(`(() => {
@@ -71,7 +74,7 @@ async function tourner(nom, scene) {
         await dormir(900);
         await p.poserLeDoigt();
 
-        const images = await filmer(page, brut, () => scene.jouer(p));
+        const images = await filmer(page, brut, () => scene.jouer(p), bureau ? { largeur: 1280, hauteur: 800 } : {});
         if (!images) throw new Error('aucune image capturée');
 
         // Montage : chaque image garde sa vraie durée (voir scene.js).
@@ -88,7 +91,7 @@ async function tourner(nom, scene) {
         const webm = path.join(SORTIE, `${nom}.webm`);
         execFileSync('ffmpeg', [
             '-y', '-f', 'concat', '-safe', '0', '-i', fichierListe,
-            '-vf', 'scale=390:-2:flags=lanczos,fps=24',
+            '-vf', bureau ? 'scale=1280:-2:flags=lanczos,fps=24' : 'scale=390:-2:flags=lanczos,fps=24',
             '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '36', '-row-mt', '1',
             '-an', webm,
         ], { stdio: 'pipe' });

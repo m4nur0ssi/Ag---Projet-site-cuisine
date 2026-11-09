@@ -402,14 +402,19 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
                 {STEPS.map((s, n) => (
                     <section className={`${styles.slide} ${n === i ? styles.slideActive : ''}`} key={s.title}>
                         {/* La scène se rejoue à chaque arrivée sur l'étape (clé = actif). */}
-                        <div key={n === i ? 'on' : 'off'} className={`${styles.artStage} ${s.video ? styles.artStageVideo : ''}`} style={{ ['--tuto-accent' as any]: s.accent }}>
+                        <div key={n === i ? 'on' : 'off'} className={`${styles.artStage} ${s.video ? styles.artStageVideo : ''} ${embedded && s.video ? styles.artStagePaysage : ''}`} style={{ ['--tuto-accent' as any]: s.accent }}>
                             {/* La vidéo est tournée sur le VRAI site (npm run tuto:videos) :
                                 elle passe avant la scène dessinée en HTML. */}
                             {s.video
-                                ? <DemoVideo id={s.video} accent={s.accent} actif={n === i} />
-                                : aSceneReelle(s.art)
-                                    ? <TutoScene art={s.art} bureau={embedded} />
-                                    : <Illus kind={s.art} accent={s.accent} />}
+                                ? <DemoVideo id={s.video} accent={s.accent} actif={n === i} paysage={embedded} />
+                                : (
+                                    // Une scène sans vidéo reste horizontale : on la centre dans le cadre vertical.
+                                    <div className={styles.sceneH}>
+                                        {aSceneReelle(s.art)
+                                            ? <TutoScene art={s.art} bureau={embedded} />
+                                            : <Illus kind={s.art} accent={s.accent} />}
+                                    </div>
+                                )}
                         </div>
                         <div className={styles.kicker}>{s.kicker} · {n + 1} / {STEPS.length}</div>
                         <h2 className={styles.title}>{s.title}</h2>

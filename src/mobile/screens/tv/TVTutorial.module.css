@@ -396,13 +396,45 @@
     color: rgba(255, 207, 145, 0.72);
 }
 
-/* Une démonstration filmée : le téléphone (DemoVideo) porte déjà son cadre,
-   le cadre de scène ne doit ni le redimensionner ni l'encadrer une seconde fois. */
-.artStage.artStageVideo {
+
+/* ── Démonstrations VERTICALES, sous le titre et la barre dorée ──────────
+   Toutes les étapes (vidéo du vrai site ou scène) vivent dans un cadre
+   téléphone, collé en haut de la diapo — plus centré au milieu de l'écran. */
+.slide { justify-content: flex-start; }
+.artStage {
     width: auto;
-    aspect-ratio: auto;
+    height: min(40vh, 340px);
+    aspect-ratio: 390 / 844;
+    max-width: 100%;
     padding: 0;
-    background: none;
-    box-shadow: none;
-    border: none;
+    margin: 0 auto 6px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 26px;
+    flex: 0 0 auto;
 }
+/* La vidéo remplit le cadre (le téléphone de DemoVideo porte déjà son arrondi). */
+.artStage.artStageVideo { background: none; box-shadow: none; border: none; overflow: visible; }
+.artStageVideo > div { width: 100%; height: 100%; max-height: none; margin: 0; }
+/* Une scène HTML, encore horizontale, centrée dans le cadre vertical. */
+.sceneH { width: 100%; aspect-ratio: 220 / 150; }
+
+/* Bureau : la vidéo à gauche, le texte à droite, sous le titre et la barre. */
+.embedded .slide {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-auto-rows: min-content;
+    align-content: start;
+    column-gap: 32px;
+    row-gap: 10px;
+}
+.embedded .slide > * { grid-column: 2; }
+.embedded .slide > .artStage { grid-column: 1; grid-row: 1 / span 6; height: min(54vh, 480px); margin: 0; }
+
+/* Bureau + vidéo : cadre paysage, en haut de l'étape (pas de colonne de téléphone). */
+.embedded .slide > .artStage.artStagePaysage { height: auto; width: min(100%, 600px); justify-self: center; aspect-ratio: auto; grid-column: 1 / -1; grid-row: auto; align-self: start; margin: 0; }
+.embedded .slide > .artStage.artStagePaysage > div { width: 100%; }
+
+/* Bureau : la visite grandit avec son contenu (vidéo + texte), la barre latérale fait défiler la page. */
+.embedded .pager { flex: 0 0 auto; }

@@ -5,55 +5,45 @@
  * ===============================================
  *
  * Muette, sans commande, sans plein écran : ce n'est pas un film qu'on regarde,
- * c'est un geste qu'on observe. Elle ne se lance que lorsqu'elle est à l'écran
- * (une visite guidée porte plusieurs vidéos ; les charger toutes d'un coup pour
- * n'en voir qu'une serait payer plusieurs fois le voyage).
+ * c'est un geste qu'on observe. Elle joue quand son étape est à l'écran
+ * (`actif`). Hors de l'écran, elle est déchargée : une visite porte plusieurs
+ * vidéos, et chacune garde sinon son décodeur ouvert — les derniers venus
+ * n'arrivent plus à jouer.
  */
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './DemoVideo.module.css';
 
-export default function DemoVideo({ id, accent, actif = true }: { id: string; accent?: string; actif?: boolean }) {
-    const ref = useRef<HTMLVideoElement>(null);
-    const [visible, setVisible] = useState(false);
+/* Change à chaque nouveau tournage : le navigateur ne ressert pas une vidéo périmée. */
+const VERSION_TOURNAGE = '2';
 
-    useEffect(() => {
-        const el = ref.current;
-        if (!el || typeof IntersectionObserver === 'undefined') { setVisible(true); return; }
-        const o = new IntersectionObserver(
-            ([e]) => { if (e.isIntersecting && e.intersectionRatio > 0.35) setVisible(true); else setVisible(false); },
-            { threshold: [0, 0.35, 0.75] },
-        );
-        o.observe(el);
-        /*
-         * Filet : dans un onglet caché, ou derrière un calque qui vient de
-         * s'ouvrir, l'observateur annonce parfois « rien à l'écran » et ne se
-         * ravise jamais — la démonstration restait alors sur son image fixe.
-         * Au bout d'une seconde, on considère qu'elle est là.
-         */
-        const filet = setTimeout(() => setVisible((v) => v || true), 900);
-        return () => { o.disconnect(); clearTimeout(filet); };
-    }, []);
+export default function DemoVideo({ id, accent, actif = true, paysage = false }: { id: string; accent?: string; actif?: boolean; /** Fenêtre de Mac (1280×800) plutôt que téléphone. */ paysage?: boolean }) {
+    const ref = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
         const el = ref.current;
         if (!el) return;
-        if (visible && actif) {
-            const lancer = () => el.play().catch(() => { /* lecture refusée : l'image d'attente reste */ });
-            lancer();
-            // La première lecture peut arriver avant le premier octet.
-            el.addEventListener('canplay', lancer, { once: true });
-            return () => el.removeEventListener('canplay', lancer);
+        const src = `/tuto/${id}.webm?v=${VERSION_TOURNAGE}`;
+        if (!actif) {
+            el.pause();
+            el.removeAttribute('src');
+            el.load();
+            return;
         }
-        el.pause();
-    }, [visible, actif]);
+        el.src = src;
+        el.load();
+        const lancer = () => { const p = el.play(); if (p && typeof p.catch === 'function') p.catch(() => { /* lecture refusée : l'image d'attente reste */ }); };
+        lancer();
+        // La première lecture peut arriver avant le premier octet : on relance à l'arrivée.
+        el.addEventListener('canplay', lancer);
+        return () => el.removeEventListener('canplay', lancer);
+    }, [id, actif]);
 
     return (
-        <div className={styles.cadre} style={accent ? ({ ['--demo-accent']: accent } as React.CSSProperties) : undefined}>
+        <div className={`${styles.cadre} ${paysage ? styles.paysage : ''}`} style={accent ? ({ ['--demo-accent']: accent } as React.CSSProperties) : undefined}>
             <video
                 ref={ref}
                 className={styles.video}
-                src={`/tuto/${id}.webm`}
                 poster={`/tuto/${id}.jpg`}
                 muted
                 loop
