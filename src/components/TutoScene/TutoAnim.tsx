@@ -19,8 +19,8 @@ import { mockRecipes } from '@/data/mockData';
 import { TUTO_CARTES } from '@/lib/tutoriel';
 import styles from './TutoAnim.module.css';
 
-export type ArtAnime = 'side' | 'filtres' | 'tags' | 'search' | 'planner' | 'fill' | 'cave' | 'trophy' | 'ext';
-const ARTS_ANIMES = new Set<string>(['side', 'filtres', 'tags', 'search', 'planner', 'fill', 'cave', 'trophy', 'ext']);
+export type ArtAnime = 'side' | 'filtres' | 'tags' | 'search' | 'planner' | 'fill' | 'cave' | 'trophy' | 'ext' | 'card' | 'cook' | 'timers' | 'filter' | 'compose' | 'jourj' | 'demarrer' | 'views' | 'taste' | 'cocktail' | 'dock' | 'install' | 'sidebar' | 'library';
+const ARTS_ANIMES = new Set<string>(['side', 'filtres', 'tags', 'search', 'planner', 'fill', 'cave', 'trophy', 'ext', 'card', 'cook', 'timers', 'filter', 'compose', 'jourj', 'demarrer', 'views', 'taste', 'cocktail', 'dock', 'install', 'sidebar', 'library']);
 export const estSceneAnimee = (art: string): art is ArtAnime => ARTS_ANIMES.has(art);
 
 type Carte = { id: string; title: string; image: string; category: string };
@@ -182,6 +182,20 @@ export default function TutoAnim({ art, bureau = false }: { art: ArtAnime; burea
                 {art === 'cave' && <Cave bureau={bureau} />}
                 {art === 'trophy' && <Trophees bureau={bureau} />}
                 {art === 'ext' && <Extension bureau={bureau} />}
+                {art === 'card' && <Fiche bureau={bureau} />}
+                {art === 'cook' && <Cuisine bureau={bureau} />}
+                {art === 'timers' && <Chronos bureau={bureau} />}
+                {art === 'filter' && <FiltresTiroir bureau={bureau} />}
+                {art === 'compose' && <Composer bureau={bureau} />}
+                {art === 'jourj' && <JourJ bureau={bureau} />}
+                {art === 'demarrer' && <Demarrer bureau={bureau} />}
+                {art === 'views' && <Vues bureau={bureau} />}
+                {art === 'taste' && <Gouts bureau={bureau} />}
+                {art === 'cocktail' && <Cocktails bureau={bureau} />}
+                {art === 'dock' && <Dock bureau={bureau} />}
+                {art === 'install' && <Installer bureau={bureau} />}
+                {art === 'sidebar' && <MenuGauche bureau={bureau} />}
+                {art === 'library' && <Bibliotheque bureau={bureau} />}
             </div>
         </div>
     );
@@ -295,6 +309,229 @@ function Extension({ bureau }: { bureau: boolean }) {
                 <span className={styles.panneauSuiv}>Produit suivant</span>
             </div>
             <Pointeur chemin="cExt" bureau={bureau} />
+        </>
+    );
+}
+
+/* ═══ Scènes restantes : même logique (curseur, halo, boucle de 10 s) ═══ */
+const PHOTOS = ['8116', '8113', '8068', '8029', '8024', '8013', '8049', '8118'];
+const photo = (k: number): Carte | null => carte(PHOTOS[k % PHOTOS.length]);
+
+/** La fiche : photo, titre, ingrédients qui apparaissent, étoiles. */
+function Fiche({ bureau }: { bureau: boolean }) {
+    const c = photo(0);
+    if (!c) return null;
+    return (
+        <>
+            <div className={styles.ficheHaut}><Vignette c={c} /></div>
+            <div className={styles.ficheTitre2}>{c.title}</div>
+            <div className={styles.ficheIngs}>
+                {['Pommes de terre · 600 g', 'Beurre · 50 g', 'Lait · 20 cl'].map((t, k) => (
+                    <span key={t} className={`${styles.ficheIng} ${styles[`ing${k}`]}`}>{t}</span>
+                ))}
+            </div>
+            <span className={styles.etoiles}>★ ★ ★ ★ ☆</span>
+            <Pointeur chemin="cFiche" bureau={bureau} />
+        </>
+    );
+}
+
+/** Cuisiner pas à pas : une étape à la fois, minuteur qui démarre. */
+function Cuisine({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.cuisineBarre}><span className={styles.cuisineFait} /></div>
+            <div className={styles.cuisineEtape}>Étape 2 / 6</div>
+            <div className={styles.cuisineTexte}>Fais revenir l&rsquo;oignon 5 minutes à feu doux.</div>
+            <div className={styles.cuisineBtn}>Étape suivante</div>
+            <span className={styles.minuteur}>05:00</span>
+            <Pointeur chemin="cCuisine" bureau={bureau} />
+        </>
+    );
+}
+
+/** Plusieurs chronos : deux minuteurs qui tournent en même temps. */
+function Chronos({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={`${styles.chrono} ${styles.chrono1}`}><span className={styles.chronoT}>12:00</span><span className={styles.chronoNom}>Riz</span></div>
+            <div className={`${styles.chrono} ${styles.chrono2}`}><span className={styles.chronoT}>04:30</span><span className={styles.chronoNom}>Sauce</span></div>
+            <Pointeur chemin="cChrono" bureau={bureau} />
+        </>
+    );
+}
+
+/** Filtrer : des cases qui se cochent dans un tiroir. */
+function FiltresTiroir({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.tiroir}>
+                <span className={styles.tiroirTitre}>Catégories</span>
+                {['Desserts', 'Apéritifs', 'Plats'].map((t, k) => (
+                    <span key={t} className={`${styles.coche} ${styles[`coche${k}`]}`}>{t}</span>
+                ))}
+                <span className={styles.tiroirBtn}>Voir 12 recettes</span>
+            </div>
+            <Pointeur chemin="cTiroir" bureau={bureau} />
+        </>
+    );
+}
+
+/** Composer : des tendances à cocher, puis « Composer au hasard ». */
+function Composer({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.tags3}>
+                {['Pâtes', 'Express', 'Végé', 'Barbecue', 'Famille'].map((t, k) => (
+                    <span key={t} className={`${styles.tag} ${styles[`tag${k}`]}`}>{t}</span>
+                ))}
+            </div>
+            <div className={styles.composerBtn}>Composer au hasard</div>
+            <Pointeur chemin="cComposer" bureau={bureau} />
+        </>
+    );
+}
+
+/** Le Jour J : quatre cartes du repas qui se remplissent. */
+function JourJ({ bureau }: { bureau: boolean }) {
+    const ids = [0, 1, 2, 3];
+    return (
+        <>
+            <div className={styles.jourJ}>
+                {ids.map((k) => {
+                    const c = photo(k + 2);
+                    return (
+                        <div key={k} className={`${styles.jourJCase} ${styles[`jj${k}`]}`}>
+                            <span className={styles.jourJNom}>{['Apéritif', 'Entrée', 'Plat', 'Dessert'][k]}</span>
+                            {c && <Vignette c={c} />}
+                        </div>
+                    );
+                })}
+            </div>
+            <Pointeur chemin="cJourJ" bureau={bureau} />
+        </>
+    );
+}
+
+/** Démarrer la soirée : une frise d'horaires qui avance. */
+function Demarrer({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.frise}>
+                {['19:00', '19:30', '20:00', '20:30'].map((h, k) => (
+                    <span key={h} className={`${styles.friseH} ${styles[`fh${k}`]}`}>{h}</span>
+                ))}
+            </div>
+            <div className={styles.demarrerBtn}>Démarrer la soirée</div>
+            <Pointeur chemin="cDemarrer" bureau={bureau} />
+        </>
+    );
+}
+
+/** Trois vues : le sélecteur change la liste affichée. */
+function Vues({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.vuesSeg}>
+                <span className={styles.vueA}>La semaine</span>
+                <span className={styles.vueB}>Jour par jour</span>
+                <span className={styles.vueC}>En +</span>
+            </div>
+            <div className={styles.vuesListe}>
+                <span className={styles.vueLigne}>Courgettes · 2</span>
+                <span className={styles.vueLigne}>Riz basmati · 250 g</span>
+                <span className={styles.vueLigne}>Bavette · 400 g</span>
+            </div>
+            <Pointeur chemin="cVues" bureau={bureau} />
+        </>
+    );
+}
+
+/** Affine mes goûts : des pastilles qui s'allument. */
+function Gouts({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.gouts}>
+                {['Épicé', 'Sans gluten', 'Healthy', 'Végé', 'Express', 'Famille'].map((t, k) => (
+                    <span key={t} className={`${styles.gout} ${styles[`gout${k}`]}`}>{t}</span>
+                ))}
+            </div>
+            <span className={styles.goutsMsg}>Tes goûts affinent les suggestions</span>
+            <Pointeur chemin="cGouts" bureau={bureau} />
+        </>
+    );
+}
+
+/** Cocktails : une liste de verres, un ajouté au panier. */
+function Cocktails({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.cocktails}>
+                {['Spritz Apérol', 'Mojito', 'Espresso martini'].map((t, k) => (
+                    <div key={t} className={`${styles.cocktail} ${styles[`ck${k}`]}`}>
+                        <span className={styles.ckRond} />
+                        <span className={styles.ckNom}>{t}</span>
+                    </div>
+                ))}
+            </div>
+            <Pointeur chemin="cCocktail" bureau={bureau} />
+        </>
+    );
+}
+
+/** La barre du bas : quatre icônes, une s'allume sous le curseur. */
+function Dock({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.dock}>
+                {['♥', '🛒', '⌂', '▦'].map((i, k) => (
+                    <span key={k} className={`${styles.dockI} ${styles[`di${k}`]}`}>{i}</span>
+                ))}
+            </div>
+            <Pointeur chemin="cDock" bureau={bureau} />
+        </>
+    );
+}
+
+/** Comme une app : l'icône glisse sur l'écran d'accueil. */
+function Installer({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.telephone}>
+                <span className={styles.appIcone}>🍽</span>
+                <span className={styles.appNom}>Recettes Magiques</span>
+            </div>
+            <span className={styles.installMsg}>Installée</span>
+            <Pointeur chemin="cInstall" bureau={bureau} />
+        </>
+    );
+}
+
+/** Le menu de gauche : une barre latérale, une rubrique s'éclaire. */
+function MenuGauche({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.menuLat}>
+                {['Accueil', 'Planificateur', 'Courses', 'Favoris', 'Palmarès', 'Ma cave', 'Tutoriel'].map((t, k) => (
+                    <span key={t} className={`${styles.menuItem} ${styles[`mi${k}`]}`}>{t}</span>
+                ))}
+            </div>
+            <div className={styles.menuZone} />
+            <Pointeur chemin="cMenu" bureau={bureau} />
+        </>
+    );
+}
+
+/** La bibliothèque : une catégorie glissée dans la zone. */
+function Bibliotheque({ bureau }: { bureau: boolean }) {
+    return (
+        <>
+            <div className={styles.biblio}>
+                <span className={styles.biblioTitre}>Bibliothèque</span>
+                <span className={styles.biblioZone}>Glisse ici une catégorie</span>
+                <span className={styles.biblioChip}>Desserts</span>
+            </div>
+            <Pointeur chemin="cBiblio" bureau={bureau} />
         </>
     );
 }

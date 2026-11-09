@@ -56,7 +56,7 @@ const SCENES = {
             // Les filtres sont au bas du volet, sous les raccourcis : on descend.
             await p.evaluer("document.querySelector('[class*=navScroll]').scrollTo({ top: 9999, behavior: 'smooth' })");
             await p.attendre(1300);
-            const categories = await p.centreParTexte('^\\s*Catégories');
+            const categories = await p.amener('^\\s*Catégories');
             await p.tap(categories.x, categories.y, { apres: 1000 });
             const desserts = await p.amener('^\\s*Desserts\\s*$');
             await p.tap(desserts.x, desserts.y, { apres: 1300 });
@@ -97,11 +97,11 @@ const SCENES = {
             // et l'article sort de ce qui partira au magasin.
             const ligne = await p.centreParTexte('Ail|Concombre|Courgette', '[class*=courseText]');
             await p.tap(ligne.x, ligne.y, { apres: 1800 });
-            const jour = await p.centreParTexte('Jour par jour');
+            const jour = await p.amener('^\\s*Par jour');
             await p.tap(jour.x, jour.y, { apres: 2400 });
-            const recette = await p.centreParTexte('Par recette');
-            await p.tap(recette.x, recette.y, { apres: 2400 });
-            const toute = await p.centreParTexte('La semaine');
+            const plus = await p.amener('^\\s*En \\+');
+            await p.tap(plus.x, plus.y, { apres: 2400 });
+            const toute = await p.amener('Tout acheter');
             await p.tap(toute.x, toute.y, { apres: 1800 });
             // La barre du bas : partager la liste, ou la faire dérouler au magasin.
             const magasin = await p.amener('Carrefour|Faire mes courses|Lancer');
@@ -272,7 +272,10 @@ const SCENES = {
             const carte = await p.evaluer(`(() => {
                 const e = [...document.querySelectorAll('[class*=tv_thumb__]')].find(x => {
                     const b = x.getBoundingClientRect();
-                    return b.width > 90 && b.top > 120 && b.bottom < window.innerHeight - 140;
+                    const img = x.querySelector('img');
+                    // Une carte sans photo (« Photo à venir ») fait pauvre à l'écran.
+                    const photo = img && img.complete && img.naturalWidth > 40 && !/placeholder/i.test(img.src);
+                    return photo && b.width > 90 && b.top > 120 && b.bottom < window.innerHeight - 140;
                 });
                 if (!e) return null;
                 const b = e.getBoundingClientRect();
@@ -335,6 +338,80 @@ const SCENES = {
         },
     },
 
+    /* ── « 100 % légumes de saison » : l'accompagnement d'un plat servi nu ── */
+    'accompagnement-saison': {
+        titre: 'Un accompagnement de saison',
+        page: '/tv-planner',
+        // Une bavette seule, aujourd'hui à midi : elle appelle un accompagnement.
+        avant: () => decor({
+            'meal-planner-week': semaine({ [jour(0)]: { Midi: '8113' } }),
+        }),
+        async jouer(p) {
+            await p.attendre(2400);
+            const saison = await p.amener('100 % légumes de saison', 'button', { attente: 900 });
+            await p.tap(saison.x, saison.y, { avant: 500, apres: 2200 });
+            // La loupe s'ouvre déjà réduite aux légumes de saison : on en choisit un.
+            const premier = await p.evaluer(`(() => {
+                const e = [...document.querySelectorAll('[class*=spItem]')].find((x) => {
+                    const b = x.getBoundingClientRect();
+                    return b.width > 80 && b.top > 120 && b.bottom < window.innerHeight - 60;
+                });
+                if (!e) return null;
+                const b = e.getBoundingClientRect();
+                return { x: Math.round(b.left + b.width / 2), y: Math.round(b.top + b.height / 2) };
+            })()`);
+            if (!premier) throw new Error('aucun accompagnement de saison à choisir');
+            await p.tap(premier.x, premier.y, { avant: 500, apres: 2000 });
+            const ajouter = await p.centreParTexte('Ajouter au planificateur');
+            await p.tap(ajouter.x, ajouter.y, { avant: 500, apres: 2600 });
+            const pose = await p.evaluer(
+                "Object.values(JSON.parse(localStorage.getItem('meal-planner-week') || '{}')).some((j) => Object.values(j || {}).some((c) => c && c.side))");
+            if (!pose) throw new Error('l’accompagnement n’a pas été posé : prise à refaire');
+        },
+    },
+
+    /* ── Le filtre « 100 % de saison » de la recherche ── */
+    'filtres-saison': {
+        titre: 'Le filtre « 100 % de saison »',
+        page: '/',
+        async jouer(p) {
+            await p.attendre(1200);
+            const loupe = await p.centre('[class*=isolatedSearchBtn]');
+            await p.tap(loupe.x, loupe.y, { apres: 1400 });
+            const tendances = await p.centreParTexte('Tendances', '[class*=spGroup]');
+            await p.tap(tendances.x, tendances.y, { apres: 1200 });
+            const saison = await p.amener('100 % de saison', 'button', { attente: 700 });
+            await p.tap(saison.x, saison.y, { avant: 400, apres: 2600 });
+            // Un second filtre, pour montrer qu'ils se combinent.
+            const categorie = await p.centreParTexte('Catégorie', '[class*=spGroup]');
+            await p.tap(categorie.x, categorie.y, { apres: 1200 });
+            const plats = await p.amener('^Plats', 'button', { attente: 700 });
+            await p.tap(plats.x, plats.y, { avant: 400, apres: 2800 });
+        },
+    },
+
+    /* ── Les #hashtags d'une fiche ── */
+    hashtags: {
+        titre: 'Les hashtags d’une fiche',
+        page: '/',
+        async jouer(p) {
+            await p.attendre(3000);
+            // La puce visible sous la photo du héros (la première est parfois hors champ).
+            const tag = await p.evaluer(`(() => {
+                const e = [...document.querySelectorAll('[class*=heroTagChip]')].find((x) => {
+                    const b = x.getBoundingClientRect();
+                    return b.width > 0 && b.top > 60 && b.bottom < window.innerHeight - 60 && /^#/.test(x.textContent.trim());
+                });
+                if (!e) return null;
+                const b = e.getBoundingClientRect();
+                return { x: Math.round(b.left + b.width / 2), y: Math.round(b.top + b.height / 2) };
+            })()`);
+            if (!tag) throw new Error('aucun hashtag visible sous la photo');
+            await p.tap(tag.x, tag.y, { avant: 600, apres: 3400 });
+            await p.attendre(1200);
+        },
+    },
+
     fiche: {
         titre: 'La fiche recette',
         page: '/',
@@ -342,8 +419,9 @@ const SCENES = {
             // Vite : le grand visuel tourne tout seul, et on veut la recette
             // que le spectateur a sous les yeux, pas la suivante.
             await p.attendre(500);
-            const voir = await p.centreParTexte('Voir la recette');
-            await p.tap(voir.x, voir.y, { avant: 200, apres: 3200 });
+            // Toucher la photo du héros ouvre la fiche (le bouton « Voir la recette » n'existe pas sur mobile).
+            const photo = await p.centre('[class*=heroPosterOn]');
+            await p.tap(photo.x, photo.y, { avant: 200, apres: 3200 });
             // Les ingrédients, puis les étapes : c'est l'ordre où on les lit.
             await p.glisser(200, 660, 200, 300, { pas: 22, pause: 26 });
             await p.attendre(1500);

@@ -16,7 +16,7 @@ import TutoAnim, { estSceneAnimee } from './TutoAnim';
 import styles from './TutoScene.module.css';
 
 /** Les étapes qui ont une scène réelle (les autres gardent leur dessin). */
-const ARTS = new Set<Art>(['hero', 'rows', 'press', 'clic', 'side', 'filtres', 'tags', 'search', 'planner', 'fill', 'cave', 'trophy', 'ext']);
+const ARTS = new Set<Art>(['hero', 'rows', 'press', 'clic', 'side', 'filtres', 'tags', 'search', 'planner', 'fill', 'cave', 'trophy', 'ext', 'card', 'cook', 'timers', 'filter', 'compose', 'jourj', 'demarrer', 'views', 'taste', 'cocktail', 'dock', 'install', 'sidebar', 'library']);
 export const aSceneReelle = (art: Art) => ARTS.has(art);
 
 const CATEGORIES: Record<string, string> = {

@@ -395,3 +395,14 @@
     margin-bottom: 4px;
     color: rgba(255, 207, 145, 0.72);
 }
+
+/* Une démonstration filmée : le téléphone (DemoVideo) porte déjà son cadre,
+   le cadre de scène ne doit ni le redimensionner ni l'encadrer une seconde fois. */
+.artStage.artStageVideo {
+    width: auto;
+    aspect-ratio: auto;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    border: none;
+}

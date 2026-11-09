@@ -62,7 +62,11 @@ export default function Tip({ id, delay = 1000, bureau }: {
                 <button className={styles.close} onClick={close} aria-label="Fermer l’astuce">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                 </button>
-                {etape && aSceneReelle(etape.art) ? (
+                {etape?.video ? (
+                    <div className={styles.demo}>
+                        <DemoVideo id={etape.video} />
+                    </div>
+                ) : etape && aSceneReelle(etape.art) ? (
                     <div className={styles.scene}>
                         <TutoScene art={etape.art} bureau={bureau ?? !coarse} />
                     </div>

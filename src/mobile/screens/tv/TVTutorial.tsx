@@ -14,6 +14,7 @@ import { createPortal } from 'react-dom';
 import { haptic } from './TVHome';
 import styles from './TVTutorial.module.css';
 import TutoScene, { aSceneReelle } from '@/components/TutoScene/TutoScene';
+import DemoVideo from '@/components/DemoVideo/DemoVideo';
 import { etapesTuto, marquerAstuceVue, type Art, type Step } from '@/lib/tutoriel';
 
 /** Mini-scène illustrée d'une étape. Cadre commun + contenu spécifique. */
@@ -401,10 +402,14 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
                 {STEPS.map((s, n) => (
                     <section className={`${styles.slide} ${n === i ? styles.slideActive : ''}`} key={s.title}>
                         {/* La scène se rejoue à chaque arrivée sur l'étape (clé = actif). */}
-                        <div key={n === i ? 'on' : 'off'} className={styles.artStage} style={{ ['--tuto-accent' as any]: s.accent }}>
-                            {aSceneReelle(s.art)
-                                ? <TutoScene art={s.art} bureau={embedded} />
-                                : <Illus kind={s.art} accent={s.accent} />}
+                        <div key={n === i ? 'on' : 'off'} className={`${styles.artStage} ${s.video ? styles.artStageVideo : ''}`} style={{ ['--tuto-accent' as any]: s.accent }}>
+                            {/* La vidéo est tournée sur le VRAI site (npm run tuto:videos) :
+                                elle passe avant la scène dessinée en HTML. */}
+                            {s.video
+                                ? <DemoVideo id={s.video} accent={s.accent} actif={n === i} />
+                                : aSceneReelle(s.art)
+                                    ? <TutoScene art={s.art} bureau={embedded} />
+                                    : <Illus kind={s.art} accent={s.accent} />}
                         </div>
                         <div className={styles.kicker}>{s.kicker} · {n + 1} / {STEPS.length}</div>
                         <h2 className={styles.title}>{s.title}</h2>
