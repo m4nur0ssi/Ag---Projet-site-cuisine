@@ -5719,6 +5719,10 @@
     opacity: 1;
 }
 
+.pagePlanner .planDot.planDotFait {
+    background: #30d158;
+}
+
 .pagePlanner .planSlide {
     position: relative;
 }
@@ -6751,3 +6755,16 @@
     box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .14);
 }
 .courseVidee p { margin: 0; font-size: 14px; line-height: 1.45; color: rgba(235, 235, 245, .72); }
+
+/* Bureau (panneau Recherche) : Catégorie, Pays, Tendances ont EXACTEMENT la taille
+   des onglets Recette / Ingrédients / Assistant (3 colonnes égales, 40 px, 14 px).
+   « Sans… » et ses étiquettes passent sur leur propre ligne. */
+.spEmbedded .spSearchControls .spFilterRow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 4px 12px; }
+.spEmbedded .spSearchControls .spFilterRow .spSans { display: flex; flex-wrap: wrap; gap: 8px; grid-column: 1 / -1; order: 2; }
+.spEmbedded .spSearchControls .spFilterRow .spGroups { display: contents; }
+.spEmbedded .spSearchControls .spGroup { width: 100%; }
+.spEmbedded .spSearchControls .spGroup,
+.spEmbedded .spSearchControls .spSansAdd,
+.spEmbedded .spSearchControls .spSansTag {
+    min-height: 40px; font-size: 14px; font-weight: 600; padding: 8px 20px;
+}

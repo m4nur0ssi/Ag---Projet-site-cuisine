@@ -34,7 +34,7 @@
 }
 
 .close {
-    position: absolute; top: 10px; right: 10px;
+    position: absolute; top: 10px; right: 10px; z-index: 2;
     width: 26px; height: 26px;
     display: flex; align-items: center; justify-content: center;
     border: none; border-radius: 999px; cursor: pointer;
@@ -82,4 +82,12 @@
 }
 .demo > div {
     width: min(148px, 42vw);
+}
+
+/* Scène du tutoriel (vraies cartes de l'accueil), la même que dans la visite. */
+.scene {
+    margin: 2px 0 12px;
+    width: 100%;
+    aspect-ratio: 220 / 150;
+    min-height: 0;
 }

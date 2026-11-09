@@ -8,10 +8,15 @@
 export interface Tip {
     /** Clé de mémorisation : ne JAMAIS la renommer, sinon l'astuce revient. */
     id: string;
-    kicker: string;
-    title: string;
+    /*
+     * Texte de la bulle. ABSENT quand une étape du tutoriel porte `astuce: <id>`
+     * (src/lib/tutoriel.ts) : la bulle montre alors cette étape — texte et scène —,
+     * une seule source pour les deux.
+     */
+    kicker?: string;
+    title?: string;
     /** `{geste}` est remplacé par « appui long » ou « clic droit » selon l'appareil. */
-    text: string;
+    text?: string;
     /** Intitulé du bouton de sortie (défaut : « J'ai compris »). */
     cta?: string;
     /**
@@ -25,13 +30,8 @@ export interface Tip {
 }
 
 export const TIPS: Record<string, Tip> = {
-    accueil: {
-        id: 'accueil',
-        demo: 'appui-long',
-        kicker: 'Bienvenue',
-        title: 'Le menu caché des cartes',
-        text: 'Fais un {geste} sur n’importe quelle carte de recette : un menu s’ouvre — favoris, à faire plus tard, partager, voir la catégorie.',
-    },
+    // Contenu : étapes « L’appui long » / « Le clic droit » du tutoriel (src/lib/tutoriel.ts).
+    accueil: { id: 'accueil' },
     cave: {
         id: 'cave',
         demo: 'ma-cave',

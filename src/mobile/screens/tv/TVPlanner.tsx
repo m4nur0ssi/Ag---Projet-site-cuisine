@@ -1519,7 +1519,10 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                 onClick={() => { haptic(6); goToDay(i); }}
                             >
                                 {d}
-                                {Object.keys(plan[d] || {}).length > 0 && <i className={styles.planDot} />}
+                                {Object.keys(plan[d] || {}).length > 0 && (
+                                    /* Rouge tant qu'il reste un plat à cuisiner ; vert quand tous les plats du jour sont cochés « fait ». */
+                                    <i className={`${styles.planDot} ${Object.values(plan[d] || {}).every((s: any) => s?.fait) ? styles.planDotFait : ''}`} />
+                                )}
                             </button>
                         ))}
                     </div>

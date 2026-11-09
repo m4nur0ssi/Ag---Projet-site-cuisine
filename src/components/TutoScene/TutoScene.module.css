@@ -1,0 +1,134 @@
+/* Scène du tutoriel : un morceau de l'accueil, en vrai, à l'échelle du cadre.
+   Tailles en cqw : la même scène tient dans la visite guidée et dans la bulle. */
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #0b0b0d;
+    container-type: inline-size;
+    isolation: isolate;               /* ses calques restent sous la croix de la bulle */
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    text-align: left;
+    user-select: none;
+}
+.scene img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Héros ── */
+.heros { position: relative; height: 42%; overflow: hidden; }
+.herosGrand { height: 100%; }
+.heros::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.78));
+}
+.herosTexte {
+    position: absolute; z-index: 1; left: 4cqw; right: 4cqw; bottom: 3cqw;
+    display: flex; flex-direction: column; gap: 0.8cqw;
+}
+.herosKicker { font-size: 2.4cqw; font-weight: 700; color: rgba(255, 228, 190, 0.85); }
+.herosTitre {
+    font-size: 4cqw; font-weight: 900; letter-spacing: -0.02em; line-height: 1.05;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #fff3e2, #f0b27a);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.herosGrand .herosTitre { font-size: 6cqw; }
+.herosBouton {
+    align-self: flex-start; margin-top: 1.4cqw;
+    padding: 1.4cqw 3.4cqw; border-radius: 999px;
+    background: #fff3e2; color: #111; font-size: 3cqw; font-weight: 800;
+}
+.fleche {
+    position: absolute; top: 42%; z-index: 2;
+    font-size: 8cqw; line-height: 1; color: rgba(255,255,255,0.8);
+}
+.flecheG { left: 2cqw; }
+.flecheD { right: 2cqw; }
+
+/* ── Rangées ── */
+.rangee { padding: 2.4cqw 0 0 4cqw; }
+.sceneRangees { display: flex; flex-direction: column; justify-content: center; gap: 1cqw; }
+.rangeeTitre {
+    font-size: 3.2cqw; font-weight: 800; margin-bottom: 1.6cqw;
+    background: linear-gradient(90deg, #fff3e2, #f6c768);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.cartes { display: flex; gap: 2cqw; }
+.carte {
+    position: relative; flex: 0 0 21cqw; aspect-ratio: 760 / 1004;
+    border-radius: 2cqw; overflow: hidden;
+    box-shadow: 0 1cqw 3cqw rgba(0,0,0,0.5);
+}
+.sceneRangees .carte { flex-basis: 15cqw; }
+.rang {
+    position: absolute; left: 1.2cqw; bottom: 0.4cqw;
+    font-size: 7cqw; font-weight: 900; line-height: 1;
+    color: #fff; text-shadow: 0 0.4cqw 2cqw rgba(0,0,0,0.8);
+}
+
+/* ── Le geste : la carte visée s'avance, le reste s'éteint, le menu s'ouvre ── */
+.sceneGeste::after {
+    content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+}
+.cible { z-index: 4; transform-origin: center; }
+.menu {
+    position: absolute; z-index: 5;
+    left: 30cqw; top: 6%; width: 50cqw;
+    padding: 1.6cqw; border-radius: 3cqw;
+    background: rgba(40, 38, 42, 0.92);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 3cqw 8cqw rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.1);
+    opacity: 0; transform: scale(0.9); transform-origin: left center;
+}
+.menuTitre {
+    font-size: 2.8cqw; font-weight: 800; padding: 0.6cqw 1.4cqw 1.2cqw;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.menuLigne {
+    font-size: 2.7cqw; padding: 1.15cqw 1.4cqw;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.88);
+}
+.doigt, .curseur { position: absolute; z-index: 6; pointer-events: none; }
+.doigt {
+    left: calc(4cqw + 10.5cqw - 3.5cqw); top: 66%;
+    width: 7cqw; height: 7cqw; border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.5);
+    opacity: 0;
+}
+.curseur { left: calc(4cqw + 10cqw); top: 66%; width: 5cqw; height: 5cqw; opacity: 0; }
+
+/* Boucle de 4,8 s : arrivée du doigt, appui, menu ouvert, retour au calme. */
+.sceneGeste::after { animation: sceneVoile 4.8s ease-in-out infinite; }
+.cible { animation: sceneCible 4.8s ease-in-out infinite; }
+.menu { animation: sceneMenu 4.8s cubic-bezier(0.2, 1, 0.3, 1) infinite; }
+.doigt { animation: sceneDoigt 4.8s ease-in-out infinite; }
+.curseur { animation: sceneCurseur 4.8s ease-in-out infinite; }
+
+@keyframes sceneVoile { 0%, 30% { opacity: 0; } 38%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+@keyframes sceneCible { 0%, 30% { transform: none; } 38%, 88% { transform: scale(1.06); } 96%, 100% { transform: none; } }
+@keyframes sceneMenu { 0%, 34% { opacity: 0; transform: scale(0.9); } 42%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: scale(0.96); } }
+@keyframes sceneDoigt {
+    0%, 8% { opacity: 0; transform: translate(6cqw, 6cqw); }
+    16% { opacity: 1; transform: none; box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+    34% { opacity: 1; box-shadow: 0 0 0 4cqw rgba(255,255,255,0); }
+    42%, 100% { opacity: 0; }
+}
+@keyframes sceneCurseur {
+    0%, 8% { opacity: 0; transform: translate(8cqw, 8cqw); }
+    18%, 40% { opacity: 1; transform: none; }
+    48%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    /* Sans animation : on montre directement le menu ouvert. */
+    .sceneGeste::after, .cible, .menu, .doigt, .curseur { animation: none; }
+    .sceneGeste::after { opacity: 1; }
+    .menu { opacity: 1; transform: none; }
+    .cible { transform: scale(1.06); }
+}

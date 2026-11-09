@@ -2711,7 +2711,7 @@ export default function TVHome() {
                 filter={seedFilter}
             />
 
-            <Tip id="accueil" />
+            <Tip id="accueil" bureau={false} />
             <InstallInvite />
             {tutoOpen && <TVTutorial onClose={() => setTutoOpen(false)} />}
             {mesRecettesOpen && <MesRecettes onClose={() => setMesRecettesOpen(false)} />}

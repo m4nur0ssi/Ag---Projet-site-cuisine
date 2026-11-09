@@ -1637,7 +1637,7 @@ export default function TVDesktopHome() {
                 />
             )}
 
-            <Tip id="accueil" />
+            <Tip id="accueil" bureau />
             {shareCard && (
                 <RecipeShareCard
                     recipe={shareCard.recipe}

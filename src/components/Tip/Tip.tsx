@@ -3,24 +3,13 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { TIPS } from '@/lib/tips';
+import { astucesVues, etapePourAstuce, marquerAstuceVue } from '@/lib/tutoriel';
 import styles from './Tip.module.css';
 import DemoVideo from '@/components/DemoVideo/DemoVideo';
-
-const SEEN_KEY = 'magic-tips-seen-v1';
-
-const seen = (): string[] => {
-    try { const v = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); return Array.isArray(v) ? v : []; }
-    catch { return []; }
-};
+import TutoScene, { aSceneReelle } from '@/components/TutoScene/TutoScene';
 
 /** Marque une astuce comme vue — depuis n'importe où (fermeture, geste accompli). */
-export function markTipSeen(id: string) {
-    try {
-        const list = seen();
-        if (list.includes(id)) return;
-        localStorage.setItem(SEEN_KEY, JSON.stringify([...list, id]));
-    } catch { /* stockage refusé : l'astuce reviendra, tant pis */ }
-}
+export const markTipSeen = marquerAstuceVue;
 
 /**
  * Bulle d'astuce de première visite.
@@ -32,14 +21,22 @@ export function markTipSeen(id: string) {
  * selon l'appareil — la consigne doit désigner le geste que CETTE personne peut
  * faire.
  */
-export default function Tip({ id, delay = 1000 }: { id: keyof typeof TIPS | string; delay?: number }) {
+export default function Tip({ id, delay = 1000, bureau }: {
+    id: keyof typeof TIPS | string;
+    delay?: number;
+    /**
+     * Arbre de bureau (TVDesktopHome) ? Choisit l'étape du tutoriel montrée, comme
+     * la visite guidée le fait. À défaut : la présence d'un pointeur.
+     */
+    bureau?: boolean;
+}) {
     const [show, setShow] = useState(false);
     const [leaving, setLeaving] = useState(false);
     const tip = TIPS[id as string];
 
     useEffect(() => {
         if (!tip) return;
-        if (seen().includes(tip.id)) return;
+        if (astucesVues().includes(tip.id)) return;
         const t = setTimeout(() => setShow(true), delay);
         return () => clearTimeout(t);
     }, [tip, delay]);
@@ -53,7 +50,11 @@ export default function Tip({ id, delay = 1000 }: { id: keyof typeof TIPS | stri
     };
 
     const coarse = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
-    const text = tip.text.replace('{geste}', coarse ? 'appui long' : 'clic droit');
+    // Une astuce liée au tutoriel en montre l'étape — texte et scène — telle quelle.
+    const etape = etapePourAstuce(tip.id, bureau ?? !coarse);
+    const kicker = etape?.kicker ?? tip.kicker ?? '';
+    const title = etape?.title ?? tip.title ?? '';
+    const text = etape?.text ?? (tip.text || '').replace('{geste}', coarse ? 'appui long' : 'clic droit');
 
     return createPortal(
         <div className={`${styles.wrap} ${leaving ? styles.leaving : ''}`} role="status">
@@ -61,13 +62,17 @@ export default function Tip({ id, delay = 1000 }: { id: keyof typeof TIPS | stri
                 <button className={styles.close} onClick={close} aria-label="Fermer l’astuce">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                 </button>
-                {tip.demo && (
+                {etape && aSceneReelle(etape.art) ? (
+                    <div className={styles.scene}>
+                        <TutoScene art={etape.art} bureau={bureau ?? !coarse} />
+                    </div>
+                ) : tip.demo && (
                     <div className={styles.demo}>
                         <DemoVideo id={tip.demo} />
                     </div>
                 )}
-                <div className={styles.kicker}>{tip.kicker}</div>
-                <div className={styles.title}>{tip.title}</div>
+                <div className={styles.kicker}>{kicker}</div>
+                <div className={styles.title}>{title}</div>
                 <p className={styles.text}>{text}</p>
                 <button className={styles.cta} onClick={close}>{tip.cta || 'J’ai compris'}</button>
             </div>

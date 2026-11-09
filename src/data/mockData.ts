@@ -2,11 +2,417 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/11/2026 21:45:56
- * Total: 827 recettes
+ * Dernière mise à jour: 07/11/2026 17:31:59
+ * Total: 833 recettes
  */
-export const exportSyncId = "1793915156043";
+export const exportSyncId = "1794072719924";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8158",
+        "title": "Carottes enrobées de bacon avec un glaçage érable et Dijon",
+        "description": "Ces carottes enrobées de bacon et nappées d'un glaçage sucré-salé à l'érable et à la moutarde de Dijon sont le plat d'accompagnement idéal pour votre menu de Thanksgiving. La cuisson sur une grille assure un bacon croustillant de tous les côtés et...",
+        "image": "/recipes-ia/8158-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703969526731377933\" data-video-id=\"7703969526731377933\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703969526731377933\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             10 carottes moyennes d'environ 20 cm de long, pelées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10 tranches de bacon de coupe régulière"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cuillères à soupe de sirop d'érable pur"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde de Dijon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de sel casher"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ¼ cuillère à café de thym séché"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ¼ cuillère à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à café de vinaigre de cidre de pomme"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette ou persil finement haché (pour la garniture, facultatif)"
+            }
+        ],
+        "steps": [
+            "Préchauffez le four à 200˚C (400˚F). Placez une grille sur une plaque de cuisson recouverte de papier aluminium.",
+            "Dans une grande casserole d'eau bouillante, faites blanchir les carottes entières pendant 6 à 7 minutes (environ 4 minutes pour les carottes fines, 8 à 9 minutes pour les très épaisses). Égouttez-les et séchez-les complètement.",
+            "En commençant par l'extrémité la plus épaisse de chaque carotte, enroulez une tranche de bacon en spirale. Espacez les tours de manière à laisser apparaître une bande de carotte entre chaque tour, sans chevauchement.",
+            "À chaque extrémité, insérez un cure-dent à travers le bacon et la carotte pour le faire ressortir de l'autre côté du bacon, afin de bien fixer le bacon.",
+            "Disposez les carottes sur la grille. Enfournez pendant 10 minutes, jusqu'à ce que le gras du bacon commence à fondre.",
+            "Pendant ce temps, dans un bol, fouettez ensemble le sirop d'érable, le miel, la moutarde de Dijon, l'huile d'olive, le sel casher, le paprika fumé, le thym, le poivre noir et le vinaigre de cidre de pomme jusqu'à obtenir un mélange homogène.",
+            "Badigeonnez le dessus des carottes avec environ un tiers du glaçage, puis remettez au four et faites cuire encore 10 à 12 minutes.",
+            "Retournez les carottes, badigeonnez le côté maintenant vers le haut avec un autre tiers du glaçage, et remettez au four pour 10 à 12 minutes supplémentaires.",
+            "Retournez à nouveau, badigeonnez avec le glaçage restant, et faites cuire une dernière fois pendant 10 à 12 minutes, jusqu'à ce que le bacon soit croustillant et que le glaçage soit brillant et figé.",
+            "Vérifiez la cuisson en insérant un couteau d'office dans la partie la plus épaisse d'une carotte. S'il s'enfonce facilement, elles sont cuites. Sinon, remettez-les au four pour 5 minutes supplémentaires, en couvrant lâchement d'une feuille d'aluminium si le bacon est déjà croustillant.",
+            "Laissez reposer 5 minutes pour que le glaçage se fixe, puis retirez les cure-dents et garnissez de ciboulette ou de persil finement haché. Ne laissez pas les carottes sur la grille plus de 5 à 10 minutes, sinon le glaçage pourrait les rendre difficiles à retirer."
+        ],
+        "tags": [
+            "Accompagnements",
+            "C'est l'hiver",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8143",
+        "title": "Fonkie (Cookie et Fondant au Chocolat)",
+        "description": "Découvrez la recette du Fonkie, un dessert gourmand qui combine un cookie moelleux et un fondant au chocolat intense, le tout cuit en deux étapes pour une texture parfaite.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8143.webp&v=1794063760000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7704997233699097889\" data-video-id=\"7704997233699097889\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7704997233699097889\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             30 g de sucre (de coco ou roux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             115 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de pépites de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             30 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Cacao en poudre (pour saupoudrer)"
+            }
+        ],
+        "steps": [
+            "Pour le cookie : dans un saladier, crémez 100 g de beurre pommade avec 30 g de sucre (de coco ou roux) à l'aide d'une maryse.",
+            "Ajoutez 1 œuf, puis 115 g de farine et incorporez le tout avec la maryse.",
+            "Terminez en ajoutant 100 g de pépites de chocolat. Mélangez.",
+            "Chemisez un moule à charnière de 18 cm et étalez la pâte à cookie au fond en la tassant bien.",
+            "Enfournez le cookie pour 8 minutes à 180°C.",
+            "Pendant ce temps, préparez le fondant au chocolat : faites fondre 40 g de beurre avec 100 g de chocolat noir. Réservez.",
+            "Dans un autre saladier, fouettez 3 œufs.",
+            "Ajoutez 30 g de farine et 30 g de maïzena, puis incorporez le mélange de chocolat et beurre fondu. Mélangez bien.",
+            "Récupérez le cookie pré-cuit. Versez la préparation du fondant sur le dessus du cookie.",
+            "Ré-enfournez pour 6 minutes à 200°C.",
+            "Saupoudrez de cacao en poudre pour une jolie finition et dégustez tiède."
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8154",
+        "title": "Magret de canard séché aux 5 épices chinoises",
+        "description": "Découvrez la recette d'un magret de canard séché aux cinq épices chinoises, une préparation savoureuse et parfumée qui rappelle le foie gras aux quatre épices. Un délice à préparer pour les amateurs de charcuterie maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8154.webp&v=1794063751000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696538351293222177\" data-video-id=\"7696538351293222177\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696538351293222177\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Magret de canard"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cinq épices chinoises"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre de Sichuan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Zeste d'orange"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre cassonade"
+            }
+        ],
+        "steps": [
+            "Commencez par parer et dénerver le magret de canard au maximum pour obtenir une viande propre, en veillant à conserver une couche de gras sur le dessus.",
+            "Sur une plaque, tapissez le fond de gros sel. Déposez les magrets de canard et recouvrez-les entièrement d'une bonne couche de sel, en vous assurant qu'aucun morceau de viande ne dépasse.",
+            "Laissez déshydrater pendant au moins 12 heures.",
+            "Pendant ce temps, préparez le mélange d'épices : mélangez les cinq épices chinoises, le poivre de Sichuan, le zeste d'orange et une cuillère de sucre cassonade. Réservez.",
+            "Une fois le temps de déshydratation écoulé, dessalez le magret en le plongeant rapidement dans un grand volume d'eau pour retirer tout le sel collé à la surface.",
+            "Épongez soigneusement le magret entre deux papiers absorbants, puis placez-le sur un torchon propre (non lavé avec de la lessive pour éviter d'altérer le goût).",
+            "Enrobez généreusement le magret de canard avec le mélange d'épices. Enveloppez-le fermement dans le torchon et déposez-le sur une grille posée sur une plaque. Laissez sécher au réfrigérateur pendant deux semaines."
+        ],
+        "tags": [
+            "Asie",
+            "C'est l'hiver",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8145",
+        "title": "Martini Caramel Brûlée",
+        "description": "Un cocktail festif inspiré du menu de Noël de Starbucks, avec une touche alcoolisée de Baileys Caramel Salé, de vodka et de caramel, garni de crème fouettée et de sauce caramel.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8145.webp&v=1794062545000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7704873652126354701\" data-video-id=\"7704873652126354701\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7704873652126354701\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             45 ml de Baileys Caramel Salé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             45 ml de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 ml de vodka"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de caramel salé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre, pour caraméliser au chalumeau"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fouettée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce caramel"
+            }
+        ],
+        "steps": [
+            "Dans un shaker rempli de glace, verser le Baileys Caramel Salé, la crème épaisse, la vodka et le caramel salé.",
+            "Secouer vigoureusement jusqu'à ce que le mélange soit bien frais.",
+            "Filtrer et verser dans un verre à martini.",
+            "Garnir généreusement de crème fouettée.",
+            "Saupoudrer la crème fouettée d'une cuillère à soupe de sucre et caraméliser délicatement à l'aide d'un chalumeau de cuisine.",
+            "Arroser d'un filet de sauce caramel pour la touche finale."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Noël",
+            "Rafraîchissements",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8147",
+        "title": "Espresso Martini au Baileys Caramel Salé",
+        "description": "Une boisson festive et gourmande, parfaite pour la saison des fêtes. Ce cocktail combine l'intensité de l'espresso avec la douceur du Baileys Caramel Salé, une touche de vodka et un soupçon de vanille, le tout servi frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8147.webp&v=1794062538000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703996791389293857\" data-video-id=\"7703996791389293857\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703996791389293857\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 à 5 glaçons"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             40 ml d'espresso"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             50 ml de Baileys Caramel Salé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20 ml de vodka (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             2 à 3 gouttes d'extrait de vanille"
+            }
+        ],
+        "steps": [
+            "Mettre les glaçons dans un shaker.",
+            "Ajouter l'espresso, le Baileys Caramel Salé, la vodka (si utilisée) et l'extrait de vanille.",
+            "Secouer vigoureusement jusqu'à ce que le mélange soit bien frais.",
+            "Filtrer et verser dans un verre à cocktail."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Noël",
+            "Rafraîchissements"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8149",
+        "title": "Spritz Apérol des Fêtes",
+        "description": "Si vous cherchez une boisson pour la saison des fêtes, préparez ce Spritz Apérol des Fêtes. Le sirop maison de canneberge et romarin épicé a le goût de Noël en bouteille et est également parfait pour de nombreux autres cocktails et mocktails.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8149.webp&v=1794062530000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7705095580011334926\" data-video-id=\"7705095580011334926\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7705095580011334926\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             90 ml de prosecco, réfrigéré"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 ml d'Apérol, réfrigéré"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             15 ml de sirop de canneberge et romarin épicé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 ml de club soda, réfrigéré"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Canneberges fraîches pour la garniture"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Brin de romarin pour la garniture"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Anis étoilé pour la garniture"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour le sirop de canneberge et romarin épicé :"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             240 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200 g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de canneberges fraîches"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 brin de romarin frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 ou 2 bâtons de cannelle entiers"
+            }
+        ],
+        "steps": [
+            "Préparer le sirop de canneberge et romarin épicé : Dans une casserole, mélanger l'eau, le sucre blanc, les canneberges fraîches, le brin de romarin frais et les bâtons de cannelle entiers.",
+            "Porter à ébullition, puis réduire le feu et laisser mijoter pendant environ 10 à 15 minutes, jusqu'à ce que les canneberges éclatent et que le sirop épaississe légèrement.",
+            "Retirer du feu et laisser infuser pendant au moins 30 minutes (ou plus pour un goût plus prononcé), puis filtrer le sirop pour retirer les solides. Laisser refroidir complètement avant utilisation.",
+            "Pour préparer le Spritz Apérol des Fêtes : Dans un verre à vin ou un grand verre rempli de glaçons, verser le prosecco réfrigéré, l'Apérol réfrigéré et le sirop de canneberge et romarin épicé.",
+            "Compléter avec le club soda réfrigéré.",
+            "Garnir avec quelques canneberges fraîches, un brin de romarin et un anis étoilé. Servir immédiatement."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Italie",
+            "Noël",
+            "Rafraîchissements"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8140",
         "title": "Torrone (Nougat) maison aux fruits secs",
