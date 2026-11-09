@@ -23,7 +23,7 @@ const STOP = new Set([
 const TYPE_LEX: { cats: string[]; tags: string[]; rx: RegExp }[] = [
     { cats: ['sauces'], tags: ['sauces'], rx: /\b(sauce|condiment|marinade|vinaigrette|pesto|mayonnaise|aioli|tapenade|chutney|coulis|\bdip\b|guacamole|houmous|hummus|tzatziki|bearnaise|hollandaise|bechamel|chimichurri)/ },
     { cats: ['glaces'], tags: ['glaces'], rx: /\b(glace|sorbet|gelato|granita)/ },
-    { cats: ['rafraichissements'], tags: ['boissons'], rx: /\b(boisson|cocktail|smoothie|limonade|citronnade|milkshake|mojito|mocktail)|\bjus\b/ },
+    { cats: ['rafraichissements', 'cocktails'], tags: ['boissons'], rx: /\b(boisson|cocktail|smoothie|limonade|citronnade|milkshake|mojito|mocktail)|\bjus\b/ },
     { cats: ['aperitifs'], tags: [], rx: /\b(aperiti|apero|amuse|gougere|feuillet|dip|toast|verrine|tapas)/ },
     { cats: ['entrees'], tags: [], rx: /\b(entree)/ },
     { cats: ['desserts', 'patisserie'], tags: [], rx: /\b(gateau|cake\b|dessert|mousse|tiramisu|cheesecake|patisser|clafoutis|cookie|muffin|cupcake|brownie|entremet|macaron|eclair|banoffee|sundae|creme brulee|creme patissiere)/ },

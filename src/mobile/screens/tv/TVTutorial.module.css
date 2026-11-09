@@ -120,6 +120,7 @@
     align-self: center;
     width: min(300px, 82%);
     aspect-ratio: 220 / 150;
+    min-height: 0;          /* une scène HTML (TutoScene) ne doit pas étirer le cadre */
     margin-bottom: 6px;
     border-radius: 22px;
     padding: 10px;
