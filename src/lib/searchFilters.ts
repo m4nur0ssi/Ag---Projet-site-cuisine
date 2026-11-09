@@ -10,6 +10,8 @@
  * Les consommateurs affichent `FILTER_GROUPS[group]` tel quel, sans re-trier.
  */
 
+import { TAG_SAISON } from './saison';
+
 export interface FilterItem {
     label: string;
     tag: string;
@@ -43,6 +45,8 @@ export const PAYS: FilterItem[] = [
 
 // Toutes les tendances (alignées sur l'accueil), triées alphabétiquement par nom.
 export const TENDANCES: FilterItem[] = [
+    // Calculé à la date (pas une tendance éditoriale) : voir src/lib/saison.ts.
+    { label: '🌱 100 % de saison', tag: TAG_SAISON },
     { label: '🔥 Airfryer', tag: 'Airfryer' },
     { label: '💡 Astuces', tag: 'Astuces' },
     { label: '🥩 Barbecue', tag: 'Barbecue' },

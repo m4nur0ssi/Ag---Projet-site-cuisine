@@ -12,6 +12,7 @@ import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
 import { prixRecette, additionner } from '@/lib/recipe-price';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { isCookable, isMainDish, isSideDish, hasSideIncluded, proteinOf, isSweet, MEAT_FISH } from '@/lib/mealClassify';
+import { estRecetteDeSaison } from '@/lib/saison';
 import styles from './WeekPlanner.module.css';
 import { ecrireStock } from '@/lib/stockage';
 import Portal from '@/components/Portal';
@@ -85,7 +86,8 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
     // Mini-résumé de la liste affiché sous le panneau juste après "Valider".
     const [recap, setRecap] = useState<{ total: number; rayons: { id: string; n: number }[] } | null>(null);
     // side: true → le picker cible l'accompagnement du plat de ce créneau (recipe.side)
-    const [picker, setPicker] = useState<{ day: string; meal: string; side?: boolean } | null>(null);
+    // saison : accompagnement limité aux légumes de saison (règle des deux tiers).
+    const [picker, setPicker] = useState<{ day: string; meal: string; side?: boolean; saison?: boolean } | null>(null);
     // Cadenas de catégorie déverrouillé → l'utilisateur voit TOUTES les recettes.
     const [lockOpen, setLockOpen] = useState(false);
     // Slot en cours de glisser-déposer (vue semaine).
@@ -577,6 +579,8 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
                 : isCookable(r) && 'cat' in effectiveLock && r.category === effectiveLock.cat
             );
         }
+        // « 100 % de saison » : règle imposée en plus de la catégorie, cadenas ouvert compris.
+        if (picker?.side && picker.saison) base = base.filter(r => isSideDish(r) && estRecetteDeSaison(r));
         if (ingMode && ingTags.length > 0) {
             const tags = ingTags.map(t => normalize(t));
             return base.map(r => {
@@ -769,9 +773,14 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
                                                                     )}
                                                                 </div>
                                                             ) : !validated ? (
-                                                                <button className={styles.addSideBtn} onClick={(e) => { e.stopPropagation(); setPicker({ day, meal, side: true }); }}>
-                                                                    + Accompagnement
-                                                                </button>
+                                                                <>
+                                                                    <button className={styles.addSideBtn} onClick={(e) => { e.stopPropagation(); setPicker({ day, meal, side: true }); }}>
+                                                                        + Accompagnement
+                                                                    </button>
+                                                                    <button className={styles.addSideBtn} onClick={(e) => { e.stopPropagation(); setPicker({ day, meal, side: true, saison: true }); }}>
+                                                                        100 % légumes de saison
+                                                                    </button>
+                                                                </>
                                                             ) : null}
                                                             </div>
                                                             </>

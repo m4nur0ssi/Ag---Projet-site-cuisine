@@ -9,6 +9,7 @@ import { buildFinderCatalog } from '@/lib/recipe-search-payload';
 import { lireContrainteNote, appliquerContrainteNote } from '@/lib/contrainte-note';
 import { loadAllRatingStats } from '@/lib/ratings';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
+import { TAG_SAISON, estRecetteDeSaison, moisCourantParis } from '@/lib/saison';
 import styles from './SpotlightSearch.module.css';
 import { readCave, drinkWindow, type CaveWine } from '@/lib/cave';
 import { intentionVin, compacterCave, accordLocal } from '@/lib/accordCave';
@@ -295,7 +296,10 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
     const filteredRecipes = useMemo(() => {
         if (mode !== 'recipe') return [];
         let pool = mockRecipes.filter(r => r.category !== 'restaurant');
-        if (activeFilter) {
+        if (activeFilter === TAG_SAISON) {
+            const mois = moisCourantParis();
+            pool = pool.filter(r => estRecetteDeSaison(r as any, mois));
+        } else if (activeFilter) {
             const af = normalize(activeFilter);
             pool = pool.filter(r =>
                 normalize(r.category || '') === af ||

@@ -9,6 +9,7 @@ import { Recipe } from '@/mobile/types';
 import { estRecetteBebe } from '@/lib/bebe';
 import { estRecettePates } from '@/lib/pates';
 import { totalMinutes, timedMinutes } from './timing';
+import { TAG_SAISON, estRecetteDeSaison, moisCourantParis } from '@/lib/saison';
 
 export interface Theme {
     /** Tag interne (identique à celui de l'accueil actuel). */
@@ -41,6 +42,8 @@ export const THEMES: Theme[] = [
     { tag: 'boissons', title: 'Rafraîchissements' },
     { tag: 'sauces', title: 'Sauces' },
     { tag: 'dolce-vita', title: 'La Dolce Vita' },
+    // Calculée au mois courant (src/lib/saison.ts), pas une étiquette éditoriale.
+    { tag: TAG_SAISON, title: '100 % de saison' },
     { tag: 'voila-lete', title: "Voilà l'été" },
     { tag: 'cest-lhiver', title: "C'est l'hiver" },
     { tag: 'pâques', title: 'Pâques' },
@@ -198,7 +201,7 @@ export const SAVORY_TITLE = new RegExp(
  * fouillé ci-dessous. Une recette venue d'ailleurs (desktop, fiche, planning)
  * n'a pas ces champs et suit l'ancien chemin, intact.
  */
-type PreCalculee = Recipe & { tagsStricts?: string[]; tagsLarges?: string[]; sale?: boolean };
+type PreCalculee = Recipe & { tagsStricts?: string[]; tagsLarges?: string[]; sale?: boolean; legumes?: string[] };
 
 export function isSavoryMiscat(recipe: Recipe): boolean {
     const pre = (recipe as PreCalculee).sale;
@@ -257,6 +260,8 @@ export function matchesTag(
     opts?: { ignoreCategoryGuards?: boolean }
 ): boolean {
     const pre = recipe as PreCalculee;
+    // Saison : dépend du mois, jamais figée dans tagsStricts/tagsLarges.
+    if (tag === TAG_SAISON) return estRecetteDeSaison(pre, moisCourantParis());
     if (pre.tagsStricts && pre.tagsLarges) {
         const liste = opts?.ignoreCategoryGuards ? pre.tagsLarges : pre.tagsStricts;
         return liste.includes(tag.toLowerCase());

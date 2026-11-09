@@ -42,6 +42,7 @@ const THEMES_MOD = path.join(RACINE, 'src/mobile/screens/tv/themes.ts');
 const FILTRES = path.join(RACINE, 'src/mobile/screens/tv/filters.ts');
 const TIMING = path.join(RACINE, 'src/lib/recipe-timing.ts');
 const BEBE = path.join(RACINE, 'src/lib/bebe.ts');
+const SAISON = path.join(RACINE, 'src/lib/saison.ts');
 
 /**
  * Charge un module TypeScript du projet sans dépendance de build : transpile,
@@ -90,6 +91,7 @@ const { estimateRecipeTiming, sumStepMinutes } = chargerTS(TIMING);
 const { THEMES, matchesTag, isSavoryMiscat, COLLECTION_TAGS_VALEURS } = chargerTS(THEMES_MOD);
 const { COUNTRY_OPTIONS } = chargerTS(FILTRES);
 const { estRecetteBebe } = chargerTS(BEBE);
+const { legumesDeIngredients, TAG_SAISON } = chargerTS(SAISON);
 
 /**
  * TOUS les tags qu'une vue peut demander : les rangées thématiques, les pays du
@@ -101,7 +103,7 @@ const universe = [...new Set([
     ...THEMES.map((t) => t.tag),
     ...COUNTRY_OPTIONS.map((o) => o.token.slice(2)),
     ...COLLECTION_TAGS_VALEURS,
-])];
+])].filter((tag) => tag !== TAG_SAISON); // « 100 % de saison » dépend du mois : jamais figé au build.
 
 const recettes = lireRecettes();
 const allegees = recettes.map((r) => {
@@ -131,6 +133,9 @@ const allegees = recettes.map((r) => {
         // Recette de bébé : décidé ici, étapes en main. L'accueil ne les a
         // plus, et c'est ce drapeau qui la tient hors des rangées adultes.
         bebe: estRecetteBebe(r),
+        // Légumes principaux (ids canoniques) : la rangée « 100 % de saison »
+        // se calcule au mois courant sur l'accueil, qui n'a pas les ingrédients.
+        legumes: legumesDeIngredients((r.ingredients || []).map((i) => i?.name || '')),
     };
 });
 
@@ -182,6 +187,8 @@ export type HomeRecipe = Recipe & {
     timed?: number;
     /** Recette de bébé : ne vit que dans « Pour les bébés ». */
     bebe?: boolean;
+    /** Légumes principaux identifiés (ids de src/lib/saison.ts). */
+    legumes?: string[];
 };
 
 export const homeRecipes: HomeRecipe[] = ${litteral(allegees)};

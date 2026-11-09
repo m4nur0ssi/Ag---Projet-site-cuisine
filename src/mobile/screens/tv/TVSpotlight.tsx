@@ -83,6 +83,8 @@ interface TVSpotlightProps {
      * complète une viande servie nue.
      */
     filter?: (recipe: Recipe) => boolean;
+    /** Tags de filtre cochés à l'ouverture (ex. « 100 % de saison » depuis le planificateur). */
+    tagsInitiaux?: string[];
     /** Intitulé affiché à la place de « Terminé » (ex. « Choisir un plat »). */
     hint?: string;
     /** Mode d'ouverture (défaut « recipe »). « assistant » = recherche IA. */
@@ -156,7 +158,7 @@ function motsInterdits(mot: string): string[] {
     return [m];
 }
 
-export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false, previewBeforeSelect = false, retainOnSelect = false, suspended = false }: TVSpotlightProps) {
+export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tagsInitiaux, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false, previewBeforeSelect = false, retainOnSelect = false, suspended = false }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
@@ -203,6 +205,12 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const toggleFilter = (tag: string) =>
         setActiveFilters((prev) => prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]);
+    // Filtres imposés par l'appelant à l'ouverture : chaque ouverture repart de ceux-là.
+    const cleInitiaux = tagsInitiaux ? tagsInitiaux.join('|') : null;
+    useEffect(() => {
+        if (open && cleInitiaux !== null) setActiveFilters(cleInitiaux ? cleInitiaux.split('|') : []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open, cleInitiaux]);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const router = useRouter();
 
@@ -540,6 +548,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             // titre, « Express » un temps réel…) : le tag WordPress seul laissait
             // passer un gratin de pommes de terre. Catégories et pays, eux, se
             // lisent bien sur la catégorie et les tags.
+            // « 100 % de saison » passe par matchesTag (calcul au mois courant).
             if (FILTER_GROUPS.tendances.some((t) => t.tag === f)) {
                 pool2 = pool2.filter((r) => matchesTag(r, f, { ignoreCategoryGuards: activeFilters.some((x) => FILTER_GROUPS.categorie.some((c) => c.tag === x)) }));
                 continue;

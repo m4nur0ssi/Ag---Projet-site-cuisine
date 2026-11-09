@@ -33,6 +33,7 @@ import { rayonOf } from '@/lib/rayons';
 import { rendreListe } from '@/lib/videeCourses';
 import { isCookable, hasSideIncluded, isSweet, proteinOf, assietteOf, type Assiette } from '@/lib/mealClassify';
 import { isTVSide, isTVMain, sidePool } from './sides';
+import { TAG_SAISON, estRecetteDeSaison } from '@/lib/saison';
 import {
     DAYS, DAY_FULL, MEALS, JOUR_J, COURSES, todayIndex,
     chargerPlan, enregistrerPlan, poserRecette, oublierCoches, PLAN_EVENT,
@@ -118,7 +119,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const [plan, setPlan] = useState<Plan>({});
     const [index, setIndex] = useState(todayIndex);
     // `side` : le choix vise l'accompagnement du plat de ce créneau.
-    const [picker, setPicker] = useState<{ day: string; meal: string; side?: boolean } | null>(null);
+    // `saison` : accompagnement limité aux légumes de saison (règle des deux tiers).
+    const [picker, setPicker] = useState<{ day: string; meal: string; side?: boolean; saison?: boolean } | null>(null);
     /*
      * Sur grand écran, ajouter une recette n'ouvre pas la loupe mobile (une
      * liste qui déroule en bas) mais la PAGE Recherche : sur-titre discret,
@@ -657,6 +659,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     /** Ce que le choix en cours doit accepter. */
     const pickerFilter = useMemo(() => {
         if (!picker) return undefined;
+        // Accompagnement « 100 % de saison » : la règle est imposée ici, en plus de
+        // la catégorie accompagnement (le filtre de la loupe ne peut pas la lever).
+        if (picker.side && picker.saison) return (r: Recipe) => isTVSide(r) && estRecetteDeSaison(r);
         if (picker.side) return isTVSide;
         if (picker.day === JOUR_J) return COURSES.find((c) => c.label === picker.meal)?.accepts;
         // Créneau de semaine : tout ce qui se cuisine. On y met ce qu'on veut —
@@ -1173,8 +1178,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             /* Sans accompagnement, TOUTE la case est un bouton : il fallait
                                viser le petit « + » au milieu d'un grand cadre vide. */
                             <div
-                                className={`${styles.planSide} ${!slot.side ? styles.planSideTap : ''}`}
-                                {...(!slot.side ? {
+                                className={`${styles.planSide} ${!slot.side && !needsSide ? styles.planSideTap : ''}`}
+                                {...(!slot.side && !needsSide ? {
                                     role: 'button' as const,
                                     tabIndex: 0,
                                     onClick: () => { haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true }); },
@@ -1217,10 +1222,26 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         </button>
                                     </>
                                 ) : needsSide ? (
-                                    <div className={styles.planSideAdd}>
-                                        <span className={styles.planPlus}>+</span>
-                                        Ajouter un accompagnement
-                                        <span className={styles.planSideWhy}>ce plat est servi nu</span>
+                                    /* Deux choix, côte à côte dans la même case :
+                                       « tous les accompagnements » (inchangé) et
+                                       « 100 % légumes de saison » (même loupe, préfiltrée). */
+                                    <div className={styles.planSideChoix}>
+                                        <button
+                                            type="button"
+                                            className={`${styles.planSideAdd} ${styles.planSideTap}`}
+                                            onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true }); }}
+                                        >
+                                            <span className={styles.planPlus}>+</span>
+                                            Ajouter un accompagnement
+                                            <span className={styles.planSideWhy}>ce plat est servi nu</span>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className={styles.planSideSaison}
+                                            onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true, saison: true }); }}
+                                        >
+                                            100 % légumes de saison
+                                        </button>
                                     </div>
                                 ) : (
                                     /* Le plat porte déjà sa garniture (gratin, salade
@@ -1812,6 +1833,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 open={!!picker}
                 onClose={() => setPicker(null)}
                 filter={pickerFilter}
+                tagsInitiaux={picker?.side && picker.saison ? [TAG_SAISON] : []}
                 panneau={grandEcran}
                 hint="Annuler"
                 previewBeforeSelect
