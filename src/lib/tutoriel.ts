@@ -10,7 +10,7 @@
  */
 
 export type Art =
-    | 'hero' | 'rows' | 'press' | 'clic' | 'card' | 'cook' | 'filter' | 'search'
+    | 'hero' | 'rows' | 'press' | 'clic' | 'card' | 'cook' | 'filter' | 'filtres' | 'search'
     | 'planner' | 'side' | 'compose' | 'jourj' | 'fill' | 'views' | 'dock' | 'cocktail'
     | 'cave' | 'ext' | 'sidebar' | 'library' | 'trophy' | 'taste' | 'install'
     | 'tags' | 'timers' | 'demarrer' | 'plus';
@@ -88,11 +88,14 @@ export const STEPS_MOBILE: Step[] = [
     { kicker: 'Recherche', title: 'Trois façons', art: 'search', accent: '#5E5CE6', tint: T.indigo,
       text: 'La loupe ouvre Recette (son nom), Ingrédients (ce qu’il te reste au frigo) et Assistant IA, qui comprend une demande en langage courant — à la voix aussi.',
       hint: 'Appui long sur la loupe : la dictée démarre direct sur l’Assistant.' },
+    { kicker: 'Recherche', title: 'Les filtres', art: 'filtres', accent: '#5E5CE6', tint: T.indigo,
+      text: 'Sous la recherche, Catégorie, Pays et Tendances se cumulent. Dans Tendances, « 100 % de saison » ne garde que les recettes dont les légumes sont de saison ce mois-ci — la sélection change toute seule d’un mois à l’autre.',
+      hint: 'Ouvre Tendances et coche « 100 % de saison », puis ajoute une catégorie.' },
     { kicker: 'Planificateur', title: 'Ma semaine', art: 'planner', accent: '#BF5AF2', tint: T.violet,
       text: 'Un jour par écran, ouvert sur aujourd’hui : Midi et Soir. « Choisir une recette » ouvre le sélecteur, « Surprends-moi » en tire une au hasard. Appui long sur une carte pour la déplacer : posée sur un repas déjà prévu, elle le remplace.',
       hint: 'Balaye pour changer de jour, ou touche Lun… Dim en haut.' },
     { kicker: 'Planificateur', title: 'L’accompagnement', art: 'side', accent: '#FF2D55', tint: T.rose,
-      text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — appelle un accompagnement. Plat et accompagnement se changent et se retirent chacun de leur côté.',
+      text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — appelle un accompagnement. Deux boutons : « Ajouter un accompagnement » (toute la liste) ou « 100 % légumes de saison » (la même liste, limitée aux accompagnements de saison). Plat et accompagnement se changent et se retirent chacun de leur côté.',
       hint: '« Changer » sur l’accompagnement garde le plat ; « Changer » sur le plat garde l’accompagnement.' },
     { kicker: 'Planificateur', title: 'Composer', art: 'compose', accent: '#64D2FF', tint: T.cyan,
       text: '« Composer » remplit toute la semaine sur une tendance — Italie, Healthy, Barbecue… — sans répéter un plat ni sortir du thème.',
@@ -157,11 +160,14 @@ export const STEPS_BUREAU: Step[] = [
     { kicker: 'Recherche', title: 'Trois façons', art: 'search', accent: '#5E5CE6', tint: T.indigo,
       text: 'La loupe ouvre Recette (son nom), Ingrédients (ce qu’il te reste au frigo) et Assistant IA, qui comprend une demande en langage courant.',
       hint: 'L’Assistant sort aussi des restaurants : ville, type de cuisine, terrasse.' },
+    { kicker: 'Recherche', title: 'Les filtres', art: 'filtres', accent: '#5E5CE6', tint: T.indigo,
+      text: 'Sous la recherche, Catégorie, Pays et Tendances se cumulent. Dans Tendances, « 100 % de saison » ne garde que les recettes dont les légumes sont de saison ce mois-ci — la sélection change toute seule d’un mois à l’autre.',
+      hint: 'Ouvre Tendances et coche « 100 % de saison », puis ajoute une catégorie.' },
     { kicker: 'Planificateur', title: 'Ma semaine', art: 'planner', accent: '#BF5AF2', tint: T.violet,
       text: 'Le panneau s’ouvre à droite du menu, ouvert sur aujourd’hui : Midi et Soir. « Choisir une recette » ouvre le sélecteur, « Surprends-moi » en tire une au hasard. Plat et accompagnement se changent chacun de leur côté.',
       hint: 'Lun… Dim en haut : un clic suffit pour changer de jour.' },
     { kicker: 'Planificateur', title: 'L’accompagnement', art: 'side', accent: '#FF2D55', tint: T.rose,
-      text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — ouvre une ligne « Accompagnement » sous lui. Un couscous, déjà complet, n’en demande pas.',
+      text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — ouvre une ligne « Accompagnement » sous lui, avec deux choix : toute la liste, ou « 100 % légumes de saison ». Un couscous, déjà complet, n’en demande pas.',
       hint: 'Mets une viande à midi : la ligne Accompagnement apparaît juste dessous.' },
     { kicker: 'Planificateur', title: 'Composer', art: 'compose', accent: '#64D2FF', tint: T.cyan,
       text: '« Composer » remplit toute la semaine sur une tendance — Italie, Healthy, Barbecue… — sans répéter un plat ni sortir du thème.',
@@ -232,4 +238,12 @@ export const TUTO_CARTES = {
     top: ['8140', '8116', '8135', '8133', '8121'],
     /** Seconde rangée de la scène des rangées : d'autres recettes récentes du site. */
     nouveautes: ['8123', '8125', '8127', '8118', '8113'],
+    /** Scènes animées (src/components/TutoScene/TutoAnim.tsx) : recettes réelles du catalogue. */
+    bavette: '8113',
+    /** Accompagnements « 100 % de saison » proposés après le toucher. */
+    saison: ['8049', '8118', '5535'],
+    /** Un plat servi nu, une recette de plat, sa fiche et son #hashtag France. */
+    france: ['8116', '8113', '8068'],
+    /** Réponses de l'assistant à « un plat rapide au poulet ». */
+    poulet: ['8024', '8013'],
 } as const;

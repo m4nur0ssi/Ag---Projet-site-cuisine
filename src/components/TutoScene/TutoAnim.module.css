@@ -1,0 +1,493 @@
+/* Scènes animées du tutoriel (voir TutoAnim.tsx).
+   Mise en page en % du cadre (le curseur vise des positions justes quelle que
+   soit la forme du cadre) ; tailles de texte en cqw (le cadre est un conteneur).
+   Boucle de 10 s : le curseur arrive, un halo pulse au toucher, l'écran réagit. */
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #0b0b0d;
+    container-type: inline-size;
+    isolation: isolate;
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    text-align: left;
+    user-select: none;
+}
+.stage { position: absolute; inset: 0; }
+.stage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.stage > * { position: absolute; }
+
+/* ── Éléments communs ── */
+.legende { left: 5%; top: 3%; font-size: 3cqw; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); }
+.ligne {
+    display: flex; align-items: center; gap: 3cqw;
+    padding: 2cqw; box-sizing: border-box;
+    border-radius: 3cqw; background: rgba(255, 255, 255, 0.07);
+}
+.vignette { flex: 0 0 auto; height: 100%; aspect-ratio: 1; border-radius: 2cqw; overflow: hidden; }
+.texte { display: flex; flex-direction: column; gap: 0.6cqw; min-width: 0; }
+.kicker { font-size: 2.8cqw; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #f6c768; }
+.titre { font-size: 4cqw; font-weight: 800; line-height: 1.1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.meta { font-size: 3cqw; color: rgba(255, 255, 255, 0.55); }
+.groupe { inset: 0; }
+.groupe > * { position: absolute; }
+.mini { flex: 1 1 0; height: 100%; border-radius: 2cqw; overflow: hidden; }
+
+.segment {
+    left: 5%; top: 6%; width: 90%; height: 11%; box-sizing: border-box;
+    display: grid; grid-template-columns: repeat(3, 1fr); align-items: center; text-align: center;
+    padding: 0.6cqw; border-radius: 999px; background: rgba(255, 255, 255, 0.08);
+    font-size: 3.6cqw; font-weight: 700; color: rgba(255, 255, 255, 0.75);
+}
+.segment > span { position: relative; z-index: 1; }
+.segOn { background: #fff; color: #111; border-radius: 999px; padding: 1.2cqw 0; }
+.champ {
+    left: 5%; top: 20%; width: 90%; height: 11%; box-sizing: border-box;
+    display: flex; align-items: center; padding: 0 3cqw;
+    border-radius: 3cqw; background: rgba(255, 255, 255, 0.07);
+    font-size: 3.6cqw; color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Pointeur : flèche (bureau) ou doigt, et halo de lumière au toucher ── */
+.pointeur { width: 5cqw; height: 5cqw; z-index: 9; pointer-events: none; opacity: 0; margin: -0.6cqw 0 0 -0.4cqw; }
+.point {
+    position: absolute; left: 50%; top: 50%; width: 3.4cqw; height: 3.4cqw; margin: -1.7cqw 0 0 -1.7cqw;
+    border-radius: 50%; background: rgba(255, 255, 255, 0.55); box-shadow: 0 0 2.4cqw rgba(255, 220, 150, 0.7);
+}
+.fleche { position: absolute; inset: 0; filter: drop-shadow(0 0.4cqw 0.8cqw rgba(0, 0, 0, 0.6)); }
+.pointeur:has(.fleche) .point { display: none; }
+.halo {
+    position: absolute; left: 50%; top: 50%; width: 11cqw; height: 11cqw; margin: -5.5cqw 0 0 -5.5cqw;
+    border-radius: 50%; opacity: 0;
+    background: radial-gradient(circle, rgba(255, 236, 190, 0.95) 0%, rgba(255, 200, 110, 0.55) 40%, rgba(255, 200, 110, 0) 70%);
+}
+
+/* ═══ Scène 1 — l'accompagnement « 100 % légumes de saison » ═══ */
+.plat { left: 5%; top: 10%; width: 90%; height: 24%; }
+.caseVide { left: 5%; top: 40%; width: 90%; height: 42%; box-sizing: border-box; border: 0.35cqw dashed rgba(255, 255, 255, 0.22); border-radius: 3cqw; }
+.ajout { left: 9%; top: 44%; font-size: 4cqw; font-weight: 800; color: rgba(255, 255, 255, 0.86); }
+.pourquoi { right: 8%; top: 45%; font-size: 3cqw; color: rgba(255, 255, 255, 0.45); }
+.pilule {
+    left: 9%; top: 62%; width: 46%; height: 11%; box-sizing: border-box;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px; background: rgba(255, 255, 255, 0.12);
+    font-size: 3.6cqw; font-weight: 700; white-space: nowrap;
+}
+.accomp { left: 5%; top: 40%; width: 90%; height: 30%; }
+.liste {
+    left: 5%; top: 38%; width: 90%; height: 56%; box-sizing: border-box;
+    padding: 2.5cqw; display: flex; flex-direction: column; gap: 1.6cqw;
+    border-radius: 3.4cqw; background: rgba(24, 22, 28, 0.97);
+    box-shadow: 0 3cqw 8cqw rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    opacity: 0;
+}
+.puce {
+    align-self: flex-start; font-size: 3.2cqw; font-weight: 800;
+    padding: 0.8cqw 2.4cqw; border-radius: 999px;
+    background: rgba(246, 199, 104, 0.18); color: #f6c768;
+}
+.rangeeListe { flex: 1 1 0; min-height: 0; }
+
+.sideVide { animation: sVide 10s ease-in-out infinite; }
+.sideRempli { opacity: 0; animation: sRempli 10s ease-in-out infinite; }
+.liste { animation: sListe 10s ease-in-out infinite; }
+.rangeeUne { animation: sUne 10s ease-in-out infinite; }
+.cSide { left: 32%; top: 68%; animation: pSide 10s ease-in-out infinite; }
+.halo_cSide { animation: hSide 10s ease-out infinite; }
+
+@keyframes sVide { 0%, 56% { opacity: 1; } 60%, 94% { opacity: 0; } 98%, 100% { opacity: 1; } }
+@keyframes sRempli { 0%, 60% { opacity: 0; } 66%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes sListe { 0%, 24% { opacity: 0; transform: translateY(2cqw); } 30%, 50% { opacity: 1; transform: none; } 56%, 100% { opacity: 0; transform: translateY(2cqw); } }
+@keyframes sUne { 0%, 42% { background: rgba(255, 255, 255, 0.07); } 46%, 52% { background: rgba(246, 199, 104, 0.28); } 56%, 100% { background: rgba(255, 255, 255, 0.07); } }
+@keyframes pSide {
+    0% { left: 80%; top: 90%; opacity: 0; }
+    6% { left: 80%; top: 90%; opacity: 1; }
+    18%, 26% { left: 32%; top: 68%; opacity: 1; }
+    34%, 48% { left: 40%; top: 56%; opacity: 1; }
+    58% { left: 80%; top: 90%; opacity: 1; }
+    64%, 100% { left: 80%; top: 90%; opacity: 0; }
+}
+@keyframes hSide {
+    0%, 19% { opacity: 0; transform: scale(0.4); }
+    21% { opacity: 0.95; transform: scale(0.7); }
+    27% { opacity: 0; transform: scale(1.7); }
+    43% { opacity: 0; transform: scale(0.4); }
+    45% { opacity: 0.95; transform: scale(0.7); }
+    51%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* ═══ Scène 2 — les filtres de la recherche ═══ */
+.compte { left: 5%; top: 34%; width: 60%; height: 5%; font-size: 3.4cqw; color: rgba(255, 255, 255, 0.7); }
+.compte > span { position: absolute; left: 0; top: 0; white-space: nowrap; }
+.compte b { font-size: 4cqw; color: #fff; }
+.chip {
+    top: 41%; height: 10%; box-sizing: border-box;
+    display: flex; align-items: center; justify-content: center; gap: 1.6cqw;
+    border-radius: 999px; background: rgba(255, 255, 255, 0.09);
+    font-size: 3.4cqw; font-weight: 700;
+}
+.chipCat { left: 5%; width: 29%; }
+.chipPays { left: 36%; width: 17%; }
+.chipTend { left: 55%; width: 31%; }
+.badge1, .badge2 {
+    font-style: normal; min-width: 3.6cqw; height: 3.6cqw; padding: 0 0.8cqw; box-sizing: border-box;
+    display: grid; place-items: center; border-radius: 999px;
+    background: #ff6b4a; font-size: 2.8cqw; font-weight: 800; opacity: 0;
+}
+.actifs { left: 5%; top: 53%; font-size: 3.3cqw; font-weight: 800; color: #f6c768; opacity: 0; }
+.trois { left: 5%; top: 60%; width: 90%; height: 34%; display: flex; gap: 2.5cqw; }
+.apres { opacity: 0; }
+
+.compteAvant { animation: fAvant 10s ease-in-out infinite; }
+.compteApres { opacity: 0; animation: fApres 10s ease-in-out infinite; }
+.badge1 { animation: fBadge1 10s ease-in-out infinite; }
+.badge2 { animation: fBadge2 10s ease-in-out infinite; }
+.actifs { animation: fActifs 10s ease-in-out infinite; }
+.avant { animation: fAvantCartes 10s ease-in-out infinite; }
+.apres { animation: fApresCartes 10s ease-in-out infinite; }
+.cFiltre { left: 19.5%; top: 46%; animation: pFiltre 10s ease-in-out infinite; }
+.halo_cFiltre { animation: hFiltre 10s ease-out infinite; }
+
+@keyframes fAvant { 0%, 44% { opacity: 1; } 48%, 94% { opacity: 0; } 98%, 100% { opacity: 1; } }
+@keyframes fApres { 0%, 44% { opacity: 0; } 48%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes fBadge1 { 0%, 20% { opacity: 0; transform: scale(0.4); } 24%, 94% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+@keyframes fBadge2 { 0%, 42% { opacity: 0; transform: scale(0.4); } 46%, 94% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+@keyframes fActifs { 0%, 44% { opacity: 0; } 48%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes fAvantCartes { 0%, 44% { opacity: 1; } 50%, 94% { opacity: 0; } 98%, 100% { opacity: 1; } }
+@keyframes fApresCartes { 0%, 44% { opacity: 0; } 50%, 94% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes pFiltre {
+    0% { left: 82%; top: 88%; opacity: 0; }
+    6% { left: 82%; top: 88%; opacity: 1; }
+    16%, 28% { left: 19.5%; top: 46%; opacity: 1; }
+    36%, 46% { left: 70.5%; top: 46%; opacity: 1; }
+    56% { left: 82%; top: 88%; opacity: 1; }
+    62%, 100% { left: 82%; top: 88%; opacity: 0; }
+}
+@keyframes hFiltre {
+    0%, 17% { opacity: 0; transform: scale(0.4); }
+    19% { opacity: 0.95; transform: scale(0.7); }
+    25% { opacity: 0; transform: scale(1.7); }
+    39% { opacity: 0; transform: scale(0.4); }
+    41% { opacity: 0.95; transform: scale(0.7); }
+    47%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* ═══ Scène 3 — les #hashtags d'une fiche ═══ */
+.fichePhoto { left: 5%; top: 8%; width: 38%; height: 62%; border-radius: 3cqw; overflow: hidden; }
+.ficheTitre {
+    left: 47%; top: 10%; width: 48%; font-size: 4.4cqw; font-weight: 900; line-height: 1.05; text-transform: uppercase;
+    background: linear-gradient(90deg, #fff3e2, #f0b27a); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hashtag {
+    top: 44%; height: 10%; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+    border-radius: 999px; background: rgba(255, 255, 255, 0.1);
+    font-size: 3.4cqw; font-weight: 800; letter-spacing: 0.06em;
+}
+.hashFrance { left: 47%; width: 22%; animation: tPress 10s ease-in-out infinite; }
+.hashVege { left: 71%; width: 16%; }
+.grille {
+    left: 5%; top: 8%; width: 90%; height: 84%; box-sizing: border-box; padding: 3cqw;
+    display: flex; flex-direction: column; gap: 2cqw; z-index: 3;
+    border-radius: 3.4cqw; background: rgba(14, 14, 18, 0.97);
+    box-shadow: 0 3cqw 8cqw rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    opacity: 0; animation: tGrille 10s ease-in-out infinite;
+}
+.grilleTitre {
+    font-size: 4.6cqw; font-weight: 900;
+    background: linear-gradient(90deg, #fff3e2, #f6c768); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.grilleCartes { display: flex; gap: 2.5cqw; flex: 1; min-height: 0; }
+.cTags { left: 58%; top: 49%; animation: pTags 10s ease-in-out infinite; }
+.halo_cTags { animation: hTags 10s ease-out infinite; }
+
+@keyframes tPress { 0%, 19% { background: rgba(255, 255, 255, 0.1); } 22%, 30% { background: rgba(246, 199, 104, 0.35); } 36%, 100% { background: rgba(255, 255, 255, 0.1); } }
+@keyframes tGrille { 0%, 26% { opacity: 0; transform: translateY(2cqw); } 34%, 86% { opacity: 1; transform: none; } 94%, 100% { opacity: 0; transform: translateY(2cqw); } }
+@keyframes pTags {
+    0% { left: 82%; top: 88%; opacity: 0; }
+    6% { left: 82%; top: 88%; opacity: 1; }
+    16%, 28% { left: 58%; top: 49%; opacity: 1; }
+    42% { left: 82%; top: 88%; opacity: 1; }
+    48%, 100% { left: 82%; top: 88%; opacity: 0; }
+}
+@keyframes hTags {
+    0%, 19% { opacity: 0; transform: scale(0.4); }
+    21% { opacity: 0.95; transform: scale(0.7); }
+    28%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* ═══ Scène 4 — l'assistant ═══ */
+.segPastille {
+    position: absolute !important; z-index: 0 !important; left: 1%; top: 8%; bottom: 8%; width: 32%;
+    border-radius: 999px; background: rgba(246, 199, 104, 0.35);
+    animation: aPastille 10s ease-in-out infinite;
+}
+.frappe {
+    display: block; overflow: hidden; white-space: nowrap; width: 0; color: #fff;
+    border-right: 0.4cqw solid #f6c768;
+    animation: aFrappe 10s steps(24, end) infinite;
+}
+.reponses {
+    left: 5%; top: 36%; width: 90%; height: 56%; display: flex; flex-direction: column; gap: 2cqw;
+    opacity: 0; animation: aReponses 10s ease-in-out infinite;
+}
+.reponses > .ligne { flex: 1 1 0; min-height: 0; }
+.cAssistant { left: 80%; top: 11.5%; animation: pAssistant 10s ease-in-out infinite; }
+.halo_cAssistant { animation: hAssistant 10s ease-out infinite; }
+
+@keyframes aPastille { 0%, 19% { left: 1%; } 25%, 94% { left: 67%; } 98%, 100% { left: 1%; } }
+@keyframes aFrappe { 0%, 30% { width: 0; } 52%, 94% { width: 100%; } 98%, 100% { width: 0; } }
+@keyframes aReponses { 0%, 56% { opacity: 0; transform: translateY(2cqw); } 64%, 92% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; transform: translateY(2cqw); } }
+@keyframes pAssistant {
+    0% { left: 82%; top: 88%; opacity: 0; }
+    6% { left: 82%; top: 88%; opacity: 1; }
+    16%, 24% { left: 80%; top: 11.5%; opacity: 1; }
+    34%, 100% { left: 80%; top: 11.5%; opacity: 0; }
+}
+@keyframes hAssistant {
+    0%, 17% { opacity: 0; transform: scale(0.4); }
+    19% { opacity: 0.95; transform: scale(0.7); }
+    26%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* Sans animation : on montre directement l'écran final, immobile. */
+@media (prefers-reduced-motion: reduce) {
+    .sideVide, .sideRempli, .liste, .rangeeUne, .pointeur, .halo,
+    .compteAvant, .compteApres, .badge1, .badge2, .actifs, .avant, .apres,
+    .hashFrance, .grille, .segPastille, .frappe, .reponses { animation: none; }
+    .pointeur { display: none; }
+    .sideVide { opacity: 0; }
+    .sideRempli { opacity: 1; }
+    .compteAvant { opacity: 0; }
+    .compteApres, .badge1, .badge2, .actifs, .apres { opacity: 1; }
+    .avant { opacity: 0; }
+    .grille { opacity: 1; }
+    .segPastille { left: 67%; }
+    .frappe { width: 100%; }
+    .reponses { opacity: 1; }
+}
+
+/* ═══ Scène 5 — « Ma semaine » ═══ */
+.semaineJours { left: 5%; top: 6%; width: 90%; height: 9%; display: flex; gap: 1.2cqw; }
+.jour {
+    flex: 1 1 0; display: grid; place-items: center; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08); font-size: 2.6cqw; font-weight: 700; color: rgba(255, 255, 255, 0.6);
+}
+.jourOn { background: #fff3e2; color: #111; animation: sJour 10s ease-in-out infinite; }
+.creneau {
+    left: 5%; width: 90%; height: 36%; box-sizing: border-box;
+    display: flex; align-items: center; gap: 2.5cqw; padding: 2cqw;
+    border-radius: 3cqw; background: rgba(255, 255, 255, 0.07);
+}
+.creneauMidi { top: 20%; }
+.creneauSoir { top: 60%; }
+.creneauNom { font-size: 2.4cqw; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #f6c768; width: 12%; }
+.creneauVide { font-size: 3cqw; color: rgba(255, 255, 255, 0.55); flex: 1; }
+.creneauRempli { position: absolute; left: 22%; top: 12%; width: 30%; height: 76%; border-radius: 2.4cqw; overflow: hidden; opacity: 0; }
+.creneauRempli > * { width: 100%; height: 100%; }
+.creneauMidi .creneauRempli { animation: sRempliMidi 10s ease-in-out infinite; }
+.creneauSoir .creneauRempli { animation: sRempliSoir 10s ease-in-out infinite; }
+.creneauMidi .creneauVide { animation: sVideMidi 10s ease-in-out infinite; }
+.cSemaine { left: 40%; top: 14%; animation: pSemaine 10s ease-in-out infinite; }
+.cSemaine .halo { animation: hSemaine 10s ease-out infinite; }
+.cSemaine::after { content: none; }
+.halo_cSemaine { animation: hSemaine 10s ease-out infinite; }
+
+@keyframes sJour { 0%, 14% { background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.6); } 18%, 100% { background: #fff3e2; color: #111; } }
+@keyframes sRempliMidi { 0%, 30% { opacity: 0; } 36%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes sRempliSoir { 0%, 50% { opacity: 0; } 56%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes sVideMidi { 0%, 30% { opacity: 1; } 34%, 92% { opacity: 0; } 98%, 100% { opacity: 1; } }
+@keyframes pSemaine {
+    0% { left: 85%; top: 88%; opacity: 0; }
+    6% { left: 85%; top: 88%; opacity: 1; }
+    20%, 28% { left: 40%; top: 14%; opacity: 1; }
+    36%, 46% { left: 40%; top: 36%; opacity: 1; }
+    54% { left: 85%; top: 88%; opacity: 1; }
+    60%, 100% { left: 85%; top: 88%; opacity: 0; }
+}
+@keyframes hSemaine {
+    0%, 17% { opacity: 0; transform: scale(0.4); }
+    19% { opacity: 0.95; transform: scale(0.7); }
+    26%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* ═══ Scène 6 — « Remplir la liste » ═══ */
+.courseBtn {
+    left: 5%; top: 8%; width: 90%; height: 13%; box-sizing: border-box;
+    display: flex; align-items: center; justify-content: center; border-radius: 999px;
+    background: #fff3e2; color: #111; font-size: 3.2cqw; font-weight: 800;
+    animation: sCourseBtn 10s ease-in-out infinite;
+}
+.courseListe {
+    left: 5%; top: 26%; width: 90%; height: 68%; box-sizing: border-box; padding: 2.5cqw;
+    display: flex; flex-direction: column; gap: 1.6cqw;
+    border-radius: 3.4cqw; background: rgba(24, 22, 28, 0.97);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+.courseLigne {
+    display: flex; align-items: center; gap: 2.4cqw; padding: 1.8cqw 2cqw; border-radius: 2.2cqw;
+    background: rgba(255, 255, 255, 0.05); opacity: 0;
+}
+.courseCoche { flex: 0 0 auto; width: 4.4cqw; height: 4.4cqw; border-radius: 1.2cqw; border: 0.4cqw solid rgba(255, 255, 255, 0.4); }
+.courseTexte { display: flex; flex-direction: column; gap: 0.4cqw; font-size: 3cqw; }
+.courseRayon { font-size: 2.2cqw; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #30d158; }
+.courseL0 { animation: sCourseL 10s ease-out infinite 0s; }
+.courseL1 { animation: sCourseL 10s ease-out infinite 0.6s; }
+.courseL2 { animation: sCourseL 10s ease-out infinite 1.2s; }
+.courseL3 { animation: sCourseL 10s ease-out infinite 1.8s; }
+.courseL0 .courseCoche, .courseL1 .courseCoche, .courseL2 .courseCoche, .courseL3 .courseCoche { animation: sCoche 10s ease-in-out infinite; }
+.cCourses { left: 62%; top: 4%; animation: pCourses 10s ease-in-out infinite; }
+.cCourses .halo, .halo_cCourses { animation: hCourses 10s ease-out infinite; }
+
+@keyframes sCourseBtn { 0%, 18% { transform: none; } 22%, 26% { transform: scale(0.96); } 30%, 100% { transform: none; } }
+@keyframes sCourseL { 0%, 30% { opacity: 0; transform: translateX(-2cqw); } 36%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: translateX(-2cqw); } }
+@keyframes sCoche { 0%, 36% { background: transparent; } 40%, 88% { background: #30d158; } 96%, 100% { background: transparent; } }
+@keyframes pCourses {
+    0% { left: 85%; top: 88%; opacity: 0; }
+    6% { left: 85%; top: 88%; opacity: 1; }
+    16%, 26% { left: 62%; top: 4%; opacity: 1; }
+    34% { left: 85%; top: 88%; opacity: 1; }
+    40%, 100% { left: 85%; top: 88%; opacity: 0; }
+}
+@keyframes hCourses {
+    0%, 14% { opacity: 0; transform: scale(0.4); }
+    17% { opacity: 0.95; transform: scale(0.7); }
+    24%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cSemaine, .cCourses, .courseBtn, .jourOn, .courseLigne, .courseCoche, .creneauRempli, .creneauVide { animation: none !important; }
+    .cSemaine, .cCourses { display: none; }
+    .creneauRempli { opacity: 1; }
+    .creneauMidi .creneauVide { opacity: 0; }
+    .courseLigne { opacity: 1; }
+    .courseL0 .courseCoche, .courseL1 .courseCoche, .courseL2 .courseCoche, .courseL3 .courseCoche { background: #30d158; }
+}
+
+/* ═══ Scène 7 — « Ma cave » ═══ */
+.etagere {
+    left: 5%; width: 90%; height: 30%; box-sizing: border-box;
+    border-radius: 2.6cqw; background: rgba(255, 255, 255, 0.06);
+    border-bottom: 1.2cqw solid rgba(178, 58, 72, 0.7);
+}
+.etagereNom { position: absolute; left: 3cqw; top: 2cqw; font-size: 2.4cqw; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #f6c768; }
+.bouteille {
+    position: absolute; bottom: 2cqw; width: 6cqw; height: 15cqw; border-radius: 2cqw 2cqw 1.4cqw 1.4cqw;
+    background: linear-gradient(180deg, #7a1f2c, #3e0d16);
+}
+.bouteilleA { left: 28%; }
+.bouteilleB { left: 40%; }
+.bouteilleGlisse { left: 34%; top: 24%; bottom: auto; animation: sGlisse 10s ease-in-out infinite; }
+.cCave { left: 64%; top: 52%; animation: pCave 10s ease-in-out infinite; }
+.halo_cCave { animation: hCave 10s ease-out infinite; }
+@keyframes sGlisse {
+    0%, 30% { top: 24%; opacity: 1; }
+    42%, 90% { top: 62%; opacity: 1; }
+    98%, 100% { top: 62%; opacity: 0; }
+}
+@keyframes pCave {
+    0% { left: 85%; top: 88%; opacity: 0; }
+    6% { left: 85%; top: 88%; opacity: 1; }
+    16%, 30% { left: 37%; top: 40%; opacity: 1; }
+    40%, 46% { left: 37%; top: 74%; opacity: 1; }
+    56% { left: 85%; top: 88%; opacity: 1; }
+    62%, 100% { left: 85%; top: 88%; opacity: 0; }
+}
+@keyframes hCave {
+    0%, 36% { opacity: 0; transform: scale(0.4); }
+    38% { opacity: 0.95; transform: scale(0.7); }
+    44%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* ═══ Scène 8 — « Tes trophées » ═══ */
+.badges { left: 5%; top: 8%; width: 90%; height: 84%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 2.4cqw; }
+.badge {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.4cqw;
+    border-radius: 3cqw; background: rgba(255, 255, 255, 0.06); opacity: 0.3;
+    animation: sBadge 10s ease-in-out infinite;
+}
+.badgeRond {
+    width: 10cqw; height: 10cqw; border-radius: 50%; display: grid; place-items: center;
+    background: rgba(255, 255, 255, 0.1); font-size: 4.6cqw; color: rgba(255, 255, 255, 0.5);
+}
+.badgeNom { font-size: 2.4cqw; font-weight: 800; text-align: center; line-height: 1.1; }
+.badge0 { animation-delay: 0s; } .badge1 { animation-delay: 0.6s; } .badge2 { animation-delay: 1.2s; }
+.badge3 { animation-delay: 1.8s; } .badge4 { animation-delay: 2.4s; } .badge5 { animation-delay: 3s; }
+.cTrophee { left: 58%; top: 40%; animation: pTrophee 10s ease-in-out infinite; }
+.halo_cTrophee { animation: hTrophee 10s ease-out infinite; }
+@keyframes sBadge {
+    0%, 6% { opacity: 0.3; background: rgba(255, 255, 255, 0.06); }
+    12%, 88% { opacity: 1; background: rgba(255, 194, 75, 0.2); }
+    96%, 100% { opacity: 0.3; background: rgba(255, 255, 255, 0.06); }
+}
+.badge0 .badgeRond, .badge1 .badgeRond, .badge2 .badgeRond, .badge3 .badgeRond, .badge4 .badgeRond, .badge5 .badgeRond {
+    animation: sRond 10s ease-in-out infinite;
+}
+@keyframes sRond { 0%, 6% { background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); } 12%, 88% { background: #ffc24b; color: #3a2a00; } 96%, 100% { background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); } }
+@keyframes pTrophee {
+    0% { left: 85%; top: 88%; opacity: 0; }
+    6% { left: 85%; top: 88%; opacity: 1; }
+    16%, 30% { left: 58%; top: 40%; opacity: 1; }
+    40% { left: 85%; top: 88%; opacity: 1; }
+    46%, 100% { left: 85%; top: 88%; opacity: 0; }
+}
+@keyframes hTrophee {
+    0%, 14% { opacity: 0; transform: scale(0.4); }
+    17% { opacity: 0.95; transform: scale(0.7); }
+    24%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* ═══ Scène 9 — « L'extension Chrome » ═══ */
+.magasin {
+    left: 5%; top: 8%; width: 90%; height: 58%; box-sizing: border-box; padding: 3cqw;
+    display: flex; flex-direction: column; gap: 2.4cqw; border-radius: 3cqw; background: rgba(255, 255, 255, 0.08);
+}
+.magasinNom { font-size: 3.4cqw; font-weight: 900; color: #fff; }
+.magasinProduit { font-size: 3cqw; color: rgba(255, 255, 255, 0.7); }
+.magasinBtn {
+    align-self: flex-start; padding: 1.6cqw 3.4cqw; border-radius: 999px;
+    background: #fff; color: #111; font-size: 2.8cqw; font-weight: 800;
+    animation: sBtnMag 10s ease-in-out infinite;
+}
+.panneauExt {
+    left: 5%; top: 56%; width: 90%; height: 38%; box-sizing: border-box; padding: 3cqw;
+    display: flex; flex-direction: column; justify-content: center; gap: 1.6cqw;
+    border-radius: 3.4cqw; background: rgba(139, 92, 246, 0.2);
+    box-shadow: 0 2cqw 6cqw rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(139, 92, 246, 0.6);
+    animation: sPanneau 10s ease-in-out infinite;
+}
+.panneauTitre { font-size: 2.6cqw; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #c4b5fd; }
+.panneauProg { font-size: 3.6cqw; font-weight: 900; }
+.panneauSuiv {
+    align-self: flex-start; padding: 1.4cqw 3cqw; border-radius: 999px;
+    background: #8b5cf6; color: #fff; font-size: 2.8cqw; font-weight: 800;
+    animation: sSuiv 10s ease-in-out infinite;
+}
+.cExt { left: 40%; top: 13%; animation: pExt 10s ease-in-out infinite; }
+.halo_cExt { animation: hExt 10s ease-out infinite; }
+@keyframes sBtnMag { 0%, 16% { transform: none; } 20%, 24% { transform: scale(0.94); } 28%, 100% { transform: none; } }
+@keyframes sPanneau { 0%, 26% { opacity: 0.35; } 32%, 92% { opacity: 1; } 98%, 100% { opacity: 0.35; } }
+@keyframes sSuiv { 0%, 52% { transform: none; } 56%, 60% { transform: scale(0.94); } 64%, 100% { transform: none; } }
+@keyframes pExt {
+    0% { left: 85%; top: 88%; opacity: 0; }
+    6% { left: 85%; top: 88%; opacity: 1; }
+    14%, 22% { left: 40%; top: 13%; opacity: 1; }
+    30%, 40% { left: 40%; top: 13%; opacity: 1; }
+    48% { left: 85%; top: 88%; opacity: 1; }
+    54%, 100% { left: 85%; top: 88%; opacity: 0; }
+}
+@keyframes hExt {
+    0%, 12% { opacity: 0; transform: scale(0.4); }
+    15% { opacity: 0.95; transform: scale(0.7); }
+    22%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .badge, .badgeRond, .magasinBtn, .panneauExt, .panneauSuiv, .cCave, .cTrophee, .cExt { animation: none !important; }
+    .bouteilleGlisse { top: 62%; }
+    .badge { opacity: 1; background: rgba(255, 194, 75, 0.2); }
+    .badgeRond { background: #ffc24b; color: #3a2a00; }
+    .cCave, .cTrophee, .cExt { display: none; }
+}

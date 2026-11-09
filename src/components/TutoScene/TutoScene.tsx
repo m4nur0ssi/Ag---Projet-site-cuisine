@@ -12,10 +12,11 @@
 
 import { mockRecipes } from '@/data/mockData';
 import { TUTO_CARTES, type Art } from '@/lib/tutoriel';
+import TutoAnim, { estSceneAnimee } from './TutoAnim';
 import styles from './TutoScene.module.css';
 
 /** Les étapes qui ont une scène réelle (les autres gardent leur dessin). */
-const ARTS = new Set<Art>(['hero', 'rows', 'press', 'clic']);
+const ARTS = new Set<Art>(['hero', 'rows', 'press', 'clic', 'side', 'filtres', 'tags', 'search', 'planner', 'fill', 'cave', 'trophy', 'ext']);
 export const aSceneReelle = (art: Art) => ARTS.has(art);
 
 const CATEGORIES: Record<string, string> = {
@@ -66,6 +67,9 @@ function Heros({ grand }: { grand?: boolean }) {
 const MENU = (cat: string) => ['Voir la recette', 'Ajouter aux favoris', 'À faire plus tard', `Accéder à ${cat}`, 'Partager la recette'];
 
 export default function TutoScene({ art, bureau = false }: { art: Art; bureau?: boolean }) {
+    // Scènes animées (curseur + halo) : accompagnement/saison, filtres, hashtags, assistant.
+    if (estSceneAnimee(art)) return <TutoAnim art={art} bureau={bureau} />;
+
     const top = cartes(TUTO_CARTES.top);
 
     if (art === 'hero') {
