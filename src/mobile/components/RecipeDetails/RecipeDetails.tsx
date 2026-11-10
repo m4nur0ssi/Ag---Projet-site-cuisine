@@ -715,8 +715,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
      */
     const genVoixRef = useRef(0);
     const speak = (text: string) => {
-        if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-        const synth = window.speechSynthesis;
+        if (typeof window === 'undefined') return;
         isSpeakingRef.current = true;
         const enCours = !!recognitionRef.current;
         if (recognitionRef.current) {
@@ -736,27 +735,13 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 if (focusModeRef.current && voiceOnRef.current) setTimeout(() => startRecognitionRef.current(), 400);
             };
 
-            // 1. La voix naturelle (service), jouée dans la balise <audio> débloquée
-            //    au geste. Si elle ne répond pas, 2. la voix de l'appareil.
+            // La voix naturelle (service), jouée dans la balise <audio> débloquée au
+            // geste. Comme Pilvoice : jamais de voix robot. Si le service ne répond
+            // pas, même après un second essai, on se tait ; l'étape reste à l'écran.
             void direNaturel(propre).then((ok) => {
                 if (gen !== genVoixRef.current) return;
-                if (ok) { finir(); return; }
-                try { synth.resume(); } catch (e) { /* noop */ }
-                // On n'annule QUE s'il y a de quoi : sur iPhone, un `cancel()` suivi
-                // aussitôt d'un `speak()` avale la nouvelle phrase.
-                if (synth.speaking || synth.pending) synth.cancel();
-                const u = new SpeechSynthesisUtterance(pourLaVoix(propre));
-                u.lang = 'fr-FR'; u.rate = 0.95; u.volume = 1;
-                const v = voixFr(); if (v) u.voice = v;
-                u.onend = finir; u.onerror = finir;
-                // Filet : si `onend` ne vient jamais, on rouvre le micro quand la
-                // phrase a eu le temps d'être dite (≈ 75 ms par caractère).
-                setTimeout(() => { if (!synth.speaking) finir(); else setTimeout(() => { if (!synth.speaking) finir(); }, 4000); }, 1500 + propre.length * 75);
-                synth.speak(u);
-                setTimeout(() => {
-                    if (fini || synth.speaking) return;
-                    try { synth.resume(); if (!synth.speaking && !synth.pending) synth.speak(u); } catch (e) { /* noop */ }
-                }, 1000);
+                if (!ok) console.warn('[voix] voix naturelle indisponible pour cette étape');
+                finir();
             });
         };
         if (enCours) setTimeout(lancer, 350); else lancer();

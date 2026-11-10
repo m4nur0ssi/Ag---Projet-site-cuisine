@@ -94,18 +94,7 @@ export default function QuestionCuisine({ titre, etape = '', ingredients, grand 
         const dit = pourLaVoix(echange.reponse);
         let ok = false;
         try { ok = await direNaturel(dit); } catch { ok = false; }
-        if (!ok) {
-            try {
-                if ('speechSynthesis' in window) {
-                    const u = new SpeechSynthesisUtterance(dit);
-                    u.lang = 'fr-FR';
-                    u.onend = () => setLecture(false);
-                    window.speechSynthesis.cancel();
-                    window.speechSynthesis.speak(u);
-                    return;
-                }
-            } catch { /* noop */ }
-        }
+        // Pas de voix robot en repli (logique Pilvoice).
         setLecture(false);
     };
 

@@ -91,6 +91,8 @@ async function openAI(texte: string): Promise<ArrayBuffer | null> {
 
 // Modèles Gemini TTS essayés dans l'ordre (même liste que Pilvoice, voix-naturelle.js).
 const MODELES_GEMINI = ['gemini-3.8-flash-lite-tts', 'gemini-3.1-flash-tts-preview', 'gemini-2.5-flash-preview-tts'];
+/** Modèle → instant jusqu'auquel on ne l'essaie plus (404 : 1 h, 429 : 1 min, autre : 10 s). */
+const indisponibles = new Map<string, number>();
 
 /** PCM 16 bits mono 24 kHz → WAV (44 octets d'en-tête). */
 function wavDepuisPcm(pcm: Buffer): Buffer {
@@ -110,14 +112,25 @@ async function gemini(texte: string): Promise<ArrayBuffer | null> {
         contents: [{ parts: [{ text: 'Lis exactement en français de France, voix douce et naturelle, sans rien ajouter :\n' + texte }] }],
         generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Kore' } } } },
     };
+    // Comme Pilvoice : 12 s au plus par modèle, 24 s en tout (la fonction a 30 s),
+    // et un modèle en échec est écarté un moment au lieu d'être réessayé à chaque phrase.
+    const limite = Date.now() + 24000;
     for (const modele of MODELES_GEMINI) {
+        if ((indisponibles.get(modele) || 0) > Date.now()) continue;
+        const delai = Math.min(12000, limite - Date.now());
+        if (delai < 500) break;
         try {
             const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modele}:generateContent`, {
                 method: 'POST',
                 headers: { 'x-goog-api-key': cle, 'content-type': 'application/json' },
                 body: JSON.stringify(payload),
+                signal: AbortSignal.timeout(delai),
             });
-            if (!r.ok) { console.error('Gemini TTS', modele, r.status); continue; }
+            if (!r.ok) {
+                console.error('Gemini TTS', modele, r.status);
+                indisponibles.set(modele, Date.now() + (r.status === 404 ? 3600000 : r.status === 429 ? 60000 : 10000));
+                continue;
+            }
             const j = await r.json();
             const d = j.candidates?.[0]?.content?.parts?.find((p: { inlineData?: unknown }) => p.inlineData)?.inlineData;
             if (!d?.data || !/^audio\/l16/i.test(d.mimeType || '')) continue;
@@ -128,7 +141,7 @@ async function gemini(texte: string): Promise<ArrayBuffer | null> {
             if (pcm.length < 100 || pcm.length % 2) continue;
             const wav = wavDepuisPcm(pcm);
             return wav.buffer.slice(wav.byteOffset, wav.byteOffset + wav.byteLength) as ArrayBuffer;
-        } catch { console.error('Gemini TTS', modele, 'generation-echouee'); }
+        } catch { console.error('Gemini TTS', modele, 'generation-echouee'); indisponibles.set(modele, Date.now() + 10000); }
     }
     return null;
 }

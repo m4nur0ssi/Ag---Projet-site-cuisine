@@ -23,6 +23,8 @@ const enMemoire = new Map<string, string>();      // texte → adresse blob
 const enCours = new Map<string, Promise<string | null>>();
 /** Service injoignable : on n'insiste pas pendant une minute (pas de rafale d'échecs). */
 let muetJusqua = 0;
+/** La pause en cours est-elle « longue » (service absent, compte non connecté) ? */
+let muetLong = false;
 
 const SILENCE = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=';
 // v2 : nouvelle voix (Kore). Le cache v1 contient encore les anciennes voix.
@@ -97,17 +99,17 @@ async function jeton(): Promise<string> {
 }
 
 /** L'adresse d'un audio prêt à jouer, ou `null` si le service ne répond pas. */
-async function obtenir(texte: string): Promise<string | null> {
+async function obtenir(texte: string, insister = false): Promise<string | null> {
     const deja = enMemoire.get(texte);
     if (deja) return deja;
     const encours = enCours.get(texte);
     if (encours) return encours;
-    if (Date.now() < muetJusqua) return null;
+    if (Date.now() < muetJusqua && (muetLong || !insister)) return null;
 
     const p = (async () => {
         // Service absent ou compte non connecté : inutile d'insister (60 s). Une erreur
         // passagère (limite, réseau, lenteur) ne doit PAS faire parler le robot : 6 s.
-        const pause = (long: boolean) => { muetJusqua = Date.now() + (long ? 60000 : 6000); };
+        const pause = (long: boolean) => { muetLong = long; muetJusqua = Date.now() + (long ? 60000 : 6000); };
         try {
             const cache = typeof caches !== 'undefined' ? await caches.open(CACHE).catch(() => null) : null;
             const k = cle(texte);
@@ -116,7 +118,7 @@ async function obtenir(texte: string): Promise<string | null> {
             if (!blob) {
                 const t = await jeton();
                 const stop = new AbortController();
-                const delai = setTimeout(() => stop.abort(), 20000);
+                const delai = setTimeout(() => stop.abort(), 30000);
                 let r: Response;
                 try {
                     r = await fetch('/api/tts', {
@@ -150,12 +152,18 @@ export function taireVoix(): void {
 
 /**
  * Joue la phrase avec la voix naturelle. Résout à la FIN de la lecture, avec
- * `true` ; avec `false` si le service n'a rien donné (l'appelant prend alors la
- * voix de l'appareil).
+ * `true` ; avec `false` si le service n'a rien donné, même après un second essai.
+ * L'appelant se tait alors : pas de voix robot (logique Pilvoice).
  */
 export async function direNaturel(texte: string): Promise<boolean> {
     if (!lecteur) return false;
-    const url = await obtenir(texte);
+    // Comme Pilvoice : jamais la voix robot. Un échec passager (réseau, limite,
+    // lenteur) mérite un second essai ; seule une absence durable rend `false`.
+    let url = await obtenir(texte);
+    if (!url && !muetLong) {
+        await new Promise((r) => setTimeout(r, 1200));
+        url = await obtenir(texte, true);
+    }
     if (!url) return false;
     const el = lecteur;
     return new Promise<boolean>((fin) => {

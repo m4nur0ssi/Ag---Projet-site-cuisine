@@ -683,11 +683,10 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         void direNaturel(stripHtml(text)).then((ok) => {
             if (gen !== genVoixRef.current) return;
             isSpeakingRef.current = false;
-            if (ok) {
-                if (focusModeRef.current) setTimeout(() => startRecognitionRef.current(), 300);
-                return;
-            }
-            parlerAppareil(text);
+            // Voix naturelle ou silence : la voix robot de l'appareil n'est plus utilisée
+            // (logique Pilvoice). L'étape reste affichée à l'écran.
+            if (!ok) console.warn('[voix] voix naturelle indisponible pour cette étape');
+            if (focusModeRef.current) setTimeout(() => startRecognitionRef.current(), 300);
         });
     };
 
