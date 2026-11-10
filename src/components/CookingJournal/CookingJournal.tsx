@@ -17,6 +17,7 @@ export default function CookingJournal({ recipeId, variant = 'recipe', image, re
     const [entries, setEntries] = useState<CookEntry[]>([]);
     const [open, setOpen] = useState(false);
     // « Ma version » : la photo du plat cuisiné, optionnelle.
+    const [note, setNote] = useState('');
     const [fichier, setFichier] = useState<File | null>(null);
     const [apercu, setApercu] = useState<string | null>(null);
     const [busy, setBusy] = useState(false);
@@ -47,12 +48,13 @@ export default function CookingJournal({ recipeId, variant = 'recipe', image, re
     const submit = async () => {
         setBusy(true);
         setErr(null);
-        const { entry, error } = await addCookEntry(recipeId, undefined, fichier);
+        const { entry, error } = await addCookEntry(recipeId, note, fichier);
         if (entry) {
             setEntries(prev => [entry, ...prev]);
             // La vignette porte sa coche dans la seconde, sans attendre un
             // aller-retour avec le compte.
             marquerCuisinee(recipeId);
+            setNote('');
             setFichier(null);
             if (apercu) URL.revokeObjectURL(apercu);
             setApercu(null);
@@ -118,22 +120,31 @@ export default function CookingJournal({ recipeId, variant = 'recipe', image, re
                 <button className={styles.cta} onClick={() => setOpen(true)}>{L.cta}</button>
             ) : (
                 <div className={styles.form}>
-                    <label className={styles.photoChoix}>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={e => {
-                                const f = e.target.files?.[0] || null;
-                                setFichier(f);
-                                if (apercu) URL.revokeObjectURL(apercu);
-                                setApercu(f ? URL.createObjectURL(f) : null);
-                            }}
+                    <div className={styles.noteLigne}>
+                        <textarea
+                            className={styles.note}
+                            placeholder={L.placeholder}
+                            value={note}
+                            onChange={e => setNote(e.target.value)}
+                            rows={2}
                         />
-                        {apercu ? <img src={apercu} alt="Aperçu de ma version" className={styles.photoApercu} /> : <span>+ Ajouter ma photo</span>}
-                    </label>
+                        <label className={styles.photoChoix}>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={e => {
+                                    const f = e.target.files?.[0] || null;
+                                    setFichier(f);
+                                    if (apercu) URL.revokeObjectURL(apercu);
+                                    setApercu(f ? URL.createObjectURL(f) : null);
+                                }}
+                            />
+                            {apercu ? <img src={apercu} alt="Aperçu de ma version" className={styles.photoApercu} /> : <span>+ Photo</span>}
+                        </label>
+                    </div>
                     <div className={styles.formRow}>
                         <button className={styles.save} onClick={submit} disabled={busy}>{busy ? 'Enregistrement…' : 'Enregistrer'}</button>
-                        <button className={styles.cancel} onClick={() => { setOpen(false); setFichier(null); setApercu(null); setErr(null); }}>Annuler</button>
+                        <button className={styles.cancel} onClick={() => { setOpen(false); setNote(''); setFichier(null); setApercu(null); setErr(null); }}>Annuler</button>
                     </div>
                     {err && <div className={styles.err}>{err}</div>}
                 </div>
