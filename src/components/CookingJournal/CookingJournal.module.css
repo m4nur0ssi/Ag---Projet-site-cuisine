@@ -57,6 +57,9 @@
 .err { margin-top: 8px; font-size: 0.8rem; font-weight: 600; color: #fca5a5; }
 
 /* Actions d'une entrée (modifier / supprimer). */
+.entryPhoto { flex-shrink: 0; width: 56px; height: 56px; border-radius: 10px; overflow: hidden; display: block; }
+.entryPhoto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fileHidden { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
 .entryActions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
 .editBtn { background: none; border: none; color: rgba(255, 255, 255, 0.45); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px; border-radius: 8px; transition: color 0.15s, background 0.15s; }
 .editBtn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }

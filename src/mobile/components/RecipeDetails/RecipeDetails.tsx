@@ -6,6 +6,8 @@ import { ouvrirTag } from '@/lib/ouvrirTag';
 import { etapeVisee, ALLER_ETAPE } from '@/lib/allerEtape';
 import { useState, useMemo, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
 import { grandePhoto } from '@/lib/recipe-photo';
+import { getCookEntries } from '@/lib/cookingLog';
+import CookPhotoSwitcher from '@/components/CookPhotoSwitcher/CookPhotoSwitcher';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
@@ -174,6 +176,17 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     // que l'on regarde. Les couleurs de catégorie ne servent plus que de repli,
     // le temps que la photo soit lue — sans quoi la fiche s'ouvrirait en gris.
     const ambiance = useAmbianceImage(recipe.image);
+    // Photos « J'ai cuisiné » du compte connecté (vide sinon) : tuiles sur l'image.
+    const [cookPhotos, setCookPhotos] = useState<string[]>([]);
+    useEffect(() => {
+        let vivant = true;
+        const charger = () => getCookEntries(String(recipe.id)).then(es => {
+            if (vivant) setCookPhotos(es.filter(e => e.photo_url).map(e => e.photo_url as string));
+        });
+        charger();
+        window.addEventListener('magic-cook-changed', charger);
+        return () => { vivant = false; window.removeEventListener('magic-cook-changed', charger); };
+    }, [recipe.id]);
     const theme = useMemo(() => {
         const categories: Record<string, { accent: string; glow: string; bg: string; rgb: string }> = {
             aperitifs: { accent: '#10b981', glow: '0 0 20px rgba(16, 185, 129, 0.4)', bg: 'rgba(16, 185, 129, 0.1)', rgb: '16, 185, 129' },
@@ -1226,16 +1239,12 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         /* 1. Carte Image avec bouton Flamme superposé */
                         <div className={styles.imageCardContainer}>
                             {recipe.image ? (
-                                <Image
-                                    // La fiche montre UNE photo en grand : elle prend
-                                    // l'exemplaire 1200 px, pas la vignette des cartes.
-                                    src={grandePhoto(recipe.image)}
+                                // La fiche montre UNE photo en grand : l'exemplaire 1200 px.
+                                <CookPhotoSwitcher
+                                    key={cookPhotos.join('|')}
+                                    original={grandePhoto(recipe.image)}
                                     alt={recipe.title}
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 700px, 800px"
-                                    className={styles.imageMain}
-                                    style={{ objectFit: 'cover' }}
-                                    priority={true}
+                                    photos={cookPhotos}
                                 />
                             ) : (
                                 <div className={styles.imagePlaceholderLarge}>

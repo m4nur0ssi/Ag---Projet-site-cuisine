@@ -28,18 +28,18 @@ export async function getCookEntries(recipeId: string): Promise<CookEntry[]> {
 // error === 'auth' → pas de session valide (token expiré) → proposer la reconnexion.
 export interface AddCookResult { entry: CookEntry | null; error: string | null }
 
+async function uploadPhoto(userId: string, recipeId: string, file: File): Promise<string | null> {
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+    const path = `${userId}/${recipeId}-${Date.now()}.${ext}`;
+    const { error: upErr } = await supabase.storage.from('cooking-photos').upload(path, file, { upsert: true, contentType: file.type });
+    if (upErr) return null;
+    return supabase.storage.from('cooking-photos').getPublicUrl(path).data.publicUrl;
+}
+
 export async function addCookEntry(recipeId: string, note?: string, file?: File | null): Promise<AddCookResult> {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return { entry: null, error: 'auth' };
-    let photo_url: string | null = null;
-    if (file) {
-        const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
-        const path = `${session.user.id}/${recipeId}-${Date.now()}.${ext}`;
-        const { error: upErr } = await supabase.storage.from('cooking-photos').upload(path, file, { upsert: true, contentType: file.type });
-        if (!upErr) {
-            photo_url = supabase.storage.from('cooking-photos').getPublicUrl(path).data.publicUrl;
-        }
-    }
+    const photo_url = file ? await uploadPhoto(session.user.id, recipeId, file) : null;
     const { data, error } = await supabase
         .from('cooking_log')
         .insert({ user_id: session.user.id, recipe_id: String(recipeId), note: note?.trim() || null, photo_url })
@@ -57,11 +57,25 @@ export async function deleteCookEntry(id: string): Promise<void> {
     await supabase.from('cooking_log').delete().eq('id', id);
 }
 
-/** Édite la note d'une entrée (RLS : seul l'auteur y a droit). */
-export async function updateCookEntry(id: string, note: string): Promise<CookEntry | null> {
+/**
+ * Édite une entrée existante (RLS : seul l'auteur y a droit). `file` ajoute ou
+ * remplace la photo SUR CETTE ENTRÉE : aucune nouvelle entrée n'est créée.
+ * `note` à undefined laisse le commentaire tel quel.
+ */
+export async function updateCookEntry(id: string, note?: string, file?: File | null, recipeId?: string): Promise<CookEntry | null> {
+    const patch: { note?: string; photo_url?: string } = {};
+    if (note !== undefined) patch.note = note;
+    if (file) {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) return null;
+        const url = await uploadPhoto(session.user.id, recipeId || 'recette', file);
+        if (!url) return null;
+        patch.photo_url = url;
+    }
+    if (!Object.keys(patch).length) return null;
     const { data, error } = await supabase
         .from('cooking_log')
-        .update({ note })
+        .update(patch)
         .eq('id', id)
         .select()
         .single();

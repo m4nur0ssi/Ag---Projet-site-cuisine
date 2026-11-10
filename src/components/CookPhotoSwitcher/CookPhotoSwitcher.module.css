@@ -1,0 +1,17 @@
+.cadre { position: absolute; inset: 0; overflow: hidden; }
+.grand {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; transform-origin: 0 0; display: block;
+}
+.bande {
+    position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
+    display: flex; gap: 10px; z-index: 3;
+}
+.tuile {
+    width: 64px; height: 64px; padding: 0; border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 18px; overflow: hidden; cursor: pointer; background: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.tuile img {
+    width: 100%; height: 100%; object-fit: cover; display: block; transform-origin: 0 0;
+}
