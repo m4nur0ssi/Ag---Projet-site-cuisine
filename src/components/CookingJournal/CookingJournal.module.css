@@ -62,3 +62,7 @@
 .editBtn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
 :global([data-theme='light']) .editBtn { color: rgba(0,0,0,0.4); }
 :global([data-theme='light']) .editBtn:hover { color: #000; background: rgba(0,0,0,0.06); }
+
+.photoChoix { display: flex; align-items: center; justify-content: center; min-height: 64px; border: 1px dashed rgba(255,255,255,0.22); border-radius: 14px; cursor: pointer; font-size: 0.85rem; font-weight: 700; opacity: 0.85; overflow: hidden; }
+.photoChoix input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.photoApercu { width: 100%; max-height: 180px; object-fit: cover; }

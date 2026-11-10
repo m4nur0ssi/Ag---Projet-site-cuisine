@@ -1,56 +1,99 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import TimerDisplay from './TimerDisplay';
+import { annoncerFinChrono } from '@/lib/annonceChrono';
+
+export interface Chrono {
+    id: string;
+    /** Durée totale, en secondes. */
+    duration: number;
+    /** Secondes restantes (calculées depuis l'heure de fin : justes même après une mise en veille). */
+    remaining: number;
+    label: string;
+    /** Nom d'ingrédient annoncé à la fin (« carottes : c'est prêt »). */
+    nom?: string | null;
+}
 
 interface TimerContextType {
-    activeTimer: { duration: number; remaining: number; label: string } | null;
-    startTimer: (minutes: number, label: string) => void;
-    stopTimer: () => void;
+    /** Le chrono qui se termine EN PREMIER, ou null. */
+    activeTimer: Chrono | null;
+    /** Tous les chronos en cours, le plus proche de la fin d'abord. */
+    timers: Chrono[];
+    startTimer: (minutes: number, label: string, nom?: string | null) => void;
+    /** Sans identifiant : arrête le chrono qui finit en premier. */
+    stopTimer: (id?: string) => void;
+    /** La préparation affiche déjà les minuteurs dans sa tuile : le bandeau du bas se cache. */
+    masquerBandeau: (masque: boolean) => void;
 }
 
 const TimerContext = createContext<TimerContextType | undefined>(undefined);
 
+interface Depart { id: string; fin: number; duration: number; label: string; nom?: string | null }
+
 export function TimerProvider({ children }: { children: React.ReactNode }) {
-    const [activeTimer, setActiveTimer] = useState<{ duration: number; remaining: number; label: string } | null>(null);
+    // Plusieurs minuteurs en même temps (carottes + pommes de terre) : une liste.
+    const [departs, setDeparts] = useState<Depart[]>([]);
+    const [maintenant, setMaintenant] = useState(() => Date.now());
+    const compteur = useRef(0);
+    const [bandeauMasque, setBandeauMasque] = useState(false);
+    const masquerBandeau = useCallback((m: boolean) => setBandeauMasque(m), []);
 
+    // Un seul battement pour tous les minuteurs.
     useEffect(() => {
-        let interval: NodeJS.Timeout;
-        if (activeTimer && activeTimer.remaining > 0) {
-            interval = setInterval(() => {
-                setActiveTimer(prev => prev ? { ...prev, remaining: prev.remaining - 1 } : null);
-            }, 1000);
-        } else if (activeTimer && activeTimer.remaining === 0) {
-            // Timer finished
-            if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-                new Notification('Cuisine terminée !', { body: `Le temps est écoulé pour : ${activeTimer.label}` });
-            }
-            alert(`Fin du temps pour : ${activeTimer.label}`);
-            setActiveTimer(null);
-        }
-        return () => clearInterval(interval);
-    }, [activeTimer]);
+        if (!departs.length) return;
+        setMaintenant(Date.now());
+        const id = setInterval(() => setMaintenant(Date.now()), 1000);
+        return () => clearInterval(id);
+    }, [departs.length]);
 
-    const startTimer = (minutes: number, label: string) => {
-        setActiveTimer({ duration: minutes * 60, remaining: minutes * 60, label });
-        if (typeof Notification !== 'undefined' && Notification.permission !== 'granted') {
+    const timers = useMemo<Chrono[]>(
+        () => departs
+            .map((d) => ({
+                id: d.id, duration: d.duration, label: d.label, nom: d.nom,
+                remaining: Math.max(0, Math.ceil((d.fin - maintenant) / 1000)),
+            }))
+            .sort((a, b) => a.remaining - b.remaining),
+        [departs, maintenant],
+    );
+
+    // Les minuteurs arrivés à zéro sonnent (voix + notification), puis disparaissent.
+    useEffect(() => {
+        const finis = timers.filter((t) => t.remaining <= 0);
+        if (!finis.length) return;
+        finis.forEach((t) => {
+            if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+                new Notification('Cuisine terminée !', { body: `Le temps est écoulé pour : ${t.label}` });
+            }
+            void annoncerFinChrono(t.label, undefined, t.nom);
+        });
+        setDeparts((prev) => prev.filter((d) => !finis.some((f) => f.id === d.id)));
+    }, [timers]);
+
+    const startTimer = useCallback((minutes: number, label: string, nom?: string | null) => {
+        const id = `chrono-${Date.now()}-${compteur.current++}`;
+        // Relancer la même étape remplace son minuteur au lieu d'en empiler un double.
+        setDeparts((prev) => [
+            ...prev.filter((d) => d.label !== label),
+            { id, fin: Date.now() + minutes * 60_000, duration: minutes * 60, label, nom },
+        ]);
+        if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
             Notification.requestPermission();
         }
-    };
+    }, []);
 
-    const stopTimer = () => setActiveTimer(null);
+    const stopTimer = useCallback((id?: string) => {
+        setDeparts((prev) => {
+            if (!prev.length) return prev;
+            const cible = id ? prev.find((d) => d.id === id) : [...prev].sort((a, b) => a.fin - b.fin)[0];
+            return cible ? prev.filter((d) => d.id !== cible.id) : prev;
+        });
+    }, []);
 
     return (
-        <TimerContext.Provider value={{ activeTimer, startTimer, stopTimer }}>
+        <TimerContext.Provider value={{ activeTimer: timers[0] || null, timers, startTimer, stopTimer, masquerBandeau }}>
             {children}
-            {activeTimer && (
-                <TimerDisplay
-                    duration={activeTimer.duration}
-                    remaining={activeTimer.remaining}
-                    label={activeTimer.label}
-                    onStop={stopTimer}
-                />
-            )}
+            {!bandeauMasque && <TimerDisplay timers={timers} onStop={stopTimer} />}
         </TimerContext.Provider>
     );
 }

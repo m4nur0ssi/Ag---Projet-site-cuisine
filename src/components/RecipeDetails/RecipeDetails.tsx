@@ -15,8 +15,17 @@ import CreatorCard from '@/components/CreatorCard/CreatorCard';
 import { Recipe } from '@/types';
 import { scaleQuantity } from '@/lib/utils';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useVerrouEcran } from '@/lib/verrouEcran';
+import MiseEnPlace, { libelleIngredient, type ItemMiseEnPlace } from '@/components/MiseEnPlace/MiseEnPlace';
 import { useTimer } from '@/components/Timer/TimerContext';
 import { parseDuration, stripHtml } from '@/lib/timer-utils';
+import { analyserCommande, LIBELLE_COMMANDE } from '@/lib/commandesVoix';
+import QuestionCuisine from '@/components/QuestionCuisine/QuestionCuisine';
+import TailleTexte from '@/components/TailleTexte/TailleTexte';
+import { useEchelle } from '@/lib/echelle-preparation';
+import MinuteurEtape, { MiniMinuteur } from '@/components/Timer/MinuteurEtape';
+import minuteurStyles from '@/components/Timer/MinuteurEtape.module.css';
+import { libelleMinuteur, nomPourAnnonce } from '@/lib/ingredients-etape';
 import { decodeHtml } from '@/lib/utils';
 import { useAjusterTitre } from '@/lib/useAjusterTitre';
 import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
@@ -68,9 +77,15 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     const recipe = useMemo(() => ({ ...rawRecipe, ingredients: recipeIngredients(rawRecipe.ingredients) }), [rawRecipe]);
     // Volet « Ajouter au planificateur » ouvert depuis la fiche.
     const [planOpen, setPlanOpen] = useState(false);
-    const { startTimer } = useTimer();
+    const { startTimer, timers, stopTimer, masquerBandeau } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
+    // Mise en place : écran des ingrédients à sortir, avant de lancer la recette.
+    const [miseEnPlace, setMiseEnPlace] = useState(false);
+    const echelleTexte = useEchelle();
+    // Dernière phrase entendue et l'ordre compris : le retour visuel du mode vocal.
+    const [entendu, setEntendu] = useState<{ phrase: string; ordre: string } | null>(null);
+    const derniereCommandeRef = useRef(0);
     const [activeStepIndex, setActiveStepIndex] = useState(0);
     const [mounted, setMounted] = useState(false);
     const [authUser, setAuthUser] = useState<any>(null);
@@ -169,6 +184,14 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
 
 
     const ratio = useMemo(() => servings / (recipe.servings || 4), [servings, recipe.servings]);
+    const itemsMiseEnPlace = useMemo<ItemMiseEnPlace[]>(
+        () => recipe.ingredients.map((ing, i) => ({
+            key: String(i),
+            ...libelleIngredient(ing.name, ing.quantity, (q) => scaleQuantity(q, ratio)),
+            image: ing.image || getIngredientVisual(ing.name),
+        })),
+        [recipe.ingredients, ratio],
+    );
     // Ingrédients cités dans l'étape affichée en mode préparation (tuile latérale).
     const ingredientsEtape = useMemo(
         () => ingredientsDeLEtape(stripHtml(recipe.steps[activeStepIndex] || ''), recipe.ingredients),
@@ -284,21 +307,10 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         }
     }, [recipe.category]);
 
-    // Wake Lock
+    useVerrouEcran();
+
+    // Suivi de la recette ouverte
     useEffect(() => {
-        let wakeLock: any = null;
-        const requestWakeLock = async () => {
-            try {
-                if ('wakeLock' in navigator) {
-                    wakeLock = await (navigator as any).wakeLock.request('screen');
-                }
-            } catch (err: any) {
-                console.error(`${err.name}, ${err.message}`);
-            }
-        };
-
-        requestWakeLock();
-
         if (typeof window !== 'undefined') {
             ecrireStock('active-recipe-id', recipe.id);
             
@@ -316,10 +328,52 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             return () => window.removeEventListener('shoppingListUpdated', syncWithShoppingList);
         }
 
-        return () => {
-            if (wakeLock !== null) wakeLock.release();
-        };
     }, [recipe.id]);
+
+    // Les minuteurs vivent dans la tuile de droite pendant la préparation (écran large) :
+    // le bandeau du bas se cache. Sur écran étroit la tuile n'existe pas, il reste.
+    useEffect(() => {
+        if (!focusMode) return;
+        const mq = window.matchMedia('(min-width: 1024px)');
+        const maj = () => masquerBandeau(mq.matches);
+        maj();
+        mq.addEventListener('change', maj);
+        return () => { mq.removeEventListener('change', maj); masquerBandeau(false); };
+    }, [focusMode, masquerBandeau]);
+
+    // Minuteur de l'étape affichée : s'il tourne, la tuile se retourne dessus.
+    const etapeCourante = recipe.steps[activeStepIndex] || '';
+    const dureeEtape = parseDuration(etapeCourante);
+    const libelleEtape = libelleMinuteur(etapeCourante);
+    const chronoEtape = dureeEtape ? timers.find((t) => t.label === libelleEtape) : undefined;
+    const lancerChronoEtape = () => {
+        if (!dureeEtape) return;
+        startTimer(dureeEtape, libelleEtape, nomPourAnnonce(etapeCourante, recipe.ingredients));
+        triggerHaptic();
+    };
+
+    // Lance la préparation (voix, micro, premier chrono) : appelé depuis le geste « Commencer ».
+    const demarrerPreparation = () => {
+        setFocusMode(true);
+        setActiveStepIndex(0);
+        markCooking(recipe.id);
+        window.dispatchEvent(new Event('tv-progress-change'));
+        triggerHaptic();
+        // Scroll auto vers le focus card (HUD)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Dans la pile du geste : hors de là, le navigateur
+        // refuse la synthèse ET le micro. `focusModeRef` est
+        // posé à la main, l'état n'arrivant qu'au rendu suivant.
+        focusModeRef.current = true;
+        spokenRef.current = 0;
+        // Déblocage de la balise audio, dans le geste (voix naturelle).
+        debloquerVoix();
+        // La VOIX D'ABORD, le micro ensuite (il s'ouvre à la fin
+        // de la lecture) : ouvrir le micro avant met la sortie
+        // audio en mode enregistrement et la voix ne sort pas.
+        speak(recipe.steps[0]);
+    };
 
     const triggerHaptic = () => {
         if (typeof window !== 'undefined' && 'vibrate' in navigator) {
@@ -406,7 +460,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel);
+                startTimer(minutes, shortLabel, nomPourAnnonce(stepText, recipe.ingredients));
             }
         }
     };
@@ -673,7 +727,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel);
+                startTimer(minutes, shortLabel, nomPourAnnonce(nextStep, recipe.ingredients));
             }
         } else {
             setFocusMode(false);
@@ -693,11 +747,53 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         speak(recipe.steps[activeStepIndex]);
     };
 
-    // Refs pour accéder aux handlers frais dans les closures de l'écoute vocale
-    const handlersRef = useRef({ handleNextStep, handlePrevStep, handleRepeatStep });
+    // « Ingrédients » : on lit ce qu'il faut sortir pour CETTE étape, quantités ajustées aux portions.
+    const lireIngredientsEtape = () => {
+        if (!ingredientsEtape.length) { speak("Aucun ingrédient à sortir pour cette étape."); return; }
+        const liste = ingredientsEtape
+            .map((i) => `${i.quantity ? scaleQuantity(i.quantity, ratio) + ' ' : ''}${(i.name || '').replace(/\s*\([^)]*\)/g, '').trim()}`.trim())
+            .join(', ');
+        speak(`Pour cette étape : ${liste}.`);
+    };
+    // « Lance le minuteur » / « arrête le minuteur », sans toucher l'écran.
+    const piloterMinuteur = (action: 'lancer' | 'arreter') => {
+        if (action === 'lancer') {
+            if (!dureeEtape) { speak("Cette étape n'a pas de durée."); return; }
+            if (chronoEtape) { speak("Le minuteur tourne déjà."); return; }
+            lancerChronoEtape();
+            speak(`Minuteur lancé : ${dureeEtape} minutes.`);
+        } else {
+            const cible = chronoEtape || timers[0];
+            if (!cible) { speak("Aucun minuteur en cours."); return; }
+            stopTimer(cible.id);
+            speak("Minuteur arrêté.");
+        }
+    };
+
+    // Raccourcis clavier en préparation (bureau) : ← → étapes, Espace répète, V vidéo, M minuteur.
+    // Ignorés quand on écrit dans un champ, et avec Ctrl/⌘/Alt pour ne pas gêner le navigateur.
+    // Le listener est reposé à chaque rendu : il voit toujours l'étape courante (pas de valeur périmée).
     useEffect(() => {
-        handlersRef.current = { handleNextStep, handlePrevStep, handleRepeatStep };
-    }, [handleNextStep, handlePrevStep, handleRepeatStep]);
+        if (!focusMode) return;
+        const auClavier = (e: KeyboardEvent) => {
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            const cible = e.target as HTMLElement | null;
+            if (cible && (cible.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(cible.tagName))) return;
+            let fait = false;
+            if (e.key === 'ArrowRight') { handleNextStep(); fait = true; }
+            else if (e.key === 'ArrowLeft') { handlePrevStep(); fait = true; }
+            else if (e.key === ' ') { handleRepeatStep(); fait = true; }
+            else if ((e.key === 'v' || e.key === 'V') && tiktokId && !videoPlein) { ouvrirVideo(); fait = true; }
+            else if ((e.key === 'm' || e.key === 'M') && dureeEtape && !chronoEtape) { lancerChronoEtape(); fait = true; }
+            if (fait) e.preventDefault(); // Espace ne fait pas défiler la page
+        };
+        window.addEventListener('keydown', auClavier);
+        return () => window.removeEventListener('keydown', auClavier);
+    });
+
+    // Refs pour accéder aux handlers frais dans les closures de l'écoute vocale
+    const handlersRef = useRef({ handleNextStep, handlePrevStep, handleRepeatStep, lireIngredientsEtape, piloterMinuteur });
+    handlersRef.current = { handleNextStep, handlePrevStep, handleRepeatStep, lireIngredientsEtape, piloterMinuteur };
 
     // Voice recognition logic moved to stable scope
     const startRecognition = useCallback(() => {
@@ -724,21 +820,21 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 recognition.onresult = (event: any) => {
                     if (isSpeakingRef.current) return;
 
-                    const transcript = event.results[event.results.length - 1][0].transcript.toLowerCase();
-                    console.log('🗣️ Commande reçue:', transcript);
-                    
-                    if (/suivant|prochain|allez|aller|go|on y va|prêt|c'est bon/.test(transcript)) {
-                        handlersRef.current.handleNextStep();
-                    } 
-                    else if (/précédent|retour|avant|revenir|reviens/.test(transcript)) {
-                        handlersRef.current.handlePrevStep();
-                    } 
-                    else if (/répète|répéter|encore|qu'est-ce|pardon|comment|redis/.test(transcript)) {
-                        handlersRef.current.handleRepeatStep();
-                    }
-                    else if (/quitter|stop|terminer|fin|fermer/.test(transcript)) {
-                        setFocusMode(false);
-                    }
+                    const transcript = (event.results[event.results.length - 1][0].transcript || '').toLowerCase().trim();
+                    const ordre = analyserCommande(transcript);
+                    setEntendu({ phrase: transcript.slice(-60), ordre: ordre ? LIBELLE_COMMANDE[ordre] : '' });
+                    if (!ordre) return;
+                    // Un ordre à la fois (la même phrase peut revenir deux fois).
+                    if (Date.now() - derniereCommandeRef.current < 1800) return;
+                    derniereCommandeRef.current = Date.now();
+                    const h = handlersRef.current;
+                    if (ordre === 'suivant') h.handleNextStep();
+                    else if (ordre === 'precedent') h.handlePrevStep();
+                    else if (ordre === 'repete') h.handleRepeatStep();
+                    else if (ordre === 'ingredients') h.lireIngredientsEtape();
+                    else if (ordre === 'minuteur') h.piloterMinuteur('lancer');
+                    else if (ordre === 'stop-minuteur') h.piloterMinuteur('arreter');
+                    else if (ordre === 'quitter') setFocusMode(false);
                 };
 
                 recognition.onerror = (err: any) => {
@@ -959,25 +1055,14 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         <div className={styles.heroActionsRow}>
                         {recipe.category !== 'restaurant' && recipe.steps.length > 0 && !focusMode && (
                             <button className={styles.heroFocusBtn} onClick={() => {
-                                setFocusMode(true);
-                                setActiveStepIndex(0);
-                                markCooking(recipe.id);
-                                window.dispatchEvent(new Event('tv-progress-change'));
-                                triggerHaptic();
-                                // Scroll auto vers le focus card (HUD)
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                                // Dans la pile du geste : hors de là, le navigateur
-                                // refuse la synthèse ET le micro. `focusModeRef` est
-                                // posé à la main, l'état n'arrivant qu'au rendu suivant.
-                                focusModeRef.current = true;
-                                spokenRef.current = 0;
-                                // Déblocage de la balise audio, dans le geste (voix naturelle).
-                                debloquerVoix();
-                                // La VOIX D'ABORD, le micro ensuite (il s'ouvre à la fin
-                                // de la lecture) : ouvrir le micro avant met la sortie
-                                // audio en mode enregistrement et la voix ne sort pas.
-                                speak(recipe.steps[0]);
+                                // Mise en place d'abord (si la recette a des ingrédients) ; la recette
+                                // ne démarre qu'au bouton « Commencer », dans son propre geste.
+                                if (recipe.ingredients.length > 0) {
+                                    debloquerVoix();
+                                    setMiseEnPlace(true);
+                                    return;
+                                }
+                                demarrerPreparation();
                             }}>
                                 <span className={styles.focusBtnIcon}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1135,7 +1220,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             )}
 
             <Tip id={recipe.category === 'restaurant' ? 'resto' : 'fiche'} delay={1600} />
-            {recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} />}
+            {recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} image={recipe.image} recipe={recipe} onPartager={() => setShowShareCard(true)} />}
 
             {/* Fiche « Comme au resto ». Même composant que sur le téléphone :
                 ces deux arbres divergent dès qu'on les laisse faire, et cette
@@ -1440,6 +1525,19 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             {/* Commentaires : lisibles par tous. Publier reste réservé aux connectés (géré dans le composant). */}
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
 
+            {miseEnPlace && !focusMode && (
+                <Portal>
+                    <MiseEnPlace
+                        titre={decodeHtml(recipe.title)}
+                        image={recipe.image}
+                        items={itemsMiseEnPlace}
+                        servings={servings}
+                        onServings={setServings}
+                        onCommencer={() => { setMiseEnPlace(false); demarrerPreparation(); }}
+                        onFermer={() => setMiseEnPlace(false)}
+                    />
+                </Portal>
+            )}
             {focusMode && (
                 /* Portail vers <body> : la fiche parente porte un `transform`, ce qui
                    en fait le référent des position:fixed — l'overlay « plein écran »
@@ -1451,7 +1549,9 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         // @ts-ignore
                         '--dynamic-accent': theme.accent,
                         '--dynamic-accent-glow': theme.glow,
-                        '--dynamic-accent-bg': theme.bg
+                        '--dynamic-accent-bg': theme.bg,
+                        // @ts-ignore
+                        '--echelle': echelleTexte.echelle
                     }}
                 >
                     <div className={styles.focusHeader}>
@@ -1460,6 +1560,17 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                             <img src={recipe.image} alt="" className={styles.focusThumb} draggable={false} />
                         )}
                         <div className={styles.focusTitle}>{decodeHtml(recipe.title)}</div>
+                        {/* Le bouton « Quitter » est fixé en haut à droite : on laisse sa place. */}
+                        <div className={styles.focusTaille}>
+                            <TailleTexte echelle={echelleTexte.echelle} plus={echelleTexte.plus} moins={echelleTexte.moins} />
+                        </div>
+                        <div className={styles.focusQuestion}>
+                            <QuestionCuisine
+                                titre={decodeHtml(recipe.title)}
+                                etape={stripHtml(recipe.steps[activeStepIndex] || '')}
+                                ingredients={recipe.ingredients.map((i) => `${i.quantity || ''} ${i.name}`.trim())}
+                            />
+                        </div>
                         <button className={styles.focusClose} onClick={() => {
                             setFocusMode(false);
                             triggerHaptic();
@@ -1478,9 +1589,9 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                             <motion.div
                                 key={activeStepIndex}
                                 className={styles.focusStepCard}
-                                initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
-                                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                                exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 1.1 }}
                                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                             >
                                 <div className={styles.focusStepHeader}>
@@ -1514,7 +1625,15 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                                     >
                                         <div className={styles.focusIngKicker}>Pour cette étape</div>
-                                        {ingredientsEtape.length > 0 ? (
+                                        {chronoEtape ? (
+                                            <MinuteurEtape
+                                                key={chronoEtape.id}
+                                                duration={chronoEtape.duration}
+                                                remaining={chronoEtape.remaining}
+                                                libelle={libelleEtape}
+                                                onArreter={() => { stopTimer(chronoEtape.id); triggerHaptic(); }}
+                                            />
+                                        ) : ingredientsEtape.length > 0 ? (
                                             <ul className={styles.focusIngList}>
                                                 {ingredientsEtape.map((ing, i) => {
                                                     const nom = (ing.name || '').replace(/\s*\([^)]*\)/g, '').replace(/^(?:de\s+|d'|du\s+|des\s+)/i, '').trim();
@@ -1530,6 +1649,30 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                             </ul>
                                         ) : (
                                             <div className={styles.focusIngNone}>Aucun ingrédient à sortir pour cette étape.</div>
+                                        )}
+                                        {/* Les autres minuteurs en cours, empilés en pilules. */}
+                                        {timers.some((t) => t.id !== chronoEtape?.id) && (
+                                            <ul className={minuteurStyles.liste} aria-label="Minuteurs en cours">
+                                                <AnimatePresence initial={false}>
+                                                    {timers.filter((t) => t.id !== chronoEtape?.id).map((t) => (
+                                                        <MiniMinuteur
+                                                            key={t.id}
+                                                            duration={t.duration}
+                                                            remaining={t.remaining}
+                                                            libelle={t.label}
+                                                            onArreter={() => { stopTimer(t.id); triggerHaptic(); }}
+                                                        />
+                                                    ))}
+                                                </AnimatePresence>
+                                            </ul>
+                                        )}
+                                        {dureeEtape && !chronoEtape && (
+                                            <button type="button" className={styles.focusIngVideo} onClick={lancerChronoEtape}>
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden>
+                                                    <circle cx="12" cy="13" r="8" /><path d="M12 9v4l2.5 2M9 2h6" />
+                                                </svg>
+                                                <span>Lancer le minuteur · {dureeEtape} min</span>
+                                            </button>
                                         )}
                                         {tiktokId && (
                                             <button type="button" className={styles.focusIngVideo} tabIndex={videoPlein ? -1 : 0} onClick={() => { ouvrirVideo(); triggerHaptic(); }}>
@@ -1623,8 +1766,16 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         
                         {/* Indicateur vocal basique */}
                         <div className={styles.voiceCommandsHint}>
-                            &quot;Suivant&quot; • &quot;Précédent&quot; • &quot;Répète&quot;
+                            &quot;Suivant&quot; • &quot;Précédent&quot; • &quot;Répète&quot; • &quot;Ingrédients&quot; • &quot;Lance le minuteur&quot;
+                            <br />← → étapes · Espace répète · V vidéo · M minuteur
                         </div>
+                        {isListening && (
+                            <div className={styles.entendu} aria-live="polite">
+                                {entendu?.phrase
+                                    ? <>« {entendu.phrase} »{entendu.ordre && <b> → {entendu.ordre}</b>}</>
+                                    : 'Je vous écoute…'}
+                            </div>
+                        )}
                     </div>
                 </div>
                 </Portal>

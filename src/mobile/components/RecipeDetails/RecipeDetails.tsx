@@ -19,8 +19,17 @@ import CreatorCard from '@/components/CreatorCard/CreatorCard';
 import { Recipe } from '@/mobile/types';
 import { scaleQuantity } from '@/mobile/lib/utils';
 import { useLocalStorage } from '@/mobile/hooks/useLocalStorage';
+import { useVerrouEcran } from '@/lib/verrouEcran';
+import MiseEnPlace, { libelleIngredient, type ItemMiseEnPlace } from '@/components/MiseEnPlace/MiseEnPlace';
 import { useTimer } from '@/mobile/components/Timer/TimerContext';
 import { parseDuration, stripHtml } from '@/mobile/lib/timer-utils';
+import { nomPourAnnonce, libelleMinuteur } from '@/lib/ingredients-etape';
+import { analyserCommande } from '@/lib/commandesVoix';
+import QuestionCuisine from '@/components/QuestionCuisine/QuestionCuisine';
+import TailleTexte from '@/components/TailleTexte/TailleTexte';
+import { useEchelle } from '@/lib/echelle-preparation';
+import MinuteurEtape, { MiniMinuteur } from '@/components/Timer/MinuteurEtape';
+import minuteurStyles from '@/components/Timer/MinuteurEtape.module.css';
 import { decodeHtml } from '@/mobile/lib/utils';
 import SmartText from '@/mobile/components/SmartText/SmartText';
 import MagicConverter from '@/mobile/components/MagicConverter/MagicConverter';
@@ -79,9 +88,12 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
      * personne ne rende une entrée qu'il n'a pas posée.
      */
     useBackToClose(planOpen, () => setPlanOpen(false));
-    const { startTimer } = useTimer();
+    const { startTimer, timers, stopTimer } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
+    // Mise en place : écran des ingrédients à sortir, avant de lancer la recette.
+    const [miseEnPlace, setMiseEnPlace] = useState(false);
+    const echelleTexte = useEchelle();
     const [activeStepIndex, setActiveStepIndex] = useState(0);
     const [mounted, setMounted] = useState(false);
     const [isListening, setIsListening] = useState(false);
@@ -217,6 +229,14 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
 
 
     const ratio = useMemo(() => servings / (recipe.servings || 4), [servings, recipe.servings]);
+    const itemsMiseEnPlace = useMemo<ItemMiseEnPlace[]>(
+        () => recipe.ingredients.map((ing, i) => ({
+            key: String(i),
+            ...libelleIngredient(ing.name, ing.quantity, (q) => scaleQuantity(q, ratio), translateIngredientName),
+            image: ing.image || getIngredientVisual(ing.name),
+        })),
+        [recipe.ingredients, ratio],
+    );
     // Temps prépa/cuisson + difficulté recalculés depuis les étapes (valeurs WP incohérentes).
     const timing = useMemo(() => estimateRecipeTiming(recipe.steps), [recipe.steps]);
 
@@ -321,28 +341,10 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         }
     }, [recipe.category]);
 
-    // Wake Lock
+    useVerrouEcran();
+
+    // Suivi de la recette ouverte
     useEffect(() => {
-        let wakeLock: any = null;
-        const requestWakeLock = async () => {
-            try {
-                if ('wakeLock' in navigator) {
-                    wakeLock = await (navigator as any).wakeLock.request('screen');
-                }
-            } catch (err: any) {
-                console.error(`${err.name}, ${err.message}`);
-            }
-        };
-
-        requestWakeLock();
-
-        const handleVisibilityChange = () => {
-            if (document.visibilityState === 'visible') {
-                requestWakeLock();
-            }
-        };
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-
         if (typeof window !== 'undefined') {
             ecrireStock('active-recipe-id', recipe.id);
             
@@ -368,16 +370,38 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             window.addEventListener('shoppingListUpdated', syncWithShoppingList);
             return () => {
                 window.removeEventListener('shoppingListUpdated', syncWithShoppingList);
-                document.removeEventListener('visibilitychange', handleVisibilityChange);
-                if (wakeLock !== null) wakeLock.release();
             };
         }
 
-        return () => {
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-            if (wakeLock !== null) wakeLock.release();
-        };
     }, [recipe.id]);
+
+    // Lance la préparation (voix, micro, premier chrono) : appelé depuis le geste « Commencer ».
+    const demarrerPreparation = () => {
+        // Dans le geste : débloque l'audio et la voix de l'appareil.
+        debloquerVoix();
+        setFocusMode(true);
+        setActiveStepIndex(0);
+        markCooking(recipe.id);
+        window.dispatchEvent(new Event('tv-progress-change'));
+        triggerHaptic();
+        // Scroll auto vers le focus card (HUD)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Tout ce qui suit DOIT rester dans la pile du geste :
+        // iOS n'autorise ni la synthèse ni le micro en dehors.
+        // `focusModeRef` est posé à la main car l'état ne sera à
+        // jour qu'au prochain rendu, trop tard pour ces closures.
+        focusModeRef.current = true;
+        voiceOnRef.current = true;
+        setMicDemande(true);
+        setMicRefus(false);
+        spokenRef.current = 0; // l'étape 1 est lue ici, pas deux fois
+        // La VOIX D'ABORD, le micro ensuite (il s'ouvre tout seul
+        // quand la lecture s'achève). Ouvrir le micro avant fait
+        // basculer la sortie audio de l'iPhone en mode
+        // enregistrement : la synthèse partait, mais muette.
+        speak('C’est parti. Dites « suivant », « précédent » ou « répète ». ' + texteEtape(0));
+    };
 
     const triggerHaptic = () => {
         if (typeof window !== 'undefined' && 'vibrate' in navigator) {
@@ -476,7 +500,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image, etape: index });
+                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image, etape: index }, nomPourAnnonce(stepText, recipe.ingredients));
             }
         }
     };
@@ -752,6 +776,21 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         }
         return 42 + Math.min(lignes, 5) * 29 + 18;
     }, [ingredientsEtape]);
+    // Minuteurs de CETTE recette : celui de l'étape remplace la liste (tuile qui se retourne),
+    // les autres s'empilent dessous en pilules.
+    const etapeMinuteur = recipe.steps[activeStepIndex] || '';
+    const dureeEtape = parseDuration(etapeMinuteur);
+    const libelleEtape = libelleMinuteur(etapeMinuteur);
+    const chronoEtape = dureeEtape ? timers.find((t) => t.recipeId === recipe.id && t.label === libelleEtape) : undefined;
+    const autresChronos = timers.filter((t) => t.recipeId === recipe.id && t.id !== chronoEtape?.id);
+    const hauteurPile = (chronoEtape ? Math.max(pileH, 184) : pileH)
+        + (dureeEtape && !chronoEtape ? 44 : 0)
+        + (autresChronos.length ? 10 + Math.min(autresChronos.length, 3) * 50 : 0);
+    const lancerChronoEtape = () => {
+        if (!dureeEtape) return;
+        startTimer(dureeEtape, libelleEtape, recipe.id, { titre: recipe.title, image: recipe.image, etape: activeStepIndex }, nomPourAnnonce(etapeMinuteur, recipe.ingredients));
+        triggerHaptic();
+    };
     const tiktokId = recipe.videoHtml?.match(/data-video-id="(\d+)"/)?.[1] || null;
     const [videoPlein, setVideoPlein] = useState(false);   // pilule retournée et agrandie
     const [videoMonte, setVideoMonte] = useState(false);   // lecteur présent (démonté après le retour)
@@ -788,7 +827,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image, etape: nextIdx });
+                startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image, etape: nextIdx }, nomPourAnnonce(nextStep, recipe.ingredients));
             }
         } else {
             setTermine(true);
@@ -808,11 +847,32 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         speak(texteEtape(activeStepIndex));
     };
 
+    // « Ingrédients » : on lit ce qu'il faut sortir pour CETTE étape, quantités ajustées aux portions.
+    const lireIngredientsEtape = () => {
+        if (!ingredientsEtape.length) { speak("Aucun ingrédient à sortir pour cette étape."); return; }
+        const liste = ingredientsEtape
+            .map((i) => `${i.quantity ? scaleQuantity(i.quantity, ratio) + ' ' : ''}${(i.name || '').replace(/\s*\([^)]*\)/g, '').trim()}`.trim())
+            .join(', ');
+        speak(`Pour cette étape : ${liste}.`);
+    };
+    // « Lance le minuteur » / « arrête le minuteur », sans toucher l'écran.
+    const piloterMinuteur = (action: 'lancer' | 'arreter') => {
+        if (action === 'lancer') {
+            if (!dureeEtape) { speak("Cette étape n'a pas de durée."); return; }
+            if (chronoEtape) { speak("Le minuteur tourne déjà."); return; }
+            lancerChronoEtape();
+            speak(`Minuteur lancé : ${dureeEtape} minutes.`);
+        } else {
+            const cible = chronoEtape || autresChronos[0];
+            if (!cible) { speak("Aucun minuteur en cours."); return; }
+            stopTimer(cible.id);
+            speak("Minuteur arrêté.");
+        }
+    };
+
     // Refs pour accéder aux handlers frais dans les closures de l'écoute vocale
-    const handlersRef = useRef({ handleNextStep, handlePrevStep, handleRepeatStep });
-    useEffect(() => {
-        handlersRef.current = { handleNextStep, handlePrevStep, handleRepeatStep };
-    }, [handleNextStep, handlePrevStep, handleRepeatStep]);
+    const handlersRef = useRef({ handleNextStep, handlePrevStep, handleRepeatStep, lireIngredientsEtape, piloterMinuteur });
+    handlersRef.current = { handleNextStep, handlePrevStep, handleRepeatStep, lireIngredientsEtape, piloterMinuteur };
 
     // Micro activé par l'utilisateur (tap-to-talk). Un ref pour que les closures
     // de reconnaissance (onend/speak) voient toujours l'état à jour.
@@ -855,10 +915,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                     // Un ordre à la fois : l'écoute provisoire répète la même phrase
                     // à chaque mise à jour.
                     if (Date.now() - derniereCommandeRef.current < 1800) return;
-                    const commande = /suivant|suivante|prochain|prochaine|on y va|c'est bon|c'est fait/.test(transcript) ? 'suivant'
-                        : /précédent|précédente|retour|revenir|reviens|en arrière/.test(transcript) ? 'precedent'
-                        : /répète|répéter|repete|redis|encore une fois|pardon|j'ai pas compris/.test(transcript) ? 'repete'
-                        : /quitter|quitte|arrête|arrêter|fermer|terminer/.test(transcript) ? 'quitter' : '';
+                    const commande = analyserCommande(transcript) || '';
                     if (commande) {
                         derniereCommandeRef.current = Date.now();
                         // On coupe l'écoute : la phrase suivante sera lue, puis le micro
@@ -869,6 +926,9 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         if (commande === 'suivant') handlersRef.current.handleNextStep();
                         else if (commande === 'precedent') handlersRef.current.handlePrevStep();
                         else if (commande === 'repete') handlersRef.current.handleRepeatStep();
+                        else if (commande === 'ingredients') handlersRef.current.lireIngredientsEtape();
+                        else if (commande === 'minuteur') handlersRef.current.piloterMinuteur('lancer');
+                        else if (commande === 'stop-minuteur') handlersRef.current.piloterMinuteur('arreter');
                         else setFocusMode(false);
                         return;
                     }
@@ -1114,30 +1174,14 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         <div className={styles.heroActionsRow}>
                         {recipe.category !== 'restaurant' && recipe.steps.length > 0 && !focusMode && (
                             <button className={styles.heroFocusBtn} onClick={() => {
-                                // Dans le geste : débloque l'audio et la voix de l'appareil.
-                                debloquerVoix();
-                                setFocusMode(true);
-                                setActiveStepIndex(0);
-                                markCooking(recipe.id);
-                                window.dispatchEvent(new Event('tv-progress-change'));
-                                triggerHaptic();
-                                // Scroll auto vers le focus card (HUD)
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                                // Tout ce qui suit DOIT rester dans la pile du geste :
-                                // iOS n'autorise ni la synthèse ni le micro en dehors.
-                                // `focusModeRef` est posé à la main car l'état ne sera à
-                                // jour qu'au prochain rendu, trop tard pour ces closures.
-                                focusModeRef.current = true;
-                                voiceOnRef.current = true;
-                                setMicDemande(true);
-                                setMicRefus(false);
-                                spokenRef.current = 0; // l'étape 1 est lue ici, pas deux fois
-                                // La VOIX D'ABORD, le micro ensuite (il s'ouvre tout seul
-                                // quand la lecture s'achève). Ouvrir le micro avant fait
-                                // basculer la sortie audio de l'iPhone en mode
-                                // enregistrement : la synthèse partait, mais muette.
-                                speak('C’est parti. Dites « suivant », « précédent » ou « répète ». ' + texteEtape(0));
+                                // Mise en place d'abord (si la recette a des ingrédients) ; la recette
+                                // ne démarre qu'au bouton « Commencer », dans son propre geste.
+                                if (recipe.ingredients.length > 0) {
+                                    debloquerVoix();
+                                    setMiseEnPlace(true);
+                                    return;
+                                }
+                                demarrerPreparation();
                             }}>
                                 <span className={styles.focusBtnIcon}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1529,6 +1573,19 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 </div>
             )}
 
+            {miseEnPlace && !focusMode && (
+                <Portal>
+                    <MiseEnPlace
+                        titre={decodeHtml(recipe.title)}
+                        image={recipe.image}
+                        items={itemsMiseEnPlace}
+                        servings={servings}
+                        onServings={setServings}
+                        onCommencer={() => { setMiseEnPlace(false); demarrerPreparation(); }}
+                        onFermer={() => setMiseEnPlace(false)}
+                    />
+                </Portal>
+            )}
             {focusMode && (
                 /* Portail vers <body> : le sheet parent a un `transform`, ce qui en fait
                    le conteneur de référence des position:fixed → l'overlay « plein écran »
@@ -1540,7 +1597,9 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         // @ts-ignore
                         '--dynamic-accent': theme.accent,
                         '--dynamic-accent-glow': theme.glow,
-                        '--dynamic-accent-bg': theme.bg
+                        '--dynamic-accent-bg': theme.bg,
+                        // @ts-ignore
+                        '--echelle': echelleTexte.echelle
                     }}
                 >
                     <div className={styles.focusHeader}>
@@ -1552,6 +1611,12 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         {/* Toucher le titre (ou la miniature) revient à la recette. */}
                         <div className={styles.focusTitle} role="button" tabIndex={0} onClick={() => { setFocusMode(false); triggerHaptic(); }} style={{ cursor: 'pointer' }}>{decodeHtml(recipe.title)}</div>
                         <div className={styles.focusHeaderActions}>
+                            <TailleTexte echelle={echelleTexte.echelle} plus={echelleTexte.plus} moins={echelleTexte.moins} />
+                            <QuestionCuisine
+                            titre={decodeHtml(recipe.title)}
+                            etape={stripHtml(recipe.steps[activeStepIndex] || '')}
+                            ingredients={recipe.ingredients.map((i) => `${i.quantity || ''} ${i.name}`.trim())}
+                        />
                             {/* Micro « tap-to-talk » : le tap fournit le geste utilisateur
                                 exigé par iOS pour démarrer la reconnaissance vocale. */}
                             <button
@@ -1606,9 +1671,9 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                             <motion.div
                                 key={activeStepIndex}
                                 className={styles.focusStepCard}
-                                initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
-                                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                                exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 1.1 }}
                                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                                 onClick={() => {
                                     handleNextStep();
@@ -1636,7 +1701,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                             <aside
                                 className={styles.focusIngTile}
                                 aria-label="Ingrédients de cette étape"
-                                style={{ height: videoPlein ? pilulePx : pileH, marginTop: videoPlein ? -(pilulePx - pileH) : 0 }}
+                                style={{ height: videoPlein ? pilulePx : hauteurPile, marginTop: videoPlein ? -(pilulePx - hauteurPile) : 0 }}
                             >
                                 <div className={`${styles.focusIngFlip} ${videoPlein ? styles.focusIngRetourne : ''}`}>
                                     {/* Face avant : les ingrédients de l'étape */}
@@ -1659,7 +1724,15 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                                     </button>
                                                 )}
                                             </div>
-                                            {ingredientsEtape.length > 0 ? (
+                                            {chronoEtape ? (
+                                                <MinuteurEtape
+                                                    compact
+                                                    duration={chronoEtape.duration}
+                                                    remaining={chronoEtape.remaining}
+                                                    libelle={libelleEtape}
+                                                    onArreter={() => { stopTimer(chronoEtape.id); triggerHaptic(); }}
+                                                />
+                                            ) : ingredientsEtape.length > 0 ? (
                                                 <ul className={`${styles.focusIngList} ${ingredientsEtape.length > 3 ? styles.focusIngDeuxCol : ''}`}>
                                                     {ingredientsEtape.map((ing, i) => {
                                                         const nom = (ing.name || '').replace(/\s*\([^)]*\)/g, '').replace(/^(?:de\s+|d'|du\s+|des\s+)/i, '').trim();
@@ -1675,6 +1748,26 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                                 </ul>
                                             ) : (
                                                 <div className={styles.focusIngNone}>Aucun ingrédient à sortir pour cette étape.</div>
+                                            )}
+                                            {dureeEtape && !chronoEtape && (
+                                                <button type="button" className={styles.focusIngVideo} onClick={lancerChronoEtape}>
+                                                    <span>Lancer le minuteur · {dureeEtape} min</span>
+                                                </button>
+                                            )}
+                                            {autresChronos.length > 0 && (
+                                                <ul className={minuteurStyles.liste} aria-label="Autres minuteurs">
+                                                    <AnimatePresence initial={false}>
+                                                        {autresChronos.slice(0, 3).map((t) => (
+                                                            <MiniMinuteur
+                                                                key={t.id}
+                                                                duration={t.duration}
+                                                                remaining={t.remaining}
+                                                                libelle={t.label}
+                                                                onArreter={() => { stopTimer(t.id); triggerHaptic(); }}
+                                                            />
+                                                        ))}
+                                                    </AnimatePresence>
+                                                </ul>
                                             )}
                                         </motion.div>
                                     </div>
@@ -1778,7 +1871,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             {/* Carnet "J'ai cuisiné" + note perso : connectés uniquement (composant auto-gaté). */}
             {/* Une adresse et une recette n'appellent pas le même conseil. */}
             <Tip id={recipe.category === 'restaurant' ? 'resto' : 'fiche'} delay={1600} />
-            {!focusMode && recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} />}
+            {!focusMode && recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} image={recipe.image} recipe={recipe} onPartager={() => setShowShareCard(true)} />}
 
             {/* Commentaires : lisibles par tous. Publier reste réservé aux connectés (géré dans le composant). */}
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}

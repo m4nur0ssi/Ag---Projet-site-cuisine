@@ -3036,6 +3036,9 @@
     padding: 12px 14px;
     display: flex;
     flex-direction: column;
+    /* Si la pilule est plus haute que prévu (beaucoup de minuteurs), elle défile au lieu d'être coupée. */
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
 .focusIngHead {
     display: flex;
@@ -3133,4 +3136,45 @@
     height: 2.5em;
     overflow: hidden;
     text-align: center;
+}
+
+/* La taille de la carte d'étape suit le réglage A− / A+ (variable --echelle). */
+.focusContent .focusStepText { font-size: calc(clamp(1rem, 4.2vw, 1.4rem) * var(--echelle, 1)); }
+
+/* Mode paysage (téléphone posé à l'horizontale) : carte et pilule côte à côte, comme sur bureau. */
+@media (orientation: landscape) and (max-height: 540px) {
+    .focusContent {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 14px;
+        padding: 8px 16px;
+    }
+    .focusContent .focusStepCard {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 0;
+        height: 100%;
+    }
+    .focusIngTile {
+        flex: 0 0 40%;
+        width: 40%;
+        height: auto !important;
+        margin-top: 0 !important;
+    }
+    /* En préparation, la barre du bas de l'appli est cachée : on rend la place à la recette. */
+    .focusOverlay { z-index: 26000; }
+    .focusHeader { padding: 6px 16px; }
+    .focusContent { flex: 1 1 0; min-height: 0; }
+    /* Barre de contrôle compacte, collée en bas. */
+    .focusHudWrapper {
+        flex: 0 0 auto;
+        padding: 4px 16px calc(6px + env(safe-area-inset-bottom, 0px));
+        gap: 4px;
+    }
+    .focusHud { padding: 6px; }
+    .voiceCommandsHint { display: none; }
+    /* Si le texte dépasse, la carte défile au lieu de couper la phrase. */
+    /* Centré en flex, le haut du texte serait hors de portée du défilement : on part du haut. */
+    .focusContent .focusStepCard { overflow-y: auto; overscroll-behavior: contain; justify-content: flex-start; }
+    .focusContent .focusStepText { font-size: calc(clamp(0.85rem, 2.4vw, 1rem) * var(--echelle, 1)); line-height: 1.3; }
 }

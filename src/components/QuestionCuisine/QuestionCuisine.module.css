@@ -1,0 +1,124 @@
+.bouton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 14px 0 11px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    color: #fff;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bouton:hover { border-color: rgba(255, 255, 255, 0.32); transform: translateY(-1px); }
+.bouton:active { transform: scale(0.97); }
+.boutonActif { border-color: var(--dynamic-accent, #ffb347); }
+
+.icone { flex: 0 0 auto; color: var(--dynamic-accent, #ffb347); }
+.eclat { transform-origin: 12px 10.6px; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.bouton:hover .eclat, .boutonActif .eclat { transform: rotate(90deg) scale(1.15); }
+
+.panneau {
+    position: fixed;
+    top: 70px;
+    right: 24px;
+    z-index: 26000;
+    width: min(380px, calc(100vw - 32px));
+    padding: 16px;
+    border-radius: 22px;
+    background: rgba(22, 22, 24, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    text-align: left;
+}
+
+.entete { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.titrePanneau { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dynamic-accent, #ffb347); }
+.fermer { width: 28px; height: 28px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.1); color: #fff; cursor: pointer; }
+
+.formulaire { display: flex; flex-direction: column; gap: 10px; }
+.champ {
+    width: 100%;
+    resize: none;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font: inherit;
+    font-size: 1rem; /* 16 px : évite le zoom automatique sur iPhone */
+    line-height: 1.35;
+}
+.champ::placeholder { color: rgba(255, 255, 255, 0.4); }
+.champ:focus { outline: none; border-color: var(--dynamic-accent, #ffb347); }
+
+.envoyer {
+    align-self: flex-end;
+    min-width: 120px;
+    height: 42px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 999px;
+    background: var(--dynamic-accent, #ffb347);
+    color: #1a1208;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.envoyer:disabled { opacity: 0.4; cursor: default; }
+.envoyer:not(:disabled):active { transform: scale(0.97); }
+
+.points { display: inline-flex; gap: 5px; align-items: center; justify-content: center; }
+.points i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse 1s ease-in-out infinite; }
+.points i:nth-child(2) { animation-delay: 0.15s; }
+.points i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes pulse { 0%, 100% { opacity: 0.25; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }
+
+.echange { display: flex; flex-direction: column; gap: 10px; }
+.question { font-size: 0.82rem; font-style: italic; opacity: 0.6; }
+.reponse { margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.4; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.secondaire {
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.secondaire:hover { background: rgba(255, 255, 255, 0.14); }
+
+@media (max-width: 640px) {
+    .libelle { display: none; }
+    .bouton { padding: 0 11px; }
+    .panneau {
+        top: auto;
+        right: 8px;
+        left: 8px;
+        bottom: 8px;
+        width: auto;
+        border-radius: 24px;
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .eclat, .bouton { transition: none; }
+    .points i { animation: none; opacity: 0.8; }
+}

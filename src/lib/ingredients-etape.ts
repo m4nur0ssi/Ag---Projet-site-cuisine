@@ -59,3 +59,25 @@ export function ingredientsDeLEtape<T extends Ingredient>(etape: string, ingredi
         .filter((a) => a.complet || (a.trouves.length > 0 && !a.trouves.some((m) => motsComplets.has(m))))
         .map((a) => a.ing);
 }
+
+/** Libellé court d'une étape pour un minuteur (50 caractères max, sans balises). */
+export function libelleMinuteur(etape: string): string {
+    const propre = etape.replace(/<[^>]*>/g, '').trim();
+    return propre.length > 50 ? propre.substring(0, 47) + '...' : propre;
+}
+
+/**
+ * Nom court à dire à la fin du minuteur (« carottes : c'est prêt »). Premier
+ * ingrédient cité dans l'étape, sans quantité ni parenthèses. Sinon null.
+ */
+export function nomPourAnnonce<T extends Ingredient>(etape: string, ingredients: T[]): string | null {
+    const trouve = ingredientsDeLEtape(etape, ingredients)[0];
+    if (!trouve?.name) return null;
+    const nom = trouve.name
+        .replace(/\([^)]*\)/g, ' ')
+        .replace(/^[\s\d½¼¾⅓⅔.,/-]*(?:g|kg|ml|cl|l|cac|cas|c\.\s*à\s*(?:soupe|café)|pincées?|gousses?|tranches?|sachets?)?\s*/i, '')
+        .replace(/^(?:de\s+|d'|du\s+|des\s+)/i, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    return nom ? nom.toLowerCase() : null;
+}

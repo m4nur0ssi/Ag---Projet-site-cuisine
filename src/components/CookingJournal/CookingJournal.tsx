@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { getCookEntries, addCookEntry, deleteCookEntry, updateCookEntry, type CookEntry } from '@/lib/cookingLog';
 import { marquerCuisinee, oublierCuisinee } from '@/lib/dejaCuisine';
+import AvantApres from '@/components/AvantApres/AvantApres';
 import styles from './CookingJournal.module.css';
 
 // #11 — Carnet de cuisine perso affiché dans la fiche recette.
 // variant 'restaurant' → wording adapté (« j'ai testé ce restaurant »).
-export default function CookingJournal({ recipeId, variant = 'recipe' }: { recipeId: string; variant?: 'recipe' | 'restaurant' }) {
+export default function CookingJournal({ recipeId, variant = 'recipe', image, recipe, onPartager }: { recipeId: string; variant?: 'recipe' | 'restaurant'; /** Photo de la fiche : la référence de « avant / après ». */ image?: string; recipe?: unknown; onPartager?: (recipe: unknown) => void }) {
     const isResto = variant === 'restaurant';
     const L = isResto
         ? { title: 'Mon avis', never: 'Jamais testé', verb: 'Testé', cta: "✓ J'ai testé ce restaurant", placeholder: 'Ton commentaire (ambiance, plat préféré, service…)' }
@@ -17,6 +18,9 @@ export default function CookingJournal({ recipeId, variant = 'recipe' }: { recip
     const [entries, setEntries] = useState<CookEntry[]>([]);
     const [open, setOpen] = useState(false);
     const [note, setNote] = useState('');
+    // « Ma version » : la photo du plat cuisiné, optionnelle.
+    const [fichier, setFichier] = useState<File | null>(null);
+    const [apercu, setApercu] = useState<string | null>(null);
     const [busy, setBusy] = useState(false);
     const [err, setErr] = useState<string | null>(null);
     const [editId, setEditId] = useState<string | null>(null);
@@ -35,6 +39,9 @@ export default function CookingJournal({ recipeId, variant = 'recipe' }: { recip
 
     if (!authed) return null; // carnet réservé aux connectés
 
+    // « Ma version » : la dernière photo du carnet, comparée à l'originale.
+    const derniereAvecPhoto = entries.find((e) => e.photo_url);
+
     const count = entries.length;
     const last = entries[0]?.cooked_at;
     const fmt = (d: string) => new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -42,13 +49,16 @@ export default function CookingJournal({ recipeId, variant = 'recipe' }: { recip
     const submit = async () => {
         setBusy(true);
         setErr(null);
-        const { entry, error } = await addCookEntry(recipeId, note);
+        const { entry, error } = await addCookEntry(recipeId, note, fichier);
         if (entry) {
             setEntries(prev => [entry, ...prev]);
             // La vignette porte sa coche dans la seconde, sans attendre un
             // aller-retour avec le compte.
             marquerCuisinee(recipeId);
             setNote('');
+            setFichier(null);
+            if (apercu) URL.revokeObjectURL(apercu);
+            setApercu(null);
             setOpen(false);
         } else if (error === 'auth') {
             // Session expirée : on propose la reconnexion (sinon l'insert reste bloqué en 401).
@@ -100,14 +110,35 @@ export default function CookingJournal({ recipeId, variant = 'recipe' }: { recip
                         onChange={e => setNote(e.target.value)}
                         rows={2}
                     />
+                    <label className={styles.photoChoix}>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={e => {
+                                const f = e.target.files?.[0] || null;
+                                setFichier(f);
+                                if (apercu) URL.revokeObjectURL(apercu);
+                                setApercu(f ? URL.createObjectURL(f) : null);
+                            }}
+                        />
+                        {apercu ? <img src={apercu} alt="Aperçu de ma version" className={styles.photoApercu} /> : <span>+ Ajouter ma photo</span>}
+                    </label>
                     <div className={styles.formRow}>
                         <button className={styles.save} onClick={submit} disabled={busy}>{busy ? 'Enregistrement…' : 'Enregistrer'}</button>
-                        <button className={styles.cancel} onClick={() => { setOpen(false); setNote(''); setErr(null); }}>Annuler</button>
+                        <button className={styles.cancel} onClick={() => { setOpen(false); setNote(''); setFichier(null); setApercu(null); setErr(null); }}>Annuler</button>
                     </div>
                     {err && <div className={styles.err}>{err}</div>}
                 </div>
             )}
 
+            {derniereAvecPhoto && image && (
+                <AvantApres
+                    original={image}
+                    maVersion={derniereAvecPhoto.photo_url as string}
+                    date={fmt(derniereAvecPhoto.cooked_at)}
+                    onPartager={onPartager && recipe ? () => onPartager(recipe) : undefined}
+                />
+            )}
             {entries.length > 0 && (
                 <ul className={styles.list}>
                     {entries.map(e => (

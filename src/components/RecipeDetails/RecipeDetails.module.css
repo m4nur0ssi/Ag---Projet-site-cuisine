@@ -2860,3 +2860,36 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
 }
 .focusIngVideo:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(255, 90, 80, 0.45); }
 .focusIngVideo:active { transform: scale(0.98); }
+
+
+/* Mode vocal : ce que le micro a entendu, et l'ordre compris. */
+.entendu {
+    margin-top: 8px;
+    min-height: 1.2em;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+    max-width: 520px;
+}
+.entendu b { color: var(--dynamic-accent, #34d399); font-weight: 800; }
+
+/* « Question » et « Quitter » : même ligne, même hauteur, côte à côte en haut à droite. */
+.focusClose {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.focusQuestion {
+    position: fixed;
+    top: 30px;
+    right: 155px;
+    z-index: 10000;
+}
+.focusQuestion > button:first-child { height: 44px; }
+
+/* Réglage de taille du texte, à gauche de « Question » (même hauteur). */
+.focusTaille { position: fixed; top: 30px; right: 275px; z-index: 10000; }
+/* La taille de la carte d'étape suit le réglage A− / A+ (variable --echelle). */
+.focusStepText { font-size: calc(clamp(1.4rem, 5.5vw, 2.6rem) * var(--echelle, 1)); }
