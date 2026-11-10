@@ -66,8 +66,9 @@ async function elevenLabs(texte: string): Promise<ArrayBuffer | null> {
                 voice_settings: { stability: 0.6, similarity_boost: 0.75, speed: 0.95 },
             }),
         });
-        return r.ok ? await r.arrayBuffer() : null;
-    } catch { return null; }
+        if (!r.ok) { console.error('ElevenLabs TTS', r.status, (await r.text().catch(() => '')).replace(/\s+/g, ' ').slice(0, 220)); return null; }
+        return await r.arrayBuffer();
+    } catch (e) { console.error('ElevenLabs TTS', 'exception', String(e).slice(0, 120)); return null; }
 }
 
 async function openAI(texte: string): Promise<ArrayBuffer | null> {
@@ -79,7 +80,8 @@ async function openAI(texte: string): Promise<ArrayBuffer | null> {
             headers: { authorization: `Bearer ${cle}`, 'content-type': 'application/json' },
             body: JSON.stringify({ voice: 'shimmer', response_format: 'mp3', input: texte, ...corps }),
         });
-        return r.ok ? await r.arrayBuffer() : null;
+        if (!r.ok) { console.error('OpenAI TTS', corps.model, r.status, (await r.text().catch(() => '')).replace(/\s+/g, ' ').slice(0, 220)); return null; }
+        return await r.arrayBuffer();
     };
     try {
         return (await essai({
@@ -127,7 +129,7 @@ async function gemini(texte: string): Promise<ArrayBuffer | null> {
                 signal: AbortSignal.timeout(delai),
             });
             if (!r.ok) {
-                console.error('Gemini TTS', modele, r.status);
+                console.error('Gemini TTS', modele, r.status, (await r.text().catch(() => '')).replace(/\s+/g, ' ').slice(0, 220));
                 indisponibles.set(modele, Date.now() + (r.status === 404 ? 3600000 : r.status === 429 ? 60000 : 10000));
                 continue;
             }
@@ -162,7 +164,10 @@ export async function POST(req: Request) {
         headers: { 'content-type': 'audio/wav', 'cache-control': 'private, max-age=31536000, immutable' },
     });
     const audio = (await elevenLabs(texte)) || (await openAI(texte));
-    if (!audio) return vide(204);
+    if (!audio) {
+        console.error('TTS : aucun fournisseur n\'a répondu', { gemini: !!process.env.GEMINI_API_KEY, elevenlabs: !!process.env.ELEVENLABS_API_KEY, openai: !!process.env.OPENAI_API_KEY });
+        return vide(204);
+    }
     return new Response(audio, {
         status: 200,
         headers: { 'content-type': 'audio/mpeg', 'cache-control': 'private, max-age=31536000, immutable' },
