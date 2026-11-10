@@ -51,8 +51,23 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     useIsoLayoutEffect(() => {
         const calc = () => setIsMobile(detect());
         calc();
+        // « resize » seul ne suffit pas : une PWA de bureau (Safari « Ajouter au Dock »)
+        // peut démarrer avec une fenêtre encore étroite, puis passer à sa vraie taille
+        // sans événement resize. On suit donc aussi le changement de la requête média,
+        // le retour au premier plan et la restauration depuis le cache de navigation.
+        const mql = window.matchMedia('(max-width: 1023px)');
+        mql.addEventListener?.('change', calc);
         window.addEventListener('resize', calc);
-        return () => window.removeEventListener('resize', calc);
+        window.addEventListener('pageshow', calc);
+        window.addEventListener('focus', calc);
+        document.addEventListener('visibilitychange', calc);
+        return () => {
+            mql.removeEventListener?.('change', calc);
+            window.removeEventListener('resize', calc);
+            window.removeEventListener('pageshow', calc);
+            window.removeEventListener('focus', calc);
+            document.removeEventListener('visibilitychange', calc);
+        };
     }, []);
 
     // Tant que l'appareil n'est pas déterminé : on ne rend RIEN (SSR + 1er rendu client
