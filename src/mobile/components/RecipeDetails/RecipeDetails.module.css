@@ -2977,3 +2977,160 @@
 .focusOverlay .focusHeader {
     padding-top: calc(env(safe-area-inset-top, 0px) + 12px);
 }
+
+
+/* ── Mode préparation (téléphone) : carte d'étape + pilule « Pour cette étape » dessous ── */
+.focusContent {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 8px 16px;
+    min-height: 0;
+    overflow: hidden;
+}
+.focusContent .focusStepCard {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 14px 18px;
+}
+.focusContent .focusStepHeader { margin-bottom: 4px; }
+.focusContent .focusStepText { font-size: clamp(1rem, 4.2vw, 1.4rem); line-height: 1.25; }
+/* Boutons un peu plus haut : on rend de la place à la carte et à la pilule. */
+.focusHudWrapper { padding-top: 8px; gap: 8px; }
+
+/* La pilule : deux faces (ingrédients / vidéo) qui se retournent ensemble. */
+.focusIngTile {
+    flex: 0 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    perspective: 1400px;
+    transition: height 0.8s cubic-bezier(0.16, 1, 0.3, 1), margin-top 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.focusIngFlip {
+    flex: 1;
+    display: grid;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.focusIngRetourne { transform: rotateY(180deg); }
+.focusIngFace {
+    grid-area: 1 / 1;
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.focusIngFront {
+    background: rgba(28, 28, 30, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    text-align: left;
+}
+.focusIngFrontInner {
+    height: 100%;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+}
+.focusIngHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+.focusIngKicker {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dynamic-accent, #ffb347);
+}
+.focusIngVideo {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border: none;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, #ff7a3d, #ff3d6e);
+    box-shadow: 0 6px 16px rgba(255, 90, 80, 0.35);
+}
+.focusIngList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 5px;
+}
+.focusIngDeuxCol { }
+.focusIngItem {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.09);
+    max-width: 100%;
+    min-width: 0;
+}
+.focusIngName { font-size: 0.72rem; font-weight: 700; line-height: 1.25; }
+.focusIngQty { font-size: 0.7rem; font-weight: 800; white-space: nowrap; color: var(--dynamic-accent, #ffb347); }
+.focusIngNone { font-size: 0.85rem; line-height: 1.4; color: rgba(255, 255, 255, 0.55); }
+.focusIngBack {
+    transform: rotateY(180deg);
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+.focusIngVideoFrame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #000;
+}
+.focusIngClose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+    .focusIngTile, .focusIngFlip { transition: none; }
+}
+
+/* Indice sous les boutons : hauteur FIXE (2 lignes). Qu'il dise « Lecture… » ou
+   « Micro refusé… », la zone du bas ne bouge pas : la carte d'étape non plus. */
+.voiceCommandsHint {
+    font-size: 0.74rem;
+    letter-spacing: 1px;
+    line-height: 1.25;
+    height: 2.5em;
+    overflow: hidden;
+    text-align: center;
+}

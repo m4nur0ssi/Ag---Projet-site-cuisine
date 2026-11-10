@@ -52,7 +52,8 @@ import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
 import { planifiable, OUVRIR_PLANIFICATEUR } from '@/mobile/screens/tv/plan';
 import { ecrireStock } from '@/lib/stockage';
 import { estRecetteBebe } from '@/lib/bebe';
-import { debloquerVoix, direNaturel, taireVoix } from '@/lib/voixCuisine';
+import { debloquerVoix, direNaturel, taireVoix, pourLaVoix } from '@/lib/voixCuisine';
+import { ingredientsDeLEtape } from '@/lib/ingredients-etape';
 
 interface RecipeDetailsProps {
     recipe: Recipe;
@@ -168,6 +169,11 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
 
 
     const ratio = useMemo(() => servings / (recipe.servings || 4), [servings, recipe.servings]);
+    // Ingrédients cités dans l'étape affichée en mode préparation (tuile latérale).
+    const ingredientsEtape = useMemo(
+        () => ingredientsDeLEtape(stripHtml(recipe.steps[activeStepIndex] || ''), recipe.ingredients),
+        [recipe.steps, recipe.ingredients, activeStepIndex],
+    );
 
     // Temps prépa/cuisson + difficulté recalculés depuis les étapes (valeurs WP incohérentes).
     const timing = useMemo(() => estimateRecipeTiming(recipe.steps), [recipe.steps]);
@@ -554,7 +560,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
                 window.speechSynthesis.cancel();
             }
-            const utterance = new SpeechSynthesisUtterance(stripHtml(text));
+            const utterance = new SpeechSynthesisUtterance(pourLaVoix(stripHtml(text)));
             utterance.lang = 'fr-FR';
             utterance.rate = 1.0;
             
@@ -617,6 +623,39 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             parlerAppareil(text);
         });
     };
+
+    /*
+     * Vidéo TikTok de la recette : la tuile des ingrédients se RETOURNE sur elle-même
+     * et la vidéo se joue sur sa face arrière (même lecteur que les cartes : son,
+     * avance/retour). Ce n'est pas une nouvelle fenêtre : la carte d'étape et la page
+     * ne bougent pas, l'étape reste en attente. La croix retourne la tuile vers les
+     * ingrédients. La voix de l'assistant se tait pendant la vidéo (« Répéter » la relance).
+     */
+    const tiktokId = recipe.videoHtml?.match(/data-video-id="(\d+)"/)?.[1] || null;
+    const [videoPlein, setVideoPlein] = useState(false);   // tuile retournée
+    const [videoMonte, setVideoMonte] = useState(false);   // lecteur présent (démonté après le retour)
+    const ouvrirVideo = () => {
+        if (!tiktokId) return;
+        genVoixRef.current++;          // annule la lecture en cours (et ses suites)
+        taireVoix();
+        isSpeakingRef.current = false;
+        setVideoMonte(true);
+        setVideoPlein(true);
+    };
+    const fermerVideo = () => {
+        setVideoPlein(false);
+        // Le lecteur reste le temps du demi-tour, puis s'arrête (plus de son en coulisse).
+        setTimeout(() => setVideoMonte(false), 800);
+    };
+    useEffect(() => {
+        if (!videoPlein) return;
+        const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') fermerVideo(); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [videoPlein]);
+    // Quitter le mode préparation referme aussi la vidéo.
+    useEffect(() => { if (!focusMode) { setVideoPlein(false); setVideoMonte(false); } }, [focusMode]);
 
     const recognitionRef = useRef<any>(null);
 
@@ -1433,6 +1472,8 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                     </div>
 
                     <div className={styles.focusContent}>
+                      {/* Carte et tuile dans une même rangée : même hauteur, sans défilement. */}
+                      <div className={styles.focusRow}>
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeStepIndex}
@@ -1456,6 +1497,68 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                 </h2>
                             </motion.div>
                         </AnimatePresence>
+
+                        {/* Tuile des ingrédients de CETTE étape : nom et quantité,
+                            qui changent à chaque étape. Bureau uniquement.
+                            « Voir la vidéo » retourne la MÊME tuile : la vidéo se joue
+                            sur sa face arrière, la carte d'étape et la page ne bougent pas. */}
+                        <aside className={styles.focusIngTile} aria-label="Ingrédients de cette étape">
+                            <div className={`${styles.focusIngFlip} ${videoPlein ? styles.focusIngRetourne : ''}`}>
+                                {/* Face avant : les ingrédients */}
+                                <div className={`${styles.focusIngFace} ${styles.focusIngFront}`} aria-hidden={videoPlein}>
+                                    <motion.div
+                                        key={`ing-${activeStepIndex}`}
+                                        className={styles.focusIngFrontInner}
+                                        initial={{ opacity: 0, x: 16 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                    >
+                                        <div className={styles.focusIngKicker}>Pour cette étape</div>
+                                        {ingredientsEtape.length > 0 ? (
+                                            <ul className={styles.focusIngList}>
+                                                {ingredientsEtape.map((ing, i) => {
+                                                    const nom = (ing.name || '').replace(/\s*\([^)]*\)/g, '').replace(/^(?:de\s+|d'|du\s+|des\s+)/i, '').trim();
+                                                    return (
+                                                        <li key={`${nom}-${i}`} className={styles.focusIngItem}>
+                                                            <span className={styles.focusIngName}>{nom.charAt(0).toUpperCase() + nom.slice(1)}</span>
+                                                            {ing.quantity && (
+                                                                <span className={styles.focusIngQty}>{scaleQuantity(ing.quantity, ratio)}</span>
+                                                            )}
+                                                        </li>
+                                                    );
+                                                })}
+                                            </ul>
+                                        ) : (
+                                            <div className={styles.focusIngNone}>Aucun ingrédient à sortir pour cette étape.</div>
+                                        )}
+                                        {tiktokId && (
+                                            <button type="button" className={styles.focusIngVideo} tabIndex={videoPlein ? -1 : 0} onClick={() => { ouvrirVideo(); triggerHaptic(); }}>
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                                                    <polygon points="6 3 20 12 6 21 6 3" />
+                                                </svg>
+                                                <span>Voir la vidéo</span>
+                                            </button>
+                                        )}
+                                    </motion.div>
+                                </div>
+                                {/* Face arrière : la vidéo TikTok, dans la pilule */}
+                                {tiktokId && (
+                                    <div className={`${styles.focusIngFace} ${styles.focusIngBack}`} aria-hidden={!videoPlein}>
+                                        {videoMonte && (
+                                            <iframe
+                                                className={styles.focusIngVideoFrame}
+                                                src={`https://www.tiktok.com/player/v1/${tiktokId}?autoplay=1&loop=1&controls=1&progress_bar=1&play_button=1&volume_control=1&fullscreen_button=1&music_info=0&description=0&rel=0`}
+                                                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                                                allowFullScreen
+                                                title={`Vidéo : ${decodeHtml(recipe.title)}`}
+                                            />
+                                        )}
+                                        <button type="button" className={styles.focusIngClose} tabIndex={videoPlein ? 0 : -1} onClick={() => { fermerVideo(); triggerHaptic(); }} aria-label="Fermer la vidéo" title="Fermer la vidéo">✕</button>
+                                    </div>
+                                )}
+                            </div>
+                        </aside>
+                      </div>
                     </div>
 
                     {/* CONTRÔLES TACTILES ET VOCAUX (HUD FLOTTANT) */}

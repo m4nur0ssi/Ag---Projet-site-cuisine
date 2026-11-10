@@ -8,21 +8,22 @@ interface SmartTextProps {
 }
 
 export default function SmartText({ text }: SmartTextProps) {
-    // Regex to find durations
-    const parts = text.split(/(\d+(?:\s?h|heures?|min|minutes?))/gi);
+    // Une durée = un nombre, une unité, et rien d'autre : « 7 minutes », « 1 h », « 5 heures ».
+    // Le groupe capturant ne couvre QUE la durée, pour que seule elle soit mise en avant
+    // (avant, une phrase contenant « 7 minutes » était coloriée en entier).
+    const parts = text.split(/(\d+\s?(?:heures?|h|minutes?|min)\b)/gi);
 
     return (
         <span>
             {parts.map((part, i) => {
-                const isDuration = part.match(/(\d+)\s?(h|heures?|min|minutes?)/i);
-                if (isDuration) {
+                // split() avec un groupe capturant : les durées sont aux rangs impairs.
+                if (i % 2 === 1) {
                     return (
                         <span
                             key={i}
                             style={{
                                 color: 'var(--color-accent-purple)',
                                 fontWeight: '800',
-                                borderBottom: '2px solid rgba(127, 13, 242, 0.3)',
                                 padding: '0 2px'
                             }}
                         >

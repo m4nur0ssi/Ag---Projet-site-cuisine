@@ -26,12 +26,12 @@ let muetJusqua = 0;
 
 const SILENCE = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=';
 // v2 : nouvelle voix (Kore). Le cache v1 contient encore les anciennes voix.
-const CACHE = 'voix-cuisine-v2';
+const CACHE = 'voix-cuisine-v3';
 
 const cle = (t: string) => {
     let h = 5381;
     for (let i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) | 0;
-    return `/voix-cuisine/kore-${t.length}-${h >>> 0}`;
+    return `/voix-cuisine/p-${t.length}-${h >>> 0}`;
 };
 
 /** À appeler DANS un geste de l'utilisateur : autorise ensuite l'audio et la synthèse. */
@@ -51,6 +51,47 @@ export function debloquerVoix(): void {
     }
 }
 
+/**
+ * Le texte tel qu'on LE DIT. Une voix de synthèse lit ce qu'on lui donne à la lettre :
+ * « 200˚C (400˚F) », « c. à café », « 50 g », « ½ » ou un emoji sonnent comme un robot
+ * qui épelle. On les écrit comme on les prononce, avant d'envoyer au service.
+ */
+export function pourLaVoix(texte: string): string {
+    return texte
+        // emoji et pictogrammes : jamais lus
+        .replace(/[\u{1F300}-\u{1FAFF}\u{2300}-\u{23FF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, ' ')
+        // températures : « 200˚C (400˚F) » → « 200 degrés » ; l'équivalent Fahrenheit est omis
+        .replace(/\s*\(\s*\d+\s*[°˚º]\s*F\s*\)/gi, '')
+        .replace(/(\d)\s*[°˚º]\s*C\b/gi, '$1 degrés')
+        .replace(/(\d)\s*[°˚º]\s*F\b/gi, '$1 degrés Fahrenheit')
+        .replace(/[°˚º]/g, ' degrés ')
+        // cuillères
+        .replace(/(?<![\p{L}])c\.?\s*à\s*(?:soupe(?![\p{L}])|s(?![\p{L}])\.?)/giu, 'cuillère à soupe')
+        .replace(/(?<![\p{L}])c\.?\s*à\s*(?:café(?![\p{L}])|c(?![\p{L}])\.?)/giu, 'cuillère à café')
+        .replace(/\bc[àa][sc]\b/gi, (m) => (/s$/i.test(m) ? 'cuillère à soupe' : 'cuillère à café'))
+        // fractions
+        .replace(/\b1\/2\s+cuillère/gi, 'une demi cuillère')
+        .replace(/(\d)\s*½/g, '$1 et demi').replace(/½/g, 'un demi')
+        .replace(/(\d)\s*¼/g, '$1 et quart').replace(/¼/g, 'un quart')
+        .replace(/¾/g, 'trois quarts')
+        .replace(/\b1\/2\b/g, 'un demi').replace(/\b1\/4\b/g, 'un quart').replace(/\b3\/4\b/g, 'trois quarts')
+        // unités après un nombre
+        .replace(/(\d)\s*kg\b/gi, '$1 kilogrammes')
+        .replace(/(\d)\s*g\b/gi, '$1 grammes')
+        .replace(/(\d)\s*ml\b/gi, '$1 millilitres')
+        .replace(/(\d)\s*cl\b/gi, '$1 centilitres')
+        .replace(/(\d)\s*dl\b/gi, '$1 décilitres')
+        .replace(/(\d)\s*cm\b/gi, '$1 centimètres')
+        .replace(/(\d)\s*mm\b/gi, '$1 millimètres')
+        .replace(/(\d)\s*min\b\.?/gi, '$1 minutes')
+        .replace(/\b1\s*h\b/gi, '1 heure').replace(/(\d)\s*h\b/gi, '$1 heures')
+        // symboles
+        .replace(/&/g, ' et ').replace(/\+/g, ' plus ').replace(/~/g, ' environ ')
+        .replace(/\s*[–—]\s*/g, ', ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+}
+
 async function jeton(): Promise<string> {
     try { return (await supabase.auth.getSession()).data.session?.access_token || ''; } catch { return ''; }
 }
@@ -64,6 +105,9 @@ async function obtenir(texte: string): Promise<string | null> {
     if (Date.now() < muetJusqua) return null;
 
     const p = (async () => {
+        // Service absent ou compte non connecté : inutile d'insister (60 s). Une erreur
+        // passagère (limite, réseau, lenteur) ne doit PAS faire parler le robot : 6 s.
+        const pause = (long: boolean) => { muetJusqua = Date.now() + (long ? 60000 : 6000); };
         try {
             const cache = typeof caches !== 'undefined' ? await caches.open(CACHE).catch(() => null) : null;
             const k = cle(texte);
@@ -71,19 +115,25 @@ async function obtenir(texte: string): Promise<string | null> {
             let blob: Blob | null = trouve ? await trouve.blob() : null;
             if (!blob) {
                 const t = await jeton();
-                const r = await fetch('/api/tts', {
-                    method: 'POST',
-                    headers: { 'content-type': 'application/json', ...(t ? { authorization: `Bearer ${t}` } : {}) },
-                    body: JSON.stringify({ text: texte }),
-                });
-                if (r.status !== 200) { muetJusqua = Date.now() + 60000; return null; }
+                const stop = new AbortController();
+                const delai = setTimeout(() => stop.abort(), 20000);
+                let r: Response;
+                try {
+                    r = await fetch('/api/tts', {
+                        method: 'POST',
+                        headers: { 'content-type': 'application/json', ...(t ? { authorization: `Bearer ${t}` } : {}) },
+                        body: JSON.stringify({ text: pourLaVoix(texte) }),
+                        signal: stop.signal,
+                    });
+                } finally { clearTimeout(delai); }
+                if (r.status !== 200) { pause(r.status === 401 || r.status === 204); return null; }
                 blob = await r.blob();
-                if (cache) await cache.put(k, new Response(blob, { headers: { 'content-type': 'audio/mpeg' } })).catch(() => {});
+                if (cache) await cache.put(k, new Response(blob, { headers: { 'content-type': blob.type || 'audio/mpeg' } })).catch(() => {});
             }
             const url = URL.createObjectURL(blob);
             enMemoire.set(texte, url);
             return url;
-        } catch { muetJusqua = Date.now() + 60000; return null; }
+        } catch { pause(false); return null; }
         finally { enCours.delete(texte); }
     })();
     enCours.set(texte, p);
