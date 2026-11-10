@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/11/2026 11:03:48
+ * Dernière mise à jour: 10/11/2026 10:40:42
  * Total: 836 recettes
  */
-export const exportSyncId = "1794222228131";
+export const exportSyncId = "1794307242646";
 export const mockRecipes: Recipe[] = [
     {
         "id": "8164",
@@ -562,7 +562,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8145",
         "title": "Martini Caramel Brûlée",
         "description": "Un cocktail festif inspiré du menu de Noël de Starbucks, avec une touche alcoolisée de Baileys Caramel Salé, de vodka et de caramel, garni de crème fouettée et de sauce caramel.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8145.webp&v=1794132431000",
+        "image": "/recipes-ia/8145-carte.webp",
         "category": "cocktails",
         "difficulty": "moyen",
         "prepTime": 15,
