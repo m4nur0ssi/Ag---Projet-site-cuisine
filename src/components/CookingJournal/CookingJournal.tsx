@@ -91,9 +91,14 @@ export default function CookingJournal({ recipeId, variant = 'recipe', image, re
     const startEdit = (e: CookEntry) => { fermerEdit(); setEditId(e.id); setEditNote(e.note || ''); };
     const saveEdit = async (id: string) => {
         setEditBusy(true);
-        const updated = await updateCookEntry(id, editNote.trim(), editFichier, recipeId);
-        if (updated) setEntries(prev => prev.map(e => e.id === id ? { ...e, note: updated.note, photo_url: updated.photo_url } : e));
-        else if (editFichier) { setErr('Photo non envoyée. Réessaie (ou choisis une autre photo).'); setEditBusy(false); return; }
+        let updated: CookEntry | null = null;
+        try {
+            updated = await updateCookEntry(id, editNote.trim(), editFichier, recipeId);
+        } catch (e) {
+            setErr((e as Error).message); setEditBusy(false); return;
+        }
+        if (updated) setEntries(prev => prev.map(e => e.id === id ? { ...e, note: updated!.note, photo_url: updated!.photo_url } : e));
+        else if (editFichier) { setErr('Photo non envoyée.'); setEditBusy(false); return; }
         setEditBusy(false);
         fermerEdit();
         notifier();
@@ -102,9 +107,12 @@ export default function CookingJournal({ recipeId, variant = 'recipe', image, re
     const addPhoto = async (id: string, f: File | null) => {
         if (!f) return;
         setPhotoBusyId(id);
-        const updated = await updateCookEntry(id, undefined, f, recipeId);
-        if (updated) setEntries(prev => prev.map(e => e.id === id ? { ...e, photo_url: updated.photo_url } : e));
-        else setErr('Photo non envoyée. Réessaie (ou choisis une autre photo).');
+        try {
+            const updated = await updateCookEntry(id, undefined, f, recipeId);
+            if (updated) setEntries(prev => prev.map(e => e.id === id ? { ...e, photo_url: updated.photo_url } : e));
+        } catch (e) {
+            setErr((e as Error).message);
+        }
         setPhotoBusyId(null);
         notifier();
     };

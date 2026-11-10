@@ -53,19 +53,33 @@ async function preparerPhoto(file: File): Promise<{ blob: Blob; ext: string; typ
     return brut;
 }
 
-async function uploadPhoto(userId: string, recipeId: string, file: File): Promise<string | null> {
-    const { blob, ext, type } = await preparerPhoto(file);
+/** Renvoie l'URL publique, ou le motif de l'échec (affiché à l'utilisateur). */
+async function uploadPhoto(userId: string, recipeId: string, file: File): Promise<{ url: string | null; motif?: string }> {
+    let blob: Blob, ext: string, type: string;
+    try {
+        ({ blob, ext, type } = await preparerPhoto(file));
+    } catch (e) {
+        return { url: null, motif: 'lecture de la photo' };
+    }
     const path = `${userId}/${recipeId}-${Date.now()}.${ext}`;
     const { error: upErr } = await supabase.storage.from('cooking-photos').upload(path, blob, { upsert: true, contentType: type });
-    if (upErr) return null;
-    return supabase.storage.from('cooking-photos').getPublicUrl(path).data.publicUrl;
+    if (upErr) {
+        const m = (upErr as any).statusCode ? `${(upErr as any).statusCode} ${upErr.message}` : upErr.message;
+        console.error('[carnet] upload photo', upErr);
+        return { url: null, motif: m };
+    }
+    return { url: supabase.storage.from('cooking-photos').getPublicUrl(path).data.publicUrl };
 }
 
 export async function addCookEntry(recipeId: string, note?: string, file?: File | null): Promise<AddCookResult> {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return { entry: null, error: 'auth' };
-    const photo_url = file ? await uploadPhoto(session.user.id, recipeId, file) : null;
-    if (file && !photo_url) return { entry: null, error: "Photo non envoyée. Réessaie (ou choisis une autre photo)." };
+    let photo_url: string | null = null;
+    if (file) {
+        const r = await uploadPhoto(session.user.id, recipeId, file);
+        if (!r.url) return { entry: null, error: `Photo non envoyée : ${r.motif || 'erreur inconnue'}` };
+        photo_url = r.url;
+    }
     const { data, error } = await supabase
         .from('cooking_log')
         .insert({ user_id: session.user.id, recipe_id: String(recipeId), note: note?.trim() || null, photo_url })
@@ -94,9 +108,9 @@ export async function updateCookEntry(id: string, note?: string, file?: File | n
     if (file) {
         const { data: { session } } = await supabase.auth.getSession();
         if (!session) return null;
-        const url = await uploadPhoto(session.user.id, recipeId || 'recette', file);
-        if (!url) return null;
-        patch.photo_url = url;
+        const r = await uploadPhoto(session.user.id, recipeId || 'recette', file);
+        if (!r.url) throw new Error(`Photo non envoyée : ${r.motif || 'erreur inconnue'}`);
+        patch.photo_url = r.url;
     }
     if (!Object.keys(patch).length) return null;
     const { data, error } = await supabase
