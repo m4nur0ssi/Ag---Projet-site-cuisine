@@ -65,7 +65,7 @@ export default function CookingJournal({ recipeId, variant = 'recipe', image, re
             setErr('Ta session a expiré. Reconnecte-toi pour enregistrer.');
             window.dispatchEvent(new CustomEvent('magic-open-auth'));
         } else {
-            setErr("Échec de l'enregistrement. Réessaie.");
+            setErr(error && error.startsWith('Photo') ? error : "Échec de l'enregistrement. Réessaie.");
         }
         setBusy(false);
     };
@@ -93,6 +93,7 @@ export default function CookingJournal({ recipeId, variant = 'recipe', image, re
         setEditBusy(true);
         const updated = await updateCookEntry(id, editNote.trim(), editFichier, recipeId);
         if (updated) setEntries(prev => prev.map(e => e.id === id ? { ...e, note: updated.note, photo_url: updated.photo_url } : e));
+        else if (editFichier) { setErr('Photo non envoyée. Réessaie (ou choisis une autre photo).'); setEditBusy(false); return; }
         setEditBusy(false);
         fermerEdit();
         notifier();
@@ -103,6 +104,7 @@ export default function CookingJournal({ recipeId, variant = 'recipe', image, re
         setPhotoBusyId(id);
         const updated = await updateCookEntry(id, undefined, f, recipeId);
         if (updated) setEntries(prev => prev.map(e => e.id === id ? { ...e, photo_url: updated.photo_url } : e));
+        else setErr('Photo non envoyée. Réessaie (ou choisis une autre photo).');
         setPhotoBusyId(null);
         notifier();
     };
@@ -116,6 +118,7 @@ export default function CookingJournal({ recipeId, variant = 'recipe', image, re
                 </span>
             </div>
 
+            {!open && err && <div className={styles.err}>{err}</div>}
             {!open ? (
                 <button className={styles.cta} onClick={() => setOpen(true)}>{L.cta}</button>
             ) : (

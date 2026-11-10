@@ -28,10 +28,35 @@ export async function getCookEntries(recipeId: string): Promise<CookEntry[]> {
 // error === 'auth' → pas de session valide (token expiré) → proposer la reconnexion.
 export interface AddCookResult { entry: CookEntry | null; error: string | null }
 
+/** Réduit la photo (max 1600px) et la convertit en JPEG : les photos HEIC / lourdes
+ *  du téléphone passent ainsi l'upload. Retombe sur le fichier d'origine si le
+ *  navigateur ne sait pas la décoder. */
+async function preparerPhoto(file: File): Promise<{ blob: Blob; ext: string; type: string }> {
+    const brut = { blob: file as Blob, ext: (file.name.split('.').pop() || 'jpg').toLowerCase(), type: file.type || 'image/jpeg' };
+    try {
+        const url = URL.createObjectURL(file);
+        const img = await new Promise<HTMLImageElement>((ok, ko) => {
+            const i = new Image();
+            i.onload = () => ok(i);
+            i.onerror = () => ko(new Error('decode'));
+            i.src = url;
+        });
+        URL.revokeObjectURL(url);
+        const k = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight));
+        const c = document.createElement('canvas');
+        c.width = Math.round(img.naturalWidth * k);
+        c.height = Math.round(img.naturalHeight * k);
+        c.getContext('2d')!.drawImage(img, 0, 0, c.width, c.height);
+        const blob = await new Promise<Blob | null>(r => c.toBlob(r, 'image/jpeg', 0.85));
+        if (blob) return { blob, ext: 'jpg', type: 'image/jpeg' };
+    } catch { /* on garde l'original */ }
+    return brut;
+}
+
 async function uploadPhoto(userId: string, recipeId: string, file: File): Promise<string | null> {
-    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+    const { blob, ext, type } = await preparerPhoto(file);
     const path = `${userId}/${recipeId}-${Date.now()}.${ext}`;
-    const { error: upErr } = await supabase.storage.from('cooking-photos').upload(path, file, { upsert: true, contentType: file.type });
+    const { error: upErr } = await supabase.storage.from('cooking-photos').upload(path, blob, { upsert: true, contentType: type });
     if (upErr) return null;
     return supabase.storage.from('cooking-photos').getPublicUrl(path).data.publicUrl;
 }
@@ -40,6 +65,7 @@ export async function addCookEntry(recipeId: string, note?: string, file?: File 
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return { entry: null, error: 'auth' };
     const photo_url = file ? await uploadPhoto(session.user.id, recipeId, file) : null;
+    if (file && !photo_url) return { entry: null, error: "Photo non envoyée. Réessaie (ou choisis une autre photo)." };
     const { data, error } = await supabase
         .from('cooking_log')
         .insert({ user_id: session.user.id, recipe_id: String(recipeId), note: note?.trim() || null, photo_url })
