@@ -179,7 +179,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8162",
         "title": "Saumon Gravlax",
         "description": "Découvrez comment préparer un délicieux saumon gravlax, une recette festive et facile à réaliser. Un filet de saumon est mariné avec du sucre, du gros sel, du poivre, des zestes de citron et de l'aneth, puis rincé et tranché finement. Idéal pour l...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8162-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
