@@ -90,7 +90,17 @@ export default function MiseEnPlace({ titre, image, items, servings, onServings,
     const basculer = (k: string) => setPrets((p) => ({ ...p, [k]: !p[k] }));
 
     return (
-        <div className={styles.overlay} role="dialog" aria-modal="true" aria-label="Mise en place">
+        // Les taps ne doivent pas remonter à la fiche derrière (portail React : les
+        // événements voyagent jusqu'aux ancêtres de la fiche, qui peuvent réagir).
+        <div
+            className={styles.overlay}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mise en place"
+            onClick={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+        >
             <div className={styles.entete}>
                 {image && <img src={image} alt="" className={styles.miniature} draggable={false} />}
                 <div className={styles.titre}>{titre}</div>

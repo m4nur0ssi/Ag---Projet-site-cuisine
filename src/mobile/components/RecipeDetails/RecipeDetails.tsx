@@ -1624,6 +1624,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         <div className={styles.focusHeaderActions}>
                             <TailleTexte echelle={echelleTexte.echelle} plus={echelleTexte.plus} moins={echelleTexte.moins} />
                             <QuestionCuisine
+                            grand
                             titre={decodeHtml(recipe.title)}
                             etape={stripHtml(recipe.steps[activeStepIndex] || '')}
                             ingredients={recipe.ingredients.map((i) => `${i.quantity || ''} ${i.name}`.trim())}

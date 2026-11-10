@@ -548,8 +548,16 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
     // du cadre, les voisines débordent de part et d'autre.
     const trackRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        const el = trackRef.current?.children[activeSlot] as HTMLElement | undefined;
-        el?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+        // Défilement HORIZONTAL de la piste seule. `scrollIntoView` remontait aussi
+        // la page entière vers le héros à chaque rotation (toutes les 5 s) dès qu'il
+        // était hors cadre : la page « remontait toute seule » pendant le scroll.
+        const track = trackRef.current;
+        const el = track?.children[activeSlot] as HTMLElement | undefined;
+        if (!track || !el) return;
+        const t = track.getBoundingClientRect();
+        const r = el.getBoundingClientRect();
+        const left = track.scrollLeft + (r.left + r.width / 2) - (t.left + t.width / 2);
+        track.scrollTo({ left, behavior: 'smooth' });
     }, [activeSlot]);
 
     if (!current) return null;

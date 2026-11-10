@@ -12,6 +12,8 @@ interface QuestionCuisineProps {
     etape?: string;
     /** « 400 ml crème liquide »… : de quoi répondre sur ce qu'on a en main. */
     ingredients: string[];
+    /** Bouton plus grand (mode préparation). */
+    grand?: boolean;
 }
 
 /**
@@ -19,13 +21,41 @@ interface QuestionCuisineProps {
  * crème ? », « je n'ai que 3 œufs »). On écrit, on envoie avec « Demander », la
  * réponse s'affiche et peut être écoutée. Aucun micro.
  */
-export default function QuestionCuisine({ titre, etape = '', ingredients }: QuestionCuisineProps) {
+export default function QuestionCuisine({ titre, etape = '', ingredients, grand = false }: QuestionCuisineProps) {
     const [ouvert, setOuvert] = useState(false);
     const [texte, setTexte] = useState('');
     const [charge, setCharge] = useState(false);
     const [echange, setEchange] = useState<{ question: string; reponse: string } | null>(null);
     const [lecture, setLecture] = useState(false);
     const champ = useRef<HTMLTextAreaElement>(null);
+    // Dictée : reconnaissance vocale du navigateur (Chrome, Edge, Safari). Absente ailleurs.
+    const [ecoute, setEcoute] = useState(false);
+    const reco = useRef<any>(null);
+    const dictee = typeof window !== 'undefined' ? ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition) : null;
+
+    const arreterDictee = () => { try { reco.current?.stop(); } catch { /* noop */ } reco.current = null; setEcoute(false); };
+    useEffect(() => () => arreterDictee(), []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const dicter = () => {
+        if (ecoute) { arreterDictee(); return; }
+        if (!dictee) return;
+        debloquerVoix();
+        const avant = texte.trim();
+        const r = new dictee();
+        r.lang = 'fr-FR';
+        r.interimResults = true;
+        r.continuous = true;
+        r.onresult = (e: any) => {
+            let dit = '';
+            for (let i = 0; i < e.results.length; i++) dit += e.results[i][0].transcript;
+            setTexte(`${avant ? avant + ' ' : ''}${dit.trim()}`);
+        };
+        r.onend = () => { reco.current = null; setEcoute(false); };
+        r.onerror = () => { reco.current = null; setEcoute(false); };
+        reco.current = r;
+        setEcoute(true);
+        try { r.start(); } catch { arreterDictee(); }
+    };
 
     useEffect(() => {
         if (ouvert && !echange) setTimeout(() => champ.current?.focus(), 120);
@@ -83,7 +113,7 @@ export default function QuestionCuisine({ titre, etape = '', ingredients }: Ques
         <>
             <button
                 type="button"
-                className={`${styles.bouton} ${ouvert ? styles.boutonActif : ''}`}
+                className={`${styles.bouton} ${grand ? styles.grand : ''} ${ouvert ? styles.boutonActif : ''}`}
                 onClick={() => (ouvert ? fermer() : setOuvert(true))}
                 aria-expanded={ouvert}
                 aria-label="Poser une question"
@@ -129,17 +159,35 @@ export default function QuestionCuisine({ titre, etape = '', ingredients }: Ques
                                 className={styles.formulaire}
                                 onSubmit={(e) => { e.preventDefault(); void envoyer(); }}
                             >
-                                <textarea
-                                    ref={champ}
-                                    className={styles.champ}
-                                    value={texte}
-                                    onChange={(e) => setTexte(e.target.value)}
-                                    onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void envoyer(); } }}
-                                    placeholder="Par quoi remplacer la crème ? Je n'ai que 3 œufs…"
-                                    rows={2}
-                                    maxLength={300}
-                                    disabled={charge}
-                                />
+                                <div className={styles.champLigne}>
+                                    <textarea
+                                        ref={champ}
+                                        className={styles.champ}
+                                        value={texte}
+                                        onChange={(e) => setTexte(e.target.value)}
+                                        onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void envoyer(); } }}
+                                        placeholder="Par quoi remplacer la crème ? Je n'ai que 3 œufs…"
+                                        rows={2}
+                                        maxLength={300}
+                                        disabled={charge}
+                                    />
+                                    {dictee && (
+                                        <button
+                                            type="button"
+                                            className={`${styles.micro} ${ecoute ? styles.microActif : ''}`}
+                                            onClick={dicter}
+                                            aria-pressed={ecoute}
+                                            aria-label={ecoute ? 'Arrêter la dictée' : 'Dicter ma question'}
+                                            title={ecoute ? 'Arrêter la dictée' : 'Dicter ma question'}
+                                            disabled={charge}
+                                        >
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                                                <rect x="9" y="2" width="6" height="12" rx="3" />
+                                                <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+                                            </svg>
+                                        </button>
+                                    )}
+                                </div>
                                 <button type="submit" className={styles.envoyer} disabled={!texte.trim() || charge}>
                                     {charge ? <span className={styles.points} aria-label="Réflexion en cours"><i /><i /><i /></span> : 'Demander'}
                                 </button>

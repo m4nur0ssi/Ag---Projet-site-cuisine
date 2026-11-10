@@ -1574,6 +1574,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         </div>
                         <div className={styles.focusQuestion}>
                             <QuestionCuisine
+                                grand
                                 titre={decodeHtml(recipe.title)}
                                 etape={stripHtml(recipe.steps[activeStepIndex] || '')}
                                 ingredients={recipe.ingredients.map((i) => `${i.quantity || ''} ${i.name}`.trim())}

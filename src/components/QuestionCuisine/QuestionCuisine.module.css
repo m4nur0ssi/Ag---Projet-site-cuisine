@@ -21,6 +21,9 @@
 
 .bouton:hover { border-color: rgba(255, 255, 255, 0.32); transform: translateY(-1px); }
 .bouton:active { transform: scale(0.97); }
+/* Mode préparation : bouton plus grand, lisible en cuisine. */
+.grand { height: 56px; padding: 0 20px 0 15px; font-size: 1.05rem; gap: 10px; }
+.grand .icone { width: 24px; height: 24px; }
 .boutonActif { border-color: var(--dynamic-accent, #ffb347); }
 
 .icone { flex: 0 0 auto; color: var(--dynamic-accent, #ffb347); }
@@ -49,6 +52,33 @@
 .fermer { width: 28px; height: 28px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.1); color: #fff; cursor: pointer; }
 
 .formulaire { display: flex; flex-direction: column; gap: 10px; }
+.champLigne { display: flex; align-items: stretch; gap: 10px; }
+.champLigne .champ { flex: 1; min-width: 0; }
+.micro {
+    flex: 0 0 50px;
+    width: 50px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    color: #1a1208;
+    background: linear-gradient(150deg, #ffd27a 0%, var(--dynamic-accent, #ffb347) 55%, #ff7a59 100%);
+    box-shadow: 0 8px 20px rgba(255, 150, 80, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.micro:active { transform: scale(0.94); }
+.micro:disabled { opacity: 0.4; cursor: default; }
+.microActif {
+    color: #fff;
+    background: linear-gradient(150deg, #ff6b6b, #e11d48);
+    animation: micro-pulse 1.4s ease-in-out infinite;
+}
+@keyframes micro-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.55); }
+    50% { box-shadow: 0 0 0 10px rgba(225, 29, 72, 0); }
+}
 .champ {
     width: 100%;
     resize: none;

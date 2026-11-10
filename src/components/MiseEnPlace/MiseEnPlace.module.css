@@ -25,8 +25,14 @@
 
 .titre {
     flex: 1;
-    font-weight: 800;
-    font-size: 1.05rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+    background: linear-gradient(112deg, #fff6e7 0%, #ffd08e 44%, #ffb66e 70%, #b8d66d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -51,11 +57,12 @@
 }
 
 .kicker {
+    font-family: 'Outfit', sans-serif;
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 1.6px;
     text-transform: uppercase;
-    color: var(--color-accent-purple-light);
+    color: #ffb66e;
 }
 
 .intro {
@@ -108,25 +115,30 @@
 
 .barreFill {
     height: 100%;
-    background: linear-gradient(90deg, #34d399, #16a34a);
+    background: linear-gradient(90deg, #fff6e7, #ffb66e);
     transition: width 0.4s ease;
 }
 
 .barrePleine {
-    box-shadow: 0 0 14px rgba(52, 211, 153, 0.8);
+    box-shadow: 0 0 14px rgba(255, 182, 110, 0.7);
 }
 
 .grille {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
-    gap: 14px;
+    /* Rangées centrées : un dernier ingrédient seul reste au milieu, pas collé à gauche. */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
 }
 
 .cellule {
     perspective: 1000px;
+    flex: 0 1 280px;
+    max-width: 100%;
+    min-width: 240px;
 }
 
 .tuile {
@@ -144,7 +156,7 @@
 .interieur {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: 96px;
     transform-style: preserve-3d;
 }
 
@@ -186,8 +198,37 @@
 }
 
 .photoVide {
-    font-size: 3.6rem;
-    margin-bottom: 36px;
+    font-size: 2.2rem;
+}
+
+/* Tuile en rangée : photo ronde à gauche, nom et quantité à droite. */
+.avant {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 16px 10px 10px;
+    text-align: left;
+    border-radius: 999px;
+}
+.avant .photo {
+    position: relative;
+    inset: auto;
+    flex: 0 0 auto;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35), inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+.avant .legende {
+    position: static;
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    background: none;
+    color: var(--color-text-primary, #fff);
 }
 
 .legende {
@@ -206,6 +247,7 @@
 }
 
 .nom {
+    font-family: 'Outfit', sans-serif;
     font-weight: 800;
     font-size: 0.92rem;
     line-height: 1.15;
@@ -239,10 +281,10 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    color: #fff;
-    background: linear-gradient(155deg, #34d399 0%, #16a34a 55%, #15803d 100%);
-    border-color: rgba(255, 255, 255, 0.35);
-    box-shadow: 0 12px 30px rgba(22, 163, 74, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    color: #170f08;
+    background: linear-gradient(135deg, #fff6e7 0%, #ffb66e 100%);
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 12px 30px rgba(255, 160, 82, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.52);
 }
 
 .coche {
@@ -250,6 +292,7 @@
 }
 
 .pretTexte {
+    font-family: 'Outfit', sans-serif;
     font-weight: 900;
     font-size: 1.05rem;
     letter-spacing: 0.4px;
@@ -273,8 +316,8 @@
 }
 
 .commencerPret {
-    background: linear-gradient(135deg, #34d399, #16a34a) !important;
-    box-shadow: 0 8px 26px rgba(22, 163, 74, 0.5);
+    background: linear-gradient(135deg, #fff6e7, #ffb66e) !important;
+    box-shadow: 0 8px 26px rgba(255, 160, 82, 0.4);
     animation: pulsation 1.8s ease-in-out infinite;
 }
 
@@ -288,9 +331,11 @@
     padding: 14px 24px;
     border-radius: 999px;
     border: none;
-    background: var(--color-accent-purple);
-    color: #fff;
-    font-weight: 800;
+    background: linear-gradient(135deg, #fff6e7 0%, #ffb66e 100%);
+    box-shadow: 0 16px 42px rgba(255, 160, 82, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.52);
+    color: #170f08;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
     font-size: 1rem;
     cursor: pointer;
 }
