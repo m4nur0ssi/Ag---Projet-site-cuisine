@@ -25,12 +25,13 @@ const enCours = new Map<string, Promise<string | null>>();
 let muetJusqua = 0;
 
 const SILENCE = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=';
-const CACHE = 'voix-cuisine-v1';
+// v2 : nouvelle voix (Kore). Le cache v1 contient encore les anciennes voix.
+const CACHE = 'voix-cuisine-v2';
 
 const cle = (t: string) => {
     let h = 5381;
     for (let i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) | 0;
-    return `/voix-cuisine/${t.length}-${h >>> 0}`;
+    return `/voix-cuisine/kore-${t.length}-${h >>> 0}`;
 };
 
 /** À appeler DANS un geste de l'utilisateur : autorise ensuite l'audio et la synthèse. */

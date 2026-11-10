@@ -10,9 +10,10 @@
  *
  * FOURNISSEURS, DANS L'ORDRE
  * --------------------------
- *   1. ElevenLabs (`ELEVENLABS_API_KEY`, voix `ELEVENLABS_VOICE_ID`, « Sarah »
- *      par défaut, comme Pilvoice) ;
- *   2. OpenAI (`OPENAI_API_KEY`, modèle `gpt-4o-mini-tts`, voix « shimmer »).
+ *   1. Gemini (`GEMINI_API_KEY`, voix « Kore », française, comme Pilvoice) ;
+ *   2. ElevenLabs (`ELEVENLABS_API_KEY`, voix `ELEVENLABS_VOICE_ID`, « Sarah »
+ *      par défaut) ;
+ *   3. OpenAI (`OPENAI_API_KEY`, modèle `gpt-4o-mini-tts`, voix « shimmer »).
  * Aucune clé, ou un échec → 204 : l'appli retombe sur la voix de l'appareil.
  *
  * GARDE-FOUS (une route qui transforme du texte en son COÛTE de l'argent)
@@ -88,6 +89,50 @@ async function openAI(texte: string): Promise<ArrayBuffer | null> {
     } catch { return null; }
 }
 
+// Modèles Gemini TTS essayés dans l'ordre (même liste que Pilvoice, voix-naturelle.js).
+const MODELES_GEMINI = ['gemini-3.8-flash-lite-tts', 'gemini-3.1-flash-tts-preview', 'gemini-2.5-flash-preview-tts'];
+
+/** PCM 16 bits mono 24 kHz → WAV (44 octets d'en-tête). */
+function wavDepuisPcm(pcm: Buffer): Buffer {
+    const h = Buffer.alloc(44);
+    h.write('RIFF'); h.writeUInt32LE(36 + pcm.length, 4); h.write('WAVEfmt ', 8);
+    h.writeUInt32LE(16, 16); h.writeUInt16LE(1, 20); h.writeUInt16LE(1, 22);
+    h.writeUInt32LE(24000, 24); h.writeUInt32LE(48000, 28); h.writeUInt16LE(2, 32); h.writeUInt16LE(16, 34);
+    h.write('data', 36); h.writeUInt32LE(pcm.length, 40);
+    return Buffer.concat([h, pcm]);
+}
+
+/** Voix Gemini « Kore » : renvoie un WAV, ou null (on passe au fournisseur suivant). */
+async function gemini(texte: string): Promise<ArrayBuffer | null> {
+    const cle = process.env.GEMINI_API_KEY;
+    if (!cle) return null;
+    const payload = {
+        contents: [{ parts: [{ text: 'Lis exactement en français de France, voix douce et naturelle, sans rien ajouter :\n' + texte }] }],
+        generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Kore' } } } },
+    };
+    for (const modele of MODELES_GEMINI) {
+        try {
+            const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modele}:generateContent`, {
+                method: 'POST',
+                headers: { 'x-goog-api-key': cle, 'content-type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            if (!r.ok) { console.error('Gemini TTS', modele, r.status); continue; }
+            const j = await r.json();
+            const d = j.candidates?.[0]?.content?.parts?.find((p: { inlineData?: unknown }) => p.inlineData)?.inlineData;
+            if (!d?.data || !/^audio\/l16/i.test(d.mimeType || '')) continue;
+            const taux = /rate=(\d+)/i.exec(d.mimeType)?.[1] || '24000';
+            const canaux = /channels=(\d+)/i.exec(d.mimeType)?.[1] || '1';
+            if (Number(taux) !== 24000 || Number(canaux) !== 1) continue;
+            const pcm = Buffer.from(d.data, 'base64');
+            if (pcm.length < 100 || pcm.length % 2) continue;
+            const wav = wavDepuisPcm(pcm);
+            return wav.buffer.slice(wav.byteOffset, wav.byteOffset + wav.byteLength) as ArrayBuffer;
+        } catch { console.error('Gemini TTS', modele, 'generation-echouee'); }
+    }
+    return null;
+}
+
 export async function POST(req: Request) {
     const compte = await compteDe(req);
     if (!compte) return vide(401);
@@ -98,6 +143,11 @@ export async function POST(req: Request) {
     texte = texte.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, MAX_CAR);
     if (!texte) return vide(400);
 
+    const wav = await gemini(texte);
+    if (wav) return new Response(wav, {
+        status: 200,
+        headers: { 'content-type': 'audio/wav', 'cache-control': 'private, max-age=31536000, immutable' },
+    });
     const audio = (await elevenLabs(texte)) || (await openAI(texte));
     if (!audio) return vide(204);
     return new Response(audio, {

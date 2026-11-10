@@ -52,6 +52,7 @@ import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
 import { planifiable, OUVRIR_PLANIFICATEUR } from '@/mobile/screens/tv/plan';
 import { ecrireStock } from '@/lib/stockage';
 import { estRecetteBebe } from '@/lib/bebe';
+import { debloquerVoix, direNaturel, taireVoix } from '@/lib/voixCuisine';
 
 interface RecipeDetailsProps {
     recipe: Recipe;
@@ -545,7 +546,8 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     useEffect(() => { focusModeRef.current = focusMode; }, [focusMode]);
     const spokenRef = useRef<number | null>(null); // dernière étape lue à voix haute
 
-    const speak = (text: string) => {
+    // Repli : la voix de l'appareil, utilisée seulement si la voix naturelle échoue.
+    const parlerAppareil = (text: string) => {
         if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
             // On n'annule QUE s'il y a de quoi : sur iPhone, un `cancel()` suivi
             // aussitôt d'un `speak()` avale la nouvelle phrase, et on n'entend rien.
@@ -589,6 +591,31 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 } catch (e) { /* noop */ }
             }, 1000);
         }
+    };
+
+    /*
+     * Voix naturelle d'abord (/api/tts, jouée dans la balise <audio> débloquée au
+     * clic « Lancer la préparation »), comme sur mobile. La voix de l'appareil
+     * n'est qu'un repli. Une nouvelle étape annule la précédente.
+     */
+    const genVoixRef = useRef(0);
+    const speak = (text: string) => {
+        if (typeof window === 'undefined') return;
+        const gen = ++genVoixRef.current;
+        taireVoix();
+        isSpeakingRef.current = true;
+        if (recognitionRef.current) {
+            try { recognitionRef.current.stop(); } catch (e) { /* noop */ }
+        }
+        void direNaturel(stripHtml(text)).then((ok) => {
+            if (gen !== genVoixRef.current) return;
+            isSpeakingRef.current = false;
+            if (ok) {
+                if (focusModeRef.current) setTimeout(() => startRecognitionRef.current(), 300);
+                return;
+            }
+            parlerAppareil(text);
+        });
     };
 
     const recognitionRef = useRef<any>(null);
@@ -731,6 +758,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
             }
+            taireVoix();
         };
     }, [focusMode, startRecognition]);
 
@@ -905,6 +933,8 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                 // posé à la main, l'état n'arrivant qu'au rendu suivant.
                                 focusModeRef.current = true;
                                 spokenRef.current = 0;
+                                // Déblocage de la balise audio, dans le geste (voix naturelle).
+                                debloquerVoix();
                                 // La VOIX D'ABORD, le micro ensuite (il s'ouvre à la fin
                                 // de la lecture) : ouvrir le micro avant met la sortie
                                 // audio en mode enregistrement et la voix ne sort pas.

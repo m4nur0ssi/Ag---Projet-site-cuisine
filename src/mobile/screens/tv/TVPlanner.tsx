@@ -1581,14 +1581,22 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                             <SlotView key={meal} day={day} meal={meal} accepts={posableEnSemaine} surprend={isTVMain} sideable />
                                         ));
                                     }
+                                    /*
+                                     * Midi TOUJOURS avant soir. Avant, le repas rempli
+                                     * passait en tête : un plat glissé du midi au soir
+                                     * revenait s'afficher à la même place, seule
+                                     * l'étiquette changeait — on croyait que le geste
+                                     * n'avait rien fait. La ligne « Ajouter » porte
+                                     * aussi `data-creneau` : on peut lâcher dessus.
+                                     */
                                     return (
                                         <>
-                                            {remplis.map((meal) => (
+                                            {MEALS.map((meal) => plan[day]?.[meal] ? (
                                                 <SlotView key={meal} day={day} meal={meal} accepts={posableEnSemaine} surprend={isTVMain} sideable />
-                                            ))}
-                                            {MEALS.filter((m) => !plan[day]?.[m]).map((meal) => (
+                                            ) : (
                                                 <button
                                                     key={meal}
+                                                    data-creneau={`${day}|${meal}`}
                                                     className={styles.planAjoutRepas}
                                                     onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal }); }}
                                                 >
