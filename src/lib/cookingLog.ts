@@ -62,7 +62,7 @@ async function uploadPhoto(userId: string, recipeId: string, file: File): Promis
         return { url: null, motif: 'lecture de la photo' };
     }
     const path = `${userId}/${recipeId}-${Date.now()}.${ext}`;
-    const { error: upErr } = await supabase.storage.from('cooking-photos').upload(path, blob, { upsert: true, contentType: type });
+    const { error: upErr } = await supabase.storage.from('cooking-photos').upload(path, blob, { upsert: false, contentType: type });
     if (upErr) {
         const m = (upErr as any).statusCode ? `${(upErr as any).statusCode} ${upErr.message}` : upErr.message;
         console.error('[carnet] upload photo', upErr);
