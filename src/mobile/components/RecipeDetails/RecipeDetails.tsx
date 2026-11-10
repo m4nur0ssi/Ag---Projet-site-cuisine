@@ -830,6 +830,8 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 startTimer(minutes, shortLabel, recipe.id, { titre: recipe.title, image: recipe.image, etape: nextIdx }, nomPourAnnonce(nextStep, recipe.ingredients));
             }
         } else {
+            // Recette finie : on arrête ses minuteurs.
+            timers.filter((t) => t.recipeId === recipe.id).forEach((t) => stopTimer(t.id));
             setTermine(true);
             speak('C’est terminé. Bon appétit ! Dites « quitter » pour fermer.');
         }

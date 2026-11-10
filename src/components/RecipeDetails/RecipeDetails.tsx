@@ -77,7 +77,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     const recipe = useMemo(() => ({ ...rawRecipe, ingredients: recipeIngredients(rawRecipe.ingredients) }), [rawRecipe]);
     // Volet « Ajouter au planificateur » ouvert depuis la fiche.
     const [planOpen, setPlanOpen] = useState(false);
-    const { startTimer, timers, stopTimer, masquerBandeau } = useTimer();
+    const { startTimer, timers, stopTimer, stopRecette, masquerBandeau } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
     // Mise en place : écran des ingrédients à sortir, avant de lancer la recette.
@@ -348,7 +348,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     const chronoEtape = dureeEtape ? timers.find((t) => t.label === libelleEtape) : undefined;
     const lancerChronoEtape = () => {
         if (!dureeEtape) return;
-        startTimer(dureeEtape, libelleEtape, nomPourAnnonce(etapeCourante, recipe.ingredients));
+        startTimer(dureeEtape, libelleEtape, nomPourAnnonce(etapeCourante, recipe.ingredients), recipe.id);
         triggerHaptic();
     };
 
@@ -460,7 +460,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, nomPourAnnonce(stepText, recipe.ingredients));
+                startTimer(minutes, shortLabel, nomPourAnnonce(stepText, recipe.ingredients), recipe.id);
             }
         }
     };
@@ -727,13 +727,12 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, nomPourAnnonce(nextStep, recipe.ingredients));
+                startTimer(minutes, shortLabel, nomPourAnnonce(nextStep, recipe.ingredients), recipe.id);
             }
         } else {
+            // Recette finie : on arrête ses minuteurs, sans message.
+            stopRecette(recipe.id);
             setFocusMode(false);
-            if (typeof window !== 'undefined') {
-                alert('Félicitations ! Recette terminée ! 🥂');
-            }
         }
     };
 

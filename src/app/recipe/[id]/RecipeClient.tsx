@@ -47,7 +47,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
     const tPrep = hasEstimate ? timing.prepTime : (recipe.prepTime || 0);
     const tCook = hasEstimate ? timing.cookTime : (recipe.cookTime || 0);
     const { user: authUser } = useAuth();
-    const { startTimer, stopTimer } = useTimer();
+    const { startTimer, stopTimer, stopRecette } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
     const [activeStepIndex, setActiveStepIndex] = useState(0);
@@ -377,7 +377,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel);
+                startTimer(minutes, shortLabel, null, String(recipe.id));
             }
 
             // Auto-scroll vers l'étape suivante (iOS 26)
@@ -577,13 +577,12 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel);
+                startTimer(minutes, shortLabel, null, String(recipe.id));
             }
         } else {
+            // Recette finie : on arrête ses minuteurs, sans message.
+            stopRecette(String(recipe.id));
             setFocusMode(false);
-            if (typeof window !== 'undefined') {
-                alert('Félicitations ! Recette terminée ! 🥂');
-            }
         }
     };
 

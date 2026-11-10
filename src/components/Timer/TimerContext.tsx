@@ -13,6 +13,8 @@ export interface Chrono {
     label: string;
     /** Nom d'ingrédient annoncé à la fin (« carottes : c'est prêt »). */
     nom?: string | null;
+    /** Recette qui a lancé ce minuteur (pour l'arrêter à la fin de la recette). */
+    recipeId?: string;
 }
 
 interface TimerContextType {
@@ -20,7 +22,9 @@ interface TimerContextType {
     activeTimer: Chrono | null;
     /** Tous les chronos en cours, le plus proche de la fin d'abord. */
     timers: Chrono[];
-    startTimer: (minutes: number, label: string, nom?: string | null) => void;
+    startTimer: (minutes: number, label: string, nom?: string | null, recipeId?: string) => void;
+    /** Arrête tous les minuteurs lancés par cette recette (fin de préparation). */
+    stopRecette: (recipeId: string) => void;
     /** Sans identifiant : arrête le chrono qui finit en premier. */
     stopTimer: (id?: string) => void;
     /** La préparation affiche déjà les minuteurs dans sa tuile : le bandeau du bas se cache. */
@@ -29,7 +33,7 @@ interface TimerContextType {
 
 const TimerContext = createContext<TimerContextType | undefined>(undefined);
 
-interface Depart { id: string; fin: number; duration: number; label: string; nom?: string | null }
+interface Depart { id: string; fin: number; duration: number; label: string; nom?: string | null; recipeId?: string }
 
 export function TimerProvider({ children }: { children: React.ReactNode }) {
     // Plusieurs minuteurs en même temps (carottes + pommes de terre) : une liste.
@@ -50,7 +54,7 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
     const timers = useMemo<Chrono[]>(
         () => departs
             .map((d) => ({
-                id: d.id, duration: d.duration, label: d.label, nom: d.nom,
+                id: d.id, duration: d.duration, label: d.label, nom: d.nom, recipeId: d.recipeId,
                 remaining: Math.max(0, Math.ceil((d.fin - maintenant) / 1000)),
             }))
             .sort((a, b) => a.remaining - b.remaining),
@@ -70,16 +74,20 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
         setDeparts((prev) => prev.filter((d) => !finis.some((f) => f.id === d.id)));
     }, [timers]);
 
-    const startTimer = useCallback((minutes: number, label: string, nom?: string | null) => {
+    const startTimer = useCallback((minutes: number, label: string, nom?: string | null, recipeId?: string) => {
         const id = `chrono-${Date.now()}-${compteur.current++}`;
         // Relancer la même étape remplace son minuteur au lieu d'en empiler un double.
         setDeparts((prev) => [
             ...prev.filter((d) => d.label !== label),
-            { id, fin: Date.now() + minutes * 60_000, duration: minutes * 60, label, nom },
+            { id, fin: Date.now() + minutes * 60_000, duration: minutes * 60, label, nom, recipeId },
         ]);
         if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
             Notification.requestPermission();
         }
+    }, []);
+
+    const stopRecette = useCallback((recipeId: string) => {
+        setDeparts((prev) => prev.filter((d) => d.recipeId !== recipeId));
     }, []);
 
     const stopTimer = useCallback((id?: string) => {
@@ -91,7 +99,7 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
     }, []);
 
     return (
-        <TimerContext.Provider value={{ activeTimer: timers[0] || null, timers, startTimer, stopTimer, masquerBandeau }}>
+        <TimerContext.Provider value={{ activeTimer: timers[0] || null, timers, startTimer, stopTimer, stopRecette, masquerBandeau }}>
             {children}
             {!bandeauMasque && <TimerDisplay timers={timers} onStop={stopTimer} />}
         </TimerContext.Provider>
