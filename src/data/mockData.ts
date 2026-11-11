@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8194",
         "title": "Tarte Tatin d'oignon et lardons fumés",
         "description": "Découvrez une façon originale et rapide de préparer une Tarte Tatin salée. Cette recette met en vedette des oignons doux caramélisés, des lardons fumés et du fromage, le tout sur une pâte feuilletée croustillante. Elle est accompagnée d'une crème ...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8194-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
