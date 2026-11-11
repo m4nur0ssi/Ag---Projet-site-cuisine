@@ -2,11 +2,273 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/11/2026 16:55:18
- * Total: 844 recettes
+ * Dernière mise à jour: 11/11/2026 17:41:21
+ * Total: 847 recettes
  */
-export const exportSyncId = "1794416118503";
+export const exportSyncId = "1794418881805";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8194",
+        "title": "Tarte Tatin d'oignon et lardons fumés",
+        "description": "Découvrez une façon originale et rapide de préparer une Tarte Tatin salée. Cette recette met en vedette des oignons doux caramélisés, des lardons fumés et du fromage, le tout sur une pâte feuilletée croustillante. Elle est accompagnée d'une crème ...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7702497725274688801\" data-video-id=\"7702497725274688801\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7702497725274688801\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             5 à 6 oignons doux des Cévennes"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             150 g de lardons fumés"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             100 à 150 g de fromage râpé (brebis ou chèvre)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette fraîche"
+            }
+        ],
+        "steps": [
+            "Faites revenir les lardons dans une poêle jusqu'à ce qu'ils soient légèrement dorés. Retirez-les du feu en conservant la graisse dans la poêle.",
+            "Coupez les oignons en deux. Déposez les moitiés d'oignons côté coupé dans la même poêle. Faites-les colorer quelques minutes.",
+            "Versez un filet de miel et ajoutez un peu de thym. Laissez caraméliser les oignons encore quelques minutes.",
+            "Disposez les oignons bien serrés dans un plat allant au four, côté coupé vers le fond. Ajoutez les lardons puis le fromage râpé.",
+            "Recouvrez avec la pâte feuilletée et faites une petite croix au milieu de la pâte.",
+            "Enfournez le tout à 200 °C pendant 25 à 30 minutes, jusqu'à obtenir une pâte bien dorée.",
+            "Pendant ce temps, mélangez le fromage frais avec le jus de citron et la ciboulette ciselée. Poivrez légèrement.",
+            "Laissez reposer la tarte quelques minutes à la sortie du four avant de la retourner délicatement.",
+            "Servez la Tatin encore chaude avec une belle cuillère de crème citronnée bien fraîche."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8192",
+        "title": "Paleron de bœuf aux oignons confits",
+        "description": "Une recette traditionnelle de paleron de bœuf mijoté, inspirée de la cuisine de grand-mère et de la soupe à l'oignon. Le bœuf est cuit lentement avec des oignons confits dans une sauce riche au vin blanc et bouillon, jusqu'à devenir incroyablement...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7699515349280017697\" data-video-id=\"7699515349280017697\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7699515349280017697\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Un morceau de paleron de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1,5 kg d'oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Du beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             20 cl de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             1,5 L de bouillon de bœuf (maison ou cubes du commerce dilués)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Un bouquet garni"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Du romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Du sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Du poivre"
+            }
+        ],
+        "steps": [
+            "Assaisonnez généreusement un beau morceau de paleron de bœuf sur toutes les faces.",
+            "Marquez le paleron dans une poêle chaude.",
+            "Dans la même poêle, ajoutez une bonne dose de beurre et faites-y compoter les oignons longuement jusqu'à ce qu'ils soient fondants et bien colorés.",
+            "Singe-les avec 2 cuillères à soupe de farine et laissez cuire 1 minute.",
+            "Déglacez avec le vin blanc, puis ajoutez le bouillon de bœuf (maison ou dilué si vous utilisez des cubes du commerce), un bouquet garni et du romarin.",
+            "Transférez le tout dans un plat allant au four et enfournez pour 6 heures à 120 °C.",
+            "Pendant la cuisson, n'oubliez pas de retourner la viande une fois.",
+            "Servez l'effiloché de bœuf fondant en bouche, par exemple avec un bon riz blanc."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8190",
+        "title": "Le meilleur dessert de Noël en 5 minutes",
+        "description": "Découvrez le meilleur dessert de Noël, rapide et facile à préparer en seulement 5 minutes (temps de préparation hors cuisson et refroidissement). Ce dessert festif fond littéralement en bouche et est parfait pour le menu de Noël, le réveillon du N...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7705114873247714580\" data-video-id=\"7705114873247714580\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7705114873247714580\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍯\n             180 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             180 ml de crème liquide (33 % de matière grasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             300 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             60 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             60 ml d'huile de tournesol"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             280 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             250 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             50 g de cacao en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             8 g de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de canneberges"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             50 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10 g de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             20 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de fromage frais (type Philadelphia)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 ml de crème liquide (33 % de matière grasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50 g de lait concentré"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix de coco râpée pour saupoudrer"
+            }
+        ],
+        "steps": [
+            "**Préparer le caramel :** Dans une casserole, mélanger 180 g de sucre, 180 ml de crème liquide (33 % de matière grasse), 40 g de beurre et une pincée de sel. Faire chauffer à feu moyen jusqu'à obtenir un caramel. Laisser refroidir.",
+            "**Préparer la base du gâteau :** Dans un grand bol, battre 2 œufs avec 300 g de sucre. Ajouter 60 g de beurre fondu, 60 ml d'huile de tournesol et 280 ml de lait, puis bien mélanger.",
+            "Incorporer 250 g de farine, 50 g de cacao en poudre et 8 g de levure chimique à la préparation liquide jusqu'à obtenir une pâte homogène.",
+            "Verser la pâte dans un moule (environ 20×20 cm ou rond de 24 cm) et cuire au four préchauffé pendant 15 minutes à 180 degrés Celsius.",
+            "**Préparer la compote de canneberges :** Dans une petite casserole, mélanger 200 g de canneberges, 40 g de sucre et 50 ml d'eau. Porter à ébullition et laisser mijoter quelques minutes jusqu'à ce que les canneberges ramollissent.",
+            "Dans un petit bol, délayer 10 g de fécule de maïs dans 20 ml d'eau. Ajouter ce mélange aux canneberges et remuer constamment jusqu'à ce que la compote épaississe. Retirer du feu et laisser refroidir.",
+            "**Préparer la crème au fromage frais :** Dans un bol, fouetter 300 g de fromage frais avec 200 ml de crème liquide (33 % de matière grasse) et 50 g de lait concentré jusqu'à obtenir une crème onctueuse et homogène.",
+            "**Assemblage :** Une fois le gâteau, le caramel et la compote refroidis, assembler le dessert en couches dans un plat de service ou des verrines (par exemple : une couche de gâteau émietté, suivie de caramel, puis de crème au fromage frais et enfin de compote de canneberges). Répéter les couches si désiré.",
+            "Saupoudrer généreusement de noix de coco râpée avant de servir. Réfrigérer au moins 1 heure pour que les saveurs se mélangent bien."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Desserts",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8188",
         "title": "Gâteau à l'orange ultra moelleux",
