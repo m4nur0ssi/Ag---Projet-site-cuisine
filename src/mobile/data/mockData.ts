@@ -2,11 +2,72 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/11/2026 10:40:42
+ * Dernière mise à jour: 11/11/2026 10:16:41
  * Total: 836 recettes
  */
-export const exportSyncId = "1794307242646";
+export const exportSyncId = "1794392201452";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8162",
+        "title": "Saumon Gravlax",
+        "description": "Découvrez comment préparer un délicieux saumon gravlax, une recette festive et facile à réaliser. Un filet de saumon est mariné avec du sucre, du gros sel, du poivre, des zestes de citron et de l'aneth, puis rincé et tranché finement. Idéal pour l...",
+        "image": "/recipes-ia/8162-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7579292782754303254\" data-video-id=\"7579292782754303254\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7579292782754303254\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             Un filet de saumon entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre (un tiers de la quantité de sel)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Gros sel (deux tiers de la quantité totale sucre/sel)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (à votre guise)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zestes de 2 citrons jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zestes de 2 citrons verts"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une demi-botte d'aneth"
+            }
+        ],
+        "steps": [
+            "Procurez-vous un filet de saumon entier. Si vous le souhaitez, demandez à votre poissonnier de le désarêter et d'enlever la peau.",
+            "Parez le filet de saumon et coupez-le en trois portions.",
+            "Préparez la marinade en mélangeant un tiers de sucre, deux tiers de gros sel et du poivre à votre guise.",
+            "Ajoutez les zestes de citron vert, les zestes de citron jaune et l'aneth à la marinade.",
+            "Enrobez généreusement le saumon dans la marinade et laissez-le reposer au réfrigérateur pendant 12 à 14 heures. Pour la queue du saumon, vous pouvez réduire le temps de marinade de deux à trois heures afin qu'elle ne soit pas trop salée.",
+            "Rincez le saumon à l'eau froide pour retirer l'excédent de marinade.",
+            "Portionnez le saumon en tranches fines. Vous pouvez le préparer un ou deux jours avant les fêtes et le conserver sous vide.",
+            "Dégustez ou réservez pour les fêtes."
+        ],
+        "tags": [
+            "Healthy",
+            "Noël",
+            "Pas cher",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8164",
         "title": "Poêlée automnale : Patate douce sautée, champignons et marrons",
@@ -86,7 +147,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8166",
         "title": "Légumes rôtis d'automne au miel et vinaigre balsamique",
         "description": "Un mélange réconfortant de légumes de saison rôtis et caramélisés au four avec du miel, du vinaigre balsamique, des épices et une tête d'ail confite.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8166.webp&v=1794223741000",
+        "image": "/recipes-ia/8166-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -170,67 +231,6 @@ export const mockRecipes: Recipe[] = [
             "Sans Gluten",
             "Sans lactose",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8162",
-        "title": "Saumon Gravlax",
-        "description": "Découvrez comment préparer un délicieux saumon gravlax, une recette festive et facile à réaliser. Un filet de saumon est mariné avec du sucre, du gros sel, du poivre, des zestes de citron et de l'aneth, puis rincé et tranché finement. Idéal pour l...",
-        "image": "/recipes-ia/8162-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7579292782754303254\" data-video-id=\"7579292782754303254\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7579292782754303254\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🐟\n             Un filet de saumon entier"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre (un tiers de la quantité de sel)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Gros sel (deux tiers de la quantité totale sucre/sel)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (à votre guise)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Zestes de 2 citrons jaunes"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Zestes de 2 citrons verts"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Une demi-botte d'aneth"
-            }
-        ],
-        "steps": [
-            "Procurez-vous un filet de saumon entier. Si vous le souhaitez, demandez à votre poissonnier de le désarêter et d'enlever la peau.",
-            "Parez le filet de saumon et coupez-le en trois portions.",
-            "Préparez la marinade en mélangeant un tiers de sucre, deux tiers de gros sel et du poivre à votre guise.",
-            "Ajoutez les zestes de citron vert, les zestes de citron jaune et l'aneth à la marinade.",
-            "Enrobez généreusement le saumon dans la marinade et laissez-le reposer au réfrigérateur pendant 12 à 14 heures. Pour la queue du saumon, vous pouvez réduire le temps de marinade de deux à trois heures afin qu'elle ne soit pas trop salée.",
-            "Rincez le saumon à l'eau froide pour retirer l'excédent de marinade.",
-            "Portionnez le saumon en tranches fines. Vous pouvez le préparer un ou deux jours avant les fêtes et le conserver sous vide.",
-            "Dégustez ou réservez pour les fêtes."
-        ],
-        "tags": [
-            "Healthy",
-            "Noël",
-            "Pas cher",
-            "Poissons et crustacés"
         ],
         "isFeatured": false,
         "isFavorite": false,
