@@ -39,7 +39,12 @@ on:
 
 concurrency:
   group: wp-github-sync
-  cancel-in-progress: true    # Un nouveau sync annule le précédent (évite qu'un run bloqué gèle la file ; le dernier sync est complet)
+  # false : un sync en cours va au bout, le suivant attend (un seul en attente, les
+  # intermédiaires sont écartés). Avec true, chaque recette envoyée depuis le raccourci
+  # tuait le sync précédent : en rafale (une toutes les 2-5 min, sync de ~20 min),
+  # AUCUN sync n'aboutissait et le site ne recevait rien (constaté le 2026-11-11).
+  # Run bloqué : couvert par timeout-minutes et par le timeout de chaque étape réseau.
+  cancel-in-progress: false
 
 jobs:
   sync:
@@ -178,9 +183,10 @@ jobs:
       # passage, y compris sur la synchro de secours de 3 h du matin.
       # ------------------------------------------------------------------
       - name: 🎬 Outils vidéo (yt-dlp + ffmpeg)
+        timeout-minutes: 8
         run: |
-          sudo apt-get update -y && sudo apt-get install -y ffmpeg
-          sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+          sudo timeout 240 apt-get update -y && sudo timeout 240 apt-get install -y ffmpeg
+          sudo curl -L --max-time 120 https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
           sudo chmod a+rx /usr/local/bin/yt-dlp
           yt-dlp --version && ffmpeg -version | head -1
         continue-on-error: true
