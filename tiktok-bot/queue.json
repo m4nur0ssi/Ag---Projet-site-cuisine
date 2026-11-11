@@ -1,20 +1,6 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8P9yy2X/",
-      "country": "Desserts",
-      "timestamp": "2026-11-11T12:58:13.283Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN82qq3XE/",
-      "country": "Pâtisserie",
-      "timestamp": "2026-09-09T22:14:13.752Z",
-      "essais": 1,
-      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
-      "quand": "2026-09-09T22:15:06.069Z"
-    },
     {
       "videoUrl": "https://vm.tiktok.com/ZN82qsmPM/",
       "country": "Desserts",
@@ -166,6 +152,14 @@
       "essais": 1,
       "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
       "quand": "2026-11-11T12:12:47.371Z"
+    },
+    {
+      "videoUrl": "https://vm.tiktok.com/ZN8P9yy2X/",
+      "country": "Desserts",
+      "timestamp": "2026-11-11T12:58:13.283Z",
+      "essais": 1,
+      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
+      "quand": "2026-11-11T12:59:05.279Z"
     }
   ]
 }
