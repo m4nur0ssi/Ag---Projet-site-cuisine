@@ -1,25 +1,6 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8PCXEhF/",
-      "country": "Accompagnements",
-      "timestamp": "2026-11-11T15:44:59.927Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8PCqU4x/",
-      "country": "Asie",
-      "timestamp": "2026-11-11T15:46:04.786Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkAK69/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T08:58:47.582Z",
-      "essais": 1,
-      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
-      "quand": "2026-09-12T09:06:46.194Z"
-    },
     {
       "videoUrl": "https://vm.tiktok.com/ZGdQD8JDP/",
       "country": "Astuces",
@@ -171,6 +152,14 @@
       "essais": 1,
       "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
       "quand": "2026-11-11T15:43:52.334Z"
+    },
+    {
+      "videoUrl": "https://vm.tiktok.com/ZN8PCqU4x/",
+      "country": "Asie",
+      "timestamp": "2026-11-11T15:46:04.786Z",
+      "essais": 1,
+      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
+      "quand": "2026-11-11T15:47:33.300Z"
     }
   ]
 }
