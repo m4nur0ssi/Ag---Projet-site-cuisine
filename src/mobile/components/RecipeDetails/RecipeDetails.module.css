@@ -2120,9 +2120,17 @@
 .focusHeaderActions {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    flex: 0 0 auto;
+    flex: 1 1 100%;
+    order: 3;
 }
+/* Téléphone : ligne 1 = miniature, titre, croix ; ligne 2 = réglages centrés.
+   Sur une seule ligne, la croix sortait de l'écran. */
+.focusHeader { flex-wrap: wrap; row-gap: 12px; }
+.focusHeader .focusThumb { order: 0; width: 60px; height: 60px; margin-right: 0; }
+.focusHeader .focusTitle { order: 1; }
+.focusHeader .focusClose { order: 2; }
 
 /* Boutons ronds « verre » façon Apple TV+ (micro + quitter). */
 .focusMic,
@@ -2982,21 +2990,25 @@
 /* ── Mode préparation (téléphone) : carte d'étape + pilule « Pour cette étape » dessous ── */
 .focusContent {
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 10px;
-    padding: 8px 16px;
+    justify-content: center;
+    gap: 14px;
+    padding: 12px 16px;
     min-height: 0;
     overflow: hidden;
 }
+/* La carte prend la hauteur de son texte (plus de grand rectangle vide) ; le bloc
+   carte + pilule est centré entre l'en-tête et les boutons. */
 .focusContent .focusStepCard {
-    flex: 1 1 auto;
-    min-height: 0;
-    padding: 14px 18px;
+    flex: 0 1 auto;
+    min-height: 200px;
+    padding: 24px 22px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
 .focusContent .focusStepHeader { margin-bottom: 4px; }
 .focusContent .focusStepText { font-size: clamp(1rem, 4.2vw, 1.4rem); line-height: 1.25; }
 /* Boutons un peu plus haut : on rend de la place à la carte et à la pilule. */
-.focusHudWrapper { padding-top: 8px; gap: 8px; }
+.focusHudWrapper { padding-top: 8px; gap: 8px; padding-bottom: 96px; }
 
 /* La pilule : deux faces (ingrédients / vidéo) qui se retournent ensemble. */
 .focusIngTile {
@@ -3183,6 +3195,11 @@
    la tuile « Pour cette étape » passe À CÔTÉ de la carte d'étape, comme sur bureau,
    au lieu d'une barre sous la carte. Le paysage téléphone garde sa règle compacte. */
 @media (min-width: 700px) {
+    .focusHeader { flex-wrap: nowrap; }
+    .focusHeader .focusThumb { width: 68px; height: 68px; margin-right: 12px; }
+    .focusHeaderActions { flex: 0 0 auto; order: 2; }
+    .focusHeader .focusClose { order: 3; }
+    .focusContent .focusStepCard { flex: 1 1 0; min-height: 0; }
     .focusContent {
         flex-direction: row;
         align-items: stretch;

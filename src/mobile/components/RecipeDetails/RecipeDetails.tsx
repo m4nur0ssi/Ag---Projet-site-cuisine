@@ -798,8 +798,17 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
         genVoixRef.current++;          // annule la lecture en cours (et ses suites)
         taireVoix();
         isSpeakingRef.current = false;
+        // La carte d'étape garde la hauteur de son texte et le bloc est centré : la
+        // pilule ne s'agrandit que jusqu'au haut de la zone libre (carte + marge au-dessus).
         const zone = focusContentRef.current;
-        setPilulePx(zone ? Math.max(pileH, zone.clientHeight - 16) : pileH);
+        const carte = zone?.firstElementChild as HTMLElement | null;
+        if (zone && carte) {
+            const bloc = carte.offsetHeight + 10 + pileH;
+            const marge = Math.max(0, (zone.clientHeight - bloc) / 2);
+            setPilulePx(Math.max(pileH, Math.min(zone.clientHeight - 16, bloc + marge)));
+        } else {
+            setPilulePx(pileH);
+        }
         setVideoMonte(true);
         setVideoPlein(true);
     };
@@ -1606,6 +1615,16 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         )}
                         {/* Toucher le titre (ou la miniature) revient à la recette. */}
                         <div className={styles.focusTitle} role="button" tabIndex={0} onClick={() => { setFocusMode(false); triggerHaptic(); }} style={{ cursor: 'pointer' }}>{decodeHtml(recipe.title)}</div>
+                        {/* La croix reste en haut à droite, sur la 1re ligne ; les réglages passent dessous. */}
+                        <button
+                            className={styles.focusClose}
+                            aria-label="Quitter le mode préparation"
+                            onClick={() => { setFocusMode(false); triggerHaptic(); }}
+                        >
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M6 6l12 12M18 6L6 18" />
+                            </svg>
+                        </button>
                         <div className={styles.focusHeaderActions}>
                             <TailleTexte echelle={echelleTexte.echelle} plus={echelleTexte.plus} moins={echelleTexte.moins} />
                             <QuestionCuisine
@@ -1624,15 +1643,6 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <rect x="9" y="2" width="6" height="12" rx="3" />
                                     <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
-                                </svg>
-                            </button>
-                            <button
-                                className={styles.focusClose}
-                                aria-label="Quitter le mode préparation"
-                                onClick={() => { setFocusMode(false); triggerHaptic(); }}
-                            >
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M6 6l12 12M18 6L6 18" />
                                 </svg>
                             </button>
                         </div>
