@@ -126,7 +126,21 @@ async function transcriptionDepuisPage(html) {
     return null;
 }
 
+/**
+ * Aucune IA n'a pu répondre (quota Gemini 429, crédit Anthropic vide, panne…).
+ *
+ * « Pas de réponse » n'est PAS « pas une recette » : isRecipeWithGemini rend
+ * `null` dans les deux cas, et l'appelant écrivait « l'IA n'a pas reconnu une
+ * recette » — alors que la vidéo n'avait même pas été lue (constaté le
+ * 2026-11-11 : Gemini en 429, puis Claude en 400 « credit balance too low »).
+ * On retient ici que les moteurs ont été en panne, pour que l'appelant le dise
+ * et garde la recette en file au lieu de la jeter.
+ */
+let iaEnPanne = false;
+function iaEtaitEnPanne() { return iaEnPanne; }
+
 async function isRecipeWithGemini(description, title, transcription) {
+    iaEnPanne = false;
     const desc = (description || '').toLowerCase();
     const isManual = desc.includes('iphone') || desc.includes('remote') || (title && title.toLowerCase().includes('iphone'));
 
@@ -236,9 +250,11 @@ ${transcription ? `    Transcription de ce que dit l'auteur dans la vidéo : "${
             }
         } catch (e) {
             if (e.message === 'QUOTA_EXCEEDED') {
+                iaEnPanne = true;
                 console.error(`   🚨 Quota Gemini épuisé — Tentative avec Claude (Anthropic)...`);
                 break; // Sortir de la boucle Gemini et tenter Claude
             }
+            iaEnPanne = true;
             console.error(`   ❌ Exception ${model}:`, e.message);
         }
     }
@@ -259,6 +275,7 @@ ${transcription ? `    Transcription de ce que dit l'auteur dans la vidéo : "${
                 }
             }
         } catch (e) {
+            iaEnPanne = true;
             console.error(`   ❌ Exception Claude:`, e.message);
         }
     } else {
@@ -537,8 +554,13 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
             analysis.steps = Array.isArray(analysis.steps) && analysis.steps.length ? analysis.steps : (description ? [description] : []);
             analysis.description = analysis.description || description || '';
             console.log('   🍽️ Restaurant : pas une recette pour l\'IA, mais fiche resto forcée.');
+        } else if (!analysis && iaEtaitEnPanne()) {
+            // Aucune IA n'a répondu : la vidéo n'a pas été jugée. Panne passagère,
+            // la recette reste en file et sera reprise au passage suivant.
+            console.log('   ⏳ Aucune IA disponible (quota/crédit) — la vidéo n\'a pas été analysée.');
+            return echouer(RAISON_QUOTA);
         } else {
-            console.log('   🚫 Ce n\'est pas une recette selon l\'IA (ou erreur Quota).');
+            console.log('   🚫 L\'IA a répondu : ce n\'est pas une recette.');
             return echouer('l\'IA n\'a pas reconnu une recette dans cette vidéo');
         }
     }
