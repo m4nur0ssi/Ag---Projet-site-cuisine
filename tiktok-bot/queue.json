@@ -1,27 +1,12 @@
 {
   "queue": [
     {
-      "videoUrl": "https://vm.tiktok.com/ZN8P9yy2X/",
-      "country": "Desserts",
-      "timestamp": "2026-11-11T12:58:13.283Z",
-      "essais": 2,
-      "derniereRaison": "quota IA épuisé",
-      "derniereTentative": "2026-11-11T16:57:42.375Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8P9b6qd/",
-      "country": "C'est l'hiver",
-      "timestamp": "2026-11-11T13:00:23.463Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8PQnRG2/",
-      "country": "Tarte",
-      "timestamp": "2026-11-11T14:59:06.333Z"
-    },
-    {
       "videoUrl": "https://vm.tiktok.com/ZN8PQGrrV/",
       "country": "Desserts",
-      "timestamp": "2026-11-11T15:07:46.686Z"
+      "timestamp": "2026-11-11T15:07:46.686Z",
+      "essais": 1,
+      "derniereRaison": "quota IA épuisé",
+      "derniereTentative": "2026-11-11T17:25:22.253Z"
     },
     {
       "videoUrl": "https://vm.tiktok.com/ZN8PCE4Ta/",
