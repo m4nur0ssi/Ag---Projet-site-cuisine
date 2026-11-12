@@ -2,11 +2,301 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/11/2026 22:13:24
+ * Dernière mise à jour: 12/11/2026 22:45:51
  * Total: 857 recettes
  */
-export const exportSyncId = "1794521604769";
+export const exportSyncId = "1794523551128";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8226",
+        "title": "Dessert de Knafeh à la crème de noisette",
+        "description": "Un dessert gourmand et facile à réaliser, composé de couches de kadaïf croustillant mélangé à de la crème de noisette, de biscuits trempés dans du lait, d'une crème onctueuse à la vanille et d'un glaçage au chocolat au lait. Idéal pour un moule de...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8226.webp&v=1794526418000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7705893613565218066\" data-video-id=\"7705893613565218066\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7705893613565218066\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             24 biscuits (type petit-beurre ou similaire)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait (pour tremper les biscuits)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de kadaïf (cheveux d'ange) congelé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300 g de crème de noisette (type pâte à tartiner)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             500 ml de crème liquide froide (30% MG minimum)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             80 g de préparation pour pudding instantané à la vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             4 cuillères à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 g de chocolat au lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             125 ml de crème liquide"
+            }
+        ],
+        "steps": [
+            "Faire cuire le kadaïf avec le beurre jusqu'à ce qu'il soit doré et croustillant, puis laisser refroidir.",
+            "Tremper les biscuits dans le lait et les disposer au fond d'un moule de 24×24 cm.",
+            "Mélanger le kadaïf refroidi avec la crème de noisette et étaler cette préparation sur la couche de biscuits.",
+            "Dans un autre bol, fouetter la crème liquide froide avec la préparation pour pudding, le sucre glace et l'extrait de vanille jusqu'à obtenir une crème ferme. Étaler cette crème sur la couche de kadaïf.",
+            "Faire fondre le chocolat au lait avec la crème liquide chaude, puis verser cette ganache au chocolat sur la crème à la vanille.",
+            "Mettre le dessert au congélateur pendant une demi-heure. Ensuite, disposer une couche supérieure de biscuits trempés dans le lait et congeler le dessert pendant 3 heures avant de servir."
+        ],
+        "tags": [
+            "chocolat",
+            "facile",
+            "Orient",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8228",
+        "title": "Brownie Praliné",
+        "description": "Découvrez une recette facile et gourmande de brownie au chocolat praliné, avec des noix et des pépites de chocolat pour une texture irrésistiblement fondante et fudgy.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8228.webp&v=1794526410000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7690136334425460000\" data-video-id=\"7690136334425460000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7690136334425460000\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             60g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             150g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat praliné"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 bonne pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Des noix (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Des pépites de chocolat (facultatif)"
+            }
+        ],
+        "steps": [
+            "Faites fondre le chocolat praliné cassé en morceaux avec le beurre.",
+            "Pendant ce temps, battez les œufs avec la cassonade jusqu'à ce que le mélange blanchisse.",
+            "Ajoutez la farine, le sucre vanillé et le sel au mélange œufs-sucre. Incorporez ensuite le mélange chocolat-beurre fondu.",
+            "Ajoutez les noix et les pépites de chocolat si vous le souhaitez.",
+            "Versez la préparation dans un moule. Ajoutez de nouveau quelques noix et pépites sur le dessus pour le topping.",
+            "Enfournez à 180°C pendant 20 à 25 minutes. Pour un brownie très fondant, laissez cuire 20 minutes et placez-le au frais environ 1 heure pour obtenir un effet fudgy. Si vous le préférez moins fondant, prolongez la cuisson."
+        ],
+        "tags": [
+            "Pas cher",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8203",
+        "title": "Wrap Protéiné au Maïs Croustillant",
+        "description": "Découvrez une recette virale de wrap au maïs, testée et améliorée pour être plus riche en protéines et moins calorique. Ce wrap croustillant est facile à préparer et peut être garni selon vos envies pour un repas sain et gourmand.",
+        "image": "/recipes-ia/8203-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700285666919255329\" data-video-id=\"7700285666919255329\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700285666919255329\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Maïs (285g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs (2)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella râpée (100g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon (140g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Carré Frais 0% (50g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Salade"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Avocat"
+            }
+        ],
+        "steps": [
+            "Rincez le maïs.",
+            "Dans un grand bol, ajoutez le maïs rincé, les œufs, le paprika fumé, le curcuma, le cumin, l'ail en poudre, la mozzarella râpée et un peu de sel.",
+            "Mélangez bien tous les ingrédients jusqu'à obtenir une préparation homogène.",
+            "Étalez la préparation sur une plaque de cuisson recouverte de papier sulfurisé, en essayant de former un grand wrap fin.",
+            "Enfournez pour 22 minutes à 190 degrés Celsius.",
+            "Une fois le wrap cuit et croustillant, garnissez-le avec du Carré Frais 0%, du jambon, de la salade, des tomates, de l'oignon rouge et de l'avocat, ou les ingrédients de votre choix.",
+            "Pliez le wrap et dégustez."
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "minceur",
+            "Sandwichs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8220",
+        "title": "Petits pots chocolat-orange au Baileys",
+        "description": "Découvrez ces irrésistibles petits pots chocolat-orange au Baileys, un dessert de Noël sans cuisson que l'auteure prépare depuis près de 15 ans. Composés d'une base croustillante de biscuits, d'une crème onctueuse au chocolat et à l'orange avec un...",
+        "image": "/recipes-ia/8220-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703256953337744662\" data-video-id=\"7703256953337744662\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703256953337744662\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             157 g de chocolat à l'orange"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             100 ml de Baileys (ou équivalent)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cuillère à café de zeste d'orange"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300 ml de crème double"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             8 biscuits digestifs"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25 g de beurre fondu"
+            }
+        ],
+        "steps": [
+            "Mettez les biscuits digestifs dans un sac de congélation et écrasez-les avec un rouleau à pâtisserie jusqu'à obtenir une chapelure grossière.",
+            "Ajoutez 25 g de beurre fondu à la chapelure et mélangez bien jusqu'à ce que toutes les miettes soient enrobées.",
+            "Répartissez la chapelure de biscuits dans 6 ramequins et tassez-la avec le dos d'une petite cuillère.",
+            "Réservez 6 segments de chocolat à l'orange pour la garniture et mettez le reste dans un bol allant au micro-ondes avec le chocolat noir cassé en morceaux.",
+            "Faites fondre le chocolat au micro-ondes par intervalles de 30 secondes, en remuant à chaque fois avant de remettre au micro-ondes. Lorsque la majeure partie du chocolat a fondu, retirez-le du micro-ondes et remuez jusqu'à ce qu'il soit complètement lisse, cela évitera qu'il ne surchauffe et ne devienne granuleux. Laissez refroidir.",
+            "Versez 300 ml de crème double dans un saladier et, à l'aide d'un mixeur plongeant, mélangez pendant environ 30 secondes jusqu'à ce qu'elle commence à épaissir.",
+            "Ajoutez 100 ml de Baileys, le zeste d'orange et le chocolat fondu, puis fouettez jusqu'à obtenir un mélange lisse et de couleur uniforme.",
+            "Répartissez le mélange dans les ramequins et placez-les au réfrigérateur pendant 4 heures ou toute une nuit.",
+            "Sortez-les du réfrigérateur 15 minutes avant de servir.",
+            "Déposez un segment de chocolat à l'orange sur chaque pot avant de servir."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8224",
         "title": "Cake aux fruits confits façon Pierre Hermé",
@@ -227,67 +517,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8220",
-        "title": "Petits pots chocolat-orange au Baileys",
-        "description": "Découvrez ces irrésistibles petits pots chocolat-orange au Baileys, un dessert de Noël sans cuisson que l'auteure prépare depuis près de 15 ans. Composés d'une base croustillante de biscuits, d'une crème onctueuse au chocolat et à l'orange avec un...",
-        "image": "/recipes-ia/8220-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7703256953337744662\" data-video-id=\"7703256953337744662\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7703256953337744662\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍫\n             157 g de chocolat à l'orange"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100 g de chocolat noir"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             100 ml de Baileys (ou équivalent)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cuillère à café de zeste d'orange"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             300 ml de crème double"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             8 biscuits digestifs"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             25 g de beurre fondu"
-            }
-        ],
-        "steps": [
-            "Mettez les biscuits digestifs dans un sac de congélation et écrasez-les avec un rouleau à pâtisserie jusqu'à obtenir une chapelure grossière.",
-            "Ajoutez 25 g de beurre fondu à la chapelure et mélangez bien jusqu'à ce que toutes les miettes soient enrobées.",
-            "Répartissez la chapelure de biscuits dans 6 ramequins et tassez-la avec le dos d'une petite cuillère.",
-            "Réservez 6 segments de chocolat à l'orange pour la garniture et mettez le reste dans un bol allant au micro-ondes avec le chocolat noir cassé en morceaux.",
-            "Faites fondre le chocolat au micro-ondes par intervalles de 30 secondes, en remuant à chaque fois avant de remettre au micro-ondes. Lorsque la majeure partie du chocolat a fondu, retirez-le du micro-ondes et remuez jusqu'à ce qu'il soit complètement lisse, cela évitera qu'il ne surchauffe et ne devienne granuleux. Laissez refroidir.",
-            "Versez 300 ml de crème double dans un saladier et, à l'aide d'un mixeur plongeant, mélangez pendant environ 30 secondes jusqu'à ce qu'elle commence à épaissir.",
-            "Ajoutez 100 ml de Baileys, le zeste d'orange et le chocolat fondu, puis fouettez jusqu'à obtenir un mélange lisse et de couleur uniforme.",
-            "Répartissez le mélange dans les ramequins et placez-les au réfrigérateur pendant 4 heures ou toute une nuit.",
-            "Sortez-les du réfrigérateur 15 minutes avant de servir.",
-            "Déposez un segment de chocolat à l'orange sur chaque pot avant de servir."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Noël"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -1143,94 +1372,6 @@ export const mockRecipes: Recipe[] = [
             "C'est l'hiver",
             "France",
             "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8203",
-        "title": "Wrap Protéiné au Maïs Croustillant",
-        "description": "Découvrez une recette virale de wrap au maïs, testée et améliorée pour être plus riche en protéines et moins calorique. Ce wrap croustillant est facile à préparer et peut être garni selon vos envies pour un repas sain et gourmand.",
-        "image": "/recipes-ia/8203-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700285666919255329\" data-video-id=\"7700285666919255329\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700285666919255329\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Maïs (285g)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Œufs (2)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mozzarella râpée (100g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Jambon (140g)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Carré Frais 0% (50g)"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Salade"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             Avocat"
-            }
-        ],
-        "steps": [
-            "Rincez le maïs.",
-            "Dans un grand bol, ajoutez le maïs rincé, les œufs, le paprika fumé, le curcuma, le cumin, l'ail en poudre, la mozzarella râpée et un peu de sel.",
-            "Mélangez bien tous les ingrédients jusqu'à obtenir une préparation homogène.",
-            "Étalez la préparation sur une plaque de cuisson recouverte de papier sulfurisé, en essayant de former un grand wrap fin.",
-            "Enfournez pour 22 minutes à 190 degrés Celsius.",
-            "Une fois le wrap cuit et croustillant, garnissez-le avec du Carré Frais 0%, du jambon, de la salade, des tomates, de l'oignon rouge et de l'avocat, ou les ingrédients de votre choix.",
-            "Pliez le wrap et dégustez."
-        ],
-        "tags": [
-            "épicé",
-            "Healthy",
-            "minceur",
-            "Sandwichs"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -15053,74 +15194,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "4123",
-        "title": "Épaule d'agneau comme un chef",
-        "description": "Découvrez comment cuisiner une épaule d'agneau savoureuse et fondante, un plat mijoté qui ne sèche pas, parfait pour un repas de chef à la maison.",
-        "image": "/recipes-ia/4123-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618281152385666326\" data-video-id=\"7618281152385666326\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618281152385666326\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 épaule d'agneau (1,3 kg)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons rouges"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             6 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 càs de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             75 cl de vin rouge ou de bouillon de viande"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             50 cl d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 bouquet garni (thym, laurier)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Assaisonnez l'épaule d'agneau et faites-la dorer.",
-            "Ajoutez les oignons rouges, l'ail, le paprika fumé et le bouquet garni.",
-            "Mouillez avec le vin rouge puis complétez avec l'eau jusqu'à ce que l'épaule soit totalement immergée.",
-            "Mélangez légèrement, couvrez et laissez cuire au moins 3 h à feu moyen.",
-            "Vérifiez la cuisson en piquant la viande avec un couteau sans résistance.",
-            "Retirez la viande du bouillon, roulez‑la dans du film alimentaire en formant un boudin bien serré et réfrigérez au moins 3 h.",
-            "Portionnez la viande.",
-            "Réchauffez la viande dans la sauce jusqu'à ce qu'elle soit bien chaude, puis retirez le film.",
-            "Servez avec une purée et la petite sauce réduite à feu vif."
-        ],
-        "tags": [
-            "Famille",
-            "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4350",
         "title": "Arayes libanais et Tzatziki maison",
         "description": "Découvrez la recette des Arayes libanais, des pains pita garnis d'une savoureuse farce à la viande hachée et aux épices, accompagnés d'un Tzatziki maison rafraîchissant.",
@@ -22449,69 +22522,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Asie",
             "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6337",
-        "title": "Salade marocaine",
-        "description": "Une salade toute simple, rapide à faire et parfaite pour accompagner vos barbeuc cet été.",
-        "image": "/recipes-ia/6337-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630014915067120918\" data-video-id=\"7630014915067120918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630014915067120918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Découpez les tomates, le concombre et l'oignon rouge en petits morceaux égaux.",
-            "Mettez les légumes dans un saladier.",
-            "Ajoutez une bonne huile d'olive.",
-            "Ajoutez le jus d'un citron.",
-            "Salez et poivrez selon votre goût.",
-            "Ajoutez un peu de persil haché.",
-            "Mélangez bien les ingrédients."
-        ],
-        "tags": [
-            "barbecue",
-            "Healthy",
-            "Orient",
-            "Pas cher",
             "Salades",
             "Végé",
             "Voilà l'été"
