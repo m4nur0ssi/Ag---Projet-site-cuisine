@@ -30,7 +30,7 @@ export default function TrophyWatcher() {
         };
         // Léger différé : laisse les écritures localStorage se poser avant de lire.
         const onEvt = () => window.setTimeout(check, 150);
-        const evts = ['tv-progress-change', 'magic-favorite-change', 'shoppingListUpdated', 'focus'];
+        const evts = ['tv-progress-change', 'magic-favorite-change', 'shoppingListUpdated', 'focus', 'magic-trophy-check'];
         evts.forEach((e) => window.addEventListener(e, onEvt));
         check();
         return () => evts.forEach((e) => window.removeEventListener(e, onEvt));

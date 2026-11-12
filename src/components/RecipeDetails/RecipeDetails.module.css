@@ -206,6 +206,20 @@
     color: #000000 !important;
 }
 
+/* Survol : la tuile devient rouge. Clic : elle s'enfonce. Rien d'autre. */
+.favorite-btn-action:hover,
+.share-btn-action:hover {
+    background: #FF3B5C !important;
+    border-color: #FF3B5C !important;
+    color: #FFFFFF !important;
+}
+.favorite-btn-action:active,
+.share-btn-action:active {
+    transform: translateY(3px) scale(0.9) !important;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.35) !important;
+    transition-duration: 0.08s !important;
+}
+
 .favorite-btn-action svg,
 .share-btn-action svg {
     width: 24px !important;
@@ -2891,5 +2905,41 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
 
 /* Réglage de taille du texte, à gauche de « Question » (même hauteur). */
 .focusTaille { position: fixed; top: 30px; right: 390px; z-index: 10000; }
+
+/* Les trois tuiles du haut (taille, Question, Quitter) dans une même rangée :
+   même hauteur (60 px), même verre, même écart. Plus de positions au pixel
+   qui laissaient des trous inégaux selon la largeur de chaque bouton. */
+.focusOutils {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.focusOutils .focusTaille,
+.focusOutils .focusQuestion,
+.focusOutils .focusClose { position: static; }
+.focusOutils .focusTaille > div {
+    height: 60px;
+    padding: 0 6px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+}
+.focusOutils .focusTaille button { padding: 0 16px; font-size: 1.15rem; font-weight: 900; }
+.focusOutils .focusTaille span[aria-hidden] { font-size: 0.85rem; }
+.focusOutils .focusQuestion > button:first-child {
+    height: 60px;
+    padding: 0 24px 0 18px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    font-weight: 900;
+}
 /* La taille de la carte d'étape suit le réglage A− / A+ (variable --echelle). */
 .focusStepText { font-size: calc(clamp(1.4rem, 5.5vw, 2.6rem) * var(--echelle, 1)); }

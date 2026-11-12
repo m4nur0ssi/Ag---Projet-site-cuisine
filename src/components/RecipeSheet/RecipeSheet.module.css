@@ -139,3 +139,10 @@
 .navFleche:active { transform: translateY(-50%) scale(0.92); }
 .navGauche { left: 12px; }
 .navDroite { right: 12px; }
+
+/* Souris : la zone de glissement (40 px en haut de la feuille) ne sert qu'au
+   doigt. Au bureau elle recouvrait le cœur et le bouton Partager de la fiche,
+   qui ne répondaient plus au clic. */
+@media (hover: hover) and (pointer: fine) {
+    .dragHandleContainer { display: none; }
+}

@@ -1831,11 +1831,15 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
      * restent en place. L'event `openRecipe` déclencherait la fiche plein
      * écran, qui recouvre le menu et fait perdre le fil.
      */
-    const open = (r: any) => {
+    const open = (r: any, index?: number) => {
         // Même règle que les favoris : c'est l'hôte global qui ouvre une fiche
         // depuis un écran, dans les deux cas. `openRecipe` n'empile que DANS une
         // fiche déjà ouverte — hors du shell, personne ne l'écoutait.
-        window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: r }));
+        // Les plats proposés voyagent avec : flèches ‹ › de la photo pour passer
+        // de l'un à l'autre sans revenir à la cave.
+        const liste = accords.map((a: any) => a.recipe);
+        const detail = typeof index === 'number' && liste.length > 1 ? { ...r, __liste: liste, __index: index } : r;
+        window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail }));
         onClose();
     };
     // Portail et z-index haut : cette feuille s'ouvre DEPUIS la fiche de la
@@ -1886,8 +1890,8 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
                     </div>
                 )}
                 <div className={styles.pairGrid}>
-                    {accords.map(({ recipe: r, why }: any) => (
-                        <button key={r.id} className={styles.pairCard} onClick={() => open(r)}>
+                    {accords.map(({ recipe: r, why }: any, i: number) => (
+                        <button key={r.id} className={styles.pairCard} onClick={() => open(r, i)}>
                             <img src={r.image} alt="" />
                             <span>{decodeHtml(r.title)}</span>
                             {/* La RAISON de l'accord : sans elle, une grille de photos

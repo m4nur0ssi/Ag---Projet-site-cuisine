@@ -256,8 +256,10 @@ const MOSAIC = [
     'mWide', 'mStd', 'mStd', 'mSmall',
 ] as const;
 
-function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll }: {
+function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll, liste }: {
     recipe: Recipe; shape: CardShape;
+    /** Recettes voisines (catégorie, rangée, filtres) : la fiche les parcourt avec ‹ ›. */
+    liste?: Recipe[];
     onMenu: (r: Recipe, x: number, y: number, coll?: Coll) => void;
     /** Collection de la rangée / page qui porte cette carte (voir `Coll`). */
     coll?: Coll;
@@ -274,6 +276,10 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
      */
     inlaid?: boolean;
 }) {
+    const ouvrir = () => {
+        const index = liste ? liste.findIndex((x) => String(x.id) === String(recipe.id)) : -1;
+        openRecipe(recipe, index >= 0 ? liste : undefined, index >= 0 ? index : undefined);
+    };
     const vid = tiktokId(recipe);
     // Survol prolongé (1,5 s) → la vidéo se lance dans le visuel. Elle porte SES
     // contrôles (son + barre de progression) : la souris avance et recule dedans.
@@ -329,8 +335,8 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
                 role="button"
                 tabIndex={0}
                 aria-label={`Ouvrir ${label(recipe)}`}
-                onClick={() => openRecipe(recipe)}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openRecipe(recipe); } }}
+                onClick={() => ouvrir()}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ouvrir(); } }}
             >
                 <img src={recipe.image} alt={label(recipe)} className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
                 {playing && vid && (
@@ -360,8 +366,8 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
                         className={styles.inlaidLabel}
                         role="button"
                         tabIndex={0}
-                        onClick={() => openRecipe(recipe)}
-                        onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
+                        onClick={() => ouvrir()}
+                        onKeyDown={(e) => { if (e.key === 'Enter') ouvrir(); }}
                     >{label(recipe)}</div>
                     {/* Le seul bouton du site s'efface dès que ça tourne. */}
                     {onToggleLater && !playing && (
@@ -389,8 +395,8 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
                     className={styles.cardLabel}
                     role="button"
                     tabIndex={0}
-                    onClick={() => openRecipe(recipe)}
-                    onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
+                    onClick={() => ouvrir()}
+                    onKeyDown={(e) => { if (e.key === 'Enter') ouvrir(); }}
                 >{label(recipe)}</div>
                 {onToggleLater && (
                     <button
@@ -479,6 +485,7 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
                             onToggleLater={onToggleLater}
                             rank={ranked ? i + 1 : undefined}
                             inlaid={inlaid}
+                            liste={recipes}
                         />
                     ))}
                 </div>
@@ -614,7 +621,7 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                             <button
                                 key={`${r.id}-${i}`}
                                 className={`${styles.heroPoster} ${on ? styles.heroPosterOn : ''}`}
-                                onClick={() => (on ? openRecipe(r) : setIndex(real))}
+                                onClick={() => (on ? openRecipe(r, recipes, Math.max(0, recipes.indexOf(r))) : setIndex(real))}
                                 aria-label={on ? `Voir ${label(r)}` : label(r)}
                                 aria-current={on || undefined}
                                 aria-hidden={i < recipes.length || i >= recipes.length * 2 ? true : undefined}
@@ -659,8 +666,8 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                     className={`${styles.heroTitle} ${styles.heroTitleLien}`}
                     role="link"
                     tabIndex={0}
-                    onClick={() => openRecipe(current)}
-                    onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); openRecipe(current); } }}
+                    onClick={() => openRecipe(current, recipes, Math.max(0, recipes.indexOf(current)))}
+                    onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); openRecipe(current, recipes, Math.max(0, recipes.indexOf(current))); } }}
                 >
                     {label(current).split(/\s+/).filter(Boolean).map((w, n, all) => (
                         <Fragment key={`${w}-${n}`}>
@@ -676,7 +683,7 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                     <span className={styles.heroBadge}>{current.servings || 4} pers.</span>
                 </div>
                 <div className={styles.heroActions}>
-                    <button className={styles.heroPlay} onClick={() => openRecipe(current)}>
+                    <button className={styles.heroPlay} onClick={() => openRecipe(current, recipes, Math.max(0, recipes.indexOf(current)))}>
                         <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                         Voir la recette
                     </button>
@@ -900,15 +907,16 @@ export default function TVDesktopHome() {
         return () => window.removeEventListener(OUVRIR_PLANIFICATEUR, open);
     }, []);
 
-    // Ferme le menu contextuel sur clic ailleurs / Échap.
+    // Ferme le menu contextuel sur clic ailleurs / Échap. Plus sur le défilement :
+    // le héros et les vidéos des cartes défilent tout seuls, et le menu
+    // disparaissait sous la souris. Il ne part plus qu'en quittant sa tuile.
     useEffect(() => {
         if (!menu) return;
         const close = () => setMenu(null);
         const esc = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenu(null); };
         window.addEventListener('click', close);
-        window.addEventListener('scroll', close, true);
         window.addEventListener('keydown', esc);
-        return () => { window.removeEventListener('click', close); window.removeEventListener('scroll', close, true); window.removeEventListener('keydown', esc); };
+        return () => { window.removeEventListener('click', close); window.removeEventListener('keydown', esc); };
     }, [menu]);
 
     const openCollection = useCallback((title: string, recipes: Recipe[], opts?: { classement?: boolean }) => {
@@ -1448,7 +1456,7 @@ export default function TVDesktopHome() {
                             <div className={styles.mosaic}>
                                 {filtered.map((r, i) => (
                                     <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
-                                        <Card recipe={r} shape="wide" onMenu={onMenu} later={isLater(String(r.id))} onToggleLater={handleToggleLater} />
+                                        <Card recipe={r} shape="wide" onMenu={onMenu} later={isLater(String(r.id))} onToggleLater={handleToggleLater} liste={filtered} />
                                     </div>
                                 ))}
                             </div>
@@ -1489,7 +1497,7 @@ export default function TVDesktopHome() {
                         <div className={styles.mosaic}>
                             {collListe.map((r, i) => (
                                 <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
-                                    <Card recipe={r} shape="wide" onMenu={onMenu} coll={collOf(collection.title, collection.recipes)} />
+                                    <Card recipe={r} shape="wide" onMenu={onMenu} coll={collOf(collection.title, collection.recipes)} liste={collListe} />
                                 </div>
                             ))}
                         </div>
@@ -1536,7 +1544,13 @@ export default function TVDesktopHome() {
                 {menu && (
                     <motion.div
                         className={styles.ctx}
-                        style={{ left: Math.min(menu.x, (typeof window !== 'undefined' ? window.innerWidth : 9999) - 282), top: menu.y }}
+                        // Le menu s'ouvre SOUS la souris (décalé de 12 px) : elle est
+                        // déjà dans la tuile, et c'est en la quittant qu'il se ferme.
+                        style={{
+                            left: Math.max(8, Math.min(menu.x - 12, (typeof window !== 'undefined' ? window.innerWidth : 9999) - 282)),
+                            top: Math.max(8, Math.min(menu.y - 12, (typeof window !== 'undefined' ? window.innerHeight : 9999) - 460)),
+                        }}
+                        onMouseLeave={() => setMenu(null)}
                         initial={{ opacity: 0, scale: 0.94, y: -6 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.96 }}

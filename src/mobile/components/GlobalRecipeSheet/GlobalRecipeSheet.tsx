@@ -25,24 +25,35 @@ const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/Recipe
  */
 export default function GlobalRecipeSheet() {
     const [recipe, setRecipe] = useState<any>(null);
+    /** Liste voisine (cave, catégorie…) : la fiche la parcourt avec ‹ ›. */
+    const [liste, setListe] = useState<{ recettes: any[]; index: number } | null>(null);
 
     useEffect(() => {
         const open = (e: any) => {
-            const d = e.detail;
-            if (!d) return;
+            const brut = e.detail;
+            if (!brut) return;
+            const { __liste, __index, ...d } = brut;
             // La recette rangée dans le planificateur est parfois MINIMALE (id, titre,
             // image, ingrédients) : sans `steps`, la fiche plantait (recipe.steps.length).
             // On récupère la recette COMPLÈTE depuis le catalogue par son id, et on
             // garantit des tableaux pour steps/ingredients/tags.
             const full = mockRecipes.find((r: any) => String(r.id) === String(d.id));
             const base = full ? { ...d, ...full } : d;
-            setRecipe({ category: 'plats', steps: [], ingredients: [], tags: [], ...base });
+            const fiche = { category: 'plats', steps: [], ingredients: [], tags: [], ...base };
+            if (Array.isArray(__liste) && __liste.length > 1 && typeof __index === 'number') {
+                const recettes = __liste.map((x: any) => {
+                    const f = mockRecipes.find((r: any) => String(r.id) === String(x.id));
+                    return { category: 'plats', steps: [], ingredients: [], tags: [], ...x, ...(f || {}) };
+                });
+                setListe({ recettes, index: __index });
+            } else setListe(null);
+            setRecipe(fiche);
         };
         /* Fermeture demandée par un écran qui prend la main : « Ouvrir le
            planificateur » depuis le volet de planification, par exemple. La
            fiche flotte au-dessus de tout, y compris de la page où l'on vient
            d'arriver — elle doit s'écarter quand on la quitte exprès. */
-        const close = () => setRecipe(null);
+        const close = () => { setRecipe(null); setListe(null); };
         window.addEventListener('openRecipeFromPlanner', open);
         window.addEventListener(FERMER_FICHE, close);
         // Signale qu'un hôte écoute : un lien entrant (`/?fiche=…`) attend ce
@@ -57,5 +68,13 @@ export default function GlobalRecipeSheet() {
     }, []);
 
     if (!recipe) return null;
-    return <RecipeSheet recipe={recipe} isOpen={true} onClose={() => setRecipe(null)} />;
+    return (
+        <RecipeSheet
+            recipe={recipe}
+            isOpen={true}
+            onClose={() => { setRecipe(null); setListe(null); }}
+            allRecipes={liste?.recettes}
+            recipeIndex={liste?.index ?? 0}
+        />
+    );
 }

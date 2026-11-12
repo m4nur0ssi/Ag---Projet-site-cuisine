@@ -64,6 +64,7 @@ export default function VoteButton({ recipeId, initialVotes = 0, className, hide
         let votedRecipes = JSON.parse(localStorage.getItem('voted_recipes') || '[]');
         if (!votedRecipes.includes(recipeId)) votedRecipes.push(recipeId);
         ecrireStock('voted_recipes', JSON.stringify(votedRecipes));
+        window.dispatchEvent(new Event('magic-trophy-check'));
 
         // Vibrate for feedback
         if (typeof navigator !== 'undefined' && navigator.vibrate) {

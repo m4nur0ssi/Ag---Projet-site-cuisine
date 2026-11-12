@@ -1567,22 +1567,25 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                             <img src={recipe.image} alt="" className={styles.focusThumb} draggable={false} />
                         )}
                         <div className={styles.focusTitle}>{decodeHtml(recipe.title)}</div>
-                        {/* Le bouton « Quitter » est fixé en haut à droite : on laisse sa place. */}
-                        <div className={styles.focusTaille}>
-                            <TailleTexte echelle={echelleTexte.echelle} plus={echelleTexte.plus} moins={echelleTexte.moins} />
+                        {/* Taille du texte, Question, Quitter : trois tuiles de même hauteur,
+                            alignées en haut à droite avec le même écart entre elles. */}
+                        <div className={styles.focusOutils}>
+                            <div className={styles.focusTaille}>
+                                <TailleTexte echelle={echelleTexte.echelle} plus={echelleTexte.plus} moins={echelleTexte.moins} />
+                            </div>
+                            <div className={styles.focusQuestion}>
+                                <QuestionCuisine
+                                    grand
+                                    titre={decodeHtml(recipe.title)}
+                                    etape={stripHtml(recipe.steps[activeStepIndex] || '')}
+                                    ingredients={recipe.ingredients.map((i) => `${i.quantity || ''} ${i.name}`.trim())}
+                                />
+                            </div>
+                            <button className={styles.focusClose} onClick={() => {
+                                setFocusMode(false);
+                                triggerHaptic();
+                            }}>✕ Quitter</button>
                         </div>
-                        <div className={styles.focusQuestion}>
-                            <QuestionCuisine
-                                grand
-                                titre={decodeHtml(recipe.title)}
-                                etape={stripHtml(recipe.steps[activeStepIndex] || '')}
-                                ingredients={recipe.ingredients.map((i) => `${i.quantity || ''} ${i.name}`.trim())}
-                            />
-                        </div>
-                        <button className={styles.focusClose} onClick={() => {
-                            setFocusMode(false);
-                            triggerHaptic();
-                        }}>✕ Quitter</button>
                     </div>
 
                     {/* Progress dans focus mode : on utilise le même calcul de progression que la vue habituelle */}

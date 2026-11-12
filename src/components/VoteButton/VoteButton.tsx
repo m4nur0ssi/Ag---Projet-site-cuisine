@@ -4,6 +4,20 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/lib/supabase';
 import styles from './VoteButton.module.css';
+import { ecrireStock } from '@/lib/stockage';
+
+/** Flammes allumées sur cet appareil (le palmarès « Première flamme » les lit). */
+function noterFlamme(recipeId: string, allumee: boolean) {
+    try {
+        const ids: string[] = JSON.parse(localStorage.getItem('voted_recipes') || '[]');
+        const sans = ids.filter((x) => String(x) !== String(recipeId));
+        const suivant = allumee ? [...sans, recipeId] : sans;
+        if (suivant.length !== ids.length) {
+            ecrireStock('voted_recipes', JSON.stringify(suivant));
+            window.dispatchEvent(new Event('magic-trophy-check'));
+        }
+    } catch { /* noop */ }
+}
 
 interface VoteButtonProps {
     recipeId: string;
@@ -47,6 +61,7 @@ export default function VoteButton({ recipeId, initialVotes = 0, className, hide
                     .eq('user_id', session.user.id)
                     .maybeSingle();
                 setHasVoted(!!data);
+                if (data) noterFlamme(recipeId, true);
                 if (!!data) setShowCount(true);
             }
         };
@@ -62,6 +77,7 @@ export default function VoteButton({ recipeId, initialVotes = 0, className, hide
 
         const newVotedState = !hasVoted;
         setHasVoted(newVotedState);
+        noterFlamme(recipeId, newVotedState);
         setVotes(prev => newVotedState ? prev + 1 : Math.max(0, prev - 1));
         if (newVotedState) setShowCount(true);
 

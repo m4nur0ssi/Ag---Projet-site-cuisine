@@ -136,8 +136,12 @@ export default function FavoritesPage({ embedded = false }: { embedded?: boolean
      * recette DANS une fiche déjà ouverte — depuis les favoris, personne ne
      * l'écoutait, et toucher une carte ne faisait rien du tout.
      */
-    const open = (r: Recipe) => window.dispatchEvent(
-        new CustomEvent('openRecipeFromPlanner', { detail: r }));
+    const open = (r: Recipe) => {
+        // Les autres favoris voyagent avec : flèches ‹ › pour passer de l'un à l'autre.
+        const index = favoriteRecipes.findIndex((x) => String(x.id) === String(r.id));
+        const detail = index >= 0 && favoriteRecipes.length > 1 ? { ...r, __liste: favoriteRecipes, __index: index } : r;
+        window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail }));
+    };
 
     return (
         <div className={`${styles.page} ${embedded ? styles.emb : ''}`}>

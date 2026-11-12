@@ -7,63 +7,26 @@
  */
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { mockRecipes } from '@/mobile/data/mockData';
 import Tip from '@/components/Tip/Tip';
-
-const COUNTRY_TAGS = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'asie', 'afrique', 'portugal'];
-const SEEN_KEY = 'trophies-seen-v1';
-
-function cookedIds(): string[] {
-    const out: string[] = [];
-    try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i) || ''; if (k.startsWith('recipe-cooking-')) out.push(k.slice(15)); } } catch { /* noop */ }
-    return out;
-}
-const ICON: Record<string, string> = {
-    flame: 'M12 3c1.4 2.8.6 4.6-.9 6.1C9.4 10.8 8.5 12 8.5 14a3.5 3.5 0 0 0 7 0c0-1.2-.5-2.1-1-2.9 1.6.4 2.3 2 2.3 3.5A4.8 4.8 0 0 1 12 19.5 4.8 4.8 0 0 1 7 14.6c0-2.9 2-4.4 3.4-6.1C11.5 7 12 5.6 12 3z',
-    hat: 'M6 13v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-5M5 13a3 3 0 0 1 .5-6 4 4 0 0 1 7.5-1 4 4 0 0 1 5.5 1A3 3 0 0 1 19 13z',
-    pot: 'M4 10h16M6 10v7a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-7M9 10V7m6 3V7',
-    heart: 'M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z',
-    globe: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3.6 9h16.8M3.6 15h16.8M12 3c2.5 2.4 2.5 15.6 0 18M12 3c-2.5 2.4-2.5 15.6 0 18',
-    calendar: 'M7 3v3m10-3v3M3.5 9h17M5 5h14a1.5 1.5 0 0 1 1.5 1.5v13A1.5 1.5 0 0 1 19 21H5a1.5 1.5 0 0 1-1.5-1.5v-13A1.5 1.5 0 0 1 5 5z',
-};
-
-interface Badge { icon: string; name: string; desc: string; val: number; goal: number; tint: string; }
+import { computeTrophies, lireActivite, TROPHY_ICON as ICON, TROPHY_SEEN_KEY as SEEN_KEY, type Activite, type Trophy as Badge } from '@/lib/trophies';
 
 export default function TVTrophies({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
-    const [cooked, setCooked] = useState<string[]>([]);
-    const [favs, setFavs] = useState(0);
-    const [hasWeek, setHasWeek] = useState(false);
+    const [activite, setActivite] = useState<Activite | null>(null);
     const [reveal, setReveal] = useState<Badge | null>(null);
 
-    useEffect(() => {
-        setCooked(cookedIds());
-        try { setFavs((JSON.parse(localStorage.getItem('favorites') || '[]') || []).length); } catch { /* noop */ }
-        try { const p = JSON.parse(localStorage.getItem('meal-planner-week') || '{}'); setHasWeek(Object.keys(p).some((d) => d !== 'JourJ' && Object.keys(p[d] || {}).length)); } catch { /* noop */ }
-    }, []);
+    useEffect(() => { setActivite(lireActivite()); }, []);
 
-    const countries = useMemo(() => {
-        const byId = new Map(mockRecipes.map((r: any) => [String(r.id), r]));
-        const set = new Set<string>();
-        cooked.forEach((id) => { const r: any = byId.get(id); (r?.tags || []).forEach((t: string) => { const k = t.toLowerCase(); if (COUNTRY_TAGS.includes(k)) set.add(k); }); });
-        return set.size;
-    }, [cooked]);
-
-    const n = cooked.length;
-    const badges = useMemo<Badge[]>(() => [
-        { icon: 'flame', name: 'Première flamme', desc: 'Lance ta 1re préparation', val: n, goal: 1, tint: '#FF6B4A' },
-        { icon: 'hat', name: 'Apprenti', desc: 'Cuisine 5 recettes', val: n, goal: 5, tint: '#FFC24B' },
-        { icon: 'pot', name: 'Chef de maison', desc: 'Cuisine 20 recettes', val: n, goal: 20, tint: '#FF3B6B' },
-        { icon: 'heart', name: 'Collectionneur', desc: '10 recettes en favoris', val: favs, goal: 10, tint: '#FF2E63' },
-        { icon: 'globe', name: 'Tour du monde', desc: 'Cuisine 5 pays différents', val: countries, goal: 5, tint: '#0A84FF' },
-        { icon: 'calendar', name: 'Organisé', desc: 'Planifie une semaine', val: hasWeek ? 1 : 0, goal: 1, tint: '#30D158' },
-    ], [n, favs, countries, hasWeek]);
+    const n = activite?.cuisinees ?? 0;
+    const countries = activite?.pays ?? 0;
+    const badges = useMemo<Badge[]>(() => (activite ? computeTrophies(activite) : []), [activite]);
 
     const unlocked = badges.filter((b) => b.val >= b.goal).length;
     const streak = Math.min(7, Math.max(1, (n % 7) || (n ? 7 : 1)));
 
     // Révélation des trophées nouvellement débloqués (grand, centré, 3 s, sobre).
     useEffect(() => {
+        if (!badges.length) return;
         let seen: string[] = [];
         try { seen = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); } catch { /* noop */ }
         const newly = badges.filter((b) => b.val >= b.goal && !seen.includes(b.name));
@@ -118,7 +81,7 @@ export default function TVTrophies({ embedded = false }: { embedded?: boolean })
                     );
                 })}
             </div>
-            <p className="foot">Coche une étape dans une recette pour allumer ton premier trophée.</p>
+            <p className="foot">Allume la flamme d’une recette que tu adores : c’est ton premier trophée.</p>
 
             {reveal && (
                 <div className="reveal" key={reveal.name}>
@@ -179,20 +142,21 @@ export default function TVTrophies({ embedded = false }: { embedded?: boolean })
                 .foot { color: rgba(235,235,245,.4); font-size: 12.5px; margin-top: 24px; text-align: center; }
 
                 /* ── En panneau de bureau : une seule page ──────────────────
-                   Six trophées rangés en 2 lignes de 3, plus grands, qui se
+                   Neuf trophées rangés en 3 lignes de 3, qui se
                    partagent la hauteur restante. Rien ne déborde, donc rien
                    à faire défiler. */
                 .tp.emb { display: flex; flex-direction: column; height: calc(100svh - 36px); max-height: calc(100svh - 36px); overflow: hidden; padding: 4px 4px 12px; }
                 .tp.emb .stats { margin-bottom: 14px; flex: 0 0 auto; }
                 .tp.emb .streak { margin-bottom: 16px; flex: 0 0 auto; }
-                .tp.emb .grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 18px; flex: 1 1 auto; min-height: 0; }
-                .tp.emb .badge { min-height: 0; height: 100%; justify-content: center; gap: 14px; padding: 24px 20px 20px; border-radius: 24px; }
-                .tp.emb .ic { width: 74px; height: 74px; }
-                .tp.emb .ic svg { width: 36px; height: 36px; }
+                .tp.emb .grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 14px; flex: 1 1 auto; min-height: 0; }
+                .tp.emb .badge { min-height: 0; height: 100%; justify-content: center; gap: 8px; padding: 14px 18px 12px; border-radius: 22px; overflow: hidden; }
+                .tp.emb .ic { width: 52px; height: 52px; }
+                .tp.emb .ic svg { width: 26px; height: 26px; }
                 .tp.emb .txt { flex: 0 0 auto; gap: 6px; }
-                .tp.emb .nm { font-size: 19px; }
-                .tp.emb .ds { font-size: 14px; }
-                .tp.emb .pg, .tp.emb .ok { margin-top: 14px; }
+                .tp.emb .nm { font-size: 17px; }
+                .tp.emb .ds { font-size: 12.5px; max-width: 34ch; }
+                .tp.emb .pg, .tp.emb .ok { margin-top: 8px; flex: 0 0 auto; }
+                .tp.emb .pg { max-width: 220px; }
                 .tp.emb .foot { margin-top: 12px; flex: 0 0 auto; }
 
                 /* Révélation : logo en grand, centré, 3 s. Rien d'autre. */

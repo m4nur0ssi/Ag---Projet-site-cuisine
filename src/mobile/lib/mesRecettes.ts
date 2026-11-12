@@ -36,6 +36,20 @@ export interface MaRecette {
 }
 
 /** Les miennes, les plus récentes d'abord. Hors session : rien à montrer. */
+/** Vidéos transformées en recette (palmarès « J'ai vu une vidéo »). */
+export const VIDEOS_KEY = 'videos-importees-v1';
+export function lireVideosImportees(): number {
+    try { return Number(localStorage.getItem(VIDEOS_KEY) || 0) || 0; } catch { return 0; }
+}
+function noterVideos(n: number) {
+    try {
+        if (n > lireVideosImportees()) {
+            localStorage.setItem(VIDEOS_KEY, String(n));
+            window.dispatchEvent(new Event('magic-trophy-check'));
+        }
+    } catch { /* noop */ }
+}
+
 export async function listerMesRecettes(): Promise<MaRecette[]> {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return [];
@@ -45,6 +59,7 @@ export async function listerMesRecettes(): Promise<MaRecette[]> {
         .order('created_at', { ascending: false })
         .limit(60);
     if (error) return [];
+    noterVideos((data || []).length);
     return (data || []) as MaRecette[];
 }
 
@@ -78,6 +93,7 @@ export async function importerVideo(lien: string): Promise<Resultat> {
         const data = await res.json().catch(() => ({}));
         if (!res.ok) return { ok: false, raison: data?.error || data?.raison || "Je n'ai pas pu lire cette vidéo." };
         if (data?.statut === 'echec') return { ok: false, raison: data?.raison };
+        noterVideos(lireVideosImportees() + 1);
         return { ok: true, recette: data?.recette as MaRecette };
     } catch {
         return { ok: false, raison: 'Le réseau a coupé avant la fin.' };
