@@ -40,6 +40,10 @@ const { estGlace, estSauce, TAGS_A_RETIRER } = require('./scripts/rangement');
 const RESTAURANTS_INFO_PATH = path.join(__dirname, 'src', 'data', 'restaurants-info.json');
 let RESTAURANTS_INFO = {};
 try { RESTAURANTS_INFO = require('./src/data/restaurants-info.json'); } catch { RESTAURANTS_INFO = {}; }
+// Titres imposés par id : prennent le pas sur le titre WordPress à chaque synchro.
+// Sert quand l'article ne peut pas être renommé côté WP (identifiants indisponibles).
+let TITRES_FORCES = {};
+try { TITRES_FORCES = require('./src/data/titres-forces.json'); } catch { TITRES_FORCES = {}; }
 const { enrichRestaurant: enrichOSM, villeDuTexte } = require('./place-lookup');
 const { enrichRestaurant: enrichFSQ } = require('./foursquare');
 const _sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -296,7 +300,8 @@ function extractRecipeData(post) {
         id: String(post.id),
         // Fiche restaurant : `name` dans restaurants-info.json prime sur le titre WordPress,
         // qui reprend la légende TikTok tronquée ("felicità 🇮🇹 c'est vraiment à faire si…").
-        title: (post.categories?.includes(WP_RESTAURANT_CAT) && RESTAURANTS_INFO[String(post.id)]?.name)
+        title: TITRES_FORCES[String(post.id)]
+            || (post.categories?.includes(WP_RESTAURANT_CAT) && RESTAURANTS_INFO[String(post.id)]?.name)
             || decodeHtmlEntities(post.title.rendered),
         description: description,
         image: (() => {

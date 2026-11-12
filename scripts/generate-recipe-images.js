@@ -409,6 +409,37 @@ const SCENES_SPECIALES = [
      + 'generously over cucumber rounds, avocado cubes, thin red onion slivers, crumbled white feta, pine nuts and '
      + 'chopped dill — the whole chickpeas clearly the main element, never bread croutons'],
     /*
+     * « Tiramisu » (8180, titre exact) : la vidéo montre des portions individuelles
+     * ALLONGÉES — un gros biscuit doré en forme de boudoir, surmonté d'une rangée
+     * de dômes de crème mascarpone poudrés de cacao — posées sur une assiette
+     * rectangulaire crème, avec un verre d'espresso et des grains de café.
+     * Placée AVANT la règle générale du tiramisu (plat entier), qu'elle ne remplace
+     * que pour ce titre exact.
+     */
+    [/^\s*tiramisu\s*$/i,
+     'a cream-coloured rectangular ceramic plate holding four individual elongated {T} fingers: each one a single '
+     + 'large golden hand-length ladyfinger-style sponge base soaked in coffee, topped with a neat row of piped '
+     + 'mascarpone cream domes generously dusted with dark cocoa powder; the fingers laid side by side at a slight '
+     + 'angle; beside the plate a small glass of espresso with a pale crema, a small stoneware bowl of coffee beans, '
+     + 'a few loose ladyfinger biscuits and a stone mortar — individual finger-shaped portions, never a whole '
+     + 'rectangular tray, never a square cut slice',
+     { sansIngredients: true }],
+    /*
+     * Fantaisie chocolat framboise (ex « Le meilleur dessert de Noël en 5 minutes ») :
+     * la vidéo montre des PORTIONS INDIVIDUELLES rondes, pas un gâteau roulé ni
+     * une bûche. Chaque gâteau : biscuit chocolat, crème blanche, compote rouge,
+     * flancs roulés dans la noix de coco, glaçage chocolat brillant sur le dessus.
+     */
+    [/fantaisie chocolat framboise/i,
+     'a white rectangular serving platter with four individual round mini layered cakes, {T}: each one a small '
+     + 'separate round portion about the size of a muffin, made of a dark chocolate sponge disc, a thick layer of '
+     + 'white vanilla cream, a thin vivid red raspberry compote layer and a second chocolate sponge disc on top, '
+     + 'the sides rolled in white desiccated coconut, the top covered with a smooth glossy dark chocolate glaze; '
+     + 'one mini cake opened with a gold fork to show the layers (chocolate sponge, white cream, red raspberry); '
+     + 'a Christmas table around it: red napkin, pine cones, red berries, a red candle holder — individual '
+     + 'portions side by side, never a single loaf, never rolls or log slices',
+     { sansIngredients: true }],
+    /*
      * Le tiramisu tombait dans la règle des « petits pots » avec les mousses et
      * les panna cotta, alors que c'est un plat entier qu'on découpe. Les formes
      * dérivées gardent leur propre gabarit : cupcakes, rochers, bûche façon

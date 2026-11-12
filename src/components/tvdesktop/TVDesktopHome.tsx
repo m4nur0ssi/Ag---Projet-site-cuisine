@@ -1271,9 +1271,12 @@ export default function TVDesktopHome() {
                                 {...dragProps(it.token, it.label)}
                                 className={`${styles.navRow} ${styles.navRowSmall} ${styles.navDraggable} ${filters.includes(it.token) ? styles.navRowOn : ''}`}
                                 onClick={() => {
+                                    const etaitCoche = filters.includes(it.token);
                                     toggleFilter(it.token);
                                     // Choix fait : la liste se replie, seule la sélection reste.
-                                    setOpenGroups((g) => ({ ...g, [title]: false }));
+                                    // Décocher, en revanche, laisse le groupe OUVERT : on est en train
+                                    // de changer de filtre, pas d'en avoir fini avec la liste.
+                                    setOpenGroups((g) => ({ ...g, [title]: etaitCoche }));
                                 }}
                             >
                                 <span className={styles.navBullet} /><span>{it.label}</span>

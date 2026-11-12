@@ -226,7 +226,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "8190",
-        "title": "Le meilleur dessert de Noël en 5 minutes",
+        "title": "Fantaisie chocolat framboise",
         "description": "Découvrez le meilleur dessert de Noël, rapide et facile à préparer en seulement 5 minutes (temps de préparation hors cuisson et refroidissement). Ce dessert festif fond littéralement en bouche et est parfait pour le menu de Noël, le réveillon du N...",
         "image": "/recipes-ia/8190-carte.webp",
         "category": "desserts",
