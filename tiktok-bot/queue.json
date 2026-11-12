@@ -1,14 +1,12 @@
 {
   "queue": [
     {
-      "videoUrl": "https://vm.tiktok.com/ZN8PnbArA/",
-      "country": "Asie",
-      "timestamp": "2026-11-12T11:25:35.938Z"
-    },
-    {
       "videoUrl": "https://vm.tiktok.com/ZN8PnqEsN/",
       "country": "Noël",
-      "timestamp": "2026-11-12T11:26:45.052Z"
+      "timestamp": "2026-11-12T11:26:45.052Z",
+      "essais": 1,
+      "derniereRaison": "quota IA épuisé",
+      "derniereTentative": "2026-11-12T11:27:58.427Z"
     }
   ],
   "echecs": [
