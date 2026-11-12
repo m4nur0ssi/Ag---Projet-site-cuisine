@@ -1,29 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8PCE4Ta/",
-      "country": "Asie",
-      "timestamp": "2026-11-11T15:42:58.764Z",
-      "essais": 1,
-      "derniereRaison": "quota IA épuisé",
-      "derniereTentative": "2026-11-12T01:30:13.055Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8PCqU4x/",
-      "country": "Asie",
-      "timestamp": "2026-11-11T15:46:04.786Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8PCcX3h/",
-      "country": "Sandwichs",
-      "timestamp": "2026-11-11T15:48:22.614Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN8P41ccP/",
-      "country": "C'est l'hiver",
-      "timestamp": "2026-11-11T17:22:41.888Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZGdQUDKnF/",
