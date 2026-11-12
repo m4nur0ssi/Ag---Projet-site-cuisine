@@ -10,7 +10,7 @@ interface Pos { top: number; left: number; right: number }
  * est à droite du titre) ; sur téléphone on renvoie `null` et la fiche garde
  * ses flèches d'origine.
  */
-export function useFlechesPos(sheet: RefObject<HTMLElement | null>, actif: boolean): Pos | null {
+export function useFlechesPos(sheet: RefObject<HTMLElement | null>, actif: boolean, toutesLargeurs = false): Pos | null {
     const [pos, setPos] = useState<Pos | null>(null);
     useEffect(() => {
         if (!actif) { setPos(null); return; }
@@ -19,7 +19,7 @@ export function useFlechesPos(sheet: RefObject<HTMLElement | null>, actif: boole
             // La fiche monte après ce hook (portail, animation) : on la cherche à chaque mesure.
             const el = sheet.current;
             if (!el) return;
-            if (window.innerWidth < 900) { setPos((p) => (p ? null : p)); return; }
+            if (!toutesLargeurs && window.innerWidth < 900) { setPos((p) => (p ? null : p)); return; }
             const f = el.getBoundingClientRect();
             let meilleur: DOMRect | null = null; let rec = 0;
             el.querySelectorAll('[class*="imageCardContainer"]').forEach((n) => {
@@ -44,7 +44,7 @@ export function useFlechesPos(sheet: RefObject<HTMLElement | null>, actif: boole
         document.addEventListener('scroll', mesurer, true);
         window.addEventListener('resize', mesurer);
         return () => { clearInterval(t); document.removeEventListener('scroll', mesurer, true); window.removeEventListener('resize', mesurer); };
-    }, [sheet, actif]);
+    }, [sheet, actif, toutesLargeurs]);
     return pos;
 }
 

@@ -3229,3 +3229,22 @@
     .focusIngQty { font-size: 0.9rem; }
     .focusIngKicker { font-size: 0.8rem; }
 }
+
+/* Cœur / Partager : enfoncement au toucher (pas de survol rouge : sur tactile
+   le :hover reste collé après le doigt). Pas d'animation, juste l'appui. */
+.favorite-btn-action:active,
+.share-btn-action:active {
+    transform: translateY(3px) scale(0.9) !important;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.35) !important;
+    transition-duration: 0.08s !important;
+}
+
+/* Mode préparation (téléphone) : Taille, Question, micro, Quitter sur UNE
+   rangée, tous à 52 px de haut comme le micro et la croix. */
+.focusHeaderActions > * {
+    height: 52px;
+    min-width: 52px;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+}
+.focusHeaderActions > button:not(.focusMic):not(.focusClose) { justify-content: center; }

@@ -41,7 +41,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     const [recipes, setRecipes] = useState(baseRecipes);
     const [currentIdx, setCurrentIdx] = useState(recipeIndex);
     const sheetRef = useRef<HTMLDivElement>(null);
-    const flechesPos = useFlechesPos(sheetRef, isOpen && recipes.length > 1);
+    const flechesPos = useFlechesPos(sheetRef, isOpen && recipes.length > 1, true);
     // Resync quand on ouvre une nouvelle fiche (props changent).
     useEffect(() => { setRecipes(baseRecipes.map(completer)); }, [baseRecipes]);
 
@@ -622,8 +622,8 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             {recipes.length > 1 && (
                                 <>
                                     {flechesPos && <FlechesImage pos={flechesPos} precedent={currentIdx > 0 ? () => goToIndex(currentIdx - 1) : undefined} suivant={currentIdx < recipes.length - 1 ? () => goToIndex(currentIdx + 1) : undefined} />}
-                                    {!flechesPos && currentIdx > 0 && <button className={`${styles.navArrow} ${styles.navLeft} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx - 1)} aria-label="Recette précédente">‹</button>}
-                                    {!flechesPos && currentIdx < recipes.length - 1 && <button className={`${styles.navArrow} ${styles.navRight} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx + 1)} aria-label="Recette suivante">›</button>}
+                                    {!flechesPos && !fleches && currentIdx > 0 && <button className={`${styles.navArrow} ${styles.navLeft} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx - 1)} aria-label="Recette précédente">‹</button>}
+                                    {!flechesPos && !fleches && currentIdx < recipes.length - 1 && <button className={`${styles.navArrow} ${styles.navRight} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx + 1)} aria-label="Recette suivante">›</button>}
                                 </>
                             )}
                         </motion.div>

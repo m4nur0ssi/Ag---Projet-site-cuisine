@@ -2189,7 +2189,7 @@ export default function TVHome() {
          * moment d'ouvrir. S'ils ne sont pas encore arrivés (ouverture dans la
          * première seconde), la fiche s'affiche et se complète juste après.
          */
-        setSheet({ recipes: list.slice(start, start + SHEET_WINDOW).map(completer), index: index - start });
+        setSheet({ recipes: list.slice(start, start + SHEET_WINDOW).map(completer), index: index - start, fleches: list.length > 1 });
         if (!detailsPrets()) {
             chargerVideos().then(() => {
                 setSheet((ouvert) => (ouvert ? { ...ouvert, recipes: ouvert.recipes.map(completer) } : ouvert));

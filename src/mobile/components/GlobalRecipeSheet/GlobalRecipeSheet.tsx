@@ -75,6 +75,7 @@ export default function GlobalRecipeSheet() {
             onClose={() => { setRecipe(null); setListe(null); }}
             allRecipes={liste?.recettes}
             recipeIndex={liste?.index ?? 0}
+            fleches={!!liste}
         />
     );
 }

@@ -1615,16 +1615,6 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                         )}
                         {/* Toucher le titre (ou la miniature) revient à la recette. */}
                         <div className={styles.focusTitle} role="button" tabIndex={0} onClick={() => { setFocusMode(false); triggerHaptic(); }} style={{ cursor: 'pointer' }}>{decodeHtml(recipe.title)}</div>
-                        {/* La croix reste en haut à droite, sur la 1re ligne ; les réglages passent dessous. */}
-                        <button
-                            className={styles.focusClose}
-                            aria-label="Quitter le mode préparation"
-                            onClick={() => { setFocusMode(false); triggerHaptic(); }}
-                        >
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M6 6l12 12M18 6L6 18" />
-                            </svg>
-                        </button>
                         <div className={styles.focusHeaderActions}>
                             <TailleTexte echelle={echelleTexte.echelle} plus={echelleTexte.plus} moins={echelleTexte.moins} />
                             <QuestionCuisine
@@ -1643,6 +1633,15 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <rect x="9" y="2" width="6" height="12" rx="3" />
                                     <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+                                </svg>
+                            </button>
+                            <button
+                                className={styles.focusClose}
+                                aria-label="Quitter le mode préparation"
+                                onClick={() => { setFocusMode(false); triggerHaptic(); }}
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M6 6l12 12M18 6L6 18" />
                                 </svg>
                             </button>
                         </div>
