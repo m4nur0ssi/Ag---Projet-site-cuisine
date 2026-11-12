@@ -1,17 +1,12 @@
 {
   "queue": [
     {
-      "videoUrl": "https://vm.tiktok.com/ZN8PQGrrV/",
-      "country": "Desserts",
-      "timestamp": "2026-11-11T15:07:46.686Z",
-      "essais": 2,
-      "derniereRaison": "quota IA épuisé",
-      "derniereTentative": "2026-11-11T18:39:04.055Z"
-    },
-    {
       "videoUrl": "https://vm.tiktok.com/ZN8PCE4Ta/",
       "country": "Asie",
-      "timestamp": "2026-11-11T15:42:58.764Z"
+      "timestamp": "2026-11-11T15:42:58.764Z",
+      "essais": 1,
+      "derniereRaison": "quota IA épuisé",
+      "derniereTentative": "2026-11-12T01:30:13.055Z"
     },
     {
       "videoUrl": "https://vm.tiktok.com/ZN8PCqU4x/",
