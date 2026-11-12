@@ -2,11 +2,87 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/11/2026 18:58:14
- * Total: 854 recettes
+ * Dernière mise à jour: 12/11/2026 22:13:24
+ * Total: 857 recettes
  */
-export const exportSyncId = "1794509894886";
+export const exportSyncId = "1794521604769";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8224",
+        "title": "Cake aux fruits confits façon Pierre Hermé",
+        "description": "Un délicieux cake aux fruits confits, inspiré de la recette de Pierre Hermé. Les raisins secs sont macérés dans du rhum ambré (ou du thé aux fruits rouges) avant d'être incorporés à la pâte, puis le cake est badigeonné de ce même liquide à la sort...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7707319463107906849\" data-video-id=\"7707319463107906849\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7707319463107906849\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre mou (200g)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine (300g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs (4)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Levure chimique (5g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cassonade (150g)"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n             Raisins secs (150g)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Rhum ambré (20cl) ou thé aux fruits rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cerises confites (150g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fruits confits mélangés (150g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (une petite pincée)"
+            }
+        ],
+        "steps": [
+            "Faites gonfler les raisins secs dans le rhum ambré (ou le thé aux fruits rouges) pendant 2 heures. Égouttez les raisins en conservant le rhum pour plus tard.",
+            "Préchauffez votre four à 250°C.",
+            "Dans un saladier, fouettez le beurre mou avec la cassonade jusqu'à obtenir un mélange crémeux et homogène.",
+            "Incorporez les œufs un à un, en fouettant bien après chaque ajout. Le mélange peut sembler trancher légèrement, mais cela n'affectera pas le résultat final.",
+            "À l'aide d'une cuillère en bois ou d'une spatule, incorporez délicatement la farine mélangée à la levure chimique et une petite pincée de sel.",
+            "Ajoutez les raisins secs égouttés et les fruits confits (le mélange et les cerises) à la pâte, puis mélangez pour bien les répartir.",
+            "Versez la pâte dans un moule à cake beurré (ou chemisé d'un tapis de cuisson en silicone).",
+            "Lissez le dessus de la pâte et déposez une petite bande de beurre au centre du cake pour favoriser un développement harmonieux à la cuisson.",
+            "Baissez la température du four à 180°C et enfournez le cake pendant 1 heure et 10 minutes.",
+            "À la sortie du four, badigeonnez immédiatement le cake encore chaud avec le rhum (ou le thé aux fruits rouges) que vous aviez réservé.",
+            "Laissez le cake refroidir complètement avant de le déguster."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Noël",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8218",
         "title": "Nuggets de pomme de terre croustillants et sauce Creamy Deluxe maison",
@@ -160,7 +236,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8220",
         "title": "Petits pots chocolat-orange au Baileys",
         "description": "Découvrez ces irrésistibles petits pots chocolat-orange au Baileys, un dessert de Noël sans cuisson que l'auteure prépare depuis près de 15 ans. Composés d'une base croustillante de biscuits, d'une crème onctueuse au chocolat et à l'orange avec un...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8220-carte.webp",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1076,7 +1152,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8203",
         "title": "Wrap Protéiné au Maïs Croustillant",
         "description": "Découvrez une recette virale de wrap au maïs, testée et améliorée pour être plus riche en protéines et moins calorique. Ce wrap croustillant est facile à préparer et peut être garni selon vos envies pour un repas sain et gourmand.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8203-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14977,6 +15053,74 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "4123",
+        "title": "Épaule d'agneau comme un chef",
+        "description": "Découvrez comment cuisiner une épaule d'agneau savoureuse et fondante, un plat mijoté qui ne sèche pas, parfait pour un repas de chef à la maison.",
+        "image": "/recipes-ia/4123-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618281152385666326\" data-video-id=\"7618281152385666326\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618281152385666326\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 épaule d'agneau (1,3 kg)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             6 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càs de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             75 cl de vin rouge ou de bouillon de viande"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             50 cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 bouquet garni (thym, laurier)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Assaisonnez l'épaule d'agneau et faites-la dorer.",
+            "Ajoutez les oignons rouges, l'ail, le paprika fumé et le bouquet garni.",
+            "Mouillez avec le vin rouge puis complétez avec l'eau jusqu'à ce que l'épaule soit totalement immergée.",
+            "Mélangez légèrement, couvrez et laissez cuire au moins 3 h à feu moyen.",
+            "Vérifiez la cuisson en piquant la viande avec un couteau sans résistance.",
+            "Retirez la viande du bouillon, roulez‑la dans du film alimentaire en formant un boudin bien serré et réfrigérez au moins 3 h.",
+            "Portionnez la viande.",
+            "Réchauffez la viande dans la sauce jusqu'à ce qu'elle soit bien chaude, puis retirez le film.",
+            "Servez avec une purée et la petite sauce réduite à feu vif."
+        ],
+        "tags": [
+            "Famille",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "4350",
         "title": "Arayes libanais et Tzatziki maison",
         "description": "Découvrez la recette des Arayes libanais, des pains pita garnis d'une savoureuse farce à la viande hachée et aux épices, accompagnés d'un Tzatziki maison rafraîchissant.",
@@ -22305,6 +22449,69 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Asie",
             "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6337",
+        "title": "Salade marocaine",
+        "description": "Une salade toute simple, rapide à faire et parfaite pour accompagner vos barbeuc cet été.",
+        "image": "/recipes-ia/6337-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630014915067120918\" data-video-id=\"7630014915067120918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630014915067120918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Découpez les tomates, le concombre et l'oignon rouge en petits morceaux égaux.",
+            "Mettez les légumes dans un saladier.",
+            "Ajoutez une bonne huile d'olive.",
+            "Ajoutez le jus d'un citron.",
+            "Salez et poivrez selon votre goût.",
+            "Ajoutez un peu de persil haché.",
+            "Mélangez bien les ingrédients."
+        ],
+        "tags": [
+            "barbecue",
+            "Healthy",
+            "Orient",
+            "Pas cher",
             "Salades",
             "Végé",
             "Voilà l'été"
