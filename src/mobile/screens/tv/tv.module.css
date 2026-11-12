@@ -6794,3 +6794,124 @@
 .spEmbedded .spSearchControls .spSansTag {
     min-height: 40px; font-size: 14px; font-weight: 600; padding: 8px 20px;
 }
+
+/* ── Ta sélection : panneau à droite de la carte de recherche (bureau) ──
+   Même langage que le reste du shell TV+ : verre, rayons généreux, ressort. */
+.spTopRow { display: contents; }
+.spStage { display: none; }
+@media (min-width: 1000px) {
+    .spEmbedded .spTopRow {
+        display: flex; align-items: stretch; gap: 20px; margin: 0 0 18px;
+    }
+    .spEmbedded .spTopRow > .spSearchControls { margin: 0; flex: 0 1 720px; min-width: 0; max-width: 720px; }
+    .spStage {
+        display: flex; flex-direction: column; gap: 18px;
+        position: relative; isolation: isolate; overflow: hidden;
+        flex: 1 1 0; min-width: 320px;
+        padding: 14px;
+        border-radius: 28px;
+        background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.025));
+        border: 1px solid rgba(255,255,255,.12);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 18px 50px rgba(0,0,0,.35);
+        -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
+        perspective: 900px;
+    }
+    .spStageGlow {
+        position: absolute; inset: -40% -20% auto auto; width: 70%; height: 90%; z-index: -1;
+        background: radial-gradient(closest-side, rgba(255,159,10,.28), rgba(191,90,242,.14) 55%, transparent 75%);
+        filter: blur(30px); opacity: .55; transition: opacity .6s ease;
+        animation: spGlowDrift 9s ease-in-out infinite alternate;
+    }
+    .spStage[data-empty] .spStageGlow { opacity: .18; }
+    @keyframes spGlowDrift { to { transform: translate3d(-8%, 10%, 0) scale(1.15); } }
+}
+.spStageHead { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.spStageKicker {
+    font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+    color: rgba(235,235,245,.6); margin-bottom: 4px;
+}
+.spStageCount { display: flex; align-items: baseline; gap: 10px; }
+.spStageNum {
+    display: inline-block; min-width: .7em;
+    font-size: 54px; line-height: 1; font-weight: 800; letter-spacing: -.04em; color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+}
+.spStageUnit { font-size: 15px; font-weight: 500; color: rgba(235,235,245,.6); }
+.spStageClear {
+    border: none; cursor: pointer; border-radius: 999px; padding: 10px 18px;
+    background: rgba(255,255,255,.12); color: #fff; font-size: 13.5px; font-weight: 600;
+    box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+}
+.spStageClear:hover { background: #fff; color: #000; }
+.spStageGrid {
+    --tl: 24px; --ti: 56px;
+    display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-rows: minmax(68px, 1fr); gap: 12px;
+    flex: 1; min-height: 0; overflow-y: auto; padding: 2px;
+    scrollbar-width: none;
+}
+.spStageGrid::-webkit-scrollbar { display: none; }
+.spStageEmpty {
+    grid-column: 1 / -1; margin: 0; max-width: 34ch; font-size: 15px; line-height: 1.5;
+    color: rgba(235,235,245,.5);
+}
+.spTile {
+    --c: 255, 159, 10;
+    position: relative; overflow: hidden; display: flex; align-items: center; gap: 12px;
+    min-height: 76px; padding: 14px 16px; text-align: left; cursor: pointer; border: none;
+    border-radius: 22px; color: #fff;
+    background: linear-gradient(135deg, rgba(var(--c), .42), rgba(var(--c), .12) 70%), rgba(255,255,255,.05);
+    box-shadow: inset 0 0 0 1px rgba(var(--c), .5), inset 0 1px 0 rgba(255,255,255,.25), 0 12px 28px rgba(0,0,0,.35), 0 0 32px rgba(var(--c), .18);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent; transform-style: preserve-3d;
+}
+.spTile_categorie { --c: 255, 159, 10; }
+.spTile_pays { --c: 10, 132, 255; }
+.spTile_tendances { --c: 191, 90, 242; }
+.spTile_ingredient { --c: 48, 209, 88; }
+.spTileShine {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%);
+    transform: translateX(-120%); animation: spShine 1.1s .15s cubic-bezier(.32,.72,0,1) 1 forwards;
+}
+.spTile:hover .spTileShine { animation: spShine .9s cubic-bezier(.32,.72,0,1) 1; }
+@keyframes spShine { to { transform: translateX(120%); } }
+.spTileIcon {
+    flex: 0 0 auto; width: 40px; height: 40px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.3);
+}
+.spTileText { display: flex; flex-direction: column; min-width: 0; flex: 1; gap: 2px; }
+.spTileKicker { font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.spTileLabel { font-size: 19px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.spTileX {
+    flex: 0 0 auto; width: 26px; height: 26px; border-radius: 999px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,.28); opacity: .7; transition: opacity .2s ease, background .2s ease, transform .25s cubic-bezier(.32,.72,0,1);
+}
+.spTile:hover .spTileX { opacity: 1; background: rgba(255,59,48,.9); transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) {
+    .spStageGlow, .spTileShine { animation: none; }
+}
+
+.spStageHead { min-height: 48px; align-items: center; }
+.spStageLbl { display: flex; flex-direction: column; gap: 2px; padding-left: 4px; }
+.spStageCount { align-items: center; gap: 12px; padding-left: 8px; }
+.spStageNum { font-size: 40px; }
+.spStageKicker { margin: 0; }
+.spStageClear { height: 48px; padding: 0 24px; font-size: 14px; }
+.spStageGrid[data-n="1"] { --tl: 40px; --ti: 84px; }
+.spStageGrid[data-n="2"], .spStageGrid[data-n="3"], .spStageGrid[data-n="4"] { --tl: 30px; --ti: 68px; }
+.spStageGrid[data-n="5"], .spStageGrid[data-n="6"] { --tl: 24px; --ti: 56px; }
+.spStageGrid[data-n="7"], .spStageGrid[data-n="8"], .spStageGrid[data-n="9"] { --tl: 20px; --ti: 46px; }
+.spStageGrid[data-n="10"], .spStageGrid[data-n="11"], .spStageGrid[data-n="12"], .spStageGrid[data-n="13"] { --tl: 17px; --ti: 38px; }
+.spTile { min-height: 0; padding: 0 20px 0 16px; gap: 16px; border-radius: 24px; }
+.spTileIcon { width: var(--ti); height: var(--ti); border-radius: calc(var(--ti) * .3); }
+.spTileLabel { font-size: var(--tl); }
+.spTileKicker { font-size: 11px; }
+.spTileFlag { font-size: calc(var(--ti) * .62); line-height: 1; }
+@media (max-width: 999px) { .spStageHead { display: none; } }
+/* Icône posée directement sur la tuile : pas de vignette dans la vignette. */
+.spTileIcon { background: none; box-shadow: none; border-radius: 0; opacity: .95; }
+.spTileIcon svg { filter: drop-shadow(0 2px 8px rgba(0,0,0,.25)); }

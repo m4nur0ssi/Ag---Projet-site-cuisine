@@ -6,6 +6,7 @@ import Portal from '@/components/Portal';
 import styles from './RecipeSheet.module.css';
 import RecipeDetails from '@/components/RecipeDetails/RecipeDetails';
 import { ecrireStock } from '@/lib/stockage';
+import { FlechesImage, useFlechesPos } from './FlechesFiche';
 
 interface RecipeSheetProps {
     recipe: Recipe;
@@ -20,6 +21,8 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
     const [shouldRender, setShouldRender] = useState(isOpen);
     const scrollYRef = useRef(0);
     const controls = useDragControls();
+    const sheetRef = useRef<HTMLDivElement>(null);
+    const flechesPos = useFlechesPos(sheetRef, isOpen && !!navigation);
 
     // Sync when parent changes recipe
     useEffect(() => { setCurrentRecipe(initialRecipe); }, [initialRecipe]);
@@ -180,6 +183,7 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
                         {/* La "Feuille" (Sheet) iOS 26 */}
                         <motion.div
                             className={styles.sheet}
+                            ref={sheetRef}
                             style={hauteur ? { height: `${hauteur}px` } : undefined}
                             initial={{ y: '100%' }}
                             animate={{ y: 0 }}
@@ -214,10 +218,11 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
                             {navigation && (
                                 <>
                                     <div className={styles.navCompteur}>{navigation.position} / {navigation.total}</div>
-                                    {navigation.precedent && (
+                                    {flechesPos && <FlechesImage pos={flechesPos} precedent={navigation.precedent} suivant={navigation.suivant} />}
+                                    {!flechesPos && navigation.precedent && (
                                         <button className={`${styles.navFleche} ${styles.navGauche}`} onClick={navigation.precedent} aria-label="Recette précédente">‹</button>
                                     )}
-                                    {navigation.suivant && (
+                                    {!flechesPos && navigation.suivant && (
                                         <button className={`${styles.navFleche} ${styles.navDroite}`} onClick={navigation.suivant} aria-label="Recette suivante">›</button>
                                     )}
                                 </>

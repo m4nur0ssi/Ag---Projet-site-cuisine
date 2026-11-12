@@ -65,6 +65,101 @@ const stripEmoji = (s: string) =>
 
 type Mode = 'recipe' | 'ingredients' | 'assistant';
 
+type SelKind = 'categorie' | 'pays' | 'tendances' | 'ingredient';
+interface SelItem { tag: string; kind: SelKind; label: string; flag?: string }
+const SEL_KICKER: Record<SelKind, string> = { categorie: 'Catégorie', pays: 'Pays', tendances: 'Tendance', ingredient: 'Ingrédient' };
+const SEL_ICON: Record<SelKind, string> = {
+    categorie: 'M4 6h16M4 12h16M4 18h10',
+    pays: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21M12 3C9.5 5.6 8.2 8.6 8.2 12S9.5 18.4 12 21',
+    tendances: 'M13 3 5 14h6l-1 7 8-11h-6l1-7z',
+    ingredient: 'M12 4c3 0 6 2.5 6 6.5 0 4-3 8-6 9.5-3-1.5-6-5.5-6-9.5C6 6.5 9 4 12 4zM12 2v3',
+};
+
+/** Panneau « Ta sélection » : les choix en grand, à droite de la carte de recherche. */
+function SelectionStage({ items, onRemove, onClear }: { items: SelItem[]; onRemove: (it: SelItem) => void; onClear: () => void }) {
+    const spring = { type: 'spring' as const, stiffness: 420, damping: 32, mass: 0.8 };
+    const n = items.length;
+    const cols = n <= 1 ? 1 : n <= 4 ? 2 : n <= 9 ? 3 : 4;
+    const span = 12 / cols;
+    const reste = n % cols; // tuiles de la dernière ligne, centrées si elle est incomplète
+    return (
+        <aside className={styles.spStage} aria-label="Ta sélection" data-empty={items.length === 0 || undefined}>
+            <div className={styles.spStageGlow} aria-hidden />
+            <div className={styles.spStageHead}>
+                <div className={styles.spStageCount} aria-live="polite">
+                    <AnimatePresence mode="popLayout" initial={false}>
+                        <motion.span
+                            key={items.length}
+                            className={styles.spStageNum}
+                            initial={{ y: 22, opacity: 0, filter: 'blur(6px)' }}
+                            animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                            exit={{ y: -22, opacity: 0, filter: 'blur(6px)' }}
+                            transition={spring}
+                        >{items.length}</motion.span>
+                    </AnimatePresence>
+                    <span className={styles.spStageLbl}>
+                        <span className={styles.spStageKicker}>Ta sélection</span>
+                        <span className={styles.spStageUnit}>{items.length > 1 ? 'filtres actifs' : items.length === 1 ? 'filtre actif' : 'aucun filtre'}</span>
+                    </span>
+                </div>
+                <AnimatePresence>
+                    {items.length > 1 && (
+                        <motion.button
+                            type="button"
+                            className={styles.spStageClear}
+                            onClick={onClear}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            whileHover={{ scale: 1.04 }}
+                            whileTap={{ scale: 0.94 }}
+                            transition={spring}
+                        >Tout effacer</motion.button>
+                    )}
+                </AnimatePresence>
+            </div>
+            <div className={styles.spStageGrid} data-n={Math.min(items.length, 13)} style={{ ['--cols' as any]: items.length <= 1 ? 1 : items.length <= 4 ? 2 : items.length <= 9 ? 3 : 4, ['--rows' as any]: Math.ceil(items.length / (items.length <= 1 ? 1 : items.length <= 4 ? 2 : items.length <= 9 ? 3 : 4)) || 1 }}>
+                <AnimatePresence mode="popLayout" initial={false}>
+                    {items.map((it, i) => (
+                        <motion.button
+                            key={it.kind + it.tag}
+                            layout
+                            style={{ gridColumn: reste && i === n - reste ? `${1 + Math.round(((cols - reste) * span) / 2)} / span ${span}` : `span ${span}` }}
+                            type="button"
+                            className={`${styles.spTile} ${styles['spTile_' + it.kind]}`}
+                            onClick={() => onRemove(it)}
+                            aria-label={`Retirer ${it.label}`}
+                            initial={{ opacity: 0, scale: 0.6, y: 18, rotateX: -35, filter: 'blur(8px)' }}
+                            animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
+                            exit={{ opacity: 0, scale: 0.5, filter: 'blur(10px)', transition: { duration: 0.22 } }}
+                            whileHover={{ y: -4, scale: 1.035 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ ...spring, delay: Math.min(i, 5) * 0.02 }}
+                        >
+                            <span className={styles.spTileShine} aria-hidden />
+                            <span className={styles.spTileIcon} aria-hidden>
+                                {it.flag ? <span className={styles.spTileFlag}>{it.flag}</span> : <svg viewBox="0 0 24 24" width="55%" height="55%" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"><path d={SEL_ICON[it.kind]} /></svg>}
+                            </span>
+                            <span className={styles.spTileText}>
+                                <span className={styles.spTileKicker}>{SEL_KICKER[it.kind]}</span>
+                                <span className={styles.spTileLabel}>{it.label}</span>
+                            </span>
+                            <span className={styles.spTileX} aria-hidden>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                            </span>
+                        </motion.button>
+                    ))}
+                </AnimatePresence>
+                {items.length === 0 && (
+                    <motion.p key="vide" className={styles.spStageEmpty} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                        Choisis une catégorie, un pays ou une tendance : ils s’afficheront ici, à retirer d’un toucher.
+                    </motion.p>
+                )}
+            </div>
+        </aside>
+    );
+}
+
 interface TVSpotlightProps {
     open: boolean;
     /** Conserver la recherche pendant la consultation d’une fiche. */
@@ -205,6 +300,21 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const toggleFilter = (tag: string) =>
         setActiveFilters((prev) => prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]);
+    const selectionItems = useMemo<SelItem[]>(() => {
+        if (mode === 'recipe') {
+            const ORDRE: Record<string, number> = { categorie: 0, pays: 1, tendances: 2 };
+            const liste = activeFilters.map((tag) => {
+                const g = (['categorie', 'pays', 'tendances'] as FilterGroup[]).find((k) => FILTER_GROUPS[k].some((f: any) => f.tag === tag));
+                const f: any = g ? FILTER_GROUPS[g].find((x: any) => x.tag === tag) : null;
+                const flag = g === 'pays' ? (String(f?.label || '').match(/[\u{1F1E6}-\u{1F1FF}]{2}/u)?.[0]) : undefined;
+                return { tag, kind: g || 'tendances', label: stripEmoji(f?.label || tag), flag } as SelItem;
+            });
+            // Toujours : catégorie, puis pays, puis tendances (ordre de choix conservé dans chaque groupe).
+            return liste.map((it, i) => ({ it, i })).sort((x, y) => (ORDRE[x.it.kind] - ORDRE[y.it.kind]) || (x.i - y.i)).map((x) => x.it);
+        }
+        if (mode === 'ingredients') return ingTags.map((tag) => ({ tag, kind: 'ingredient', label: tag }) as SelItem);
+        return [];
+    }, [mode, activeFilters, ingTags]);
     // Filtres imposés par l'appelant à l'ouverture : chaque ouverture repart de ceux-là.
     const cleInitiaux = tagsInitiaux ? tagsInitiaux.join('|') : null;
     useEffect(() => {
@@ -921,6 +1031,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                         </div>
                     )}
 
+                    <div className={styles.spTopRow}>
                     <div className={styles.spSearchControls} role="group" aria-label="Recherche et filtres">
                     <div className={styles.spModeRow}>
                     {/* Segmented control : mode */}
@@ -1177,6 +1288,12 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
 
                     {/* Résultats */}
                     </div>
+                    <SelectionStage
+                        items={selectionItems}
+                        onRemove={(it) => { haptic(10); if (it.kind === 'ingredient') setIngTags((p) => p.filter((t) => t !== it.tag)); else toggleFilter(it.tag); }}
+                        onClear={() => { haptic(12); if (mode === 'ingredients') setIngTags([]); else setActiveFilters([]); }}
+                    />
+                    </div>
                     <div className={styles.spResults}>
                         {mode === 'assistant' && (
                             <>
@@ -1223,7 +1340,16 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                         )}
                     </div>
                     {preview && (open || embedded) && (
-                        <RecipeSheet recipe={preview} isOpen={true} onClose={() => setPreview(null)} onAddToPlanner={confirmPreview} />
+                        <RecipeSheet
+                            recipe={preview}
+                            isOpen={true}
+                            onClose={() => setPreview(null)}
+                            onAddToPlanner={confirmPreview}
+                            // Toute la liste affichée se parcourt avec ‹ › depuis la fiche.
+                            allRecipes={selection.some((r) => String(r.id) === String(preview.id)) ? selection : undefined}
+                            recipeIndex={Math.max(0, selection.findIndex((r) => String(r.id) === String(preview.id)))}
+                            fleches
+                        />
                     )}
         </>
     );

@@ -9,6 +9,7 @@ import { estRetourInterne } from '@/mobile/screens/tv/retour';
 import RecipeDetails from '@/mobile/components/RecipeDetails/RecipeDetails';
 import { demarrerDiagnosticAnimations } from '@/mobile/lib/diag-animations';
 import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-embed';
+import { FlechesImage, useFlechesPos } from '@/components/RecipeSheet/FlechesFiche';
 
 interface RecipeSheetProps {
     recipe: Recipe;
@@ -39,6 +40,8 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     const baseRecipes = useMemo(() => allRecipes && allRecipes.length > 0 ? allRecipes : [recipe], [allRecipes, recipe]);
     const [recipes, setRecipes] = useState(baseRecipes);
     const [currentIdx, setCurrentIdx] = useState(recipeIndex);
+    const sheetRef = useRef<HTMLDivElement>(null);
+    const flechesPos = useFlechesPos(sheetRef, isOpen && recipes.length > 1);
     // Resync quand on ouvre une nouvelle fiche (props changent).
     useEffect(() => { setRecipes(baseRecipes.map(completer)); }, [baseRecipes]);
 
@@ -520,6 +523,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
 
                         <motion.div
                             className={styles.sheet}
+                            ref={sheetRef}
                             initial={{ y: '100%' }}
                             animate={{ y: 0 }}
                             /*
@@ -617,8 +621,9 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             {/* Nav Arrows */}
                             {recipes.length > 1 && (
                                 <>
-                                    {currentIdx > 0 && <button className={`${styles.navArrow} ${styles.navLeft} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx - 1)} aria-label="Recette précédente">‹</button>}
-                                    {currentIdx < recipes.length - 1 && <button className={`${styles.navArrow} ${styles.navRight} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx + 1)} aria-label="Recette suivante">›</button>}
+                                    {flechesPos && <FlechesImage pos={flechesPos} precedent={currentIdx > 0 ? () => goToIndex(currentIdx - 1) : undefined} suivant={currentIdx < recipes.length - 1 ? () => goToIndex(currentIdx + 1) : undefined} />}
+                                    {!flechesPos && currentIdx > 0 && <button className={`${styles.navArrow} ${styles.navLeft} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx - 1)} aria-label="Recette précédente">‹</button>}
+                                    {!flechesPos && currentIdx < recipes.length - 1 && <button className={`${styles.navArrow} ${styles.navRight} ${fleches ? styles.navForce : ''}`} onClick={() => goToIndex(currentIdx + 1)} aria-label="Recette suivante">›</button>}
                                 </>
                             )}
                         </motion.div>
