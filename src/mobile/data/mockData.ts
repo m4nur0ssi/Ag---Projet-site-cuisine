@@ -2,50 +2,143 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/11/2026 01:41:23
- * Total: 848 recettes
+ * Dernière mise à jour: 12/11/2026 09:57:25
+ * Total: 852 recettes
  */
-export const exportSyncId = "1794447683016";
+export const exportSyncId = "1794477445574";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "8196",
-        "title": "Fondant chocolat et noisette",
-        "description": "Un dessert gourmand composé d'un fondant au chocolat et noisette, surmonté d'une onctueuse mousse au chocolat.",
+        "id": "8201",
+        "title": "Nems au poulet maison",
+        "description": "Découvrez une recette maison de nems au poulet, avec une farce généreuse et parfumée, et des astuces pour obtenir une enveloppe ultra croustillante, comme au restaurant. Faciles à réaliser, ces nems vous feront oublier les versions industrielles.",
         "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7706598333237742880\" data-video-id=\"7706598333237742880\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7706598333237742880\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7695431670148680982\" data-video-id=\"7695431670148680982\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7695431670148680982\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥚\n             3 œufs"
+                "name": "🥣\n             30 g de champignons noirs déshydratés"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             70 g de sucre"
+                "name": "🥣\n             100 g de vermicelles de haricot mungo"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             75 g de lait"
+                "name": "🍗\n             5 cuisses de poulet"
             },
             {
                 "quantity": "",
-                "name": "🍫\n             150 g de chocolat noir"
+                "name": "🧅\n             1/2 oignon blanc"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             159 g de beurre"
+                "name": "🧅\n             2 échalotes"
             },
             {
                 "quantity": "",
-                "name": "🥜\n             90 g de poudre d'amandes"
+                "name": "🥕\n             1 carotte"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             180 g de lait"
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de nuoc-mâm"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Une pincée de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Une pincée de poivre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             Galettes de riz pour nems"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait de coco"
+            }
+        ],
+        "steps": [
+            "Réhydratez les champignons noirs et les vermicelles de haricot mungo, puis mettez-les de côté.",
+            "Désossez les cuisses de poulet, coupez la chair en gros cubes, puis mixez-la.",
+            "Ciselez l'oignon et les échalotes.",
+            "Taillez la carotte en bâtonnets, puis salez-la légèrement pour la dégorger.",
+            "Hachez les champignons noirs réhydratés.",
+            "Coupez les vermicelles réhydratés aux ciseaux.",
+            "Dans un grand saladier, mélangez le poulet mixé avec les échalotes et les oignons ciselés, les champignons noirs hachés, les carottes pressées et les vermicelles coupés.",
+            "Ajoutez les deux œufs, la sauce huître, la sauce soja, le nuoc-mâm, l'huile de sésame, une pincée de sel, une pincée de bouillon de volaille et une pincée de poivre blanc. Mélangez bien le tout.",
+            "Étalez la farce sur une plaque, filmez-la et laissez reposer 10 à 15 minutes au réfrigérateur pour faciliter le portionnage.",
+            "Pendant ce temps, préparez un mélange d'eau et de lait de coco dans un plat pour humidifier les galettes de riz et éviter qu'elles ne collent entre elles.",
+            "Humidifiez une galette de riz, posez-la en losange. Déposez une portion de farce sur l'extrémité.",
+            "Rabattez les bords de la galette pour qu'ils soient parallèles, puis roulez-la en serrant bien. Ajoutez un peu du mélange d'eau et de lait de coco pour bien refermer le nem. Répétez l'opération pour toutes les galettes.",
+            "Pour la première cuisson, faites frire les nems dans un bain d'huile à 160 °C pendant 4 à 5 minutes. À ce stade, vous pouvez les congeler.",
+            "Si vous souhaitez les consommer immédiatement, passez à la deuxième friture. Montez l'huile à 180 °C et faites frire les nems une seconde fois pendant 2 minutes, en adaptant selon leur taille et jusqu'à cuisson complète du poulet, pour qu'ils soient bien dorés et croustillants.",
+            "Servez les nems chauds."
+        ],
+        "tags": [
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8199",
+        "title": "Salade de poulet du traiteur chinois",
+        "description": "Découvrez la recette authentique de la salade de poulet des traiteurs chinois, avec sa vinaigrette blanche légèrement sucrée et sa texture onctueuse. Une salade fraîche et croquante, facile à reproduire à la maison pour retrouver les saveurs de vo...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696520585995816194\" data-video-id=\"7696520585995816194\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696520585995816194\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥗\n             1 salade batavia"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             1 carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             1 filet de blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel (pour la cuisson du poulet)"
             },
             {
                 "quantity": "",
@@ -53,27 +146,66 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍫\n             300 g de chocolat"
+                "name": "🥫\n             1 cuillère à soupe de moutarde de Dijon"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             350 g de crème liquide entière froide"
+                "name": "🧂\n             1 pincée de sel (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             3 cuillères à café de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 pincée de poivre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe de vinaigre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de tournesol"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau froide"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
             }
         ],
         "steps": [
-            "Pour le fondant au chocolat : Préchauffer le four à 170 °C.",
-            "Fouetter les œufs avec le sucre.",
-            "Ajouter le lait, puis incorporer le chocolat fondu avec le beurre.",
-            "Terminer en ajoutant la poudre d'amandes et mélanger jusqu'à obtenir une pâte homogène.",
-            "Verser dans un moule et enfourner pendant environ 25 minutes.",
-            "Pour la mousse au chocolat : Faire chauffer le lait avec les jaunes d'œufs à feu doux, en mélangeant constamment, sans porter à ébullition.",
-            "Verser le mélange chaud sur le chocolat et mélanger jusqu'à obtenir une ganache lisse et homogène.",
-            "Laisser tiédir.",
-            "Monter la crème liquide, puis l'incorporer délicatement à la préparation au chocolat en plusieurs fois."
+            "Salez l'eau dans une casserole et mélangez pour dissoudre le sel. Portez l'eau à ébullition.",
+            "Plongez le filet de poulet dans l'eau frémissante et laissez cuire 2 à 3 minutes. Éteignez le feu et laissez le poulet reposer dans l'eau chaude pendant 20 minutes pour qu'il finisse de cuire à cœur.",
+            "Pendant ce temps, effeuillez la salade batavia en appuyant sur le cœur. Émincez-la très finement, idéalement en la roulant pour faciliter la découpe.",
+            "Plongez la salade émincée et la carotte taillée en julienne dans de l'eau glacée. Laissez reposer 10 minutes.",
+            "Une fois le poulet cuit et refroidi, coupez-le d'abord en lamelles, puis émincez-le dans l'autre sens pour obtenir de petits morceaux.",
+            "Pour la vinaigrette, dans un bol, fouettez les jaunes d'œufs avec la moutarde de Dijon, le sel, le sucre, le poivre blanc et le vinaigre blanc jusqu'à obtenir une pâte homogène.",
+            "Incorporez progressivement l'huile de tournesol comme pour monter une mayonnaise, puis ajoutez un peu d'huile d'olive.",
+            "Ajoutez ensuite progressivement de l'eau bien froide, petit à petit, pour obtenir une texture légère et fluide.",
+            "Terminez l'assaisonnement avec du jus de citron et quelques gouttes d'huile de sésame selon vos goûts.",
+            "Égouttez et essorez soigneusement la salade et les carottes. Dressez-les dans un plat.",
+            "Déposez le poulet émincé par-dessus la salade et les carottes.",
+            "Nappez généreusement de vinaigrette blanche avant de servir. Bonne dégustation !"
         ],
         "tags": [
-            "Desserts",
-            "France"
+            "Asie",
+            "Healthy",
+            "Pas cher",
+            "Salades",
+            "Sauces",
+            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -147,6 +279,78 @@ export const mockRecipes: Recipe[] = [
             "France",
             "Pas cher",
             "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8196",
+        "title": "Fondant chocolat et noisette",
+        "description": "Un dessert gourmand composé d'un fondant au chocolat et noisette, surmonté d'une onctueuse mousse au chocolat.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7706598333237742880\" data-video-id=\"7706598333237742880\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7706598333237742880\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             75 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             150 g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             159 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             90 g de poudre d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             180 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             300 g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             350 g de crème liquide entière froide"
+            }
+        ],
+        "steps": [
+            "Pour le fondant au chocolat : Préchauffer le four à 170 °C.",
+            "Fouetter les œufs avec le sucre.",
+            "Ajouter le lait, puis incorporer le chocolat fondu avec le beurre.",
+            "Terminer en ajoutant la poudre d'amandes et mélanger jusqu'à obtenir une pâte homogène.",
+            "Verser dans un moule et enfourner pendant environ 25 minutes.",
+            "Pour la mousse au chocolat : Faire chauffer le lait avec les jaunes d'œufs à feu doux, en mélangeant constamment, sans porter à ébullition.",
+            "Verser le mélange chaud sur le chocolat et mélanger jusqu'à obtenir une ganache lisse et homogène.",
+            "Laisser tiédir.",
+            "Monter la crème liquide, puis l'incorporer délicatement à la préparation au chocolat en plusieurs fois."
+        ],
+        "tags": [
+            "Desserts",
+            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -7480,6 +7684,216 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Desserts"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7914",
+        "title": "Cake salé aux tomates séchées et feta",
+        "description": "Un cake salé facile et délicieux aux tomates séchées, feta, gruyère et basilic, parfait pour l'apéritif.",
+        "image": "/recipes-ia/7914-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7333647251656412449\" data-video-id=\"7333647251656412449\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7333647251656412449\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             140 g de tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             180 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de gruyère râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             12 cl de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 cl d'huile (d'olive ou neutre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 bouquet de basilic (frais ou congelé)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Coupez 100 g de feta en cubes et 140 g de tomates séchées en petits morceaux.",
+            "Dans un saladier, mélangez 180 g de farine, 1 sachet de levure chimique, du sel et du poivre.",
+            "Dans un autre récipient, cassez 3 œufs et battez-les.",
+            "Versez les œufs battus et 6 cl d'huile (d'olive ou neutre) dans la préparation sèche. Mélangez. Dès que la pâte commence à épaissir, ajoutez 12 cl de lait et mélangez à nouveau.",
+            "Incorporez 50 g de gruyère râpé, du basilic (frais ou congelé), la feta coupée et les tomates séchées.",
+            "Mélangez le tout à l'aide d'une spatule. Versez la préparation dans un moule à cake (environ 27 cm sur 9 cm) chemisé de papier cuisson.",
+            "Enfournez à 180°C pendant 30 minutes.",
+            "Laissez tiédir avant de déguster."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7916",
+        "title": "Cakes salés variés (8 versions avec une seule pâte)",
+        "description": "Découvrez une recette simple et rapide pour préparer 8 cakes salés différents à partir d'une seule pâte de base. Parfaits pour vos apéritifs dînatoires ou vos pique-niques, ces cakes sont faciles à personnaliser avec une multitude de garnitures.",
+        "image": "/recipes-ia/7916-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7686879524490874145\" data-video-id=\"7686879524490874145\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7686879524490874145\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             400 ml de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             100 g de fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Comté"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Mini poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pesto"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Chèvre"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Lardons"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             Saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Roquefort"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Olives noires"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            }
+        ],
+        "steps": [
+            "Dans un grand bol, mélangez les 2 œufs, les 400 ml de crème liquide, le sel et le poivre.",
+            "Ajoutez les 200 g de farine et le sachet de levure chimique, puis mélangez jusqu'à obtenir une pâte bien homogène.",
+            "Incorporez les 100 g de fromage râpé à la pâte et mélangez à nouveau.",
+            "Préparez les garnitures : coupez les mini poivrons et faites-les cuire 4 minutes au micro-ondes avec un fond d'eau. Coupez également le chorizo, le jambon blanc, le comté, le basilic frais, la mozzarella, le saumon fumé et le chèvre en petits morceaux. Utilisez des tomates cerises que vous aurez préalablement fait cuire avec de l'ail, du sel et du poivre.",
+            "Préchauffez votre four à 180°C.",
+            "Remplissez vos moules (mini cakes, muffins ou un grand moule) avec la pâte de base.",
+            "Garnissez chaque cake avec les ingrédients de votre choix. Pour cela, mélangez les trois quarts de la garniture à la pâte dans le moule, puis ajoutez le quart restant sur le dessus pour la décoration. Voici les 8 versions proposées : jambon-Comté ; tomates cerises rôties à l'ail, mozzarella et basilic ; poivrons-chorizo ; pesto, parmesan et basilic ; chèvre-lardons ; saumon fumé, zeste de citron et ciboulette ; roquefort-noix ; et façon pizza avec tomates cerises, mozzarella, olives noires et origan.",
+            "Enfournez les cakes pour 30 à 35 minutes à 180°C.",
+            "Laissez refroidir légèrement avant de déguster."
+        ],
+        "tags": [
+            "Pas cher",
+            "Plats"
         ],
         "isFeatured": false,
         "isFavorite": false,
