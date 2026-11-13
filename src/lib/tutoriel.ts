@@ -13,7 +13,7 @@ export type Art =
     | 'hero' | 'rows' | 'press' | 'clic' | 'card' | 'cook' | 'filter' | 'search'
     | 'planner' | 'side' | 'compose' | 'jourj' | 'fill' | 'views' | 'dock' | 'cocktail'
     | 'cave' | 'ext' | 'sidebar' | 'library' | 'trophy' | 'taste' | 'install'
-    | 'tags' | 'timers' | 'demarrer' | 'plus';
+    | 'tags' | 'timers' | 'flame' | 'stars' | 'winepick' | 'demarrer' | 'plus';
 
 export interface Step {
     kicker: string;
@@ -73,6 +73,15 @@ export const STEPS_MOBILE: Step[] = [
     { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158', tint: T.vert,
       text: 'Ingrédients (nombre de personnes ajustable), étapes, ta note au dixième — glisse le doigt sur les étoiles, la fiche ne bouge pas —, l’accord vin et l’ajout à la liste. La barre du bas reste là.',
       hint: 'Fiche ouverte : balaye vers la gauche pour la recette voisine, la croix en haut la ferme.' },
+    { kicker: 'Recette', title: 'La flamme', art: 'flame', accent: '#FF9F0A', tint: T.orange,
+      text: 'En haut à droite de la photo, la flamme dit « cette recette est exceptionnelle ». Le chiffre dedans, c’est le nombre de personnes qui l’ont allumée : plus il est élevé, plus la recette est exceptionnelle.',
+      hint: 'Pour allumer ta flamme, touche dessus (il faut être connecté) ; touche de nouveau pour l’éteindre.' },
+    { kicker: 'Recette', title: 'Donne ta note', art: 'stars', accent: '#FFD60A', tint: T.jaune,
+      text: 'Note la recette avec les étoiles, au dixième près : glisse le doigt sur les étoiles, la fiche ne bouge pas. Elle s’ajoute à celles des autres : la fiche affiche la moyenne et le nombre de votants (il faut être connecté pour noter).',
+      hint: 'Les étoiles sont dans le bloc Prix / Votre note / Calories, sous le titre.' },
+    { kicker: 'Recette', title: 'Un vin de ta cave', art: 'winepick', accent: '#B23A48', tint: T.vin,
+      text: 'Dans une fiche, la pastille « Ma cave » propose, parmi les bouteilles que TU as ajoutées, celles qui vont avec le plat — la bonne couleur d’abord. Choisis-en une : « Oui » ouvre la bouteille et la retire du stock.',
+      hint: 'Le plus simple est sur le téléphone : photographie l’étiquette, la bouteille entre seule en cave.' },
     { kicker: 'Recette', title: 'Les hashtags', art: 'tags', accent: '#FF9F0A', tint: T.orange,
       text: 'Sous la photo de chaque fiche, les #hashtags sont des liens : un toucher, et toutes les recettes de ce thème s’affichent en grille, comme sur l’accueil.',
       hint: 'Ouvre une fiche, touche un #hashtag.' },
@@ -145,6 +154,15 @@ export const STEPS_BUREAU: Step[] = [
     { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158', tint: T.vert,
       text: 'Ingrédients (nombre de personnes ajustable), étapes, minuteur, ta note au dixième, l’accord vin et l’ajout à la liste. Coche un ingrédient : il file dans l’onglet « En + » de la liste. Les #hashtags sous la photo ouvrent leur catégorie.',
       hint: 'Échap referme la fiche et rend l’accueil à l’endroit exact où tu étais.' },
+    { kicker: 'Recette', title: 'La flamme', art: 'flame', accent: '#FF9F0A', tint: T.orange,
+      text: 'En haut à droite de la photo, la flamme dit « cette recette est exceptionnelle ». Le chiffre dedans, c’est le nombre de personnes qui l’ont allumée : plus il est élevé, plus la recette est exceptionnelle.',
+      hint: 'Pour allumer ta flamme, clique dessus (il faut être connecté) ; clique de nouveau pour l’éteindre.' },
+    { kicker: 'Recette', title: 'Donne ta note', art: 'stars', accent: '#FFD60A', tint: T.jaune,
+      text: 'Note la recette avec les étoiles, au dixième près : clique ou glisse sur les étoiles. Elle s’ajoute à celles des autres : la fiche affiche la moyenne et le nombre de votants (il faut être connecté pour noter).',
+      hint: 'Les étoiles sont dans le bloc Prix / Votre note / Calories, sous le titre.' },
+    { kicker: 'Recette', title: 'Un vin de ta cave', art: 'winepick', accent: '#B23A48', tint: T.vin,
+      text: 'Dans une fiche, la pastille « Ma cave » propose, parmi les bouteilles que TU as ajoutées, celles qui vont avec le plat — la bonne couleur d’abord. Choisis-en une : « Oui » ouvre la bouteille et la retire du stock.',
+      hint: 'Cave vide ? La pastille t’invite à en ajouter — le plus simple se fait sur le téléphone, en photographiant l’étiquette.' },
     { kicker: 'Recette', title: 'Cuisiner pas à pas', art: 'cook', accent: '#FF6B4A', tint: T.corail,
       text: '« Lancer la préparation » passe en mode cuisine : une étape à la fois, en grand, avec le minuteur qui démarre tout seul quand l’étape en demande un.',
       hint: 'Une recette commencée revient dans « Reprendre la cuisine », sur l’accueil.' },

@@ -202,6 +202,35 @@ function Illus({ kind, accent }: { kind: Art; accent: string }) {
                 </g>
             ))}
         </>);
+        case 'flame': return frame(<>
+            {r(30, 12, 160, 92, 14, `url(#g-${kind})`)}
+            <g className={styles.pulse}>
+                <circle cx="168" cy="34" r="17" fill="rgba(0,0,0,0.45)" />
+                <path d="M168 22c3 5 7 7 7 13a7 7 0 0 1-14 0c0-3 2-5 3-7 1 2 2 3 4 3-1-3-1-6 0-9z" fill="#FFD60A" />
+                <text x="168" y="46" textAnchor="middle" fontSize="8" fontWeight="900" fill="#fff">128</text>
+            </g>
+            {[0, 1, 2].map((k) => r(30 + k * 56, 116, 48, 24, 8, k === 0 ? c : soft2))}
+        </>);
+        case 'stars': return frame(<>
+            {r(24, 20, 172, 110, 14, 'rgba(30,30,34,0.95)', soft2)}
+            {r(38, 34, 70, 8, 4, soft2)}
+            <text x="38" y="66" fontSize="9" fontWeight="700" fill="#fff">Votre note : 4,3/5</text>
+            {[0, 1, 2, 3, 4].map((k) => (
+                <path key={k} className={k < 4 ? styles.pulse : undefined} transform={`translate(${42 + k * 28} 84)`} d="M10 0l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill={k < 4 ? c : soft2} />
+            ))}
+        </>);
+        case 'winepick': return frame(<>
+            {r(20, 14, 180, 122, 14, 'rgba(30,30,34,0.95)', soft2)}
+            {r(34, 26, 70, 16, 8, c)}
+            <text x="69" y="37" textAnchor="middle" fontSize="7.5" fontWeight="800" fill="#fff">Ma cave</text>
+            {[0, 1, 2].map((k) => (
+                <g key={k} className={k === 1 ? styles.pulse : undefined}>
+                    {r(34, 52 + k * 26, 152, 20, 8, k === 1 ? `url(#g-${kind})` : soft)}
+                    <path d={`M44 ${70 + k * 26}V${60 + k * 26}h4v10z`} fill={k === 1 ? '#fff' : soft2} />
+                    {r(58, 57 + k * 26, 70, 5, 2.5, soft2)}{r(58, 65 + k * 26, 44, 4, 2, soft)}
+                </g>
+            ))}
+        </>);
         case 'cave': return frame(<>
             {/* Étagère de cave : trois bouteilles, celle du milieu mise en avant. */}
             {r(24, 116, 172, 8, 4, soft2)}

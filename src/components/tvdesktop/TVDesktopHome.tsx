@@ -53,7 +53,7 @@ const MesRecettes = dynamic(() => import('@/mobile/screens/tv/MesRecettes'), { s
 import { listerMesRecettes, versFiche } from '@/mobile/lib/mesRecettes';
 const AuthButton = dynamic(() => import('@/components/AuthButton/AuthButton'), { ssr: false });
 // Visite guidée du site (version desktop) : composant autonome, habillé en ligne de menu.
-const TVTutorial = dynamic(() => import('@/mobile/screens/tv/TVTutorial'), { ssr: false });
+const TutorialCinema = dynamic(() => import('./TutorialCinema'), { ssr: false });
 const InstallerApp = dynamic(() => import('@/components/InstallerApp/InstallerApp'), { ssr: false });
 const ExtensionGuide = dynamic(() => import('@/mobile/screens/tv/ExtensionGuide'), { ssr: false });
 import { MAIL_RECETTE } from '@/lib/mail-recette';
@@ -1415,7 +1415,7 @@ export default function TVDesktopHome() {
                             : panel === 'trophies' ? <TVTrophies embedded />
                                 : panel === 'cave' ? <MaCave embedded />
                                 : panel === 'favoris' ? <Favoris embedded />
-                                    : panel === 'tuto' ? <TVTutorial embedded onClose={() => setPanel('none')} />
+                                    : panel === 'tuto' ? <TutorialCinema onClose={() => setPanel('none')} />
                                     : panel === 'gouts' ? <TasteOnboarding embedded onClose={() => setPanel('none')} />
                                     : panel === 'extension' ? <ExtensionGuide embedded onClose={() => setPanel('none')} />
                                     : panel === 'mesvideos' ? <MesRecettes embedded />
