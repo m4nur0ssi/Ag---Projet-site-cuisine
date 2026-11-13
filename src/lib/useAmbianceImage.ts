@@ -9,10 +9,11 @@
  */
 
 import { useEffect, useState } from 'react';
-import { lireAmbiance, type AmbianceImage } from './couleur-image';
+import { ambianceEnMemoire, lireAmbiance, type AmbianceImage } from './couleur-image';
 
 export function useAmbianceImage(src?: string | null): AmbianceImage | null {
-    const [ambiance, setAmbiance] = useState<AmbianceImage | null>(null);
+    // Déjà lue (recette voisine préchargée, fiche rouverte) : pas d'image de repli.
+    const [ambiance, setAmbiance] = useState<AmbianceImage | null>(() => ambianceEnMemoire(src) ?? null);
 
     useEffect(() => {
         if (!src) { setAmbiance(null); return; }

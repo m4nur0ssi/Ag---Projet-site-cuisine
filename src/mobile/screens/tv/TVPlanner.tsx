@@ -809,11 +809,22 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     // étroite pour la semaine (14 repas) ou le menu du Menu spécial.
     const NEEDED = mode === 'semaine' ? DAYS.length * MEALS.length : COURSES.filter((c) => c.label !== 'Accompagnement').length;
 
+    // Recettes admissibles dans ce mode, avant tout filtre : la base des comptes.
+    const famPool = useMemo(() => {
+        const accepts = mode === 'semaine' ? isTVMain : (r: Recipe) => isCookable(r);
+        return mockRecipes.filter((r) => r.image && accepts(r));
+    }, [mode]);
+
     const famItems = useMemo(() => {
-        const all = FILTER_GROUPS[fam];
+        // Une puce n'apparaît que si, combinée aux AUTRES familles cochées, elle
+        // donne au moins une recette (un plat + un pays → seules les tendances
+        // qui ont des recettes). Une puce déjà cochée reste, pour pouvoir la retirer.
+        const all = FILTER_GROUPS[fam].filter((i) =>
+            sel[fam].includes(i.tag) || famPool.some((r) => selFits(r, { ...sel, [fam]: [i.tag] })),
+        );
         const q = norm(famQuery.trim());
         return q ? all.filter((i) => norm(i.label).includes(q)) : all;   // l'emoji ne gêne pas : norm() le laisse hors des lettres
-    }, [fam, famQuery]);
+    }, [fam, famQuery, sel, famPool, selFits]);
 
     const toggleSel = (tag: string) => {
         haptic(6);
@@ -1757,7 +1768,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                                 +{famItems.length - 12} autres
                                             </button>
                                         )}
-                                        {!famItems.length && <div className={styles.composeHint}>Aucun filtre à ce nom.</div>}
+                                        {!famItems.length && <div className={styles.composeHint}>{famQuery.trim() ? 'Aucun filtre à ce nom.' : 'Aucune recette avec les filtres déjà choisis.'}</div>}
                                     </div>
                                 </>
                             )}

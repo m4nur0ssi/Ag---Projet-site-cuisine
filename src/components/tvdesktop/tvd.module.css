@@ -426,6 +426,11 @@
     max-width: min(70vw, 900px);
     display: flex; flex-direction: column; align-items: center;
     text-align: center;
+    /* Hauteur réservée pour le titre le plus long (3 lignes, cf. .heroTitle) :
+       .hero centre galerie + texte, donc un titre d'une ligne au lieu de deux
+       faisait glisser la galerie — et ses flèches — d'une recette à l'autre.
+       Pastille 47 + méta 40 + boutons 80 ≈ 172 px, plus 3 × 0,94 de corps. */
+    min-height: calc(2.82 * clamp(34px, 3.6vw, 60px) + 172px);
 }
 
 /* Bandeau haut : signature + compteur de recettes. */

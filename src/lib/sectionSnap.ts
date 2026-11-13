@@ -42,6 +42,8 @@ const DUREE = 380;
 const REARME = 90;
 /** En dessous, c'est du bruit de trackpad, pas une intention. */
 const SEUIL = 6;
+/** Défilement cumulé (px) qui, dans un même geste, fait avancer d'une section de plus. */
+const PALIER = 600;
 
 /** Translation verticale appliquée par une transformation CSS (0 si aucune). */
 function translationY(el: HTMLElement): number {
@@ -171,7 +173,13 @@ export function startSectionSnap(container: HTMLElement, marge = 18): SnapContro
         let j: number;
         if (dir > 0) {
             j = tops.findIndex((t) => t > y + eps);
-            if (j < 0) j = tops.length - 1;
+            // Dernière section (le pied de page) ou déjà au-delà : on descend
+            // jusqu'au VRAI bas du site. Centrée comme les autres, elle laissait
+            // le bas de page hors d'atteinte.
+            if (j < 0 || j === tops.length - 1) {
+                glisser(container.scrollHeight - container.clientHeight);
+                return;
+            }
         } else {
             j = 0;
             for (let k = 0; k < tops.length; k++) if (tops[k] < y - eps) j = k;
@@ -227,15 +235,33 @@ export function startSectionSnap(container: HTMLElement, marge = 18): SnapContro
     const ro = new ResizeObserver(republier);
     ro.observe(container);
 
+    /*
+     * Un geste = une section… sauf quand on défile BEAUCOUP. Un défilement
+     * continu ne marquait jamais de pause, ne se réarmait jamais, et restait
+     * collé à la section suivante : impossible de descendre en bas du site.
+     * Désormais chaque PALIER de défilement cumulé dans le même geste fait
+     * avancer d'une section de plus.
+     */
+    let cumul = 0;
     const onWheel = (e: WheelEvent) => {
         // Geste franchement latéral : il appartient au carrousel de la rangée.
         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
         e.preventDefault();
         if (rearme) clearTimeout(rearme);
-        rearme = setTimeout(() => { arme = true; }, REARME);
-        if (verrou || !arme || Math.abs(e.deltaY) < SEUIL) return;
-        arme = false;
-        aller(e.deltaY > 0 ? 1 : -1);
+        rearme = setTimeout(() => { arme = true; cumul = 0; }, REARME);
+        if (Math.abs(e.deltaY) < SEUIL) return;
+        const dir = e.deltaY > 0 ? 1 : -1;
+        if (arme && !verrou) {
+            arme = false;
+            cumul = 0;
+            aller(dir);
+            return;
+        }
+        cumul += Math.abs(e.deltaY);
+        if (!arme && !verrou && cumul >= PALIER) {
+            cumul = 0;
+            aller(dir);
+        }
     };
 
     const onKey = (e: KeyboardEvent) => {
@@ -247,7 +273,8 @@ export function startSectionSnap(container: HTMLElement, marge = 18): SnapContro
         const fin = e.key === 'End';
         if (!bas && !haut && !debut && !fin) return;
         e.preventDefault();
-        if (debut || fin) { const tops = hauts(); if (tops.length) glisser(tops[fin ? tops.length - 1 : 0]); return; }
+        if (fin) { glisser(container.scrollHeight - container.clientHeight); return; }
+        if (debut) { const tops = hauts(); if (tops.length) glisser(tops[0]); return; }
         aller(bas ? 1 : -1);
     };
 

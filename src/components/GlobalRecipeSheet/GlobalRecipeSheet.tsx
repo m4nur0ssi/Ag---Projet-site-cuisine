@@ -3,6 +3,17 @@ import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import type { Recipe } from '@/mobile/types';
 import { FERMER_FICHE } from '@/lib/ficheEvents';
+import { grandePhoto } from '@/lib/recipe-photo';
+import { lireAmbiance } from '@/lib/couleur-image';
+
+/** Met en cache la grande photo et l'ambiance d'une recette avant qu'on l'ouvre. */
+function prechargerRecette(src?: string | null) {
+    if (!src || typeof window === 'undefined') return;
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = grandePhoto(src);
+    void lireAmbiance(src);
+}
 
 // La fiche et le catalogue complet (2 Mo) n'arrivent qu'à la première ouverture :
 // l'accueil n'a pas à les payer au démarrage.
@@ -53,6 +64,14 @@ export default function GlobalRecipeSheet() {
             (window as unknown as { __recipeSheetReady?: boolean }).__recipeSheetReady = false;
         };
     }, []);
+
+    // Précharge les voisines de la position courante (grande photo + couleur
+    // d'ambiance) : la flèche suivante n'a plus rien à attendre, donc plus
+    // d'instant noir entre deux recettes.
+    useEffect(() => {
+        if (!liste) return;
+        [liste.index - 1, liste.index + 1].forEach((k) => prechargerRecette(liste.recettes[k]?.image));
+    }, [liste]);
 
     if (!recipe) return null;
     const aller = (i: number) => {

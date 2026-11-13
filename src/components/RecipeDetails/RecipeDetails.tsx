@@ -995,11 +995,12 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
             <div className={styles.heroNewLayout}>
                 <div className={styles.heroGrid} style={{ alignItems: 'center', zIndex: 2, gap: '20px' }}>
                     {/* Colonne GAUCHE : Blabla (Infos) */}
-                    <motion.div 
+                    {/* Pas d'entrée animée : en passant d'une recette à l'autre
+                        (flèches), le titre glissait depuis la gauche à chaque fois.
+                        Il doit être là, directement. */}
+                    <motion.div
                         className={styles.heroTextColumn}
-                        initial={{ opacity: 0, x: -70 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        initial={false}
                     >
                         {/* Barre d'action Catégorie Apple Style */}
                         <div className={styles.categoryCommandCenter}>
@@ -1124,6 +1125,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                 <CookPhotoSwitcher
                                     key={cookPhotos.join('|')}
                                     original={grandePhoto(recipe.image)}
+                                    apercu={recipe.image}
                                     alt={recipe.title}
                                     photos={cookPhotos}
                                 />) : (

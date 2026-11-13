@@ -192,6 +192,15 @@ const TAILLE_LECTURE = 48;   // 2 304 pixels suffisent largement pour une teinte
 const memoire = new Map<string, AmbianceImage | null>();
 
 /**
+ * Ambiance déjà lue, sans attendre : `undefined` si la photo n'a jamais été lue.
+ * Permet à une fiche qui se remonte (recette suivante) de partir directement de
+ * la bonne couleur au lieu de passer une image par la couleur de repli.
+ */
+export function ambianceEnMemoire(src?: string | null): AmbianceImage | null | undefined {
+    return src ? memoire.get(src) : undefined;
+}
+
+/**
  * Lit l'ambiance d'une image du site. Les photos sont servies depuis le même
  * domaine (`/recipes-ia/…`), donc le canevas n'est pas « teinté » et ses pixels
  * restent lisibles — inutile de passer par un service d'analyse.

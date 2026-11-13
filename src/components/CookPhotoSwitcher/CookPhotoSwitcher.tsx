@@ -8,7 +8,7 @@ import styles from './CookPhotoSwitcher.module.css';
 // la tuile, la tuile s'agrandit à sa place (animation FLIP). Fermer la fiche
 // remet la photo d'origine : le composant est recréé à chaque ouverture.
 
-interface Props { original: string; alt: string; photos: string[] }
+interface Props { original: string; alt: string; photos: string[]; apercu?: string }
 
 type Pending = { k: number; grandAvant: DOMRect; tuileAvant: DOMRect };
 
@@ -24,7 +24,7 @@ function animer(el: HTMLElement | null, depuis: DOMRect, vers: DOMRect) {
     );
 }
 
-export default function CookPhotoSwitcher({ original, alt, photos }: Props) {
+export default function CookPhotoSwitcher({ original, alt, photos, apercu }: Props) {
     // ordre[0] = photo affichée en grand ; ordre[1..] = tuiles.
     const [ordre, setOrdre] = useState<string[]>([original, ...photos]);
     const grand = useRef<HTMLImageElement>(null);
@@ -51,7 +51,9 @@ export default function CookPhotoSwitcher({ original, alt, photos }: Props) {
     const tuilesAffichees = ordre.slice(1);
 
     return (
-        <div className={styles.cadre}>
+        // L'aperçu (la petite photo, déjà en cache car la carte l'a montrée)
+        // remplit le cadre le temps que la grande arrive : plus d'instant noir.
+        <div className={styles.cadre} style={apercu ? { backgroundImage: `url("${apercu}")`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}>
             <img ref={grand} src={ordre[0]} alt={alt} className={styles.grand} draggable={false} />
             {tuilesAffichees.length > 0 && (
                 <div className={styles.bande}>
