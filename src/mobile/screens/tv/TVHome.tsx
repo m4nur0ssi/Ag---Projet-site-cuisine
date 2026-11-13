@@ -179,8 +179,8 @@ import SiteFooter from '@/components/SiteFooter/SiteFooter';
 import { ecrireStock } from '@/lib/stockage';
 // Loupe modernisée AppleTV+ (mêmes fonctions que SpotlightSearch prod, habillage TV).
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
-// Visite guidée de l'app mobile (remplace celle du site, écrite pour le desktop).
-const TVTutorial = dynamic(() => import('./TVTutorial'), { ssr: false });
+// Visite guidée de l'app mobile : même lecteur « cinéma » que le bureau, étapes du téléphone.
+const TutorialCinema = dynamic(() => import('@/components/tvdesktop/TutorialCinema'), { ssr: false });
 const MesRecettes = dynamic(() => import('./MesRecettes'), { ssr: false });
 /* Invitation à installer : ne se montre qu'à la 3e visite, et jamais deux fois. */
 const InstallInvite = dynamic(() => import('@/mobile/components/InstallInvite/InstallInvite'), { ssr: false });
@@ -2714,7 +2714,7 @@ export default function TVHome() {
 
             <Tip id="accueil" bureau={false} />
             <InstallInvite />
-            {tutoOpen && <TVTutorial onClose={() => setTutoOpen(false)} />}
+            {tutoOpen && <TutorialCinema mobile onClose={() => setTutoOpen(false)} />}
             {mesRecettesOpen && <MesRecettes onClose={() => setMesRecettesOpen(false)} />}
             {tasteOpen && <TasteOnboarding onClose={() => setTasteOpen(false)} />}
             {shareCard && (

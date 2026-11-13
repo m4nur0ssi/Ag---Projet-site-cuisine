@@ -13,7 +13,7 @@
  * scène (`key`). La fin de la barre de progression fait avancer l'étape.
  */
 
-import { useCallback, useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode, type TouchEvent as ReactTouchEvent } from 'react';
 import { mockRecipes } from '@/data/mockData';
 import { etapesTuto, marquerAstuceVue, TUTO_CARTES, type Art } from '@/lib/tutoriel';
 import styles from './TutorialCinema.module.css';
@@ -453,6 +453,87 @@ const SCENES: Partial<Record<Art, (c: Ctx) => ReactNode>> = {
         </Fenetre>
     ),
 
+    /* ── Scènes propres au téléphone (appui long, #hashtags, chronos, plan, bar du bas, cocktails) ── */
+
+    press: (c) => SCENES.clic?.(c) ?? null,
+
+    tags: ({ photos }) => (
+        <Fenetre>
+            <div className={`${styles.chips} ${styles.in}`} style={d(0.2)}>
+                {['#ITALIE', '#PÂTES', '#EXPRESS'].map((t, k) => (
+                    <span key={t} className={`${styles.chip} ${k === 0 ? styles.chipOn : ''}`}>{t}</span>
+                ))}
+            </div>
+            <div className={styles.tagsBox}>
+                <Grille photos={photos} n={8} start={0} />
+                <div className={styles.fondu} style={d(2.8)}><Grille photos={photos} n={8} start={3} /></div>
+            </div>
+            <Curseur a={[30, 40]} b={[14, 14]} delay={0.6} clic={2.2} />
+        </Fenetre>
+    ),
+
+    timers: ({ photos }) => (
+        <Fenetre>
+            <div className={styles.rows}>
+                {[['3:12', 0.2], ['14:05', 0.6]].map(([t, dl], k) => (
+                    <div key={String(t)} className={`${styles.timerRow} ${styles.in}`} style={d(Number(dl))}>
+                        <div className={styles.timerThumb}><Img p={photos[k + 1]} /></div>
+                        <span>{photos[k + 1]?.title}</span>
+                        <b>{t}</b>
+                    </div>
+                ))}
+            </div>
+            <div className={`${styles.etiquette} ${styles.in}`} style={d(4.4)}>la loupe affiche le chrono qui finit en premier</div>
+            <Curseur a={[30, 40]} b={[84, 16]} delay={1} clic={3.2} />
+        </Fenetre>
+    ),
+
+    demarrer: () => (
+        <Fenetre>
+            <div className={styles.planLignes}>
+                {['19:05', '19:20', '19:40', '20:00'].map((t, k) => (
+                    <div key={t} className={`${styles.lignePlan} ${styles.in}`} style={d(0.2 + k * 0.15)}>
+                        <b>{t}</b><span>{['Apéritif', 'Entrée', 'Plat', 'Dessert'][k]}</span>
+                    </div>
+                ))}
+            </div>
+            <div className={`${styles.alerte} ${styles.pop}`} style={d(2.4)}>
+                <b>19:05 · C’EST L’HEURE</b>
+                <div><span className={styles.okA}>OK, c’est fait</span><span>Dans 10 min</span></div>
+            </div>
+            <Curseur a={[30, 40]} b={[70, 62]} delay={3.6} clic={4.4} />
+        </Fenetre>
+    ),
+
+    cocktail: ({ photos }) => (
+        <Fenetre>
+            <div className={styles.rows}>
+                {['Cocktails', 'Cocktails sans alcool'].map((t, r) => (
+                    <div key={t} className={`${styles.rangee} ${styles.in}`} style={d(0.1 + r * 0.3)}>
+                        <div className={styles.rangeeT}>{t} <span>›</span></div>
+                        <div className={styles.rangeeCartes}>
+                            {Array.from({ length: 5 }).map((_, k) => (
+                                <div key={k} className={styles.carteH}><Img p={photos[(k + r * 3) % photos.length]} /></div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <Curseur a={[40, 60]} b={[22, 40]} delay={0.6} clic={2} />
+        </Fenetre>
+    ),
+
+    dock: ({ photos }) => (
+        <Fenetre>
+            <Grille photos={photos} n={8} start={3} />
+            <div className={`${styles.barreBas} ${styles.in}`} style={d(0.3)}>
+                <span>♡ Favoris</span><span>☰ Liste</span><span>⌂ Accueil</span>
+                <span className={styles.flPulse} style={d(2.8)}>≡ Menu</span>
+            </div>
+            <Curseur a={[40, 60]} b={[82, 52]} delay={0.6} clic={2.8} />
+        </Fenetre>
+    ),
+
     install: () => (
         <div className={styles.bureau}>
             <div className={`${styles.appFen} ${styles.grandit}`} style={d(2.6)}>
@@ -491,17 +572,33 @@ function Planning({ photos, remplis, tous, at, pas, compact }: { photos: Photo[]
 
 /* ── Le lecteur ───────────────────────────────────────────────────────────── */
 
-export default function TutorialCinema({ onClose }: { onClose: () => void }) {
-    const STEPS = useMemo(() => etapesTuto(true), []);
+/**
+ * `mobile` : même lecteur, sur téléphone — étapes du téléphone (`STEPS_MOBILE`),
+ * barre latérale masquée, balayage gauche/droite pour changer d'étape.
+ */
+export default function TutorialCinema({ onClose, mobile = false }: { onClose: () => void; mobile?: boolean }) {
+    const STEPS = useMemo(() => etapesTuto(!mobile), [mobile]);
     const photos = usePhotos();
     const [i, setI] = useState(0);
     const [boucle, setBoucle] = useState(0); // incrémenté pour rejouer
     const [pause, setPause] = useState(false);
     const [survol, setSurvol] = useState(false);
+    const glisse = useRef<{ x: number; y: number } | null>(null);
 
     const step = STEPS[i];
     const aller = useCallback((n: number) => { setI(Math.max(0, Math.min(STEPS.length - 1, n))); setBoucle(0); setPause(false); }, [STEPS.length]);
     const suivant = useCallback(() => { if (i >= STEPS.length - 1) onClose(); else aller(i + 1); }, [i, STEPS.length, aller, onClose]);
+
+    const toucherDebut = (e: ReactTouchEvent) => { const t = e.touches[0]; glisse.current = { x: t.clientX, y: t.clientY }; };
+    const toucherFin = (e: ReactTouchEvent) => {
+        const s = glisse.current;
+        glisse.current = null;
+        if (!s) return;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - s.x;
+        const dy = t.clientY - s.y;
+        if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) aller(dx < 0 ? i + 1 : i - 1);
+    };
 
     useEffect(() => { if (step?.astuce) marquerAstuceVue(step.astuce); }, [step?.astuce]);
 
@@ -521,7 +618,7 @@ export default function TutorialCinema({ onClose }: { onClose: () => void }) {
     const arrete = pause || survol;
 
     return (
-        <div className={styles.root} data-paused={arrete} style={v({ '--accent': step.accent, '--duree': `${DUREE}s` })}>
+        <div className={styles.root} data-paused={arrete} data-mobile={mobile ? 'true' : undefined} style={v({ '--accent': step.accent, '--duree': `${DUREE}s` })}>
             <div className={styles.aurore} style={{ background: step.tint }} />
             <div className={styles.aurore2} style={v({ background: step.accent })} />
             <div className={styles.grain} />
@@ -543,13 +640,13 @@ export default function TutorialCinema({ onClose }: { onClose: () => void }) {
                     <div key={`h${i}`} className={styles.sousTitre}><span aria-hidden>☞</span>{step.hint}</div>
                 </div>
 
-                <div className={styles.cine} onMouseEnter={() => setSurvol(true)} onMouseLeave={() => setSurvol(false)}>
+                <div className={styles.cine} onMouseEnter={() => setSurvol(true)} onMouseLeave={() => setSurvol(false)} onTouchStart={toucherDebut} onTouchEnd={toucherFin}>
                     <div className={styles.cadre} key={`${i}-${boucle}`}>
                         {scene ? scene({ photos }) : <div className={styles.vide}>{step.title}</div>}
                     </div>
                     <div className={styles.cineBas}>
                         <span>{arrete ? '❚❚ pause' : '● lecture'}</span>
-                        <span>espace · ← →</span>
+                        <span>{mobile ? 'glisse ← →' : 'espace · ← →'}</span>
                     </div>
                 </div>
             </div>

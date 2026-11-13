@@ -461,6 +461,42 @@
 .confirmW .ouiW { background: #b23a48; }
 .toastW { position: absolute; left: 50%; bottom: 3cqw; transform: translateX(-50%); padding: 0.9cqw 2cqw; border-radius: 99cqw; font-size: 1.5cqw; font-weight: 800; background: #30d158; color: #04140a; z-index: 26; white-space: nowrap; }
 
+/* ── Scènes du téléphone ─────────────────────────────────────────────────── */
+.chips { display: flex; gap: 1.2cqw; margin-top: 1cqw; }
+.chip { padding: 0.8cqw 1.6cqw; border-radius: 99cqw; font-size: 1.4cqw; font-weight: 800; background: rgba(255, 255, 255, 0.1); }
+.chipOn { animation: tendOn 0.4s ease 1.6s both; }
+.tagsBox { position: relative; }
+.fondu { position: absolute; inset: 0; background: #0f1018; opacity: 0; animation: entre1 0.6s ease var(--d) both; }
+.timerRow { display: flex; align-items: center; gap: 1.4cqw; padding: 1.2cqw; border-radius: 1.4cqw; background: rgba(255, 255, 255, 0.06); font-size: 1.6cqw; font-weight: 700; }
+.timerRow span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.timerRow b { font-size: 2.6cqw; font-weight: 900; font-variant-numeric: tabular-nums; color: var(--accent); }
+.timerThumb { width: 9cqw; aspect-ratio: 1; border-radius: 1cqw; overflow: hidden; flex: none; }
+.planLignes { display: flex; flex-direction: column; gap: 1.2cqw; margin-top: 1cqw; }
+.lignePlan { display: flex; align-items: center; gap: 2cqw; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: rgba(255, 255, 255, 0.06); font-size: 1.6cqw; }
+.lignePlan b { font-variant-numeric: tabular-nums; }
+.lignePlan span { opacity: 0.7; }
+.alerte { position: absolute; left: 4cqw; right: 4cqw; bottom: 4cqw; padding: 2cqw; border-radius: 1.6cqw; background: #24253a; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 2cqw 5cqw #000; display: flex; flex-direction: column; gap: 1.2cqw; font-size: 1.6cqw; z-index: 20; }
+.alerte > div { display: flex; gap: 1cqw; }
+.alerte span { flex: 1; padding: 0.8cqw; border-radius: 99cqw; text-align: center; font-size: 1.4cqw; font-weight: 700; background: rgba(255, 255, 255, 0.12); }
+.okA { background: #fff !important; color: #0b0b10; }
+.barreBas { position: absolute; left: 10%; right: 10%; bottom: 4%; display: flex; justify-content: space-around; align-items: center; padding: 1.2cqw; border-radius: 99cqw; background: rgba(40, 41, 56, 0.92); border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 1cqw 3cqw #000; font-size: 1.4cqw; z-index: 6; }
+.barreBas span { padding: 0.6cqw 1cqw; border-radius: 99cqw; white-space: nowrap; }
+
+/* ── Version téléphone : plein écran, colonne, sans barre latérale ───────── */
+.root[data-mobile='true'] {
+    position: fixed; inset: 0; z-index: 9500; min-height: 100vh; min-height: 100dvh;
+    border-radius: 0; padding: 22px 18px calc(22px + env(safe-area-inset-bottom)); overflow-y: auto;
+}
+.root[data-mobile='true'] .segments { margin-bottom: 18px; }
+.root[data-mobile='true'] .corps { display: flex; flex-direction: column; align-items: stretch; gap: 18px; }
+.root[data-mobile='true'] .cine { order: -1; }
+.root[data-mobile='true'] .side { display: none; }
+.root[data-mobile='true'] .titre { font-size: 30px; }
+.root[data-mobile='true'] .paragraphe { font-size: 15.5px; }
+.root[data-mobile='true'] .commandes { position: static; justify-content: center; margin-top: 18px; }
+.root[data-mobile='true'] .commandes button { min-width: 52px; height: 48px; }
+.root[data-mobile='true'] .commandes .cmdNext { padding: 0 26px; }
+
 @media (prefers-reduced-motion: reduce) {
     .grain, .aurore, .aurore2 { animation: none; }
 }
