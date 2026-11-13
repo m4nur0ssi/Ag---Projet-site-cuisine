@@ -2,11 +2,56 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/11/2026 10:17:50
- * Total: 859 recettes
+ * Dernière mise à jour: 13/11/2026 10:42:25
+ * Total: 860 recettes
  */
-export const exportSyncId = "1794565070411";
+export const exportSyncId = "1794566545167";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8238",
+        "title": "Frites de patates douces croustillantes",
+        "description": "Découvrez la technique pour réaliser des frites de patates douces parfaitement croustillantes. La vidéo explique pourquoi l'amidon des patates douces se transforme en sucres simples à la cuisson, les rendant molles et brûlantes, et propose une mét...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7084537095603145989\" data-video-id=\"7084537095603145989\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7084537095603145989\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥔\n             Patates douces"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             50 g d'eau froide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la friture)"
+            }
+        ],
+        "steps": [
+            "Épluchez et coupez les patates douces en bâtonnets, sans qu'ils soient trop fins.",
+            "Faites-les cuire dans l'eau bouillante pendant 8 minutes, jusqu'à ce qu'elles soient bien tendres.",
+            "Dans un bol, mélangez 30 g de maïzena avec 50 g d'eau froide.",
+            "Ajoutez les frites de patates douces cuites et enrobez-les bien du mélange. Le liquide va s'épaissir au contact des patates douces chaudes.",
+            "Faites-les frire pendant 8 minutes dans une huile chauffée à 180°C."
+        ],
+        "tags": [
+            "Accompagnements",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8236",
         "title": "Gâteau crumble aux pommes",
