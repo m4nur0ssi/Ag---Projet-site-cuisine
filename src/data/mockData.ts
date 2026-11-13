@@ -2,11 +2,79 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/11/2026 10:42:25
- * Total: 860 recettes
+ * Dernière mise à jour: 13/11/2026 15:06:38
+ * Total: 861 recettes
  */
-export const exportSyncId = "1794566545167";
+export const exportSyncId = "1794582398535";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8240",
+        "title": "Brioche Perdue Tiramisu",
+        "description": "Découvrez une recette gourmande et originale pour les fêtes : une brioche perdue revisitée façon tiramisu. Un dessert simple à réaliser, qui combine la douceur de la brioche imbibée de café et l'onctuosité d'une crème tiramisu sans complication, l...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7584572601050205462\" data-video-id=\"7584572601050205462\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7584572601050205462\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tranches de brioches (idéalement un peu rassises)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             500 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs (pour l'appareil à brioche)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 pincée de sucre (pour l'appareil à brioche)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Un peu de lait (pour l'appareil à brioche)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Un shot d'espresso bien corsé (pour l'appareil à brioche)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Cacao en poudre (pour servir)"
+            }
+        ],
+        "steps": [
+            "Fouettez les jaunes d'œuf et le sucre ensemble jusqu'à ce qu'ils blanchissent, épaississent et deviennent onctueux comme un ruban.",
+            "Incorporez le mascarpone en plusieurs fois, en fouettant bien entre chaque ajout, jusqu'à obtenir une crème onctueuse, homogène et qui tient sur la cuillère. N'ajoutez pas de chantilly ou de blancs en neige pour simplifier la préparation.",
+            "Versez cette crème dans une poche à douille ou un sac congélation et réservez au frais.",
+            "Préparez l'appareil à brioche perdue en mélangeant les 2 œufs, la pincée de sucre, le lait et le shot d'espresso bien corsé.",
+            "Trempez les tranches de brioche dans cet appareil, sur chaque face, et laissez-les s'imbiber pendant environ 5 minutes. Égouttez-les ensuite.",
+            "Faites dorer les tranches de brioche imbibées sur les deux faces dans une poêle beurrée. Réservez-les et laissez-les tiédir.",
+            "Garnissez généreusement les tranches de brioche perdue tièdes avec la crème tiramisu pochée.",
+            "Terminez en saupoudrant de cacao en poudre et servez immédiatement."
+        ],
+        "tags": [
+            "Italie",
+            "Noël",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8238",
         "title": "Frites de patates douces croustillantes",
