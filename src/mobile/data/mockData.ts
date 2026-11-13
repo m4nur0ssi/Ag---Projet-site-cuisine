@@ -2,11 +2,94 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/11/2026 15:06:38
- * Total: 861 recettes
+ * Dernière mise à jour: 13/11/2026 15:44:32
+ * Total: 862 recettes
  */
-export const exportSyncId = "1794582398535";
+export const exportSyncId = "1794584672961";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8242",
+        "title": "Brioche façon pain perdu inspirée de Cédric Grolet",
+        "description": "Une recette gourmande de brioche façon pain perdu, accompagnée d'un caramel au beurre salé maison et d'une crème légère au mascarpone, inspirée du chef Cédric Grolet.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7316969128105905440\" data-video-id=\"7316969128105905440\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7316969128105905440\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍯\n             150 g de sucre (pour le caramel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             70 g de beurre demi-sel (pour le caramel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             20 cl de crème fleurette 30% (pour le caramel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             20 cl de crème fleurette 30% (pour la crème mascarpone)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des tranches de brioche rassie de 2 cm d'épaisseur (ou du pain normal)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50 cl de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre (pour le trempage)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Du beurre (pour toaster)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Du sucre (pour toaster)"
+            }
+        ],
+        "steps": [
+            "La veille, préparer le caramel au beurre salé : chauffer la crème à feu doux pour éviter le choc thermique.",
+            "En même temps, chauffer le sucre à feu moyen jusqu'à l'obtention d'un caramel ambré, pas trop cuit.",
+            "Ajouter les dés de beurre à température ambiante en trois fois, et mélanger tout de suite énergiquement en faisant attention aux éclaboussures.",
+            "Quand le beurre est intégré, ajouter la crème chaude HORS DU FEU.",
+            "Mélanger vivement en essayant de ne pas laisser de caramel solide, laisser refroidir, et couler dans un pot avant de réserver au frais une nuit.",
+            "Dans un cul de poule, fouetter l'œuf et le sucre jusqu'à blanchissement. Il est important de bien fouetter pour éviter un goût d'œuf désagréable.",
+            "Ajouter le lait et mélanger de nouveau.",
+            "Tremper les tranches de brioches et laisser imbiber environ 3 à 5 minutes par côté.",
+            "Réserver les tranches sur une grille pour enlever l'excédent de liquide.",
+            "Dans un bol froid avec des fouets froids, fouetter la crème et le mascarpone à vitesse moyenne, et monter comme une chantilly pas trop ferme, puis réserver au frais.",
+            "Dans une poêle à feu moyen/fort, mettre une bonne noix de beurre et environ une cuillère à soupe de sucre, et cuire chaque face des tranches de brioche jusqu'à ce qu'elles soient bien grillées.",
+            "Dresser dans une assiette avec une bonne dose de crème au mascarpone et du caramel au beurre salé."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8240",
         "title": "Brioche Perdue Tiramisu",
