@@ -3,7 +3,10 @@
     {
       "videoUrl": "https://vm.tiktok.com/ZN852m8Ea/",
       "country": "Pâtisserie",
-      "timestamp": "2026-11-13T14:55:04.662Z"
+      "timestamp": "2026-11-13T14:55:04.662Z",
+      "essais": 1,
+      "derniereRaison": "quota IA épuisé",
+      "derniereTentative": "2026-11-13T14:55:53.764Z"
     }
   ],
   "echecs": [
