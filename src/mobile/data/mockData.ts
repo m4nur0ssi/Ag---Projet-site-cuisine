@@ -2,11 +2,157 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/11/2026 06:44:27
- * Total: 858 recettes
+ * Dernière mise à jour: 13/11/2026 08:51:53
+ * Total: 859 recettes
  */
-export const exportSyncId = "1794552267067";
+export const exportSyncId = "1794559913134";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8236",
+        "title": "Gâteau crumble aux pommes",
+        "description": "Un gâteau moelleux aux pommes, surmonté d'une garniture aux pommes fondante et d'un délicieux crumble croustillant, idéal pour l'automne.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7548970184589970701\" data-video-id=\"7548970184589970701\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7548970184589970701\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             **Pour le crumble :**"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             6 cuillères à soupe de beurre doux, froid et coupé en dés (85g)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 tasse de farine tout usage (120g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3/4 tasse de cassonade claire, tassée (160g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 cuillères à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             **Pour la garniture aux pommes :**"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             4 pommes Granny Smith (environ 4 tasses/450g), pelées et coupées en tranches"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 tasse de cassonade claire, tassée (100g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère et demie à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             2 cuillères et demie à soupe d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             4 cuillères à soupe de beurre doux (56g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             2 cuillères à café de fécule de maïs mélangées avec 1 cuillère à soupe d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             **Pour le gâteau :**"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 tasses de farine tout usage (240g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10 cuillères à soupe de beurre doux, ramolli (141g)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             3/4 tasse de sucre cristallisé (150g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/4 tasse de cassonade claire, tassée (53g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs, à température ambiante"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             2 cuillères à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1/2 tasse de crème aigre, à température ambiante (115g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cuillères à soupe de lait"
+            }
+        ],
+        "steps": [
+            "**Pour le crumble :**",
+            "1. Dans un bol, fouettez ensemble la farine, la cassonade claire, la cannelle et une pincée de sel.",
+            "2. Ajoutez le beurre froid et incorporez-le au mélange de farine avec vos doigts jusqu'à obtenir une texture sableuse avec quelques plus gros morceaux. (Astuce : pressez le mélange dans votre main, puis émiettez-le pour obtenir de plus gros morceaux de crumble.)",
+            "3. Réfrigérez pendant que vous préparez la garniture et le gâteau.",
+            "**Pour la garniture aux pommes :**",
+            "1. Dans une casserole à feu moyen, combinez les pommes, la cassonade, la cannelle, l'eau, le jus de citron, le beurre et le sel. Remuez jusqu'à ce que le beurre fonde.",
+            "2. Couvrez et laissez cuire environ 8 à 10 minutes, jusqu'à ce que les pommes soient ramollies.",
+            "3. Incorporez le mélange de fécule de maïs. Laissez mijoter 1 à 2 minutes, jusqu'à épaississement. Mettez de côté pour laisser refroidir légèrement.",
+            "**Pour le gâteau :**",
+            "1. Préchauffez le four à 175°C (350°F). Graissez un moule à charnière de 23 cm et tapissez le fond de papier sulfurisé.",
+            "2. Dans un bol moyen, fouettez ensemble la farine, la levure chimique et le sel.",
+            "3. Dans un grand bol, battez le beurre, le sucre cristallisé et la cassonade pendant 2 à 3 minutes, jusqu'à obtenir un mélange léger et mousseux.",
+            "4. Ajoutez les œufs et mélangez jusqu'à incorporation.",
+            "5. Incorporez l'extrait de vanille et la crème aigre jusqu'à ce que le mélange soit homogène.",
+            "6. Ajoutez les ingrédients secs et mélangez juste assez pour les incorporer. Incorporez ensuite le lait juste assez pour l'incorporer. Veillez à ne pas trop mélanger.",
+            "7. Étalez la pâte uniformément dans le moule préparé. Déposez la garniture aux pommes par-dessus, puis parsemez le crumble sur toute la surface.",
+            "8. Faites cuire 45 à 53 minutes, ou jusqu'à ce qu'un cure-dent inséré au centre en ressorte propre. Si le dessus commence à trop dorer, couvrez-le lâchement de papier aluminium.",
+            "9. Laissez refroidir au moins 30 minutes. Passez un couteau le long du bord du moule. Coupez en tranches et servez. Facultatif : arrosez de caramel avant de servir."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8234",
         "title": "Mini Fondants au chocolat et mascarpone",
