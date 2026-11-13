@@ -2,11 +2,81 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/11/2026 22:45:51
- * Total: 857 recettes
+ * Dernière mise à jour: 13/11/2026 06:44:27
+ * Total: 858 recettes
  */
-export const exportSyncId = "1794523551128";
+export const exportSyncId = "1794552267067";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8234",
+        "title": "Mini Fondants au chocolat et mascarpone",
+        "description": "La recette parfaite pour des petits fondants ultra gourmands avec une texture fondante et une fine croûte sur le dessus, juste délicieux.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7699453971248811296\" data-video-id=\"7699453971248811296\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7699453971248811296\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             120 g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             120 g de beurre doux"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70 g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             30 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 grosse cuillère à soupe de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             30 g de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Extrait de vanille liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre glace (pour saupoudrer)"
+            }
+        ],
+        "steps": [
+            "Préchauffez le four à 180 °C.",
+            "Faites fondre le chocolat avec le beurre au bain-marie ou au micro-ondes.",
+            "Dans un saladier, fouettez les œufs avec le sucre jusqu'à ce que le mélange soit homogène. Ajoutez l'extrait de vanille liquide.",
+            "Incorporez le mélange chocolat-beurre fondu, puis ajoutez la grosse cuillère à soupe de mascarpone. Mélangez bien jusqu'à obtenir une préparation lisse. Et enfin ajoutez la farine et la fleur de sel.",
+            "Répartissez la pâte dans des mini moules en silicone.",
+            "Enfournez à 180 °C pendant environ 12 minutes, selon la taille des moules et la texture souhaitée. Le centre doit rester légèrement tremblotant pour conserver un cœur fondant. Et ajoutez 5 minutes de cuisson à 130 degrés.",
+            "Laissez tiédir quelques minutes avant de démouler délicatement. Saupoudrez de sucre glace et régalez-vous !"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8226",
         "title": "Dessert de Knafeh à la crème de noisette",
