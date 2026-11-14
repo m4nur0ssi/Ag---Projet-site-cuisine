@@ -713,7 +713,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8224",
         "title": "Cake aux fruits confits façon Pierre Hermé",
         "description": "Un délicieux cake aux fruits confits, inspiré de la recette de Pierre Hermé. Les raisins secs sont macérés dans du rhum ambré (ou du thé aux fruits rouges) avant d'être incorporés à la pâte, puis le cake est badigeonné de ce même liquide à la sort...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8224-carte.webp",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
