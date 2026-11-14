@@ -6915,3 +6915,13 @@
 /* Icône posée directement sur la tuile : pas de vignette dans la vignette. */
 .spTileIcon { background: none; box-shadow: none; border-radius: 0; opacity: .95; }
 .spTileIcon svg { filter: drop-shadow(0 2px 8px rgba(0,0,0,.25)); }
+
+/* Cale : remplace la croix (40 px) sur la 2e rangée de contrôles segmentés, pour que
+   Catégorie / Pays / Tendances tombent pile sous Recette / Ingrédients / Assistant. */
+.spSegCale { flex: 0 0 auto; width: 40px; height: 40px; margin: 0 0 12px; }
+.spSearchControls .spSegCale { margin-bottom: 14px; }
+
+/* Trois colonnes strictement égales, sur les deux rangées (modes et groupes) :
+   sans cela, « Ingrédients » (plus long) grignotait 1-2 px sur ses voisins. */
+.spModeRow .spSegment { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.spModeRow .spSeg { padding-left: 2px; padding-right: 2px; white-space: nowrap; min-width: 0; }

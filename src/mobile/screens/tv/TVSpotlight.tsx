@@ -1109,6 +1109,35 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                     )}
                     </div>
 
+                    {/* Catégorie / Pays / Tendances : même contrôle segmenté que
+                        Recette / Ingrédients / Assistant — mêmes onglets, même
+                        largeur, mêmes bords (une cale remplace la croix de la
+                        rangée du dessus pour que les deux restent alignés). */}
+                    {mode === 'recipe' && (
+                        <div className={styles.spModeRow}>
+                            <div className={styles.spSegment}>
+                                {(['categorie', 'pays', 'tendances'] as FilterGroup[]).map((g) => (
+                                    <button
+                                        key={g}
+                                        className={`${styles.spSeg} ${activeGroup === g ? styles.spSegOn : ''}`}
+                                        onClick={() => {
+                                            haptic(8);
+                                            // On ne vide PAS les filtres : ils sont cumulatifs entre groupes.
+                                            if (activeGroup === g) setActiveGroup(null);
+                                            else { setActiveGroup(g); setQuery(''); }
+                                        }}
+                                    >{g === 'categorie' ? 'Catégorie' : g === 'pays' ? 'Pays' : 'Tendances'}
+                                        {(() => {
+                                            const n = FILTER_GROUPS[g].filter((f: any) => activeFilters.includes(f.tag)).length;
+                                            return n > 0 ? <span className={styles.spGroupBadge}>{n}</span> : null;
+                                        })()}
+                                    </button>
+                                ))}
+                            </div>
+                            {!embedded && <span className={styles.spSegCale} aria-hidden />}
+                        </div>
+                    )}
+
                     {/* Recherche et nombre de résultats */}
                     <div className={styles.spHead}>
                         <div className={styles.spField}>
@@ -1272,27 +1301,6 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                     )}
 
                     {/* Groupes + chips (mode recette) */}
-                    {mode === 'recipe' && (
-                        <div className={styles.spGroups}>
-                            {(['categorie', 'pays', 'tendances'] as FilterGroup[]).map((g) => (
-                                <button
-                                    key={g}
-                                    className={`${styles.spGroup} ${activeGroup === g ? styles.spGroupOn : ''}`}
-                                    onClick={() => {
-                                        haptic(8);
-                                        // On ne vide PAS les filtres : ils sont cumulatifs entre groupes.
-                                        if (activeGroup === g) setActiveGroup(null);
-                                        else { setActiveGroup(g); setQuery(''); }
-                                    }}
-                                >{g === 'categorie' ? 'Catégorie' : g === 'pays' ? 'Pays' : 'Tendances'}
-                                    {(() => {
-                                        const n = FILTER_GROUPS[g].filter((f: any) => activeFilters.includes(f.tag)).length;
-                                        return n > 0 ? <span className={styles.spGroupBadge}>{n}</span> : null;
-                                    })()}
-                                </button>
-                            ))}
-                        </div>
-                    )}
 
                     </div>
 
