@@ -686,6 +686,50 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
         return pool2;
     }, [query, mode, activeFilters, pool, filter]);
 
+    /*
+     * Puces proposées : seulement celles qui, AJOUTÉES aux filtres déjà cochés
+     * (et au texte tapé), donnent au moins une recette. Plat + Italie + une
+     * tendance → les tendances sans recette disparaissent ; on retire Italie,
+     * elles reviennent. Les puces cochées restent toujours (pour les décocher).
+     * Même règle de correspondance que `filteredRecipes` ci-dessus.
+     */
+    const filtresDispo = useMemo(() => {
+        if (mode !== 'recipe') return null;
+        const q = normalize(query.trim());
+        const veutDesPates = /^(pates?|pasta)s?$/.test(q);
+        const base = pool.filter((r: any) => {
+            if (r.category === 'restaurant') return false;
+            if (!q) return true;
+            return veutDesPates
+                ? estRecettePates(r)
+                : normalize(r.title).includes(q) || (r.tags || []).some((t: string) => normalize(t).includes(q));
+        });
+        const estTendance = (f: string) => FILTER_GROUPS.tendances.some((t) => t.tag === f);
+        const estCategorie = (f: string) => FILTER_GROUPS.categorie.some((c) => c.tag === f);
+        const passe = (r: any, f: string, ignorer: boolean) => {
+            if (estTendance(f)) return matchesTag(r, f, { ignoreCategoryGuards: ignorer });
+            const af = normalize(f);
+            return normalize(r.category || '') === af || (r.tags || []).some((t: string) => normalize(t).includes(af));
+        };
+        // Une catégorie cochée désactive les garde-fous des tendances : le verdict
+        // d'une recette dépend donc de la LISTE entière, pas de chaque filtre seul.
+        const tous = (r: any, liste: string[]) => {
+            const ignorer = liste.some(estCategorie);
+            return liste.every((f) => passe(r, f, ignorer));
+        };
+        const dispo = new Set<string>(activeFilters);
+        const reste = base.filter((r: any) => tous(r, activeFilters));
+        const ignorerActifs = activeFilters.some(estCategorie);
+        for (const f of [...FILTER_GROUPS.categorie, ...FILTER_GROUPS.pays, ...FILTER_GROUPS.tendances]) {
+            if (dispo.has(f.tag)) continue;
+            const ok = estCategorie(f.tag)
+                ? base.some((r: any) => tous(r, [...activeFilters, f.tag]))
+                : reste.some((r: any) => passe(r, f.tag, ignorerActifs));
+            if (ok) dispo.add(f.tag);
+        }
+        return dispo;
+    }, [mode, pool, query, activeFilters]);
+
     // Mode ingrédients
     const ingredientResults = useMemo(() => {
         if (mode !== 'ingredients' || searchedIngredients.length === 0) return [];
@@ -1258,7 +1302,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                 ? [...FILTER_GROUPS[activeGroup]].sort((a, b) =>
                                     a.label.replace(/^[^\p{L}]+/u, '').localeCompare(b.label.replace(/^[^\p{L}]+/u, ''), 'fr'))
                                 : FILTER_GROUPS[activeGroup]
-                            ).map((f) => (
+                            ).filter((f) => !filtresDispo || filtresDispo.has(f.tag)).map((f) => (
                                 <button
                                     key={f.tag}
                                     className={`${styles.spChip} ${activeFilters.includes(f.tag) ? styles.spChipOn : ''}`}
