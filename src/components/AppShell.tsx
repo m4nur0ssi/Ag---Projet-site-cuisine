@@ -2,6 +2,7 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { DeviceContext } from './device';
+import { estRetourInterne, retourSansAnimation } from '@/mobile/screens/tv/retour';
 
 // useLayoutEffect côté client (bascule avant paint = pas de flash), useEffect en SSR (pas de warning)
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
@@ -46,6 +47,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         if (window.location.hostname === 'lesrecettesmagiques.vercel.app') {
             window.location.replace('https://lesrecettesmagiques.fr' + window.location.pathname + window.location.search + window.location.hash);
         }
+    }, []);
+
+    // Retour par balayage depuis le bord (iOS) : l'écran change déjà en glissant,
+    // on ne rejoue pas d'animation par-dessus (c'était le « sursaut »).
+    useEffect(() => {
+        const surRetour = () => { if (!estRetourInterne()) retourSansAnimation(); };
+        window.addEventListener('popstate', surRetour);
+        return () => window.removeEventListener('popstate', surRetour);
     }, []);
 
     useIsoLayoutEffect(() => {

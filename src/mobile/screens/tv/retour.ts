@@ -16,6 +16,32 @@
  */
 
 import { useEffect, useRef } from 'react';
+import { MotionGlobalConfig } from 'framer-motion';
+
+/**
+ * Le geste « retour » d'iOS (balayage depuis le bord) ANIME déjà lui-même le
+ * passage à l'écran précédent. Si l'app rejoue en plus sa propre animation —
+ * fermeture du calque, entrée de la page qui revient — on voit l'écran « sursauter » :
+ * la page glisse, puis se rejoue une seconde fois par-dessus.
+ *
+ * Tant que ce retour s'installe, on coupe donc toutes les animations : celles
+ * de framer-motion (`skipAnimations`) et celles du CSS (règle `data-retour-geste`
+ * de globals.css, qui garde des durées quasi nulles pour que `animationend` parte
+ * quand même). Un retour fait par un BOUTON n'est pas concerné : il garde son
+ * animation de fermeture.
+ */
+let finRetour: ReturnType<typeof setTimeout> | null = null;
+export function retourSansAnimation(duree = 450) {
+    if (typeof document === 'undefined') return;
+    MotionGlobalConfig.skipAnimations = true;
+    document.documentElement.setAttribute('data-retour-geste', '');
+    if (finRetour) clearTimeout(finRetour);
+    finRetour = setTimeout(() => {
+        finRetour = null;
+        MotionGlobalConfig.skipAnimations = false;
+        document.documentElement.removeAttribute('data-retour-geste');
+    }, duree);
+}
 
 /**
  * Le geste « retour » d'iOS (balayage depuis le bord) doit refermer le calque

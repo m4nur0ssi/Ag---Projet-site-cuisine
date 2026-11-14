@@ -682,3 +682,16 @@ html.is-mobile [data-no-press]:active {
     html, body { scrollbar-width: none; }
     html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 }
+
+/* Retour par le geste iOS (balayage depuis le bord) : l'écran glisse déjà tout
+   seul, on ne rejoue aucune animation par-dessus — c'était le « sursaut ».
+   Durées quasi nulles et non 0 : `animationend` / `transitionend` partent quand
+   même. Posé par `retourSansAnimation()` (src/mobile/screens/tv/retour.ts). */
+html[data-retour-geste] *,
+html[data-retour-geste] *::before,
+html[data-retour-geste] *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+}
