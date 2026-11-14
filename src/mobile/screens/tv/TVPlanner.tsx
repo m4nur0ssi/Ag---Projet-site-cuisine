@@ -36,7 +36,7 @@ import { isTVSide, isTVMain, sidePool } from './sides';
 import { TAG_SAISON, estRecetteDeSaison } from '@/lib/saison';
 import {
     DAYS, DAY_FULL, MEALS, JOUR_J, COURSES, todayIndex,
-    chargerPlan, enregistrerPlan, poserRecette, oublierCoches, PLAN_EVENT,
+    chargerPlan, enregistrerPlan, poserRecette, oublierCoches, barrerCoursesDuCreneau, PLAN_EVENT,
     posableEnSemaine, recetteEnMain, prendreEnMain, origineEnMain, reposer, creneauAccepte, EN_MAIN_EVENT,
     type Plan, type Slot,
 } from './plan';
@@ -450,6 +450,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         const next: Plan = { ...plan, [day]: { ...(plan[day] || {}) } };
         if (slot.fait) { const { fait: _drop, ...rest } = slot; next[day][meal] = rest as Slot; }
         else next[day][meal] = { ...slot, fait: true };
+        // Cuisinée ⇒ ses ingrédients sont barrés dans la liste de courses ; décochée
+        // ⇒ on rend exactement ce que ce geste avait barré (voir plan.ts).
+        barrerCoursesDuCreneau(day, meal, slot, !slot.fait);
         save(next);
     };
 

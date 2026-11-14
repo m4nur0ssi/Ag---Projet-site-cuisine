@@ -102,6 +102,69 @@ export function oublierCoches(jour: string, repas: string) {
         const kept = arr.filter((k) => !k.startsWith(`${jour}|${repas}|`));
         if (kept.length !== arr.length) localStorage.setItem('meal-week-checked', JSON.stringify(kept));
     } catch { /* noop */ }
+    // Nouvelle recette dans le créneau : les lignes barrées par « déjà cuisiné »
+    // désignaient l'ANCIENNE (clés par position) — on les rend.
+    barrerCoursesDuCreneau(jour, repas, null, false);
+}
+
+/*
+ * « Déjà cuisiné » ⇒ ses ingrédients sont barrés dans la liste de courses.
+ * ======================================================================
+ *
+ * Une recette faite a été cuisinée avec ce qu'on avait : il n'y a plus rien à
+ * acheter pour elle. On barre donc ses lignes (plat + accompagnement), clé par
+ * clé, dans `shop-done` — le même registre que le barré à la main et que
+ * l'extension Chrome. La liste fusionnée en tire seule les conséquences : deux
+ * recettes à 3 merguez affichaient 6 merguez, une fois l'une faite il en reste 3 ;
+ * une ligne n'est barrée en entier que si TOUTES ses recettes sont faites.
+ *
+ * Décocher rend exactement ce que le geste a barré, rien d'autre : ce qui
+ * l'était déjà (à la main, au magasin, par l'extension) le reste. D'où la note
+ * `shop-done-fait` : par créneau, les clés ajoutées et celles déjà présentes.
+ *
+ * Clés : `jour|repas|idx` (plat) et `jour|repas|s<idx>` (accompagnement). Une
+ * clé parente barre toutes ses sous-lignes (voir `sourceKeyDone`).
+ */
+const CLE_FAIT = 'shop-done-fait';
+type NoteFait = { ajoutes: string[]; avant: string[] };
+
+export function barrerCoursesDuCreneau(jour: string, repas: string, slot: Slot | null, fait: boolean) {
+    if (typeof window === 'undefined') return;
+    try {
+        const done = new Set<string>(JSON.parse(localStorage.getItem('shop-done') || '[]'));
+        const notes: Record<string, NoteFait> = JSON.parse(localStorage.getItem(CLE_FAIT) || '{}');
+        const id = `${jour}|${repas}`;
+        const duCreneau = (k: string) => k.startsWith(id + '|');
+
+        if (fait) {
+            if (!slot) return;
+            const s = slot as unknown as { ingredients?: unknown[]; side?: { ingredients?: unknown[] } };
+            const parents = [
+                ...(s.ingredients || []).map((_, i) => `${id}|${i}`),
+                ...(s.side?.ingredients || []).map((_, i) => `${id}|s${i}`),
+            ];
+            const avant = [...done].filter(duCreneau);
+            const ajoutes = parents.filter((p) => !done.has(p));
+            ajoutes.forEach((p) => done.add(p));
+            notes[id] = { ajoutes, avant };
+        } else {
+            const note = notes[id];
+            if (!note) return;
+            const avant = new Set(note.avant);
+            // Les clés ajoutées ET les sous-lignes qui en sont nées (une ligne
+            // débarrée à la main éclate la clé parente en sous-clés) — sauf celles
+            // qui étaient déjà là avant le geste.
+            [...done].forEach((k) => {
+                if (!duCreneau(k) || avant.has(k)) return;
+                if (note.ajoutes.some((p) => k === p || k.startsWith(p + '|'))) done.delete(k);
+            });
+            delete notes[id];
+        }
+
+        ecrireStock(CLE_FAIT, JSON.stringify(notes));
+        ecrireStock('shop-done', JSON.stringify([...done]));
+        window.dispatchEvent(new Event('shoppingListUpdated'));
+    } catch { /* stockage indisponible : la liste reste telle quelle */ }
 }
 
 /** Enregistre partout : local, Supabase, et prévient qui écoute. */
