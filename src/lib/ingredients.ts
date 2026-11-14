@@ -5,7 +5,7 @@ export const normalizeIng = (s: string) =>
         .replace(/œ/g, 'oe').replace(/æ/g, 'ae').trim();
 
 // Conserve les mesures et contenants : une tasse ne devient pas une pièce.
-const KNOWN_UNITS = ['piece', 'pieces', 'tete', 'tetes', 'cuillere', 'cuilleres', 'poignee', 'poignees', 'gousse', 'gousses', 'tranche', 'tranches', 'tasse', 'tasses', 'sachet', 'sachets', 'verre', 'verres', 'boite', 'boites', 'bouquet', 'bouquets', 'brin', 'brins', 'pot', 'pots', 'brique', 'briques', 'barquette', 'barquettes', 'pincee', 'pincees', 'gr', 'gramme', 'grammes', 'litre', 'litres', 'g', 'kg', 'mg', 'ml', 'cl', 'l', 'dl', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c'];
+const KNOWN_UNITS = ['piece', 'pieces', 'tete', 'tetes', 'cuillere', 'cuilleres', 'poignee', 'poignees', 'gousse', 'gousses', 'tranche', 'tranches', 'tasse', 'tasses', 'sachet', 'sachets', 'verre', 'verres', 'boite', 'boites', 'bouquet', 'bouquets', 'brin', 'brins', 'pot', 'pots', 'brique', 'briques', 'barquette', 'barquettes', 'paquet', 'paquets', 'botte', 'bottes', 'pincee', 'pincees', 'gr', 'gramme', 'grammes', 'litre', 'litres', 'g', 'kg', 'mg', 'ml', 'cl', 'l', 'dl', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c'];
 
 // Conversion vers une unité de base (g pour le poids, ml pour le volume) afin
 // d'ADDITIONNER des quantités exprimées dans des unités différentes (ex. 1 kg + 200 g,
@@ -33,7 +33,15 @@ export const prettyQtyUnit = (qty: number, unit: string): string => {
         if (qty % 10 === 0) return `${qty / 10} cl`;
         return `${fmtQty(qty)} ml`;
     }
+    const lib = UNITE_LISIBLE[unit];
+    if (lib) return `${fmtQty(qty)} ${lib}${qty > 1 ? 's' : ''}`;
     return `${fmtQty(qty)}${unit ? ' ' + unit : ''}`;
+};
+// « 3 tasse » → « 3 tasses », « 2 tete » → « 2 têtes » : unités de contenant, accord et accents.
+const UNITE_LISIBLE: Record<string, string> = {
+    gousse: 'gousse', tranche: 'tranche', tasse: 'tasse', sachet: 'sachet', verre: 'verre', boite: 'boîte',
+    bouquet: 'bouquet', brin: 'brin', pot: 'pot', brique: 'brique', barquette: 'barquette', tete: 'tête',
+    pincee: 'pincée', poignee: 'poignée', cuillere: 'cuillère', paquet: 'paquet', botte: 'botte',
 };
 
 // Mots de mesure/conditionnement à retirer du nom (pour affichage + recherche)
@@ -47,7 +55,9 @@ const MEASURE_WORDS = [
     'g', 'gr', 'gramme', 'grammes', 'kg', 'mg', 'ml', 'cl', 'l', 'litre', 'litres',
 ];
 
-export interface ParsedIng { qty: number | null; unit: string; name: string; range?: [number, number]; }
+/** `dose` : la mesure n'est qu'un dosage (brin, pincée, cuillère, filet d'huile…) et non une
+ *  quantité à acheter — la liste de courses n'affiche alors que le produit. */
+export interface ParsedIng { qty: number | null; unit: string; name: string; range?: [number, number]; dose?: boolean; }
 
 // Retire les émojis (et puces) en tête de chaîne — sans flag /u (target ES5)
 const stripLeadingEmoji = (s: string) =>
@@ -81,12 +91,74 @@ const stripMeasure = (s: string) => {
     return out.trim();
 };
 
-export const parseIngredient = (raw: string): ParsedIng => {
+
+/*
+ * Mesures de DOSAGE : on n'achète pas « 3 brins », « 2 pincées » ni « 1 cuillère » de
+ * quelque chose, on achète de la menthe, du sel, de la tomate. Le produit seul va
+ * dans la liste. Les contenants qu'on achète vraiment (boîte, pot, paquet, gousse,
+ * tranche…) gardent leur quantité.
+ */
+/** Aromates : on achète « de la menthe », peu importe 10 feuilles ou 3 brins. */
+const AROMATES = new Set(['persil', 'coriandre', 'menthe', 'basilic', 'ciboulette', 'thym', 'romarin', 'aneth', 'estragon', 'cerfeuil', 'sauge', 'laurier', 'origan']);
+export const DOSE_UNITS = new Set(['brin', 'brins', 'pincee', 'pincees', 'cuillere', 'cuilleres', 'poignee', 'poignees', 'cas', 'cac', 'cs', 'cc', 'c.a.s', 'c.a.c']);
+
+// Taille / qualité en tête : « une grosse cuillère de tomate », « une belle pincée de sel ».
+const ADJ = '(?:gros(?:se)?s?|petit(?:e)?s?|belles?|beaux?|bonn?es?|moyen(?:ne)?s?|grand(?:e)?s?)';
+const MESURE_APRES_ADJ = '(?=(?:cuill[eè]res?|pinc[ée]es?|poign[ée]es?|bo[iî]tes?|bottes?|bouquets?|branches?|brins?|feuilles?|tranches?|gousses?|verres?|tasses?|pots?|paquets?|morceaux?|sachets?|barquettes?|briques?|tiges?|noix)\\b)';
+const DEBUT_QTE = '((?:\\d+(?:[.,]\\d+)?|\\d+\\s*/\\s*\\d+|une?)\\s+)?';
+const ADJ_AVANT_MESURE = new RegExp('^' + DEBUT_QTE + ADJ + '\\s+' + MESURE_APRES_ADJ, 'i');
+const sansAdjMesure = (t: string) => t.replace(ADJ_AVANT_MESURE, '$1');
+
+const DE = '(?:de\\s+la\\s+|de\\s+l[\'’]|du\\s+|des\\s+|de\\s+|d[\'’]\\s*)';
+const HERBES = 'persil|ciboulette|menthe|coriandre|basilic|thym|aneth|estragon|cerfeuil|romarin|sauge|laurier';
+const DOSE_NOM: RegExp[] = [
+    new RegExp('^(?:un\\s+)?peu\\s+' + DE, 'i'),                                   // un peu d'huile
+    new RegExp('^(?:quelques\\s+)?tours?\\s+de\\s+moulin\\s+(?:[àa]\\s+)?(?:la\\s+|l[\'’])?', 'i'), // tours de moulin à poivre
+    new RegExp('^quelques\\s+(?:feuilles?|branches?|brins?|tiges?|gouttes?)\\s+' + DE, 'i'),
+    new RegExp('^(?:gouttes?|traits?|pointes?)\\s+' + DE, 'i'),
+    // feuilles / branches / brins / tiges de… sauf ce qui s'achète en feuilles (gélatine, papier, nori…)
+    new RegExp('^(?:feuilles?|branches?|tiges?|brins?)\\s+' + DE + '(?!g[ée]latine|papier|tacos|nori|riz|brick|lasagnes?|vigne|chou|salade|laitue|bananier|printemps|p[âa]te|ravioli|chocolat)', 'i'),
+    new RegExp('^filets?\\s+' + DE + '(?=huile|vinaigre|jus|citron|sauce|lait|miel|sirop|vin)', 'i'),   // filet d'huile (≠ filet de poulet)
+    /^noix\s+de\s+(?=beurre)/i,
+    new RegExp('^morceaux?\\s+' + DE + '(?=beurre|gingembre)', 'i'),                // morceau de beurre                                                    // noix de beurre (≠ noix de coco)
+    new RegExp('^(?:bottes?|bouquets?)\\s+' + DE + '(?=' + HERBES + ')', 'i'),     // bouquet de persil
+    /^quelques\s+/i,                                                               // quelques marrons
+];
+const nettoyerNomDosage = (name: string): { name: string; dose: boolean } => {
+    let n = name.trim();
+    let dose = false;
+    for (let i = 0; i < 3; i++) {                      // « un peu de feuilles de menthe »
+        const avant = n;
+        for (const re of DOSE_NOM) { if (re.test(n)) { n = n.replace(re, '').trim(); dose = true; break; } }
+        if (n === avant) break;
+    }
+    return { name: n || name, dose: dose && !!n };
+};
+
+/** Affichage d'une ligne venue d'UNE recette : le texte de la recette, sans le bruit
+ *  de dosage ni les adjectifs de taille (« 1 grosse cuillère de tomate » → « Tomate »). */
+export const affichageNet = (clean: string): string => {
+    let t = sansAdjMesure(clean);
+    // belle(s) / bonne(s) / beau(x) ne disent rien d'un produit ; gros / petit non plus, sauf
+    // gros sel, petits pois, petits-suisses…
+    t = t.replace(new RegExp('^' + DEBUT_QTE + '(?:belles?|beaux?|bonn?es?)\\s+(?=\\S)', 'i'), '$1');
+    t = t.replace(new RegExp('^((?:\\d+(?:[.,]\\d+)?|\\d+\\s*/\\s*\\d+|une?)\\s+)(?:gros(?:se)?s?|petit(?:e)?s?|moyen(?:ne)?s?)\\s+(?!sel\\b|pois\\b|suisses?\\b|lait\\b|beurre\\b)', 'i'), '$1');
+    const quant = t.match(new RegExp('^' + DEBUT_QTE + '(?:(?:cuill[eè]res?(?:\\s+[àa]\\s+(?:soupe|caf[ée]|dessert))?|c\\.?\\s*[àa]\\.?\\s*[sc]\\.?|cas|cac|pinc[ée]es?|poign[ée]es?|brins?)\\s+)' + DE + '?(.+)$', 'i'));
+    if (quant) return capFirst(quant[2].trim());
+    const dose = nettoyerNomDosage(t.replace(new RegExp('^(?:\\d+(?:[.,]\\d+)?\\s+|\\d+\\s*/\\s*\\d+\\s+|une?\\s+)', 'i'), ''));
+    return dose.dose ? capFirst(dose.name) : t;
+};
+
+const parseIngredientBrut = (raw: string): ParsedIng => {
     let s = stripLeadingEmoji((raw || '').replace(/\s+/g, ' ').trim()).trim();
     const fractions: Record<string, string> = { '½': '1/2', '¼': '1/4', '¾': '3/4', '⅓': '1/3', '⅔': '2/3', '⅛': '1/8' };
     s = s.replace(/^([½¼¾⅓⅔⅛])\s*/, (_, fraction) => fractions[fraction] + ' ');
+    // « environ 30 cl de crème » : l'approximation n'est pas un produit, la quantité reste.
+    s = s.replace(/^(?:environ|env\.?|approximativement|à peu près|a peu pres|près de|pres de|près d['’]|~|≈)\s*(?=\d|[½¼¾⅓⅔⅛])/i, '');
+    s = s.replace(/^([½¼¾⅓⅔⅛])\s*/, (_, fraction) => fractions[fraction] + ' ');
+    s = sansAdjMesure(s).trim();
     s = s.replace(/^(\d+(?:[.,]\d+)?)\s*(?:c\.?\s*[àa]\s*s\.?|cuill[eè]res?\s*[àa]\s*soupe)\s+/i, '$1 cas ').replace(/^(\d+(?:[.,]\d+)?)\s*(?:c\.?\s*[àa]\s*c\.?|cuill[eè]res?\s*[àa]\s*caf[ée])\s+/i, '$1 cac ');
-    s = stripLeadingEmoji(s).trim();
+    s = sansAdjMesure(stripLeadingEmoji(s).trim()).trim();
     // Certains exports placent la mesure après le produit : « mozzarella - 150 g ».
     const suffix = s.match(/^(.+?)\s+[-:]\s*(\d+(?:[.,]\d+)?(?:\s*(?:à|a|-)\s*\d+(?:[.,]\d+)?)?)\s*(g|kg|mg|ml|cl|dl|l|gr|pi[eè]ces?)(?:\s*,.*)?$/i);
     if (suffix) s = `${suffix[2]} ${suffix[3]} ${suffix[1]}`;
@@ -123,6 +195,13 @@ export const parseIngredient = (raw: string): ParsedIng => {
     return { qty: null, unit: '', name: stripMeasure(s) || s };
 };
 
+export const parseIngredient = (raw: string): ParsedIng => {
+    const p = parseIngredientBrut(raw);
+    const n = nettoyerNomDosage(p.name);
+    const dose = n.dose || DOSE_UNITS.has(normalizeIng(p.unit));
+    return dose ? { ...p, name: n.name, dose: true } : p;
+};
+
 // ── Canonicalisation des noms d'ingrédients (fusion liste de courses) ──────────
 // But : regrouper les variantes du MÊME ingrédient (orthographe, pluriel, forme).
 // Synonymes explicites (normalisés, sans accent) → nom canonique. Extensible.
@@ -142,7 +221,20 @@ const SYNONYMS: Record<string, string> = {
     // Crème liquide : variantes du même produit (≠ crème fraîche / épaisse).
     'creme': 'creme liquide', 'creme entiere': 'creme liquide', 'creme fleurette': 'creme liquide',
     'creme liquide entiere': 'creme liquide', 'creme fraiche liquide': 'creme liquide',
-    'creme de soja': 'creme de soja', 'creme liquide 30': 'creme liquide',
+    'creme de soja': 'creme de soja', 'creme liquide 30': 'creme liquide', 'creme liquide 30%': 'creme liquide',
+    // Crème fraîche = crème épaisse = crème fraîche épaisse : un seul produit.
+    'creme epaisse': 'creme fraiche', 'creme fraiche epaisse': 'creme fraiche', 'creme epaisse entiere': 'creme fraiche',
+    // Beurre : doux / mou / froid / pommade sont l'état ou la douceur du même beurre.
+    'beurre doux': 'beurre', 'beurre mou': 'beurre', 'beurre froid': 'beurre', 'beurre pommade': 'beurre', 'beurre tendre': 'beurre',
+    'lait tiede': 'lait', 'lait chaud': 'lait',
+    // Sel, poivre, sucre, farine, huile : les précisions de qualité ne font pas un autre achat.
+    'sel fin': 'sel', 'sel de table': 'sel',
+    'poivre noir': 'poivre', 'poivre du moulin': 'poivre', 'poivre moulu': 'poivre', 'poivre noir moulu': 'poivre',
+    'sucre blanc': 'sucre', 'sucre cristallise': 'sucre', 'sucre granule': 'sucre', 'sucre semoule': 'sucre', 'sucre en poudre': 'sucre',
+    'farine tout usage': 'farine', 'farine de ble': 'farine', 'farine blanche': 'farine', 'farine t45': 'farine', 'farine t55': 'farine', 'farine t65': 'farine',
+    "huile d'olive vierge": "huile d'olive", "huile d'olive vierge extra": "huile d'olive", "huile d'olive extra vierge": "huile d'olive",
+    'huile pour friture': 'huile de friture', 'huile neutre': 'huile', 'huile vegetale': 'huile',
+    'yaourt a la grecque': 'yaourt grec', 'yaourt grecque': 'yaourt grec', 'yaourt grec epais': 'yaourt grec',
 };
 
 // Ingrédients où la forme "en poudre" est un PRODUIT distinct du frais
@@ -150,6 +242,7 @@ const SYNONYMS: Record<string, string> = {
 // Ré-accentuation pour l'affichage des noms canoniques normalisés (sans accent).
 const DISPLAY_ACCENT: Record<string, string> = {
     'creme liquide': 'crème liquide', 'creme fraiche': 'crème fraîche', 'creme epaisse': 'crème épaisse',
+    'echalote': 'échalote', 'epinard': 'épinard', 'ble': 'blé', 'pate brisee': 'pâte brisée', 'pate feuilletee': 'pâte feuilletée',
 };
 
 // Les poudres d'aromates sont des produits distincts du frais.
@@ -166,7 +259,7 @@ const POWDER_DISTINCT: string[] = ['ail', 'oignon', 'gingembre', 'coriandre'];
  * PAS dans la liste — « jaune » y est, car il ne fait que redire la couleur
  * par défaut.
  */
-const QUALIF_RE = /\s*\b(bio|biologiques?|non\s+traitee?s?|du\s+jardin|de\s+saison|entiere?s?|entiers?|de\s+qualite|extra)\b/g;
+const QUALIF_RE = /\s*\b(bio|biologiques?|non\s+traitee?s?|du\s+jardin|de\s+saison|entiere?s?|entiers?|de\s+qualite|extra|au\s+gout|a\s+gout|selon\s+(?:le\s+|votre\s+)?gout|a\s+volonte|supplementaires?|fraichement(?:\s+(?:moulu|rape|presse)e?s?)?|bien\s+froid(?:e)?s?|a\s+temperature\s+ambiante|facultatif)\b/g;
 
 /*
  * Un produit, une ligne.
@@ -190,7 +283,7 @@ const FUSION_PRODUITS: { motif: RegExp; nom: string; sauf?: RegExp }[] = [
 /* La taille en tête ne fait pas un autre produit : « petit oignon rouge » se
    range avec les oignons rouges. Deux exceptions gardées telles quelles, parce
    que la taille EST le produit : les petits pois et le gros sel. */
-const TAILLE_RE = /^(gros|grosse|grosses|petits?|petites?|moyenne?s?)\s+(?!d[e']|pois\b|sel\b)/;
+const TAILLE_RE = /^(gros|grosse|grosses|petits?|petites?|moyenne?s?|belles?|beaux?|bonn?es?)\s+(?!d[e']|pois\b|sel\b)/;
 
 /** Le mot « jaune » ne se retire qu'APRÈS le produit : « citron jaune » → citron,
  *  mais « jaune d'œuf » reste un jaune d'œuf. */
@@ -239,9 +332,13 @@ const SPOON_RAW_RE = /(^|[^a-z])(cac|cas|cc|cs)([^a-z]|$)|\bc[.\s]+a[.\s]*(c|caf
 const isSpoonRaw = (raw: string) => SPOON_RAW_RE.test(normalizeIng(raw));
 
 // Pluriel → singulier (par mot). Exceptions : mots déjà terminés en 's' au singulier.
-const SING_EXCEPT = new Set(['ananas', 'anchois', 'jus', 'riz', 'mais', 'couscous', 'houmous', 'hummus', 'cassis', 'cresson', 'chips', 'pois', 'abats', 'epices', 'des', 'ours', 'gros', 'frais', 'gras', 'epais']);
+// Mots qui se terminent en s/x AU SINGULIER : « noix », « doux », « roux »… Sans eux,
+// « noix de beurre » devenait « noi de beurre » et « beurre doux » « beurre dou ».
+const SING_EXCEPT = new Set(['ananas', 'anchois', 'jus', 'riz', 'mais', 'couscous', 'houmous', 'hummus', 'cassis', 'cresson', 'chips', 'pois', 'abats', 'epices', 'des', 'ours', 'gros', 'frais', 'gras', 'epais', 'noix', 'doux', 'roux', 'faux', 'prix', 'voix', 'poix', 'croix', 'houx', 'bois', 'fois', 'brebis', 'souris', 'radis', 'tamaris', 'palmarès', 'maïs', 'pastis', 'tournedos', 'carquois', 'lis', 'dans', 'sans', 'plus', 'moins', 'tous', 'tres', 'vers', 'sous', 'alors', 'puis', 'jamais', 'toujours', 'avec', 'pour', 'sur']);
 const depluralize = (n: string) => n.split(' ').map(w => {
-    if (SING_EXCEPT.has(w) || w.length <= 3) return w;
+    // « d'anchois », « l'ananas » : on juge le mot sans son article élidé.
+    const cœur = w.replace(/^(?:d|l|qu|n|s)['’]/, '');
+    if (SING_EXCEPT.has(w) || SING_EXCEPT.has(cœur) || w.length <= 3) return w;
     if (/eaux$/.test(w)) return w.slice(0, -1);   // gateaux → gateau
     if (/x$/.test(w)) return w.slice(0, -1);       // choux → chou
     if (/s$/.test(w)) return w.slice(0, -1);       // oignons → oignon
@@ -263,19 +360,28 @@ const stripPrep = (n: string) => n.replace(SECTION_SUFFIX_RE, '').replace(PREP_R
 /** Une pièce et une absence d'unité, c'est la même chose dans un caddie. */
 const uniteDeBase = (unit: string) => {
     const u = normalizeIng(unit);
-    const measures: Record<string, string> = { gousses: 'gousse', tranches: 'tranche', tasses: 'tasse', sachets: 'sachet', verres: 'verre', boites: 'boite', bouquets: 'bouquet', brins: 'brin', pots: 'pot', barquettes: 'barquette', pincees: 'pincee', tetes: 'tete', cuilleres: 'cuillere', poignees: 'poignee', briques: 'brique', cs: 'cas', cc: 'cac' };
+    const measures: Record<string, string> = { gousses: 'gousse', tranches: 'tranche', tasses: 'tasse', sachets: 'sachet', verres: 'verre', boites: 'boite', bouquets: 'bouquet', brins: 'brin', pots: 'pot', barquettes: 'barquette', pincees: 'pincee', tetes: 'tete', cuilleres: 'cuillere', poignees: 'poignee', briques: 'brique', paquets: 'paquet', bottes: 'botte', cs: 'cas', cc: 'cac' };
     return measures[u] || (u === 'piece' || u === 'pieces' ? '' : u);
 };
 
+/** Artefacts de découpe : « de sucre », « d'eau », « ou poivre », « sel - ». */
+const nettoyerBruit = (t: string): string => {
+    let x = t.trim();
+    for (let i = 0; i < 3; i++) {
+        x = x.replace(/^(?:(?:de|d['’]|du|des|ou|et|cas de|facultatif\s*:)\s*)+/, '').replace(/\s*[-–—:,;]+\s*$/, '').trim();
+    }
+    return x;
+};
+
 export const canonicalIng = (name: string, unit: string = '', raw: string = ''): { name: string; unit: string } => {
-    let n = depluralize(stripPrep(
+    let n = depluralize(stripPrep(nettoyerBruit(
         normalizeIng(name)
             .replace(PARENTHESE_RE, ' ')
             .replace(SLASH_RE, '')
             .replace(QUALIF_RE, ' ')
             .replace(/\s+/g, ' ')
             .trim(),
-    ));
+    )));
     if (!n) n = depluralize(stripPrep(normalizeIng(name).replace(/\s+/g, ' ').trim()));
     n = retirerJaune(n).replace(TAILLE_RE, '').replace(/\s+/g, ' ').trim();
     const originalPowder = POWDER_RE.test(n) || /\bsemoule\b/.test(n);
@@ -283,6 +389,7 @@ export const canonicalIng = (name: string, unit: string = '', raw: string = ''):
         if (r.motif.test(n) && !(r.sauf && r.sauf.test(n))) { n = r.nom; break; }
     }
     if (SYNONYMS[n]) n = SYNONYMS[n];
+    else if (SYNONYMS[n.replace(/ d (?=\w)/g, " d'")]) n = SYNONYMS[n.replace(/ d (?=\w)/g, " d'")];
     const u = normalizeIng(unit);
     const isPowder = originalPowder || POWDER_RE.test(n) || /\bsemoule\b/.test(n);
     const base = n.replace(POWDER_RE, '').trim();
@@ -459,6 +566,23 @@ export const expandIngredientLines = (raw: string): string[] => {
 };
 
 export const capFirst = (s: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
+/** Après une quantité, le nom s'écrit en minuscule : « 190 g sucre », « 3 tomates ». */
+const apresQuantite = (n: string) => (n ? n.charAt(0).toLowerCase() + n.slice(1) : n);
+
+/** Le nom canonique est sans accent (« fecule de mais ») : on y remet ceux du texte d'origine. */
+const reaccentuer = (canon: string, original: string): string => {
+    const connus = new Map<string, string>();
+    original.split(/\s+/).forEach(t => {
+        const nu = normalizeIng(t).replace(/[^a-z0-9'’-]/g, '');
+        if (!nu || nu === t.toLowerCase()) return;           // pas d'accent à retenir
+        const sing = depluralize(nu);
+        const plein = t.toLowerCase().replace(/[.,;:()]+$/g, '');
+        connus.set(sing, sing.length < nu.length && /[sx]$/.test(plein) ? plein.slice(0, -1) : plein);
+        connus.set(nu, plein);
+    });
+    if (!connus.size) return canon;
+    return canon.split(' ').map(w => connus.get(w) ?? w).join(' ');
+};
 export const fmtQty = (q: number) => (Number.isInteger(q) ? String(q) : String(Math.round(q * 100) / 100));
 
 export interface ConsolItem {
@@ -600,12 +724,15 @@ export const buildConsolidatedItems = (
         // Canonicalisation : regroupe les variantes du même ingrédient (ex. ail).
         const c = canonicalIng(p.name, p.unit, raw);
         // Unité ramenée à la base (g / ml) pour additionner cl + ml + brique, kg + g…
-        const b = toBaseUnit(p.range ? p.range[0] : p.qty, c.unit);
-        const range: [number, number] | undefined = p.range ? [b.qty ?? p.range[0], toBaseUnit(p.range[1], c.unit).qty ?? p.range[1]] : undefined;
+        // Un dosage (brin, pincée, cuillère, filet d'huile…) ne s'achète pas : le produit seul.
+        const dose = !!p.dose || DOSE_UNITS.has(normalizeIng(c.unit)) || AROMATES.has(c.name);
+        const b = dose ? { qty: null as number | null, unit: '' } : toBaseUnit(p.range ? p.range[0] : p.qty, c.unit);
+        const range: [number, number] | undefined = !dose && p.range ? [b.qty ?? p.range[0], toBaseUnit(p.range[1], c.unit).qty ?? p.range[1]] : undefined;
         if (range) b.qty = null;
         // Nom AFFICHÉ : on garde l'accentuation d'origine si le canonique = l'original
         // (juste normalisé) ; sinon on ré-accentue les cas connus, sinon le canonique.
-        const dispName = normalizeIng(p.name) === c.name ? p.name : (DISPLAY_ACCENT[c.name] || c.name);
+        const nomParse = p.name;
+        const dispName = normalizeIng(p.name) === c.name ? p.name : (DISPLAY_ACCENT[c.name] || reaccentuer(c.name, p.name));
         p.name = dispName; p.unit = b.unit;
         const key = `${c.name}|${b.unit}`;
         if (opts?.slotKey && sourceKeyDone(opts.slotKey, done)) return;
@@ -622,14 +749,14 @@ export const buildConsolidatedItems = (
             if (opts?.manual) { existing.manual = true; existing.ord = ++ord; }
             // Fusionné → on recompose un affichage avec la quantité additionnée (unité lisible).
             existing.display = existing.range ? `${fmtQty(existing.range[0])} à ${fmtQty(existing.range[1])}${existing.unit ? ' ' + existing.unit : ''} ${existing.name}` : existing.qty != null
-                ? `${prettyQtyUnit(existing.qty, existing.unit)} ${nomAuPluriel(existing.name, existing.qty, existing.unit)}`.trim()
+                ? `${prettyQtyUnit(existing.qty, existing.unit)} ${apresQuantite(nomAuPluriel(existing.name, existing.qty, existing.unit))}`.trim()
                 : existing.name;
         } else {
             map.set(key, {
                 key, icon: getIngIcon(p.name), name: capFirst(p.name), unit: b.unit, qty: b.qty, range,
                 keys: opts?.slotKey ? [opts.slotKey] : [],
                 manual: opts?.manual, ord: opts?.manual ? ++ord : undefined,
-                display: clean || capFirst(p.name), count: 1,
+                display: dose ? capFirst(c.name === normalizeIng(nomParse) ? nomParse : p.name) : (affichageNet(clean) || capFirst(p.name)), count: 1,
             });
         }
     };
@@ -677,22 +804,28 @@ export const buildConsolidatedItems = (
     // et `brocoli|g`). On les regroupe en UNE seule ligne pour ne pas donner l'illusion
     // de 2 produits distincts. Les vrais produits distincts (ail / ail en poudre /
     // pâte d'ail) ont un nom canonique différent → restent séparés.
+    // Même produit, autre formulation : « concentré de tomate » / « tomate concentré »,
+    // « sauce soja » / « sauce de soja ». Les mots-outils et l'ordre ne font pas un autre
+    // produit ; en revanche « ail » et « ail en poudre » restent deux lignes (un mot de plus).
+    const STOP_FUSION = new Set(['de', 'du', 'des', 'la', 'le', 'les', 'l', 'd', 'en', 'a', 'au', 'aux', 'et', 'ou', 'un', 'une', 'pour']);
+    const cleFusion = (canon: string) => canon.split(/[\s'’-]+/).filter(w => w && !STOP_FUSION.has(w))
+        .map(w => depluralize(w)).sort().join(' ') || canon;
     const byName = new Map<string, ConsolItem[]>();
     for (const it of map.values()) {
-        const canon = it.key.split('|')[0];
+        const canon = cleFusion(it.key.split('|')[0]);
         const arr = byName.get(canon);
         if (arr) arr.push(it); else byName.set(canon, [it]);
     }
     const merged: ConsolItem[] = [];
     for (const group of byName.values()) {
         if (group.length === 1) { merged.push(group[0]); continue; }
-        const base = group[0];
+        const base = [...group].sort((x, y) => y.count - x.count)[0];
         const amounts = group
             .filter(g => g.qty != null || g.range)
             .map(g => g.range ? `${fmtQty(g.range[0])} à ${fmtQty(g.range[1])}${g.unit ? ' ' + g.unit : ''}` : prettyQtyUnit(g.qty as number, g.unit));
         const display =
             amounts.length === 0 ? base.name
-            : amounts.length === 1 ? `${amounts[0]} ${base.name}`.trim()
+            : amounts.length === 1 ? `${amounts[0]} ${apresQuantite(base.name)}`.trim()
             : `${base.name} : ${amounts.join(' + ')}`;
         merged.push({
             ...base,
