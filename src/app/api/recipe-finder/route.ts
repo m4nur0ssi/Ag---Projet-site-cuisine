@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { corpsJson, ipDe, memeOrigine, trop } from '@/lib/garde-api';
 import { intentionVin, type CompactWine } from '@/lib/accordCave';
+import { filtrerParDemande } from '@/lib/rechercheStricte';
 
 /**
  * Assistant IA de recettes (#3).
@@ -26,7 +27,8 @@ interface CompactRecipe { id: string; t: string; cat?: string; tags?: string[]; 
 // remontent — ex. "sauce" fait remonter la catégorie sauces) puis on plafonne, en
 // réduisant aussi les tags. Groq n'a plus qu'à CLASSER une liste courte et ciblée.
 const MAX_TO_LLM = 200;
-const STOP = new Set(['une', 'un', 'des', 'les', 'pour', 'avec', 'dans', 'sur', 'que', 'qui', 'cherche', 'voudrais', 'veux', 'trouve', 'trouver', 'aimerais', 'restaurant', 'resto']);
+// « aux », « au », « de »… ne sont pas des mots de la demande : sans eux, tout titre contenant « aux » passait.
+const STOP = new Set(['une', 'un', 'des', 'les', 'pour', 'avec', 'dans', 'sur', 'que', 'qui', 'cherche', 'voudrais', 'veux', 'trouve', 'trouver', 'aimerais', 'restaurant', 'resto', 'aux', 'au', 'du', 'de', 'la', 'le', 'ou', 'et', 'en', 'sans', 'recette', 'recettes', 'idee', 'plat']);
 function norm(s: string): string {
     return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
@@ -36,7 +38,8 @@ function scoreByQuery(query: string, recipes: CompactRecipe[]): { r: CompactReci
     const scored = recipes.map(r => {
         const hay = norm(`${r.t} ${r.cat || ''} ${(r.tags || []).join(' ')} ${(r.ing || []).join(' ')}`);
         let s = 0;
-        for (const w of qWords) if (hay.includes(w)) s++;
+        // Le mot ENTIER (singulier ou pluriel) : « pomme » ne trouve plus « pomme de terre ».
+        for (const w of qWords) if (new RegExp(`(^|[^a-z0-9])${w.replace(/[sx]$/, '')}(s|x)?([^a-z0-9]|$)`).test(hay.replace(/pommes?\s+de\s+terre/g, 'pommedeterre'))) s++;
         return { r, s };
     });
     scored.sort((a, b) => b.s - a.s);
@@ -61,8 +64,8 @@ function keywordFallback(query: string, recipes: CompactRecipe[]): string[] {
     const scored = scoreByQuery(query, recipes).filter(x => x.s > 0);
     if (!scored.length) return [];
     const best = scored[0].s;
-    const seuil = best > 1 ? best - 1 : 1;
-    return scored.filter(x => x.s >= seuil).slice(0, MAX_IDS).map(x => String(x.r.id));
+    // Strict : seules les entrées qui atteignent le meilleur score (tous les mots trouvés).
+    return scored.filter(x => x.s >= best).slice(0, MAX_IDS).map(x => String(x.r.id));
 }
 
 /**
@@ -100,7 +103,8 @@ Règles STRICTES :
 - Si la demande porte sur un plat à cuisiner → propose des RECETTES. Ne mélange pas recettes et restaurants dans une même réponse.
 - IMPORTANT : la VILLE d'un restaurant est écrite dans ses tags (ex. tag "gonesse", "paris", "le blanc-mesnil"). Si l'utilisateur cite une ville, propose TOUS les restaurants dont les tags contiennent cette ville (compare en minuscules, ignore les accents). Un restaurant peut avoir plusieurs villes.
 - Tiens compte de la catégorie, des ingrédients/protéines, du régime (healthy, végé…), du pays/ville, de la terrasse et du temps si mentionnés.
-- Ne renvoie JAMAIS une liste "ids" vide s'il existe au moins une entrée qui correspond, même partiellement (bonne ville OU bon type OU terrasse). Prends alors la/les plus proche(s).
+- Sois STRICT. Si la demande nomme un ingrédient (« pommes »), il doit figurer dans le titre ou dans "ing" : « pomme » n'est PAS « pomme de terre », « chou » n'est pas « chou-fleur ». Si elle nomme un type de plat (« gâteau »), l'entrée doit en être un.
+- Si aucune entrée ne correspond vraiment, renvoie "ids":[] : mieux vaut aucune réponse qu'une réponse hors sujet. Un ingrédient voisin est accepté seulement s'il est évident (potiron ~ courge ~ potimarron).
 - "message" : une phrase courte et chaleureuse en français qui présente la sélection.
 Réponds STRICTEMENT en JSON : {"ids":["12","7"],"message":"..."} sans texte autour.`;
 
@@ -259,6 +263,17 @@ export async function POST(request: Request) {
             .map((id: any) => String(id))
             .filter((id: string, i: number, all: string[]) => validIds.has(id) && all.indexOf(id) === i)
             .slice(0, MAX_IDS);
+
+        // Dernier garde-fou : on retire ce qui n'a ni l'ingrédient ni le type demandé.
+        const parId = new Map(recipes.map(r => [String(r.id), r]));
+        const compact = ids.map((id: string) => parId.get(id)).filter(Boolean) as CompactRecipe[];
+        const gardees = filtrerParDemande(
+            compact.map(r => ({ id: r.id, title: r.t, category: r.cat, tags: r.tags, ingredients: r.ing })),
+            query,
+            recipes.map(r => ({ id: r.id, title: r.t, category: r.cat, tags: r.tags, ingredients: r.ing })),
+        ).map(r => String(r.id));
+        if (ids.length && !gardees.length) return NextResponse.json({ error: 'Aucune recette trouvée' }, { status: 404 });
+        ids.splice(0, ids.length, ...gardees);
 
         if (!ids.length) {
             // L'IA n'a rien renvoyé de valide → repli mots-clés (ville/type/tags…).

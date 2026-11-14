@@ -38,6 +38,7 @@ import { buildFinderCatalog } from '@/lib/recipe-search-payload';
 import { lireContrainteNote, appliquerContrainteNote } from '@/lib/contrainte-note';
 import { loadAllRatingStats } from '@/mobile/lib/ratings';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
+import { rechercheStricte, filtrerParDemande } from '@/lib/rechercheStricte';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import { matchesTag } from './themes';
 import { estRecettePates } from '@/lib/pates';
@@ -421,6 +422,27 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                 return;
             }
         }
+        /*
+         * Demande CONCRÈTE (un type de plat, un ingrédient) : réponse stricte et
+         * immédiate, sans modèle. « gâteau aux pommes » rend des gâteaux aux pommes,
+         * pas tous les desserts ni les pommes de terre. Les demandes d'ambiance
+         * (« un plat réconfortant ») et les restaurants passent toujours par le modèle.
+         */
+        if (!surLeVin && !/\b(restaurants?|resto|terrasse)\b/.test(normalize(q))) {
+            const stricte = rechercheStricte(vivier as any, contrainte?.reste || q);
+            if (stricte) {
+                let rep = stricte.recettes as Recipe[];
+                if (filter) rep = rep.filter(filter);
+                if (rep.length) {
+                    setAiResults(rep);
+                    setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : stricte.message);
+                } else {
+                    setAiError(stricte.message || 'Aucune recette du site ne correspond. Reformule ta demande.');
+                }
+                setAiBusy(false);
+                return;
+            }
+        }
         try {
             const compact = buildFinderCatalog(vivier as any);
             const res = await fetch('/api/recipe-finder', {
@@ -449,6 +471,13 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
 
             const byId = new Map(vivier.map((r) => [String(r.id), r]));
             let found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean) as Recipe[];
+            // Le modèle déborde parfois : on retire tout ce qui n'a pas l'ingrédient ou le type demandé.
+            const avantGarde = found.length;
+            found = filtrerParDemande(found as any, contrainte?.reste || q, vivier as any) as Recipe[];
+            if (avantGarde && !found.length) {
+                setAiError('Aucune recette du site ne correspond vraiment à ta demande. Essaie avec un autre ingrédient.');
+                return;
+            }
             if (filter) found = found.filter(filter);
             if (found.length) {
                 setAiResults(found);
@@ -471,7 +500,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
             }
             // Le repli cherche dans le VIVIER déjà filtré : une recherche de
             // secours ne doit pas rendre ce que la contrainte vient d'écarter.
-            const local = smartLocalSearch(vivier as any, contrainte?.reste || q, 60) as Recipe[];
+            const local = filtrerParDemande(smartLocalSearch(vivier as any, contrainte?.reste || q, 60) as any, contrainte?.reste || q, vivier as any) as Recipe[];
             if (local.length) {
                 setAiResults(local);
                 setAiMessage(contrainte ? `Parmi les recettes ${contrainte.libelle}` : 'Voici ce que j\'ai trouvé sur le site');
