@@ -6925,3 +6925,27 @@
    sans cela, « Ingrédients » (plus long) grignotait 1-2 px sur ses voisins. */
 .spModeRow .spSegment { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .spModeRow .spSeg { padding-left: 2px; padding-right: 2px; white-space: nowrap; min-width: 0; }
+
+/* ── Accueil, téléphone : le héros remplit l'écran ──────────────────────────
+   Avant : la marque collée en haut, et sous le texte un espace noir (plancher de
+   122 px alors que la barre du bas n'en occupe que ~80). Désormais :
+   · la marque (et le bouton menu) descendent d'un cran ;
+   · la galerie commence juste sous la marque et prend TOUTE la hauteur laissée ;
+   · le texte (emplacement fixe de 3 lignes de titre) se pose à 14 px au-dessus de
+     la barre du bas : plus de trou en dessous, que le titre fasse 1, 2 ou 3 lignes. */
+@media (max-width: 759px) {
+    .brand { top: calc(env(safe-area-inset-top, 0px) + 30px); }
+    .heroMenuBtn { margin-top: 14px; }
+    .heroContent {
+        padding-top: calc(env(safe-area-inset-top, 0px) + 152px);
+        /* barre du bas : 72 px + son décalage (zone sûre × 0,25) ; 14 px d'air */
+        padding-bottom: calc(env(safe-area-inset-bottom, 0px) * 0.25 + 86px);
+        justify-content: flex-start;
+        gap: 18px;
+    }
+}
+@media (max-width: 759px) and (max-height: 730px) {
+    .brand { top: calc(env(safe-area-inset-top, 0px) + 22px); }
+    .heroMenuBtn { margin-top: 6px; }
+    .heroContent { padding-top: calc(env(safe-area-inset-top, 0px) + 134px); gap: 14px; }
+}
