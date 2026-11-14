@@ -207,7 +207,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8236",
         "title": "Gâteau crumble aux pommes",
         "description": "Un gâteau moelleux aux pommes, surmonté d'une garniture aux pommes fondante et d'un délicieux crumble croustillant, idéal pour l'automne.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8236-carte.webp",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
