@@ -6,7 +6,6 @@ import Portal from '@/components/Portal';
 import styles from './RecipeSheet.module.css';
 import RecipeDetails from '@/components/RecipeDetails/RecipeDetails';
 import { ecrireStock } from '@/lib/stockage';
-import { FlechesImage, useFlechesPos } from './FlechesFiche';
 
 interface RecipeSheetProps {
     recipe: Recipe;
@@ -22,7 +21,6 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
     const scrollYRef = useRef(0);
     const controls = useDragControls();
     const sheetRef = useRef<HTMLDivElement>(null);
-    const flechesPos = useFlechesPos(sheetRef, isOpen && !!navigation);
 
     // Sync when parent changes recipe
     useEffect(() => { setCurrentRecipe(initialRecipe); }, [initialRecipe]);
@@ -215,18 +213,8 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
                             {/* Croix fixe — hors du scrollArea pour rester cliquable */}
                             <button className={styles.closeBtn} onClick={onClose}>✕</button>
 
-                            {navigation && (
-                                <>
-                                    <div className={styles.navCompteur}>{navigation.position} / {navigation.total}</div>
-                                    {flechesPos && <FlechesImage pos={flechesPos} precedent={navigation.precedent} suivant={navigation.suivant} />}
-                                    {!flechesPos && navigation.precedent && (
-                                        <button className={`${styles.navFleche} ${styles.navGauche}`} onClick={navigation.precedent} aria-label="Recette précédente">‹</button>
-                                    )}
-                                    {!flechesPos && navigation.suivant && (
-                                        <button className={`${styles.navFleche} ${styles.navDroite}`} onClick={navigation.suivant} aria-label="Recette suivante">›</button>
-                                    )}
-                                </>
-                            )}
+                            {/* Plus de flèches sur la photo : on change de recette au clavier (← →), pas au clic. */}
+                            {navigation && <div className={styles.navCompteur}>{navigation.position} / {navigation.total}</div>}
 
                             <div
                                 className={styles.scrollArea}
