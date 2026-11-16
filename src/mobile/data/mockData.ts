@@ -861,7 +861,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8218",
         "title": "Nuggets de pomme de terre croustillants et sauce Creamy Deluxe maison",
         "description": "Préparez de délicieux nuggets de pomme de terre, dorés et croustillants à l'extérieur, moelleux à l'intérieur. Accompagnez-les d'une sauce Creamy Deluxe maison, fraîche et gourmande, pour un encas facile et savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8218.webp&v=1794512820000",
+        "image": "/recipes-ia/8218-carte.webp",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
