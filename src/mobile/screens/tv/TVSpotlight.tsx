@@ -40,6 +40,7 @@ import { loadAllRatingStats } from '@/mobile/lib/ratings';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { rechercheStricte, filtrerParDemande } from '@/lib/rechercheStricte';
 import { recetteExclue } from '@/lib/exclusions';
+import { vocabulaireDe, motLePlusProche } from '@/lib/fuzzy';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import { matchesTag } from './themes';
 import { estRecettePates } from '@/lib/pates';
@@ -643,6 +644,31 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [aiQuery, mode]);
 
+    /*
+     * Faute de frappe dans la barre : « pulet » → « poulet ». Repli seulement :
+     * si le texte tapé existe tel quel dans le catalogue, on ne touche à rien.
+     */
+    const vocabulaire = useMemo(() => vocabulaireDe(pool.map((r: any) => normalize([
+        r.title || '',
+        ...(r.tags || []),
+        ...(r.ingredients || []).map((i: any) => (typeof i === 'string' ? i : String(i?.name || ''))),
+    ].join(' ')))), [pool]);
+    const contientTexte = (r: any, q: string) =>
+        normalize(r.title || '').includes(q) || (r.tags || []).some((t: string) => normalize(t).includes(q));
+    const correctionTexte = useMemo<string | null>(() => {
+        const q = normalize(query.trim());
+        if (!q || pool.some((r: any) => contientTexte(r, q))) return null;
+        let changed = false;
+        const mots = q.split(/\s+/).map((w) => {
+            if (w.length < 5 || vocabulaire.has(w)) return w;
+            const c = motLePlusProche(w, vocabulaire);
+            if (c) { changed = true; return c; }
+            return w;
+        });
+        return changed ? mots.join(' ') : null;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [query, pool, vocabulaire]);
+
     // Mode recette
     const filteredRecipes = useMemo(() => {
         if (mode !== 'recipe') return [];
@@ -664,7 +690,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                 (r.tags || []).some((t: string) => normalize(t).includes(af)));
         }
         if (query.trim().length > 0) {
-            const q = normalize(query.trim());
+            const q = correctionTexte ?? normalize(query.trim());
             // « pâte(s) », « pasta » : on cherche des PÂTES. La sous-chaîne rendait
             // aussi la pâte brisée, la pâte à pizza et tout plat tagué « pates ».
             const veutDesPates = /^(pates?|pasta)s?$/.test(q);
@@ -680,7 +706,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
             return sorted;
         }
         return pool2;
-    }, [query, mode, activeFilters, pool, filter]);
+    }, [query, mode, activeFilters, pool, filter, correctionTexte]);
 
     /*
      * Puces proposées : seulement celles qui, AJOUTÉES aux filtres déjà cochés
@@ -1361,6 +1387,9 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
 
                         {mode === 'recipe' && (
                             <>
+                                {correctionTexte && (
+                                    <div className={styles.spHint}>Résultats pour « {correctionTexte} »</div>
+                                )}
                                 {query.trim().length === 0 && activeFilters.length === 0 && (
                                     <div className={styles.spHint}>Toutes les recettes · les plus récentes d’abord</div>
                                 )}

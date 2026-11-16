@@ -15,6 +15,8 @@
  *   · « sans gluten », « sans sucre »… écrits dans une recette ne la font pas exclure.
  */
 
+import { motRessemble } from './fuzzy';
+
 const nf = (s: string) =>
     (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
         .replace(/œ/g, 'oe').replace(/æ/g, 'ae').replace(/['’]/g, ' ').replace(/\s+/g, ' ').trim();
@@ -99,7 +101,18 @@ export function motsInterdits(saisi: string): string[] {
     for (const [k, liste] of Object.entries(FAMILLES)) {
         if (k === m || k === cle || sansS(k) === cle) return [...new Set(liste.map(nf))];
     }
+    // Faute de frappe (« pulet ») : on prend l'aliment connu le plus proche. Une faute
+    // ne doit jamais laisser passer un allergène, donc on exclut la famille corrigée.
+    const proche = Object.keys(FAMILLES).find((k) => motRessemble(m, nf(k)));
+    if (proche) return [...new Set(FAMILLES[proche].map(nf))];
     return [...new Set([m, cle])];
+}
+
+/** Aliment connu le plus proche d'une saisie fautive, ou null (utile pour l'affichage). */
+export function alimentCorrige(saisi: string): string | null {
+    const m = nf(saisi);
+    if (Object.keys(FAMILLES).some((k) => nf(k) === m || nf(k) === sansS(m))) return null;
+    return Object.keys(FAMILLES).find((k) => motRessemble(m, nf(k))) ?? null;
 }
 
 interface Recherchable { title?: string; tags?: string[]; ingredients?: ({ name?: string } | string)[] }
