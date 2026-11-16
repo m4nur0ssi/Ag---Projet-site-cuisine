@@ -3060,7 +3060,7 @@
     margin-bottom: 8px;
 }
 .focusIngKicker {
-    font-size: 0.68rem;
+    font-size: calc(0.68rem * var(--echelle, 1));
     font-weight: 800;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -3087,7 +3087,8 @@
     padding: 0;
     flex: 1;
     min-height: 0;
-    overflow: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -3104,9 +3105,9 @@
     max-width: 100%;
     min-width: 0;
 }
-.focusIngName { font-size: 0.72rem; font-weight: 700; line-height: 1.25; }
-.focusIngQty { font-size: 0.7rem; font-weight: 800; white-space: nowrap; color: var(--dynamic-accent, #ffb347); }
-.focusIngNone { font-size: 0.85rem; line-height: 1.4; color: rgba(255, 255, 255, 0.55); }
+.focusIngName { font-size: calc(0.72rem * var(--echelle, 1)); font-weight: 700; line-height: 1.25; }
+.focusIngQty { font-size: calc(0.7rem * var(--echelle, 1)); font-weight: 800; white-space: nowrap; color: var(--dynamic-accent, #ffb347); }
+.focusIngNone { font-size: calc(0.85rem * var(--echelle, 1)); line-height: 1.4; color: rgba(255, 255, 255, 0.55); }
 .focusIngBack {
     transform: rotateY(180deg);
     background: #000;
@@ -3225,9 +3226,9 @@
         height: auto !important;
         margin-top: 0 !important;
     }
-    .focusIngName { font-size: 0.95rem; }
-    .focusIngQty { font-size: 0.9rem; }
-    .focusIngKicker { font-size: 0.8rem; }
+    .focusIngName { font-size: calc(0.95rem * var(--echelle, 1)); }
+    .focusIngQty { font-size: calc(0.9rem * var(--echelle, 1)); }
+    .focusIngKicker { font-size: calc(0.8rem * var(--echelle, 1)); }
 }
 
 /* Cœur / Partager : enfoncement au toucher (pas de survol rouge : sur tactile

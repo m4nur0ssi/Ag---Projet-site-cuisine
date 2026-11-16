@@ -2812,7 +2812,7 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
     .focusIngFlip { transition: none; }
 }
 .focusIngKicker {
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--echelle, 1));
     font-weight: 800;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -2837,15 +2837,15 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .focusIngItem:last-child { border-bottom: none; }
-.focusIngName { font-size: 0.98rem; font-weight: 700; line-height: 1.25; min-width: 0; }
+.focusIngName { font-size: calc(0.98rem * var(--echelle, 1)); font-weight: 700; line-height: 1.25; min-width: 0; }
 .focusIngQty {
     flex-shrink: 0;
-    font-size: 0.92rem;
+    font-size: calc(0.92rem * var(--echelle, 1));
     font-weight: 700;
     white-space: nowrap;
     color: var(--dynamic-accent, #ffb347);
 }
-.focusIngNone { font-size: 0.95rem; line-height: 1.4; color: rgba(255, 255, 255, 0.55); }
+.focusIngNone { font-size: calc(0.95rem * var(--echelle, 1)); line-height: 1.4; color: rgba(255, 255, 255, 0.55); }
 /* Sur téléphone, la carte d'étape garde tout l'écran. */
 @media (max-width: 1023px) {
     .focusIngTile { display: none; }
