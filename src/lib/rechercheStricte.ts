@@ -21,6 +21,7 @@
  */
 
 import { motLePlusProche, vocabulaireDe, type Vocabulaire } from './fuzzy';
+import { recetteExclue } from './exclusions';
 
 export interface RecetteRecherche {
     id: string | number;
@@ -78,14 +79,6 @@ const SYNONYMES: Record<string, string[]> = {
     yaourt: ['yaourt', 'yogourt'],
     spaghetti: ['spaghetti', 'pate'],
     aubergine: ['aubergine'],
-};
-
-/** « sans viande » exclut aussi le poulet, le bœuf… pas seulement le mot « viande ». */
-const EXCLUSIONS_ETENDUES: Record<string, string[]> = {
-    viande: ['viande', 'poulet', 'boeuf', 'steak', 'bavette', 'veau', 'agneau', 'porc', 'lardon', 'jambon', 'bacon', 'saucisse', 'chorizo', 'merguez', 'canard', 'dinde', 'magret', 'kefta', 'hache', 'charcuterie', 'poulpe'],
-    poisson: ['poisson', 'saumon', 'thon', 'cabillaud', 'dorade', 'crevette', 'gambas', 'moule', 'truite', 'sardine', 'anchois', 'poulpe', 'calamar', 'crabe'],
-    gluten: ['gluten', 'farine', 'ble', 'pate', 'semoule', 'chapelure', 'pain'],
-    lactose: ['lactose', 'lait', 'creme', 'fromage', 'beurre', 'yaourt', 'mozzarella', 'parmesan'],
 };
 
 /** Types voisins : pour « gâteau », une tarte ou un cake sont de meilleurs « presque » qu'un dessert quelconque. */
@@ -187,8 +180,9 @@ export const demandeDeRestaurant = (query: string) => /\b(restaurants?|resto|res
 export function lireDemande(recettes: RecetteRecherche[], query: string): DemandeLue {
     let q = fusionner(query);
     const exclus: string[] = [];
-    q = q.replace(/\bsans\s+([a-z]+)/g, (_, w) => {
-        if (w.length > 2) { const sg = singulier(w); (EXCLUSIONS_ETENDUES[sg] || [sg]).forEach((x) => exclus.push(x)); }
+    // « sans fruits de mer », « sans noix de coco » : l'aliment peut tenir en plusieurs mots.
+    q = q.replace(/\bsans\s+(fruits\s+de\s+mer|fruits\s+a\s+coque|noix\s+de\s+coco|[a-z]+)/g, (_, w: string) => {
+        if (w.length > 2) exclus.push(w.trim());
         return ' ';
     });
 
@@ -223,7 +217,7 @@ export function lireDemande(recettes: RecetteRecherche[], query: string): Demand
 function noter(r: RecetteRecherche, d: DemandeLue): { score: number; exact: boolean } | null {
     const m = meuleDe(r);
     if (m.cat === 'restaurant') return null;
-    for (const x of d.exclus) if (mot(x).test(m.titre) || mot(x).test(m.tags) || mot(x).test(m.ings)) return null;
+    if (d.exclus.length && recetteExclue(r, d.exclus)) return null;
     if (!d.types.length && !d.ingredients.length) return { score: 0, exact: true };
 
     let score = 0;

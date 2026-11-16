@@ -39,6 +39,7 @@ import { lireContrainteNote, appliquerContrainteNote } from '@/lib/contrainte-no
 import { loadAllRatingStats } from '@/mobile/lib/ratings';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { rechercheStricte, filtrerParDemande } from '@/lib/rechercheStricte';
+import { recetteExclue } from '@/lib/exclusions';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import { matchesTag } from './themes';
 import { estRecettePates } from '@/lib/pates';
@@ -228,47 +229,7 @@ interface TVSpotlightProps {
  *
  * Cette table couvre les régimes courants ; tout autre mot est cherché tel quel.
  */
-const FAMILLES_EXCLUSION: Record<string, string[]> = {
-    poulet: ['poulet', 'volaille', 'blanc de dinde', 'escalope de dinde'],
-    dinde: ['dinde', 'volaille'],
-    porc: ['porc', 'lard', 'lardon', 'jambon', 'bacon', 'chorizo', 'saucisson', 'andouille', 'boudin'],
-    boeuf: ['boeuf', 'bœuf', 'steak', 'bavette', 'entrecote', 'entrecôte', 'hache', 'haché'],
-    viande: ['boeuf', 'bœuf', 'porc', 'agneau', 'veau', 'poulet', 'volaille', 'lard', 'jambon', 'bacon', 'steak', 'saucisse'],
-    poisson: ['poisson', 'saumon', 'thon', 'cabillaud', 'colin', 'merlu', 'sardine', 'maquereau', 'anchois', 'truite', 'bar', 'dorade'],
-    'fruits de mer': ['crevette', 'moule', 'huitre', 'huître', 'gambas', 'calamar', 'poulpe', 'coquille', 'langoustine', 'crabe'],
-    gluten: ['farine', 'ble', 'blé', 'pate', 'pâte', 'pain', 'chapelure', 'semoule', 'boulgour', 'orge', 'seigle', 'biscuit', 'brioche'],
-    lactose: ['lait', 'beurre', 'creme', 'crème', 'fromage', 'yaourt', 'mascarpone', 'ricotta', 'mozzarella', 'parmesan', 'gruyere', 'gruyère'],
-    'lait': ['lait', 'creme', 'crème', 'beurre', 'fromage', 'yaourt'],
-    oeuf: ['oeuf', 'œuf'],
-    arachide: ['arachide', 'cacahuete', 'cacahuète', 'peanut'],
-    'fruits a coque': ['noix', 'noisette', 'amande', 'pistache', 'cajou', 'pecan', 'pécan'],
-    alcool: ['vin', 'biere', 'bière', 'rhum', 'whisky', 'cognac', 'vodka', 'liqueur', 'porto', 'champagne'],
-};
-
-/** Les mots à traquer pour une exclusion donnée. */
-/** Forme comparable : sans accent, « œ » lu « oe ». « œufs » et « oeuf » deviennent comparables. */
-const versOe = (t: string) => normalize(t).replace(/œ/g, 'oe');
-/** Le pluriel français ajoute un « s » : « œufs » → « œuf ». */
-const sansS = (t: string) => (t.length > 3 && t.endsWith('s') ? t.slice(0, -1) : t);
-/** Mots interdits pour une exclusion saisie : la famille si elle existe, sinon le mot lui-même (singulier et pluriel). */
-function motsInterdits(mot: string): string[] {
-    const m = versOe(mot);
-    const forme = sansS(m);
-    for (const [cle, liste] of Object.entries(FAMILLES_EXCLUSION)) {
-        const c = versOe(cle);
-        if (c === m || c === forme) return [...new Set(liste.map(versOe))];
-    }
-    return [...new Set([m, forme])];
-}
-/**
- * Le mot apparaît-il dans le texte ? On cherche en DÉBUT de mot seulement, pour que
- * « oeuf » attrape « œufs » mais pas « bœuf » ni « boeuf ».
- */
-function contientMot(texte: string, mot: string): boolean {
-    if (!mot) return false;
-    const echappe = mot.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return new RegExp(`(^|[^a-z0-9])${echappe}`).test(versOe(texte));
-}
+/* La table des familles et la comparaison vivent dans src/lib/exclusions.ts (source unique). */
 
 export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tagsInitiaux, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false, previewBeforeSelect = false, retainOnSelect = false, suspended = false }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
@@ -370,17 +331,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
         // Choisir une recette POUR le planificateur : on veut voir tout ce qui
         // convient au créneau, le régime « sans… » n'a pas à s'y inviter.
         if (!exclus.length || filter) return base;
-        const bannis = exclus.flatMap(motsInterdits);
-        return base.filter((r) => {
-            // Le titre et les étiquettes comptent autant que la liste des
-            // ingrédients : « Ramen de poulet » se trahit par son nom.
-            const champs = [
-                normalize(r.title || ''),
-                ...(r.tags || []).map((t: string) => normalize(t)),
-                ...(r.ingredients || []).map((i: any) => normalize(i?.name || '')),
-            ];
-            return !champs.some((c) => bannis.some((b) => contientMot(c, b)));
-        });
+        return base.filter((r) => !recetteExclue(r as any, exclus));
     }, [filter, exclus]);
     const localSearch = (q: string) => smartLocalSearch(pool as any, q, 60) as Recipe[];
 
