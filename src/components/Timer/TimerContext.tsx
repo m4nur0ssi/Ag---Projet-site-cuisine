@@ -15,6 +15,8 @@ export interface Chrono {
     nom?: string | null;
     /** Recette qui a lancé ce minuteur (pour l'arrêter à la fin de la recette). */
     recipeId?: string;
+    /** En pause : le temps restant est figé jusqu'à la reprise. */
+    enPause?: boolean;
 }
 
 interface TimerContextType {
@@ -27,13 +29,17 @@ interface TimerContextType {
     stopRecette: (recipeId: string) => void;
     /** Sans identifiant : arrête le chrono qui finit en premier. */
     stopTimer: (id?: string) => void;
+    /** Met en pause ou reprend un chrono : son temps restant ne bouge pas pendant la pause. */
+    togglePause: (id: string) => void;
+    /** Lance le chrono seulement s'il n'existe pas déjà : naviguer entre les étapes ne le remet jamais à zéro. */
+    demarrerSiAbsent: (minutes: number, label: string, nom?: string | null, recipeId?: string) => void;
     /** La préparation affiche déjà les minuteurs dans sa tuile : le bandeau du bas se cache. */
     masquerBandeau: (masque: boolean) => void;
 }
 
 const TimerContext = createContext<TimerContextType | undefined>(undefined);
 
-interface Depart { id: string; fin: number; duration: number; label: string; nom?: string | null; recipeId?: string }
+interface Depart { id: string; fin: number; duration: number; label: string; nom?: string | null; recipeId?: string; enPause?: boolean; reste?: number }
 
 export function TimerProvider({ children }: { children: React.ReactNode }) {
     // Plusieurs minuteurs en même temps (carottes + pommes de terre) : une liste.
@@ -55,7 +61,8 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
         () => departs
             .map((d) => ({
                 id: d.id, duration: d.duration, label: d.label, nom: d.nom, recipeId: d.recipeId,
-                remaining: Math.max(0, Math.ceil((d.fin - maintenant) / 1000)),
+                enPause: !!d.enPause,
+                remaining: d.enPause ? Math.max(0, Math.ceil((d.reste ?? 0) / 1000)) : Math.max(0, Math.ceil((d.fin - maintenant) / 1000)),
             }))
             .sort((a, b) => a.remaining - b.remaining),
         [departs, maintenant],
@@ -98,8 +105,27 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
         });
     }, []);
 
+
+    /** Pause / reprise : pendant la pause, le temps restant est gelé ; à la reprise, la fin est recalculée. */
+    const togglePause = useCallback((id: string) => {
+        setDeparts((prev) => prev.map((d) => {
+            if (d.id !== id) return d;
+            if (d.enPause) return { ...d, enPause: false, reste: undefined, fin: Date.now() + (d.reste ?? 0) };
+            return { ...d, enPause: true, reste: Math.max(0, d.fin - Date.now()) };
+        }));
+    }, []);
+
+    /** Ne relance jamais un chrono déjà en cours (ni en pause) : naviguer ne doit rien réinitialiser. */
+    const demarrerSiAbsent = useCallback((minutes: number, label: string, nom?: string | null, recipeId?: string) => {
+        setDeparts((prev) => {
+            if (prev.some((d) => d.label === label && (recipeId ? d.recipeId === recipeId : true))) return prev;
+            const id = `chrono-${Date.now()}-${compteur.current++}`;
+            return [...prev, { id, fin: Date.now() + minutes * 60_000, duration: minutes * 60, label, nom, recipeId }];
+        });
+    }, []);
+
     return (
-        <TimerContext.Provider value={{ activeTimer: timers[0] || null, timers, startTimer, stopTimer, stopRecette, masquerBandeau }}>
+        <TimerContext.Provider value={{ activeTimer: timers[0] || null, timers, startTimer, demarrerSiAbsent, togglePause, stopTimer, stopRecette, masquerBandeau }}>
             {children}
             {!bandeauMasque && <TimerDisplay timers={timers} onStop={stopTimer} />}
         </TimerContext.Provider>

@@ -79,7 +79,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
     const recipe = useMemo(() => ({ ...rawRecipe, ingredients: recipeIngredients(rawRecipe.ingredients) }), [rawRecipe]);
     // Volet « Ajouter au planificateur » ouvert depuis la fiche.
     const [planOpen, setPlanOpen] = useState(false);
-    const { startTimer, timers, stopTimer, stopRecette, masquerBandeau } = useTimer();
+    const { startTimer, demarrerSiAbsent, togglePause, timers, stopTimer, stopRecette, masquerBandeau } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
     // Mise en place : écran des ingrédients à sortir, avant de lancer la recette.
@@ -473,7 +473,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, nomPourAnnonce(stepText, recipe.ingredients), recipe.id);
+                demarrerSiAbsent(minutes, shortLabel, nomPourAnnonce(stepText, recipe.ingredients), recipe.id);
             }
         }
     };
@@ -739,7 +739,7 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, nomPourAnnonce(nextStep, recipe.ingredients), recipe.id);
+                demarrerSiAbsent(minutes, shortLabel, nomPourAnnonce(nextStep, recipe.ingredients), recipe.id);
             }
         } else {
             // Recette finie : on arrête ses minuteurs, sans message.
@@ -1644,6 +1644,8 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                                 duration={chronoEtape.duration}
                                                 remaining={chronoEtape.remaining}
                                                 libelle={libelleEtape}
+                                                enPause={chronoEtape.enPause}
+                                                onBasculer={() => { togglePause(chronoEtape.id); triggerHaptic(); }}
                                                 onArreter={() => { stopTimer(chronoEtape.id); triggerHaptic(); }}
                                             />
                                         ) : ingredientsEtape.length > 0 ? (
@@ -1673,6 +1675,8 @@ export default function RecipeDetails({ recipe: rawRecipe, prevId, nextId, isMod
                                                             duration={t.duration}
                                                             remaining={t.remaining}
                                                             libelle={t.label}
+                                                            enPause={t.enPause}
+                                                            onBasculer={() => { togglePause(t.id); triggerHaptic(); }}
                                                             onArreter={() => { stopTimer(t.id); triggerHaptic(); }}
                                                         />
                                                     ))}

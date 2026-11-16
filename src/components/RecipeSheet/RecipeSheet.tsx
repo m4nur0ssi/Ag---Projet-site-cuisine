@@ -214,7 +214,6 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
                             <button className={styles.closeBtn} onClick={onClose}>✕</button>
 
                             {/* Plus de flèches sur la photo : on change de recette au clavier (← →), pas au clic. */}
-                            {navigation && <div className={styles.navCompteur}>{navigation.position} / {navigation.total}</div>}
 
                             <div
                                 className={styles.scrollArea}

@@ -11,6 +11,9 @@ interface MinuteurEtapeProps {
     /** Ce qui cuit (affiché sous le temps). */
     libelle: string;
     onArreter: () => void;
+    /** Pause / reprise : un clic sur l'anneau ou le bouton bascule. */
+    enPause?: boolean;
+    onBasculer?: () => void;
     /** Version compacte : anneau à gauche, temps et « Arrêter » à droite (tuile mobile). */
     compact?: boolean;
 }
@@ -31,7 +34,7 @@ const formate = (s: number) => {
  * Le minuteur d'une étape : un anneau qui se vide, le temps au centre. La tuile
  * d'ingrédients se retourne dessus (rotation 3D) ; « Arrêter » la ramène.
  */
-export default function MinuteurEtape({ duration, remaining, libelle, onArreter, compact = false }: MinuteurEtapeProps) {
+export default function MinuteurEtape({ duration, remaining, libelle, onArreter, enPause = false, onBasculer, compact = false }: MinuteurEtapeProps) {
     const fraction = duration > 0 ? Math.max(0, Math.min(1, remaining / duration)) : 0;
     return (
         <motion.div
@@ -43,7 +46,13 @@ export default function MinuteurEtape({ duration, remaining, libelle, onArreter,
             role="timer"
             aria-live="off"
         >
-            <div className={`${styles.anneau} ${compact ? styles.anneauCompact : ''}`}>
+            <div
+                className={`${styles.anneau} ${compact ? styles.anneauCompact : ''} ${onBasculer ? styles.cliquable : ''}`}
+                onClick={onBasculer}
+                role={onBasculer ? 'button' : undefined}
+                aria-label={onBasculer ? (enPause ? 'Reprendre le minuteur' : 'Mettre le minuteur en pause') : undefined}
+                title={onBasculer ? (enPause ? 'Reprendre' : 'Pause') : undefined}
+            >
                 <svg viewBox="0 0 160 160" className={styles.svg} aria-hidden>
                     <circle cx="80" cy="80" r={RAYON} className={styles.fond} />
                     <motion.circle
@@ -57,10 +66,16 @@ export default function MinuteurEtape({ duration, remaining, libelle, onArreter,
                     />
                 </svg>
                 <div className={styles.temps}>{formate(remaining)}</div>
+                {enPause && <div className={styles.enPauseTag}>en pause</div>}
             </div>
             <div className={styles.colonne}>
                 <div className={styles.libelle}>{libelle}</div>
-                <button type="button" className={styles.arreter} onClick={onArreter}>Arrêter</button>
+                <div className={styles.actions}>
+                    {onBasculer && (
+                        <button type="button" className={styles.arreter} onClick={onBasculer}>{enPause ? 'Reprendre' : 'Pause'}</button>
+                    )}
+                    <button type="button" className={styles.arreter} onClick={onArreter}>Arrêter</button>
+                </div>
             </div>
         </motion.div>
     );
@@ -70,12 +85,13 @@ const R_MINI = 15;
 const C_MINI = 2 * Math.PI * R_MINI;
 
 /** Un minuteur en pilule (anneau 36 px, temps, nom, croix) : pour empiler plusieurs minuteurs dans la tuile. */
-export function MiniMinuteur({ duration, remaining, libelle, onArreter }: MinuteurEtapeProps) {
+export function MiniMinuteur({ duration, remaining, libelle, onArreter, enPause = false, onBasculer }: MinuteurEtapeProps) {
     const fraction = duration > 0 ? Math.max(0, Math.min(1, remaining / duration)) : 0;
     return (
         <motion.li
             layout
-            className={styles.pilule}
+            className={`${styles.pilule} ${enPause ? styles.piluleEnPause : ''} ${onBasculer ? styles.cliquable : ''}`}
+            onClick={onBasculer}
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
@@ -90,7 +106,7 @@ export function MiniMinuteur({ duration, remaining, libelle, onArreter }: Minute
                     strokeDashoffset={C_MINI * (1 - fraction)}
                 />
             </svg>
-            <span className={styles.piluleTemps}>{formate(remaining)}</span>
+            <span className={styles.piluleTemps}>{formate(remaining)}{enPause ? ' · pause' : ''}</span>
             <span className={styles.piluleNom}>{libelle}</span>
             <button type="button" className={styles.piluleStop} onClick={onArreter} aria-label={`Arrêter le minuteur : ${libelle}`}>✕</button>
         </motion.li>

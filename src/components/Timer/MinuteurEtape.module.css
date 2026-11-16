@@ -187,3 +187,9 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* Pause : anneau et pilule cliquables ; l'état « en pause » se voit. */
+.cliquable { cursor: pointer; }
+.enPauseTag { margin-top: 2px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.piluleEnPause { opacity: .65; }

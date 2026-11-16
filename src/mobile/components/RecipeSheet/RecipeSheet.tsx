@@ -540,18 +540,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                                 elle reste visible quoi qu'on fasse défiler. */}
                             <button className={styles.closeBtn} onClick={onClose} aria-label="Fermer la recette">✕</button>
 
-                            {recipes.length > 1 && recipes.length <= MAX_POINTS && (
-                                <div className={styles.pagination}>
-                                    {recipes.map((_, i) => (
-                                        <div key={i} className={`${styles.dot} ${i === currentIdx ? styles.dotActive : ''}`} />
-                                    ))}
-                                </div>
-                            )}
-                            {recipes.length > MAX_POINTS && (
-                                <div className={styles.compteur} aria-live="polite">
-                                    {currentIdx + 1} / {recipes.length}
-                                </div>
-                            )}
+                            {/* Pas de pastille « n / total » : le balayage suffit. */}
 
                             {/* TRACK PRINCIPAL */}
                             <motion.div 
