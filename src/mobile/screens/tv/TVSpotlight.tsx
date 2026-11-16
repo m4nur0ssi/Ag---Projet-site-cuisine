@@ -246,12 +246,28 @@ const FAMILLES_EXCLUSION: Record<string, string[]> = {
 };
 
 /** Les mots à traquer pour une exclusion donnée. */
+/** Forme comparable : sans accent, « œ » lu « oe ». « œufs » et « oeuf » deviennent comparables. */
+const versOe = (t: string) => normalize(t).replace(/œ/g, 'oe');
+/** Le pluriel français ajoute un « s » : « œufs » → « œuf ». */
+const sansS = (t: string) => (t.length > 3 && t.endsWith('s') ? t.slice(0, -1) : t);
+/** Mots interdits pour une exclusion saisie : la famille si elle existe, sinon le mot lui-même (singulier et pluriel). */
 function motsInterdits(mot: string): string[] {
-    const m = normalize(mot);
+    const m = versOe(mot);
+    const forme = sansS(m);
     for (const [cle, liste] of Object.entries(FAMILLES_EXCLUSION)) {
-        if (normalize(cle) === m) return liste.map(normalize);
+        const c = versOe(cle);
+        if (c === m || c === forme) return [...new Set(liste.map(versOe))];
     }
-    return [m];
+    return [...new Set([m, forme])];
+}
+/**
+ * Le mot apparaît-il dans le texte ? On cherche en DÉBUT de mot seulement, pour que
+ * « oeuf » attrape « œufs » mais pas « bœuf » ni « boeuf ».
+ */
+function contientMot(texte: string, mot: string): boolean {
+    if (!mot) return false;
+    const echappe = mot.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`(^|[^a-z0-9])${echappe}`).test(versOe(texte));
 }
 
 export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tagsInitiaux, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false, previewBeforeSelect = false, retainOnSelect = false, suspended = false }: TVSpotlightProps) {
@@ -363,7 +379,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                 ...(r.tags || []).map((t: string) => normalize(t)),
                 ...(r.ingredients || []).map((i: any) => normalize(i?.name || '')),
             ];
-            return !champs.some((c) => bannis.some((b) => b && c.includes(b)));
+            return !champs.some((c) => bannis.some((b) => contientMot(c, b)));
         });
     }, [filter, exclus]);
     const localSearch = (q: string) => smartLocalSearch(pool as any, q, 60) as Recipe[];

@@ -212,7 +212,7 @@ export function lireDemande(recettes: RecetteRecherche[], query: string): Demand
         else if (sg) { if (!ingredients.includes(sg)) ingredients.push(sg); }
         else inconnus.push(w);
     }
-    return { types, ingredients, exclus, inconnus, concrete: types.length > 0 || ingredients.length > 0 };
+    return { types, ingredients, exclus, inconnus, concrete: types.length > 0 || ingredients.length > 0 || exclus.length > 0 };
 }
 
 /**
@@ -224,6 +224,7 @@ function noter(r: RecetteRecherche, d: DemandeLue): { score: number; exact: bool
     const m = meuleDe(r);
     if (m.cat === 'restaurant') return null;
     for (const x of d.exclus) if (mot(x).test(m.titre) || mot(x).test(m.tags) || mot(x).test(m.ings)) return null;
+    if (!d.types.length && !d.ingredients.length) return { score: 0, exact: true };
 
     let score = 0;
     let exact = true;
@@ -275,11 +276,16 @@ export function rechercheStricte<T extends RecetteRecherche>(
     // Les « presque » (catégorie compatible, ingrédient seulement listé) ne passent
     // qu'en renfort : s'il y a au moins quelques réponses exactes, elles seules comptent.
     const exactes = notees.filter((x) => x.n.exact);
-    const gardees = (exactes.length >= 4 ? exactes : notees).slice(0, max);
+    const sansTermePositif = !d.types.length && !d.ingredients.length;
+    const gardees = (exactes.length >= 4 || sansTermePositif ? exactes : notees).slice(0, sansTermePositif ? 2000 : max);
 
     const libelle = [...d.types, ...d.ingredients].join(' ');
     let message = '';
-    if (gardees.length) {
+    if (sansTermePositif) {
+        message = gardees.length
+            ? `${gardees.length} recettes sans ${d.exclus[0] ?? 'ce produit'}`
+            : 'Aucune recette ne correspond à cette exclusion.';
+    } else if (gardees.length) {
         message = exactes.length >= 4 || exactes.length === gardees.length
             ? `${gardees.length} recette${gardees.length > 1 ? 's' : ''} pour « ${query.trim()} »`
             : exactes.length === 0

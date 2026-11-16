@@ -6949,3 +6949,30 @@
     .heroMenuBtn { margin-top: 6px; }
     .heroContent { padding-top: calc(env(safe-area-inset-top, 0px) + 134px); gap: 14px; }
 }
+
+/* ── Recherche, mode clair ───────────────────────────────────────────────────
+   Les réglages de la recherche sont pensés pour fond sombre (texte blanc).
+   En clair, il faut des textes sombres et des fonds translucides sombres. */
+:global([data-theme='light']) .spSearchControls {
+    background: linear-gradient(145deg, rgba(255, 255, 255, .92), rgba(245, 245, 247, .85));
+    border-color: rgba(0, 0, 0, .08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 12px 34px rgba(0, 0, 0, .08);
+}
+:global([data-theme='light']) .spSegment { background: rgba(118, 118, 128, .14); }
+:global([data-theme='light']) .spSeg { color: #3a3a3c; }
+:global([data-theme='light']) .spSegOn { background: #fff; color: #000; box-shadow: 0 2px 8px rgba(0, 0, 0, .12); }
+:global([data-theme='light']) .spGroup,
+:global([data-theme='light']) .spChip,
+:global([data-theme='light']) .spSansAdd { background: rgba(0, 0, 0, .06); color: #1c1c1e; box-shadow: inset 0 0 0 .5px rgba(0, 0, 0, .08); }
+:global([data-theme='light']) .spGroupOn,
+:global([data-theme='light']) .spChipOn { background: #111; color: #fff; }
+:global([data-theme='light']) .spSansTag { background: rgba(255, 59, 48, .12); color: #b3261e; }
+:global([data-theme='light']) .spSansInput { color: #111; }
+:global([data-theme='light']) .spInput { color: #111; }
+:global([data-theme='light']) .spInput::placeholder { color: rgba(60, 60, 67, .55); }
+:global([data-theme='light']) .spField { background: rgba(0, 0, 0, .05); }
+:global([data-theme='light']) .spFieldIcon { color: #555; }
+:global([data-theme='light']) .spResultCount,
+:global([data-theme='light']) .spResultCount strong,
+:global([data-theme='light']) .spResultCount span { color: #111; }
+:global([data-theme='light']) .spCloseX { background: rgba(0, 0, 0, .08); color: #111; box-shadow: inset 0 0 0 .5px rgba(0, 0, 0, .12); }
