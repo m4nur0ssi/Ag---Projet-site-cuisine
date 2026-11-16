@@ -10,7 +10,7 @@
  * Aucune modification de la prod (SpotlightSearch reste tel quel).
  */
 
-import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useMemo, memo } from 'react';
 import { createPortal } from 'react-dom';
 import dynamic from 'next/dynamic';
 import { suggerer } from '@/lib/suggestionsCourses';
@@ -232,6 +232,35 @@ interface TVSpotlightProps {
  */
 /* La table des familles et la comparaison vivent dans src/lib/exclusions.ts (source unique). */
 
+/** Ce qu'on propose d'exclure dès les premières lettres (régimes, allergènes, aliments courants). */
+const PROPOSITIONS_SANS = [
+    'gluten', 'lactose', 'œufs', 'lait', 'arachides', 'fruits à coque', 'noix', 'soja', 'sésame',
+    'poisson', 'fruits de mer', 'crevettes', 'viande', 'porc', 'bœuf', 'poulet', 'agneau', 'canard', 'dinde', 'veau',
+    'alcool', 'vin', 'champignons', 'oignon', 'ail', 'tomate', 'chocolat', 'sucre', 'miel', 'céleri', 'moutarde',
+    'fromage', 'beurre', 'crème', 'yaourt',
+];
+const platSans = (t: string) => normalize(t).replace(/œ/g, 'oe').replace(/æ/g, 'ae').replace(/['’]/g, ' ').trim();
+
+/*
+ * Une ligne de résultat. Définie ICI, hors du composant : déclarée dedans, elle changeait
+ * de type à chaque rendu et React démontait puis remontait TOUTES les lignes (sur iPhone,
+ * des lignes de l'ancienne liste restaient affichées au-dessus de la nouvelle).
+ */
+const ResultItem = memo(function ResultItem({ recipe, meta, note, onPick }: { recipe: Recipe; meta: string; note?: string; onPick: (r: Recipe) => void }) {
+    return (
+        <button className={styles.spItem} onClick={() => onPick(recipe)}>
+            <div className={styles.spThumbWrap}>
+                <img src={recipe.image} alt="" className={styles.spThumb} loading="lazy" decoding="async" draggable={false} />
+            </div>
+            <div className={styles.spInfo}>
+                <div className={styles.spTitle}>{decodeHtml(recipe.title)}</div>
+                <div className={styles.spMeta}>{meta}</div>
+                {note && <div className={styles.spMissing}>{note}</div>}
+            </div>
+        </button>
+    );
+});
+
 export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tagsInitiaux, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false, panneau = false, previewBeforeSelect = false, retainOnSelect = false, suspended = false }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
@@ -268,11 +297,29 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
         setExclus(next);
         try { ecrireStock('regime-sans', JSON.stringify(next)); } catch { /* noop */ }
     };
-    const ajouterExclu = () => {
-        const val = exclusInput.trim().toLowerCase();
+    const ajouterExclu = (choisi?: string) => {
+        const val = (choisi ?? exclusInput).trim().toLowerCase();
         if (val && !exclus.includes(val)) enregistrerExclus([...exclus, val]);
         setExclusInput('');
     };
+    // Dès la 1re lettre : les aliments courants qui COMMENCENT par la saisie, puis le catalogue (2 lettres).
+    const propositionsSans = useMemo(() => {
+        const q = platSans(exclusInput);
+        if (!exclusOuvert || !q) return [] as string[];
+        const deja = new Set(exclus.map(platSans));
+        const vus = new Set<string>();
+        const sortie: string[] = [];
+        const ajouter = (nom: string) => {
+            const p = platSans(nom);
+            if (deja.has(p) || vus.has(p) || p === q) return;
+            vus.add(p); sortie.push(nom);
+        };
+        const mots = (nom: string) => platSans(nom).split(/[\s\-]+/);
+        PROPOSITIONS_SANS.filter((n) => platSans(n).startsWith(q)).forEach(ajouter);
+        PROPOSITIONS_SANS.filter((n) => mots(n).some((m) => m.startsWith(q))).forEach(ajouter);
+        if (q.length >= 2) suggerer(exclusInput, 8).forEach(ajouter);
+        return sortie.slice(0, 8);
+    }, [exclusInput, exclusOuvert, exclus]);
 
     const [activeGroup, setActiveGroup] = useState<FilterGroup | null>(null);
     // Multi-filtres cumulatifs (catégorie + pays + tendance combinés en ET).
@@ -995,21 +1042,6 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
     }, [open, embedded, initialQuery, initialIngredients]);
 
     // Une ligne de résultat (image + drapeau + titre + méta).
-    const ResultItem = ({ recipe, meta, note }: { recipe: Recipe; meta: string; note?: string }) => {
-        return (
-            <button className={styles.spItem} onClick={() => pick(recipe)}>
-                <div className={styles.spThumbWrap}>
-                    <img src={recipe.image} alt="" className={styles.spThumb} loading="lazy" decoding="async" draggable={false} />
-                </div>
-                <div className={styles.spInfo}>
-                    <div className={styles.spTitle}>{decodeHtml(recipe.title)}</div>
-                    <div className={styles.spMeta}>{meta}</div>
-                    {note && <div className={styles.spMissing}>{note}</div>}
-                </div>
-            </button>
-        );
-    };
-
     /**
      * Une bouteille de la cave, en résultat d'assistant.
      *
@@ -1296,6 +1328,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                             ))}
 
                             {exclusOuvert ? (
+                                <>
                                 <span className={styles.spSansField}>
                                     <input
                                         className={styles.spSansInput}
@@ -1311,6 +1344,23 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                         enterKeyHint="done" autoComplete="off" autoCorrect="off" spellCheck={false}
                                     />
                                 </span>
+                                    {propositionsSans.length > 0 && (
+                                        <ul className={styles.spSansPropositions} role="listbox" aria-label="Aliments à exclure">
+                                            {propositionsSans.map((nom) => (
+                                                <li key={nom} role="option" aria-selected={false}>
+                                                    <button
+                                                        type="button"
+                                                        className={styles.spSansProposition}
+                                                        // Garde le focus sur le champ : sans ça, le toucher le fermerait avant d'ajouter.
+                                                        onMouseDown={(e) => e.preventDefault()}
+                                                        onTouchStart={(e) => e.preventDefault()}
+                                                        onClick={() => { haptic(8); ajouterExclu(nom); }}
+                                                    >{nom}</button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </>
                             ) : (
                                 <button
                                     className={styles.spSansAdd}
@@ -1381,7 +1431,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                     <div className={styles.spEmpty}>Décris ton envie (ou dicte) : « un dessert au chocolat sans gluten », « plat italien rapide », « un vin de ma cave pour du poulet »…</div>
                                 )}
                                 {aiWines.map((w) => <WineItem key={w.id} wine={w} />)}
-                                {aiResults.map((r) => <ResultItem key={r.id} recipe={r} meta={recipeMeta(r)} />)}
+                                {aiResults.map((r) => <ResultItem key={r.id} recipe={r} meta={recipeMeta(r)} onPick={pick} />)}
                             </>
                         )}
 
@@ -1394,7 +1444,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                     <div className={styles.spHint}>Toutes les recettes · les plus récentes d’abord</div>
                                 )}
                                 {filteredRecipes.length > 0
-                                    ? filteredRecipes.map((r) => <ResultItem key={r.id} recipe={r} meta={recipeMeta(r)} />)
+                                    ? filteredRecipes.map((r) => <ResultItem key={r.id} recipe={r} meta={recipeMeta(r)} onPick={pick} />)
                                     : <div className={styles.spEmpty}>Aucune recette ne correspond…</div>}
                             </>
                         )}
@@ -1407,6 +1457,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                     ? ingredientResults.map(({ recipe, matched, missing }) => (
                                         <ResultItem
                                             key={recipe.id}
+                                            onPick={pick}
                                             recipe={recipe}
                                             meta={`${recipe.category} • ${matched}/${searchedIngredients.length} ingrédient${searchedIngredients.length > 1 ? 's' : ''}`}
                                             note={missing.length ? `Il manque : ${missing.join(', ')}` : undefined}

@@ -84,7 +84,11 @@ function lireRecettes() {
     const src = fs.readFileSync(SOURCE, 'utf8');
     const debut = src.indexOf('= [', src.indexOf('mockRecipes')) + 2;
     const fin = src.lastIndexOf('];') + 1;
-    return JSON.parse(src.slice(debut, fin));
+    const toutes = JSON.parse(src.slice(debut, fin));
+    // Une recette n'existe qu'UNE fois : un doublon d'identifiant fait réafficher des
+    // lignes fantômes dans les listes (clés React identiques).
+    const vues = new Set();
+    return toutes.filter((r) => { const id = String(r.id); if (vues.has(id)) return false; vues.add(id); return true; });
 }
 
 const { estimateRecipeTiming, sumStepMinutes } = chargerTS(TIMING);

@@ -468,6 +468,14 @@ async function syncRecipes() {
                 new Promise((res) => setTimeout(res, 35000)),
             ]);
         } catch (e) { console.log('   ⚠️ Enrichissement ignoré :', e.message); }
+        // La pagination `orderby=modified` glisse quand une recette est modifiée pendant la
+        // synchro : le même article revient sur deux pages. On ne garde que la 1re occurrence.
+        {
+            const vus = new Set();
+            const avant = rawPosts.length;
+            rawPosts = rawPosts.filter((p) => !vus.has(p.id) && vus.add(p.id));
+            if (rawPosts.length !== avant) console.log(`   🧹 ${avant - rawPosts.length} doublon(s) WordPress écarté(s).`);
+        }
         allPosts = rawPosts.map(extractRecipeData);
 
         // Sauvegarde mockData.ts

@@ -6995,3 +6995,20 @@
 }
 .spSearchControls .spSansTag { gap: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .spSearchControls .spSansInput { width: 100%; min-width: 0; font-size: 14px; }
+
+/* « + Sans… » ouvert : le champ prend toute la ligne, les propositions dessous. */
+.spSearchControls .spSansField { grid-column: 1 / -1; }
+.spSearchControls .spSansInput { padding: 0 6px; text-align: left; }
+.spSansPropositions {
+    grid-column: 1 / -1;
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 0; padding: 0; list-style: none;
+}
+.spSansProposition {
+    min-height: 36px; padding: 6px 14px; border: none; border-radius: 999px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: -.01em;
+    background: rgba(255, 59, 48, .16); color: #ff8078; cursor: pointer;
+}
+:global([data-theme='light']) .spSansProposition { background: rgba(255, 59, 48, .12); color: #b3261e; }
+/* Une étiquette « sans poulet ✕ » tient sur deux colonnes ; « + Sans… » reste sur une. */
+.spSearchControls .spSansTag { grid-column: span 2; }
