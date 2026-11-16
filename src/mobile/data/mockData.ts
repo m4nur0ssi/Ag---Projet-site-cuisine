@@ -2,11 +2,263 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/11/2026 16:40:48
- * Total: 863 recettes
+ * Dernière mise à jour: 16/11/2026 20:37:16
+ * Total: 872 recettes
  */
-export const exportSyncId = "1794760848932";
+export const exportSyncId = "1794861436208";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8259",
+        "title": "Pâte sucrée inratable",
+        "description": "Découvrez une recette de pâte sucrée inratable, idéale pour une grande tarte ou deux de 20 cm. Apprenez la méthode par sablage et des astuces pour éviter que les bords de vos tartes ne retombent à la cuisson, garantissant un fond de tarte parfaite...",
+        "image": "/recipes-ia/8259-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7698321621584579872\" data-video-id=\"7698321621584579872\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7698321621584579872\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             250 g de farine T55"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             90 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             120 g de beurre froid"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             55 g d'œuf"
+            }
+        ],
+        "steps": [
+            "Mélangez la farine, le sucre glace, la poudre d'amande, le sel et les morceaux de beurre froid jusqu'à obtenir une texture sablée.",
+            "Ajoutez l'œuf et mélangez juste quelques secondes. Dès que la pâte commence à s'amalgamer, arrêtez le batteur.",
+            "Sur votre plan de travail, écrasez légèrement la pâte avec la paume de la main pour la rendre lisse et homogène, sans la pétrir.",
+            "Laissez la pâte reposer au moins deux heures au réfrigérateur, ou idéalement une nuit.",
+            "Abaissez la pâte entre deux feuilles de papier cuisson sur une épaisseur de 3 à 4 mm.",
+            "Foncez la pâte dans un cercle beurré, en plaquant bien les bords. Si la pâte se réchauffe, remettez-la quelques minutes au froid.",
+            "Placez le fond de tarte foncé au congélateur pendant 15 à 30 minutes pour que la pâte se fige au cercle et éviter que les bords ne retombent à la cuisson.",
+            "Faites une première cuisson à 160°C pendant 15 minutes. Le fond de tarte doit être encore clair, avec une légère coloration.",
+            "Laissez le fond de tarte refroidir, puis appliquez une fine couche de jaune d'œuf mélangé à un peu de crème sur toute la surface.",
+            "Réenfournez pour 10 à 15 minutes à 160°C, jusqu'à obtenir une belle coloration dorée. Surveillez bien la fin de cuisson.",
+            "Pour une finition nette, passez un léger coup de Microplane sur les bords."
+        ],
+        "tags": [
+            "France",
+            "Glaces",
+            "pâtisserie",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8257",
+        "title": "Accras de morue antillais",
+        "description": "Les accras de morue sont une spécialité incontournable de la cuisine antillaise, symbolisant le partage, la convivialité et les saveurs des Antilles. Découvrez comment les réussir pas à pas.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7708348037281877281\" data-video-id=\"7708348037281877281\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7708348037281877281\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500 g de morue émiettée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 branches de cive"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 poignée de persil plat"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             8 piments végétariens rouges et verts"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             6 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus d'un demi-citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la friture)"
+            }
+        ],
+        "steps": [
+            "La veille, faites tremper la morue dans de l'eau pour la dessaler.",
+            "Émiettez ensuite la morue.",
+            "Émincez très finement la cive, l'oignon, le persil, le piment végétarien et l'ail.",
+            "Avant de couper les piments végétariens, retirez la petite tête et les graines à l'intérieur.",
+            "Ajoutez les condiments émincés à la morue.",
+            "Assaisonnez avec du poivre et le jus d'un demi-citron. N'ajoutez pas de sel, la morue étant déjà salée.",
+            "Mélangez bien le tout et réservez.",
+            "Pour la pâte à accras, mettez la farine, la levure chimique et l'eau.",
+            "Mélangez bien jusqu'à obtenir une texture lisse et sans grumeaux.",
+            "Ajoutez ensuite la morue à la pâte et mélangez. La texture de la pâte doit être épaisse, non liquide.",
+            "Pour la cuisson, utilisez deux cuillères pour former les boules d'accras.",
+            "Faites-les dorer tranquillement dans de l'huile bien chaude."
+        ],
+        "tags": [
+            "Afrique",
+            "France",
+            "Poissons et crustacés",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8255",
+        "title": "Couronne croustillante au saumon fumé",
+        "description": "Découvrez une recette festive et facile à réaliser : une couronne croustillante au saumon fumé, parfaite pour l'apéritif ou en entrée pendant les fêtes de fin d'année. Une pâte feuilletée garnie de fromage frais, de saumon et d'aneth, tressée et d...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7708427659281239328\" data-video-id=\"7708427659281239328\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7708427659281239328\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pâte à pizza ou feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             Saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de pavot"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Grenade ou groseilles"
+            }
+        ],
+        "steps": [
+            "Préparez une pâte feuilletée ou une pâte à pizza.",
+            "Étalez du fromage frais sur toute la surface de la pâte.",
+            "Disposez le saumon fumé et ajoutez de l'aneth.",
+            "Roulez la pâte fermement pour obtenir un boudin.",
+            "Coupez le boudin en deux dans le sens de la longueur, en laissant une extrémité attachée.",
+            "Tresser les deux morceaux de pâte et connectez les extrémités pour former un cercle.",
+            "Badigeonnez la couronne de jaune d'œuf et parsemez de graines de pavot.",
+            "Enfournez pendant 25 minutes à 180°C.",
+            "Après cuisson, disposez un peu de grenade ou de groseilles sur la couronne."
+        ],
+        "tags": [
+            "Noël",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8253",
+        "title": "Caramel 13.0",
+        "description": "Découvrez une recette de caramel facile à réaliser, même si vous avez eu des difficultés par le passé. Avec quelques astuces, obtenez une texture parfaite et onctueuse, idéale pour toutes vos pâtisseries.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7707609294874742049\" data-video-id=\"7707609294874742049\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7707609294874742049\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍯\n             250g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             450g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             110g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             50g de chocolat blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            }
+        ],
+        "steps": [
+            "Réalisez un caramel à sec avec le sucre, en l'ajoutant progressivement. N'hésitez pas à mélanger une fois que le caramel commence à se former. Ne le faites pas trop brunir car il continuera de cuire.",
+            "Ajoutez la crème (même froide, cela ne posera pas de problème). Laissez chauffer plusieurs minutes pour que le liquide s'évapore suffisamment.",
+            "Hors du feu, incorporez le beurre, le chocolat blanc et les grains de vanille. Le chocolat blanc aidera le caramel à figer.",
+            "Mixez bien la préparation. Placez le caramel au frais pendant au moins 4 heures, ou idéalement une nuit. Avant utilisation, sortez-le 10 minutes à l'avance pour qu'il remonte en température et soit plus facile à travailler. Vous obtiendrez une texture parfaite que vous pourrez même passer au batteur."
+        ],
+        "tags": [
+            "Desserts",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8250",
         "title": "Riz au lait ultra crémeux",
@@ -7577,6 +7829,251 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "7978",
+        "title": "Cookies façon kinder aux noix de pécan",
+        "description": "Des cookies moelleux et gourmands, fourrés d'une pâte à tartiner à la noisette et agrémentés de pépites de chocolat et de noix de pécan.",
+        "image": "/recipes-ia/7978-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7692097667861695776\" data-video-id=\"7692097667861695776\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7692097667861695776\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             5 cuillères de pâte à tartiner à la noisette"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             120 g de beurre doux mou"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cuillère à café de bicarbonate alimentaire"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 g de pépites de chocolat noir ou au lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             70 g de noix de pécan concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             60 g de chocolat (pour la base)"
+            }
+        ],
+        "steps": [
+            "Déposer 5 petits tas de pâte à tartiner à la noisette sur du papier cuisson et placer au congélateur pendant le temps de préparer la pâte.",
+            "Mélanger le beurre mou avec la cassonade et le sucre. Ajouter l'œuf et la vanille, puis mélanger.",
+            "Incorporer la farine, le bicarbonate et le sel. Ajouter les pépites de chocolat et les noix de pécan.",
+            "Diviser la pâte en 5 portions. Aplatir chaque portion, déposer un cœur de noisette congelé au centre et refermer soigneusement.",
+            "Former des boules et réserver au congélateur pendant 30 minutes.",
+            "Enfourner à 180 °C pendant 12 à 15 minutes, jusqu'à ce que les bords soient légèrement dorés et le centre encore moelleux. Laisser refroidir.",
+            "Faire fondre 60 g de chocolat, étaler environ 1 cuillère à café de chocolat en dessous de chaque cookie et laisser figer."
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7980",
+        "title": "Soupe crémeuse au poulet, légumes et bacon",
+        "description": "Une soupe réconfortante et savoureuse à base de poulet, de légumes variés, de bacon grillé et de cheddar, parfaite pour se réchauffer pendant la saison froide.",
+        "image": "/recipes-ia/7980-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693229780073762081\" data-video-id=\"7693229780073762081\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693229780073762081\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             300g de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍐\n             250g de poireaux"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             150g de carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             400g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n             130g de brocolis"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             120g de cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             15g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             6g de romarin ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de crème légère"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             3 cuillères à soupe de maïzena diluée dans un peu d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1L de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Faites griller les morceaux de bacon coupés en petits morceaux et réservez-les.",
+            "Dans la même casserole, faites dorer les morceaux de poulet quelques minutes de chaque côté et réservez-les.",
+            "Ajoutez les poireaux et les carottes avec le morceau de beurre, le romarin ciselé et l'ail dans la casserole. Mélangez et faites revenir pendant 3 minutes.",
+            "Versez le lait, la crème, le bouillon de volaille et la maïzena diluée dans un peu d'eau.",
+            "Ajoutez les pommes de terre et un peu de poivre. Couvrez et laissez cuire pendant 10 minutes à feu moyen, en remuant de temps en temps.",
+            "Effilochez le poulet et ajoutez-le dans la soupe avec le brocoli, le cheddar râpé, le bacon grillé et le persil frais.",
+            "Laissez cuire encore une dizaine de minutes.",
+            "Servez bien chaud, éventuellement avec des tranches de pain grillées."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7982",
+        "title": "Rillettes de poulet rôti anti-gaspillage",
+        "description": "Ne jetez plus les restes de votre poulet rôti ! Transformez-les en de délicieuses rillettes ultra crémeuses et pleines de saveurs. Une recette facile et anti-gaspillage, parfaite à tartiner sur du pain grillé ou à déguster à l'apéritif.",
+        "image": "/recipes-ia/7982-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7693188212092603681\" data-video-id=\"7693188212092603681\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7693188212092603681\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Restes de poulet rôti (environ 200 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 filet de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1/2 cuillère à café d'ail semoule (ou 1/2 gousse d'ail râpée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau chaude (facultatif)"
+            }
+        ],
+        "steps": [
+            "Récupérez toute la chair des restes de poulet rôti de la veille. Dépiotez le poulet à la main pour retirer toute la chair, en veillant à ne pas laisser d'os et en retirant la peau. Effilez au maximum les morceaux un peu secs.",
+            "Dans un saladier, ajoutez la chair de poulet effilée, le fromage frais, la moutarde à l'ancienne, la mayonnaise, un filet de jus de citron, du sel (ajustez selon le salage du poulet rôti), du poivre noir, l'ail semoule (ou la gousse d'ail râpée), le paprika fumé et la ciboulette ciselée.",
+            "À l'aide d'une fourchette, mélangez et écrasez le poulet avec les autres ingrédients jusqu'à obtenir une belle rillette. Si des morceaux résistent ou si la préparation est trop difficile à mélanger, ajoutez une cuillère à soupe d'eau chaude et continuez d'écraser et de mélanger."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Astuces",
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "7962",
         "title": "Tarte à l'Ananas et aux Amandes",
         "description": "Une de ces tartes simples à préparer, mais qui fait sensation dès la première part ! 🤤 La combinaison de l'ananas et de l'amande est tout simplement délicieuse. 💛",
@@ -14534,6 +15031,147 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Sauces",
             "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7482",
+        "title": "Gyozas au poulet faits maison",
+        "description": "Découvrez comment préparer facilement et économiquement des gyozas au poulet faits maison, bien meilleurs que ceux du commerce. Une farce savoureuse et une sauce pimentée pour un régal assuré.",
+        "image": "/recipes-ia/7482-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7682841555153030433\" data-video-id=\"7682841555153030433\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7682841555153030433\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             700 g de poulet haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             1 grosse carotte râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 champignon émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons nouveaux"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cuillères à soupe de sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feuilles à gyozas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 cuillères à soupe de soja sucrée (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 cuillères à soupe d'huile pimentée (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de Nokoss (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons nouveaux (pour la sauce)"
+            }
+        ],
+        "steps": [
+            "1. Mélangez tous les ingrédients de la farce.",
+            "2. Déposez une petite quantité de farce au centre d'une feuille à gyoza, humidifiez les bords avec de l'eau puis refermez en portefeuille.",
+            "3. Vous pouvez les cuire directement ou les congeler crus. Si vous les congelez, ne les décongelez surtout pas avant cuisson.",
+            "4. Faites-les dorer dans une poêle avec un filet d'huile, ajoutez un peu d'eau puis couvrez pour terminer la cuisson à la vapeur pendant environ 5 minutes.",
+            "5. Mélangez tous les ingrédients de la sauce et servez avec les gyozas bien chauds."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7467",
+        "title": "Escalope à la Milanaise",
+        "description": "Une escalope à la Milanaise, présentée comme étant meilleure qu'au restaurant.",
+        "image": "/recipes-ia/7467-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7267573866627730720\" data-video-id=\"7267573866627730720\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7267573866627730720\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             escalope de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             sauce tomate"
+            }
+        ],
+        "steps": [
+            "Ouvrez le poulet en deux pour obtenir un format portefeuille.",
+            "Placez-le entre deux feuilles de papier sulfurisé.",
+            "Marteler le poulet avec une casserole pour l'amincir et le rendre tendre.",
+            "Assaisonnez bien le poulet avec du sel et du poivre.",
+            "Passez le poulet dans la farine, en enlevant l'excédent.",
+            "Cassez deux œufs dans un bol et trempez le poulet fariné dedans.",
+            "Mélangez la panure panko avec du parmesan râpé.",
+            "Enrobez le poulet de cette panure en appuyant bien pour qu'elle adhère à l'œuf.",
+            "Faites fondre du beurre dans une poêle avec un peu d'huile pour éviter qu'il brûle.",
+            "Cuire l'escalope panée environ cinq minutes de chaque côté jusqu'à ce qu'elle ait une belle couleur dorée.",
+            "Retirez l'escalope de la poêle et placez-la dans un four préchauffé à 150 °C.",
+            "Dans la même poêle, faites revenir un oignon rouge émincé et deux gousses d'ail écrasées.",
+            "Ajoutez quelques olives hachées et des petites tomates en quartier.",
+            "Laissez mijoter pendant une dizaine de minutes.",
+            "Assaisonnez avec du sel, du poivre et du sucre selon votre goût.",
+            "Ajoutez du basilic frais haché, quelques pignons et un peu de harissa fumée.",
+            "Mélangez bien pour obtenir une sauce tomate aux saveurs fumées.",
+            "Nappez l'escalope avec cette sauce et servez chaud."
+        ],
+        "tags": [
+            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
