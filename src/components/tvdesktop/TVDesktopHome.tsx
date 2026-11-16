@@ -1335,7 +1335,7 @@ export default function TVDesktopHome() {
                 </button>
 
                 <nav className={styles.navGroup}>
-                    <NavItem icon={ICONS.home} active={nav === 'accueil'} onClick={goHome}>Accueil</NavItem>
+                    <NavItem icon={ICONS.home} active={nav === 'accueil' && panel === 'none'} onClick={goHome}>Accueil</NavItem>
                     <NavItem icon={ICONS.planner} tour="planner" token="s:planner" active={panel === 'planner'} onClick={SHORTCUTS.planner}>Planificateur</NavItem>
                     <NavItem icon={ICONS.cart} tour="shopping" token="s:courses" active={panel === 'courses'} onClick={SHORTCUTS.courses}>Liste de courses</NavItem>
                     {/* L'assistant magasin : à quoi il sert, comment l'installer. */}
@@ -1373,11 +1373,11 @@ export default function TVDesktopHome() {
                     onDragLeave={(e) => { if (e.currentTarget === e.target) setDragOver(false); }}
                     onDrop={dropToLibrary}
                 >
-                    <NavItem icon={ICONS.clock} onClick={() => openCollection('Nouveautés', newest)}>Ajouts récents</NavItem>
-                    <NavItem icon={ICONS.star} onClick={() => openCollection('Top 100 : les mieux notées', top, { classement: true })}>Top 100</NavItem>
-                    <NavItem icon={ICONS.resto} onClick={() => goCategory('restaurant', 'Comme au resto')}>Comme au resto</NavItem>
+                    <NavItem icon={ICONS.clock} active={nav === 'recents' && panel === 'none'} onClick={() => { setNav('recents'); openCollection('Nouveautés', newest); }}>Ajouts récents</NavItem>
+                    <NavItem icon={ICONS.star} active={nav === 'top100' && panel === 'none'} onClick={() => { setNav('top100'); openCollection('Top 100 : les mieux notées', top, { classement: true }); }}>Top 100</NavItem>
+                    <NavItem icon={ICONS.resto} active={nav === 'restaurant' && panel === 'none'} onClick={() => goCategory('restaurant', 'Comme au resto')}>Comme au resto</NavItem>
                     {library.map((it) => (
-                        <div key={it.token} className={`${styles.navRow} ${styles.libraryItem} ${nav === `tag:${it.token.slice(2)}` || nav === it.token.slice(2) ? styles.navRowOn : ''}`}>
+                        <div key={it.token} className={`${styles.navRow} ${styles.libraryItem} ${panel === 'none' && (nav === `tag:${it.token.slice(2)}` || nav === it.token.slice(2)) ? styles.navRowOn : ''}`}>
                             <button className={styles.libraryItemBtn} onClick={() => openToken(it.token, it.label)}>
                                 <span className={styles.navBullet} /><span>{it.label}</span>
                             </button>
