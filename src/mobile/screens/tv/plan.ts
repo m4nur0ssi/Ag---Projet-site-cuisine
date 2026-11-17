@@ -304,9 +304,9 @@ export function recetteEnMain(): Recipe | null {
  * la repose ailleurs, la case de départ doit se vider — sinon on ne DÉPLACE
  * pas le repas, on le duplique.
  */
-export function prendreEnMain(r: Recipe, origine?: { jour: string; repas: string }): void {
+export function prendreEnMain(r: Recipe, origine?: { jour: string; repas: string }, copie = false): void {
     try {
-        sessionStorage.setItem(CLE_EN_MAIN, JSON.stringify({ recette: r, pris: Date.now(), origine: origine || null }));
+        sessionStorage.setItem(CLE_EN_MAIN, JSON.stringify({ recette: r, pris: Date.now(), origine: origine || null, copie }));
     } catch { /* plein */ }
     window.dispatchEvent(new CustomEvent(EN_MAIN_EVENT, { detail: r }));
 }
@@ -321,6 +321,17 @@ export function origineEnMain(): { jour: string; repas: string } | null {
         if (!origine || Date.now() - pris > VIE_EN_MAIN_MS) return null;
         return origine;
     } catch { return null; }
+}
+
+/** La recette en main vient-elle de « Copier » ? Elle peut alors être collée plusieurs fois. */
+export function enMainEstCopie(): boolean {
+    if (typeof window === 'undefined') return false;
+    try {
+        const brut = sessionStorage.getItem(CLE_EN_MAIN);
+        if (!brut) return false;
+        const { copie, pris } = JSON.parse(brut) as { copie?: boolean; pris: number };
+        return !!copie && Date.now() - pris <= VIE_EN_MAIN_MS;
+    } catch { return false; }
 }
 
 /** Repose la recette : posée dans un créneau, ou abandonnée. */

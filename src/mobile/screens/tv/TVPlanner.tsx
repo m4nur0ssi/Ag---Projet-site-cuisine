@@ -37,7 +37,7 @@ import { TAG_SAISON, estRecetteDeSaison } from '@/lib/saison';
 import {
     DAYS, DAY_FULL, MEALS, JOUR_J, COURSES, todayIndex,
     chargerPlan, enregistrerPlan, poserRecette, oublierCoches, barrerCoursesDuCreneau, PLAN_EVENT,
-    posableEnSemaine, recetteEnMain, prendreEnMain, origineEnMain, reposer, creneauAccepte, EN_MAIN_EVENT,
+    posableEnSemaine, recetteEnMain, prendreEnMain, enMainEstCopie, origineEnMain, reposer, creneauAccepte, EN_MAIN_EVENT,
     type Plan, type Slot,
 } from './plan';
 import { matchesTag } from './themes';
@@ -140,7 +140,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
      * La recette apportée depuis une carte ou une fiche.
      *
      * On arrive ici en la tenant : tous les créneaux qui l'acceptent affichent
-     * « Poser ici », et une barre en bas rappelle ce qu'on a dans la main tant
+     * « Coller », et une barre en bas rappelle ce qu'on a dans la main tant
      * qu'on ne l'a pas posée.
      */
     const [enMain, setEnMain] = useState<Recipe | null>(null);
@@ -1100,7 +1100,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         } else {
             setSlot(day, meal, enMain);
         }
-        reposer();
+        // Une recette COPIÉE reste en main : on peut la coller sur plusieurs jours.
+        if (!enMainEstCopie()) reposer();
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: {
                 text: remplace
@@ -1129,15 +1130,17 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     <span className={styles.planMeal}>{meal}</span>
                     {slot && (
                         <span className={styles.planSlotActions}>
-                            {enMain && creneauAccepte(enMain, day, meal) ? (
+                            <button className={styles.planSwap} onClick={() => { haptic(8); prendreEnMain(slot, undefined, true); }}>
+                                Copier
+                            </button>
+                            {enMain && creneauAccepte(enMain, day, meal) && (
                                 <button className={styles.planPoser} onClick={() => poserEnMain(day, meal)}>
-                                    Poser ici
-                                </button>
-                            ) : (
-                                <button className={styles.planSwap} onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal }); }}>
-                                    Changer
+                                    Coller
                                 </button>
                             )}
+                            <button className={styles.planSwap} onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal }); }}>
+                                Changer
+                            </button>
                             <button className={styles.planRemove} onClick={() => { haptic(10); sideable ? retirerPlat(day, meal) : setSlot(day, meal, null); }}>
                                 Retirer
                             </button>
@@ -1280,7 +1283,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             <button className={styles.planPoserGrand} onClick={() => poserEnMain(day, meal)}>
                                 <img src={enMain.image} alt="" className={styles.planPoserVignette} draggable={false} />
                                 <span className={styles.planPoserTexte}>
-                                    <span className={styles.planPoserQuoi}>Poser ici</span>
+                                    <span className={styles.planPoserQuoi}>Coller ici</span>
                                     <span className={styles.planPoserNom}>{label(enMain)}</span>
                                 </span>
                             </button>
@@ -1877,7 +1880,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             {timelineItems.length > 0 && <DemarrageBandeau items={timelineItems} />}
             {/* ── La recette qu'on tient ─────────────────────────────────────
                 Tant qu'elle n'est pas posée, elle reste visible : c'est ce qui
-                explique pourquoi les créneaux disent « Poser ici », et c'est la
+                explique pourquoi les créneaux disent « Coller », et c'est la
                 seule sortie si on change d'avis. */}
             <AnimatePresence>
                 {enMain && (
