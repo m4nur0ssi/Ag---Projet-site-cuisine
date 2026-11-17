@@ -2,129 +2,147 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/11/2026 11:22:21
+ * Dernière mise à jour: 17/11/2026 11:57:05
  * Total: 872 recettes
  */
-export const exportSyncId = "1794914541055";
+export const exportSyncId = "1794916625084";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "8259",
-        "title": "Pâte sucrée inratable",
-        "description": "Découvrez une recette de pâte sucrée inratable, idéale pour une grande tarte ou deux de 20 cm. Apprenez la méthode par sablage et des astuces pour éviter que les bords de vos tartes ne retombent à la cuisson, garantissant un fond de tarte parfaite...",
-        "image": "/recipes-ia/8259-carte.webp",
-        "category": "patisserie",
+        "id": "8261",
+        "title": "Sandwich aux œufs et aux sardines",
+        "description": "Un sandwich facile et savoureux à base d'œufs mollets écrasés, de sardines, de mayonnaise, de moutarde de Dijon et d'herbes fraîches, servi sur du pain au levain grillé. Idéal pour un déjeuner rapide et nutritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8261.webp&v=1794919519000",
+        "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7698321621584579872\" data-video-id=\"7698321621584579872\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7698321621584579872\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700108797313846558\" data-video-id=\"7700108797313846558\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700108797313846558\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🌾\n             250 g de farine T55"
+                "name": "🥚\n             2 œufs mollets"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             90 g de sucre glace"
+                "name": "🍾\n             1 boîte de sardines à l'huile d'olive extra vierge, égouttées"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             30 g de poudre d'amande"
+                "name": "🥫\n             Mayonnaise ou Kewpie, au goût"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             2 g de sel"
+                "name": "🥫\n             Moutarde de Dijon, au goût"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             120 g de beurre froid"
+                "name": "🥣\n             Câpres hachées"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             55 g d'œuf"
+                "name": "🌿\n             Persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste de citron et un filet de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Huile de piment, facultatif"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain au levain"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive extra vierge, pour griller"
             }
         ],
         "steps": [
-            "Mélangez la farine, le sucre glace, la poudre d'amande, le sel et les morceaux de beurre froid jusqu'à obtenir une texture sablée.",
-            "Ajoutez l'œuf et mélangez juste quelques secondes. Dès que la pâte commence à s'amalgamer, arrêtez le batteur.",
-            "Sur votre plan de travail, écrasez légèrement la pâte avec la paume de la main pour la rendre lisse et homogène, sans la pétrir.",
-            "Laissez la pâte reposer au moins deux heures au réfrigérateur, ou idéalement une nuit.",
-            "Abaissez la pâte entre deux feuilles de papier cuisson sur une épaisseur de 3 à 4 mm.",
-            "Foncez la pâte dans un cercle beurré, en plaquant bien les bords. Si la pâte se réchauffe, remettez-la quelques minutes au froid.",
-            "Placez le fond de tarte foncé au congélateur pendant 15 à 30 minutes pour que la pâte se fige au cercle et éviter que les bords ne retombent à la cuisson.",
-            "Faites une première cuisson à 160°C pendant 15 minutes. Le fond de tarte doit être encore clair, avec une légère coloration.",
-            "Laissez le fond de tarte refroidir, puis appliquez une fine couche de jaune d'œuf mélangé à un peu de crème sur toute la surface.",
-            "Réenfournez pour 10 à 15 minutes à 160°C, jusqu'à obtenir une belle coloration dorée. Surveillez bien la fin de cuisson.",
-            "Pour une finition nette, passez un léger coup de Microplane sur les bords."
+            "Écrasez les œufs mollets et les sardines ensemble avec de la mayonnaise ou du Kewpie et un peu de moutarde de Dijon.",
+            "Incorporez les câpres hachées, le persil, la ciboulette, l'oignon rouge, le zeste de citron et un filet de jus de citron.",
+            "Faites griller le pain au levain dans de l'huile d'olive extra vierge jusqu'à ce qu'il soit doré et croustillant.",
+            "Déposez le mélange d'œufs et de sardines sur le pain grillé. Ajoutez de l'huile de piment si vous aimez un peu de piquant."
         ],
         "tags": [
-            "France",
-            "Glaces",
-            "pâtisserie",
-            "tarte"
+            "Healthy",
+            "Pas cher",
+            "Poissons et crustacés",
+            "Sandwichs"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
     {
-        "id": "8269",
-        "title": "Gaufres de pommes de terre à la raclette",
-        "description": "Découvrez une manière originale et gourmande de déguster la raclette avec ces gaufres de pommes de terre croustillantes et fondantes au fromage.",
-        "image": "/images/recipe-placeholder.svg",
+        "id": "8265",
+        "title": "Pommes de terre caramélisées croustillantes",
+        "description": "Découvrez une recette simple et délicieuse de pommes de terre croustillantes et caramélisées, parfaites pour accompagner vos plats ou à déguster en plat principal végétarien.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8265.webp&v=1794919508000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7707679835191037206\" data-video-id=\"7707679835191037206\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7707679835191037206\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7705106328083041568\" data-video-id=\"7705106328083041568\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7705106328083041568\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍎\n             5 pommes de terre"
+                "name": "🍎\n             800 g de pommes de terre (type grenaille de préférence)"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             1 œuf"
+                "name": "🍾\n             3 cuillères à soupe d'huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🌾\n             2 cuillères à soupe de farine"
+                "name": "🧅\n             1 cuillère à café d'oignon en poudre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Quelques tranches de fromage à raclette"
+                "name": "🥣\n             1 cuillère à café d'origan séché"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel"
+                "name": "🧄\n             3 cuillères à café d'ail en poudre"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "🌶️\n             1/2 cuillère à café de poivre"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Une pincée de noix de muscade"
+                "name": "🧂\n             40 g de parmesan râpé (ou plus, selon votre goût)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Un peu d'huile pour le gaufrier"
+                "name": "🧂\n             Miel (quantité selon votre goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
             }
         ],
         "steps": [
-            "Lavez et épluchez les pommes de terre, puis râpez-les finement.",
-            "Pressez soigneusement les pommes de terre râpées pour retirer un maximum d'eau.",
-            "Dans un saladier, mélangez les pommes de terre râpées avec l'œuf, la farine, le sel, le poivre et une pincée de noix de muscade, jusqu'à obtenir un mélange homogène.",
-            "Huilez légèrement les plaques du gaufrier.",
-            "Déposez une première couche du mélange de pommes de terre sur les plaques du gaufrier.",
-            "Ajoutez quelques tranches de fromage à raclette au centre.",
-            "Recouvrez avec une seconde couche de pommes de terre pour bien emprisonner le fromage.",
-            "Refermez le gaufrier et laissez cuire jusqu'à ce que les gaufres soient bien dorées et croustillantes."
+            "Découpez les pommes de terre.",
+            "Dans un grand saladier, mélangez les pommes de terre découpées avec l'huile d'olive, l'oignon en poudre, l'ail en poudre, le poivre, l'origan et le parmesan.",
+            "Ajoutez une belle quantité de miel et mélangez bien pour enrober les pommes de terre.",
+            "Faites cuire au four préchauffé à 200°C pendant 35 à 40 minutes, jusqu'à ce que les pommes de terre soient dorées et caramélisées.",
+            "Salez avec de la fleur de sel avant de servir."
         ],
         "tags": [
-            "C'est l'hiver",
-            "France",
+            "Accompagnements",
+            "Pas cher",
             "Végé"
         ],
         "isFeatured": false,
@@ -135,7 +153,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8267",
         "title": "Tarte poire & chocolat",
         "description": "Cette recette de tarte poire & chocolat met en avant la liberté de création en pâtisserie une fois les bases maîtrisées. Elle se compose d'une pâte sucrée marbrée au cacao, d'une ganache au chocolat noir, d'un financier aux poires et chocolat, d'u...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8267.webp&v=1794919497000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -244,101 +262,32 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "8265",
-        "title": "Pommes de terre caramélisées croustillantes",
-        "description": "Découvrez une recette simple et délicieuse de pommes de terre croustillantes et caramélisées, parfaites pour accompagner vos plats ou à déguster en plat principal végétarien.",
-        "image": "/images/recipe-placeholder.svg",
+        "id": "8269",
+        "title": "Gaufres de pommes de terre à la raclette",
+        "description": "Découvrez une manière originale et gourmande de déguster la raclette avec ces gaufres de pommes de terre croustillantes et fondantes au fromage.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8269.webp&v=1794919486000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7705106328083041568\" data-video-id=\"7705106328083041568\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7705106328083041568\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7707679835191037206\" data-video-id=\"7707679835191037206\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7707679835191037206\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍎\n             800 g de pommes de terre (type grenaille de préférence)"
+                "name": "🍎\n             5 pommes de terre"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             3 cuillères à soupe d'huile d'olive"
+                "name": "🥚\n             1 œuf"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 cuillère à café d'oignon en poudre"
+                "name": "🌾\n             2 cuillères à soupe de farine"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à café d'origan séché"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 cuillères à café d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1/2 cuillère à café de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             40 g de parmesan râpé (ou plus, selon votre goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Miel (quantité selon votre goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            }
-        ],
-        "steps": [
-            "Découpez les pommes de terre.",
-            "Dans un grand saladier, mélangez les pommes de terre découpées avec l'huile d'olive, l'oignon en poudre, l'ail en poudre, le poivre, l'origan et le parmesan.",
-            "Ajoutez une belle quantité de miel et mélangez bien pour enrober les pommes de terre.",
-            "Faites cuire au four préchauffé à 200°C pendant 35 à 40 minutes, jusqu'à ce que les pommes de terre soient dorées et caramélisées.",
-            "Salez avec de la fleur de sel avant de servir."
-        ],
-        "tags": [
-            "Accompagnements",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8263",
-        "title": "Pommes Dauphine",
-        "description": "Découvrez la recette des pommes dauphine, un classique intemporel apprécié pour sa texture légère et croustillante à l'extérieur, et moelleuse à cœur. Composées d'une base de pommes de terre et de pâte à choux, elles sont simples, généreuses et ré...",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696487159204678934\" data-video-id=\"7696487159204678934\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696487159204678934\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gros sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre"
+                "name": "🥣\n             Quelques tranches de fromage à raclette"
             },
             {
                 "quantity": "",
@@ -346,107 +295,138 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🌾\n             Farine"
+                "name": "🌶️\n             Poivre"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             Œufs"
+                "name": "🧂\n             Une pincée de noix de muscade"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Huile (pour la friture)"
+                "name": "🥣\n             Un peu d'huile pour le gaufrier"
             }
         ],
         "steps": [
-            "Déposez les pommes de terre sur du gros sel et enfournez-les pendant 45 minutes à 180°C.",
-            "Préparez la pâte à choux : dans une casserole, portez à ébullition l'eau, le lait, le beurre et un peu de sel.",
-            "Ajoutez toute la farine en une seule fois et mélangez bien jusqu'à incorporation complète. Remettez la casserole sur le feu et desséchez la pâte pendant environ 30 secondes.",
-            "Incorporez les œufs un par un, en mélangeant bien après chaque ajout.",
-            "Une fois les pommes de terre cuites, coupez-les en deux et récupérez la pulpe. Passez la pulpe au tamis pour obtenir une purée bien sèche.",
-            "Ajoutez la pulpe de pommes de terre à la pâte à choux et mélangez bien.",
-            "Faites chauffer l'huile de friture. Formez des boules de pâte à pommes dauphine et plongez-les directement dans l'huile chaude.",
-            "Égouttez les pommes dauphine sur du papier absorbant. Servez et dégustez."
+            "Lavez et épluchez les pommes de terre, puis râpez-les finement.",
+            "Pressez soigneusement les pommes de terre râpées pour retirer un maximum d'eau.",
+            "Dans un saladier, mélangez les pommes de terre râpées avec l'œuf, la farine, le sel, le poivre et une pincée de noix de muscade, jusqu'à obtenir un mélange homogène.",
+            "Huilez légèrement les plaques du gaufrier.",
+            "Déposez une première couche du mélange de pommes de terre sur les plaques du gaufrier.",
+            "Ajoutez quelques tranches de fromage à raclette au centre.",
+            "Recouvrez avec une seconde couche de pommes de terre pour bien emprisonner le fromage.",
+            "Refermez le gaufrier et laissez cuire jusqu'à ce que les gaufres soient bien dorées et croustillantes."
         ],
         "tags": [
-            "Accompagnements",
-            "France"
+            "C'est l'hiver",
+            "France",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
     {
-        "id": "8261",
-        "title": "Sandwich aux œufs et aux sardines",
-        "description": "Un sandwich facile et savoureux à base d'œufs mollets écrasés, de sardines, de mayonnaise, de moutarde de Dijon et d'herbes fraîches, servi sur du pain au levain grillé. Idéal pour un déjeuner rapide et nutritif.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
+        "id": "8253",
+        "title": "Caramel 13.0",
+        "description": "Découvrez une recette de caramel facile à réaliser, même si vous avez eu des difficultés par le passé. Avec quelques astuces, obtenez une texture parfaite et onctueuse, idéale pour toutes vos pâtisseries.",
+        "image": "/recipes-ia/8253-carte.webp",
+        "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700108797313846558\" data-video-id=\"7700108797313846558\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700108797313846558\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7707609294874742049\" data-video-id=\"7707609294874742049\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7707609294874742049\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥚\n             2 œufs mollets"
+                "name": "🍯\n             250g de sucre"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             1 boîte de sardines à l'huile d'olive extra vierge, égouttées"
+                "name": "🥛\n             450g de crème liquide"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             Mayonnaise ou Kewpie, au goût"
+                "name": "🧈\n             110g de beurre"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             Moutarde de Dijon, au goût"
+                "name": "🍫\n             50g de chocolat blanc"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Câpres hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil haché"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Zeste de citron et un filet de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge haché"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Huile de piment, facultatif"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pain au levain"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive extra vierge, pour griller"
+                "name": "🍦\n             1 gousse de vanille"
             }
         ],
         "steps": [
-            "Écrasez les œufs mollets et les sardines ensemble avec de la mayonnaise ou du Kewpie et un peu de moutarde de Dijon.",
-            "Incorporez les câpres hachées, le persil, la ciboulette, l'oignon rouge, le zeste de citron et un filet de jus de citron.",
-            "Faites griller le pain au levain dans de l'huile d'olive extra vierge jusqu'à ce qu'il soit doré et croustillant.",
-            "Déposez le mélange d'œufs et de sardines sur le pain grillé. Ajoutez de l'huile de piment si vous aimez un peu de piquant."
+            "Réalisez un caramel à sec avec le sucre, en l'ajoutant progressivement. N'hésitez pas à mélanger une fois que le caramel commence à se former. Ne le faites pas trop brunir car il continuera de cuire.",
+            "Ajoutez la crème (même froide, cela ne posera pas de problème). Laissez chauffer plusieurs minutes pour que le liquide s'évapore suffisamment.",
+            "Hors du feu, incorporez le beurre, le chocolat blanc et les grains de vanille. Le chocolat blanc aidera le caramel à figer.",
+            "Mixez bien la préparation. Placez le caramel au frais pendant au moins 4 heures, ou idéalement une nuit. Avant utilisation, sortez-le 10 minutes à l'avance pour qu'il remonte en température et soit plus facile à travailler. Vous obtiendrez une texture parfaite que vous pourrez même passer au batteur."
         ],
         "tags": [
-            "Healthy",
-            "Pas cher",
-            "Poissons et crustacés",
-            "Sandwichs"
+            "Desserts",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8255",
+        "title": "Couronne croustillante au saumon fumé",
+        "description": "Découvrez une recette festive et facile à réaliser : une couronne croustillante au saumon fumé, parfaite pour l'apéritif ou en entrée pendant les fêtes de fin d'année. Une pâte feuilletée garnie de fromage frais, de saumon et d'aneth, tressée et d...",
+        "image": "/recipes-ia/8255-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7708427659281239328\" data-video-id=\"7708427659281239328\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7708427659281239328\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pâte à pizza ou feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             Saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de pavot"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Grenade ou groseilles"
+            }
+        ],
+        "steps": [
+            "Préparez une pâte feuilletée ou une pâte à pizza.",
+            "Étalez du fromage frais sur toute la surface de la pâte.",
+            "Disposez le saumon fumé et ajoutez de l'aneth.",
+            "Roulez la pâte fermement pour obtenir un boudin.",
+            "Coupez le boudin en deux dans le sens de la longueur, en laissant une extrémité attachée.",
+            "Tresser les deux morceaux de pâte et connectez les extrémités pour former un cercle.",
+            "Badigeonnez la couronne de jaune d'œuf et parsemez de graines de pavot.",
+            "Enfournez pendant 25 minutes à 180°C.",
+            "Après cuisson, disposez un peu de grenade ou de groseilles sur la couronne."
+        ],
+        "tags": [
+            "Noël",
+            "Poissons et crustacés"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -538,107 +518,127 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "8255",
-        "title": "Couronne croustillante au saumon fumé",
-        "description": "Découvrez une recette festive et facile à réaliser : une couronne croustillante au saumon fumé, parfaite pour l'apéritif ou en entrée pendant les fêtes de fin d'année. Une pâte feuilletée garnie de fromage frais, de saumon et d'aneth, tressée et d...",
-        "image": "/recipes-ia/8255-carte.webp",
-        "category": "plats",
+        "id": "8259",
+        "title": "Pâte sucrée inratable",
+        "description": "Découvrez une recette de pâte sucrée inratable, idéale pour une grande tarte ou deux de 20 cm. Apprenez la méthode par sablage et des astuces pour éviter que les bords de vos tartes ne retombent à la cuisson, garantissant un fond de tarte parfaite...",
+        "image": "/recipes-ia/8259-carte.webp",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7708427659281239328\" data-video-id=\"7708427659281239328\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7708427659281239328\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7698321621584579872\" data-video-id=\"7698321621584579872\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7698321621584579872\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             Pâte à pizza ou feuilletée"
+                "name": "🌾\n             250 g de farine T55"
             },
             {
                 "quantity": "",
-                "name": "🐟\n             Saumon fumé"
+                "name": "🍯\n             90 g de sucre glace"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fromage frais"
+                "name": "🥣\n             30 g de poudre d'amande"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Aneth"
+                "name": "🧂\n             2 g de sel"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             Jaune d'œuf"
+                "name": "🧈\n             120 g de beurre froid"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Graines de pavot"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Grenade ou groseilles"
+                "name": "🥚\n             55 g d'œuf"
             }
         ],
         "steps": [
-            "Préparez une pâte feuilletée ou une pâte à pizza.",
-            "Étalez du fromage frais sur toute la surface de la pâte.",
-            "Disposez le saumon fumé et ajoutez de l'aneth.",
-            "Roulez la pâte fermement pour obtenir un boudin.",
-            "Coupez le boudin en deux dans le sens de la longueur, en laissant une extrémité attachée.",
-            "Tresser les deux morceaux de pâte et connectez les extrémités pour former un cercle.",
-            "Badigeonnez la couronne de jaune d'œuf et parsemez de graines de pavot.",
-            "Enfournez pendant 25 minutes à 180°C.",
-            "Après cuisson, disposez un peu de grenade ou de groseilles sur la couronne."
+            "Mélangez la farine, le sucre glace, la poudre d'amande, le sel et les morceaux de beurre froid jusqu'à obtenir une texture sablée.",
+            "Ajoutez l'œuf et mélangez juste quelques secondes. Dès que la pâte commence à s'amalgamer, arrêtez le batteur.",
+            "Sur votre plan de travail, écrasez légèrement la pâte avec la paume de la main pour la rendre lisse et homogène, sans la pétrir.",
+            "Laissez la pâte reposer au moins deux heures au réfrigérateur, ou idéalement une nuit.",
+            "Abaissez la pâte entre deux feuilles de papier cuisson sur une épaisseur de 3 à 4 mm.",
+            "Foncez la pâte dans un cercle beurré, en plaquant bien les bords. Si la pâte se réchauffe, remettez-la quelques minutes au froid.",
+            "Placez le fond de tarte foncé au congélateur pendant 15 à 30 minutes pour que la pâte se fige au cercle et éviter que les bords ne retombent à la cuisson.",
+            "Faites une première cuisson à 160°C pendant 15 minutes. Le fond de tarte doit être encore clair, avec une légère coloration.",
+            "Laissez le fond de tarte refroidir, puis appliquez une fine couche de jaune d'œuf mélangé à un peu de crème sur toute la surface.",
+            "Réenfournez pour 10 à 15 minutes à 160°C, jusqu'à obtenir une belle coloration dorée. Surveillez bien la fin de cuisson.",
+            "Pour une finition nette, passez un léger coup de Microplane sur les bords."
         ],
         "tags": [
-            "Noël",
-            "Poissons et crustacés"
+            "France",
+            "Glaces",
+            "pâtisserie",
+            "tarte"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
     {
-        "id": "8253",
-        "title": "Caramel 13.0",
-        "description": "Découvrez une recette de caramel facile à réaliser, même si vous avez eu des difficultés par le passé. Avec quelques astuces, obtenez une texture parfaite et onctueuse, idéale pour toutes vos pâtisseries.",
-        "image": "/recipes-ia/8253-carte.webp",
-        "category": "desserts",
+        "id": "8263",
+        "title": "Pommes Dauphine",
+        "description": "Découvrez la recette des pommes dauphine, un classique intemporel apprécié pour sa texture légère et croustillante à l'extérieur, et moelleuse à cœur. Composées d'une base de pommes de terre et de pâte à choux, elles sont simples, généreuses et ré...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7707609294874742049\" data-video-id=\"7707609294874742049\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7707609294874742049\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696487159204678934\" data-video-id=\"7696487159204678934\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696487159204678934\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍯\n             250g de sucre"
+                "name": "🍎\n             Pommes de terre"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             450g de crème liquide"
+                "name": "🧂\n             Gros sel"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             110g de beurre"
+                "name": "🥣\n             Eau"
             },
             {
                 "quantity": "",
-                "name": "🍫\n             50g de chocolat blanc"
+                "name": "🥛\n             Lait"
             },
             {
                 "quantity": "",
-                "name": "🍦\n             1 gousse de vanille"
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la friture)"
             }
         ],
         "steps": [
-            "Réalisez un caramel à sec avec le sucre, en l'ajoutant progressivement. N'hésitez pas à mélanger une fois que le caramel commence à se former. Ne le faites pas trop brunir car il continuera de cuire.",
-            "Ajoutez la crème (même froide, cela ne posera pas de problème). Laissez chauffer plusieurs minutes pour que le liquide s'évapore suffisamment.",
-            "Hors du feu, incorporez le beurre, le chocolat blanc et les grains de vanille. Le chocolat blanc aidera le caramel à figer.",
-            "Mixez bien la préparation. Placez le caramel au frais pendant au moins 4 heures, ou idéalement une nuit. Avant utilisation, sortez-le 10 minutes à l'avance pour qu'il remonte en température et soit plus facile à travailler. Vous obtiendrez une texture parfaite que vous pourrez même passer au batteur."
+            "Déposez les pommes de terre sur du gros sel et enfournez-les pendant 45 minutes à 180°C.",
+            "Préparez la pâte à choux : dans une casserole, portez à ébullition l'eau, le lait, le beurre et un peu de sel.",
+            "Ajoutez toute la farine en une seule fois et mélangez bien jusqu'à incorporation complète. Remettez la casserole sur le feu et desséchez la pâte pendant environ 30 secondes.",
+            "Incorporez les œufs un par un, en mélangeant bien après chaque ajout.",
+            "Une fois les pommes de terre cuites, coupez-les en deux et récupérez la pulpe. Passez la pulpe au tamis pour obtenir une purée bien sèche.",
+            "Ajoutez la pulpe de pommes de terre à la pâte à choux et mélangez bien.",
+            "Faites chauffer l'huile de friture. Formez des boules de pâte à pommes dauphine et plongez-les directement dans l'huile chaude.",
+            "Égouttez les pommes dauphine sur du papier absorbant. Servez et dégustez."
         ],
         "tags": [
-            "Desserts",
-            "Sauces"
+            "Accompagnements",
+            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
