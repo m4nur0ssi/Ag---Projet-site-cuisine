@@ -37,7 +37,7 @@ import { TAG_SAISON, estRecetteDeSaison } from '@/lib/saison';
 import {
     DAYS, DAY_FULL, MEALS, JOUR_J, COURSES, todayIndex,
     chargerPlan, enregistrerPlan, poserRecette, oublierCoches, barrerCoursesDuCreneau, PLAN_EVENT,
-    posableEnSemaine, recetteEnMain, prendreEnMain, enMainEstCopie, origineEnMain, reposer, creneauAccepte, EN_MAIN_EVENT,
+    posableEnSemaine, recetteEnMain, prendreEnMain, origineEnMain, reposer, creneauAccepte, EN_MAIN_EVENT,
     type Plan, type Slot,
 } from './plan';
 import { matchesTag } from './themes';
@@ -288,13 +288,6 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         save(next);
         reposer();   // le geste est allé au bout : la main se rouvre
         haptic(14);
-        window.dispatchEvent(new CustomEvent('magic-toast-notify', {
-            detail: {
-                text: cible
-                    ? `${label(source)} et ${label(cible)} ont échangé de place`
-                    : `${label(source)} · ${DAY_FULL[vers.day] || vers.day} ${vers.meal.toLowerCase()}`,
-            },
-        }));
     };
 
     /*
@@ -1084,7 +1077,6 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         if (!enMain) return;
         const remplace = plan[day]?.[meal];
         const venue = origineEnMain();
-        const copie = enMainEstCopie();
         haptic(14);
         /*
          * Une recette prise DANS la semaine se DÉPLACE : sa case de départ se
@@ -1103,17 +1095,6 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         }
         // Une recette collée est posée : la main se referme, un seul collage par copie.
         reposer();
-        // Une recette COLLÉE n'annonce rien : pas de message « Ajouté · … ».
-        if (copie) return;
-        window.dispatchEvent(new CustomEvent('magic-toast-notify', {
-            detail: {
-                text: remplace
-                    ? venue
-                        ? `${label(enMain)} et ${label(remplace)} ont échangé de place`
-                        : `${label(enMain)} remplace ${label(remplace)} · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`
-                    : `${venue ? 'Déplacé' : 'Ajouté'} · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`,
-            },
-        }));
     };
 
     const SlotView = ({ day, meal, accepts, surprend, sideable }: {
