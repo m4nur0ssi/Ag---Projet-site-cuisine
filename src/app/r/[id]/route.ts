@@ -18,7 +18,7 @@ import { decodeHtml } from '@/lib/utils';
  * dont les balises og: n'ont pas la photo de la recette.
  */
 
-const BASE = 'https://lesrecettesmagiques.fr';
+const BASE = 'https://www.lesrecettesmagiques.fr';
 
 function esc(s: string): string {
     return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

@@ -12,4 +12,4 @@ Disallow: /favorites/
 Disallow: /api/
 Allow: /api/image-proxy
 
-Sitemap: https://lesrecettesmagiques.fr/sitemap.xml
+Sitemap: https://www.lesrecettesmagiques.fr/sitemap.xml

@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://lesrecettesmagiques.fr'),
+    metadataBase: new URL('https://www.lesrecettesmagiques.fr'),
     title: {
-        default: 'Les Recettes Magiques - Cuisine Enchantée',
+        default: 'Les Recettes Magiques – Recettes de cuisine faciles et gourmandes',
         template: '%s | Les Recettes Magiques',
     },
-    description: 'Découvrez des recettes magiques et délicieuses pour enchanter vos papilles',
+    description: 'Les Recettes Magiques : des centaines de recettes de cuisine faciles, rapides et gourmandes, avec ingrédients, étapes et temps de préparation.',
     keywords: ['recettes', 'recettes magiques', 'cuisine', 'magie', 'gastronomie', 'recette facile'],
     manifest: '/manifest.json',
     /*
@@ -57,10 +57,10 @@ export const metadata: Metadata = {
     openGraph: {
         type: 'website',
         locale: 'fr_FR',
-        url: 'https://lesrecettesmagiques.fr',
+        url: 'https://www.lesrecettesmagiques.fr',
         siteName: 'Les Recettes Magiques',
-        title: 'Les Recettes Magiques - Cuisine Enchantée',
-        description: 'Découvrez des recettes magiques et délicieuses pour enchanter vos papilles',
+        title: 'Les Recettes Magiques – Recettes de cuisine faciles et gourmandes',
+        description: 'Des centaines de recettes de cuisine faciles, rapides et gourmandes, avec ingrédients et étapes.',
     },
 }
 
@@ -200,6 +200,20 @@ export default function RootLayout({
                 />
             </head>
             <body>
+                {/* Identité du site pour Google (nom, adresse, recherche). */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@type': 'WebSite',
+                            name: 'Les Recettes Magiques',
+                            alternateName: ['Recettes Magiques', 'Recettes-Magiques', 'lesrecettesmagiques.fr'],
+                            url: 'https://www.lesrecettesmagiques.fr/',
+                            inLanguage: 'fr-FR',
+                        }),
+                    }}
+                />
                 <AppShell>
                     {children}
                 </AppShell>

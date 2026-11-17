@@ -19,7 +19,7 @@ import styles from './menu.module.css';
 
 export const dynamic = 'force-dynamic';
 
-const BASE = 'https://lesrecettesmagiques.fr';
+const BASE = 'https://www.lesrecettesmagiques.fr';
 
 interface Plat { creneau: string; id: string; titre: string; image?: string; minutes?: number }
 interface Jour { jour: string; plats: Plat[] }

@@ -5,7 +5,7 @@ import type { Recipe } from '@/types';
 import VersionActuelle from '@/components/VersionActuelle/VersionActuelle';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 
-const BASE = 'https://lesrecettesmagiques.fr';
+const BASE = 'https://www.lesrecettesmagiques.fr';
 
 // Transforme une image (souvent /api/image-proxy?...) en URL absolue crawlable.
 function absoluteImage(src?: string): string | undefined {

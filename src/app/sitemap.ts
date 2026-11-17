@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { mockRecipes } from '@/data/mockData';
 
-const BASE = 'https://lesrecettesmagiques.fr';
+const BASE = 'https://www.lesrecettesmagiques.fr';
 
 // /search et /category/… ne sont plus que des redirections vers l'accueil :
 // ils ne figurent plus ici. /recipe/… reste : la page garde ses balises et

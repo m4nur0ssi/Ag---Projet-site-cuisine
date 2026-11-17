@@ -12,6 +12,23 @@ const DesktopHome = dynamic(() => import('@/components/tvdesktop/TVDesktopHome')
 
 export default function Page() {
     const isMobile = useIsMobile();
-    if (isMobile === true) return <MobileHome />;
-    return <DesktopHome />;
+    /* Texte lisible par Google : l'accueil est chargé côté navigateur, sans
+       ceci le serveur renvoie une page sans titre ni contenu. Masqué à l'œil
+       (pas display:none), lisible par les moteurs et les lecteurs d'écran. */
+    const seo = (
+        <div style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap' }}>
+            <h1>Les Recettes Magiques : recettes de cuisine faciles et gourmandes</h1>
+            <p>
+                Les Recettes Magiques réunit des centaines de recettes de cuisine faciles et rapides :
+                plats, desserts, pâtes, gâteaux et idées du quotidien, avec la liste des ingrédients,
+                les étapes détaillées et le temps de préparation.
+            </p>
+        </div>
+    );
+    return (
+        <>
+            {seo}
+            {isMobile === true ? <MobileHome /> : <DesktopHome />}
+        </>
+    );
 }

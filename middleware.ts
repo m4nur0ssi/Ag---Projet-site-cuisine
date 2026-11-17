@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
- * Domaine canonique unique : le site ne vit QUE sur lesrecettesmagiques.fr.
+ * Domaine canonique unique : le site ne vit QUE sur www.lesrecettesmagiques.fr (l'apex y est redirigé par Vercel).
  * Toute visite via une autre adresse Vercel (aperçus *.vercel.app, ancien
  * domaine…) est renvoyée en 308 vers lesrecettesmagiques.fr, en conservant le
  * chemin et les paramètres. Comme tous les liens internes sont relatifs, une
@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from 'next/server';
  * Le développement local (localhost / 127.0.0.1) est laissé intact.
  */
 
-const CANONICAL_HOST = 'lesrecettesmagiques.fr';
+const CANONICAL_HOST = 'www.lesrecettesmagiques.fr';
 
 export function middleware(req: NextRequest) {
     const host = req.headers.get('host') || '';
