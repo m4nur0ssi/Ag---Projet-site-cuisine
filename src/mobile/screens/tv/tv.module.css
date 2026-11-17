@@ -6531,6 +6531,10 @@
 @media (max-width: 767px) {
     .spRoot.spEnPanneau { padding: 18px 12px calc(96px + env(safe-area-inset-bottom, 0px)); }
 }
+/* Téléphone : la recherche couvre TOUTE la largeur (plus de bande à droite où l'on voyait le site derrière). */
+@media (max-width: 767px) {
+    .spRoot { left: 0; right: 0; width: 100%; border-left: none; border-right: none; border-radius: 28px 28px 0 0; }
+}
 
 /* Partager la sélection : à côté du nombre de recettes. */
 .spShare {

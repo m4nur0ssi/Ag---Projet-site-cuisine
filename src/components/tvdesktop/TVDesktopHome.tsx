@@ -58,6 +58,7 @@ const InstallerApp = dynamic(() => import('@/components/InstallerApp/InstallerAp
 const ExtensionGuide = dynamic(() => import('@/mobile/screens/tv/ExtensionGuide'), { ssr: false });
 import { MAIL_RECETTE } from '@/lib/mail-recette';
 import { ecrireStock } from '@/lib/stockage';
+import { titreTop, libelleTop } from '@/lib/classement';
 // Partage d'un thème : même bouton que sur l'accueil actuel, même lien /?tag=…
 const ShareButton = dynamic(() => import('@/components/ShareButton/ShareButton'), { ssr: false });
 // Planificateur / Liste de courses : rendus DANS le contenu (la sidebar reste à gauche),
@@ -978,9 +979,9 @@ export default function TVDesktopHome() {
     // Une recette de bébé ne s'affiche que dans « Pour les bébés » : ni héros,
     // ni nouveautés, ni Top, ni catégories.
     const heroRecipes = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && pourAdultes(r)).slice(0, 6), []);
-    const newest = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && pourAdultes(r)).slice(0, 18), []);
+    const newest = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && pourAdultes(r)).slice(0, 20), []);
     const resume = useMemo(() => inProgress.map((x) => x.recipe), [inProgress]);
-    // Top 100 : dix sur l'accueil (chiffres en tête), cent dans la collection,
+    // Top N (N = recettes notées, 100 au plus) : dix sur l'accueil (chiffres en tête), tout dans la collection,
     // triables par note ou par date de la dernière note.
     const top = useMemo(() => {
         const rated = stats
@@ -1374,7 +1375,7 @@ export default function TVDesktopHome() {
                     onDrop={dropToLibrary}
                 >
                     <NavItem icon={ICONS.clock} active={nav === 'recents' && panel === 'none'} onClick={() => { setNav('recents'); openCollection('Nouveautés', newest); }}>Ajouts récents</NavItem>
-                    <NavItem icon={ICONS.star} active={nav === 'top100' && panel === 'none'} onClick={() => { setNav('top100'); openCollection('Top 100 : les mieux notées', top, { classement: true }); }}>Top 100</NavItem>
+                    <NavItem icon={ICONS.star} active={nav === 'top100' && panel === 'none'} onClick={() => { setNav('top100'); openCollection(titreTop(top.length), top, { classement: true }); }}>{libelleTop(top.length)}</NavItem>
                     <NavItem icon={ICONS.resto} active={nav === 'restaurant' && panel === 'none'} onClick={() => goCategory('restaurant', 'Comme au resto')}>Comme au resto</NavItem>
                     {library.map((it) => (
                         <div key={it.token} className={`${styles.navRow} ${styles.libraryItem} ${panel === 'none' && (nav === `tag:${it.token.slice(2)}` || nav === it.token.slice(2)) ? styles.navRowOn : ''}`}>
@@ -1506,7 +1507,7 @@ export default function TVDesktopHome() {
                     <>
                         <Hero recipes={heroRecipes} total={mockRecipes.length} onMenu={onMenu} />
                         <div className={styles.rows}>
-                            <Row title="Top 100 : les mieux notées" recipes={top.slice(0, 10)} shape="poster" ranked onSeeAll={() => openCollection('Top 100 : les mieux notées', top, { classement: true })} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            <Row title={titreTop(top.length)} recipes={top.slice(0, 10)} shape="poster" ranked onSeeAll={() => openCollection(titreTop(top.length), top, { classement: true })} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             {resume.length > 0 && <Row title="Reprendre la cuisine" recipes={resume} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
                             {laterRecipes.length > 0 && <Row title="À faire plus tard" recipes={laterRecipes} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
                             {forYou.length >= 4 && <Row title="Pour toi" recipes={forYou} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}

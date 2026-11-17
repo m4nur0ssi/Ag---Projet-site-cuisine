@@ -177,6 +177,7 @@ import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './filters';
 import Tip from '@/components/Tip/Tip';
 import SiteFooter from '@/components/SiteFooter/SiteFooter';
 import { ecrireStock } from '@/lib/stockage';
+import { titreTop } from '@/lib/classement';
 // Loupe modernisée AppleTV+ (mêmes fonctions que SpotlightSearch prod, habillage TV).
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 // Visite guidée de l'app mobile : même lecteur « cinéma » que le bureau, étapes du téléphone.
@@ -2244,7 +2245,7 @@ export default function TVHome() {
     );
 
     const newest = useMemo(
-        () => mockRecipes.filter((r) => r.category !== 'restaurant' && pourAdultes(r)).slice(0, 14),
+        () => mockRecipes.filter((r) => r.category !== 'restaurant' && pourAdultes(r)).slice(0, 20),
         []
     );
 
@@ -2404,7 +2405,7 @@ export default function TVHome() {
             <div className={styles.sheet}>
                 <div className={styles.grabber} />
 
-                <TopTenRow title="Top 100 : les mieux notées" recipes={top} onSeeAll={(t, list) => openAll(t, list, { classement: true })} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                <TopTenRow title={titreTop(top.length)} recipes={top} onSeeAll={(t, list) => openAll(t, list, { classement: true })} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                 {resume.length > 0 && (
                     <Row
                         title="Reprendre la cuisine"

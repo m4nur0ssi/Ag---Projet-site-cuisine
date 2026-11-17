@@ -46,7 +46,6 @@ import { matchesTag } from './themes';
 import { estRecettePates } from '@/lib/pates';
 import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
-import { ecrireStock } from '@/lib/stockage';
 import { readCave, drinkWindow, type CaveWine } from '@/lib/cave';
 import { intentionVin, compacterCave, accordLocal } from '@/lib/accordCave';
 import { clavierRepris, useFermerClavierSurResultats } from '@/lib/clavier';
@@ -277,30 +276,32 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
     // Le fragment en cours participe lui aussi à la recherche, sans attendre Entrée.
     const searchedIngredients = useMemo(() => [...ingTags, ...(ingInput.trim().length >= 2 ? [ingInput.trim()] : [])], [ingTags, ingInput]);
     /**
-     * Régime alimentaire : les ingrédients dont on ne VEUT PAS.
+     * « Sans… » : les ingrédients dont on ne VEUT PAS, pour CETTE recherche.
      *
-     * Une allergie ou un régime ne change pas d'une recherche à l'autre : la
-     * liste se retient d'une visite sur l'autre, et s'applique à TOUS les modes
-     * — chercher par nom, par ingrédients ou en décrivant son envie. Rien ne
-     * sert d'exclure l'arachide d'un côté pour la voir revenir de l'autre.
+     * Ils s'appliquent à tous les modes (nom, ingrédients, assistant) tant que la
+     * recherche reste ouverte, puis repartent à zéro à sa fermeture : une exclusion
+     * oubliée d'une fois sur l'autre cachait des recettes sans qu'on sache pourquoi.
+     * Rien n'est retenu d'une visite à l'autre.
      */
     const [exclus, setExclus] = useState<string[]>([]);
     const [exclusInput, setExclusInput] = useState('');
     const [exclusOuvert, setExclusOuvert] = useState(false);
     useEffect(() => {
-        try {
-            const brut = JSON.parse(localStorage.getItem('regime-sans') || '[]');
-            if (Array.isArray(brut)) setExclus(brut.filter((x) => typeof x === 'string'));
-        } catch { /* mode privé */ }
+        // Ancienne version : la liste était gardée sur l'appareil. On la purge.
+        try { localStorage.removeItem('regime-sans'); } catch { /* mode privé */ }
     }, []);
-    const enregistrerExclus = (next: string[]) => {
-        setExclus(next);
-        try { ecrireStock('regime-sans', JSON.stringify(next)); } catch { /* noop */ }
-    };
+    const enregistrerExclus = (next: string[]) => setExclus(next);
     const ajouterExclu = (choisi?: string) => {
         const val = (choisi ?? exclusInput).trim().toLowerCase();
         if (val && !exclus.includes(val)) enregistrerExclus([...exclus, val]);
         setExclusInput('');
+    };
+    // Choix validé (Entrée ou toucher d'une proposition) : le clavier se retire et le champ se
+    // referme, pour que les recettes filtrées apparaissent tout de suite.
+    const validerExclu = (choisi?: string) => {
+        ajouterExclu(choisi);
+        setExclusOuvert(false);
+        (document.activeElement as HTMLElement | null)?.blur?.();
     };
     // Dès la 1re lettre : les aliments courants qui COMMENCENT par la saisie, puis le catalogue (2 lettres).
     const propositionsSans = useMemo(() => {
@@ -1007,6 +1008,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
         }
         setPreview(null);
         setQuery(''); setIngTags([]); setIngInput(''); setMode('recipe');
+        setExclus([]); setExclusInput(''); setExclusOuvert(false);
         setActiveGroup(null); setActiveFilters([]);
         setAiQuery(''); setAiResults([]); setAiMessage(''); setAiError('');
         stopVoice();
@@ -1337,7 +1339,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                         autoFocus
                                         onChange={(e) => setExclusInput(e.target.value)}
                                         onKeyDown={(e) => {
-                                            if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); ajouterExclu(); }
+                                            if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); validerExclu(); }
                                             if (e.key === 'Escape') { setExclusOuvert(false); setExclusInput(''); }
                                         }}
                                         onBlur={() => { ajouterExclu(); setExclusOuvert(false); }}
@@ -1354,7 +1356,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                                         // Garde le focus sur le champ : sans ça, le toucher le fermerait avant d'ajouter.
                                                         onMouseDown={(e) => e.preventDefault()}
                                                         onTouchStart={(e) => e.preventDefault()}
-                                                        onClick={() => { haptic(8); ajouterExclu(nom); }}
+                                                        onClick={() => { haptic(8); validerExclu(nom); }}
                                                     >{nom}</button>
                                                 </li>
                                             ))}
