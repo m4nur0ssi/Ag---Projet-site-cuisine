@@ -3968,7 +3968,7 @@
     padding: 4px 4px 40px;
 }
 
-.spPanelHead { padding: 0 4px 16px; padding-right: 150px; }
+.spPanelHead { padding: 0 4px 16px calc(4px + var(--tvd-inset, 0px)); padding-right: 150px; }
 /* Sur-titre : petit au-dessus, gros titre doré en dessous, comme ailleurs. */
 .spPanelKicker {
     font-family: 'Outfit', sans-serif;
@@ -4926,7 +4926,7 @@
  * gauche, au même corps et au même endroit que « Recherche ».
  */
 .extEmbedded .extHead {
-    padding-left: 4px;
+    padding-left: calc(4px + var(--tvd-inset, 0px));
 }
 
 .extEmbedded .extScroll {
@@ -4983,8 +4983,9 @@
 /* L'en-tête porte son propre retrait de 18 px, hérité du téléphone : il
    décalait le titre du planificateur et de la liste par rapport aux autres. */
 .embedded .planHead {
-    padding-left: 4px;
+    padding-left: calc(4px + var(--tvd-inset, 0px));
     padding-right: 4px;
+    margin-top: calc(-1 * var(--tvd-lift, 0px));   /* menu replié : au niveau du bouton */
 }
 
 .embedded .planTitle {
@@ -7011,3 +7012,89 @@
 
 /* Partager : sous la croix, à droite de Tendances, même gabarit que la croix. */
 .spSearchControls .spShare.spShareCale { width: 40px; height: 40px; min-width: 40px; padding: 0; margin: 0 0 14px; flex: 0 0 auto; }
+
+/* Menu replié : le titre de « Extension Chrome » se pose à droite du bouton, comme les autres. */
+.extEmbedded .extTitle { padding-left: var(--tvd-inset, 0px); }
+
+/* Recherche : le nombre de recettes se tient À DROITE du bouton « + Sans… », sur la
+   même ligne, en gros et en dégradé comme les titres de section. */
+.spSans .spResultCount,
+.spSearchControls .spSans .spResultCount,
+.spEmbedded .spSearchControls .spFilterRow .spSans .spResultCount {
+    display: flex; flex: 0 0 auto; align-items: baseline; gap: 7px;
+    min-width: 0; margin: 0 0 0 10px; text-align: left;
+}
+.spSans .spResultCount strong,
+.spSearchControls .spSans .spResultCount strong {
+    display: inline; font-size: 28px; line-height: 1; font-weight: 900; letter-spacing: -0.02em;
+    background: linear-gradient(112deg, #fff6e7 0%, #ffd08e 55%, #ffb66e 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.spSans .spResultCount span,
+.spSearchControls .spSans .spResultCount span {
+    display: inline; font-size: 15px; font-weight: 600; color: rgba(255, 255, 255, 0.72);
+}
+
+/* Bureau : « + Sans… » reprend sa taille de pastille (il était étiré sur toute la ligne)
+   pour que le nombre de recettes puisse se tenir à sa droite. */
+.spEmbedded .spSearchControls .spFilterRow .spSans { align-items: center; }
+.spEmbedded .spSearchControls .spFilterRow .spSans .spSansAdd { width: auto; flex: 0 0 auto; padding: 8px 22px; }
+
+/* Partager : dans la tuile « Ta sélection », à gauche de « Tout effacer », en bulle ronde
+   de la MÊME hauteur (48 px). Sur la tuile de recherche (gauche) il disparaît dès que
+   la tuile de droite est affichée (bureau). */
+.spStageActions { display: flex; align-items: center; gap: 10px; }
+.spStageShare {
+    width: 48px; min-width: 48px; height: 48px; padding: 0 12px; box-sizing: border-box;
+    background: rgba(255, 255, 255, .12); box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .18);
+}
+.spStageShare:hover { background: #fff; color: #000; }
+.spStageShare svg { width: 21px; height: 21px; }
+@media (min-width: 1000px) {
+    .spEmbedded .spShareGauche { display: none; }
+}
+
+/* Bureau — tuile de recherche : « + Sans… » a la taille d'un onglet (Recette / Ingrédients /
+   Assistant : un tiers de la largeur, 40 px) et, avec le nombre de recettes, se tient CENTRÉ
+   — en hauteur comme en largeur — dans la place qui reste sous le champ. */
+@media (min-width: 1000px) {
+    .spEmbedded .spTopRow > .spSearchControls { display: flex; flex-direction: column; }
+    .spEmbedded .spSearchControls .spFilterRow.spFilterRowSans {
+        display: flex; flex: 1 1 auto; align-items: center; justify-content: center;
+        min-height: 96px; padding: 0;
+    }
+    .spEmbedded .spSearchControls .spFilterRow.spFilterRowSans .spSans {
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+        gap: 14px 36px; width: 100%; order: 0; grid-column: auto;
+    }
+    /* Même taille qu'un onglet : (largeur − marges − écarts) / 3, 40 px de haut, 14 px. */
+    .spEmbedded .spSearchControls .spFilterRow.spFilterRowSans .spSans .spSansAdd {
+        flex: 0 0 calc((100% - 14px) / 3); width: calc((100% - 14px) / 3);
+        height: 40px; min-height: 40px; padding: 0 12px; font-size: 14px; font-weight: 600;
+    }
+    /* Nombre de recettes : plus grand, aligné sur le centre du bouton. */
+    .spEmbedded .spSearchControls .spSans .spResultCount { margin: 0; gap: 10px; align-items: baseline; }
+    .spEmbedded .spSearchControls .spSans .spResultCount strong { font-size: 52px; }
+    .spEmbedded .spSearchControls .spSans .spResultCount span { font-size: 24px; font-weight: 600; }
+}
+
+/* Téléphone — « + Sans… » et le nombre de recettes : centrés (largeur ET hauteur) dans la
+   place qui reste sous le champ, plus gros. La marge de 56 px réservée à droite pour la
+   croix n'a rien à faire ici : elle décalait tout vers la gauche. */
+@media (max-width: 999px) {
+    .spSearchControls .spFilterRow.spFilterRowSans {
+        display: flex; align-items: center; justify-content: center;
+        min-height: 80px; padding: 0 0 3px;   /* 3 px : l'air au-dessus et en dessous s'égalisent */
+    }
+    .spSearchControls .spFilterRow.spFilterRowSans .spSans {
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+        gap: 8px 18px; width: 100%;
+    }
+    .spSearchControls .spFilterRow.spFilterRowSans .spSans .spSansAdd {
+        width: auto; flex: 0 0 auto; min-width: 116px; height: 46px; min-height: 46px;
+        padding: 0 20px; font-size: 16px; font-weight: 600;
+    }
+    .spSearchControls .spSans .spResultCount { margin: 0; gap: 8px; align-items: baseline; }
+    .spSearchControls .spSans .spResultCount strong { font-size: clamp(36px, 11.5vw, 46px); }
+    .spSearchControls .spSans .spResultCount span { font-size: 20px; font-weight: 600; }
+}

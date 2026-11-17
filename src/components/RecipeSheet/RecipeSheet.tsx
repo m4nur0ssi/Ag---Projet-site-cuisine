@@ -141,9 +141,19 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
         }
     };
 
+    const touchStartX = useRef(0);
+    // Un geste qui commence dans une zone qui défile en largeur (carrousel, tableau) lui appartient.
+    const geste_horizontal_interdit = useRef(false);
+
     const handleTouchStart = (e: React.TouchEvent) => {
         touchStartY.current = e.touches[0].clientY;
+        touchStartX.current = e.touches[0].clientX;
         touchStartTime.current = Date.now();
+        geste_horizontal_interdit.current = false;
+        for (let el = e.target as HTMLElement | null; el && el !== scrollRef.current; el = el.parentElement) {
+            const ox = getComputedStyle(el).overflowX;
+            if ((ox === 'auto' || ox === 'scroll') && el.scrollWidth > el.clientWidth + 4) { geste_horizontal_interdit.current = true; break; }
+        }
     };
 
     const handleTouchEnd = (e: React.TouchEvent) => {
@@ -151,6 +161,15 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
         const timeDiff = Date.now() - touchStartTime.current;
         const distanceY = touchEndY - touchStartY.current;
         const velocity = distanceY / timeDiff;
+
+        // Balayage horizontal : recette précédente / suivante de la sélection (comme ← → au
+        // clavier). Sur iPad, ni clavier ni souris : sans ce geste on ne pouvait pas avancer.
+        const distanceX = e.changedTouches[0].clientX - touchStartX.current;
+        if (navigation && !geste_horizontal_interdit.current && timeDiff < 900
+            && Math.abs(distanceX) > 60 && Math.abs(distanceX) > 1.8 * Math.abs(distanceY)) {
+            if (distanceX < 0) navigation.suivant?.(); else navigation.precedent?.();
+            return;
+        }
 
         // Si le geste est rapide vers le bas (swipe fort)
         // ou si on tire fortement vers le bas alors qu'on est déjà en haut

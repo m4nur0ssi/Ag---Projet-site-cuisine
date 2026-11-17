@@ -58,6 +58,11 @@
 /* Repli complet : la barre disparaît, le contenu prend toute la largeur. */
 .shellClosed .sidebar { display: none; }
 .shellClosed { --tvd-side: 0px; }   /* barre repliée : le contenu occupe tout */
+/* Barre repliée, le bouton « Ouvrir le menu » (40 px, à 20 px du bord) occupe le coin
+   haut-gauche : les titres de section se posent À SA DROITE. Chaque en-tête de panneau
+   ajoute --tvd-inset à son retrait gauche ; hors du shell la variable n'existe pas. */
+.shellClosed { --tvd-inset: 72px; --tvd-lift: 30px; }
+.shellClosed .heroTopBar { left: 76px; }
 .sidebarOpenBtn {
     position: absolute; top: 22px; left: 20px; z-index: 30;
     display: flex; align-items: center; justify-content: center;

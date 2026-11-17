@@ -111,7 +111,7 @@
 /* Encastré dans le shell desktop : le shell fournit déjà fond et gouttières,
    et la grille peut respirer beaucoup plus large qu'un écran de téléphone. */
 .emb { min-height: 0; background: none; padding: 4px 4px 40px; }
-.emb .head { padding-right: 150px; } /* laisse la pastille de compte du shell */
+.emb .head { padding-right: 150px; padding-left: var(--tvd-inset, 0px); } /* laisse la pastille de compte du shell ; menu replié : à droite du bouton */
 .emb .grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; }
 .emb .main { padding: 0; }
 

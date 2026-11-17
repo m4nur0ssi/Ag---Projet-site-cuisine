@@ -78,7 +78,7 @@ const SEL_ICON: Record<SelKind, string> = {
 };
 
 /** Panneau « Ta sélection » : les choix en grand, à droite de la carte de recherche. */
-function SelectionStage({ items, onRemove, onClear }: { items: SelItem[]; onRemove: (it: SelItem) => void; onClear: () => void }) {
+function SelectionStage({ items, onRemove, onClear, partage }: { items: SelItem[]; onRemove: (it: SelItem) => void; onClear: () => void; partage?: React.ReactNode }) {
     const spring = { type: 'spring' as const, stiffness: 420, damping: 32, mass: 0.8 };
     const n = items.length;
     const cols = n <= 1 ? 1 : n <= 4 ? 2 : n <= 9 ? 3 : 4;
@@ -104,6 +104,9 @@ function SelectionStage({ items, onRemove, onClear }: { items: SelItem[]; onRemo
                         <span className={styles.spStageUnit}>{items.length > 1 ? 'filtres actifs' : items.length === 1 ? 'filtre actif' : 'aucun filtre'}</span>
                     </span>
                 </div>
+                {/* Actions de la sélection : Partager (bulle ronde) puis Tout effacer, même hauteur. */}
+                <div className={styles.spStageActions}>
+                {partage}
                 <AnimatePresence>
                     {items.length > 1 && (
                         <motion.button
@@ -119,6 +122,7 @@ function SelectionStage({ items, onRemove, onClear }: { items: SelItem[]; onRemo
                         >Tout effacer</motion.button>
                     )}
                 </AnimatePresence>
+                </div>
             </div>
             <div className={styles.spStageGrid} data-n={Math.min(items.length, 13)} style={{ ['--cols' as any]: items.length <= 1 ? 1 : items.length <= 4 ? 2 : items.length <= 9 ? 3 : 4, ['--rows' as any]: Math.ceil(items.length / (items.length <= 1 ? 1 : items.length <= 4 ? 2 : items.length <= 9 ? 3 : 4)) || 1 }}>
                 <AnimatePresence mode="popLayout" initial={false}>
@@ -1169,6 +1173,14 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
         </button>
     ) : null);
 
+    const nbResultats = mode === 'recipe' ? filteredRecipes.length : mode === 'ingredients' ? ingredientResults.length : aiResults.length;
+    const compteur = (
+        <div className={styles.spResultCount} role="status" aria-live="polite">
+            <strong>{nbResultats}</strong>
+            <span>recette{nbResultats !== 1 ? 's' : ''}</span>
+        </div>
+    );
+
     const body = (
         <>
                     <Tip id="recherche" delay={1400} />
@@ -1329,12 +1341,11 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                 </button>
                             )}
                         </div>
-                        <div className={styles.spResultCount} role="status" aria-live="polite">
-                            <strong>{mode === 'recipe' ? filteredRecipes.length : mode === 'ingredients' ? ingredientResults.length : aiResults.length}</strong>
-                            <span>recette{(mode === 'recipe' ? filteredRecipes.length : mode === 'ingredients' ? ingredientResults.length : aiResults.length) !== 1 ? 's' : ''}</span>
-                        </div>
+                        {/* Le compteur se tient À DROITE du bouton « + Sans… » (voir `compteur`).
+                            Sans ce bouton (recherche filtrée par l'extérieur), il reste ici. */}
+                        {filter && compteur}
                         {/* Partager la sélection affichée : à côté du compteur, sauf en mode Recette sur téléphone (il passe sous la croix). */}
-                        {!(mode === 'recipe' && !embedded) && partageNode(styles.spShare)}
+                        {!(mode === 'recipe' && !embedded) && partageNode(`${styles.spShare} ${styles.spShareGauche}`)}
                     </div>
 
                     {suggestions.length > 0 && (
@@ -1350,7 +1361,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                         </ul>
                     )}
 
-                    <div className={styles.spFilterRow}>
+                    <div className={`${styles.spFilterRow} ${!filter ? styles.spFilterRowSans : ''}`}>
                     {/* Régime : ce qu'on ne veut PAS voir, quel que soit le mode. */}
                     {!filter && (
                         <div className={styles.spSans}>
@@ -1383,6 +1394,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                         enterKeyHint="done" autoComplete="off" autoCorrect="off" spellCheck={false}
                                     />
                                 </span>
+                                {compteur}
                                     {propositionsSans.length > 0 && (
                                         // Même tuile et mêmes lignes que les suggestions d'ingrédients.
                                         <ul className={`${styles.spSuggestions} ${styles.spSansListe}`} role="listbox" aria-label="Aliments à exclure">
@@ -1410,6 +1422,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                     + Sans…
                                 </button>
                             )}
+                            {!exclusOuvert && compteur}
                         </div>
                     )}
 
@@ -1423,7 +1436,16 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                 ? [...FILTER_GROUPS[activeGroup]].sort((a, b) =>
                                     a.label.replace(/^[^\p{L}]+/u, '').localeCompare(b.label.replace(/^[^\p{L}]+/u, ''), 'fr'))
                                 : FILTER_GROUPS[activeGroup]
-                            ).filter((f) => !filtresDispo || filtresDispo.has(f.tag)).map((f) => (
+                            ).filter((f) => !filtresDispo || filtresDispo.has(f.tag))
+                             // Un pays choisi : seul ce pays reste proposé. Un pays est un choix
+                             // exclusif ; « Orient » à côté de « Grèce » (parce que des recettes
+                             // grecques portent aussi ce tag) n'était qu'un doublon trompeur.
+                             .filter((f) => {
+                                 if (activeGroup !== 'pays') return true;
+                                 const paysActifs = FILTER_GROUPS.pays.filter((p) => activeFilters.includes(p.tag));
+                                 return paysActifs.length === 0 || activeFilters.includes(f.tag);
+                             })
+                             .map((f) => (
                                 <button
                                     key={f.tag}
                                     className={`${styles.spChip} ${activeFilters.includes(f.tag) ? styles.spChipOn : ''}`}
@@ -1457,6 +1479,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                         items={selectionItems}
                         onRemove={(it) => { haptic(10); if (it.kind === 'ingredient') setIngTags((p) => p.filter((t) => t !== it.tag)); else toggleFilter(it.tag); }}
                         onClear={() => { haptic(12); if (mode === 'ingredients') setIngTags([]); else setActiveFilters([]); }}
+                        partage={partageNode(`${styles.spShare} ${styles.spStageShare}`)}
                     />
                     </div>
                     <div className={styles.spResults}>

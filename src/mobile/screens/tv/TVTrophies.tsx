@@ -98,7 +98,7 @@ export default function TVTrophies({ embedded = false }: { embedded?: boolean })
                 .tp.emb { min-height: 0; background: none; padding: 4px 4px 40px; max-width: none; }
                 /* En panneau de bureau : même en-tête que les autres écrans du
                    menu — même corps, même point de départ (voir tv.module.css). */
-                .tp.emb .hd { margin-bottom: 18px; padding-left: 4px; }
+                .tp.emb .hd { margin-bottom: 18px; padding-left: calc(4px + var(--tvd-inset, 0px)); }
                 .tp.emb h1 { font-size: 40px; line-height: 1; }
                 .hd { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
                 .back { width: 40px; height: 40px; border-radius: 999px; border: none; background: rgba(255,255,255,.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; flex: 0 0 auto; }

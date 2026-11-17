@@ -98,7 +98,7 @@
    reste une fois le titre et les boutons posés — sinon elle s'étire en
    gratte-ciel sur les grands écrans. */
 .embedded .stage { max-width: min(360px, calc((100svh - 300px) * 0.72)); }
-.embedded .head { align-items: flex-start; margin-bottom: 18px; padding-right: 150px; }
+.embedded .head { align-items: flex-start; margin-bottom: 18px; padding-right: 150px; padding-left: var(--tvd-inset, 0px); }
 .panelTitle {
     margin: 0;
     font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 40px; line-height: 1;

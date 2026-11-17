@@ -288,6 +288,32 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll,
     const [ready, setReady] = useState(false);
     const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    // Appui long (≈ 0,5 s) au doigt → le MÊME menu que le clic droit. iPadOS reçoit la
+    // version bureau du site et Safari n'y émet pas d'évènement « contextmenu » à
+    // l'appui long : sans ce geste, l'iPad n'avait aucun moyen d'ouvrir le menu.
+    const appui = useRef<{ t: ReturnType<typeof setTimeout>; x: number; y: number; fait: boolean } | null>(null);
+    const finAppui = (e?: React.TouchEvent) => {
+        const a = appui.current;
+        if (!a) return;
+        clearTimeout(a.t);
+        // Le relâchement qui suit un appui long ne doit pas ouvrir la fiche.
+        if (a.fait && e?.cancelable) e.preventDefault();
+        appui.current = null;
+    };
+    const debutAppui = (e: React.TouchEvent) => {
+        if (e.touches.length !== 1) { finAppui(); return; }
+        const { clientX: x, clientY: y } = e.touches[0];
+        finAppui();
+        const a = { x, y, fait: false, t: setTimeout(() => { a.fait = true; onMenu(recipe, x, y, coll); }, 500) };
+        appui.current = a;
+    };
+    const bougeAppui = (e: React.TouchEvent) => {
+        const a = appui.current;
+        if (!a || a.fait) return;
+        const { clientX: x, clientY: y } = e.touches[0];
+        if (Math.hypot(x - a.x, y - a.y) > 10) finAppui(); // le doigt défile : ce n'est plus un appui long
+    };
+
     const enter = () => {
         // Navigateur qui n'a jamais réussi à lire : on ne tente rien, la photo
         // vaut mieux qu'un bandeau de cookies en travers de la carte.
@@ -322,6 +348,11 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll,
         <div
             className={`${styles.card} ${styles[shape]} ${rank ? styles.cardRanked : ''} ${inlaid ? styles.cardInlaid : ''}`}
             onContextMenu={(e) => { e.preventDefault(); onMenu(recipe, e.clientX, e.clientY, coll); }}
+            onTouchStart={debutAppui}
+            onTouchMove={bougeAppui}
+            onTouchEnd={finAppui}
+            onTouchCancel={() => finAppui()}
+            style={{ WebkitTouchCallout: 'none' } as React.CSSProperties}
             onMouseEnter={enter}
             onMouseLeave={leave}
         >
