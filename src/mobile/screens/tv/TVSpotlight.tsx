@@ -286,6 +286,34 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
     const [exclus, setExclus] = useState<string[]>([]);
     const [exclusInput, setExclusInput] = useState('');
     const [exclusOuvert, setExclusOuvert] = useState(false);
+    // Fermer en glissant vers le bas : le geste part de l'en-tête (champ, onglets), pas de la liste,
+    // qui garde son défilement. Le panneau suit le doigt ; assez bas (ou assez vite), il se ferme.
+    const fermerEnGlissant = !embedded;
+    const [glisse, setGlisse] = useState(0);
+    const [glisseActif, setGlisseActif] = useState(false);
+    const debutGlisse = (e: React.PointerEvent<HTMLDivElement>) => {
+        if (!fermerEnGlissant || e.button > 0 || (e.target as HTMLElement).closest('input, textarea')) return;
+        const y0 = e.clientY, t0 = performance.now(), id = e.pointerId;
+        let dy = 0;
+        const bouge = (ev: PointerEvent) => {
+            if (ev.pointerId !== id) return;
+            dy = Math.max(0, ev.clientY - y0);
+            if (dy > 6) { setGlisseActif(true); setGlisse(dy * 0.92); }
+        };
+        const fin = (ev: PointerEvent) => {
+            if (ev.pointerId !== id) return;
+            window.removeEventListener('pointermove', bouge);
+            window.removeEventListener('pointerup', fin);
+            window.removeEventListener('pointercancel', fin);
+            setGlisseActif(false);
+            const vite = dy / Math.max(1, performance.now() - t0) > 0.6; // px/ms
+            if (ev.type === 'pointerup' && (dy > 120 || (dy > 40 && vite))) onClose();
+            setGlisse(0);
+        };
+        window.addEventListener('pointermove', bouge);
+        window.addEventListener('pointerup', fin);
+        window.addEventListener('pointercancel', fin);
+    };
     useEffect(() => {
         // Ancienne version : la liste était gardée sur l'appareil. On la purge.
         try { localStorage.removeItem('regime-sans'); } catch { /* mode privé */ }
@@ -1117,7 +1145,29 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
             bottom: 'auto',
         } : {}),
         ...((preview || suspended) ? { visibility: 'hidden' as const, pointerEvents: 'none' as const } : {}),
+        ...(glisse > 0 || glisseActif ? { transform: `translateY(${glisse}px)`, transition: glisseActif ? 'none' : 'transform .22s ease' } : {}),
     };
+
+    // Bouton « Partager » : lien qui rouvre la sélection affichée, telle quelle.
+    const partageNode = (cls: string) => (selection.length > 0 && !previewBeforeSelect ? (
+        <button
+            type="button"
+            className={cls}
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={partagerSelection}
+            aria-label="Partager cette sélection"
+            title="Partager cette sélection"
+        >
+            {partageMsg
+                ? <span className={styles.spShareMsg}>{partageMsg}</span>
+                : (
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <path d="M12 3v12M7.5 7.5 12 3l4.5 4.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M7 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-1" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+                    </svg>
+                )}
+        </button>
+    ) : null);
 
     const body = (
         <>
@@ -1132,7 +1182,12 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                     )}
 
                     <div className={styles.spTopRow}>
-                    <div className={styles.spSearchControls} role="group" aria-label="Recherche et filtres">
+                    <div
+                        className={styles.spSearchControls} role="group" aria-label="Recherche et filtres"
+                        // Glisser l'en-tête vers le bas ferme la recherche (la croix marche toujours).
+                        onPointerDown={debutGlisse}
+                        style={fermerEnGlissant ? { touchAction: 'none' } : undefined}
+                    >
                     <div className={styles.spModeRow}>
                     {/* Segmented control : mode */}
                     <div className={styles.spSegment}>
@@ -1190,7 +1245,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                     </button>
                                 ))}
                             </div>
-                            {!embedded && <span className={styles.spSegCale} aria-hidden />}
+                            {!embedded && (partageNode(`${styles.spShare} ${styles.spShareCale}`) || <span className={styles.spSegCale} aria-hidden />)}
                         </div>
                     )}
 
@@ -1278,26 +1333,8 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                             <strong>{mode === 'recipe' ? filteredRecipes.length : mode === 'ingredients' ? ingredientResults.length : aiResults.length}</strong>
                             <span>recette{(mode === 'recipe' ? filteredRecipes.length : mode === 'ingredients' ? ingredientResults.length : aiResults.length) !== 1 ? 's' : ''}</span>
                         </div>
-                        {/* Partager la sélection affichée (lien qui la rouvre telle quelle). */}
-                        {selection.length > 0 && !previewBeforeSelect && (
-                            <button
-                                type="button"
-                                className={styles.spShare}
-                                onMouseDown={(e) => e.preventDefault()}
-                                onClick={partagerSelection}
-                                aria-label="Partager cette sélection"
-                                title="Partager cette sélection"
-                            >
-                                {partageMsg
-                                    ? <span className={styles.spShareMsg}>{partageMsg}</span>
-                                    : (
-                                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden>
-                                            <path d="M12 3v12M7.5 7.5 12 3l4.5 4.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M7 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-1" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
-                                        </svg>
-                                    )}
-                            </button>
-                        )}
+                        {/* Partager la sélection affichée : à côté du compteur, sauf en mode Recette sur téléphone (il passe sous la croix). */}
+                        {!(mode === 'recipe' && !embedded) && partageNode(styles.spShare)}
                     </div>
 
                     {suggestions.length > 0 && (
@@ -1347,17 +1384,19 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                     />
                                 </span>
                                     {propositionsSans.length > 0 && (
-                                        <ul className={styles.spSansPropositions} role="listbox" aria-label="Aliments à exclure">
+                                        // Même tuile et mêmes lignes que les suggestions d'ingrédients.
+                                        <ul className={`${styles.spSuggestions} ${styles.spSansListe}`} role="listbox" aria-label="Aliments à exclure">
                                             {propositionsSans.map((nom) => (
                                                 <li key={nom} role="option" aria-selected={false}>
                                                     <button
                                                         type="button"
-                                                        className={styles.spSansProposition}
+                                                        className={styles.courseSuggItem}
                                                         // Garde le focus sur le champ : sans ça, le toucher le fermerait avant d'ajouter.
                                                         onMouseDown={(e) => e.preventDefault()}
-                                                        onTouchStart={(e) => e.preventDefault()}
                                                         onClick={() => { haptic(8); validerExclu(nom); }}
-                                                    >{nom}</button>
+                                                    >
+                                                        <span className={styles.courseSuggNom}>{nom}</span><span className={styles.courseSuggPlus}>+</span>
+                                                    </button>
                                                 </li>
                                             ))}
                                         </ul>

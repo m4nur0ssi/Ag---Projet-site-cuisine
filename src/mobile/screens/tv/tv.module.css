@@ -7000,19 +7000,14 @@
 .spSearchControls .spSansTag { gap: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .spSearchControls .spSansInput { width: 100%; min-width: 0; font-size: 14px; }
 
-/* « + Sans… » ouvert : le champ prend toute la ligne, les propositions dessous. */
+/* « + Sans… » ouvert : le champ prend toute la ligne, les propositions dessous (tuile des suggestions d'ingrédients). */
 .spSearchControls .spSansField { grid-column: 1 / -1; }
 .spSearchControls .spSansInput { padding: 0 6px; text-align: left; }
-.spSansPropositions {
-    grid-column: 1 / -1;
-    display: flex; flex-wrap: wrap; gap: 6px;
-    margin: 0; padding: 0; list-style: none;
-}
-.spSansProposition {
-    min-height: 36px; padding: 6px 14px; border: none; border-radius: 999px;
-    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: -.01em;
-    background: rgba(255, 59, 48, .16); color: #ff8078; cursor: pointer;
-}
-:global([data-theme='light']) .spSansProposition { background: rgba(255, 59, 48, .12); color: #b3261e; }
 /* Une étiquette « sans poulet ✕ » tient sur deux colonnes ; « + Sans… » reste sur une. */
 .spSearchControls .spSansTag { grid-column: span 2; }
+
+/* « Sans… » : propositions dans la même tuile et les mêmes lignes que les suggestions d'ingrédients. */
+.spSearchControls .spSansListe { grid-column: 1 / -1; margin: 0; max-height: min(260px, 34dvh); }
+
+/* Partager : sous la croix, à droite de Tendances, même gabarit que la croix. */
+.spSearchControls .spShare.spShareCale { width: 40px; height: 40px; min-width: 40px; padding: 0; margin: 0 0 14px; flex: 0 0 auto; }
