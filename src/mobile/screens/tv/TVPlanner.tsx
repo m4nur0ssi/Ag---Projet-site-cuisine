@@ -1084,6 +1084,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         if (!enMain) return;
         const remplace = plan[day]?.[meal];
         const venue = origineEnMain();
+        const copie = enMainEstCopie();
         haptic(14);
         /*
          * Une recette prise DANS la semaine se DÉPLACE : sa case de départ se
@@ -1100,8 +1101,10 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         } else {
             setSlot(day, meal, enMain);
         }
-        // Une recette COPIÉE reste en main : on peut la coller sur plusieurs jours.
-        if (!enMainEstCopie()) reposer();
+        // Une recette collée est posée : la main se referme, un seul collage par copie.
+        reposer();
+        // Une recette COLLÉE n'annonce rien : pas de message « Ajouté · … ».
+        if (copie) return;
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: {
                 text: remplace
