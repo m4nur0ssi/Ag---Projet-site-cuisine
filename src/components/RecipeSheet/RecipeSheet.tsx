@@ -1,11 +1,18 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { Recipe } from '@/types';
 import Portal from '@/components/Portal';
 import styles from './RecipeSheet.module.css';
 import RecipeDetails from '@/components/RecipeDetails/RecipeDetails';
 import { ecrireStock } from '@/lib/stockage';
+
+const Chevron = ({ gauche }: { gauche?: boolean }) => (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <path d={gauche ? 'M14.5 5.5 8 12l6.5 6.5' : 'M9.5 5.5 16 12l-6.5 6.5'} />
+    </svg>
+);
 
 interface RecipeSheetProps {
     recipe: Recipe;
@@ -21,6 +28,20 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
     const scrollYRef = useRef(0);
     const controls = useDragControls();
     const sheetRef = useRef<HTMLDivElement>(null);
+
+    /*
+     * Flèches ‹ › posées DANS la photo : souris seulement (survol + pointeur
+     * précis). Sur iPad et tout écran tactile, on balaye.
+     */
+    const [sourisFine, setSourisFine] = useState(false);
+    useEffect(() => {
+        const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const maj = () => setSourisFine(mq.matches);
+        maj();
+        mq.addEventListener?.('change', maj);
+        return () => mq.removeEventListener?.('change', maj);
+    }, []);
+    const [cadrePhoto, setCadrePhoto] = useState<HTMLElement | null>(null);
 
     // Sync when parent changes recipe
     useEffect(() => { setCurrentRecipe(initialRecipe); }, [initialRecipe]);
@@ -59,6 +80,20 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
     const touchStartY = useRef(0);
     const touchStartTime = useRef(0);
     const scrollRef = useRef<HTMLDivElement>(null);
+    // La photo se monte après la fiche (et change à chaque recette) : on la retrouve.
+    const aDesFleches = !!navigation && sourisFine;
+    useEffect(() => {
+        if (!isOpen || !aDesFleches) { setCadrePhoto(null); return; }
+        let essais = 0;
+        const t = setInterval(() => {
+            const el = scrollRef.current?.querySelector('[class*="imageCardContainer"]') as HTMLElement | null;
+            if (el || ++essais > 40) {
+                clearInterval(t);
+                setCadrePhoto((p) => (p === el ? p : el));
+            }
+        }, 50);
+        return () => clearInterval(t);
+    }, [isOpen, aDesFleches, currentRecipe]);
 
     /*
      * La fiche s'arrête PILE sous la première rangée de pilules (préparation,
@@ -67,9 +102,25 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
      * la mesure se fait donc sur le contenu réel, photo chargée comprise.
      */
     const [hauteur, setHauteur] = useState<number | null>(null);
+    /*
+     * Changement de recette dans la fiche ouverte (balayage, flèches) : la
+     * nouvelle fiche se monte vide — photo et polices pas encore là — et sa
+     * première mesure est trop courte. La fiche rétrécissait de ~50 px
+     * (le bord haut descendait) puis regrandissait 140 ms plus tard : le
+     * « sursaut » à chaque passage. On garde donc la hauteur précédente le
+     * temps que la nouvelle se stabilise, puis on la rejoint en douceur.
+     */
+    const idMesure = useRef<string | null>(null);
+    const [lisse, setLisse] = useState(false);
     useEffect(() => {
-        if (!isOpen) { setHauteur(null); return; }
+        if (!isOpen) { setHauteur(null); setLisse(false); idMesure.current = null; return; }
+        const id = String(currentRecipe?.id ?? '');
+        const changement = idMesure.current !== null && idMesure.current !== id;
+        idMesure.current = id;
+        const gel = changement ? performance.now() + 420 : 0;
+        if (changement) setLisse(true);
         const mesurer = () => {
+            if (performance.now() < gel) return;
             const zone = scrollRef.current;
             const rangee = zone?.querySelector('[class*="metaContent"]') as HTMLElement | null;
             if (!zone || !rangee) return;
@@ -88,6 +139,7 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
          * puis on s'arrête. L'écriture n'a lieu que si la valeur change.
          */
         mesurer();
+        const apresGel = changement ? setTimeout(mesurer, 440) : undefined;
         const battement = setInterval(mesurer, 140);
         const fin = setTimeout(() => clearInterval(battement), 2200);
         const ro = new ResizeObserver(mesurer);
@@ -97,6 +149,7 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
         return () => {
             clearInterval(battement);
             clearTimeout(fin);
+            if (apresGel) clearTimeout(apresGel);
             ro.disconnect();
             window.removeEventListener('resize', mesurer);
         };
@@ -183,6 +236,19 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
 
     if (!currentRecipe || !shouldRender) return null;
 
+    const fleches = cadrePhoto && navigation && cadrePhoto.isConnected ? createPortal(
+        <>
+            <button type="button" className={`${styles.flechePhoto} ${styles.flecheGauche}`}
+                onClick={(e) => { e.stopPropagation(); navigation.precedent?.(); }}
+                disabled={!navigation.precedent} aria-label="Recette précédente"><Chevron gauche /></button>
+            <button type="button" className={`${styles.flechePhoto} ${styles.flecheDroite}`}
+                onClick={(e) => { e.stopPropagation(); navigation.suivant?.(); }}
+                disabled={!navigation.suivant} aria-label="Recette suivante"><Chevron /></button>
+            <span className={styles.comptePhoto}>{navigation.position} / {navigation.total}</span>
+        </>,
+        cadrePhoto,
+    ) : null;
+
     return (
         <Portal>
             <AnimatePresence onExitComplete={handleAnimationComplete}>
@@ -201,7 +267,7 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
                         <motion.div
                             className={styles.sheet}
                             ref={sheetRef}
-                            style={hauteur ? { height: `${hauteur}px` } : undefined}
+                            style={hauteur ? { height: `${hauteur}px`, ...(lisse ? { transition: 'height .28s cubic-bezier(.32,.72,0,1)' } : null) } : undefined}
                             initial={{ y: '100%' }}
                             animate={{ y: 0 }}
                             exit={{ y: '105%' }}
@@ -241,6 +307,7 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
                                 onTouchEnd={handleTouchEnd}
                             >
                                 <RecipeDetails key={String(currentRecipe.id)} recipe={currentRecipe} isModal={true} />
+                                {fleches}
                             </div>
                         </motion.div>
                     </div>

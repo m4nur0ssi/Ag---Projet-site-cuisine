@@ -7098,3 +7098,78 @@
     .spSearchControls .spSans .spResultCount strong { font-size: clamp(36px, 11.5vw, 46px); }
     .spSearchControls .spSans .spResultCount span { font-size: 20px; font-weight: 600; }
 }
+
+
+/* ── Recherche par ingrédients : une colonne par « il manque… » ──────────
+   Les recettes complètes en tête, puis chaque manque a sa colonne, recettes
+   dessous. Sur grand écran les colonnes se côtoient (plus de défilement
+   interminable) ; sur téléphone elles s'empilent. */
+.spGroupes {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 14px;
+    align-items: start;
+    padding: 4px 0 0;
+}
+.spColonne {
+    min-width: 0;
+    padding: 6px 6px 8px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+}
+.spColonneComplete {
+    grid-column: 1 / -1;
+    background: rgba(52, 211, 153, 0.07);
+    box-shadow: inset 0 0 0 0.5px rgba(52, 211, 153, 0.35);
+}
+.spColonneTete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px 6px;
+}
+.spColonneTitre {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #ffd60a;
+    overflow-wrap: anywhere;
+}
+.spColonneComplete .spColonneTitre { color: #34d399; }
+.spColonneNb {
+    flex: 0 0 auto;
+    min-width: 24px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.1);
+}
+.spColonneListe { display: flex; flex-direction: column; }
+.spColonneGrille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    column-gap: 14px;
+}
+.spColonnePlus {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding: 9px 10px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(235, 235, 245, 0.75);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.spColonnePlus:hover { background: rgba(255, 255, 255, 0.1); }

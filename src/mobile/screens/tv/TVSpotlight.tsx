@@ -833,25 +833,45 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
     }, [mode, pool, query, activeFilters]);
 
     // Mode ingrédients
-    const ingredientResults = useMemo(() => {
+    /*
+     * Les résultats se rangent PAR CE QUI MANQUE : d'abord les recettes où tout
+     * est là, puis une colonne par ingrédient (ou groupe d'ingrédients) à
+     * acheter — « il manque le chorizo » avec ses recettes dessous, etc. Les
+     * colonnes les plus proches (le moins de manques) viennent en premier.
+     */
+    const [groupesOuverts, setGroupesOuverts] = useState<string[]>([]);
+    const PAR_COLONNE = 5;
+    const ingredientGroups = useMemo(() => {
         if (mode !== 'ingredients' || searchedIngredients.length === 0) return [];
         const tags = searchedIngredients.map((t) => t.toLowerCase());
-        return pool
+        const parCle = new Map<string, { cle: string; missing: string[]; items: { recipe: Recipe; matched: number; missing: string[] }[] }>();
+        pool
             .filter((r) => r.category !== 'restaurant')
-            .map((r) => {
+            .forEach((r) => {
                 const ingNames = r.ingredients.map((i) => i.name.toLowerCase());
                 const has = (tag: string) => ingNames.some((n) => normalize(n).includes(normalize(tag)));
-                const matched = tags.filter(has);
-                // Ce qui manque, nommément : « il manque le fenouil » vaut mieux
-                // qu'un simple 1/2, on sait quoi acheter.
                 const missing = tags.filter((t) => !has(t));
-                return { recipe: r, matched: matched.length, missing };
-            })
-            .filter(({ matched }) => matched > 0)
-            // Recettes complètes d'abord, puis les plus proches.
-            .sort((a, b) => b.matched - a.matched)
-            .slice(0, 14);
+                const matched = tags.length - missing.length;
+                if (matched === 0) return;
+                const cle = missing.join('|');
+                const g = parCle.get(cle) || { cle, missing, items: [] };
+                g.items.push({ recipe: r, matched, missing });
+                parCle.set(cle, g);
+            });
+        return [...parCle.values()].sort((a, b) => a.missing.length - b.missing.length || b.items.length - a.items.length);
     }, [searchedIngredients, mode, pool]);
+    /** Ce qui est réellement affiché : colonnes tronquées tant qu'on ne les a pas dépliées. */
+    const ingredientGroupsVisibles = useMemo(
+        () => ingredientGroups.map((g) => ({
+            ...g,
+            visibles: g.missing.length === 0 || groupesOuverts.includes(g.cle) ? g.items : g.items.slice(0, PAR_COLONNE),
+        })),
+        [ingredientGroups, groupesOuverts],
+    );
+    const ingredientResults = useMemo(
+        () => ingredientGroupsVisibles.flatMap((g) => g.visibles),
+        [ingredientGroupsVisibles],
+    );
 
     /*
      * Le clavier se retire quand les résultats sont là (≥ 3 lettres + au moins
@@ -935,6 +955,20 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
         inputRef.current?.focus();
     };
 
+    /*
+     * La liste que la fiche parcourt depuis une recette cliquée. En mode
+     * ingrédients, c'est SA colonne (« il manque le chorizo », « tout y est »…) :
+     * pas de flèche quand la colonne n'a qu'une recette, et jamais de passage
+     * d'une colonne à l'autre.
+     */
+    const listeDe = (recipe: Recipe): Recipe[] => {
+        if (mode === 'ingredients') {
+            const g = ingredientGroups.find((x) => x.items.some((i) => String(i.recipe.id) === String(recipe.id)));
+            if (g) return g.items.map((i) => i.recipe);
+        }
+        return selection;
+    };
+
     const pick = (recipe: Recipe) => {
         haptic(8);
         if (previewBeforeSelect) {
@@ -945,8 +979,9 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
         }
         inputRef.current?.blur();
         stopVoice();
-        const index = selection.findIndex((r) => String(r.id) === String(recipe.id));
-        if (index >= 0) onRecipeSelect(recipe, selection, index);
+        const liste = listeDe(recipe);
+        const index = liste.findIndex((r) => String(r.id) === String(recipe.id));
+        if (index >= 0) onRecipeSelect(recipe, liste, index);
         else onRecipeSelect(recipe);
         if (!embedded && !retainOnSelect) onClose();
     };
@@ -1518,15 +1553,42 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                                 {searchedIngredients.length === 0 ? (
                                     <div className={styles.spEmpty}>Tape un ingrédient pour voir les suggestions et les recettes</div>
                                 ) : ingredientResults.length > 0
-                                    ? ingredientResults.map(({ recipe, matched, missing }) => (
-                                        <ResultItem
-                                            key={recipe.id}
-                                            onPick={pick}
-                                            recipe={recipe}
-                                            meta={`${recipe.category} • ${matched}/${searchedIngredients.length} ingrédient${searchedIngredients.length > 1 ? 's' : ''}`}
-                                            note={missing.length ? `Il manque : ${missing.join(', ')}` : undefined}
-                                        />
-                                    ))
+                                    ? (
+                                        <div className={styles.spGroupes}>
+                                            {ingredientGroupsVisibles.map((g) => {
+                                                const total = searchedIngredients.length;
+                                                const complet = g.missing.length === 0;
+                                                const reste = g.items.length - g.visibles.length;
+                                                return (
+                                                    <section key={g.cle || 'complet'} className={`${styles.spColonne} ${complet ? styles.spColonneComplete : ''}`}>
+                                                        <header className={styles.spColonneTete}>
+                                                            <span className={styles.spColonneTitre}>
+                                                                {complet ? 'Tout y est ✓' : `Il manque ${g.missing.join(' + ')}`}
+                                                            </span>
+                                                            <span className={styles.spColonneNb}>{g.items.length}</span>
+                                                        </header>
+                                                        <div className={complet ? styles.spColonneGrille : styles.spColonneListe}>
+                                                            {g.visibles.map(({ recipe, matched }) => (
+                                                                <ResultItem
+                                                                    key={recipe.id}
+                                                                    onPick={pick}
+                                                                    recipe={recipe}
+                                                                    meta={`${recipe.category} • ${matched}/${total} ingrédient${total > 1 ? 's' : ''}`}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                        {reste > 0 && (
+                                                            <button
+                                                                type="button"
+                                                                className={styles.spColonnePlus}
+                                                                onClick={() => { haptic(8); setGroupesOuverts((p) => [...p, g.cle]); }}
+                                                            >Voir les {reste} autres</button>
+                                                        )}
+                                                    </section>
+                                                );
+                                            })}
+                                        </div>
+                                    )
                                     : <div className={styles.spEmpty}>Aucune recette avec ces ingrédients</div>}
                             </>
                         )}
@@ -1538,8 +1600,8 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, tag
                             onClose={() => setPreview(null)}
                             onAddToPlanner={confirmPreview}
                             // Toute la liste affichée se parcourt avec ‹ › depuis la fiche.
-                            allRecipes={selection.some((r) => String(r.id) === String(preview.id)) ? selection : undefined}
-                            recipeIndex={Math.max(0, selection.findIndex((r) => String(r.id) === String(preview.id)))}
+                            allRecipes={listeDe(preview).some((r) => String(r.id) === String(preview.id)) ? listeDe(preview) : undefined}
+                            recipeIndex={Math.max(0, listeDe(preview).findIndex((r) => String(r.id) === String(preview.id)))}
                             fleches
                         />
                     )}
