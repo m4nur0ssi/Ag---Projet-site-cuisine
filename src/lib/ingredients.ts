@@ -77,7 +77,7 @@ const stripMeasure = (s: string) => {
             .replace(/^c\.?\s*[aà]\.?\s*(c\.?|caf[ée]e?|s\.?|soupe)\.?\s+/i, '')
             .replace(/^cuill[eè]res?\s*[aà]\s*(caf[ée]e?|soupe)s?\s+/i, '')
             // "jus / zeste / écorce / pulpe de X" (avec quantité éventuelle "1", "un")
-            .replace(/^(jus|zestes?|ecorces?|écorces?|peau|pulpe)\b\s*(de\s+|du\s+|des\s+|d['’]\s*)?(\d+\s+|un\s+|une\s+)?/i, '');
+            .replace(/^(jus|zestes?|ecorces?|écorces?|peau|pulpe)\b\s*(de\s+|du\s+|des\s+|d['’]\s*)?(\d+(?:[.,]\d+)?(?:\s*\/\s*\d+)?\s+|un\s+|une\s+)?/i, '');
         if (out !== before) changed = true;
         for (const w of MEASURE_WORDS) {
             const esc = w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -259,7 +259,7 @@ const POWDER_DISTINCT: string[] = ['ail', 'oignon', 'gingembre', 'coriandre'];
  * PAS dans la liste — « jaune » y est, car il ne fait que redire la couleur
  * par défaut.
  */
-const QUALIF_RE = /\s*\b(bio|biologiques?|non\s+traitee?s?|du\s+jardin|de\s+saison|entiere?s?|entiers?|de\s+qualite|extra|au\s+gout|a\s+gout|selon\s+(?:le\s+|votre\s+)?gout|a\s+volonte|supplementaires?|fraichement(?:\s+(?:moulu|rape|presse)e?s?)?|bien\s+froid(?:e)?s?|a\s+temperature\s+ambiante|facultatif)\b/g;
+const QUALIF_RE = /\s*\b(sans\s+l['’]\s*eau|bio|biologiques?|non\s+traitee?s?|du\s+jardin|de\s+saison|entiere?s?|entiers?|de\s+qualite|extra|au\s+gout|a\s+gout|selon\s+(?:le\s+|votre\s+)?gout|a\s+volonte|supplementaires?|fraichement(?:\s+(?:moulu|rape|presse)e?s?)?|bien\s+froid(?:e)?s?|a\s+temperature\s+ambiante|facultatif)\b/g;
 
 /*
  * Un produit, une ligne.
@@ -273,12 +273,42 @@ const QUALIF_RE = /\s*\b(bio|biologiques?|non\s+traitee?s?|du\s+jardin|de\s+sais
  */
 const FUSION_PRODUITS: { motif: RegExp; nom: string; sauf?: RegExp }[] = [
     { motif: /\bcitrons?\b/, nom: 'citron', sauf: /\bverte?s?\b|\bconfit/ },
-    { motif: /\boignons?\b/, nom: 'oignon', sauf: /\brouges?\b|\bfrit/ },
+    // Tous les oignons rouges sont un seul achat, quelle que soit la découpe ou
+    // la taille écrite dans la recette (mi-oignon, grand, tranché…). Les pickles
+    // et les oignons frits sont d'autres produits.
+    { motif: /\boignons?\b.*\brouges?\b|\brouges?\b.*\boignons?\b/, nom: 'oignon rouge', sauf: /\bpickles?\b|\bfrit|\bpoudre\b|\bconfit|\bcebolla\b|\bchutney\b|\bsauce\b/ },
+    // Blanc, jaune, doux : « oignon » tout court. Le nouveau / vert (cébette) et le
+    // grelot sont d'autres produits, de même que le rouge (règle précédente).
+    { motif: /\boignons?\b/, nom: 'oignon', sauf: /\brouges?\b|\bfrit|\bnouveaux?\b|\bverts?\b|\bgrelots?\b|\bpickles?\b/ },
+    // Un poivron rouge, orange ou jaune, ou « poivron » sans couleur : on achète « des
+    // poivrons ». Le vert (amer), le mini, le confit, le mariné, le piquillo… restent à part.
+    { motif: /\bpoivrons?\b/, nom: 'poivron', sauf: /\bverts?\b|\bmini\b|\bconfit|\bmarin|\bserrano|\bpiquillos?\b|\bcorne\b|\blongs?\b|\bpointus?\b|\bpoudre\b|\bfarci|\bfum[ée]/ },
+    { motif: /\bfeta\b/, nom: 'feta', sauf: /\bsalade\b|\bsauce\b|\bpizza\b|\bboulettes?\b/ },
+    // Le lait de vache, entier, demi-écrémé, écrémé, froid, tiède… Les laits végétaux,
+    // concentrés, fermentés… sont d'autres produits.
+    { motif: /^lait\b/, nom: 'lait', sauf: /\b(coco|amande|soja|riz|avoine|noisette|noix|concentre|ribot|fermente|evapore|brebis|chevre|poudre|ecreme en poudre)\b/ },
+    // Yaourt grec : 0 %, faible teneur en graisse, égoutté… un seul achat. Skyr, soja,
+    // vanille ne sont pas du yaourt grec.
+    { motif: /\b(yaourts?|yogourts?|yahourts?)\b.*\bgrec(que)?s?\b/, nom: 'yaourt grec', sauf: /\bskyr\b|\bsoja\b|\bvanille\b|\bfruits?\b|\bou\b/ },
     { motif: /\b(oeufs?|œufs?)\b/, nom: 'oeuf', sauf: /\b(jaunes?|blancs?)\s+d/ },
     { motif: /\bails?\b/, nom: 'ail', sauf: /\bours?\b|\bnoirs?\b|\bfermente?s?\b/ },
     { motif: /\bcoriandres?\b/, nom: 'coriandre' },
     { motif: /\bmenthes?\b/, nom: 'menthe' },
 ];
+
+/**
+ * Le bouillon se range par SORTE, pas par température ni par dilution :
+ * « bouillon de légume » et « bouillon de légumes chaud » sont le même achat.
+ * « …ou de poulet » (un choix) et les cubes ne sont pas concernés.
+ */
+const SORTE_BOUILLON = /^(bouillon de (?:legume|poulet|volaille|boeuf|poule|viande|poisson))s?\b(?!.*\bou\b).*$/;
+
+/**
+ * L'eau n'est pas une course : du robinet, froide, chaude, tiède, bouillante…
+ * Les eaux qui s'achètent (gazeuse, minérale, de coco, de rose…) restent.
+ */
+const EAU_DU_ROBINET = /^eau(?: (?:froide|chaude|tiede|bouillante|fraiche|plate|tres froide|tres chaude|glacee|du robinet|de cuisson(?: .*)?|pour .*|a temperature ambiante|salee|bien froide|supplementaire))?$/;
+
 
 /* La taille en tête ne fait pas un autre produit : « petit oignon rouge » se
    range avec les oignons rouges. Deux exceptions gardées telles quelles, parce
@@ -334,7 +364,7 @@ const isSpoonRaw = (raw: string) => SPOON_RAW_RE.test(normalizeIng(raw));
 // Pluriel → singulier (par mot). Exceptions : mots déjà terminés en 's' au singulier.
 // Mots qui se terminent en s/x AU SINGULIER : « noix », « doux », « roux »… Sans eux,
 // « noix de beurre » devenait « noi de beurre » et « beurre doux » « beurre dou ».
-const SING_EXCEPT = new Set(['ananas', 'anchois', 'jus', 'riz', 'mais', 'couscous', 'houmous', 'hummus', 'cassis', 'cresson', 'chips', 'pois', 'abats', 'epices', 'des', 'ours', 'gros', 'frais', 'gras', 'epais', 'noix', 'doux', 'roux', 'faux', 'prix', 'voix', 'poix', 'croix', 'houx', 'bois', 'fois', 'brebis', 'souris', 'radis', 'tamaris', 'palmarès', 'maïs', 'pastis', 'tournedos', 'carquois', 'lis', 'dans', 'sans', 'plus', 'moins', 'tous', 'tres', 'vers', 'sous', 'alors', 'puis', 'jamais', 'toujours', 'avec', 'pour', 'sur']);
+const SING_EXCEPT = new Set(['ananas', 'anchois', 'jus', 'riz', 'mais', 'couscous', 'houmous', 'hummus', 'cassis', 'cresson', 'chips', 'pois', 'abats', 'epices', 'des', 'ours', 'gros', 'frais', 'gras', 'epais', 'noix', 'choix', 'doux', 'roux', 'faux', 'prix', 'voix', 'poix', 'croix', 'houx', 'bois', 'fois', 'brebis', 'souris', 'radis', 'tamaris', 'palmarès', 'maïs', 'pastis', 'tournedos', 'carquois', 'lis', 'dans', 'sans', 'plus', 'moins', 'tous', 'tres', 'vers', 'sous', 'alors', 'puis', 'jamais', 'toujours', 'avec', 'pour', 'sur']);
 const depluralize = (n: string) => n.split(' ').map(w => {
     // « d'anchois », « l'ananas » : on juge le mot sans son article élidé.
     const cœur = w.replace(/^(?:d|l|qu|n|s)['’]/, '');
@@ -354,7 +384,7 @@ const depluralize = (n: string) => n.split(' ').map(w => {
 const PREP_RE = /\s+(haches?|hachees?|eminces?|emincees?|concasses?|concassees?|ciseles?|ciselees?|rapes?|rapees?|coupes?|coupees?|fondus?|fondues?|decongeles?|decongelees?|grilles?|grillees?|rotis?|roties?|cuits?|cuites?|precuits?|precuites?|crus?|crues?|blanchis?|blanchies?|revenus?|revenues?|mixes?|mixees?|moulines?|moulinees?|ecrases?|ecrasees?|presses?|pressees?|bouillis?|bouillies?|natures?|en des|en lamelles|en rondelles|en tranches|en morceaux|en quartiers|en cubes|en julienne)\b/g;
 // Suffixe "section de recette" collé au nom (ex. "ail pour la sauce", "oignon pour la
 // marinade") → on retire pour fusionner avec le même ingrédient sans suffixe.
-const SECTION_SUFFIX_RE = /\s+pour\s+(l[ae]s?|l['’]|du|des|une?|le)\s+.+$/;
+const SECTION_SUFFIX_RE = /\s+pour\s+(?:(?:l[ae]s?|l['’]|du|des|une?|le)\s+.+|(?:graisser|beurrer|huiler|fariner|arroser|saupoudrer|dorer|napper|badigeonner|assaisonner|decorer|garnir|servir|frire|poeler|cuire))$/;
 const stripPrep = (n: string) => n.replace(SECTION_SUFFIX_RE, '').replace(PREP_RE, '').replace(/\b(finement|grossierement|prealablement|delicatement|soigneusement)\b/g, '').replace(/\s+/g, ' ').trim();
 
 /** Une pièce et une absence d'unité, c'est la même chose dans un caddie. */
@@ -385,6 +415,7 @@ export const canonicalIng = (name: string, unit: string = '', raw: string = ''):
     if (!n) n = depluralize(stripPrep(normalizeIng(name).replace(/\s+/g, ' ').trim()));
     n = retirerJaune(n).replace(TAILLE_RE, '').replace(/\s+/g, ' ').trim();
     const originalPowder = POWDER_RE.test(n) || /\bsemoule\b/.test(n);
+    n = n.replace(SORTE_BOUILLON, '$1');
     for (const r of FUSION_PRODUITS) {
         if (r.motif.test(n) && !(r.sauf && r.sauf.test(n))) { n = r.nom; break; }
     }
@@ -435,12 +466,13 @@ const ICONS: [string, string][] = [
     ['pasteque', '🍉'], ['avocat', '🥑'], ['chocolat', '🍫'],
     ['parmesan', '🧀'], ['mozzarella', '🧀'], ['fromage', '🧀'],
     ['poulet', '🍗'], ['boeuf', '🥩'], ['agneau', '🍖'], ['porc', '🥓'],
-    ['lardon', '🥓'], ['jambon', '🥓'], ['bacon', '🥓'],
+    ['lardon', '🥓'], ['lard', '🥓'], ['jambon', '🥓'], ['bacon', '🥓'],
     ['saumon', '🐟'], ['thon', '🐟'], ['poisson', '🐟'], ['crevette', '🦐'],
     ['riz', '🍚'], ['pate', '🍝'], ['pâte', '🍝'], ['nouille', '🍜'], ['pain', '🍞'],
     ['carotte', '🥕'], ['courgette', '🥒'], ['concombre', '🥒'], ['aubergine', '🍆'],
     ['champignon', '🍄'], ['epinard', '🥬'], ['salade', '🥬'], ['mais', '🌽'],
     ['poivron', '🫑'], ['piment', '🌶'], ['miel', '🍯'], ['vanille', '🍦'],
+    ['sriracha', '🌶'], ['aigre douce', '🥫'], ['aigre-douce', '🥫'], ['capre', '🫒'],
     ['menthe', '🌿'], ['basilic', '🌿'], ['persil', '🌿'], ['coriandre', '🌿'],
     ['cafe', '☕'], ['eau', '💧'], ['vin', '🍷'], ['biere', '🍺'],
     ['noisette', '🌰'], ['noix', '🌰'], ['amande', '🥜'], ['cacahuete', '🥜'],
@@ -485,9 +517,12 @@ const ICONS: [string, string][] = [
     ['sirop agave', '🍯'], ['the', '🍵'], ['jus', '🧃'], ['limonade', '🥤'], ['soda', '🥤'],
 ];
 
+const ICONES_RX: [RegExp, string][] = ICONS.map(([k, e]) => [new RegExp('(?:^|[^a-z0-9])' + normalizeIng(k).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), e]);
 export const getIngIcon = (name: string) => {
     const n = normalizeIng(name);
-    for (const [k, e] of ICONS) if (n.includes(normalizeIng(k))) return e;
+    // Le mot-clé doit COMMENCER un mot : « lentille corail » ne contient pas « ail »,
+    // « gâteau » n'est pas de l'« eau ». La fin reste libre (pluriels, « poivron(s) »).
+    for (const [rx, e] of ICONES_RX) if (rx.test(n)) return e;
     return '🛒';
 };
 
@@ -531,9 +566,21 @@ const CUT_ONLY = /^en\s+(?:gros\s+|petits?\s+|fines?\s+)?(?:morceaux|cubes|des|r
 /** Mentions de service ou d'option, jamais des produits à acheter. */
 const NOT_A_PRODUCT = /^(?:facultatif|optionnel|au choix|pour (?:la |le |le )?(?:deco|decoration|service|dressage|garniture)|a temperature ambiante|si besoin|au gout)\b|detaill[ée]s? dans la video/;
 
+/**
+ * Une CONSIGNE, pas un produit : « pour arroser », « pour graisser », « arroser »,
+ * « coupées en tranches de 1/4 pouce (6 mm) de long ». Ces morceaux viennent d'une
+ * ligne coupée sur la virgule et finissaient au rayon « Autres / Ménager ». Même
+ * avec un chiffre (6 mm), ce n'est pas une quantité à acheter.
+ */
+const CONSIGNE = /^(?:(?:pour|afin de)\s+[a-z]{3,}(?:er|ir)\b|(?:pour|afin de|a)\s+(?:cuire|frire|rotir|graisser|beurrer|huiler|fariner|arroser|saupoudrer|dorer|napper|badigeonner|assaisonner|decorer|garnir|servir|la friture|la cuisson|le service|la decoration|la finition|le moule|le plat|le dessus|le dressage|poeler|frire|cuire)|(?:graisser|beurrer|huiler|fariner|arroser|saupoudrer|dorer|napper|badigeonner|assaisonner|decorer|parsemer|servir)\b|(?:coupee?s?|tranchee?s?|emincee?s?|hachee?s?|taillee?s?|decoupee?s?|rapee?s?|pelee?s?)\s+(?:de|en|a|dans|sur|au|aux|selon|comme)\b)/;
+
+/** Un ÉTAT, pas un produit : « froid », « tassée (160 g) », « à température ambiante (115 g) ». */
+const ETAT_SEUL = /^(?:a temperature ambiante|froid(?:e)?s?|chaud(?:e)?s?|tiede?s?|tassee?s?|fondu(?:e)?s?|ramolli(?:e)?s?|mou|molle|dur(?:e)?s?|frais|fraiche|congele(?:e)?s?|decongele(?:e)?s?|sec|seche|cru(?:e)?s?|cuit(?:e)?s?|bien (?:froid|chaud|mur|cuit)\w*)(?:\s*\(.*\))?\s*$/;
+
 const isPreparationOnly = (segment: string): boolean => {
     const n = normalizeIng(segment).replace(/^[-•\s]+/, '').trim();
     if (!n) return true;
+    if (CONSIGNE.test(n) || ETAT_SEUL.test(n)) return true;
     if (/\d/.test(n)) return false;          // un chiffre = une quantité = un vrai produit
     return PREP_ONLY.test(n) || CUT_ONLY.test(n) || NOT_A_PRODUCT.test(n);
 };
@@ -544,9 +591,38 @@ const isPreparationOnly = (segment: string): boolean => {
 // On ne coupe PAS sur « ou » : c'est un CHOIX, pas une addition. « Brochettes ou
 // branches de romarin frais » donnait deux lignes, dont un « Brochettes » orphelin,
 // et laissait croire qu'il fallait acheter les deux.
+/**
+ * Coupe sur « , », « et », « & », « + » — mais JAMAIS à l'intérieur d'une
+ * parenthèse. « parmesan râpé (ou plus, selon votre goût) » donnait deux lignes :
+ * « parmesan râpé (ou plus » et « selon votre goût) », et ce second morceau
+ * finissait dans la liste de courses sous le nom « ) ».
+ */
+const couperHorsParentheses = (texte: string): string[] => {
+    const morceaux: string[] = [];
+    let profondeur = 0;
+    let debut = 0;
+    const separateur = /^(?:\s+et\s+|\s*&\s*|\s*\+\s*|,\s+)/i;
+    for (let i = 0; i < texte.length; i++) {
+        const c = texte[i];
+        if (c === '(') profondeur++;
+        else if (c === ')') profondeur = Math.max(0, profondeur - 1);
+        else if (profondeur === 0) {
+            const m = separateur.exec(texte.slice(i));
+            if (m) { morceaux.push(texte.slice(debut, i)); i += m[0].length - 1; debut = i + 1; }
+        }
+    }
+    morceaux.push(texte.slice(debut));
+    return morceaux;
+};
+
+// Sépare une ligne combinée en plusieurs ingrédients : "sel et poivre" → ["sel","poivre"],
+// "sel, poivre" → idem. Ne coupe PAS les décimales "1,5 l" (virgule requiert un espace après).
+//
+// On ne coupe PAS sur « ou » : c'est un CHOIX, pas une addition. « Brochettes ou
+// branches de romarin frais » donnait deux lignes, dont un « Brochettes » orphelin,
+// et laissait croire qu'il fallait acheter les deux.
 export const splitIngredients = (raw: string): string[] => {
-    const parts = (raw || '')
-        .split(/\s+et\s+|\s*&\s*|\s*\+\s*|,\s+/i)
+    const parts = couperHorsParentheses(raw || '')
         // « Pour la garniture (optionnel) : fleur de sel » est une SECTION suivie
         // d'un produit : on retire l'en-tête et on garde le sel. Sans ça, la
         // règle « pour la garniture » emportait l'ingrédient avec elle.
@@ -559,8 +635,18 @@ export const splitIngredients = (raw: string): string[] => {
 
 // Découpe une ligne groupée ("Pour le biscuit : 155g farine, 100g beurre, …")
 // en ingrédients individuels : retire le préfixe de section puis splitte (virgules / et / ou).
+/**
+ * « 1 cuillère et demie à café de cannelle » : le « et » ne sépare pas deux
+ * ingrédients, il ajoute une demi-mesure. Coupé sur le « et », on obtenait « 1
+ * cuillère » et un « demie à café de cannelle » devenu « Mie à café de cannelle ».
+ * On écrit donc 1,5 ; et « une demie échalote » devient « 1/2 échalote ».
+ */
+const fractionDemi = (t: string): string => t
+    .replace(/(\d+)\s+([a-zéèêàç.]+)\s+et\s+demi[e]?\b/gi, (_m, n, u) => `${Number(n) + 0.5} ${u}`)
+    .replace(/^(?:une?\s+)?demi[e]?\s+(?=[a-zéèêàçœ])/i, '1/2 ');
+
 export const expandIngredientLines = (raw: string): string[] => {
-    const s = cleanIngredientText(raw).replace(/^pour\s+[^:]{1,45}:\s*/i, '').trim();
+    const s = fractionDemi(cleanIngredientText(raw).replace(/^pour\s+[^:]{1,45}:\s*/i, '').trim());
     if (!s) return [];
     return splitIngredients(s);
 };
@@ -583,6 +669,23 @@ const reaccentuer = (canon: string, original: string): string => {
     if (!connus.size) return canon;
     return canon.split(' ').map(w => connus.get(w) ?? w).join(' ');
 };
+/**
+ * Le chiffre posé sur la vignette d'une ligne de courses : COMBIEN on en achète.
+ *
+ * Seules les quantités en pièces se comptent. « 3-4 courgettes » vaut 4 (on prend
+ * le haut de la fourchette), « 2,5 oignons » vaut 3. Une quantité en grammes, en
+ * litres ou en cuillères n'est pas un nombre de pièces : pas de chiffre du tout.
+ * L'ancien affichage y mettait le nombre de RECETTES, si bien que « parmesan
+ * 110 g » portait un « 2 » qu'on prenait pour deux parmesans.
+ */
+export const nombreAchat = (p: { qty: number | null; unit: string; range?: [number, number] }): number | null => {
+    const enPieces = !p.unit || /^(piece|pièce|pieces|pièces)$/i.test(p.unit);
+    if (!enPieces) return null;
+    const v = p.range ? p.range[1] : p.qty;
+    if (v == null || !(v > 0)) return null;
+    return Math.max(1, Math.ceil(v - 1e-9));
+};
+
 export const fmtQty = (q: number) => (Number.isInteger(q) ? String(q) : String(Math.round(q * 100) / 100));
 
 export interface ConsolItem {
@@ -723,6 +826,8 @@ export const buildConsolidatedItems = (
         if (!p.name) return;
         // Canonicalisation : regroupe les variantes du même ingrédient (ex. ail).
         const c = canonicalIng(p.name, p.unit, raw);
+        // Ni l'eau du robinet, ni un « nom » sans lettres (« ) », « 1 ») : pas une course.
+        if (!/[a-z]{2}/.test(c.name) || /^(?:de|du|des|la|le|les|ou|et|un|une)$/.test(c.name) || (!opts?.manual && EAU_DU_ROBINET.test(c.name.replace(/\s*:?\s*\d.*$/, '').trim()))) return;
         // Unité ramenée à la base (g / ml) pour additionner cl + ml + brique, kg + g…
         // Un dosage (brin, pincée, cuillère, filet d'huile…) ne s'achète pas : le produit seul.
         const dose = !!p.dose || DOSE_UNITS.has(normalizeIng(c.unit)) || AROMATES.has(c.name);

@@ -14,7 +14,9 @@ export function cleanIngredientName(name: string): string {
         // Supprime l'émoji au début
         .replace(/^[ -~]*[\uD83C-􏰀-\uDFFF️]+\s*/, '')
         // Supprime les articles
-        .replace(/^(?:les?|la|l['’']|d['’']|des|du|au|une?)\s*/i, '')
+        // Articles — suivis d'une espace, ou élidés (l', d'). Sans cette précaution,
+        // « Lentille » perdait son « Le », « Lait » son « La », « Aubergine » son « Au ».
+        .replace(/^(?:(?:les?|la|des|du|au|une?)\s+|[ld]['’]\s*)/i, '')
         // Supprime les quantités
         .replace(/^(?:\d+[\s,.]*[\d\/-]*|un|une|deux|trois|quatre|cinq|six|sept|huit|neuf|dix)\s*(?:cuillères?\s*(?:à\s*café|à\s*soupe)?|cuil\.?\s*(?:à\s*café|à\s*soupe)?|c\.\s*à\s*(?:soupe|café)|cas|cac|c\.a\.c|c\.à\.s|c\.à\.c|pincées?|poignées?|tablettes?|morceaux?|tranches?|gousses?|conserves?|sachets?|briques?|verres?|filets?|filet|blancs?|blanc|jaunes?|jaune|bottes?|tasses?|cuil|cubes?|pots?|boîtes?|boite|grammes?|millilitres?|centilitres?|kilogrammes?|grosses?|petites?|moyennes?|pièces?|mini|belles?|g|cl|ml|kg|jus|zeste|zestes|vanille)\s*(?:de\s+|d['’']|of\s+|du\s+|des\s+)?\s*/i, '')
         .replace(/^(?:de\s+|d['’']|du\s+|des\s+|le\s+|la\s+|l['’']|un\s+|une\s+|au\s+|le\s+jus\s+de\s+|les\s+jus\s+de\s+|le\s+zeste\s+de\s+|les\s+zestes\s+de\s+)/i, '')
@@ -289,6 +291,18 @@ const FR_TO_EN: Record<string, string> = {
  */
 export function getIngredientVisual(name: string): string | null {
     if (!name) return null;
+
+    // Pas de bonne photo pour ces produits : mieux vaut l'emoji qu'une photo fausse
+    // (la pastèque et le melon héritaient de la photo d'un ananas ; les haricots
+    // rouges de celle des haricots blancs ; les lentilles vertes de la rouge).
+    {
+        const nu = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        if (/\b(pasteques?|melons?)\b/.test(nu)
+            || /\bharicots? (rouges?|noirs?)\b/.test(nu)
+            || (/\blentilles?\b/.test(nu) && !/\b(corail|rouges?)\b/.test(nu))
+            || /\bsauce aigre[- ]douce\b/.test(nu)
+            || /\bcapres?\b/.test(nu)) return null;
+    }
 
     const cleanName = cleanIngredientName(name);
     if (!cleanName) return null;
@@ -837,6 +851,17 @@ export function getIngredientProductVisual(name: string): string | null {
     if (/\bguanciale\b/.test(n)) return '/ingredients/guanciale.jpg';
     if (/\b(cebettes?|ciboules?|oignons? nouveaux?|oignons? verts?)\b/.test(n)) return '/ingredients/meal-spring-onion.png';
     if (/\boignons? rouges?\b/.test(n)) return '/ingredients/meal-red-onion.png';
+    // Oignon jaune / blanc / doux : l'oignon ordinaire (et non la photo d'oignon rouge).
+    if (/\boignons?\b/.test(n) && !/\b(rouges?|nouveaux?|verts?|grelots?|poudre|frits?|pickles?)\b/.test(n)) return '/ingredients/meal-onion.png';
+    // Haricots verts au singulier comme au pluriel (le mot « haricot » seul renvoyait la photo de haricots blancs).
+    if (/\bharicots? verts?\b/.test(n)) return '/ingredients/meal-green-beans.png';
+    // Lentilles corail = lentilles rouges (la seule photo de lentilles dont on dispose).
+    if (/\blentilles?\b.*\b(corail|rouges?)\b|\b(corail|rouges?)\b.*\blentilles?\b/.test(n)) return '/ingredients/meal-red-lentils.png';
+    if (/\bherbes? de provence\b/.test(n)) return '/ingredients/meal-oregano.png';
+    // Herbes « au choix », fraîches, italiennes, fines herbes : un bouquet d'herbes.
+    if (/^(?:fines? )?herbes?(?: (?:au choix|de votre choix|fraiches?|italiennes?|aromatiques?|mixtes?|melangees?))?$|^fines? herbes?$/.test(n)) return '/ingredients/meal-parsley.png';
+    if (/\bsriracha\b/.test(n)) return '/ingredients/meal-red-chilli.png';
+    if (/\bmiel\b|\bhoney\b/.test(n) && !/\bmoutarde\b|\bpoitrine\b|\bsucre\b/.test(n)) return '/ingredients/meal-honey.png';
     // Ne touche pas aux pâtes à tarte ni aux variétés de pâtes nommées.
     if (/^(pates?|pasta)(?: alimentaires?| seches?)?$/.test(n)) return '/ingredients/pasta-package.jpeg';
     return null;

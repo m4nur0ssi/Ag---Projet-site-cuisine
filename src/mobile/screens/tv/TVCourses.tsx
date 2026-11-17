@@ -27,7 +27,7 @@ import {
 // Les basiques du placard vivent dans la version partagée : une seule liste
 // pour le téléphone et le bureau.
 import { displayRemaining, reconcileShoppingState, planSignature, removeShoppingProduct, toggleSources } from '@/lib/shoppingState';
-import { estBasiqueMaison } from '@/lib/ingredients';
+import { estBasiqueMaison, nombreAchat } from '@/lib/ingredients';
 import { getIngredientVisual } from '@/mobile/lib/ingredient-utils';
 import { RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides } from '@/lib/rayons';
 import { decodeHtml } from '@/mobile/lib/utils';
@@ -72,7 +72,7 @@ type ListData = Record<string, {
  * Le fond est clair parce que les photos sont détourées sur blanc : sur le noir
  * de la page, elles auraient un halo.
  */
-function IngredientVignette({ nom, icone, nombre }: { nom: string; icone: string; nombre: number }) {
+function IngredientVignette({ nom, icone, nombre }: { nom: string; icone: string; nombre: number | null }) {
     const photo = useMemo(() => getIngredientVisual(nom), [nom]);
     // Une photo peut manquer à l'appel : on repasse alors à l'emoji, sans trou.
     const [rate, setRate] = useState(false);
@@ -93,7 +93,7 @@ function IngredientVignette({ nom, icone, nombre }: { nom: string; icone: string
             ) : (
                 <span className={styles.courseVignetteEmoji}>{icone}</span>
             )}
-            <span className={styles.courseVignetteQty}>{nombre}</span>
+            {nombre != null && <span className={styles.courseVignetteQty}>{nombre}</span>}
         </span>
     );
 }
@@ -103,15 +103,12 @@ function IngredientVignette({ nom, icone, nombre }: { nom: string; icone: string
  * quantité en grammes ou en litres, non — on affiche alors le nombre de
  * recettes qui réclament l'ingrédient, l'information utile au rayon.
  */
-function nombreDeLigne(p: { qty: number | null; unit: string }): number {
-    const enPieces = !p.unit || /^(piece|pièce|pieces|pièces)$/i.test(p.unit);
-    return enPieces && p.qty != null && Number.isInteger(p.qty) && p.qty >= 1 ? p.qty : 1;
+function nombreDeLigne(p: { qty: number | null; unit: string; range?: [number, number] }): number | null {
+    return nombreAchat(p);
 }
 
-function nombreAAfficher(it: ConsolItem): number {
-    const enPieces = !it.unit || /^(piece|pièce|pieces|pièces)$/i.test(it.unit);
-    if (enPieces && it.qty != null && Number.isInteger(it.qty) && it.qty >= 1) return it.qty;
-    return Math.max(1, it.count);
+function nombreAAfficher(it: ConsolItem): number | null {
+    return nombreAchat(it);
 }
 
 /**
@@ -578,7 +575,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     /** Toutes les recettes planifiées, chacune avec ses lignes d'ingrédients. */
     const planRecipes = useMemo(() => {
         const out: { id: string; day: string; meal: string; title: string; image?: string;
-                     lines: { key: string; icon: string; nom: string; nombre: number; text: string }[] }[] = [];
+                     lines: { key: string; icon: string; nom: string; nombre: number | null; text: string }[] }[] = [];
         const visit = (day: string) => {
             Object.entries(plan[day] || {}).forEach(([meal, recipe]: [string, any]) => {
                 const withSide = recipe?.side ? [recipe, recipe.side] : [recipe];
