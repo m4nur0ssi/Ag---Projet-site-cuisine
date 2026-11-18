@@ -3,6 +3,7 @@ import { CONTACT_EMAIL, LEGAL_LINKS, TAKEDOWN_DELAY } from '@/lib/legal';
 import styles from './siteFooter.module.css';
 import BoutonCookies from './BoutonCookies';
 import LogoCommOne from './LogoCommOne';
+import { NOMS_CATEGORIES } from '@/lib/categories-noms';
 
 /*
  * Pied de page du feed d'accueil, mobile et ordinateur. Il ferme la page façon
@@ -13,6 +14,17 @@ import LogoCommOne from './LogoCommOne';
 export default function SiteFooter() {
     return (
         <footer className={styles.footer}>
+            {/* Pages catégories : liens réels, visibles, qui font découvrir les recettes. */}
+            <nav className={styles.links} aria-label="Catégories de recettes">
+                {Object.entries(NOMS_CATEGORIES)
+                    .filter(([slug]) => slug !== 'boissons' && slug !== 'accompagnements')
+                    .map(([slug, nom]) => (
+                        <Link key={slug} href={`/recettes/${slug}`} className={styles.link}>
+                            {nom}
+                        </Link>
+                    ))}
+            </nav>
+
             <nav className={styles.links} aria-label="Informations légales">
                 {LEGAL_LINKS.map((l) => (
                     <Link key={l.href} href={l.href} className={styles.link}>

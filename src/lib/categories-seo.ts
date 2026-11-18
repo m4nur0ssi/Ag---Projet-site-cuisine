@@ -1,4 +1,5 @@
 import { mockRecipes } from '@/data/mockData';
+import { NOMS_CATEGORIES } from './categories-noms';
 
 /*
  * Pages « catégorie » indexables : /recettes/<slug>.
@@ -9,11 +10,7 @@ import { mockRecipes } from '@/data/mockData';
  * n'ont donc pas de page.
  */
 
-export const NOMS_CATEGORIES: Record<string, string> = {
-    aperitifs: 'Apéritifs', entrees: 'Entrées', plats: 'Plats', accompagnements: 'Accompagnements',
-    desserts: 'Desserts', patisserie: 'Pâtisseries', glaces: 'Glaces', boissons: 'Boissons',
-    sauces: 'Sauces', rafraichissements: 'Rafraîchissements', cocktails: 'Cocktails',
-};
+export { NOMS_CATEGORIES } from './categories-noms';
 
 const EXCLUES = new Set(['restaurant', '']);
 
