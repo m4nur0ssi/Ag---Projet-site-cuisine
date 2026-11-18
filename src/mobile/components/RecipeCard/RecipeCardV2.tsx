@@ -328,7 +328,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
                 </motion.div>
             </div>
 
-            <Link href={`/recipe/${recipe.id}`} className={styles.contentLink}>
+            <Link href={`/recipe/${recipe.id}`} prefetch={false} className={styles.contentLink}>
                 <div className={styles.content}>
                     <h3 className={styles.title}>{recipe.title}</h3>
                     

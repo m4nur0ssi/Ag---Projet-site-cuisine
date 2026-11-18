@@ -158,8 +158,9 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
     const flag = recipeCountryTag ? countryFlags[recipeCountryTag.toLowerCase()] : null;
 
     return (
-        <Link 
+        <Link
             href={`/recipe/${recipe.id}`}
+            prefetch={false}
             className={`${styles.card} ${showVideo ? styles.cardWithVideo : ''}`}
             data-recipe-id={recipe.id}
             style={{ '--glow-color': categoryGlows[recipe.category] || 'rgba(127, 13, 242, 0.4)' } as React.CSSProperties}

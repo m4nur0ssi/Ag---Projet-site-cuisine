@@ -1,6 +1,6 @@
 // Service worker — offline pour favoris + liste de courses.
 // Stratégies : navigations network-first (fallback cache → page offline),
-// statiques cache-first, images stale-while-revalidate.
+// statiques cache-first, images cache-first pendant 7 jours.
 // v5 : bascule de l'accueil mobile vers TVHome (2026-08-14). Changer ce nom
 // PURGE les anciens caches à l'activation — sans ça, un visiteur déjà venu
 // pouvait continuer à recevoir l'ancienne page (repli hors-ligne des
@@ -35,6 +35,8 @@ const CACHE = 'recettes-magiques-v10';
 const DELAI_RESEAU_MS = 900;
 /** Au-delà, une copie est trop vieille pour être servie en raccourci. */
 const COPIE_MAX_MS = 3 * 24 * 3600 * 1000;
+/** Une image en cache est servie sans réseau pendant 7 jours. */
+const IMAGE_MAX_MS = 7 * 24 * 3600 * 1000;
 const OFFLINE_URL = new URL('offline.html', self.location).toString();
 
 self.addEventListener('install', (event) => {
@@ -159,15 +161,30 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // 2) Images + CDN du site : stale-while-revalidate.
+    // 2) Images + CDN du site : cache d'abord, réseau seulement si la copie
+    //    a plus de 7 jours. Avant (v10), chaque affichage relançait une
+    //    requête Vercel même quand l'image était déjà sur le téléphone.
+    //    Les réponses opaques (images d'un autre domaine) ne peuvent pas
+    //    recevoir notre en-tête de date : elles restent revalidées à chaque
+    //    fois, comme avant.
     if (request.destination === 'image' || url.hostname.includes('lesrec3ttesm4giques.fr')) {
         event.respondWith((async () => {
             const cache = await caches.open(CACHE);
             const cached = await cache.match(request);
-            const fetchP = fetch(request)
-                .then((r) => { if (r && (r.status === 200 || r.type === 'opaque')) cache.put(request, r.clone()); return r; })
-                .catch(() => cached);
-            return cached || fetchP;
+            const range = cached ? Number(cached.headers.get('x-sw-range-le') || 0) : 0;
+            if (cached && range && Date.now() - range < IMAGE_MAX_MS) return cached;
+            try {
+                const r = await fetch(request);
+                if (!r || (r.status !== 200 && r.type !== 'opaque')) return r;
+                if (r.type === 'opaque') { cache.put(request, r.clone()); return r; }
+                const corps = await r.clone().blob();
+                const headers = new Headers(r.headers);
+                headers.set('x-sw-range-le', String(Date.now()));
+                cache.put(request, new Response(corps, { status: 200, statusText: r.statusText, headers }));
+                return r;
+            } catch (_) {
+                return cached || Response.error();
+            }
         })());
         return;
     }

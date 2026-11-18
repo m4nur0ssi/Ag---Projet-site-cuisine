@@ -50,6 +50,31 @@ const nextConfig = {
     productionBrowserSourceMaps: false,
 
     /**
+     * Cache navigateur des images du site.
+     *
+     * Par défaut Vercel sert `public/` avec `max-age=0, must-revalidate` : le
+     * navigateur redemande chaque photo à chaque affichage, et chaque « 304
+     * inchangé » compte comme une requête CDN. Sur le quota gratuit (1 M/mois),
+     * c'est ce qui a mis le compte en pause.
+     *
+     * Un jour de cache franc, puis une semaine de copie servie pendant la
+     * mise à jour en arrière-plan. Une photo régénérée au même nom peut donc
+     * mettre jusqu'à un jour à s'afficher.
+     */
+    async headers() {
+        const cacheImages = [{
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+        }];
+        return [
+            { source: '/recipes-ia/:path*', headers: cacheImages },
+            { source: '/recipes/:path*', headers: cacheImages },
+            { source: '/ingredients/:path*', headers: cacheImages },
+            { source: '/images/:path*', headers: cacheImages },
+        ];
+    },
+
+    /**
      * Le détourage des bouteilles a besoin de ses binaires.
      *
      * `/api/decoupe-bouteille` fait tourner U²-Net sur le runtime WASM
