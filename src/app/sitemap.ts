@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next';
 import { mockRecipes } from '@/data/mockData';
+import { categoriesIndexables } from '@/lib/categories-seo';
 
 const BASE = 'https://www.lesrecettesmagiques.fr';
 
-// /search et /category/… ne sont plus que des redirections vers l'accueil :
-// ils ne figurent plus ici. /recipe/… reste : la page garde ses balises et
+// /search ne figure plus ici ; /category/… redirige en 301 vers /recettes/…. /recipe/… reste : la page garde ses balises et
 // son JSON-LD, puis ouvre la fiche actuelle.
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -26,5 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }));
 
-    return [...staticPages, ...recipePages];
+    const categoryPages: MetadataRoute.Sitemap = categoriesIndexables().map((c) => ({
+        url: `${BASE}/recettes/${c.slug}`,
+        lastModified: now,
+        changeFrequency: 'weekly',
+        priority: 0.9,
+    }));
+
+    return [...staticPages, ...categoryPages, ...recipePages];
 }

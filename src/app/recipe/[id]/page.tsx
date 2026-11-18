@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { mockRecipes } from '@/data/mockData';
 import type { Recipe } from '@/types';
 import FicheOuverte from './FicheOuverte';
+import { nomCategorie } from '@/lib/categories-seo';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 
 const BASE = 'https://www.lesrecettesmagiques.fr';
@@ -120,6 +121,13 @@ export default async function RecipePage({ params }: { params: { id: string } })
                 {image && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={image} alt={recipe.title} width={760} height={1004} style={{ width: '100%', height: 'auto' }} />
+                )}
+                {nomCategorie((recipe.category || '').toLowerCase()) && (
+                    <p>
+                        <a href={`/recettes/${(recipe.category || '').toLowerCase()}`}>
+                            Toutes les recettes : {nomCategorie((recipe.category || '').toLowerCase())?.toLowerCase()}
+                        </a>
+                    </p>
                 )}
                 {ingredients.length > 0 && (
                     <section>

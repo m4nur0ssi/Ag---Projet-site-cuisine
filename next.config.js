@@ -61,6 +61,17 @@ const nextConfig = {
      * mise à jour en arrière-plan. Une photo régénérée au même nom peut donc
      * mettre jusqu'à un jour à s'afficher.
      */
+    /*
+     * Anciennes catégories (/category/<slug>) : redirection permanente 301 vers
+     * les pages /recettes/<slug>. Les moteurs transmettent ainsi leur
+     * référencement, et ce n'est plus une redirection JavaScript.
+     */
+    async redirects() {
+        return [
+            { source: '/category/:id', destination: '/recettes/:id', permanent: true },
+        ];
+    },
+
     async headers() {
         const cacheImages = [{
             key: 'Cache-Control',
