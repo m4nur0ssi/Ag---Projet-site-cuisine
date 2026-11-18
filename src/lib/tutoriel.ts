@@ -135,7 +135,7 @@ export const STEPS_MOBILE: Step[] = [
       hint: 'Le menu (à droite) ouvre le tiroir : filtres, planificateur, cave, palmarès.' },
     { kicker: 'Installer', title: 'Comme une app', art: 'install', accent: '#0A84FF', tint: T.bleu,
       text: 'Posé sur l’écran d’accueil, le site s’ouvre en plein écran, sans barre d’adresse. Depuis iOS 26, le chemin passe par le bouton ⋯ de la barre du bas, puis Partager.',
-      hint: 'Menu → « Installer l’application » : les cinq écrans y sont dessinés.' },
+      hint: 'Le geste se fait dans Safari, pas dans l’app.' },
 ];
 
 export const STEPS_BUREAU: Step[] = [
