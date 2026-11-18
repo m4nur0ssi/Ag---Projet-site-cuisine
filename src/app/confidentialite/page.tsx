@@ -4,6 +4,7 @@ import styles from '@/components/LegalLayout/legal.module.css';
 import { CONTACT_EMAIL, TAKEDOWN_DELAY } from '@/lib/legal';
 
 export const metadata: Metadata = {
+    alternates: { canonical: '/confidentialite' },
     title: 'Politique de confidentialité — Les Recettes Magiques',
     description: 'Comment nous traitons vos données personnelles et vos cookies, conformément au RGPD.',
 };

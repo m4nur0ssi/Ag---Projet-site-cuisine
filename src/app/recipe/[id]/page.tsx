@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { mockRecipes } from '@/data/mockData';
 import type { Recipe } from '@/types';
-import VersionActuelle from '@/components/VersionActuelle/VersionActuelle';
+import FicheOuverte from './FicheOuverte';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 
 const BASE = 'https://www.lesrecettesmagiques.fr';
@@ -97,7 +97,15 @@ export default async function RecipePage({ params }: { params: { id: string } })
     }
 
     const jsonLd = buildRecipeJsonLd(recipe);
+    const image = absoluteImage(recipe.image);
+    const ingredients = (recipe.ingredients || []).map(i => cleanText(i.name)).filter(Boolean);
+    const etapes = (recipe.steps || []).map(s => cleanText(s)).filter(Boolean);
 
+    /*
+     * La fiche reste lisible telle quelle, sans JavaScript : titre, photo,
+     * ingrédients et étapes sont dans le HTML. La fiche interactive s'ouvre
+     * par-dessus (FicheOuverte), sans redirection vers l'accueil.
+     */
     return (
         <>
             {jsonLd && (
@@ -106,9 +114,27 @@ export default async function RecipePage({ params }: { params: { id: string } })
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 />
             )}
-            {/* L'ancienne page recette ne s'affiche plus : on garde ses balises
-                (aperçus de liens, Google) et on ouvre la fiche actuelle. */}
-            <VersionActuelle mobile={`/?fiche=${encodeURIComponent(String(recipe.id))}`} />
+            <article className="fiche-seo" style={{ padding: '24px 16px', maxWidth: 760, margin: '0 auto' }}>
+                <h1>{recipe.title}</h1>
+                {recipe.description && <p>{cleanText(recipe.description)}</p>}
+                {image && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={image} alt={recipe.title} width={760} height={1004} style={{ width: '100%', height: 'auto' }} />
+                )}
+                {ingredients.length > 0 && (
+                    <section>
+                        <h2>Ingrédients</h2>
+                        <ul>{ingredients.map((t, i) => <li key={i}>{t}</li>)}</ul>
+                    </section>
+                )}
+                {etapes.length > 0 && (
+                    <section>
+                        <h2>Étapes</h2>
+                        <ol>{etapes.map((t, i) => <li key={i}>{t}</li>)}</ol>
+                    </section>
+                )}
+            </article>
+            <FicheOuverte id={String(recipe.id)} />
         </>
     );
 }

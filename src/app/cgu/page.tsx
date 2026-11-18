@@ -4,6 +4,7 @@ import styles from '@/components/LegalLayout/legal.module.css';
 import { CONTACT_EMAIL, TAKEDOWN_DELAY } from '@/lib/legal';
 
 export const metadata: Metadata = {
+    alternates: { canonical: '/cgu' },
     title: "Conditions générales d'utilisation — Les Recettes Magiques",
     description:
         "Règles d'utilisation du site Les Recettes Magiques : compte, contenus publiés, favoris, listes de courses et responsabilités.",

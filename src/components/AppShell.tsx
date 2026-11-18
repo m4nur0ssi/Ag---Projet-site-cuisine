@@ -79,12 +79,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         };
     }, []);
 
-    // Tant que l'appareil n'est pas déterminé : on ne rend RIEN (SSR + 1er rendu client
-    // identiques = pas de mismatch d'hydratation #418/#423). La bascule se fait en
-    // useLayoutEffect (avant le paint) → l'arbre correct s'affiche direct, sans flash desktop.
-    if (isMobile === null) return null;
-
-    if (isMobile) {
+    /*
+     * Avant la détection de l'appareil (SSR et premier rendu client), on rend
+     * l'arbre BUREAU : le serveur envoie ainsi le contenu des pages (titres,
+     * ingrédients, étapes, JSON-LD) dans le HTML, que Google lit sans attendre
+     * le JavaScript. Le premier rendu client produit le même arbre (pas de
+     * mismatch d'hydratation). La bascule vers le téléphone se fait en
+     * useLayoutEffect, avant le premier affichage : pas de flash visible.
+     * Avant, `return null` cachait TOUTES les pages au serveur.
+     */
+    if (isMobile === true) {
         return (
             <DeviceContext.Provider value={true}>
                 <MobileTimerProvider>

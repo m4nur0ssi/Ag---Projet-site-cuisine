@@ -4,6 +4,7 @@ import styles from '@/components/LegalLayout/legal.module.css';
 import { CONTACT_EMAIL, TAKEDOWN_DELAY } from '@/lib/legal';
 
 export const metadata: Metadata = {
+    alternates: { canonical: '/contact' },
     title: 'Contact — Les Recettes Magiques',
     description:
         'Écrire à Les Recettes Magiques : suggestion de recette, question sur vos données, ou demande de retrait d’une vidéo TikTok (retrait sous 48 heures).',

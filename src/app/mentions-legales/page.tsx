@@ -4,6 +4,7 @@ import styles from '@/components/LegalLayout/legal.module.css';
 import { CONTACT_EMAIL, TAKEDOWN_DELAY } from '@/lib/legal';
 
 export const metadata: Metadata = {
+    alternates: { canonical: '/mentions-legales' },
     title: 'Mentions légales — Les Recettes Magiques',
     description:
         'Éditeur, hébergeur, propriété intellectuelle et procédure de retrait des contenus du site Les Recettes Magiques.',
