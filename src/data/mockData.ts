@@ -2,11 +2,78 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 18/11/2026 10:54:58
+ * Dernière mise à jour: 19/11/2026 10:55:41
  * Total: 872 recettes
  */
-export const exportSyncId = "1794999298294";
+export const exportSyncId = "1795085741270";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8263",
+        "title": "Pommes Dauphine",
+        "description": "Découvrez la recette des pommes dauphine, un classique intemporel apprécié pour sa texture légère et croustillante à l'extérieur, et moelleuse à cœur. Composées d'une base de pommes de terre et de pâte à choux, elles sont simples, généreuses et ré...",
+        "image": "/recipes-ia/8263-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696487159204678934\" data-video-id=\"7696487159204678934\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696487159204678934\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la friture)"
+            }
+        ],
+        "steps": [
+            "Déposez les pommes de terre sur du gros sel et enfournez-les pendant 45 minutes à 180°C.",
+            "Préparez la pâte à choux : dans une casserole, portez à ébullition l'eau, le lait, le beurre et un peu de sel.",
+            "Ajoutez toute la farine en une seule fois et mélangez bien jusqu'à incorporation complète. Remettez la casserole sur le feu et desséchez la pâte pendant environ 30 secondes.",
+            "Incorporez les œufs un par un, en mélangeant bien après chaque ajout.",
+            "Une fois les pommes de terre cuites, coupez-les en deux et récupérez la pulpe. Passez la pulpe au tamis pour obtenir une purée bien sèche.",
+            "Ajoutez la pulpe de pommes de terre à la pâte à choux et mélangez bien.",
+            "Faites chauffer l'huile de friture. Formez des boules de pâte à pommes dauphine et plongez-les directement dans l'huile chaude.",
+            "Égouttez les pommes dauphine sur du papier absorbant. Servez et dégustez."
+        ],
+        "tags": [
+            "Accompagnements",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8261",
         "title": "Sandwich aux œufs et aux sardines",
@@ -572,73 +639,6 @@ export const mockRecipes: Recipe[] = [
             "Glaces",
             "pâtisserie",
             "tarte"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "8263",
-        "title": "Pommes Dauphine",
-        "description": "Découvrez la recette des pommes dauphine, un classique intemporel apprécié pour sa texture légère et croustillante à l'extérieur, et moelleuse à cœur. Composées d'une base de pommes de terre et de pâte à choux, elles sont simples, généreuses et ré...",
-        "image": "/recipes-ia/8263-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7696487159204678934\" data-video-id=\"7696487159204678934\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7696487159204678934\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gros sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile (pour la friture)"
-            }
-        ],
-        "steps": [
-            "Déposez les pommes de terre sur du gros sel et enfournez-les pendant 45 minutes à 180°C.",
-            "Préparez la pâte à choux : dans une casserole, portez à ébullition l'eau, le lait, le beurre et un peu de sel.",
-            "Ajoutez toute la farine en une seule fois et mélangez bien jusqu'à incorporation complète. Remettez la casserole sur le feu et desséchez la pâte pendant environ 30 secondes.",
-            "Incorporez les œufs un par un, en mélangeant bien après chaque ajout.",
-            "Une fois les pommes de terre cuites, coupez-les en deux et récupérez la pulpe. Passez la pulpe au tamis pour obtenir une purée bien sèche.",
-            "Ajoutez la pulpe de pommes de terre à la pâte à choux et mélangez bien.",
-            "Faites chauffer l'huile de friture. Formez des boules de pâte à pommes dauphine et plongez-les directement dans l'huile chaude.",
-            "Égouttez les pommes dauphine sur du papier absorbant. Servez et dégustez."
-        ],
-        "tags": [
-            "Accompagnements",
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
