@@ -2,11 +2,92 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/11/2026 22:37:21
- * Total: 875 recettes
+ * Dernière mise à jour: 22/11/2026 23:08:22
+ * Total: 876 recettes
  */
-export const exportSyncId = "1795387041803";
+export const exportSyncId = "1795388902172";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8289",
+        "title": "Roulés à la cannelle",
+        "description": "Découvrez comment préparer de délicieux roulés à la cannelle maison, ultra moelleux et fondants, avec leur cœur parfumé et leur glaçage onctueux. Ce tutoriel détaillé vous guide pas à pas pour un résultat parfait, en insistant sur l'importance d'u...",
+        "image": "/recipes-ia/8289-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7709263056613805344\" data-video-id=\"7709263056613805344\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7709263056613805344\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             600 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             230 ml de lait tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             75 g de beurre mou (pour la pâte)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure de boulanger ou ½ cube de levure fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 g de vergeoise brune ou cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             75 g de beurre mou (pour la garniture)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10 g de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de fromage frais type Philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café de vanille"
+            }
+        ],
+        "steps": [
+            "Délayez la levure de boulanger dans le lait légèrement tiède avec un peu de sucre. Dans le bol d'un robot (ou à la main), mélangez la farine, le sucre et le sel. Ajoutez les œufs battus, puis le lait avec la levure activée. Pétrissez pendant 5 à 6 minutes.",
+            "Incorporez le beurre mou et continuez de pétrir pendant 10 minutes pour obtenir une pâte lisse et souple. Couvrez la pâte et laissez-la lever pendant 1h30 à température ambiante (idéalement entre 22 et 24 °C).",
+            "Dégazez la pâte et étalez-la finement sur un plan de travail fariné pour former un grand rectangle de 3 à 4 mm d'épaisseur. Dans un bol, mélangez le beurre mou, la vergeoise brune (ou cassonade) et la cannelle. Étalez cette préparation uniformément sur toute la surface de la pâte.",
+            "Roulez délicatement la pâte sur elle-même dans le sens de la longueur pour former un boudin. Découpez des tronçons d'environ 4 cm d'épaisseur. Disposez-les dans un plat de cuisson chemisé de papier sulfurisé, en les espaçant légèrement. Couvrez d'un torchon propre et laissez lever une seconde fois pendant 1 heure.",
+            "Préchauffez votre four à 180 °C. Badigeonnez les roulés d'œuf battu et enfournez pour 15 à 18 minutes, jusqu'à ce qu'ils soient dorés.",
+            "Pendant la cuisson, fouettez ensemble le sucre glace, le fromage frais (type Philadelphia) et la vanille pour obtenir un glaçage lisse. Étalez généreusement ce glaçage sur les roulés à la cannelle dès leur sortie du four, pendant qu'ils sont encore chauds."
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8286",
         "title": "Sandwich Tartiflette Maison",
