@@ -2,11 +2,70 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/11/2026 19:50:18
- * Total: 874 recettes
+ * Dernière mise à jour: 22/11/2026 22:37:21
+ * Total: 875 recettes
  */
-export const exportSyncId = "1795377018650";
+export const exportSyncId = "1795387041803";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8286",
+        "title": "Sandwich Tartiflette Maison",
+        "description": "Découvrez comment préparer un délicieux sandwich tartiflette maison, une alternative économique et savoureuse aux versions souvent trop chères des marchés de Noël. Cette recette vous permettra de savourer ce classique hivernal pour un coût bien pl...",
+        "image": "/recipes-ia/8286-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7710930947167833376\" data-video-id=\"7710930947167833376\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7710930947167833376\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Lardons (ou poitrine fumée)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Vin blanc (ou vinaigre de cidre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Reblochon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pâton à pizza (fait maison ou acheté)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Préparez le pâton à pizza (fait maison ou acheté en boulangerie/pizzeria). Étalez-le, ajoutez un petit filet d'huile d'olive, refermez-le en le pliant en deux et enfournez-le.",
+            "Pendant ce temps, faites cuire les pommes de terre à la vapeur pendant 15 à 20 minutes.",
+            "Coupez l'oignon. Faites-le revenir avec les lardons (ou la poitrine fumée).",
+            "Déglacez la préparation oignon-lardons avec un peu de vin blanc ou de vinaigre de cidre.",
+            "Ajoutez les pommes de terre cuites et laissez fondre un demi-reblochon sur le dessus de la préparation.",
+            "Garnissez le pain chaud avec cette préparation à la tartiflette."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Pas cher",
+            "Sandwichs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8283",
         "title": "Ragoût de pommes de terre crémeuses à la saucisse fumée et moutarde",
