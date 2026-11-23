@@ -2,11 +2,105 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/11/2026 23:08:22
- * Total: 876 recettes
+ * Dernière mise à jour: 23/11/2026 10:33:17
+ * Total: 877 recettes
  */
-export const exportSyncId = "1795388902172";
+export const exportSyncId = "1795429997937";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8292",
+        "title": "Bun's Maison Jambon Fromage",
+        "description": "Découvrez comment préparer des buns jambon fromage maison, une alternative saine et délicieuse aux versions industrielles. Faciles à congeler, ils sont parfaits pour un repas rapide et savoureux, et bien meilleurs pour la santé.",
+        "image": "/recipes-ia/8292-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7711016984976051488\" data-video-id=\"7711016984976051488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7711016984976051488\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             200 g de fromage râpé (comté, emmental, cheddar...)"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             4 tranches de jambon blanc coupées en petits morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cuillères à soupe de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             500 g de farine T45"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             10 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             20 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             8 g de levure boulangère sèche"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250 ml de lait tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             70 g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Un peu de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame (facultatif)"
+            }
+        ],
+        "steps": [
+            "Préparez la pâte : mélangez la farine avec la levure et le sucre. Ajoutez le lait, le sel et un œuf.",
+            "Pétrissez au robot ou à la main pendant une dizaine de minutes, en incorporant le beurre mou au fur et à mesure.",
+            "Laissez reposer la pâte pendant environ 1h30, jusqu'à ce qu'elle double de volume.",
+            "Préparez la farce : mélangez le jambon haché, le comté râpé, un peu de crème, de la moutarde et du poivre.",
+            "Une fois que la pâte a doublé de volume, dégasez-la et divisez-la en pâtons égaux.",
+            "Étalez chaque petit pâton. Déposez une belle boulette de farce au centre.",
+            "Rabattez les bords vers le haut et pincez bien avec le bout des doigts pour garder toute la farce à l'intérieur pendant la cuisson.",
+            "Une fois que tous les buns sont prêts, laissez-les de nouveau reposer une demi-heure sur une plaque recouverte de papier cuisson.",
+            "Dorez les buns avec un mélange de jaune d'œuf et un peu de lait. Ajoutez un peu de sésame si vous le souhaitez.",
+            "Enfournez à 180°C pendant 25 minutes."
+        ],
+        "tags": [
+            "Healthy",
+            "Pas cher",
+            "Sandwichs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8289",
         "title": "Roulés à la cannelle",
