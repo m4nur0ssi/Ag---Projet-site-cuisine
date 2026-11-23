@@ -2,11 +2,64 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/11/2026 11:18:57
- * Total: 881 recettes
+ * Dernière mise à jour: 23/11/2026 18:30:17
+ * Total: 882 recettes
  */
-export const exportSyncId = "1795432737723";
+export const exportSyncId = "1795458617844";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8304",
+        "title": "Roulé à la meringue",
+        "description": "Tendre, aérien, avec une croûte croustillante à l'extérieur et un cœur moelleux à l'intérieur. Associé à une crème onctueuse au fromage frais, c'est un coup de foudre dès la première bouchée ! 😍",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7709100656358853909\" data-video-id=\"7709100656358853909\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7709100656358853909\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Blancs d'œufs - 200 g"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre - 280 g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fécule de maïs - 2 cuillères à soupe bombées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais (type Philadelphia) - 200 g"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème liquide - 200 g"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre - 50 g"
+            }
+        ],
+        "steps": [
+            "1. Dans un bol sec et propre, fouetter les blancs d'œufs avec le sucre jusqu'à obtenir une masse claire, dense et stable qui tient bien sa forme.",
+            "2. Ajouter la fécule de maïs et mélanger délicatement au batteur électrique à basse vitesse.",
+            "3. Étaler la meringue sur une plaque de cuisson recouverte de papier sulfurisé et enfourner dans un four préchauffé à 150°C.",
+            "4. Cuire jusqu'à formation d'une croûte délicate sur le dessus. L'intérieur de la meringue doit rester moelleux.",
+            "5. Laisser le biscuit entièrement refroidir avant de procéder à l'assemblage du roulé.",
+            "Préparation de la crème : Dans un bol, déposer le fromage frais, la crème liquide et le sucre. Fouetter tous les ingrédients ensemble jusqu'à obtenir une crème onctueuse, aérienne et stable.",
+            "Couvrir le biscuit refroidi de crème, rouler délicatement et placer au réfrigérateur pour stabilisation. Déguster ce délicieux dessert ! 🤍"
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8294",
         "title": "Bouchées de saumon au miel piquant",
