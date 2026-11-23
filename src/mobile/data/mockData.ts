@@ -2,11 +2,360 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/11/2026 10:33:17
- * Total: 877 recettes
+ * Dernière mise à jour: 23/11/2026 11:18:57
+ * Total: 881 recettes
  */
-export const exportSyncId = "1795429997937";
+export const exportSyncId = "1795432737723";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8294",
+        "title": "Bouchées de saumon au miel piquant",
+        "description": "Des bouchées de saumon douces, épicées et parfaitement laquées !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F11%2Frecette-8294.webp&v=1795435091000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7702502918460689686\" data-video-id=\"7702502918460689686\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7702502918460689686\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             Saumon - 350 g"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel - 1½ c. à soupe"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment - ½ c. à café"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Sauce soja - 1 c. à soupe"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron - 1 c. à café"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail - 1 gousse, hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika - ½ c. à café"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive - 1 c. à café"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir - au goût"
+            }
+        ],
+        "steps": [
+            "Coupez le saumon en cubes de taille bouchée.",
+            "Dans un petit bol, mélangez le miel, les flocons de piment, la sauce soja, le jus de citron, l'ail, le paprika et l'huile d'olive. Réservez ⅓ de la sauce pour plus tard.",
+            "Ajoutez les cubes de saumon aux ⅔ restants de la sauce et mélangez délicatement jusqu'à ce qu'ils soient enrobés.",
+            "Friteuse à air : Préchauffez à 190°C et faites cuire le saumon en une seule couche pendant 6 à 8 minutes. Four : Préchauffez à 200°C et faites cuire pendant 10 à 12 minutes.",
+            "Badigeonnez avec la sauce réservée pendant les 1 à 2 dernières minutes de cuisson.",
+            "Servez sur du riz avec de l'edamame, de l'avocat, du concombre, des oignons verts et des graines de sésame."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Healthy",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8301",
+        "title": "Gâteaux Mascarpone Chocolat",
+        "description": "Découvrez une recette gourmande de gâteaux individuels au mascarpone et chocolat, sublimés par un coulis orange-mandarine frais, une onctueuse ganache au chocolat et des tranches d'oranges confites maison, le tout enrobé d'une fine coque de chocol...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7711060190254157089\" data-video-id=\"7711060190254157089\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7711060190254157089\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             200 g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             250 g de mascarpone à température ambiante"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             75 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             40 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de purée ou de jus de mandarine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Zestes de 1 à 2 mandarines"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             25 g de sucre (pour le coulis)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 g d'agar-agar"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             150 g de chocolat noir (pour la ganache)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 g de chocolat au lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             240 g de crème liquide entière à 30 %"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             15 g de glucose ou de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 petites oranges"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 grand verre de sucre (pour les oranges confites)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             2 grands verres d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat noir (pour la coque)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre de cacao"
+            }
+        ],
+        "steps": [
+            "Pour les gâteaux mascarpone chocolat : Faites fondre le chocolat noir.",
+            "Incorporez le mascarpone au chocolat fondu.",
+            "Ajoutez les œufs un à un, en mélangeant bien après chaque ajout.",
+            "Incorporez ensuite le sucre, la farine et une pincée de fleur de sel.",
+            "Versez la préparation dans des moules individuels de 10 cm.",
+            "Enfournez à 170 °C pendant environ 15 minutes.",
+            "Laissez les gâteaux refroidir complètement.",
+            "Pour le coulis orange-mandarine : Faites chauffer le jus ou la purée de mandarine avec les zestes.",
+            "Dans un petit bol, mélangez le sucre et l'agar-agar.",
+            "Versez ce mélange dans le jus bouillant en fouettant constamment.",
+            "Faites bouillir pendant 1 minute.",
+            "Laissez le coulis refroidir.",
+            "Mixez le coulis à l'aide d'un mixeur plongeant afin d'obtenir une texture bien lisse.",
+            "Pour la ganache : Faites chauffer la crème liquide avec le glucose ou le miel.",
+            "Versez la crème chaude sur les chocolats noir et au lait.",
+            "Laissez fondre quelques instants, puis mélangez jusqu'à obtenir une émulsion lisse et homogène.",
+            "Mixez la ganache au mixeur plongeant pour parfaire la texture.",
+            "Filmez la ganache au contact (le film doit toucher la surface de la ganache) et réservez au réfrigérateur jusqu'à ce qu'elle soit suffisamment ferme pour être pochée.",
+            "Pour les oranges confites : Lavez les oranges et coupez-les en fines tranches.",
+            "Faites bouillir les tranches d'orange trois fois, en changeant l'eau à chaque fois, afin de réduire leur amertume.",
+            "Préparez un sirop en faisant chauffer le sucre et l'eau dans une casserole.",
+            "Plongez les tranches d'orange dans le sirop et faites-les confire à feu doux pendant 45 minutes à 1 heure, à découvert.",
+            "Ajoutez si nécessaire un peu de sucre et d'eau pour poursuivre le confisage.",
+            "Déposez les tranches confites sur une plaque recouverte de papier cuisson.",
+            "Faites-les sécher au four pendant 2 heures à 90 °C.",
+            "Pour la coque chocolat : Faites fondre le chocolat noir avec le beurre de cacao.",
+            "Mélangez jusqu'à obtenir une préparation homogène.",
+            "Pour le montage : Étalez une couche de coulis orange-mandarine sur chaque gâteau refroidi.",
+            "Placez les gâteaux quelques instants au congélateur pour faire prendre le coulis.",
+            "Pochez la ganache sur le dessus de chaque gâteau.",
+            "Remettez les gâteaux au congélateur jusqu'à ce que l'ensemble soit bien ferme.",
+            "Trempez chaque gâteau dans la coque en chocolat fondu.",
+            "Terminez la décoration avec une tranche d'orange confite sur chaque gâteau.",
+            "Laissez décongeler les gâteaux au réfrigérateur avant dégustation."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Noël",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8299",
+        "title": "Salade de Noël aux betteraves et grenade",
+        "description": "Préparez la plus jolie des salades pour votre table de Noël ! Cette salade colorée et festive est composée de fines tranches de betteraves, de roquette fraîche, de feta émiettée, de graines de grenade et de noix de pécan hachées, le tout assaisonn...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7710070130838916382\" data-video-id=\"7710070130838916382\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7710070130838916382\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Betteraves cuites, finement tranchées"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feta émiettée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de grenade"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix de pécan hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Glaçage balsamique"
+            }
+        ],
+        "steps": [
+            "Tranchez finement les betteraves cuites à l'aide d'un économe et disposez-les sur un plat de service.",
+            "Garnissez de roquette fraîche, de feta émiettée, de graines de grenade et de noix de pécan hachées.",
+            "Assaisonnez de sel et de poivre noir, arrosez d'huile d'olive et terminez par un filet de glaçage balsamique.",
+            "Servez cette salade facile et magnifique pour votre table de fêtes !"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Entrées",
+            "Healthy",
+            "Noël",
+            "Salades",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8297",
+        "title": "Lasagnes montagnardes à la raclette",
+        "description": "Découvrez une version originale et gourmande de la raclette avec ces lasagnes montagnardes. Un plat réconfortant et généreux, composé de jambon blanc, d'oignons fondants, d'une béchamel maison onctueuse et de fromage à raclette coulant, parfait po...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700963226996968736\" data-video-id=\"7700963226996968736\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700963226996968736\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥓\n             4 à 6 tranches de jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             3 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feuilles à lasagne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage à raclette"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre (pour les oignons)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             80 g de beurre (pour la béchamel)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             80 g de farine (pour la béchamel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             80 cl de lait (pour la béchamel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Muscade"
+            }
+        ],
+        "steps": [
+            "Faites compoter les oignons dans un petit peu de beurre.",
+            "Une fois les oignons bien colorés, déglacez-les au vin blanc et réservez.",
+            "Réalisez une béchamel : faites un roux avec le beurre et la farine (tant pour tant), puis montez-la au lait.",
+            "Assaisonnez la béchamel avec une pincée de sel, du poivre et un peu de noix de muscade.",
+            "Préparez la béchamel volontairement un peu plus liquide, cela sera utile pour la suite de la recette.",
+            "Dans un plat allant au four, commencez par déposer une couche de béchamel.",
+            "Ajoutez des feuilles de lasagne.",
+            "Déposez une tranche de jambon blanc et les oignons confits.",
+            "Ajoutez ensuite des tranches de fromage à raclette.",
+            "Réitérez l'opération en alternant les couches jusqu'à arriver en haut de votre plat.",
+            "Terminez avec une couche de béchamel et du fromage.",
+            "Enfournez le plat pendant 45 minutes à 180 degrés."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Gratins",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8292",
         "title": "Bun's Maison Jambon Fromage",
