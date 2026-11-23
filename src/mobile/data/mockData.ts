@@ -2,126 +2,154 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/11/2026 18:30:17
+ * Dernière mise à jour: 23/11/2026 18:44:05
  * Total: 882 recettes
  */
-export const exportSyncId = "1795458617844";
+export const exportSyncId = "1795459445129";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "8304",
-        "title": "Roulé à la meringue",
-        "description": "Tendre, aérien, avec une croûte croustillante à l'extérieur et un cœur moelleux à l'intérieur. Associé à une crème onctueuse au fromage frais, c'est un coup de foudre dès la première bouchée ! 😍",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "patisserie",
+        "id": "8297",
+        "title": "Lasagnes montagnardes à la raclette",
+        "description": "Découvrez une version originale et gourmande de la raclette avec ces lasagnes montagnardes. Un plat réconfortant et généreux, composé de jambon blanc, d'oignons fondants, d'une béchamel maison onctueuse et de fromage à raclette coulant, parfait po...",
+        "image": "/recipes-ia/8297-carte.webp",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7709100656358853909\" data-video-id=\"7709100656358853909\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7709100656358853909\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700963226996968736\" data-video-id=\"7700963226996968736\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700963226996968736\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥚\n             Blancs d'œufs - 200 g"
+                "name": "🥓\n             4 à 6 tranches de jambon blanc"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             Sucre - 280 g"
+                "name": "🧅\n             3 oignons"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fécule de maïs - 2 cuillères à soupe bombées"
+                "name": "💧\n             10 cl de vin blanc"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fromage frais (type Philadelphia) - 200 g"
+                "name": "🥣\n             Feuilles à lasagne"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             Crème liquide - 200 g"
+                "name": "🥣\n             Fromage à raclette"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             Sucre - 50 g"
+                "name": "🧈\n             Beurre (pour les oignons)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             80 g de beurre (pour la béchamel)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             80 g de farine (pour la béchamel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             80 cl de lait (pour la béchamel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Muscade"
             }
         ],
         "steps": [
-            "1. Dans un bol sec et propre, fouetter les blancs d'œufs avec le sucre jusqu'à obtenir une masse claire, dense et stable qui tient bien sa forme.",
-            "2. Ajouter la fécule de maïs et mélanger délicatement au batteur électrique à basse vitesse.",
-            "3. Étaler la meringue sur une plaque de cuisson recouverte de papier sulfurisé et enfourner dans un four préchauffé à 150°C.",
-            "4. Cuire jusqu'à formation d'une croûte délicate sur le dessus. L'intérieur de la meringue doit rester moelleux.",
-            "5. Laisser le biscuit entièrement refroidir avant de procéder à l'assemblage du roulé.",
-            "Préparation de la crème : Dans un bol, déposer le fromage frais, la crème liquide et le sucre. Fouetter tous les ingrédients ensemble jusqu'à obtenir une crème onctueuse, aérienne et stable.",
-            "Couvrir le biscuit refroidi de crème, rouler délicatement et placer au réfrigérateur pour stabilisation. Déguster ce délicieux dessert ! 🤍"
+            "Faites compoter les oignons dans un petit peu de beurre.",
+            "Une fois les oignons bien colorés, déglacez-les au vin blanc et réservez.",
+            "Réalisez une béchamel : faites un roux avec le beurre et la farine (tant pour tant), puis montez-la au lait.",
+            "Assaisonnez la béchamel avec une pincée de sel, du poivre et un peu de noix de muscade.",
+            "Préparez la béchamel volontairement un peu plus liquide, cela sera utile pour la suite de la recette.",
+            "Dans un plat allant au four, commencez par déposer une couche de béchamel.",
+            "Ajoutez des feuilles de lasagne.",
+            "Déposez une tranche de jambon blanc et les oignons confits.",
+            "Ajoutez ensuite des tranches de fromage à raclette.",
+            "Réitérez l'opération en alternant les couches jusqu'à arriver en haut de votre plat.",
+            "Terminez avec une couche de béchamel et du fromage.",
+            "Enfournez le plat pendant 45 minutes à 180 degrés."
         ],
         "tags": [
-            "pâtisserie"
+            "C'est l'hiver",
+            "France",
+            "Gratins",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
     {
-        "id": "8294",
-        "title": "Bouchées de saumon au miel piquant",
-        "description": "Des bouchées de saumon douces, épicées et parfaitement laquées !",
-        "image": "/recipes-ia/8294-carte.webp",
-        "category": "plats",
+        "id": "8299",
+        "title": "Salade de Noël aux betteraves et grenade",
+        "description": "Préparez la plus jolie des salades pour votre table de Noël ! Cette salade colorée et festive est composée de fines tranches de betteraves, de roquette fraîche, de feta émiettée, de graines de grenade et de noix de pécan hachées, le tout assaisonn...",
+        "image": "/recipes-ia/8299-carte.webp",
+        "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7702502918460689686\" data-video-id=\"7702502918460689686\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7702502918460689686\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7710070130838916382\" data-video-id=\"7710070130838916382\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7710070130838916382\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🐟\n             Saumon - 350 g"
+                "name": "🥣\n             Betteraves cuites, finement tranchées"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             Miel - 1½ c. à soupe"
+                "name": "🥗\n             Roquette fraîche"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Flocons de piment - ½ c. à café"
+                "name": "🥣\n             Feta émiettée"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             Sauce soja - 1 c. à soupe"
+                "name": "🥣\n             Graines de grenade"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Jus de citron - 1 c. à café"
+                "name": "🥜\n             Noix de pécan hachées"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             Ail - 1 gousse, hachée"
+                "name": "🧂\n             Sel et poivre noir"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Paprika - ½ c. à café"
+                "name": "🍾\n             Huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d'olive - 1 c. à café"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre noir - au goût"
+                "name": "🥣\n             Glaçage balsamique"
             }
         ],
         "steps": [
-            "Coupez le saumon en cubes de taille bouchée.",
-            "Dans un petit bol, mélangez le miel, les flocons de piment, la sauce soja, le jus de citron, l'ail, le paprika et l'huile d'olive. Réservez ⅓ de la sauce pour plus tard.",
-            "Ajoutez les cubes de saumon aux ⅔ restants de la sauce et mélangez délicatement jusqu'à ce qu'ils soient enrobés.",
-            "Friteuse à air : Préchauffez à 190°C et faites cuire le saumon en une seule couche pendant 6 à 8 minutes. Four : Préchauffez à 200°C et faites cuire pendant 10 à 12 minutes.",
-            "Badigeonnez avec la sauce réservée pendant les 1 à 2 dernières minutes de cuisson.",
-            "Servez sur du riz avec de l'edamame, de l'avocat, du concombre, des oignons verts et des graines de sésame."
+            "Tranchez finement les betteraves cuites à l'aide d'un économe et disposez-les sur un plat de service.",
+            "Garnissez de roquette fraîche, de feta émiettée, de graines de grenade et de noix de pécan hachées.",
+            "Assaisonnez de sel et de poivre noir, arrosez d'huile d'olive et terminez par un filet de glaçage balsamique.",
+            "Servez cette salade facile et magnifique pour votre table de fêtes !"
         ],
         "tags": [
-            "Asie",
-            "épicé",
+            "C'est l'hiver",
+            "Entrées",
             "Healthy",
-            "Poissons et crustacés"
+            "Noël",
+            "Salades",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -262,148 +290,120 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "8299",
-        "title": "Salade de Noël aux betteraves et grenade",
-        "description": "Préparez la plus jolie des salades pour votre table de Noël ! Cette salade colorée et festive est composée de fines tranches de betteraves, de roquette fraîche, de feta émiettée, de graines de grenade et de noix de pécan hachées, le tout assaisonn...",
-        "image": "/recipes-ia/8299-carte.webp",
-        "category": "entrees",
+        "id": "8304",
+        "title": "Roulé à la meringue",
+        "description": "Tendre, aérien, avec une croûte croustillante à l'extérieur et un cœur moelleux à l'intérieur. Associé à une crème onctueuse au fromage frais, c'est un coup de foudre dès la première bouchée ! 😍",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7710070130838916382\" data-video-id=\"7710070130838916382\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7710070130838916382\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7709100656358853909\" data-video-id=\"7709100656358853909\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7709100656358853909\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             Betteraves cuites, finement tranchées"
+                "name": "🥚\n             Blancs d'œufs - 200 g"
             },
             {
                 "quantity": "",
-                "name": "🥗\n             Roquette fraîche"
+                "name": "🍯\n             Sucre - 280 g"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Feta émiettée"
+                "name": "🥣\n             Fécule de maïs - 2 cuillères à soupe bombées"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Graines de grenade"
+                "name": "🥣\n             Fromage frais (type Philadelphia) - 200 g"
             },
             {
                 "quantity": "",
-                "name": "🥜\n             Noix de pécan hachées"
+                "name": "🥛\n             Crème liquide - 200 g"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel et poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Glaçage balsamique"
+                "name": "🍯\n             Sucre - 50 g"
             }
         ],
         "steps": [
-            "Tranchez finement les betteraves cuites à l'aide d'un économe et disposez-les sur un plat de service.",
-            "Garnissez de roquette fraîche, de feta émiettée, de graines de grenade et de noix de pécan hachées.",
-            "Assaisonnez de sel et de poivre noir, arrosez d'huile d'olive et terminez par un filet de glaçage balsamique.",
-            "Servez cette salade facile et magnifique pour votre table de fêtes !"
+            "1. Dans un bol sec et propre, fouetter les blancs d'œufs avec le sucre jusqu'à obtenir une masse claire, dense et stable qui tient bien sa forme.",
+            "2. Ajouter la fécule de maïs et mélanger délicatement au batteur électrique à basse vitesse.",
+            "3. Étaler la meringue sur une plaque de cuisson recouverte de papier sulfurisé et enfourner dans un four préchauffé à 150°C.",
+            "4. Cuire jusqu'à formation d'une croûte délicate sur le dessus. L'intérieur de la meringue doit rester moelleux.",
+            "5. Laisser le biscuit entièrement refroidir avant de procéder à l'assemblage du roulé.",
+            "Préparation de la crème : Dans un bol, déposer le fromage frais, la crème liquide et le sucre. Fouetter tous les ingrédients ensemble jusqu'à obtenir une crème onctueuse, aérienne et stable.",
+            "Couvrir le biscuit refroidi de crème, rouler délicatement et placer au réfrigérateur pour stabilisation. Déguster ce délicieux dessert ! 🤍"
         ],
         "tags": [
-            "C'est l'hiver",
-            "Entrées",
-            "Healthy",
-            "Noël",
-            "Salades",
-            "Végé"
+            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
     {
-        "id": "8297",
-        "title": "Lasagnes montagnardes à la raclette",
-        "description": "Découvrez une version originale et gourmande de la raclette avec ces lasagnes montagnardes. Un plat réconfortant et généreux, composé de jambon blanc, d'oignons fondants, d'une béchamel maison onctueuse et de fromage à raclette coulant, parfait po...",
-        "image": "/recipes-ia/8297-carte.webp",
+        "id": "8294",
+        "title": "Bouchées de saumon au miel piquant",
+        "description": "Des bouchées de saumon douces, épicées et parfaitement laquées !",
+        "image": "/recipes-ia/8294-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7700963226996968736\" data-video-id=\"7700963226996968736\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7700963226996968736\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7702502918460689686\" data-video-id=\"7702502918460689686\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7702502918460689686\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥓\n             4 à 6 tranches de jambon blanc"
+                "name": "🐟\n             Saumon - 350 g"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             3 oignons"
+                "name": "🍯\n             Miel - 1½ c. à soupe"
             },
             {
                 "quantity": "",
-                "name": "💧\n             10 cl de vin blanc"
+                "name": "🌶️\n             Flocons de piment - ½ c. à café"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Feuilles à lasagne"
+                "name": "🥫\n             Sauce soja - 1 c. à soupe"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fromage à raclette"
+                "name": "🍋\n             Jus de citron - 1 c. à café"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             Beurre (pour les oignons)"
+                "name": "🧄\n             Ail - 1 gousse, hachée"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             80 g de beurre (pour la béchamel)"
+                "name": "🧂\n             Paprika - ½ c. à café"
             },
             {
                 "quantity": "",
-                "name": "🌾\n             80 g de farine (pour la béchamel)"
+                "name": "🍾\n             Huile d'olive - 1 c. à café"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             80 cl de lait (pour la béchamel)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Muscade"
+                "name": "🌶️\n             Poivre noir - au goût"
             }
         ],
         "steps": [
-            "Faites compoter les oignons dans un petit peu de beurre.",
-            "Une fois les oignons bien colorés, déglacez-les au vin blanc et réservez.",
-            "Réalisez une béchamel : faites un roux avec le beurre et la farine (tant pour tant), puis montez-la au lait.",
-            "Assaisonnez la béchamel avec une pincée de sel, du poivre et un peu de noix de muscade.",
-            "Préparez la béchamel volontairement un peu plus liquide, cela sera utile pour la suite de la recette.",
-            "Dans un plat allant au four, commencez par déposer une couche de béchamel.",
-            "Ajoutez des feuilles de lasagne.",
-            "Déposez une tranche de jambon blanc et les oignons confits.",
-            "Ajoutez ensuite des tranches de fromage à raclette.",
-            "Réitérez l'opération en alternant les couches jusqu'à arriver en haut de votre plat.",
-            "Terminez avec une couche de béchamel et du fromage.",
-            "Enfournez le plat pendant 45 minutes à 180 degrés."
+            "Coupez le saumon en cubes de taille bouchée.",
+            "Dans un petit bol, mélangez le miel, les flocons de piment, la sauce soja, le jus de citron, l'ail, le paprika et l'huile d'olive. Réservez ⅓ de la sauce pour plus tard.",
+            "Ajoutez les cubes de saumon aux ⅔ restants de la sauce et mélangez délicatement jusqu'à ce qu'ils soient enrobés.",
+            "Friteuse à air : Préchauffez à 190°C et faites cuire le saumon en une seule couche pendant 6 à 8 minutes. Four : Préchauffez à 200°C et faites cuire pendant 10 à 12 minutes.",
+            "Badigeonnez avec la sauce réservée pendant les 1 à 2 dernières minutes de cuisson.",
+            "Servez sur du riz avec de l'edamame, de l'avocat, du concombre, des oignons verts et des graines de sésame."
         ],
         "tags": [
-            "C'est l'hiver",
-            "France",
-            "Gratins",
-            "pates"
+            "Asie",
+            "épicé",
+            "Healthy",
+            "Poissons et crustacés"
         ],
         "isFeatured": false,
         "isFavorite": false,
