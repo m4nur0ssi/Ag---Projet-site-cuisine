@@ -2,11 +2,81 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/11/2026 18:44:05
- * Total: 882 recettes
+ * Dernière mise à jour: 23/11/2026 20:42:56
+ * Total: 883 recettes
  */
-export const exportSyncId = "1795459445129";
+export const exportSyncId = "1795466576228";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8309",
+        "title": "Riz à la carotte",
+        "description": "Une recette simple et rapide de riz à la carotte, inspirée de la grand-mère de l'auteur. Ce plat parfumé aux légumes peut être dégusté seul ou accompagné de viande ou de poisson.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7711050351331314977\" data-video-id=\"7711050351331314977\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7711050351331314977\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             1 carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             200 g de riz"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             40 cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             7 cl d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            }
+        ],
+        "steps": [
+            "Épluchez et taillez les carottes en très petits morceaux.",
+            "Faites de même avec l'oignon et l'ail (utilisez beaucoup d'ail).",
+            "Dans une casserole, versez un bon fond d'huile d'olive.",
+            "Faites revenir l'oignon, les carottes et l'ail.",
+            "Ajoutez une feuille de laurier.",
+            "Une fois les légumes bien revenus, ajoutez le riz et faites-le revenir pendant 30 à 40 secondes dans la casserole.",
+            "Ajoutez l'eau, un bouillon de volaille et une bonne pincée de sel.",
+            "Faites cuire le tout à couvert pendant 11 à 12 minutes.",
+            "Une fois cuit, retirez la feuille de laurier.",
+            "Servez."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Healthy",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8297",
         "title": "Lasagnes montagnardes à la raclette",
