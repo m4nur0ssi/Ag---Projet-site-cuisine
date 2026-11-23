@@ -17,7 +17,7 @@
  * Fournisseurs, du gratuit au payant
  * ----------------------------------
  * Les fabricants d'image sont essayés DANS L'ORDRE, et on s'arrête au premier
- * qui répond. Par défaut : `cloudflare,fal`.
+ * qui répond. Par défaut : `openai` seul (voir `ordreFournisseurs`).
  *
  *   1. Cloudflare  @cf/black-forest-labs/flux-1-schnell, palier GRATUIT
  *                  (10 000 neurones/jour, très au-dessus de notre rythme).
@@ -69,7 +69,7 @@
  *   --titre-ok    avec --video : génère depuis le titre si la vidéo est illisible
  *                 (sinon la recette est passée — voir la boucle principale)
  *   --openai      force OpenAI gpt-image seul (il est déjà en tête par défaut)
- *   --fournisseurs a,b  ordre des fabricants d'image (défaut cloudflare,fal ;
+ *   --fournisseurs a,b  ordre des fabricants d'image (défaut openai seul ;
  *                 « gemini » existe mais suppose la facturation Google activée)
  *   --fal         raccourci pour --fournisseurs fal (pleine définition, payant)
  *   --max-payant N  au plus N images payées par exécution (défaut 5). Garde-fou
@@ -1797,7 +1797,12 @@ function ordreFournisseurs() {
     if (aOption('--fal')) return ['fal'];
     if (aOption('--openai')) return ['openai'];
     /*
-     * OpenAI passe DEVANT depuis le 2026-09-13 : c'est lui qui respecte la
+     * OPENAI SEUL PAR DÉFAUT depuis le 2026-11-23, décision de l'utilisateur :
+     * plus de repli sur Cloudflare (rendu inférieur). Si OpenAI échoue, la
+     * recette est laissée sans photo et `--manquantes` la reprendra au passage
+     * suivant. `--fournisseurs openai,cloudflare` rétablit l'ancien repli.
+     *
+     * (Historique) OpenAI passe DEVANT depuis le 2026-09-13 : c'est lui qui respecte la
      * consigne (voir genererOpenai). Cloudflare reste derrière comme marche
      * gratuite quand OpenAI est à court de crédit, fal en dernier recours.
      */
@@ -1809,7 +1814,7 @@ function ordreFournisseurs() {
      * rattrapage du bot. Par défaut : OpenAI s'il a du crédit, sinon Cloudflare,
      * qui est gratuit.
      */
-    const demande = valeur('--fournisseurs') || process.env.IMAGE_FOURNISSEURS || 'openai,cloudflare';
+    const demande = valeur('--fournisseurs') || process.env.IMAGE_FOURNISSEURS || 'openai';
     return demande.split(',').map((s) => s.trim()).filter((n) => FOURNISSEURS[n]);
 }
 
