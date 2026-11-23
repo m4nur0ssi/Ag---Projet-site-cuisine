@@ -289,7 +289,7 @@
     position: absolute; inset: -8%;
     width: 116%; height: 116%;
     object-fit: cover; object-position: 50% 42%;
-    filter: blur(52px) saturate(165%) brightness(0.8);
+    filter: blur(52px) saturate(105%) brightness(0.76);
     transform: scale(1.1);
 }
 /* Voile : sombre sur les bords et en bas pour que le texte porte, plus clair au
@@ -320,8 +320,7 @@
     transform: translate(-50%, -50%);
     object-fit: cover;
     border-radius: 50%;
-    filter: blur(150px) saturate(210%) brightness(1);
-    opacity: 0.42;
+    filter: blur(150px) saturate(112%) brightness(0.95);
     pointer-events: none;
 }
 
@@ -340,30 +339,26 @@
 .heroTrack {
     flex: 1 1 auto;
     display: flex; align-items: center;
-    gap: 20px;
+    position: relative;
+    height: 462px;
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
-    /* La bande est répétée trois fois : il y a toujours de quoi remplir les deux
-       côtés, plus besoin de rembourrer les extrémités. */
-    padding: 14px 0;
-    overflow-x: auto; overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    overflow: hidden;
 }
-.heroTrack::-webkit-scrollbar { display: none; }
 
 /* Affiche au repos : petite, en retrait, un peu désaturée. */
 .heroPoster {
-    position: relative;
-    flex: 0 0 auto;
-    width: 170px;
+    position: absolute;
+    top: 14px; left: 50%;
+    width: 300px; margin-left: -150px;
     aspect-ratio: 9 / 13;
     padding: 0; border: none;
-    border-radius: 18px;
+    /* Réduite à 57 % au repos : ce rayon y redonne environ 18 px à l'écran. */
+    border-radius: 32px;
+    will-change: transform;
     overflow: hidden;
     background: #141416;
     cursor: pointer;
-    scroll-snap-align: center;
     opacity: 0.62;
     filter: saturate(0.85);
     /* Ombre COURTE et discrète. À 50 px de flou en noir à 50 %, les ombres des
@@ -373,14 +368,15 @@
        une flaque d'encre. */
     box-shadow: 0 6px 16px rgba(0,0,0,0.28), inset 0 0 0 0.5px rgba(255,255,255,0.14);
     transition:
-        width 0.55s var(--ease), opacity 0.55s var(--ease),
-        filter 0.55s var(--ease), box-shadow 0.55s var(--ease);
+        transform 0.72s cubic-bezier(0.22, 0.8, 0.2, 1),
+        border-radius 0.72s cubic-bezier(0.22, 0.8, 0.2, 1),
+        opacity 0.55s var(--ease), filter 0.55s var(--ease), box-shadow 0.55s var(--ease);
 }
 .heroPoster:hover { opacity: 0.8; }
 
 /* Affiche active : deux fois plus large, nette, éclairée. */
 .heroPosterOn {
-    width: 300px;
+    border-radius: 18px;
     opacity: 1;
     filter: none;
     /* L'affiche active se distingue par sa taille et sa netteté ; son ombre de
@@ -409,9 +405,8 @@
 
 /* Flèches : posées sur les bords du cadre, révélées au survol du héros. */
 .heroNav {
-    position: relative; z-index: 4;
-    flex: 0 0 auto;
-    margin: 0 18px;
+    position: absolute; z-index: 4;
+    top: 50%; margin-top: -23px;
     width: 46px; height: 46px;
     display: flex; align-items: center; justify-content: center;
     border: none; border-radius: 999px;
@@ -423,6 +418,12 @@
 }
 .hero:hover .heroNav { opacity: 1; }
 .heroNav:active { transform: scale(0.9); }
+.heroNavL { left: 24px; }
+/* À droite, l'ascenseur des rangées occupe le bord : la flèche s'en écarte. */
+.heroNavR { right: 68px; }
+@media (prefers-reduced-motion: reduce) {
+    .heroPoster { transition: opacity 0.2s linear; }
+}
 
 /* ── Texte, sous la galerie ─────────────────────────────────────────────── */
 
@@ -581,7 +582,6 @@
     display: flex; gap: 16px;
     padding: 4px 52px;
     overflow-x: auto; overflow-y: hidden;
-    scroll-snap-type: x proximity; scroll-padding-left: 52px;
     scrollbar-width: none;
 }
 .rowScroll::-webkit-scrollbar { display: none; }
@@ -952,6 +952,16 @@
 .sidebarToggle {
     background-color: rgba(255, 244, 228, 0.075);
     box-shadow: inset 0 0 0 1px rgba(255, 211, 149, 0.10);
+}
+
+/* Le survol ne doit jamais éteindre la tuile de la page sélectionnée. */
+.navRowOn,
+.navRowOn:hover,
+.navRowOn.libraryItem:hover,
+.searchBtnOn:hover {
+    background: linear-gradient(135deg, var(--gold-1) 0%, var(--gold-3) 100%);
+    color: #170f08;
+    box-shadow: 0 16px 42px rgba(255, 160, 82, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.52);
 }
 
 .navGroupCount,

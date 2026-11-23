@@ -112,8 +112,10 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
      */
     const idMesure = useRef<string | null>(null);
     const [lisse, setLisse] = useState(false);
+    // Parcours d'une sélection : hauteur constante, le haut de la fiche ne bouge plus.
+    const parcours = !!navigation;
     useEffect(() => {
-        if (!isOpen) { setHauteur(null); setLisse(false); idMesure.current = null; return; }
+        if (!isOpen || parcours) { setHauteur(null); setLisse(false); idMesure.current = null; return; }
         const id = String(currentRecipe?.id ?? '');
         const changement = idMesure.current !== null && idMesure.current !== id;
         idMesure.current = id;
@@ -153,7 +155,7 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
             ro.disconnect();
             window.removeEventListener('resize', mesurer);
         };
-    }, [isOpen, currentRecipe]);
+    }, [isOpen, currentRecipe, parcours]);
 
     useEffect(() => {
         if (isOpen && currentRecipe) {
@@ -267,7 +269,7 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose, na
                         <motion.div
                             className={styles.sheet}
                             ref={sheetRef}
-                            style={hauteur ? { height: `${hauteur}px`, ...(lisse ? { transition: 'height .28s cubic-bezier(.32,.72,0,1)' } : null) } : undefined}
+                            style={parcours ? { height: '96vh' } : hauteur ? { height: `${hauteur}px`, ...(lisse ? { transition: 'height .28s cubic-bezier(.32,.72,0,1)' } : null) } : undefined}
                             initial={{ y: '100%' }}
                             animate={{ y: 0 }}
                             exit={{ y: '105%' }}

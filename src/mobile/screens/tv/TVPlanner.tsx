@@ -61,7 +61,7 @@ const FAMILLE_PROTEINE: Record<string, string> = {
     boeuf: 'Viande', agneau: 'Viande', porc: 'Viande', poulet: 'Viande',
     poisson: 'Poisson', vege: 'Végé',
 };
-const FAMILLES = ['Viande', 'Poisson', 'Végé', 'Autre'] as const;
+const FAMILLES = ['Viande', 'Poisson', 'Végé', 'Légumes'] as const;
 
 /* Les barres du téléphone, à droite du prix : ce que la semaine met dans
    l'assiette, compté en repas (un plat et sa garniture font un repas). */
@@ -178,7 +178,12 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             if (!cible) return;
             const r = cible.getBoundingClientRect();
             const p = page.getBoundingClientRect();
-            const valeur = `${Math.round(r.top - p.top)}|${Math.round(r.height)}`;
+            // Le panneau finit avec la pastille des recettes mais monte jusque sous
+            // l'en-tête : calé sur elle, il coupait le récapitulatif et ses pays.
+            const entete = page.querySelector<HTMLElement>(':scope > header');
+            const hautRecettes = r.top - p.top;
+            const hautPanneau = entete ? Math.min(hautRecettes, entete.getBoundingClientRect().bottom - p.top + 14) : hautRecettes;
+            const valeur = `${Math.round(hautPanneau)}|${Math.round(r.bottom - p.top - hautPanneau)}`;
             if (valeur === dernier) return;   // rien n'a bougé : on n'écrit pas
             dernier = valeur;
             const [haut, hauteur] = valeur.split('|');
@@ -609,8 +614,13 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             if (slot.side) plats.push(slot.side);
         }));
 
-        const familles: Record<string, number> = { Viande: 0, Poisson: 0, 'Végé': 0, Autre: 0 };
-        plats.forEach((r) => { familles[FAMILLE_PROTEINE[proteinOf(r)] || 'Autre'] += 1; });
+        const familles: Record<string, number> = { Viande: 0, Poisson: 0, 'Végé': 0, 'Légumes': 0 };
+        plats.forEach((r) => {
+            const famille = FAMILLE_PROTEINE[proteinOf(r)];
+            if (famille) familles[famille] += 1;
+            // Compté à part : un poulet aux légumes est une viande ET des légumes.
+            if (assietteOf(r).legumes) familles['Légumes'] += 1;
+        });
 
         const pays: string[] = [];
         plats.forEach((r) => ((r as any).tags || []).forEach((t: string) => {
@@ -1475,11 +1485,11 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                         <section className={styles.planBloc}>
                             <div className={styles.planBlocTitre}>Tour du monde</div>
                             <div className={styles.planPays}>
-                                {apercu.pays.slice(0, 3).map((p) => (
+                                {apercu.pays.slice(0, 8).map((p) => (
                                     <span key={p} className={styles.planPaysTag}>{PAYS_LABEL[p]}</span>
                                 ))}
-                                {apercu.pays.length > 3 && (
-                                    <span className={styles.planVideReste}>+{apercu.pays.length - 3}</span>
+                                {apercu.pays.length > 8 && (
+                                    <span className={styles.planVideReste}>+{apercu.pays.length - 8}</span>
                                 )}
                             </div>
                         </section>

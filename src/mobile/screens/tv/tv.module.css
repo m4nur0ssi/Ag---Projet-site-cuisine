@@ -6210,7 +6210,7 @@
     /* Équilibre : un nom, une piste, un compte — trois colonnes alignées. */
     .pagePlanner .planBarre {
         display: grid;
-        grid-template-columns: 50px minmax(0, 1fr) 14px;
+        grid-template-columns: 58px minmax(0, 1fr) 14px;
         align-items: center;
         gap: 8px;
         line-height: 1.15;
@@ -6263,6 +6263,15 @@
         color: #1b1108;
     }
     .pagePlanner .planVideReste { color: rgba(255, 244, 228, 0.42); }
+    /* Pays : pastilles pleines, lisibles sur le fond sombre du panneau. */
+    .pagePlanner .planPaysTag {
+        padding: 5px 11px;
+        border-color: rgba(255, 208, 142, 0.46);
+        background: rgba(255, 190, 115, 0.2);
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff4e4;
+    }
 
     /* La légende du bouton « Liste de courses » : ce qu'il va y déverser. */
     .pagePlanner .planCoursesHint {

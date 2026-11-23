@@ -483,7 +483,13 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
     const nudge = (dir: number) => {
         toutMonter();
         const el = scroller.current;
-        if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' });
+        if (!el) return;
+        // Avance d'un nombre ENTIER de cartes : la rangée s'arrête pile sur un bord.
+        const [a, b] = [el.children[0], el.children[1]] as HTMLElement[];
+        const pas = a && b ? b.offsetLeft - a.offsetLeft : el.clientWidth;
+        const parPage = Math.max(1, Math.floor((el.clientWidth - 88) / pas));
+        const cible = (Math.round(el.scrollLeft / pas) + dir * parPage) * pas;
+        el.scrollTo({ left: Math.max(0, Math.min(cible, el.scrollWidth - el.clientWidth)), behavior: 'smooth' });
     };
     return (
         <section className={styles.row} data-reveal data-snap onPointerEnter={toutMonter} onFocus={toutMonter}>
@@ -531,8 +537,24 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
 
 // ── Héros carrousel ─────────────────────────────────────────────────────────
 
+/* Géométrie de la bande : l'affiche active fait 300 px, ses voisines 170. */
+const AFFICHE_ON = 300;
+const AFFICHE = 170;
+const ECART_AFFICHES = 20;
+/** Positions montées autour de l'active : de quoi remplir un très grand écran. */
+const DECALAGES_HERO = Array.from({ length: 17 }, (_, i) => i - 8);
+const modulo = (n: number, m: number) => ((n % m) + m) % m;
+/** Tout passe par `transform` : la carte glisse sans recalcul de mise en page. */
+const transformAffiche = (d: number) => {
+    if (d === 0) return 'translate3d(0, 0, 0) scale(1)';
+    const x = Math.sign(d) * (AFFICHE_ON / 2 + ECART_AFFICHES + AFFICHE / 2 + (Math.abs(d) - 1) * (AFFICHE + ECART_AFFICHES));
+    return `translate3d(${x}px, 0, 0) scale(${AFFICHE / AFFICHE_ON})`;
+};
+
 function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; onMenu: (r: Recipe, x: number, y: number, coll?: Coll) => void }) {
-    const [index, setIndex] = useState(0);
+    // Position sans fin (…, -1, 0, 1, 2, …) ; la recette affichée en est le modulo.
+    const [pos, setPos] = useState(0);
+    const index = recipes.length ? modulo(pos, recipes.length) : 0;
     const [paused, setPaused] = useState(false);
     // La vidéo ne part pas d'emblée : deux secondes de photo, puis elle prend la
     // place du visuel dans le même cadre — et seulement si elle joue vraiment
@@ -546,9 +568,10 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
     // Rotation auto : suspendue au survol du héros, et pendant une lecture vidéo.
     useEffect(() => {
         if (recipes.length < 2 || paused || (playing && videoOn)) return;
-        const id = setInterval(() => setIndex((i) => (i + 1) % recipes.length), 5000);
-        return () => clearInterval(id);
-    }, [recipes.length, paused, playing, videoOn]);
+        // Le délai repart à chaque changement : un clic n'est jamais suivi d'un saut.
+        const id = setTimeout(() => setPos((p) => p + 1), 5000);
+        return () => clearTimeout(id);
+    }, [pos, recipes.length, paused, playing, videoOn]);
 
     // 2 s d'image fixe, puis on tente la vidéo. Changer de recette repart de zéro.
     useEffect(() => {
@@ -576,31 +599,8 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
         return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [playing, videoOn]);
 
-    // La bande d'affiches est répétée trois fois et c'est la copie du MILIEU qui
-    // est active : il y a donc toujours des voisines à gauche comme à droite,
-    // et la bande court d'un bord du héros à l'autre, même sur la première ou la
-    // dernière recette.
-    const loop = useMemo(() => [...recipes, ...recipes, ...recipes], [recipes]);
-    const activeSlot = recipes.length + index;
-
-    // La piste se recentre sur l'affiche active : c'est elle qui reste au milieu
-    // du cadre, les voisines débordent de part et d'autre.
-    const trackRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        // Défilement HORIZONTAL de la piste seule. `scrollIntoView` remontait aussi
-        // la page entière vers le héros à chaque rotation (toutes les 5 s) dès qu'il
-        // était hors cadre : la page « remontait toute seule » pendant le scroll.
-        const track = trackRef.current;
-        const el = track?.children[activeSlot] as HTMLElement | undefined;
-        if (!track || !el) return;
-        const t = track.getBoundingClientRect();
-        const r = el.getBoundingClientRect();
-        const left = track.scrollLeft + (r.left + r.width / 2) - (t.left + t.width / 2);
-        track.scrollTo({ left, behavior: 'smooth' });
-    }, [activeSlot]);
-
     if (!current) return null;
-    const go = (d: number) => setIndex((i) => (i + d + recipes.length) % recipes.length);
+    const go = (d: number) => setPos((p) => p + d);
 
     return (
         <div data-hero data-snap data-snap-label="À la une" className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
@@ -624,7 +624,19 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                 {/* Halo : la même photo, énorme et très floutée, posée derrière le
                     visuel. C'est elle qui teinte la moitié droite du cadre — sans
                     elle, ce côté-là restait un pavé noir. */}
-                <img className={styles.heroHalo} src={current.image} alt="" draggable={false} />
+                <AnimatePresence>
+                    <motion.img
+                        key={current.id}
+                        className={styles.heroHalo}
+                        src={current.image}
+                        alt=""
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.42 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1.1, ease: [0.32, 0.72, 0, 1] }}
+                        draggable={false}
+                    />
+                </AnimatePresence>
             </div>
 
             {/* Bandeau haut : la signature et le compteur de recettes. */}
@@ -641,25 +653,31 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                 et c'est elle qui prend la vidéo au bout de 2 s. Les voisines
                 restent en retrait ; un clic les ramène au centre. */}
             <div className={styles.heroGallery}>
-                <button className={styles.heroNav} onClick={() => go(-1)} aria-label="Précédent">
+                <button className={`${styles.heroNav} ${styles.heroNavL}`} onClick={() => go(-1)} aria-label="Précédent">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
 
-                <div className={styles.heroTrack} ref={trackRef}>
-                    {loop.map((r, i) => {
-                        const real = i % recipes.length;
-                        const on = i === activeSlot;
+                {/* Bande sans fin : chaque affiche porte un numéro de position qui
+                    ne revient jamais en arrière. Après la sixième, la suivante est
+                    de nouveau la première, sans retour de la bande. */}
+                <div className={styles.heroTrack}>
+                    {DECALAGES_HERO.map((d) => {
+                        const slot = pos + d;
+                        const r = recipes[modulo(slot, recipes.length)];
+                        const on = d === 0;
+                        const doublon = d < -2 || d > 3;
                         return (
                             <button
-                                key={`${r.id}-${i}`}
+                                key={slot}
                                 className={`${styles.heroPoster} ${on ? styles.heroPosterOn : ''}`}
-                                onClick={() => (on ? openRecipe(r, recipes, Math.max(0, recipes.indexOf(r))) : setIndex(real))}
+                                style={{ transform: transformAffiche(d) }}
+                                onClick={() => (on ? openRecipe(r, recipes, Math.max(0, recipes.indexOf(r))) : setPos(slot))}
                                 aria-label={on ? `Voir ${label(r)}` : label(r)}
                                 aria-current={on || undefined}
-                                aria-hidden={i < recipes.length || i >= recipes.length * 2 ? true : undefined}
-                                tabIndex={i < recipes.length || i >= recipes.length * 2 ? -1 : 0}
+                                aria-hidden={doublon ? true : undefined}
+                                tabIndex={doublon ? -1 : 0}
                             >
-                                <img className={styles.heroPosterImg} src={r.image} alt="" loading="lazy" decoding="async" draggable={false} />
+                                <img className={styles.heroPosterImg} src={r.image} alt="" decoding="async" draggable={false} />
                                 {on && playing && currentVid && (
                                     <iframe
                                         className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
@@ -674,7 +692,7 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                     })}
                 </div>
 
-                <button className={styles.heroNav} onClick={() => go(1)} aria-label="Suivant">
+                <button className={`${styles.heroNav} ${styles.heroNavR}`} onClick={() => go(1)} aria-label="Suivant">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
 
