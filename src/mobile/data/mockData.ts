@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "8311",
         "title": "Pains au chocolat revisités : 7 façons de les déguster",
         "description": "Découvrez sept façons originales et gourmandes de revisiter le pain au chocolat, inspirées de différentes traditions culinaires à travers le monde.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/8311-carte.webp",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
