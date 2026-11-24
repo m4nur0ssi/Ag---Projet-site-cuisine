@@ -1,7 +1,11 @@
 .videoContainer iframe, .iframe {
+    /* Le cadre garde EXACTEMENT le format 9/16 de la vidéo. Avant, la largeur
+       restait à 100 % pendant que la hauteur était plafonnée à 80vh : sur iPad
+       le lecteur devenait plus large que la vidéo, qui flottait petite entre
+       deux bandes noires. On plafonne donc la LARGEUR de la tuile (hauteur max 85 % de
+       l'écran × 9/16) et la hauteur suit. */
     width: 100%;
     height: auto;
-    max-height: 80vh; /* Garde la vidéo dans l'écran visible */
     aspect-ratio: 9 / 16;
     border: none;
     border-radius: var(--radius-md);
@@ -10,9 +14,12 @@
 }
 
 .videoContainer {
-    width: 100%;
+    /* La tuile épouse le lecteur au lieu de rester pleine largeur autour. */
+    width: min(100%, calc(85vh * 9 / 16 + 2 * var(--spacing-sm)));
+    width: min(100%, calc(85dvh * 9 / 16 + 2 * var(--spacing-sm)));
+    max-width: 100%;
+    margin: 0 auto;
     height: auto;
-    max-height: 85vh;
     border-radius: var(--radius-lg);
     overflow: hidden;
     display: flex;
