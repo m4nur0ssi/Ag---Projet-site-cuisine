@@ -2,11 +2,141 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/11/2026 20:42:56
- * Total: 883 recettes
+ * Dernière mise à jour: 24/11/2026 12:43:16
+ * Total: 884 recettes
  */
-export const exportSyncId = "1795466576228";
+export const exportSyncId = "1795524196775";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8311",
+        "title": "Pains au chocolat revisités : 7 façons de les déguster",
+        "description": "Découvrez sept façons originales et gourmandes de revisiter le pain au chocolat, inspirées de différentes traditions culinaires à travers le monde.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7711428638545038625\" data-video-id=\"7711428638545038625\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7711428638545038625\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             Pains au chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème pâtissière"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Pâte à tartiner au chocolat (Nutella)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Pépites de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Pain de mie"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sirop d'érable"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Chocolat noir"
+            }
+        ],
+        "steps": [
+            "**Pour la version française (façon mille-feuille) :**",
+            "1. Écrasez deux pains au chocolat.",
+            "2. Faites-les toaster à la poêle avec du beurre et du miel jusqu'à ce qu'ils soient caramélisés.",
+            "3. Coupez les bords des pains au chocolat caramélisés.",
+            "4. Disposez un pain au chocolat sur une assiette.",
+            "5. Ajoutez de la crème pâtissière.",
+            "6. Recouvrez avec le second pain au chocolat.",
+            "7. Saupoudrez de sucre glace.",
+            "**Pour la version belge (façon gaufrier) :**",
+            "1. Ouvrez un pain au chocolat en deux.",
+            "2. Tartinez généreusement de pâte à tartiner au chocolat (Nutella).",
+            "3. Refermez le pain au chocolat.",
+            "4. Faites-le toaster dans un gaufrier.",
+            "**Pour la version anglaise (façon pudding) :**",
+            "1. Coupez des pains au chocolat en morceaux.",
+            "2. Disposez les morceaux dans un moule.",
+            "3. Dans un bol, mélangez des œufs avec du sucre, du lait, de la crème liquide et de l'arôme vanille.",
+            "4. Versez ce mélange sur les morceaux de pains au chocolat dans le moule.",
+            "5. Ajoutez des pépites de chocolat.",
+            "6. Enfournez.",
+            "**Pour la version marocaine (façon tartine) :**",
+            "1. Mixez un pain au chocolat.",
+            "2. Versez le pain au chocolat mixé dans un bol et mélangez avec de la crème jusqu'à obtenir une pâte.",
+            "3. Toastez une tranche de pain de mie.",
+            "4. Tartinez le pain de mie toasté avec la pâte de pain au chocolat.",
+            "5. Refermez avec une autre tranche de pain de mie.",
+            "**Pour la version canadienne (caramélisé à l'érable) :**",
+            "1. Écrasez un pain au chocolat à l'aide d'un rouleau à pâtisserie.",
+            "2. Faites-le toaster à la poêle avec du beurre et du sirop d'érable jusqu'à ce qu'il caramélise.",
+            "**Pour la seconde version française (façon mug cake) :**",
+            "1. Coupez un pain au chocolat en tout petits morceaux.",
+            "2. Ajoutez les morceaux dans un mug avec du lait chaud.",
+            "3. Mélangez pour former une pâte.",
+            "4. Ajoutez un œuf, de la farine, de la levure chimique et des pépites de chocolat.",
+            "5. Faites cuire au micro-ondes.",
+            "**Pour la version portugaise (chocolat fondu) :**",
+            "1. Coupez une tablette de chocolat noir en morceaux.",
+            "2. Faites fondre le chocolat noir dans une tasse avec du lait.",
+            "3. Trempez un pain au chocolat dans le chocolat fondu."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8309",
         "title": "Riz à la carotte",
