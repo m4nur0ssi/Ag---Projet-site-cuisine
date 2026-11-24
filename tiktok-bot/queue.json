@@ -1,16 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdXKqjAk/",
-      "country": "Asie",
-      "timestamp": "2026-11-24T18:34:18.045Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdXKG9G5/",
-      "country": "C'est l'hiver",
-      "timestamp": "2026-11-24T18:34:56.194Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZGdQUDKnF/",
