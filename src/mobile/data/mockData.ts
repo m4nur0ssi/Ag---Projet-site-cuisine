@@ -2,11 +2,132 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 24/11/2026 13:10:14
- * Total: 884 recettes
+ * Dernière mise à jour: 24/11/2026 18:54:07
+ * Total: 886 recettes
  */
-export const exportSyncId = "1795525814365";
+export const exportSyncId = "1795546447075";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8315",
+        "title": "Churros maison",
+        "description": "Découvrez comment préparer des churros maison pour moins d'un euro, une recette économique et rapide, parfaite pour les fêtes de fin d'année. Cette recette vous permettra de réaliser environ 15 gros churros pour seulement 0,70 €.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7711762321231645991\" data-video-id=\"7711762321231645991\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7711762321231645991\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             250 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             250 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile neutre ou d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Du sucre (pour l'enrobage)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             De l'huile (pour la friture)"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, faites bouillir l'eau avec l'huile et le sel.",
+            "Hors du feu, ajoutez la farine d'un coup et mélangez énergiquement jusqu'à obtenir une boule de pâte lisse.",
+            "Laissez tiédir la pâte pendant environ 5 minutes.",
+            "Transférez la pâte dans un piston spécial churros. Si vous n'en avez pas, vous pouvez utiliser une douille et pousser la pâte avec votre pouce, car la pâte est très dense et une poche à douille classique pourrait éclater.",
+            "Faites chauffer l'huile de friture à 180 °C.",
+            "Plongez les churros (environ 12 cm de long) dans l'huile chaude et faites-les frire pendant 2 à 3 minutes.",
+            "Égouttez les churros et roulez-les immédiatement dans le sucre."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Espagne",
+            "Noël",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8313",
+        "title": "Poulet Teriyaki",
+        "description": "Découvrez une recette de poulet teriyaki, un grand classique japonais, préparée avec des ingrédients facilement trouvables chez Monoprix. Ce poulet bien doré est enrobé d'une sauce teriyaki sucrée-salée, brillante et pleine de saveurs, qui se mari...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "cocktails",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7711750257197010209\" data-video-id=\"7711750257197010209\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7711750257197010209\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             2 cuisses de poulet (environ 400 à 500 g)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             2 cuillères à soupe de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un peu d'huile de tournesol"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Une pincée de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Quelques gouttes de jus de citron (facultatif)"
+            }
+        ],
+        "steps": [
+            "Ouvrez les parties les plus épaisses des cuisses de poulet pour obtenir une épaisseur uniforme. Poivrez légèrement.",
+            "Faites chauffer un peu d'huile de tournesol dans une poêle à feu moyen. Déposez le poulet côté peau et faites cuire pendant 5 à 7 minutes, jusqu'à ce que la peau soit bien dorée et croustillante.",
+            "Retournez le poulet et poursuivez la cuisson pendant 4 à 6 minutes, jusqu'à ce qu'il soit bien cuit à cœur.",
+            "Mélangez le vin blanc, la sauce soja, le miel, le sucre et l'ail râpé.",
+            "Retirez l'excédent de graisse de la poêle avec du papier absorbant. Ajoutez la sauce et baissez le feu. Retournez plusieurs fois le poulet et laissez mijoter pendant 2 à 3 minutes, jusqu'à ce que la sauce réduise légèrement et devienne brillante.",
+            "Coupez le poulet en morceaux et versez le reste de la sauce par-dessus. Ajoutez éventuellement quelques gouttes de jus de citron selon vos goûts."
+        ],
+        "tags": [
+            "Asie",
+            "Cocktails"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8311",
         "title": "Pains au chocolat revisités : 7 façons de les déguster",
