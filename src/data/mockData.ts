@@ -2,11 +2,177 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/11/2026 11:47:56
- * Total: 887 recettes
+ * Dernière mise à jour: 27/11/2026 11:36:44
+ * Total: 889 recettes
  */
-export const exportSyncId = "1795693676295";
+export const exportSyncId = "1795779404011";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "8324",
+        "title": "Bûche Flan de Noël",
+        "description": "Découvrez la fameuse bûche flan, un dessert de Noël qui a fait sensation il y a deux ans et qui est de nouveau partagé pour le plaisir de tous. Une recette gourmande et originale, parfaite pour les fêtes de fin d'année.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7711766907053018401\" data-video-id=\"7711766907053018401\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7711766907053018401\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200g de farine T45"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             240g de beurre froid en morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             20g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             90mL d'eau minérale"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             45g de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             46cl de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             15cl de crème liquide ou crème fraîche"
+            }
+        ],
+        "steps": [
+            "Pour la pâte feuilletée rapide : Dans un batteur ou à la main, sablez la farine, le beurre froid en morceaux, le sucre en poudre et le sel. Veillez à conserver des morceaux de beurre.",
+            "Ajoutez l'eau minérale et pétrissez jusqu'à ce que la pâte s'agglomère.",
+            "Réservez la pâte au frais pendant une heure.",
+            "Farinez votre plan de travail, étalez la pâte en un rectangle.",
+            "Rabattez le haut de la pâte vers le milieu, puis le bas vers le milieu, formant ainsi une petite enveloppe à trois couches.",
+            "Tournez la pâte d'un quart vers la droite et répétez cette opération 4 fois. Votre pâte feuilletée est prête à être utilisée.",
+            "Pour la crème à flan : Dans une casserole, faites chauffer le lait entier (que l'auteure appelle \" crème liquide \" dans la vidéo) avec une partie du sucre et les gousses de vanille grattées. Laissez infuser pendant 30 minutes si le temps le permet.",
+            "Pendant ce temps, dans un cul de poule, mélangez les jaunes d'œufs, l'œuf entier, le sucre restant et la fécule de maïs jusqu'à blanchiment.",
+            "Incorporez une partie du liquide chaud (lait infusé) au mélange d'œufs, puis mélangez bien.",
+            "Transvasez le tout à nouveau dans la casserole avec le reste du lait.",
+            "Fouettez énergiquement jusqu'à ébullition et laissez bouillir pendant deux minutes. La crème doit devenir onctueuse.",
+            "Une fois la crème pâtissière prête, ajoutez la crème liquide ou la crème fraîche.",
+            "Préchauffez votre four à 180°C.",
+            "Étalez finement la pâte feuilletée à 3 mm d'épaisseur et détaillez un rectangle aux dimensions de votre moule à bûche.",
+            "Déposez la pâte dans le moule et découpez le surplus si nécessaire.",
+            "Remplissez l'intérieur du moule avec la crème à flan.",
+            "Enfournez pendant 30 minutes à 180°C, puis 5 minutes à 230°C.",
+            "Laissez la bûche reposer pendant 3 heures après cuisson.",
+            "Pour la finition, vous pouvez étaler un peu de sirop pour faire briller et ajouter du sucre glace pour l'effet.",
+            "Dégustez !"
+        ],
+        "tags": [
+            "France",
+            "Noël",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "8322",
+        "title": "Salade Big Mac",
+        "description": "Découvrez une version saine et gourmande de la célèbre salade Big Mac. Cette recette facile à réaliser combine un steak haché, de la salade, des cornichons, de l'oignon rouge et une sauce crémeuse à base de Skyr, moutarde et ketchup, le tout agrém...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7710255263688822049\" data-video-id=\"7710255263688822049\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7710255263688822049\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥩\n             1 steak haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             1 sucrine (ou autre salade)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de Skyr"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de ketchup"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques cornichons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             3 tranches de lard fumé"
+            }
+        ],
+        "steps": [
+            "Préparez la sauce : dans un bol, mélangez le Skyr, la moutarde et le ketchup.",
+            "Assaisonnez avec du sel et du poivre à votre convenance, puis goûtez et ajustez si nécessaire.",
+            "Versez la quantité de sauce souhaitée dans un plat à salade.",
+            "Coupez la moitié d'un oignon rouge.",
+            "Coupez finement quelques cornichons.",
+            "Coupez grossièrement la sucrine.",
+            "Faites cuire le steak haché, puis émiettez-le.",
+            "Faites cuire les tranches de lard fumé.",
+            "Ajoutez l'oignon rouge, les cornichons, la sucrine coupée, le steak haché émietté et le lard fumé cuit dans le plat.",
+            "Mélangez le tout avant de servir."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "8304",
         "title": "Roulé à la meringue",
